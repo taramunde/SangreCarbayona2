@@ -1,30 +1,24 @@
+/* ── State ── */
 let currentId = null;
 let data = { categories: [] };
 
-const defaultCats = ["Lácteos", "Panadería", "Bebidas", "Fruta y Verdura", "Carne y Pescado", "Snacks", "Despensa", "Otros"];
+const DEFAULT_CATS = [
+    "Lácteos", "Panadería", "Bebidas", "Fruta y Verdura",
+    "Carne y Pescado", "Snacks", "Despensa", "Otros"
+];
 
+/* ── Helpers ── */
 function generateId() {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let id = "";
-    for (let i = 0; i < 5; i++) id += chars[Math.floor(Math.random() * chars.length)];
-    return id;
+    return Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
 }
 
-function getDefaultData() {
-    return { categories: defaultCats.map(function(name) { return { name: name, items: [] }; }) };
-}
-
-function saveData() {
-    if (currentId) {
-        localStorage.setItem("shoplist_" + currentId, JSON.stringify(data));
-    }
-}
-
-function loadData(id) {
-    currentId = id;
-    const saved = localStorage.getItem("shoplist_" + id);
-    data = saved ? JSON.parse(saved) : getDefaultData();
-    saveData();
+function escHtml(str) {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
 
 function encodeData(obj) {
@@ -35,58 +29,90 @@ function decodeData(str) {
     return JSON.parse(decodeURIComponent(escape(atob(str))));
 }
 
+function getShareUrl() {
+    return window.location.origin + window.location.pathname + "?lista=" + encodeData(data);
+}
+
+/* ── Storage ── */
+function saveData() {
+    if (!currentId) return;
+    try { localStorage.setItem("shoplist_" + currentId, JSON.stringify(data)); } catch (e) {}
+}
+
+function loadData(id) {
+    currentId = id;
+    let saved = null;
+    try { saved = localStorage.getItem("shoplist_" + id); } catch (e) {}
+    data = saved
+        ? JSON.parse(saved)
+        : { categories: DEFAULT_CATS.map(name => ({ name, items: [] })) };
+    saveData();
+}
+
+/* ── Render ── */
 function renderCategories() {
     const container = document.getElementById("categories-list");
     container.innerHTML = "";
-    
-    data.categories.forEach(function(cat, catIdx) {
-        let html = "";
-        html += '<div class="category-header">';
-        html += '  <div class="flex items-center justify-between bg-zinc-950 py-3">';
-        html += '    <div class="flex items-center gap-x-3">';
-        html += '      <span class="text-2xl">📦</span>';
-        html += '      <h3 class="text-xl font-semibold">' + cat.name + '</h3>';
-        html += '    </div>';
-        html += '    <button onclick="openAddModal(' + catIdx + ')" class="px-4 py-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-sm font-medium rounded-2xl">+ item</button>';
-        html += '  </div>';
-        html += '</div>';
-        html += '<div class="space-y-px">';
-        
+
+    data.categories.forEach((cat, catIdx) => {
+        const pending = cat.items.filter(i => !i.checked).length;
+
+        const section = document.createElement("div");
+        section.className = "category-section";
+
+        // Header
+        const header = document.createElement("div");
+        header.className = "category-header";
+        header.innerHTML = `
+            <div class="category-title">
+                <span>📦</span>
+                <h3>${escHtml(cat.name)}</h3>
+                <span class="category-count">${pending} pendiente${pending !== 1 ? "s" : ""}</span>
+            </div>
+            <button class="btn-add-item" onclick="openAddModal(${catIdx})">+ item</button>
+        `;
+        section.appendChild(header);
+
+        // Items
+        const itemsDiv = document.createElement("div");
+
         if (cat.items.length === 0) {
-            html += '<div class="text-zinc-600 text-sm py-4 text-center italic">vacío</div>';
+            itemsDiv.innerHTML = `<div class="empty-cat">vacío — añade un producto</div>`;
         } else {
-            cat.items.forEach(function(item, itemIdx) {
+            cat.items.forEach((item, itemIdx) => {
                 const subtotal = (item.price * item.qty).toFixed(2);
-                const isChecked = item.checked ? "checked" : "";
-                const textClass = item.checked ? "line-through text-zinc-500" : "";
-                
-                html += '<div class="item-row flex items-center gap-x-4 bg-zinc-900 px-5 py-4 rounded-3xl group mb-2">';
-                html += '  <input type="checkbox" ' + isChecked + ' onchange="toggleCheck(' + catIdx + ', ' + itemIdx + ', this.checked)" class="w-6 h-6 accent-emerald-500">';
-                html += '  <div class="flex-1 min-w-0">';
-                html += '    <div class="font-medium leading-tight ' + textClass + '">' + item.name + '</div>';
-                html += '    <div class="text-xs text-zinc-400">' + item.qty + ' × $' + parseFloat(item.price).toFixed(2) + '</div>';
-                html += '  </div>';
-                html += '  <div class="text-right font-mono text-lg font-medium tabular-nums">$' + subtotal + '</div>';
-                html += '  <button onclick="deleteItem(' + catIdx + ', ' + itemIdx + ')" class="text-red-400 w-8 h-8 flex items-center justify-center text-2xl ml-2">×</button>';
-                html += '</div>';
+                const row = document.createElement("div");
+                row.className = "item-row";
+                row.innerHTML = `
+                    <input type="checkbox" class="item-check" ${item.checked ? "checked" : ""}
+                        onchange="toggleCheck(${catIdx}, ${itemIdx}, this.checked)">
+                    <div class="item-info">
+                        <div class="item-name ${item.checked ? "done" : ""}">${escHtml(item.name)}</div>
+                        <div class="item-detail">${item.qty} × $${parseFloat(item.price).toFixed(2)}</div>
+                    </div>
+                    <div class="item-price ${item.checked ? "done" : ""}">$${subtotal}</div>
+                    <button class="btn-delete" onclick="deleteItem(${catIdx}, ${itemIdx})" title="Eliminar">×</button>
+                `;
+                itemsDiv.appendChild(row);
             });
         }
-        html += '</div>';
-        container.innerHTML += html;
+
+        section.appendChild(itemsDiv);
+        container.appendChild(section);
     });
+
     updateGrandTotal();
 }
 
 function updateGrandTotal() {
     let total = 0;
-    data.categories.forEach(function(cat) {
-        cat.items.forEach(function(item) {
-            if (!item.checked) total += item.price * item.qty;
-        });
+    data.categories.forEach(cat => {
+        cat.items.forEach(item => { if (!item.checked) total += item.price * item.qty; });
     });
     document.getElementById("grand-total").textContent = "$" + total.toFixed(2);
 }
 
+/* ── Actions ── */
 function toggleCheck(catIdx, itemIdx, checked) {
     data.categories[catIdx].items[itemIdx].checked = checked;
     saveData();
@@ -94,26 +120,40 @@ function toggleCheck(catIdx, itemIdx, checked) {
 }
 
 function deleteItem(catIdx, itemIdx) {
+    if (!confirm("¿Eliminar este producto?")) return;
     data.categories[catIdx].items.splice(itemIdx, 1);
     saveData();
     renderCategories();
 }
 
+function addCategory() {
+    const name = prompt("Nombre de la nueva categoría:");
+    if (name && name.trim()) {
+        data.categories.push({ name: name.trim(), items: [] });
+        saveData();
+        renderCategories();
+    }
+}
+
+/* ── Item Modal ── */
 function openAddModal(catIdx) {
     if (catIdx === undefined) catIdx = 0;
-    document.getElementById("item-modal").classList.remove("hidden");
+
     const select = document.getElementById("modal-category");
     select.innerHTML = "";
-    data.categories.forEach(function(cat, i) {
+    data.categories.forEach((cat, i) => {
         const opt = document.createElement("option");
         opt.value = i;
         opt.textContent = cat.name;
         if (i === catIdx) opt.selected = true;
         select.appendChild(opt);
     });
+
     document.getElementById("modal-name").value = "";
     document.getElementById("modal-price").value = "";
     document.getElementById("modal-qty").value = "1";
+    document.getElementById("item-modal").classList.remove("hidden");
+    setTimeout(() => document.getElementById("modal-name").focus(), 100);
 }
 
 function hideItemModal() {
@@ -122,11 +162,13 @@ function hideItemModal() {
 
 function saveModalItem() {
     const catIdx = parseInt(document.getElementById("modal-category").value);
-    const name = document.getElementById("modal-name").value.trim();
-    const price = parseFloat(document.getElementById("modal-price").value) || 0;
-    const qty = parseInt(document.getElementById("modal-qty").value) || 1;
-    if (!name) return alert("Ponle un nombre");
-    data.categories[catIdx].items.push({ name: name, price: price, qty: qty, checked: false });
+    const name   = document.getElementById("modal-name").value.trim();
+    const price  = parseFloat(document.getElementById("modal-price").value) || 0;
+    const qty    = parseInt(document.getElementById("modal-qty").value) || 1;
+
+    if (!name) { alert("Ponle un nombre al producto"); return; }
+
+    data.categories[catIdx].items.push({ name, price, qty, checked: false });
     saveData();
     hideItemModal();
     renderCategories();
@@ -134,23 +176,12 @@ function saveModalItem() {
 
 function addItemGlobal() { openAddModal(0); }
 
-function addCategory() {
-    const name = prompt("Nombre de la nueva categoría:");
-    if (name && name.trim() !== "") {
-        data.categories.push({ name: name.trim(), items: [] });
-        saveData();
-        renderCategories();
-    }
-}
-
+/* ── Share Modal ── */
 function showShare() {
-    document.getElementById("share-modal").classList.remove("hidden");
-    const shareCodeEl = document.getElementById("share-code");
-    if(shareCodeEl) shareCodeEl.textContent = currentId;
-    
-    const shareUrl = window.location.origin + window.location.pathname + "?lista=" + encodeData(data);
-    const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(shareUrl);
+    const url = getShareUrl();
+    const qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + encodeURIComponent(url);
     document.getElementById("qr-code-img").src = qrUrl;
+    document.getElementById("share-modal").classList.remove("hidden");
 }
 
 function hideShareModal() {
@@ -158,19 +189,59 @@ function hideShareModal() {
 }
 
 function copyShareableLink() {
-    const shareUrl = window.location.origin + window.location.pathname + "?lista=" + encodeData(data);
+    const url = getShareUrl();
     if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(shareUrl)
-            .then(function() { alert("✅ ¡Enlace copiado! Pégalo en WhatsApp."); })
-            .catch(function() { prompt("Copia este enlace:", shareUrl); });
+        navigator.clipboard.writeText(url)
+            .then(() => alert("✅ ¡Enlace copiado! Pégalo donde quieras."))
+            .catch(() => prompt("Copia este enlace:", url));
     } else {
-        prompt("Copia este enlace:", shareUrl);
+        prompt("Copia este enlace:", url);
     }
 }
 
-function loadFromQueryParam() {
+/* ── Navigation ── */
+function createNewList() {
+    currentId = generateId();
+    loadData(currentId);
+    showMainScreen();
+}
+
+function showMainScreen() {
+    document.getElementById("login-screen").classList.add("hidden");
+    document.getElementById("main-app").classList.remove("hidden");
+    renderCategories();
+}
+
+function logout() {
+    if (confirm("¿Salir de esta lista? Los datos quedan guardados en este dispositivo.")) {
+        location.reload();
+    }
+}
+
+/* ── Backdrop close ── */
+function backdropClose(event, modalId) {
+    if (event.target === event.currentTarget) {
+        document.getElementById(modalId).classList.add("hidden");
+    }
+}
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        hideItemModal();
+        hideShareModal();
+    }
+});
+
+document.getElementById("modal-name").addEventListener("keydown", e => {
+    if (e.key === "Enter") saveModalItem();
+});
+
+/* ── Init ── */
+window.onload = function () {
     const params = new URLSearchParams(window.location.search);
     const lista = params.get("lista");
+
     if (lista) {
         try {
             data = decodeData(lista);
@@ -178,44 +249,9 @@ function loadFromQueryParam() {
             saveData();
             history.replaceState(null, null, window.location.pathname);
             showMainScreen();
-            return true;
         } catch (e) {
             alert("El enlace no es válido o está dañado.");
         }
     }
-    return false;
-}
-
-function createNewList() {
-    currentId = generateId();
-    loadData(currentId);
-    showMainScreen();
-}
-
-function connectList() {
-    const inputEl = document.getElementById("connect-id");
-    if(!inputEl) return createNewList(); 
-    
-    let id = inputEl.value.trim().toUpperCase();
-    if (!id) return alert("Pon un código");
-    loadData(id);
-    showMainScreen();
-}
-
-function showMainScreen() {
-    document.getElementById("login-screen").classList.add("hidden");
-    document.getElementById("main-app").classList.remove("hidden");
-    const idEl = document.getElementById("current-id");
-    if(idEl) idEl.textContent = currentId;
-    renderCategories();
-}
-
-function logout() {
-    if (confirm("¿Salir de esta lista?")) {
-        location.reload();
-    }
-}
-
-window.onload = function () {
-    loadFromQueryParam();
+    // Si no hay parámetro, se queda en la pantalla de login (comportamiento por defecto)
 };
