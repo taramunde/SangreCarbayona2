@@ -3,96 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shoplist • minimalist</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>shoplist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #09090b; --bg-card: #18181b; --bg-input: #27272a; --border: #27272a;
+            --text: #e4e4e7; --text-muted: #71717a; --text-dim: #3f3f46;
+            --accent: #10b981; --accent-hover: #059669; --accent-dim: rgba(16,185,129,0.12);
+            --danger: #f87171;
+            --r-sm: 12px; --r-md: 16px; --r-lg: 24px; --r-xl: 32px;
+        }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 100px; }
+        .hidden { display: none !important; }
+        .wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+        /* Login */
+        .login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-inner { width: 100%; max-width: 400px; text-align: center; }
+        .app-icon { width: 72px; height: 72px; background: var(--accent); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 24px; box-shadow: 0 8px 32px rgba(16,185,129,0.3); }
+        .app-title { font-size: 48px; font-weight: 700; letter-spacing: -2px; margin-bottom: 8px; }
+        .app-subtitle { color: var(--text-muted); margin-bottom: 40px; }
+        .login-card { background: var(--bg-card); border-radius: var(--r-xl); padding: 32px; }
+        .hint { color: var(--text-dim); font-size: 12px; margin-top: 20px; line-height: 1.6; }
+        /* Topbar */
+        .topbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(9,9,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 40; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; }
+        .topbar-label { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+        .topbar-total { font-size: 22px; font-family: monospace; font-weight: 700; color: var(--accent); }
+        /* Header */
+        .header { display: flex; align-items: center; justify-content: space-between; padding-top: 72px; margin-bottom: 32px; }
+        .list-title { font-size: 28px; font-weight: 700; letter-spacing: -1px; }
+        .header-actions { display: flex; align-items: center; gap: 8px; }
+        /* Buttons */
+        button { cursor: pointer; border: none; font-family: inherit; transition: all 0.15s ease; }
+        .btn-primary { background: var(--accent); color: #000; font-weight: 600; border-radius: var(--r-md); padding: 10px 20px; font-size: 14px; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-primary.xl { width: 100%; padding: 18px; font-size: 18px; border-radius: var(--r-lg); }
+        .btn-primary.sm { padding: 8px 16px; font-size: 13px; }
+        .btn-secondary { background: var(--bg-card); color: var(--text); font-weight: 500; border-radius: var(--r-md); padding: 10px 20px; font-size: 14px; border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--bg-input); }
+        .btn-close { background: transparent; color: var(--text-muted); font-size: 24px; padding: 4px 8px; border-radius: 8px; }
+        .btn-close:hover { color: var(--text); background: var(--bg-card); }
+        /* Bottom bar */
+        .bottom-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 608px; display: flex; gap: 12px; z-index: 30; }
+        .bottom-bar .btn-secondary { flex: 1; padding: 16px; font-size: 15px; }
+        .bottom-bar .btn-primary { flex: 2; padding: 16px; font-size: 16px; }
+        /* Categories */
+        .cat-section { margin-bottom: 32px; }
+        .cat-header { position: sticky; top: 48px; z-index: 10; background: var(--bg); padding: 12px 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+        .cat-title { display: flex; align-items: center; gap: 10px; }
+        .cat-title h3 { font-size: 18px; font-weight: 600; }
+        .cat-count { font-size: 12px; color: var(--text-muted); }
+        .btn-add-item { background: var(--accent-dim); color: var(--accent); border-radius: var(--r-sm); padding: 6px 14px; font-size: 13px; font-weight: 500; }
+        .btn-add-item:hover { background: rgba(16,185,129,0.2); }
+        .empty-cat { color: var(--text-dim); font-size: 13px; text-align: center; padding: 20px 0; font-style: italic; }
+        /* Item row */
+        .item-row { display: flex; align-items: center; gap: 14px; background: var(--bg-card); padding: 14px 16px; border-radius: var(--r-md); margin-bottom: 6px; transition: background 0.15s; }
+        .item-row:hover { background: #1f1f23; }
+        .item-check { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+        .item-info { flex: 1; min-width: 0; }
+        .item-name { font-weight: 500; line-height: 1.3; }
+        .item-name.done { text-decoration: line-through; color: var(--text-muted); }
+        .item-detail { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+        .item-price { font-family: monospace; font-size: 16px; font-weight: 600; white-space: nowrap; }
+        .item-price.done { color: var(--text-dim); }
+        .btn-delete { background: transparent; color: var(--text-dim); font-size: 22px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; flex-shrink: 0; }
+        .btn-delete:hover { color: var(--danger); background: rgba(248,113,113,0.1); }
+        /* Modals */
+        .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.75); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 16px; overflow-y: auto; }
+        .modal { background: var(--bg-card); width: 100%; max-width: 440px; border-radius: var(--r-xl); padding: 32px; animation: pop 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+        .modal.center { text-align: center; }
+        @keyframes pop { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
+        .modal-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+        .form-group input, .form-group select { width: 100%; background: var(--bg-input); border: none; border-radius: var(--r-sm); padding: 12px 14px; color: var(--text); font-family: inherit; font-size: 15px; outline: none; transition: box-shadow 0.15s; }
+        .form-group input:focus, .form-group select:focus { box-shadow: 0 0 0 2px var(--accent); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+        .modal-actions button { padding: 14px; font-size: 15px; border-radius: var(--r-md); width: 100%; }
+        /* Share */
+        .share-icon { width: 64px; height: 64px; background: rgba(16,185,129,0.15); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 16px; }
+        .share-hint { color: var(--text-muted); font-size: 14px; margin-bottom: 16px; }
+        .qr-wrap { background: #fff; border-radius: var(--r-md); padding: 16px; width: fit-content; margin: 0 auto 24px; }
+        .qr-wrap img { width: 192px; height: 192px; display: block; }
+    </style>
 </head>
 <body>
-<div class="container">
-
-    <!-- LOGIN SCREEN -->
+<div class="wrap">
     <div id="login-screen" class="login-screen">
         <div class="login-inner">
             <div class="app-icon">🛍️</div>
             <h1 class="app-title">shoplist</h1>
             <p class="app-subtitle">Tus listas, sin complicaciones.</p>
             <div class="login-card">
-                <button onclick="createNewList()" class="btn-primary btn-xl">Crear Nueva Lista</button>
-                <p class="hint">Crea tu lista y usa Compartir para enviarla por QR o enlace.</p>
+                <button class="btn-primary xl" onclick="createNewList()">Crear Nueva Lista</button>
+                <p class="hint">Crea tu lista y usa Compartir para enviarla por QR o enlace.<br>Quien reciba el enlace verá tu lista al instante.</p>
             </div>
         </div>
     </div>
-
-    <!-- MAIN APP -->
     <div id="main-app" class="hidden">
-
         <div class="topbar">
             <span class="topbar-label">Total pendiente:</span>
             <span id="grand-total" class="topbar-total">$0.00</span>
         </div>
-
         <div class="header">
             <h2 class="list-title">Mi Lista</h2>
             <div class="header-actions">
-                <button onclick="showShare()" class="btn-primary btn-sm">Compartir</button>
-                <button onclick="logout()" class="btn-close">×</button>
+                <button class="btn-primary sm" onclick="showShare()">Compartir</button>
+                <button class="btn-close" onclick="logout()">×</button>
             </div>
         </div>
-
         <div id="categories-list"></div>
-
         <div class="bottom-bar">
-            <button onclick="addCategory()" class="btn-secondary">+ Categoría</button>
-            <button onclick="addItemGlobal()" class="btn-primary btn-lg">+ Añadir Producto</button>
+            <button class="btn-secondary" onclick="addCategory()">+ Categoría</button>
+            <button class="btn-primary" onclick="addItemGlobal()">+ Añadir Producto</button>
         </div>
     </div>
 </div>
 
-<!-- ITEM MODAL -->
-<div id="item-modal" class="modal-backdrop hidden" onclick="backdropClose(event,'item-modal')">
+<div id="item-modal" class="modal-backdrop hidden" onclick="if(event.target===this)hideItemModal()">
     <div class="modal">
         <h2 class="modal-title">Nuevo Producto</h2>
-        <div class="form-group">
-            <label>Categoría</label>
-            <select id="modal-category"></select>
-        </div>
-        <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" id="modal-name" placeholder="ej. Leche entera">
-        </div>
+        <div class="form-group"><label>Categoría</label><select id="modal-category"></select></div>
+        <div class="form-group"><label>Nombre</label><input type="text" id="modal-name" placeholder="ej. Leche entera"></div>
         <div class="form-row">
-            <div class="form-group">
-                <label>Precio ($)</label>
-                <input type="number" id="modal-price" step="0.01" placeholder="0.00">
-            </div>
-            <div class="form-group">
-                <label>Cantidad</label>
-                <input type="number" id="modal-qty" value="1" min="1">
-            </div>
+            <div class="form-group"><label>Precio ($)</label><input type="number" id="modal-price" step="0.01" placeholder="0.00"></div>
+            <div class="form-group"><label>Cantidad</label><input type="number" id="modal-qty" value="1" min="1"></div>
         </div>
         <div class="modal-actions">
-            <button onclick="hideItemModal()" class="btn-secondary">Cancelar</button>
-            <button onclick="saveModalItem()" class="btn-primary">Guardar</button>
+            <button class="btn-secondary" onclick="hideItemModal()">Cancelar</button>
+            <button class="btn-primary" onclick="saveModalItem()">Guardar</button>
         </div>
     </div>
 </div>
 
-<!-- SHARE MODAL -->
-<div id="share-modal" class="modal-backdrop hidden" onclick="backdropClose(event,'share-modal')">
-    <div class="modal modal-center">
+<div id="share-modal" class="modal-backdrop hidden" onclick="if(event.target===this)hideShareModal()">
+    <div class="modal center">
         <div class="share-icon">📱</div>
         <h2 class="modal-title">Compartir Lista</h2>
         <p class="share-hint">Escanea este código con otro móvil</p>
-        <div class="qr-wrapper">
-            <img id="qr-code-img" src="" alt="QR Code">
-        </div>
+        <div class="qr-wrap"><img id="qr-img" src="" alt="QR Code"></div>
         <div class="modal-actions">
-            <button onclick="copyShareableLink()" class="btn-primary">Copiar Enlace</button>
-            <button onclick="hideShareModal()" class="btn-secondary">Cerrar</button>
+            <button class="btn-primary" onclick="copyLink()">Copiar Enlace</button>
+            <button class="btn-secondary" onclick="hideShareModal()">Cerrar</button>
         </div>
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+const DEFAULT_CATS = ["Lácteos","Panadería","Bebidas","Fruta y Verdura","Carne y Pescado","Snacks","Despensa","Otros"];
+let currentId = null;
+let data = { categories: [] };
+
+function uid() {
+    return Array.from({length:6}, () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"[Math.floor(Math.random()*36)]).join("");
+}
+function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function encode(obj) { return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); }
+function decode(str) { return JSON.parse(decodeURIComponent(escape(atob(str)))); }
+function shareUrl() { return location.origin + location.pathname + "?lista=" + encode(data); }
+
+function save() {
+    try { if (currentId) localStorage.setItem("sl_" + currentId, JSON.stringify(data)); } catch(e) {}
+}
+function load(id) {
+    currentId = id;
+    let raw = null;
+    try { raw = localStorage.getItem("sl_" + id); } catch(e) {}
+    data = raw ? JSON.parse(raw) : { categories: DEFAULT_CATS.map(n => ({ name: n, items: [] })) };
+    save();
+}
+
+function render() {
+    const wrap = document.getElementById("categories-list");
+    wrap.innerHTML = "";
+    data.categories.forEach((cat, ci) => {
+        const pending = cat.items.filter(i => !i.checked).length;
+        const sec = document.createElement("div");
+        sec.className = "cat-section";
+        const hdr = document.createElement("div");
+        hdr.className = "cat-header";
+        hdr.innerHTML = `<div class="cat-title"><span>📦</span><h3>${esc(cat.name)}</h3><span class="cat-count">${pending} pendiente${pending!==1?"s":""}</span></div><button class="btn-add-item" onclick="openModal(${ci})">+ item</button>`;
+        sec.appendChild(hdr);
+        const list = document.createElement("div");
+        if (!cat.items.length) {
+            list.innerHTML = `<div class="empty-cat">vacío — añade un producto</div>`;
+        } else {
+            cat.items.forEach((item, ii) => {
+                const sub = (item.price * item.qty).toFixed(2);
+                const row = document.createElement("div");
+                row.className = "item-row";
+                row.innerHTML = `<input type="checkbox" class="item-check" ${item.checked?"checked":""} onchange="toggle(${ci},${ii},this.checked)"><div class="item-info"><div class="item-name ${item.checked?"done":""}">${esc(item.name)}</div><div class="item-detail">${item.qty} × $${parseFloat(item.price).toFixed(2)}</div></div><div class="item-price ${item.checked?"done":""}">$${sub}</div><button class="btn-delete" onclick="del(${ci},${ii})">×</button>`;
+                list.appendChild(row);
+            });
+        }
+        sec.appendChild(list);
+        wrap.appendChild(sec);
+    });
+    let total = 0;
+    data.categories.forEach(c => c.items.forEach(i => { if (!i.checked) total += i.price * i.qty; }));
+    document.getElementById("grand-total").textContent = "$" + total.toFixed(2);
+}
+
+function toggle(ci, ii, v) { data.categories[ci].items[ii].checked = v; save(); render(); }
+function del(ci, ii) { if (!confirm("¿Eliminar este producto?")) return; data.categories[ci].items.splice(ii,1); save(); render(); }
+function addCategory() { const n=prompt("Nombre de la nueva categoría:"); if(n&&n.trim()){data.categories.push({name:n.trim(),items:[]});save();render();} }
+function addItemGlobal() { openModal(0); }
+
+function openModal(ci) {
+    if (ci===undefined) ci=0;
+    const sel = document.getElementById("modal-category");
+    sel.innerHTML = "";
+    data.categories.forEach((c,i) => { const o=document.createElement("option"); o.value=i; o.textContent=c.name; if(i===ci)o.selected=true; sel.appendChild(o); });
+    document.getElementById("modal-name").value = "";
+    document.getElementById("modal-price").value = "";
+    document.getElementById("modal-qty").value = "1";
+    document.getElementById("item-modal").classList.remove("hidden");
+    setTimeout(() => document.getElementById("modal-name").focus(), 80);
+}
+function hideItemModal() { document.getElementById("item-modal").classList.add("hidden"); }
+function saveModalItem() {
+    const ci=parseInt(document.getElementById("modal-category").value);
+    const name=document.getElementById("modal-name").value.trim();
+    const price=parseFloat(document.getElementById("modal-price").value)||0;
+    const qty=parseInt(document.getElementById("modal-qty").value)||1;
+    if(!name){alert("Ponle un nombre al producto");return;}
+    data.categories[ci].items.push({name,price,qty,checked:false});
+    save(); hideItemModal(); render();
+}
+
+function showShare() {
+    const url=shareUrl();
+    document.getElementById("qr-img").src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+encodeURIComponent(url);
+    document.getElementById("share-modal").classList.remove("hidden");
+}
+function hideShareModal() { document.getElementById("share-modal").classList.add("hidden"); }
+function copyLink() {
+    const url=shareUrl();
+    if(navigator.clipboard&&location.protocol==="https:"){
+        navigator.clipboard.writeText(url).then(()=>alert("✅ ¡Enlace copiado!")).catch(()=>prompt("Copia este enlace:",url));
+    } else { prompt("Copia este enlace:",url); }
+}
+
+function createNewList() { currentId=uid(); load(currentId); showApp(); }
+function showApp() { document.getElementById("login-screen").classList.add("hidden"); document.getElementById("main-app").classList.remove("hidden"); render(); }
+function logout() { if(confirm("¿Salir de esta lista?")) location.reload(); }
+
+document.addEventListener("keydown", e => { if(e.key==="Escape"){hideItemModal();hideShareModal();} });
+document.getElementById("modal-name").addEventListener("keydown", e => { if(e.key==="Enter") saveModalItem(); });
+
+window.onload = () => {
+    const lista = new URLSearchParams(location.search).get("lista");
+    if (lista) {
+        try { data=decode(lista); currentId=uid(); save(); history.replaceState(null,null,location.pathname); showApp(); }
+        catch(e) { alert("El enlace no es válido o está dañado."); }
+    }
+};
+</script>
 </body>
 </html>
-
