@@ -332,3 +332,41 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+/* ===================================
+   CIERRE MENÚ MÓVIL
+   =================================== */
+const closeMobileNav = document.getElementById('closeMobileNav');
+
+if (closeMobileNav && mainNav && mobileMenuBtn) {
+    closeMobileNav.addEventListener('click', function() {
+        mainNav.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+}
+
+// Cerrar menú al hacer clic en un enlace del menú móvil
+const mobileNavLinks = document.querySelectorAll('.main-nav .nav-item > a');
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Solo cerrar si no tiene submenu o si estamos en móvil
+        if (window.innerWidth <= 1024 && !this.parentElement.classList.contains('has-submenu')) {
+            mainNav.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// Cerrar submenus al hacer clic en sus enlaces
+const submenuLinks = document.querySelectorAll('.submenu a');
+submenuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) {
+            mainNav.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
