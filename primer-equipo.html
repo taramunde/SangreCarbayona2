@@ -4,122 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primer Equipo | CD Villaferreira</title>
-    <link rel="stylesheet" href="css/styles.css?nocache=20251231v1">
-    <link rel="stylesheet" href="css/equipo-styles.css?nocache=20251231v1">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/equipo-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-content">
-                <div class="top-links">
-                    <a href="#">Tienda Online</a>
-                    <a href="#">Abónate</a>
-                    <a href="#">Zona Socios</a>
-                </div>
-                <div class="top-social">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Header Principal -->
-<header class="main-header">
-    <div class="container">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <div class="logo-shield">
-                    <span class="logo-text">CDV</span>
-                </div>
-                <div class="logo-name">
-                    <span class="club-name">Club Deportivo</span>
-                    <span class="team-name">Villaferreira</span>
-                </div>
-            </a>
-
-            <!-- Navegación PC -->
-            <nav class="main-nav" id="mainNav">
-                <!-- Enlaces rápidos - PC -->
-                <div class="quick-links">
-                    <a href="#">Tienda Online</a>
-                    <a href="#">Abónate</a>
-                    <a href="#">Zona Socios</a>
-                </div>
-                
-                <!-- Menú principal -->
-                <ul class="nav-list">
-                    <li class="nav-item active">
-                        <a href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item has-submenu">
-                        <a href="#">Club <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="#">Historia</a></li>
-                            <li><a href="#">Palmarés</a></li>
-                            <li><a href="#">Estadio Municipal</a></li>
-                            <li><a href="#">Directiva</a></li>
-                            <li><a href="#">Fundación</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-submenu">
-                        <a href="#">Equipo <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="primer-equipo.html">Primer Equipo</a></li>
-                            <li><a href="#">Cuerpo Técnico</a></li>
-                            <li><a href="#">Cantera</a></li>
-                            <li><a href="#">Fútbol Femenino</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item has-submenu">
-                        <a href="#">Competiciones <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="#">Primera RFEF</a></li>
-                            <li><a href="#">Calendario</a></li>
-                            <li><a href="#">Clasificación</a></li>
-                            <li><a href="#">Estadísticas</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Noticias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Multimedia</a>
-                    </li>
-                </ul>
-
-                <!-- Footer menú móvil -->
-                <div class="mobile-nav-footer">
-                    <div class="mobile-social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-shield">
+                        <span class="logo-text">CDV</span>
                     </div>
-                </div>
-            </nav>
+                    <div class="logo-name">
+                        <span class="club-name">Club Deportivo</span>
+                        <span class="team-name">Villaferreira</span>
+                    </div>
+                </a>
 
-            <div class="header-actions">
-                <button class="search-btn" id="searchBtn">
-                    <i class="fas fa-search"></i>
-                </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <nav class="main-nav" id="mainNav">
+                    <div class="mobile-nav-header">
+                        <span class="mobile-nav-title">Menú</span>
+                        <button class="close-mobile-nav" id="closeMobileNav">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#">Club <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#">Historia</a></li>
+                                <li><a href="#">Palmarés</a></li>
+                                <li><a href="#">Estadio Municipal</a></li>
+                                <li><a href="#">Directiva</a></li>
+                                <li><a href="#">Fundación</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu active">
+                            <a href="#">Equipo <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="primer-equipo.html" class="current">Primer Equipo</a></li>
+                                <li><a href="#">Cuerpo Técnico</a></li>
+                                <li><a href="#">Cantera</a></li>
+                                <li><a href="#">Fútbol Femenino</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#">Competiciones <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#">Primera RFEF</a></li>
+                                <li><a href="#">Calendario</a></li>
+                                <li><a href="#">Clasificación</a></li>
+                                <li><a href="#">Estadísticas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Multimedia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Tienda</a>
+                        </li>
+                    </ul>
+
+                    <div class="mobile-nav-footer">
+                        <div class="mobile-social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="search-btn" id="searchBtn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
@@ -155,44 +135,32 @@
         <div class="container">
             <div class="team-stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
                     <div class="stat-number">2º</div>
                     <div class="stat-label">Posición en Liga</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-futbol"></i></div>
                     <div class="stat-number">38</div>
                     <div class="stat-label">Goles a Favor</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
                     <div class="stat-number">18</div>
                     <div class="stat-label">Goles en Contra</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="stat-number">13</div>
                     <div class="stat-label">Victorias</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
                     <div class="stat-number">6</div>
                     <div class="stat-label">Empates</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
+                    <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
                     <div class="stat-number">4</div>
                     <div class="stat-label">Derrotas</div>
                 </div>
@@ -664,7 +632,7 @@
                     <article class="squad-card">
                         <a href="ficha-jugador.html" class="squad-link">
                             <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw3/400/500" alt="Luis 'Lucho' García">
+                                <img src="https://picsum.photos/seed/fw3/400/500" alt="Lucho García">
                                 <span class="squad-number">11</span>
                                 <div class="squad-overlay">
                                     <span class="view-profile">Ver ficha</span>
@@ -694,7 +662,7 @@
                     <article class="squad-card">
                         <a href="ficha-jugador.html" class="squad-link">
                             <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw4/400/500" alt="Diego 'Chicho' López">
+                                <img src="https://picsum.photos/seed/fw4/400/500" alt="Diego López">
                                 <span class="squad-number">17</span>
                                 <div class="squad-overlay">
                                     <span class="view-profile">Ver ficha</span>
@@ -740,11 +708,11 @@
                     <div class="coach-info">
                         <span class="coach-role">Entrenador Principal</span>
                         <h3 class="coach-name">Carlos Mendoza</h3>
-                        <p class="coach-bio">Licenciado en Educación Física con más de 15 años de experiencia en fútbol profesional. Antiguo jugador del club, regresó como entrenador en 2022.</p>
+                        <p class="coach-bio">Licenciado en Educación Física con más de 15 años de experiencia en fútbol profesional.</p>
                         <div class="coach-stats">
                             <div class="coach-stat">
                                 <span class="coach-stat-value">89</span>
-                                <span class="coach-stat-label">Partidos dirigidos</span>
+                                <span class="coach-stat-label">Partidos</span>
                             </div>
                             <div class="coach-stat">
                                 <span class="coach-stat-value">52%</span>
@@ -761,7 +729,7 @@
                     <div class="coach-info">
                         <span class="coach-role">Segundo Entrenador</span>
                         <h3 class="coach-name">Roberto Vázquez</h3>
-                        <p class="coach-bio">Especialista en análisis táctico y preparación de partidos.</p>
+                        <p class="coach-bio">Especialista en análisis táctico.</p>
                     </div>
                 </article>
 
@@ -772,7 +740,7 @@
                     <div class="coach-info">
                         <span class="coach-role">Preparador Físico</span>
                         <h3 class="coach-name">Miguel Serrano</h3>
-                        <p class="coach-bio">Licenciado en Ciencias del Deporte, especialista en rendimiento deportivo.</p>
+                        <p class="coach-bio">Especialista en rendimiento deportivo.</p>
                     </div>
                 </article>
 
@@ -783,148 +751,9 @@
                     <div class="coach-info">
                         <span class="coach-role">Entrenador de Porteros</span>
                         <h3 class="coach-name">Antonio Cruz</h3>
-                        <p class="coach-bio">Ex-portero profesional con amplia experiencia en la preparación de guardametas.</p>
+                        <p class="coach-bio">Ex-portero profesional.</p>
                     </div>
                 </article>
-
-                <article class="coach-card">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach5/400/450" alt="Dr. Fernando Reyes">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Jefe de Servicios Médicos</span>
-                        <h3 class="coach-name">Dr. Fernando Reyes</h3>
-                        <p class="coach-bio">Especialista en Medicina Deportiva con más de 20 años de experiencia.</p>
-                    </div>
-                </article>
-
-                <article class="coach-card">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach6/400/450" alt="Laura Martínez">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Fisioterapeuta</span>
-                        <h3 class="coach-name">Laura Martínez</h3>
-                        <p class="coach-bio">Especialista en recuperación y rehabilitación de lesiones deportivas.</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Estadísticas del Equipo -->
-    <section class="team-stats-detail">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Estadísticas de la Temporada</h2>
-            </div>
-
-            <div class="stats-grid">
-                <!-- Máximo Goleador -->
-                <div class="stat-leader-card">
-                    <div class="stat-leader-header">
-                        <i class="fas fa-futbol"></i>
-                        <span>Máximo Goleador</span>
-                    </div>
-                    <div class="stat-leader-content">
-                        <img src="https://picsum.photos/seed/fw1/100/100" alt="Javi Martínez" class="leader-photo">
-                        <div class="leader-info">
-                            <h4>Javi Martínez</h4>
-                            <span class="leader-number">14</span>
-                            <span class="leader-label">Goles</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Máximo Asistente -->
-                <div class="stat-leader-card">
-                    <div class="stat-leader-header">
-                        <i class="fas fa-hands-helping"></i>
-                        <span>Máximo Asistente</span>
-                    </div>
-                    <div class="stat-leader-content">
-                        <img src="https://picsum.photos/seed/fw3/100/100" alt="Lucho García" class="leader-photo">
-                        <div class="leader-info">
-                            <h4>Lucho García</h4>
-                            <span class="leader-number">9</span>
-                            <span class="leader-label">Asistencias</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Más Minutos -->
-                <div class="stat-leader-card">
-                    <div class="stat-leader-header">
-                        <i class="fas fa-clock"></i>
-                        <span>Más Minutos</span>
-                    </div>
-                    <div class="stat-leader-content">
-                        <img src="https://picsum.photos/seed/gk1/100/100" alt="M.A. Torres" class="leader-photo">
-                        <div class="leader-info">
-                            <h4>M.A. Torres</h4>
-                            <span class="leader-number">2,070</span>
-                            <span class="leader-label">Minutos</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tarjetas -->
-                <div class="stat-leader-card">
-                    <div class="stat-leader-header">
-                        <i class="fas fa-square"></i>
-                        <span>Más Tarjetas</span>
-                    </div>
-                    <div class="stat-leader-content">
-                        <img src="https://picsum.photos/seed/mf1/100/100" alt="Álvaro Santos" class="leader-photo">
-                        <div class="leader-info">
-                            <h4>Álvaro Santos</h4>
-                            <span class="leader-number">8</span>
-                            <span class="leader-label">Amarillas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gráfico de Forma -->
-            <div class="team-form-section">
-                <h3 class="subsection-title">Últimos 10 Partidos</h3>
-                <div class="form-bar">
-                    <div class="form-item win" title="Victoria vs Atlético Vergara 2-1">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs Cultural Soria 3-0">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item draw" title="Empate vs Racing Ferrol 1-1">
-                        <span>E</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs Sporting Esteño 4-2">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs UD Rosaleda 2-0">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item loss" title="Derrota vs Unión Sur 0-1">
-                        <span>D</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs Deportivo Norte 3-1">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item draw" title="Empate vs CF Oeste 2-2">
-                        <span>E</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs Atlético Vergara 1-0">
-                        <span>V</span>
-                    </div>
-                    <div class="form-item win" title="Victoria vs Real Bergondo 5-0">
-                        <span>V</span>
-                    </div>
-                </div>
-                <div class="form-legend">
-                    <span class="legend-item"><span class="legend-color win"></span> Victoria (7)</span>
-                    <span class="legend-item"><span class="legend-color draw"></span> Empate (2)</span>
-                    <span class="legend-item"><span class="legend-color loss"></span> Derrota (1)</span>
-                </div>
             </div>
         </div>
     </section>
@@ -941,7 +770,6 @@
                             <li><a href="#">Palmarés</a></li>
                             <li><a href="#">Estadio Municipal</a></li>
                             <li><a href="#">Directiva</a></li>
-                            <li><a href="#">Trabaja con nosotros</a></li>
                             <li><a href="#">Contacto</a></li>
                         </ul>
                     </div>
@@ -952,9 +780,7 @@
                             <li><a href="primer-equipo.html">Primer Equipo</a></li>
                             <li><a href="#">Fútbol Femenino</a></li>
                             <li><a href="#">Juvenil "A"</a></li>
-                            <li><a href="#">Cadete</a></li>
-                            <li><a href="#">Infantil</a></li>
-                            <li><a href="#">Escuela de Fútbol</a></li>
+                            <li><a href="#">Cantera</a></li>
                         </ul>
                     </div>
 
@@ -965,7 +791,6 @@
                             <li><a href="#">Calendario</a></li>
                             <li><a href="#">Clasificación</a></li>
                             <li><a href="#">Copa del Rey</a></li>
-                            <li><a href="#">Estadísticas</a></li>
                         </ul>
                     </div>
 
@@ -975,8 +800,6 @@
                             <li><a href="#">Hazte socio</a></li>
                             <li><a href="#">Renovar abono</a></li>
                             <li><a href="#">Zona de socios</a></li>
-                            <li><a href="#">Ventajas</a></li>
-                            <li><a href="#">Puntos de venta</a></li>
                         </ul>
                     </div>
 
@@ -1009,7 +832,6 @@
                     <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitch"></i></a>
                 </div>
             </div>
         </div>
@@ -1024,13 +846,12 @@
                         <a href="#">Política de privacidad</a>
                         <a href="#">Política de cookies</a>
                         <a href="#">Aviso legal</a>
-                        <a href="#">Accesibilidad</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="js/script.js?nocache=20251231v1"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
