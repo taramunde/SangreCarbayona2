@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Variables
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
     const closeMobileNav = document.getElementById('closeMobileNav');
@@ -12,9 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchOverlay = document.getElementById('searchOverlay');
     const closeSearch = document.getElementById('closeSearch');
     
-    // ===================================
-    // MENÚ MÓVIL - Abrir
-    // ===================================
+    // Menú móvil - Abrir
     if (mobileMenuBtn && mainNav) {
         mobileMenuBtn.addEventListener('click', function() {
             this.classList.add('active');
@@ -23,9 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // MENÚ MÓVIL - Cerrar con botón X
-    // ===================================
+    // Menú móvil - Cerrar
     if (closeMobileNav && mainNav && mobileMenuBtn) {
         closeMobileNav.addEventListener('click', function() {
             mainNav.classList.remove('active');
@@ -34,14 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // SUBMENÚS EN MÓVIL
-    // ===================================
+    // Submenús en móvil
     const navItemsWithSubmenu = document.querySelectorAll('.nav-item.has-submenu');
     
     navItemsWithSubmenu.forEach(item => {
         const link = item.querySelector('a');
-        
         link.addEventListener('click', function(e) {
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
@@ -50,9 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ===================================
-    // CERRAR MENÚ AL HACER CLIC EN ENLACE SIMPLE
-    // ===================================
+    // Cerrar menú al hacer clic en enlace simple
     const simpleNavLinks = document.querySelectorAll('.nav-item:not(.has-submenu) a');
     
     simpleNavLinks.forEach(link => {
@@ -65,9 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ===================================
-    // CERRAR MENÚ AL HACER CLIC EN SUBMENÚ
-    // ===================================
+    // Cerrar menú al hacer clic en submenú
     const submenuLinks = document.querySelectorAll('.submenu a');
     
     submenuLinks.forEach(link => {
@@ -80,14 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ===================================
-    // SEARCH OVERLAY
-    // ===================================
+    // Search Overlay
     if (searchBtn && searchOverlay && closeSearch) {
         searchBtn.addEventListener('click', function() {
             searchOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
             setTimeout(() => {
                 const input = searchOverlay.querySelector('input');
                 if (input) input.focus();
@@ -114,9 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // FILTROS PLANTILLA (HOME)
-    // ===================================
+    // Filtros Plantilla
     const tabBtns = document.querySelectorAll('.tab-btn');
     const playerCards = document.querySelectorAll('.player-card');
     
@@ -140,9 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // COOKIE BANNER
-    // ===================================
+    // Cookie Banner
     const cookieBanner = document.getElementById('cookieBanner');
     const acceptCookies = document.getElementById('acceptCookies');
     const rejectCookies = document.getElementById('rejectCookies');
@@ -165,10 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // ANIMACIONES AL SCROLL
-    // ===================================
-    const animateElements = document.querySelectorAll('.news-card, .player-card, .product-card, .match-item');
+    // Animaciones al scroll
+    const animateElements = document.querySelectorAll('.news-card, .player-card, .match-item');
     
     if (animateElements.length > 0) {
         const animateObserver = new IntersectionObserver((entries) => {
@@ -178,10 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         
         animateElements.forEach(el => {
             el.style.opacity = '0';
@@ -191,9 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===================================
-    // BOTÓN VOLVER ARRIBA
-    // ===================================
+    // Botón volver arriba
     const backToTop = document.createElement('button');
     backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
     backToTop.className = 'back-to-top';
