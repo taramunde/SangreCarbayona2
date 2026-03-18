@@ -240,15 +240,6 @@
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.view-profile::after {
-    content: '\f061';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
 }
 
 .squad-info {
@@ -346,7 +337,6 @@
 }
 
 .coach-card.main-coach {
-    grid-column: span 1;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: var(--white);
 }
@@ -447,213 +437,7 @@
     text-transform: uppercase;
 }
 
-/* Team Stats Detail */
-.team-stats-detail {
-    padding: 70px 0;
-    background: var(--gray-50);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 50px;
-}
-
-.stat-leader-card {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.stat-leader-header {
-    background: var(--primary-color);
-    color: var(--white);
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.stat-leader-header i {
-    color: var(--secondary-color);
-}
-
-.stat-leader-content {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.leader-photo {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--secondary-color);
-}
-
-.leader-info h4 {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin-bottom: 5px;
-}
-
-.leader-number {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    line-height: 1;
-}
-
-.leader-label {
-    font-size: 0.8rem;
-    color: var(--gray-500);
-    text-transform: uppercase;
-}
-
-/* Team Form */
-.team-form-section {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.subsection-title {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--gray-800);
-    margin-bottom: 25px;
-}
-
-.form-bar {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.form-item {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.form-item:hover {
-    transform: scale(1.1);
-}
-
-.form-item.win {
-    background: var(--success);
-    color: var(--white);
-}
-
-.form-item.draw {
-    background: var(--warning);
-    color: var(--white);
-}
-
-.form-item.loss {
-    background: var(--danger);
-    color: var(--white);
-}
-
-.form-legend {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    color: var(--gray-600);
-}
-
-.legend-color {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-}
-
-.legend-color.win {
-    background: var(--success);
-}
-
-.legend-color.draw {
-    background: var(--warning);
-}
-
-.legend-color.loss {
-    background: var(--danger);
-}
-
-/* Mobile Nav Header */
-.mobile-nav-header {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-}
-
-.mobile-nav-title {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--white);
-    text-transform: uppercase;
-}
-
-.close-mobile-nav {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 50%;
-    color: var(--white);
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.close-mobile-nav:hover {
-    background: var(--secondary-color);
-    color: var(--primary-dark);
-}
-
-.mobile-nav-footer {
-    display: none;
-    padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 20px;
-}
-
-.mobile-cta {
-    width: 100%;
-    justify-content: center;
-}
-
+/* Current Submenu */
 .submenu .current {
     color: var(--secondary-color) !important;
     font-weight: 600;
@@ -671,24 +455,12 @@
 }
 
 @media (max-width: 1024px) {
-    .mobile-nav-header {
-        display: flex;
-    }
-    
-    .mobile-nav-footer {
-        display: block;
-    }
-    
     .coaching-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
     .coach-card.main-coach {
         grid-column: span 2;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -719,10 +491,6 @@
         grid-column: span 1;
     }
     
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .page-header {
         padding: 80px 0 40px;
     }
@@ -730,15 +498,6 @@
     .breadcrumb {
         flex-wrap: wrap;
         font-size: 0.8rem;
-    }
-    
-    .form-bar {
-        flex-wrap: wrap;
-    }
-    
-    .form-legend {
-        flex-wrap: wrap;
-        gap: 15px;
     }
 }
 
@@ -749,11 +508,6 @@
     
     .team-stats-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .stat-leader-content {
-        flex-direction: column;
-        text-align: center;
     }
     
     .coach-stats {
