@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primer Equipo | CD Villaferreira</title>
-    <link rel="stylesheet" href="css/styles.css?nocache=20251231v2">
+    <link rel="stylesheet" href="css/styles.css?nocache=20251231v1">
     <link rel="stylesheet" href="css/equipo-styles.css?nocache=20251231v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +17,7 @@
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">
-                    <div class="logo-shield">
-                        <span class="logo-text">CDV</span>
-                    </div>
+                    <div class="logo-shield"><span class="logo-text">CDV</span></div>
                     <div class="logo-name">
                         <span class="club-name">Club Deportivo</span>
                         <span class="team-name">Villaferreira</span>
@@ -29,15 +27,11 @@
                 <nav class="main-nav" id="mainNav">
                     <div class="mobile-nav-header">
                         <span class="mobile-nav-title">Menú</span>
-                        <button class="close-mobile-nav" id="closeMobileNav">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <button class="close-mobile-nav" id="closeMobileNav"><i class="fas fa-times"></i></button>
                     </div>
                     
                     <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="index.html">Inicio</a>
-                        </li>
+                        <li class="nav-item"><a href="index.html">Inicio</a></li>
                         <li class="nav-item has-submenu">
                             <a href="#">Club <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
@@ -45,7 +39,6 @@
                                 <li><a href="#">Palmarés</a></li>
                                 <li><a href="#">Estadio Municipal</a></li>
                                 <li><a href="#">Directiva</a></li>
-                                <li><a href="#">Fundación</a></li>
                             </ul>
                         </li>
                         <li class="nav-item has-submenu active">
@@ -63,18 +56,10 @@
                                 <li><a href="#">Primera RFEF</a></li>
                                 <li><a href="#">Calendario</a></li>
                                 <li><a href="#">Clasificación</a></li>
-                                <li><a href="#">Estadísticas</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#">Noticias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Multimedia</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#">Tienda</a>
-                        </li>
+                        <li class="nav-item"><a href="#">Noticias</a></li>
+                        <li class="nav-item"><a href="#">Multimedia</a></li>
                     </ul>
 
                     <div class="mobile-nav-footer">
@@ -88,13 +73,9 @@
                 </nav>
 
                 <div class="header-actions">
-                    <button class="search-btn" id="searchBtn" aria-label="Buscar">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <button class="search-btn" id="searchBtn" aria-label="Buscar"><i class="fas fa-search"></i></button>
                     <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span></span><span></span><span></span>
                     </button>
                 </div>
             </div>
@@ -114,15 +95,11 @@
 
     <!-- Page Header -->
     <section class="page-header">
-        <div class="page-header-bg">
-            <img src="https://picsum.photos/seed/stadium-header/1920/400" alt="Estadio">
-        </div>
+        <div class="page-header-bg"><img src="https://picsum.photos/seed/stadium-header/1920/400" alt="Estadio"></div>
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html">Inicio</a>
-                <span>/</span>
-                <a href="#">Equipo</a>
-                <span>/</span>
+                <a href="index.html">Inicio</a><span>/</span>
+                <a href="#">Equipo</a><span>/</span>
                 <span class="current">Primer Equipo</span>
             </div>
             <h1 class="page-title">Primer Equipo</h1>
@@ -130,40 +107,11 @@
         </div>
     </section>
 
-    <!-- Team Stats Overview -->
+    <!-- Team Stats -->
     <section class="team-stats-section">
         <div class="container">
-            <div class="team-stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="stat-number">2º</div>
-                    <div class="stat-label">Posición en Liga</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-futbol"></i></div>
-                    <div class="stat-number">38</div>
-                    <div class="stat-label">Goles a Favor</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="stat-number">18</div>
-                    <div class="stat-label">Goles en Contra</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="stat-number">13</div>
-                    <div class="stat-label">Victorias</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Empates</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Derrotas</div>
-                </div>
+            <div class="team-stats-grid" id="teamStatsGrid">
+                <!-- Contenido dinámico -->
             </div>
         </div>
     </section>
@@ -174,521 +122,8 @@
             <div class="section-header">
                 <h2 class="section-title">Plantilla Completa</h2>
             </div>
-
-            <!-- Porteros -->
-            <div class="position-group">
-                <h3 class="position-title">
-                    <span class="position-icon"><i class="fas fa-hand-paper"></i></span>
-                    Porteros
-                </h3>
-                <div class="squad-grid">
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/gk1/400/500" alt="Miguel Ángel Torres">
-                                <span class="squad-number">1</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Miguel Ángel Torres</h4>
-                                <span class="squad-position">Portero</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 28 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.87m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">23</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">15</span>
-                                        <span class="mini-stat-label">Port. a 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/gk2/400/500" alt="Pablo Menéndez">
-                                <span class="squad-number">13</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Pablo Menéndez</h4>
-                                <span class="squad-position">Portero</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 22 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.83m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">0</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">0</span>
-                                        <span class="mini-stat-label">Port. a 0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Defensas -->
-            <div class="position-group">
-                <h3 class="position-title">
-                    <span class="position-icon"><i class="fas fa-shield-alt"></i></span>
-                    Defensas
-                </h3>
-                <div class="squad-grid">
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/df1/400/500" alt="Dani Fernández">
-                                <span class="squad-number">2</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Dani Fernández</h4>
-                                <span class="squad-position">Lateral Derecho</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 26 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.78m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">21</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">2</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/df2/400/500" alt="Adrián Picos">
-                                <span class="squad-number">4</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Adrián Picos</h4>
-                                <span class="squad-position">Central</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 29 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.85m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">23</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">3</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/df3/400/500" alt="Víctor Márquez">
-                                <span class="squad-number">5</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Víctor Márquez</h4>
-                                <span class="squad-position">Central</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 27 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.82m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">22</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">1</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/df4/400/500" alt="Sergio Núñez">
-                                <span class="squad-number">3</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Sergio Núñez</h4>
-                                <span class="squad-position">Lateral Izquierdo</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 24 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.76m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">18</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">4</span>
-                                        <span class="mini-stat-label">Asistencias</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/df5/400/500" alt="Borja Trujillo">
-                                <span class="squad-number">15</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Borja Trujillo</h4>
-                                <span class="squad-position">Central</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 25 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.88m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">12</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">0</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Centrocampistas -->
-            <div class="position-group">
-                <h3 class="position-title">
-                    <span class="position-icon"><i class="fas fa-sync-alt"></i></span>
-                    Centrocampistas
-                </h3>
-                <div class="squad-grid">
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/mf1/400/500" alt="Álvaro Santos">
-                                <span class="squad-number">6</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Álvaro Santos</h4>
-                                <span class="squad-position">Mediocentro Defensivo</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 30 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.80m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">23</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">1</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/mf2/400/500" alt="Nacho Ruiz">
-                                <span class="squad-number">8</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Nacho Ruiz</h4>
-                                <span class="squad-position">Centrocampista</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 26 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.77m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">22</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">5</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/mf3/400/500" alt="Pedro Leal">
-                                <span class="squad-number">10</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Pedro Leal</h4>
-                                <span class="squad-position">Mediapunta</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 28 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.74m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">21</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">8</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/mf4/400/500" alt="Iván Pacheco">
-                                <span class="squad-number">14</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Iván Pacheco</h4>
-                                <span class="squad-position">Centrocampista</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 23 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.79m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">8</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">2</span>
-                                        <span class="mini-stat-label">Asistencias</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/mf5/400/500" alt="Hugo de la Torre">
-                                <span class="squad-number">16</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Hugo de la Torre</h4>
-                                <span class="squad-position">Mediocentro</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 21 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.75m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">15</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">1</span>
-                                        <span class="mini-stat-label">Gol</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Delanteros -->
-            <div class="position-group">
-                <h3 class="position-title">
-                    <span class="position-icon"><i class="fas fa-bullseye"></i></span>
-                    Delanteros
-                </h3>
-                <div class="squad-grid">
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw1/400/500" alt="Javi Martínez">
-                                <span class="squad-number">9</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Javi Martínez</h4>
-                                <span class="squad-position">Delantero Centro</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 27 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.82m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">23</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">14</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw2/400/500" alt="Rubén Cano">
-                                <span class="squad-number">7</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Rubén Cano</h4>
-                                <span class="squad-position">Extremo Derecho</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 25 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.73m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">20</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">6</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw3/400/500" alt="Lucho García">
-                                <span class="squad-number">11</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Luis 'Lucho' García</h4>
-                                <span class="squad-position">Extremo Izquierdo</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 24 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.76m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">22</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">7</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-
-                    <article class="squad-card">
-                        <a href="ficha-jugador.html" class="squad-link">
-                            <div class="squad-image">
-                                <img src="https://picsum.photos/seed/fw4/400/500" alt="Diego López">
-                                <span class="squad-number">17</span>
-                                <div class="squad-overlay">
-                                    <span class="view-profile">Ver ficha</span>
-                                </div>
-                            </div>
-                            <div class="squad-info">
-                                <h4 class="squad-name">Diego 'Chicho' López</h4>
-                                <span class="squad-position">Delantero</span>
-                                <div class="squad-meta">
-                                    <span><i class="far fa-calendar"></i> 22 años</span>
-                                    <span><i class="fas fa-ruler-vertical"></i> 1.79m</span>
-                                </div>
-                                <div class="squad-stats">
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">12</span>
-                                        <span class="mini-stat-label">Partidos</span>
-                                    </div>
-                                    <div class="mini-stat">
-                                        <span class="mini-stat-value">3</span>
-                                        <span class="mini-stat-label">Goles</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </article>
-                </div>
+            <div id="plantillaCompleta">
+                <!-- Contenido dinámico -->
             </div>
         </div>
     </section>
@@ -699,61 +134,8 @@
             <div class="section-header">
                 <h2 class="section-title">Cuerpo Técnico</h2>
             </div>
-
-            <div class="coaching-grid">
-                <article class="coach-card main-coach">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach1/400/450" alt="Carlos Mendoza">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Entrenador Principal</span>
-                        <h3 class="coach-name">Carlos Mendoza</h3>
-                        <p class="coach-bio">Licenciado en Educación Física con más de 15 años de experiencia en fútbol profesional.</p>
-                        <div class="coach-stats">
-                            <div class="coach-stat">
-                                <span class="coach-stat-value">89</span>
-                                <span class="coach-stat-label">Partidos</span>
-                            </div>
-                            <div class="coach-stat">
-                                <span class="coach-stat-value">52%</span>
-                                <span class="coach-stat-label">Victorias</span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="coach-card">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach2/400/450" alt="Roberto Vázquez">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Segundo Entrenador</span>
-                        <h3 class="coach-name">Roberto Vázquez</h3>
-                        <p class="coach-bio">Especialista en análisis táctico.</p>
-                    </div>
-                </article>
-
-                <article class="coach-card">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach3/400/450" alt="Miguel Serrano">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Preparador Físico</span>
-                        <h3 class="coach-name">Miguel Serrano</h3>
-                        <p class="coach-bio">Especialista en rendimiento deportivo.</p>
-                    </div>
-                </article>
-
-                <article class="coach-card">
-                    <div class="coach-image">
-                        <img src="https://picsum.photos/seed/coach4/400/450" alt="Antonio Cruz">
-                    </div>
-                    <div class="coach-info">
-                        <span class="coach-role">Entrenador de Porteros</span>
-                        <h3 class="coach-name">Antonio Cruz</h3>
-                        <p class="coach-bio">Ex-portero profesional.</p>
-                    </div>
-                </article>
+            <div class="coaching-grid" id="cuerpoTecnicoGrid">
+                <!-- Contenido dinámico -->
             </div>
         </div>
     </section>
@@ -773,7 +155,6 @@
                             <li><a href="#">Contacto</a></li>
                         </ul>
                     </div>
-
                     <div class="footer-column">
                         <h4>Equipos</h4>
                         <ul>
@@ -783,7 +164,6 @@
                             <li><a href="#">Cantera</a></li>
                         </ul>
                     </div>
-
                     <div class="footer-column">
                         <h4>Competiciones</h4>
                         <ul>
@@ -793,37 +173,17 @@
                             <li><a href="#">Copa del Rey</a></li>
                         </ul>
                     </div>
-
-                    <div class="footer-column">
-                        <h4>Socios</h4>
-                        <ul>
-                            <li><a href="#">Hazte socio</a></li>
-                            <li><a href="#">Renovar abono</a></li>
-                            <li><a href="#">Zona de socios</a></li>
-                        </ul>
-                    </div>
-
                     <div class="footer-column contact">
                         <h4>Contacto</h4>
                         <ul class="contact-info">
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Estadio Municipal de Villaferreira<br>Calle del Deporte s/n<br>33009 Villaferreira</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                <span>985 123 456</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <span>info@cdvillaferreira.com</span>
-                            </li>
+                            <li><i class="fas fa-map-marker-alt"></i><span>Estadio Municipal de Villaferreira<br>Calle del Deporte s/n<br>33009 Villaferreira</span></li>
+                            <li><i class="fas fa-phone"></i><span>985 123 456</span></li>
+                            <li><i class="fas fa-envelope"></i><span>info@cdvillaferreira.com</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="footer-middle">
             <div class="container">
                 <div class="footer-social">
@@ -835,13 +195,10 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <div class="container">
                 <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2025 Club Deportivo Villaferreira. Todos los derechos reservados.</p>
-                    </div>
+                    <div class="copyright"><p>&copy; 2025 Club Deportivo Villaferreira. Todos los derechos reservados.</p></div>
                     <div class="footer-links">
                         <a href="#">Política de privacidad</a>
                         <a href="#">Política de cookies</a>
@@ -852,6 +209,8 @@
         </div>
     </footer>
 
-    <script src="js/script.js?nocache=20251231v2"></script>
+    <script src="js/data.js?nocache=20251231v1"></script>
+    <script src="js/app.js?nocache=20251231v1"></script>
+    <script src="js/script.js?nocache=20251231v1"></script>
 </body>
 </html>
