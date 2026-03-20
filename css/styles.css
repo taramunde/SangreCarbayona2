@@ -91,6 +91,7 @@ img {
     padding: 10px 0;
 }
 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -100,29 +101,17 @@ img {
 .logo-shield {
     width: 50px;
     height: 60px;
-    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
     display: flex;
     align-items: center;
     justify-content: center;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     position: relative;
 }
 
-.logo-shield::before {
-    content: '';
-    position: absolute;
-    inset: 3px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-
-.logo-text {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--secondary-color);
+/* Nueva clase para la imagen del escudo */
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .logo-name {
