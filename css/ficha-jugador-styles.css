@@ -919,29 +919,18 @@
     pointer-events: none;
 }
 
-.deceased-ribbon::before,
-.deceased-ribbon::after {
-    content: '';
+.deceased-ribbon {
     position: absolute;
     top: 0;
     right: 0;
-    border-color: transparent;
-    border-style: solid;
-}
-
-.deceased-ribbon::before {
-    border-width: 60px;
-    border-right-color: #000;
-    border-top-color: #000;
-}
-
-.deceased-ribbon::after {
-    border-width: 55px;
-    border-right-color: transparent; 
-    border-top-color: transparent;
-    border-left-color: rgba(0,0,0,0.1); /* Sombra suave */
-    border-bottom-color: rgba(0,0,0,0.1);
-    z-index: -1;
+    width: 100px;  /* Ajusta al tamaño de tu imagen */
+    height: 100px;  /* Ajusta al tamaño de tu imagen */
+    background-image: url('https://i.postimg.cc/vmNGQqTS/lazo-negro.webp'); /* TU URL AQUÍ */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
+    z-index: 5;
+    pointer-events: none;
 }
 
 /* Estilo para fecha de fallecimiento en grid */
