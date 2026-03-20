@@ -54,27 +54,38 @@ const CLUB_DATA = {
                 { posicion: 5, siglas: "CDS", nombre: "Cultural Soria", puntos: 37, jugados: 23, gfavor: 28, gcontra: 24, dg: "+4", destacado: false, logo: "https://picsum.photos/seed/soria-logo/60/60" },
                 { posicion: 6, siglas: "SPE", nombre: "Sporting Esteño", puntos: 35, jugados: 23, gfavor: 32, gcontra: 28, dg: "+4", destacado: false, logo: "https://picsum.photos/seed/esteno-logo/60/60" },
                 { posicion: 7, siglas: "UNI", nombre: "Unión Sur", puntos: 33, jugados: 23, gfavor: 29, gcontra: 25, dg: "+4", destacado: false, logo: "https://picsum.photos/seed/unionsur-logo/60/60" },
-                { posicion: 8, siglas: "DEP", nombre: "Deportivo Norte", puntos: 31, jugados: 23, gfavor: 26, gcontra: 27, dg: "-1", destacado: false, logo: "https://picsum.photos/seed/depnorte-logo/60/60" }
+                { posicion: 8, siglas: "DEP", nombre: "Deportivo Norte", puntos: 31, jugados: 23, gfavor: 26, gcontra: 27, dg: "-1", destacado: false, logo: "https://picsum.photos/seed/depnorte-logo/60/60" },
+                { posicion: 9, siglas: "CFP", nombre: "CF Palencia", puntos: 28, jugados: 23, gfavor: 24, gcontra: 30, dg: "-6", destacado: false, logo: "https://picsum.photos/seed/palencia-logo/60/60" },
+                { posicion: 10, siglas: "ZAM", nombre: "Zamora CF", puntos: 26, jugados: 23, gfavor: 22, gcontra: 29, dg: "-7", destacado: false, logo: "https://picsum.photos/seed/zamora-logo/60/60" },
+                { posicion: 11, siglas: "SAL", nombre: "Salamanca UDS", puntos: 24, jugados: 23, gfavor: 20, gcontra: 31, dg: "-11", destacado: false, logo: "https://picsum.photos/seed/salamanca-logo/60/60" },
+                { posicion: 12, siglas: "GUA", nombre: "Guadalajara", puntos: 22, jugados: 23, gfavor: 18, gcontra: 33, dg: "-15", destacado: false, logo: "https://picsum.photos/seed/guadalajara-logo/60/60" }
             ],
             
             jugadores: [
-                { id: 1, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 28, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/gk1-24/400/500", stats: { partidos: 23, goles: 0, asistencias: 0, minutos: 2070, amarillas: 1, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
-                { id: 2, codigo: "pablo-menendez", nombre: "Pablo", apellidos: "Menéndez Álvarez", nombreCompleto: "Pablo Menéndez", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 22, altura: 1.83, peso: 78, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón", fechaNacimiento: "2002-07-22", enClubDesde: "2024", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk2-24/400/500", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0 }, redes: { instagram: "#", twitter: null } },
-                { id: 3, codigo: "dani-fernandez", nombre: "Dani", apellidos: "Fernández Rodríguez", nombreCompleto: "Dani Fernández", dorsal: 2, posicion: "Lateral Derecho", posicionCorta: "LD", edad: 26, altura: 1.78, peso: 73, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Avilés", fechaNacimiento: "1998-11-03", enClubDesde: "2023", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df1-24/400/500", stats: { partidos: 21, goles: 2, asistencias: 4, minutos: 1780, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
-                { id: 4, codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 29, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df2-24/400/500", stats: { partidos: 23, goles: 3, asistencias: 1, minutos: 2045, amarillas: 5, rojas: 0 }, redes: { instagram: "#", twitter: null } },
+                { id: 1, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 28, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/gk1-24/400/500", stats: { partidos: 23, goles: 0, asistencias: 0, minutos: 2070, amarillas: 1, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 2, codigo: "pablo-menendez", nombre: "Pablo", apellidos: "Menéndez Álvarez", nombreCompleto: "Pablo Menéndez", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 22, altura: 1.83, peso: 78, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "2002-07-22", enClubDesde: "2024", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk2-24/400/500", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0 }, redes: { instagram: "#", twitter: null } },
+                { id: 3, codigo: "dani-fernandez", nombre: "Dani", apellidos: "Fernández Rodríguez", nombreCompleto: "Dani Fernández", dorsal: 2, posicion: "Lateral Derecho", posicionCorta: "LD", edad: 26, altura: 1.78, peso: 73, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Avilés, Asturias", fechaNacimiento: "1998-11-03", enClubDesde: "2023", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df1-24/400/500", stats: { partidos: 21, goles: 2, asistencias: 4, minutos: 1780, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 4, codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 29, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander, Cantabria", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df2-24/400/500", stats: { partidos: 23, goles: 3, asistencias: 1, minutos: 2045, amarillas: 5, rojas: 0 }, redes: { instagram: "#", twitter: null } },
                 { id: 5, codigo: "victor-marquez", nombre: "Víctor", apellidos: "Márquez López", nombreCompleto: "Víctor Márquez", dorsal: 5, posicion: "Central", posicionCorta: "DC", edad: 27, altura: 1.82, peso: 77, pie: "Izquierdo", nacionalidad: "Española", lugarNacimiento: "León", fechaNacimiento: "1997-09-30", enClubDesde: "2023", contratoHasta: "2026", imagen: "https://picsum.photos/seed/df3-24/400/500", stats: { partidos: 22, goles: 1, asistencias: 2, minutos: 1890, amarillas: 4, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 6, codigo: "sergio-nunez", nombre: "Sergio", apellidos: "Núñez Pérez", nombreCompleto: "Sergio Núñez", dorsal: 3, posicion: "Lateral Izquierdo", posicionCorta: "LI", edad: 24, altura: 1.76, peso: 70, pie: "Izquierdo", nacionalidad: "Española", lugarNacimiento: "Madrid", fechaNacimiento: "2000-02-14", enClubDesde: "2024", contratoHasta: "2026", imagen: "https://picsum.photos/seed/df4-24/400/500", stats: { partidos: 18, goles: 0, asistencias: 4, minutos: 1420, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: null } },
+                { id: 7, codigo: "borja-trujillo", nombre: "Borja", apellidos: "Trujillo Fernández", nombreCompleto: "Borja Trujillo", dorsal: 15, posicion: "Central", posicionCorta: "DC", edad: 25, altura: 1.88, peso: 83, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "1999-08-05", enClubDesde: "2023", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df5-24/400/500", stats: { partidos: 12, goles: 0, asistencias: 0, minutos: 890, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: null } },
                 { id: 8, codigo: "alvaro-santos", nombre: "Álvaro", apellidos: "Santos Díaz", nombreCompleto: "Álvaro Santos", dorsal: 6, posicion: "Mediocentro Defensivo", posicionCorta: "MCD", edad: 30, altura: 1.80, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Sevilla", fechaNacimiento: "1994-12-10", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/mf1-24/400/500", stats: { partidos: 23, goles: 1, asistencias: 2, minutos: 1980, amarillas: 8, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
-                { id: 13, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 27, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/fw1-24/400/500", esCapitan: true, stats: { partidos: 23, goles: 14, asistencias: 4, minutos: 1892, amarillas: 4, rojas: 0 }, logros: ["Pichichi Primera RFEF 2023/24", "Capitán del equipo"], redes: { instagram: "#", twitter: "#" } }
+                { id: 9, codigo: "nacho-ruiz", nombre: "Nacho", apellidos: "Ruiz Martínez", nombreCompleto: "Nacho Ruiz", dorsal: 8, posicion: "Centrocampista", posicionCorta: "MC", edad: 26, altura: 1.77, peso: 72, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Valencia", fechaNacimiento: "1998-04-25", enClubDesde: "2023", contratoHasta: "2026", imagen: "https://picsum.photos/seed/mf2-24/400/500", stats: { partidos: 22, goles: 5, asistencias: 6, minutos: 1750, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 10, codigo: "pedro-leal", nombre: "Pedro", apellidos: "Leal García", nombreCompleto: "Pedro Leal", dorsal: 10, posicion: "Mediapunta", posicionCorta: "MP", edad: 28, altura: 1.74, peso: 68, pie: "Izquierdo", nacionalidad: "Española", lugarNacimiento: "Barcelona", fechaNacimiento: "1996-07-08", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/mf3-24/400/500", stats: { partidos: 21, goles: 8, asistencias: 5, minutos: 1680, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 13, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 27, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/fw1-24/400/500", esCapitan: true, stats: { partidos: 23, goles: 14, asistencias: 4, minutos: 1892, amarillas: 4, rojas: 0 }, logros: ["Pichichi Primera RFEF 2023/24", "Capitán del equipo"], redes: { instagram: "#", twitter: "#" } },
+                { id: 14, codigo: "ruben-cano", nombre: "Rubén", apellidos: "Cano Pérez", nombreCompleto: "Rubén Cano", dorsal: 7, posicion: "Extremo Derecho", posicionCorta: "ED", edad: 25, altura: 1.73, peso: 67, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Bilbao, Vizcaya", fechaNacimiento: "1999-05-28", enClubDesde: "2023", contratoHasta: "2025", imagen: "https://picsum.photos/seed/fw2-24/400/500", stats: { partidos: 20, goles: 6, asistencias: 8, minutos: 1450, amarillas: 1, rojas: 0 }, redes: { instagram: "#", twitter: null } }
             ],
             
             cuerpoTecnico: [
-                { id: 1, nombre: "Carlos Mendoza", cargo: "Entrenador Principal", imagen: "https://picsum.photos/seed/coach1/400/450", descripcion: "Licenciado en Educación Física con más de 15 años de experiencia.", esPrincipal: true, estadisticas: { partidos: 89, victorias: 46, empates: 22, derrotas: 21 } }
+                { id: 1, nombre: "Carlos Mendoza", cargo: "Entrenador Principal", imagen: "https://picsum.photos/seed/coach1/400/450", descripcion: "Licenciado en Educación Física con más de 15 años de experiencia.", esPrincipal: true, estadisticas: { partidos: 89, victorias: 46, empates: 22, derrotas: 21 } },
+                { id: 2, nombre: "Roberto Vázquez", cargo: "Segundo Entrenador", imagen: "https://picsum.photos/seed/coach2/400/450", descripcion: "Especialista en análisis táctico.", esPrincipal: false }
             ],
 
             partidosJugados: [
                 { id: 1, jornada: 23, fecha: "2025-01-19", local: "Sangre Carbayona", visitante: "Atlético Vergara", golesLocal: 2, golesVisitante: 1, resultado: "V" },
                 { id: 2, jornada: 22, fecha: "2025-01-12", local: "Cultural Soria", visitante: "Sangre Carbayona", golesLocal: 0, golesVisitante: 3, resultado: "V" },
-                { id: 3, jornada: 21, fecha: "2025-01-05", local: "Sangre Carbayona", visitante: "Racing Ferrol", golesLocal: 1, golesVisitante: 1, resultado: "E" }
+                { id: 3, jornada: 21, fecha: "2025-01-05", local: "Sangre Carbayona", visitante: "Racing Ferrol", golesLocal: 1, golesVisitante: 1, resultado: "E" },
+                { id: 4, jornada: 20, fecha: "2024-12-22", local: "Sporting Esteño", visitante: "Sangre Carbayona", golesLocal: 2, golesVisitante: 4, resultado: "V" }
             ]
         },
         
@@ -93,9 +104,9 @@ const CLUB_DATA = {
             ],
             
             jugadores: [
-                { id: 101, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 27, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk1-23/400/500", stats: { partidos: 36, goles: 0, asistencias: 0, minutos: 3240, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
-                { id: 104, codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 28, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df2-23/400/500", stats: { partidos: 35, goles: 4, asistencias: 2, minutos: 3080, amarillas: 7, rojas: 0 }, redes: { instagram: "#", twitter: null } },
-                { id: 111, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 26, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/fw1-23/400/500", stats: { partidos: 35, goles: 22, asistencias: 6, minutos: 2980, amarillas: 5, rojas: 0 }, logros: ["Pichichi Primera RFEF 2023/24"], redes: { instagram: "#", twitter: "#" } }
+                { id: 101, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 27, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk1-23/400/500", stats: { partidos: 36, goles: 0, asistencias: 0, minutos: 3240, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: 104, codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 28, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander, Cantabria", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df2-23/400/500", stats: { partidos: 35, goles: 4, asistencias: 2, minutos: 3080, amarillas: 7, rojas: 0 }, redes: { instagram: "#", twitter: null } },
+                { id: 111, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 26, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://picsum.photos/seed/fw1-23/400/500", stats: { partidos: 35, goles: 22, asistencias: 6, minutos: 2980, amarillas: 5, rojas: 0 }, logros: ["Pichichi Primera RFEF 2023/24"], redes: { instagram: "#", twitter: "#" } }
             ],
             
             cuerpoTecnico: [
@@ -123,14 +134,16 @@ const CLUB_DATA = {
             ],
             
             jugadores: [
-                { id: 201, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 26, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2024", imagen: "https://picsum.photos/seed/gk1-22/400/500", stats: { partidos: 34, goles: 0, asistencias: 0, minutos: 3060, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
-                { id: 205, codigo: "raul-fernandez", nombre: "Raúl", apellidos: "Fernández Soto", nombreCompleto: "Raúl Fernández", dorsal: 5, posicion: "Central", posicionCorta: "DC", edad: 31, altura: 1.84, peso: 79, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón", fechaNacimiento: "1993-02-14", enClubDesde: "2021", contratoHasta: "2023", imagen: "https://picsum.photos/seed/df3-22/400/500", stats: { partidos: 28, goles: 3, asistencias: 1, minutos: 2480, amarillas: 4, rojas: 0 }, redes: { instagram: "#", twitter: "#" }, fallecido: true, fechaFallecimiento: "2024-05-15" },
+                { id: 201, codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 26, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2024", imagen: "https://picsum.photos/seed/gk1-22/400/500", stats: { partidos: 34, goles: 0, asistencias: 0, minutos: 3060, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                // EJEMPLO: Jugador fallecido
+                { id: 205, codigo: "raul-fernandez", nombre: "Raúl", apellidos: "Fernández Soto", nombreCompleto: "Raúl Fernández", dorsal: 5, posicion: "Central", posicionCorta: "DC", edad: 31, altura: 1.84, peso: 79, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "1993-02-14", enClubDesde: "2021", contratoHasta: "2023", imagen: "https://picsum.photos/seed/df3-22/400/500", stats: { partidos: 28, goles: 3, asistencias: 1, minutos: 2480, amarillas: 4, rojas: 0 }, redes: { instagram: "#", twitter: "#" }, fallecido: true, fechaFallecimiento: "2024-05-15" },
+                // EJEMPLO: Jugador sin altura
                 { id: 206, codigo: "jorge-martin", nombre: "Jorge", apellidos: "Martín Díaz", nombreCompleto: "Jorge Martín", dorsal: 3, posicion: "Lateral Izquierdo", posicionCorta: "LI", edad: 25, peso: 71, pie: "Izquierdo", nacionalidad: "Española", lugarNacimiento: "Zamora", fechaNacimiento: "1998-11-30", enClubDesde: "2022", contratoHasta: "2024", imagen: "https://picsum.photos/seed/df4-22/400/500", stats: { partidos: 26, goles: 0, asistencias: 7, minutos: 2200, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: null } },
-                { id: 210, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 25, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/fw1-22/400/500", stats: { partidos: 32, goles: 18, asistencias: 5, minutos: 2750, amarillas: 4, rojas: 0 }, logros: ["Ascenso a Primera RFEF"], redes: { instagram: "#", twitter: "#" } }
+                { id: 210, codigo: "javi-martinez", nombre: "Javi", apellidos: "Martínez Fernández", nombreCompleto: "Javi Martínez", dorsal: 9, posicion: "Delantero Centro", posicionCorta: "DC", edad: 25, altura: 1.82, peso: 75, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/fw1-22/400/500", stats: { partidos: 32, goles: 18, asistencias: 5, minutos: 2750, amarillas: 4, rojas: 0 }, logros: ["Ascenso a Primera RFEF"], redes: { instagram: "#", twitter: "#" } }
             ],
             
             cuerpoTecnico: [
-                { id: 1, nombre: "Carlos Mendoza", cargo: "Entrenador Principal", imagen: "https://picsum.photos/seed/coach1-22/400/450", descripcion: "Primera temporada.", esPrincipal: true, estadisticas: { partidos: 34, victorias: 22, empates: 6, derrotas: 6 } }
+                { id: 1, nombre: "Carlos Mendoza", cargo: "Entrenador Principal", imagen: "https://picsum.photos/seed/coach1-22/400/450", descripcion: "Primera temporada. Ascenso.", esPrincipal: true, estadisticas: { partidos: 34, victorias: 22, empates: 6, derrotas: 6 } }
             ],
 
             partidosJugados: [
@@ -145,16 +158,34 @@ const CLUB_DATA = {
     // ===================================
     
     calendario: [
-        { id: 1, jornada: 24, fecha: "2025-01-26", hora: "18:00", local: "Sangre Carbayona", visitante: "UD Rosaleda", estadio: "Carlos Tartiere", esProximo: true }
+        { id: 1, jornada: 24, fecha: "2025-01-26", hora: "18:00", local: "Sangre Carbayona", visitante: "UD Rosaleda", estadio: "Carlos Tartiere", esProximo: true },
+        { id: 2, jornada: 25, fecha: "2025-02-02", hora: "16:00", local: "Racing Ferrol", visitante: "Sangre Carbayona", estadio: "A Fermín", esProximo: false },
+        { id: 3, jornada: 26, fecha: "2025-02-09", hora: "17:00", local: "Sangre Carbayona", visitante: "Cultural Soria", estadio: "Carlos Tartiere", esProximo: false }
     ],
 
     noticias: [
-        { id: 1, titulo: "El Sangre Carbayona encadena cinco victorias", resumen: "El equipo entra en puestos de playoff.", categoria: "Primer Equipo", fecha: "2025-01-24", imagen: "https://picsum.photos/seed/news1/800/500", esPrincipal: true }
+        { id: 1, titulo: "El Sangre Carbayona encadena cinco victorias consecutivas", resumen: "El equipo entra en puestos de playoff.", categoria: "Primer Equipo", fecha: "2025-01-24", imagen: "https://picsum.photos/seed/news1/800/500", esPrincipal: true },
+        { id: 2, titulo: "Carlos Mendoza: \"El equipo muestra madurez táctica\"", resumen: "El técnico valora el momento del equipo.", categoria: "Prensa", fecha: "2025-01-23", imagen: "https://picsum.photos/seed/news2/400/300", esPrincipal: false },
+        { id: 3, titulo: "El Juvenil A se clasifica para la fase nacional", resumen: "Histórica clasificación.", categoria: "Cantera", fecha: "2025-01-22", imagen: "https://picsum.photos/seed/news3/400/300", esPrincipal: false }
     ],
 
-    patrocinadores: [ { id: 1, nombre: "Grupo Norte" }, { id: 2, nombre: "Cervezas Asturias" } ],
+    patrocinadores: [
+        { id: 1, nombre: "Grupo Norte" },
+        { id: 2, nombre: "Cervezas Astur" },
+        { id: 3, nombre: "Asturias Paraíso Natural" }
+    ],
 
-    proximoPartido: { jornada: 24, competicion: "Primera RFEF", fecha: "2025-01-26", hora: "18:00", local: "Sangre Carbayona", localSiglas: "SOC", visitante: "UD Rosaleda", visitanteSiglas: "UDR", estadio: "Carlos Tartiere" }
+    proximoPartido: {
+        jornada: 24,
+        competicion: "Primera RFEF",
+        fecha: "2025-01-26",
+        hora: "18:00",
+        local: "Sangre Carbayona",
+        localSiglas: "SOC",
+        visitante: "UD Rosaleda",
+        visitanteSiglas: "UDR",
+        estadio: "Carlos Tartiere"
+    }
 };
 
 // ===================================
@@ -168,6 +199,18 @@ function getTemporada(seasonId) {
 function getJugadorById(id, seasonId) {
     const temporada = getTemporada(seasonId);
     return temporada.jugadores.find(j => j.id === parseInt(id));
+}
+
+function getJugadoresByPosicion(posicion, seasonId) {
+    const temporada = getTemporada(seasonId);
+    if (posicion === 'all') return temporada.jugadores;
+    const posicionesMap = {
+        'goalkeeper': ['Portero'],
+        'defender': ['Lateral Derecho', 'Lateral Izquierdo', 'Central'],
+        'midfielder': ['Mediocentro Defensivo', 'Centrocampista', 'Mediocentro', 'Mediapunta'],
+        'forward': ['Delantero Centro', 'Extremo Derecho', 'Extremo Izquierdo', 'Delantero']
+    };
+    return temporada.jugadores.filter(j => posicionesMap[posicion]?.includes(j.posicion));
 }
 
 function formatearFecha(fechaStr) {
@@ -185,4 +228,5 @@ function formatearFecha(fechaStr) {
 window.CLUB_DATA = CLUB_DATA;
 window.getTemporada = getTemporada;
 window.getJugadorById = getJugadorById;
+window.getJugadoresByPosicion = getJugadoresByPosicion;
 window.formatearFecha = formatearFecha;
