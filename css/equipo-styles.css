@@ -620,26 +620,35 @@
 }
 
 /* ===================================
-   LAZO NEGRO (IMAGEN) EN PLANTILLA
+   LAZO NEGRO (IMAGEN) EN PLANTILLA - CORREGIDO
    =================================== */
 
-/* 1. Aseguramos que la tarjeta tenga posición relativa */
+/* 1. Asegurar posición relativa en la tarjeta */
 .squad-image {
     position: relative;
     overflow: hidden;
 }
 
-/* 2. Estilos del lazo usando tu IMAGEN */
+/* 2. Estilos del contenedor del lazo */
 .deceased-ribbon {
     position: absolute;
     top: 0;
     right: 0;
-    width: 80px;   /* Ajusta el tamaño aquí si tu imagen es más grande o pequeña */
-    height: 80px;  /* Ajusta el tamaño aquí */
-    background-image: url('https://i.postimg.cc/vmNGQqTS/lazo-negro.webp'); /* <-- CAMBIA ESTO por la URL de tu imagen */
+    width: 80px;   /* Ajusta aquí el tamaño de tu imagen */
+    height: 80px;  /* Ajusta aquí el tamaño de tu imagen */
+    z-index: 5;
+    pointer-events: none;
+    
+    /* TU IMAGEN AQUÍ: */
+    background-image: url('../img/lazo-negro.png'); /* Cambia esta ruta */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top right;
-    z-index: 5;     /* Para que esté por encima de la foto */
-    pointer-events: none;
+}
+
+/* 3. IMPORTANTE: Esto anula el código viejo del triángulo */
+.deceased-ribbon::before,
+.deceased-ribbon::after {
+    content: none !important; /* Elimina el triángulo negro que se veía detrás */
+    display: none !important;
 }
