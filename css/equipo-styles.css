@@ -235,7 +235,7 @@
 }
 
 .squad-image {
-    position: relative;
+    position: relative; /* IMPORTANTE: Para que el lazo se posicione aquí */
     height: 280px;
     overflow: hidden;
 }
@@ -473,49 +473,18 @@
 
 /* ===================================
    LAZO NEGRO EN TARJETAS DE PLANTILLA
-   (AÑADIDO AL FINAL)
    =================================== */
 
-/* Asegurar que el contenedor de la imagen tenga posición relativa */
-.squad-image {
-    position: relative;
-    overflow: hidden;
-}
-
+/* El lazo en sí (Triángulo negro) */
 .deceased-ribbon {
     position: absolute;
     top: 0;
     right: 0;
-    width: 80px;  /* Tamaño ajustado para tarjetas pequeñas */
+    width: 80px;
     height: 80px;
-    overflow: hidden;
-    z-index: 5;
+    z-index: 10;
     pointer-events: none;
-}
-
-.deceased-ribbon::before,
-.deceased-ribbon::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-color: transparent;
-    border-style: solid;
-}
-
-.deceased-ribbon::before {
-    border-width: 40px;
-    border-right-color: #000;
-    border-top-color: #000;
-}
-
-.deceased-ribbon::after {
-    border-width: 36px;
-    border-right-color: transparent; 
-    border-top-color: transparent;
-    border-left-color: rgba(0,0,0,0.1);
-    border-bottom-color: rgba(0,0,0,0.1);
-    z-index: -1;
+    background: linear-gradient(135deg, transparent 50%, #000 50%);
 }
 
 /* ===================================
