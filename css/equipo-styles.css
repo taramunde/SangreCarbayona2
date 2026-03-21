@@ -472,19 +472,23 @@
 }
 
 /* ===================================
-   LAZO NEGRO EN TARJETAS DE PLANTILLA
+   LAZO NEGRO (IMAGEN) EN PLANTILLA
    =================================== */
 
-/* El lazo en sí (Triángulo negro) */
 .deceased-ribbon {
     position: absolute;
     top: 0;
     right: 0;
-    width: 80px;
-    height: 80px;
+    width: 80px;   /* Ajusta el tamaño de tu lazo aquí */
+    height: 80px;  /* Ajusta el tamaño de tu lazo aquí */
     z-index: 10;
     pointer-events: none;
-    background: linear-gradient(135deg, transparent 50%, #000 50%);
+    
+    /* CONFIGURACIÓN DE LA IMAGEN */
+    background-image: url('https://i.postimg.cc/vmNGQqTS/lazo-negro.webp'); /* <--- CAMBIA ESTA URL POR LA DE TU IMAGEN */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top right;
 }
 
 /* ===================================
