@@ -185,8 +185,12 @@ const App = {
     // ===================================
     // TARJETA JUGADOR (CON LAZO NEGRO)
     // ===================================
-    renderJugadorCard: function(jugador) {
-        // Comprobamos si ha fallecido
+        renderJugadorCard: function(jugador) {
+        // Debug: ¿El JS detecta que ha fallecido?
+        if (jugador.fallecido) {
+            console.log(`Detectado fallecido: ${jugador.nombreCompleto}`);
+        }
+
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
 
         return `
