@@ -201,7 +201,10 @@ const App = {
             else if (nombrePosicion.includes('Delan') || nombrePosicion.includes('Forward')) icon = 'fa-bullseye';
 
             html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
-            joueursPosicion.forEach(jugador => { html += this.renderJugadorCard(jugador); });
+            
+            // CORRECCIÓN AQUÍ: jugadoresPosicion (antes estaba mal escrito)
+            jugadoresPosicion.forEach(jugador => { html += this.renderJugadorCard(jugador); });
+            
             html += `</div></div>`;
         }
         container.innerHTML = html;
@@ -257,14 +260,10 @@ const App = {
 
         let jugadorId, seasonId;
 
-        // *** CAMBIO IMPORTANTE ***
-        // Primero miramos si estamos en una ficha estática (generada por el script)
-        // window.PLAYER_DATA_STATIC viene del HTML generado
         if (window.PLAYER_DATA_STATIC) {
             jugadorId = window.PLAYER_DATA_STATIC.id;
             seasonId = window.PLAYER_DATA_STATIC.season;
         } else {
-            // Si no, usamos el método antiguo (URL dinámica)
             const urlParams = new URLSearchParams(window.location.search);
             jugadorId = urlParams.get('id') || 13;
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
