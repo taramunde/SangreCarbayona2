@@ -5,7 +5,7 @@ const vm = require('vm'); // Módulo seguro para ejecutar código
 console.log('🚀 Iniciando generador de fichas...');
 
 // 1. Leer Data
-const dataPath = path.join(__dirname, 'data.js');
+const dataPath = path.join(__dirname, '../js/data.js');
 const templatePath = path.join(__dirname, 'plantilla.html');
 
 if (!fs.existsSync(dataPath)) {
