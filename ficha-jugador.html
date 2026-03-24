@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha Jugador | Sangre Carbayona</title>
+
+    <!-- ============================================================
+         IMPORTANTE: Esta página es dinámica (carga datos por JS).
+         Los crawlers (WhatsApp, Telegram, Google) deben usar las
+         fichas estáticas de /fichas/, no esta URL genérica.
+         ============================================================ -->
+    <meta name="robots" content="noindex, nofollow">
+
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v2">
     <link rel="stylesheet" href="css/ficha-jugador-styles.css?nocache=20251231v2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,12 +19,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Meta Tags para Compartir -->
-    <meta property="og:title" content="Ficha Jugador - Sangre Carbayona">
+    <!-- Meta Tags para Compartir — imagen genérica del club -->
+    <meta property="og:title"       content="Ficha Jugador - Sangre Carbayona">
     <meta property="og:description" content="Ficha detallada del jugador.">
-    <meta property="og:image" content="https://picsum.photos/seed/real-oviedo-logo/400/400">
-    <meta property="og:type" content="profile">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image"       content="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png">
+    <meta property="og:url"         content="https://taramunde.github.io/SangreCarbayona2/ficha-jugador.html">
+    <meta property="og:type"        content="profile">
+    <meta name="twitter:card"       content="summary_large_image">
 </head>
 <body>
     <!-- Header Principal -->
@@ -69,8 +78,6 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a href="#" data-i18n="nav_noticias">Noticias</a></li>
-                        
-                        <!-- MULTIMEDIA MODIFICADO PARA SER DESPLEGABLE -->
                         <li class="nav-item has-submenu active">
                             <a href="#" data-i18n="nav_multimedia">Multimedia <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
@@ -78,8 +85,6 @@
                                 <li><a href="videos.html" data-i18n="nav_videos">Vídeos</a></li>
                             </ul>
                         </li>
-                        <!-- FIN MODIFICACIÓN -->
-
                     </ul>
 
                     <div class="mobile-nav-footer">
@@ -133,10 +138,7 @@
                 <span class="current"></span>
             </div>
             
-            <!-- CONTENEDOR DINÁMICO DEL JUGADOR -->
-            <div class="player-hero-content" id="fichaJugadorContent">
-                <!-- El JS inyectará aquí la foto, nombre y datos -->
-            </div>
+            <div class="player-hero-content" id="fichaJugadorContent"></div>
         </div>
     </section>
 
@@ -148,19 +150,9 @@
                 <button class="stats-tab" data-tab="Matches" data-i18n="partidos">Partidos</button>
                 <button class="stats-tab" data-tab="Career" data-i18n="historial">Trayectoria</button>
             </div>
-
-            <!-- CONTENEDORES DE LAS PESTAÑAS -->
-            <div class="tab-content active" id="tabOverview">
-                <!-- JS inyecta Overview -->
-            </div>
-
-            <div class="tab-content" id="tabMatches">
-                <!-- JS inyecta Partidos -->
-            </div>
-
-            <div class="tab-content" id="tabCareer">
-                <!-- JS inyecta Historial -->
-            </div>
+            <div class="tab-content active" id="tabOverview"></div>
+            <div class="tab-content" id="tabMatches"></div>
+            <div class="tab-content" id="tabCareer"></div>
         </div>
     </section>
 

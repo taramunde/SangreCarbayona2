@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm'); // Módulo seguro para ejecutar código
+const vm = require('vm');
 
 console.log('🚀 Iniciando generador de fichas...');
 
@@ -16,23 +16,20 @@ if (!fs.existsSync(dataPath)) {
 const rawData = fs.readFileSync(dataPath, 'utf-8');
 
 // 2. Crear un contexto simulado (como si fuera un navegador)
-// Ejecutamos el script en este contexto seguro
 const sandbox = { 
     window: {}, 
     console: console, 
-    localStorage: { getItem: () => 'es' } // Simulamos localStorage por si data.js lo usa
+    localStorage: { getItem: () => 'es' }
 };
 vm.createContext(sandbox);
 
 try {
-    // Ejecutamos el contenido de data.js dentro del sandbox
     vm.runInContext(rawData, sandbox);
 } catch (e) {
     console.error('❌ ERROR ejecutando data.js. Revisa el archivo:', e.message);
     process.exit(1);
 }
 
-// Ahora el objeto CLUB_DATA está dentro de sandbox.window.CLUB_DATA
 const CLUB_DATA = sandbox.window.CLUB_DATA;
 
 if (!CLUB_DATA) {
@@ -57,17 +54,22 @@ Object.keys(CLUB_DATA.temporadas).forEach(temporadaId => {
     const temporada = CLUB_DATA.temporadas[temporadaId];
     
     temporada.jugadores.forEach(jugador => {
+        // El slug es el nombre del archivo (sin .html)
         const slug = `${jugador.codigo}-${temporadaId.replace('/', '-')}`;
         const fileName = `${slug}.html`;
         const filePath = path.join(outputDir, fileName);
 
+        // Nombre de temporada legible: "2024-25" → "2024/25"
+        const temporadaNombre = temporadaId.replace('-', '/');
+
         let htmlContent = template
-            .replace(/\{\{NOMBRE\}\}/g, jugador.nombreCompleto)
-            .replace(/\{\{IMAGEN\}\}/g, jugador.imagen)
-            .replace(/\{\{ID\}\}/g, jugador.id)
-            .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
-            .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaId.replace('-', '/'))
-            .replace(/\{\{POSICION\}\}/g, jugador.posicion);
+            .replace(/\{\{NOMBRE\}\}/g,          jugador.nombreCompleto)
+            .replace(/\{\{IMAGEN\}\}/g,           jugador.imagen)
+            .replace(/\{\{ID\}\}/g,               jugador.id)
+            .replace(/\{\{TEMPORADA_ID\}\}/g,     temporadaId)
+            .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
+            .replace(/\{\{POSICION\}\}/g,         jugador.posicion)
+            .replace(/\{\{SLUG\}\}/g,             slug);  // ← NUEVO: para og:url
 
         fs.writeFileSync(filePath, htmlContent);
         contador++;
