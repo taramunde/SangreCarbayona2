@@ -121,7 +121,7 @@ const App = {
         const temporada = getTemporada(CLUB_DATA.temporadaActual);
         let html = '';
         temporada.jugadores.slice(0, 8).forEach(jugador => {
-            html += `<div class="player-card"><a href="fichas/${jugador.codigo}.html"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
+            html += `<div class="player-card"><a href="ficha-jugador.html?id=${jugador.id}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
         });
         container.innerHTML = html;
     },
@@ -214,7 +214,7 @@ const App = {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
         return `
             <article class="squad-card">
-                <a href="fichas/${jugador.codigo}.html" class="squad-link">
+                <a href="ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}" class="squad-link">
                     <div class="squad-image">
                         <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
                         <span class="squad-number">${jugador.dorsal}</span>
@@ -258,28 +258,18 @@ const App = {
         const container = document.getElementById('fichaJugadorContent');
         if (!container) return;
 
-        let jugadorId, seasonId, jugadorCodigo;
+        let jugadorId, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            jugadorId = window.PLAYER_DATA_STATIC.id;
+            jugadorId = window.PLAYER_DATA_STATIC.codigo; // codigo es el identificador único
             seasonId = window.PLAYER_DATA_STATIC.season;
-            jugadorCodigo = window.PLAYER_DATA_STATIC.codigo;
         } else {
             const urlParams = new URLSearchParams(window.location.search);
-            jugadorId = urlParams.get('id') || 13;
+            jugadorId = urlParams.get('codigo') || urlParams.get('id');
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
-            jugadorCodigo = urlParams.get('codigo') || null;
         }
 
-        // Buscar por codigo primero (más fiable), luego por id numérico
-        let jugador;
-        const temporada = getTemporada(seasonId);
-        if (jugadorCodigo) {
-            jugador = temporada.jugadores.find(j => j.codigo === jugadorCodigo);
-        }
-        if (!jugador) {
-            jugador = getJugadorById(jugadorId, seasonId);
-        }
+        const jugador = getJugadorById(jugadorId, seasonId);
         if (!jugador) { container.innerHTML = '<p>Jugador no encontrado</p>'; return; }
 
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
