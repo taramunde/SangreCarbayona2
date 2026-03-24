@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Jugador | Sangre Carbayona</title>
+    <link rel="stylesheet" href="css/styles.css?nocache=20251231v2">
+    <link rel="stylesheet" href="css/ficha-jugador-styles.css?nocache=20251231v2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Meta Tags para Compartir -->
+    <meta property="og:title" content="Ficha Jugador - Sangre Carbayona">
+    <meta property="og:description" content="Ficha detallada del jugador.">
+    <meta property="og:image" content="https://picsum.photos/seed/real-oviedo-logo/400/400">
+    <meta property="og:type" content="profile">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-shield">
+                        <img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Escudo" class="logo-img">
+                    </div>
+                    <div class="logo-name">
+                        <span class="club-name">REAL OVIEDO</span>
+                        <span class="team-name">Sangre Carbayona</span>
+                    </div>
+                </a>
+
+                <nav class="main-nav" id="mainNav">
+                    <div class="mobile-nav-header">
+                        <span class="mobile-nav-title">Menú</span>
+                        <button class="close-mobile-nav" id="closeMobileNav"><i class="fas fa-times"></i></button>
+                    </div>
+                    
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" data-i18n="nav_inicio">Inicio</a></li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_club">Club <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#" data-i18n="nav_historia">Historia</a></li>
+                                <li><a href="#" data-i18n="nav_palmares">Palmarés</a></li>
+                                <li><a href="#" data-i18n="nav_estadio">Estadio Municipal</a></li>
+                                <li><a href="#" data-i18n="nav_directiva">Directiva</a></li>
+                                <li><a href="#" data-i18n="nav_fundacion">Fundación</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_equipo">Equipo <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="primer-equipo.html" data-i18n="nav_primer_equipo">1ª Equip.</a></li>
+                                <li><a href="#" data-i18n="nav_cuerpo_tecnico">Cuerpo Técnico</a></li>
+                                <li><a href="#" data-i18n="nav_cantera">Cantera</a></li>
+                                <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_competiciones">Competiciones <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
+                                <li><a href="#" data-i18n="nav_calendario">Calendario</a></li>
+                                <li><a href="#" data-i18n="nav_clasificacion">Clasificación</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" data-i18n="nav_noticias">Noticias</a></li>
+                        
+                        <!-- MULTIMEDIA MODIFICADO PARA SER DESPLEGABLE -->
+                        <li class="nav-item has-submenu active">
+                            <a href="#" data-i18n="nav_multimedia">Multimedia <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="juegos.html" class="current" data-i18n="nav_juegos">Juegos</a></li>
+                                <li><a href="videos.html" data-i18n="nav_videos">Vídeos</a></li>
+                            </ul>
+                        </li>
+                        <!-- FIN MODIFICACIÓN -->
+
+                    </ul>
+
+                    <div class="mobile-nav-footer">
+                        <div class="mobile-social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')" aria-label="Español">
+                            <img src="https://flagcdn.com/w40/es.png" alt="ES">
+                        </button>
+                        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="English">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="EN">
+                        </button>
+                    </div>
+                    
+                    <button class="search-btn" id="searchBtn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form">
+                <input type="text" data-i18n="buscar" placeholder="Buscar en la web...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <button class="close-search" id="closeSearch"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+        <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+                <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
+                <a href="primer-equipo.html" data-i18n="nav_primer_equipo">1ª Equip.</a><span>/</span>
+                <span class="current"></span>
+            </div>
+            
+            <!-- CONTENEDOR DINÁMICO DEL JUGADOR -->
+            <div class="player-hero-content" id="fichaJugadorContent">
+                <!-- El JS inyectará aquí la foto, nombre y datos -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Stats Tabs -->
+    <section class="player-stats-section">
+        <div class="container">
+            <div class="stats-tabs">
+                <button class="stats-tab active" data-tab="Overview" data-i18n="rendimiento">Resumen</button>
+                <button class="stats-tab" data-tab="Matches" data-i18n="partidos">Partidos</button>
+                <button class="stats-tab" data-tab="Career" data-i18n="historial">Trayectoria</button>
+            </div>
+
+            <!-- CONTENEDORES DE LAS PESTAÑAS -->
+            <div class="tab-content active" id="tabOverview">
+                <!-- JS inyecta Overview -->
+            </div>
+
+            <div class="tab-content" id="tabMatches">
+                <!-- JS inyecta Partidos -->
+            </div>
+
+            <div class="tab-content" id="tabCareer">
+                <!-- JS inyecta Historial -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_club">El Club</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="nav_historia">Historia</a></li>
+                            <li><a href="#" data-i18n="nav_palmares">Palmarés</a></li>
+                            <li><a href="#" data-i18n="nav_estadio">Estadio Municipal</a></li>
+                            <li><a href="#" data-i18n="nav_directiva">Directiva</a></li>
+                            <li><a href="#" data-i18n="footer_contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_equipos">Equipos</h4>
+                        <ul>
+                            <li><a href="primer-equipo.html" data-i18n="nav_primer_equipo">Primer Equipo</a></li>
+                            <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
+                            <li><a href="#">Juvenil "A"</a></li>
+                            <li><a href="#" data-i18n="nav_cantera">Cantera</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_competiciones">Competiciones</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
+                            <li><a href="#" data-i18n="nav_calendario">Calendario</a></li>
+                            <li><a href="#" data-i18n="nav_clasificacion">Clasificación</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column contact">
+                        <h4 data-i18n="footer_contacto">Contacto</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i><span>Estadio Carlos Tartiere<br>Calle del Deporte s/n<br>33013 Oviedo</span></li>
+                            <li><i class="fas fa-phone"></i><span>985 111 111</span></li>
+                            <li><i class="fas fa-envelope"></i><span>info@sangrecarbayona.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle">
+            <div class="container">
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright"><p>&copy; 2025 Real Oviedo Sangre Carbayona. <span data-i18n="derechos">Todos los derechos reservados.</span></p></div>
+                    <div class="footer-links">
+                        <a href="#" data-i18n="footer_privacidad">Política de privacidad</a>
+                        <a href="#" data-i18n="footer_cookies">Política de cookies</a>
+                        <a href="#" data-i18n="footer_legal">Aviso legal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js?nocache=20251231v22"></script>
+    <script src="js/data.js?nocache=20251231v21"></script>
+    <script src="js/app.js?nocache=20251231v22"></script>
+    <script src="js/script.js?nocache=20251231v1"></script>
+</body>
+</html>

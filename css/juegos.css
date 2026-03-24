@@ -1,0 +1,110 @@
+/* css/juegos.css */
+
+/* Contenedor Grid: Se adapta al tamaño de la pantalla */
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjeta Individual */
+.game-card {
+    background: #ffffff; /* Fondo blanco como las otras tarjetas */
+    border-radius: 12px; /* Bordes redondeados como tu web */
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee; /* Borde sutil */
+}
+
+.game-card:hover {
+    transform: translateY(-5px); /* Efecto de levantar al pasar el ratón */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-color: #0055A4; /* Borde azul al hover */
+}
+
+/* Imagen del juego */
+.game-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.game-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-image img {
+    transform: scale(1.05); /* Zoom suave en la imagen */
+}
+
+/* Información del juego */
+.game-info {
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.game-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    color: #002a5c; /* Azul oscuro corporativo */
+}
+
+.game-info p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Botón de Jugar */
+.play-btn {
+    display: inline-block;
+    background-color: #0055A4; /* Azul Oviedo */
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: auto;
+}
+
+.game-card:hover .play-btn {
+    background-color: #FDB913; /* Amarillo Oviedo al pasar el ratón */
+    color: #002a5c;
+}
+
+/* Estilo ESPECIAL para juegos destacados */
+.game-card.highlight-game {
+    border: 2px solid #FDB913; /* Borde dorado */
+    position: relative;
+}
+
+.game-card.highlight-game::after {
+    content: "★ Destacado";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #FDB913;
+    color: #002a5c;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}

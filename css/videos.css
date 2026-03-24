@@ -1,0 +1,164 @@
+/* css/videos.css */
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.video-card {
+    display: block; /* Para que respete el ancho */
+    text-decoration: none; /* Quita el subrayado */
+    color: inherit;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Aspecto 16:9 para videos */
+    background: #000;
+    overflow: hidden;
+}
+
+.video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 42, 92, 0.4); /* Azul oscuro semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.play-overlay i {
+    font-size: 4rem;
+    color: #FDB913; /* Amarillo Oviedo */
+}
+
+.video-card:hover .play-overlay {
+    opacity: 1;
+    background: rgba(0, 42, 92, 0.2);
+}
+
+.video-thumbnail iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    padding: 15px 20px;
+    border-left: 4px solid #0055A4;
+}
+
+.video-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #002a5c;
+}
+
+.video-meta {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* --- Estilos para compartir página completa --- */
+.video-page-share {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.video-page-share p {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #002a5c;
+}
+
+.video-share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.video-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.3rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.video-share-btn:hover {
+    transform: scale(1.15);
+    opacity: 0.9;
+}
+
+.video-share-btn.whatsapp { background: #25D366; }
+.video-share-btn.twitter { background: #1DA1F2; }
+.video-share-btn.telegram { background: #0088cc; }
+.video-share-btn.facebook { background: #1877F2; }
+
+/* --- Estilos para compartir vídeo individual --- */
+.video-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.video-action-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+    text-decoration: none; /* Para que parezcan botones limpios */
+}
+
+.video-action-btn:hover {
+    color: #002a5c;
+}
+
+.video-action-btn i { font-size: 1.1rem; }
+
+/* Colores al pasar el ratón por los iconos individuales */
+.video-action-btn.whatsapp:hover { color: #25D366; }
+.video-action-btn.twitter:hover { color: #1DA1F2; }
+.video-action-btn.telegram:hover { color: #0088cc; }
