@@ -1,0 +1,12 @@
+{
+  "name": "sangrecarbayona-web",
+  "version": "1.0.0",
+  "description": "Web Oficial Real Oviedo Sangre Carbayona",
+  "scripts": {
+    "generar": "node Generador/generar.js",
+    "subir": "node Generador/generar.js && git add . && git commit -m \"Actualización automática\" && git push origin main",
+    "forzar": "node Generador/generar.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force"
+  },
+  "author": "Taramunde",
+  "license": "ISC"
+}
