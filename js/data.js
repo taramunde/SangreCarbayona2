@@ -18,32 +18,32 @@ const CLUB_DATA = {
     },
 
     // Temporada actual (por defecto)
-    temporadaActual: "2025-26",
+    temporadaActual: "2024-25",
     
     // Lista de temporadas disponibles
     temporadasDisponibles: [
-        { id: "2025-26", nombre: "2025/26", actual: true },
-        { id: "2024-25", nombre: "2024-25", actual: false },
-        { id: "2023-24", nombre: "2023-24", actual: false }
+        { id: "2024-25", nombre: "2024/25", actual: true },
+        { id: "2023-24", nombre: "2023/24", actual: false },
+        { id: "2022-23", nombre: "2022/23", actual: false }
     ],
 
     // Datos por temporada
     temporadas: {
         // ===================================
-        // TEMPORADA 2025/26
+        // TEMPORADA 2024/25
         // ===================================
-        "2025-26": {
-            competicion: "1ª Div.",
-            grupo: "null",
+        "2024-25": {
+            competicion: "Primera RFEF",
+            grupo: "Grupo I",
             
             estadisticasEquipo: {
-                posicion: 20,
-                partidosJugados: 29,
-                victorias: 4,
-                empates: 9,
-                derrotas: 16,
-                golesFavor: 20,
-                golesContra: 48
+                posicion: 2,
+                partidosJugados: 23,
+                victorias: 13,
+                empates: 6,
+                derrotas: 4,
+                golesFavor: 38,
+                golesContra: 18
             },
             
             clasificacion: [
@@ -224,7 +224,7 @@ function getTemporada(seasonId) {
 
 function getJugadorById(id, seasonId) {
     const temporada = getTemporada(seasonId);
-    return temporada.jugadores.find(j => j.id === id || j.id === String(id) || j.codigo === id);
+    return temporada.jugadores.find(j => j.id === parseInt(id));
 }
 
 // Nota: formatearFecha ya está definida en app.js, no es necesaria aquí duplicada.

@@ -261,14 +261,14 @@ const App = {
         let jugadorId, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            jugadorId = window.PLAYER_DATA_STATIC.codigo; // codigo es el identificador único
+            jugadorId = window.PLAYER_DATA_STATIC.id;
             seasonId = window.PLAYER_DATA_STATIC.season;
         } else {
             const urlParams = new URLSearchParams(window.location.search);
-            jugadorId = urlParams.get('codigo') || urlParams.get('id');
+            jugadorId = urlParams.get('id') || 13;
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
-
+        
         const jugador = getJugadorById(jugadorId, seasonId);
         if (!jugador) { container.innerHTML = '<p>Jugador no encontrado</p>'; return; }
 
