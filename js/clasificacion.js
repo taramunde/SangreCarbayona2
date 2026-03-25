@@ -365,7 +365,7 @@ const enfrentamientos = [
     { equipo1: "Valencia C.F.",     equipo2: "Celta de Vigo",     goles1: null, goles2: null },
     { equipo1: "Rayo Vallecano",    equipo2: "Elche C.F.",        goles1: null, goles2: null },
     { equipo1: "Real Sociedad",     equipo2: "Levante U.D.",      goles1: null, goles2: null },
-    // Jornadas 31-38 (pendientes)
+    // Jornadas 31
     { equipo1: "Athletic Club",     equipo2: "Villarreal C.F.",   goles1: null, goles2: null },
     { equipo1: "F.C. Barcelona",    equipo2: "R.C.D. Espanyol",   goles1: null, goles2: null },
     { equipo1: "Celta de Vigo",     equipo2: "Real Oviedo",       goles1: null, goles2: null },
@@ -376,6 +376,17 @@ const enfrentamientos = [
     { equipo1: "C.A. Osasuna",      equipo2: "Real Betis",        goles1: null, goles2: null },
     { equipo1: "Levante U.D.",      equipo2: "Getafe C.F.",       goles1: null, goles2: null },
     { equipo1: "Real Madrid",       equipo2: "Girona F.C.",       goles1: null, goles2: null },
+    // Jornadas 32
+    { equipo1: "Deportivo Alavés",  equipo2: "R.C.D. Mallorca",   goles1: null, goles2: null },
+    { equipo1: "Real Betis",        equipo2: "Real Madrid",       goles1: null, goles2: null },
+    { equipo1: "R.C.D. Espanyol",   equipo2: "Levante U.D.",      goles1: null, goles2: null },
+    { equipo1: "C.A. Osasuna",      equipo2: "Sevilla F.C.",      goles1: null, goles2: null },
+    { equipo1: "Rayo Vallecano",    equipo2: "Real Sociedad",     goles1: null, goles2: null },
+    { equipo1: "Atlético de Madrid", equipo2: "Athletic Club",    goles1: null, goles2: null },
+    { equipo1: "Getafe C.F.",       equipo2: "F.C. Barcelona",    goles1: null, goles2: null },
+    { equipo1: "Villarreal C.F.",   equipo2: "Celta de Vigo",     goles1: null, goles2: null },
+    { equipo1: "Real Oviedo",       equipo2: "Elche C.F.",        goles1: null, goles2: null },
+    { equipo1: "Valencia C.F.",     equipo2: "Girona F.C.",       goles1: null, goles2: null },
 ];
 
 // =====================================================
