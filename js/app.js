@@ -191,7 +191,6 @@ const App = {
         
         let html = '';
         for (const [nombrePosicion, posicionesLista] of Object.entries(posiciones)) {
-            // CORRECCIÓN: Usar mismo nombre de variable
             const jugadoresPosicion = temporada.jugadores.filter(j => posicionesLista.includes(j.posicion));
             if (jugadoresPosicion.length === 0) continue;
             
@@ -203,7 +202,7 @@ const App = {
 
             html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
             
-            // CORRECCIÓN: Iterar sobre la variable definida
+            // CORRECCIÓN AQUÍ: jugadoresPosicion (antes estaba mal escrito)
             jugadoresPosicion.forEach(jugador => { html += this.renderJugadorCard(jugador); });
             
             html += `</div></div>`;
@@ -253,7 +252,7 @@ const App = {
     },
 
     // ===================================
-    // FICHA JUGADOR (CORREGIDO)
+    // FICHA JUGADOR (ACTUALIZADO PARA ESTÁTICO)
     // ===================================
     renderFichaJugador: function() {
         const container = document.getElementById('fichaJugadorContent');
@@ -262,12 +261,11 @@ const App = {
         let jugadorId, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            jugadorId = window.PLAYER_DATA_STATIC.codigo; 
+            jugadorId = window.PLAYER_DATA_STATIC.codigo; // codigo es el identificador único
             seasonId = window.PLAYER_DATA_STATIC.season;
         } else {
             const urlParams = new URLSearchParams(window.location.search);
-            // CORRECCIÓN: Añadido soporte para parámetro 'player'
-            jugadorId = urlParams.get('id') || urlParams.get('codigo') || urlParams.get('player');
+            jugadorId = urlParams.get('codigo') || urlParams.get('id');
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
 
