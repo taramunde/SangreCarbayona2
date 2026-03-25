@@ -526,11 +526,11 @@ function renderizarTabla() {
             </td>
             <td class="pts-col">${eq.pts}</td>
             <td>${eq.pj}</td>
-            <td class="desktop-only">${eq.pg}</td>
-            <td class="desktop-only">${eq.pe}</td>
-            <td class="desktop-only">${eq.pp}</td>
-            <td class="desktop-only">${eq.gf}</td>
-            <td class="desktop-only">${eq.gc}</td>
+            <td>${eq.pg}</td>
+            <td>${eq.pe}</td>
+            <td>${eq.pp}</td>
+            <td>${eq.gf}</td>
+            <td>${eq.gc}</td>
             <td class="${claseDG}">${signoDG}${eq.dg}</td>
         `;
         tbody.appendChild(tr);
