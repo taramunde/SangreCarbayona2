@@ -47,33 +47,63 @@ if (!fs.existsSync(outputDir)) {
     console.log('📁 Carpeta "fichas" creada.');
 }
 
-let contador = 0;
+// 5. Construir mapa de jugadores: una sola ficha por "codigo",
+//    usando siempre los datos de la temporada más reciente.
+//
+//    temporadasDisponibles[0] es la más reciente (actual: true).
+//    Recorremos de MÁS ANTIGUA a MÁS RECIENTE para que la más
+//    reciente sobreescriba siempre a las anteriores.
 
-// 5. Iterar y crear archivos
-Object.keys(CLUB_DATA.temporadas).forEach(temporadaId => {
+const temporadasOrdenadas = CLUB_DATA.temporadasDisponibles.map(t => t.id);
+
+const mapaJugadores = {}; // codigo → { jugador, temporadaId }
+
+[...temporadasOrdenadas].reverse().forEach(temporadaId => {
     const temporada = CLUB_DATA.temporadas[temporadaId];
-    
+    if (!temporada) return;
+
     temporada.jugadores.forEach(jugador => {
-        // El slug es el nombre del archivo (sin .html)
-        const slug = `${jugador.codigo}-${temporadaId.replace('/', '-')}`;
-        const fileName = `${slug}.html`;
-        const filePath = path.join(outputDir, fileName);
-
-        // Nombre de temporada legible: "2024-25" → "2024/25"
-        const temporadaNombre = temporadaId.replace('-', '/');
-
-        let htmlContent = template
-            .replace(/\{\{NOMBRE\}\}/g,          jugador.nombreCompleto)
-            .replace(/\{\{IMAGEN\}\}/g,           jugador.imagen)
-            .replace(/\{\{ID\}\}/g,               jugador.id)
-            .replace(/\{\{TEMPORADA_ID\}\}/g,     temporadaId)
-            .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
-            .replace(/\{\{POSICION\}\}/g,         jugador.posicion)
-            .replace(/\{\{SLUG\}\}/g,             slug);  // ← NUEVO: para og:url
-
-        fs.writeFileSync(filePath, htmlContent);
-        contador++;
+        mapaJugadores[jugador.codigo] = { jugador, temporadaId };
     });
 });
 
-console.log(`✅ ¡ÉXITO! Se generaron ${contador} fichas en la carpeta 'fichas'.`);
+// 6. Generar una ficha por jugador
+let contador = 0;
+
+Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
+    const slug = jugador.codigo; // ej: "javi-martinez" (sin temporada)
+    const fileName = `${slug}.html`;
+    const filePath = path.join(outputDir, fileName);
+    const temporadaNombre = temporadaId.replace('-', '/');
+
+    let htmlContent = template
+        .replace(/\{\{NOMBRE\}\}/g,          jugador.nombreCompleto)
+        .replace(/\{\{IMAGEN\}\}/g,           jugador.imagen)
+        .replace(/\{\{ID\}\}/g,               jugador.id)
+        .replace(/\{\{TEMPORADA_ID\}\}/g,     temporadaId)
+        .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
+        .replace(/\{\{POSICION\}\}/g,         jugador.posicion)
+        .replace(/\{\{SLUG\}\}/g,             slug);
+
+    fs.writeFileSync(filePath, htmlContent);
+    contador++;
+    console.log(`  ✔ ${fileName}  (datos de ${temporadaId})`);
+});
+
+// 7. Borrar fichas antiguas con formato "codigo-temporada.html"
+//    que ya no se usan (ej: javi-martinez-2024-25.html)
+const slugsValidos = new Set(Object.keys(mapaJugadores));
+const archivosExistentes = fs.readdirSync(outputDir);
+let borrados = 0;
+
+archivosExistentes.forEach(archivo => {
+    if (!archivo.endsWith('.html')) return;
+    const nombreSinExtension = archivo.replace('.html', '');
+    if (!slugsValidos.has(nombreSinExtension)) {
+        fs.unlinkSync(path.join(outputDir, archivo));
+        borrados++;
+        console.log(`  🗑 Eliminada ficha antigua: ${archivo}`);
+    }
+});
+
+console.log(`\n✅ ¡ÉXITO! ${contador} fichas generadas, ${borrados} fichas antiguas eliminadas.`);
