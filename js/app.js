@@ -37,9 +37,11 @@ const App = {
     
     init: function() {
         this.temporadaActiva = CLUB_DATA.temporadaActual;
+        
+        // Funciones de renderizado
         this.renderClasificacion();
         this.renderCalendario();
-        this.renderPlantillaHome();
+        this.renderPlantillaHome(); // Carga inicial (Todos)
         this.renderNoticias();
         this.renderPatrocinadores();
         this.renderProximoPartido();
@@ -50,6 +52,32 @@ const App = {
         this.renderFichaJugador();
         this.renderJuegos();
         this.renderVideos();
+
+        // Listeners de eventos
+        this.setupHomeFilters(); // NUEVO: Activa los botones de filtro
+    },
+
+    // ===================================
+    // NUEVO: FILTROS HOME
+    // ===================================
+    setupHomeFilters: function() {
+        const tabs = document.querySelectorAll('.position-tabs .tab-btn');
+        // Si no estamos en la home, no hace nada
+        if (!tabs.length) return;
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // 1. Gestión visual de botón activo
+                tabs.forEach(b => b.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+
+                // 2. Obtener el filtro (ej: 'goalkeeper', 'defender')
+                const position = e.currentTarget.dataset.position;
+                
+                // 3. Llamar a renderizar con ese filtro
+                this.renderPlantillaHome(position);
+            });
+        });
     },
 
     // ===================================
@@ -113,16 +141,40 @@ const App = {
     },
 
     // ===================================
-    // PLANTILLA HOME
+    // PLANTILLA HOME (MODIFICADO PARA FILTRAR)
     // ===================================
-    renderPlantillaHome: function() {
+    renderPlantillaHome: function(filter = 'all') {
         const container = document.getElementById('plantillaHomeGrid');
         if (!container) return;
         const temporada = getTemporada(CLUB_DATA.temporadaActual);
+
+        // Mapeo de nombres de datos a posiciones de la base de datos
+        const positionGroups = {
+            'goalkeeper': ['Portero'],
+            'defender': ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
+            'midfielder': ['Centrocampista', 'Mediocentro', 'Mediocentro Defensivo', 'Mediapunta'],
+            'forward': ['Delantero', 'Delantero Centro', 'Extremo Derecho', 'Extremo Izquierdo']
+        };
+
+        let playersToRender = temporada.jugadores;
+
+        // Si no es 'all', filtramos
+        if (filter !== 'all') {
+            const validPositions = positionGroups[filter] || [];
+            playersToRender = temporada.jugadores.filter(j => validPositions.includes(j.posicion));
+        }
+
         let html = '';
-        temporada.jugadores.slice(0, 8).forEach(jugador => {
+        // Mostramos máximo 8 jugadores
+        playersToRender.slice(0, 8).forEach(jugador => {
             html += `<div class="player-card"><a href="ficha-jugador.html?id=${jugador.id}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
         });
+        
+        // Si no hay jugadores, mensaje opcional
+        if (playersToRender.length === 0) {
+            html = '<p style="grid-column: 1/-1; text-align:center; opacity: 0.7;">No hay jugadores en esta categoría.</p>';
+        }
+
         container.innerHTML = html;
     },
 
@@ -191,8 +243,8 @@ const App = {
         
         let html = '';
         for (const [nombrePosicion, posicionesLista] of Object.entries(posiciones)) {
-            const jugadoresPosicion = temporada.jugadores.filter(j => posicionesLista.includes(j.posicion));
-            if (jugadoresPosicion.length === 0) continue;
+            const jugadoresPos = temporada.jugadores.filter(j => posicionesLista.includes(j.posicion));
+            if (jugadoresPos.length === 0) continue;
             
             let icon = 'fa-user';
             if (nombrePosicion.includes('Port') || nombrePosicion.includes('Goal')) icon = 'fa-hand-paper';
@@ -201,10 +253,7 @@ const App = {
             else if (nombrePosicion.includes('Delan') || nombrePosicion.includes('Forward')) icon = 'fa-bullseye';
 
             html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
-            
-            // CORRECCIÓN AQUÍ: jugadoresPosicion (antes estaba mal escrito)
-            jugadoresPosicion.forEach(jugador => { html += this.renderJugadorCard(jugador); });
-            
+            jugadoresPos.forEach(jugador => { html += this.renderJugadorCard(jugador); });
             html += `</div></div>`;
         }
         container.innerHTML = html;
@@ -212,9 +261,13 @@ const App = {
 
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
+        const playerUrl = jugador.codigo 
+            ? `fichas/${jugador.codigo}.html` 
+            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
+
         return `
             <article class="squad-card">
-                <a href="ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}" class="squad-link">
+                <a href="${playerUrl}" class="squad-link">
                     <div class="squad-image">
                         <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
                         <span class="squad-number">${jugador.dorsal}</span>
@@ -252,7 +305,7 @@ const App = {
     },
 
     // ===================================
-    // FICHA JUGADOR (ACTUALIZADO PARA ESTÁTICO)
+    // FICHA JUGADOR
     // ===================================
     renderFichaJugador: function() {
         const container = document.getElementById('fichaJugadorContent');
@@ -261,16 +314,16 @@ const App = {
         let jugadorId, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            jugadorId = window.PLAYER_DATA_STATIC.codigo; // codigo es el identificador único
+            jugadorId = window.PLAYER_DATA_STATIC.id || window.PLAYER_DATA_STATIC.codigo;
             seasonId = window.PLAYER_DATA_STATIC.season;
         } else {
             const urlParams = new URLSearchParams(window.location.search);
-            jugadorId = urlParams.get('codigo') || urlParams.get('id');
+            jugadorId = urlParams.get('id') || urlParams.get('codigo') || urlParams.get('player');
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
 
         const jugador = getJugadorById(jugadorId, seasonId);
-        if (!jugador) { container.innerHTML = '<p>Jugador no encontrado</p>'; return; }
+        if (!jugador) { container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>'; return; }
 
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
         this.updateMetaTags(jugador);
@@ -292,9 +345,7 @@ const App = {
             edadMostrar = edadMuerte;
         }
 
-        // Ajusta la URL base si tu dominio es distinto
-const baseUrl = "https://taramunde.github.io/SangreCarbayona2"; 
-const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
+        const pageUrl = window.location.href;
         const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
         const shareLinks = `
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -396,7 +447,7 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
         if (!container) return;
         const temporada = getTemporada(seasonId);
         if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos.</p>`;
+            container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
             return;
         }
         let html = '<div class="matches-list">';
@@ -419,12 +470,12 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
-            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.codigo === jugadorActual.codigo);
+            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo);
             if (jugadorEnTemporada) {
                 historial.push({
                     temporada: temp.nombre,
                     equipo: CLUB_DATA.club.nombreCorto,
-                    logo: datosTemporada.clasificacion.find(e => e.siglas === "OVI")?.logo || "https://picsum.photos/seed/real-oviedo-logo/60/60",
+                    logo: datosTemporada.clasificacion.find(e => e.siglas === "OVI")?.logo || "",
                     stats: jugadorEnTemporada.stats,
                     dorsal: jugadorEnTemporada.dorsal,
                     posicion: jugadorEnTemporada.posicion,
@@ -464,42 +515,13 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
             `;
         });
 
-        let seleccionHtml = '';
-        if (jugadorActual.seleccion) {
-            const sel = jugadorActual.seleccion;
-            let rowsHtml = '';
-            sel.datos.forEach(d => {
-                rowsHtml += `
-                    <div class="national-stat-row">
-                        <span class="national-cat">${d.categoria}</span>
-                        <span><strong>${d.partidos}</strong> ${t('partidos')}</span>
-                        <span><strong>${d.goles}</strong> ${t('goles')}</span>
-                    </div>
-                `;
-            });
-            seleccionHtml = `
-                <div class="national-team-card">
-                    <div class="national-header">
-                        <img src="${sel.bandera}" alt="${sel.pais}" class="national-flag">
-                        <h3 class="card-title">${sel.pais} <span>${t('seleccion')}</span></h3>
-                    </div>
-                    <div class="national-stats-body">${rowsHtml}</div>
-                </div>
-            `;
-        }
-
-        let logrosHtml = '';
-        if (jugadorActual.logros) jugadorActual.logros.forEach(l => { logrosHtml += `<div class="achievement"><i class="fas fa-trophy"></i><span>${l}</span></div>`; });
-
         container.innerHTML = `
             <div class="career-grid">
                 <div class="career-timeline-card">
                     <h3 class="card-title">${t('historial')}</h3>
                     <div class="timeline">${timelineHtml}</div>
                 </div>
-
                 <div class="career-sidebar">
-                    ${seleccionHtml}
                     <div class="career-totals-card">
                         <h3 class="card-title">${t('totales')}</h3>
                         <div class="totals-grid">
@@ -510,7 +532,6 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
                             <div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t('rojas')}</span></div>
                             <div class="total-item minutes"><span class="total-value">${Math.round(totales.minutos/60)}h</span><span class="total-label">${t('minutos')}</span></div>
                         </div>
-                        ${logrosHtml ? `<div class="career-achievements"><h4>${t('logros')}</h4><div class="achievements-list">${logrosHtml}</div></div>` : ''}
                     </div>
                 </div>
             </div>
@@ -522,21 +543,11 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
     // ===================================
     renderJuegos: function() {
         const container = document.getElementById('juegosGrid');
-        if (!container) return; 
-
-        if (!CLUB_DATA.juegos) return;
-
+        if (!container || !CLUB_DATA.juegos) return; 
         let html = '';
         CLUB_DATA.juegos.forEach(juego => {
             const specialClass = juego.esEspecial ? 'especial' : '';
-            
-            html += `
-                <a href="${juego.enlace}" class="juego-card ${specialClass}">
-                    <img src="${juego.imagen}" alt="${juego.titulo}">
-                    <h3>${juego.titulo}</h3>
-                    <p>${juego.descripcion}</p>
-                </a>
-            `;
+            html += `<a href="${juego.enlace}" class="juego-card ${specialClass}"><img src="${juego.imagen}" alt="${juego.titulo}"><h3>${juego.titulo}</h3><p>${juego.descripcion}</p></a>`;
         });
         container.innerHTML = html;
     },
@@ -546,45 +557,34 @@ const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
     // ===================================
     renderVideos: function() {
         const container = document.getElementById('videosGrid');
-        if (!container) return;
-        if (!CLUB_DATA.videos) return;
+        if (!container || !CLUB_DATA.videos) return;
 
         let html = '';
         CLUB_DATA.videos.forEach(video => {
             const fecha = video.fecha ? formatearFecha(video.fecha).completa : '';
             const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
-            
             const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
-            const shareText = `${video.titulo} - Real Oviedo | Por Sangre Carbayona`;
+            const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
 
             html += `
                 <div class="video-card">
                     <a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;">
                         <div class="video-thumbnail">
                             <img src="${thumbnailUrl}" alt="${video.titulo}">
-                            <div class="play-overlay">
-                                <i class="fas fa-play-circle"></i>
-                            </div>
+                            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
                         </div>
                         <div class="video-info">
                             <h3>${video.titulo}</h3>
                             <div class="video-meta">
                                 <span><i class="far fa-calendar"></i> ${fecha}</span>
-                                ${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> Jornada ${video.jornada}</span>` : ''}
+                                ${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> J${video.jornada}</span>` : ''}
                             </div>
                         </div>
                     </a>
-                    
                     <div class="video-card-actions">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="Compartir en WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Compartir en Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Compartir en Telegram">
-                            <i class="fab fa-telegram-plane"></i>
-                        </a>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
                     </div>
                 </div>
             `;
