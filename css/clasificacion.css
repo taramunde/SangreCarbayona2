@@ -277,12 +277,13 @@ td.pts-col { font-weight: 700; color: #001a6e; }
 
 td:nth-child(2) { 
     display: flex;
-    align-items: center; /* Centra verticalmente el escudo y el texto */
-    gap: 10px; /* Crea una separación entre el escudo y el nombre */
-    padding-left: 10px; 
-    white-space: nowrap; /* Mantiene el nombre en una sola línea */
-    width: 220px; 
-    min-width: 220px;
+    align-items: center; 
+    gap: 8px; /* Reducimos un poco la separación entre escudo y texto */
+    padding-left: 8px; 
+    white-space: nowrap;
+    width: 180px; 
+    min-width: 180px;
+    flex-grow: 0; /* Evita que la celda se estire */
 }
 
 /* ===== RESPONSIVE ===== */
