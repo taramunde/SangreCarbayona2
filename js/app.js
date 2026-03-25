@@ -292,7 +292,9 @@ const App = {
             edadMostrar = edadMuerte;
         }
 
-        const pageUrl = window.location.href;
+        // Ajusta la URL base si tu dominio es distinto
+const baseUrl = "https://taramunde.github.io/SangreCarbayona2"; 
+const pageUrl = `${baseUrl}/fichas/${jugador.codigo}.html`;
         const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
         const shareLinks = `
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
