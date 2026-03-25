@@ -279,8 +279,10 @@ td:nth-child(2) {
     display: flex;
     align-items: center; /* Centra verticalmente el escudo y el texto */
     gap: 10px; /* Crea una separación entre el escudo y el nombre */
-    padding-left: 6px; 
+    padding-left: 10px; 
     white-space: nowrap; /* Mantiene el nombre en una sola línea */
+    width: 220px; 
+    min-width: 220px;
 }
 
 /* ===== RESPONSIVE ===== */
