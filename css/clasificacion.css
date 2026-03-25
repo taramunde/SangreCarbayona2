@@ -275,6 +275,14 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     width: 100%;
 }
 
+td:nth-child(2) { 
+    display: flex;
+    align-items: center; /* Centra verticalmente el escudo y el texto */
+    gap: 10px; /* Crea una separación entre el escudo y el nombre */
+    padding-left: 6px; 
+    white-space: nowrap; /* Mantiene el nombre en una sola línea */
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
@@ -292,8 +300,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
         padding: 8px 4px;
     }
 
-    td:nth-child(2) { padding-left: 6px; white-space: nowrap; }
-
     .escudo-tabla { width: 18px; height: 18px; margin-right: 4px; }
 
     th:nth-child(n+3), td:nth-child(n+3) { width: 28px; max-width: 32px; }
@@ -302,6 +308,16 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     .chart-container { height: 220px; }
 
     .leyenda-container { gap: 12px; font-size: 0.78em; }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en iPhones */
+    }
+
+    .table-responsive table {
+        min-width: 700px; /* Obliga a la tabla a medir al menos 700px, forzando el scroll */
+    }
 }
 
 @media (max-width: 480px) {
