@@ -158,7 +158,7 @@ td:nth-child(2) {
     text-align: left;
     font-weight: 600;
     padding-left: 12px;
-    padding-right: 60px; /* Controla la distancia real entre nombre y puntos */
+    padding-right: 120px; /* Controla la distancia real entre nombre y puntos */
     white-space: nowrap;
     width: 1%; /* Truco para que la celda no se expanda más de lo necesario */
 }
