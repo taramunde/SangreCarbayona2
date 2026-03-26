@@ -134,7 +134,6 @@ thead th {
     font-size: 0.85em;
     letter-spacing: 0.5px;
     white-space: nowrap;
-    cursor: default;
 }
 
 thead th:first-child { border-radius: 10px 0 0 0; }
@@ -147,22 +146,19 @@ tbody td {
     transition: background 0.15s;
 }
 
-tbody tr:last-child td { border-bottom: none; }
 tbody tr:hover td { background: #f5f7ff; }
 
 /* Columna posición */
 th:nth-child(1), td:nth-child(1) { width: 40px; min-width: 36px; }
 
-/* Columna club: USAMOS FLEX PARA ALINEAR ESCUDO Y NOMBRE */
+/* Columna club: Quitamos display flex de la celda para evitar el error en PC */
 td:nth-child(2) {
-    display: flex;
-    align-items: center;
     text-align: left;
     font-weight: 600;
     padding-left: 12px;
-    padding-right: 25px; /* Este es el hueco entre nombre y puntos */
+    padding-right: 30px; /* Espacio nombre-puntos */
     white-space: nowrap;
-    width: 1%; /* Mantiene la columna lo más estrecha posible */
+    width: 1%; /* Mantiene la columna pegada al contenido */
 }
 
 th:nth-child(2) {
@@ -170,29 +166,35 @@ th:nth-child(2) {
     padding-left: 12px;
 }
 
-/* Escudos */
+/* Escudos: Alineación perfecta con el texto */
 .escudo-tabla {
     width: 26px;
     height: 26px;
     object-fit: contain;
-    margin-right: 10px; /* Separación escudo-nombre */
-    flex-shrink: 0;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle; /* Esto pone el nombre a la derecha del escudo */
 }
 
-/* Columnas numéricas: Estrechas para que se peguen a la izquierda */
+/* El nombre del equipo también debe alinearse */
+td:nth-child(2) span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Columnas numéricas */
 th:nth-child(n+3), td:nth-child(n+3) { 
     width: 44px; 
     min-width: 44px; 
 }
 
-/* El espacio sobrante se va a la última columna para "empujar" el resto */
+/* Empujamos todo a la izquierda enviando el espacio sobrante al final */
 th:last-child, td:last-child {
     width: auto;
 }
 
 /* Filas alternas */
 tbody tr:nth-child(even) td { background: #fafbff; }
-tbody tr:nth-child(even):hover td { background: #f0f4ff; }
 
 /* Real Oviedo destacado */
 tr.row-oviedo td {
@@ -202,7 +204,6 @@ tr.row-oviedo td {
 tr.row-oviedo td:first-child {
     border-left: 4px solid #ffcc00;
 }
-tr.row-oviedo:hover td { background: #dde5ff !important; }
 
 /* Zonas de clasificación */
 .pos-champions  { border-left: 4px solid #2ecc71; }
@@ -234,7 +235,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     display: flex;
     align-items: center;
     gap: 7px;
-    font-weight: 500;
 }
 
 .dot {
@@ -242,7 +242,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     height: 11px;
     border-radius: 50%;
     display: inline-block;
-    flex-shrink: 0;
 }
 
 .dot.champions  { background: #2ecc71; }
@@ -270,7 +269,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     font-size: 0.72em;
     color: #666;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     margin-bottom: 2px;
 }
 
@@ -291,46 +289,24 @@ td.pts-col { font-weight: 700; color: #001a6e; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-
-    .clasi-hero { padding: 40px 0 28px; }
-    .clasi-hero-content h1 { font-size: 2em; }
-
-    .clasi-main { padding: 24px 0 40px; }
-    .clasi-card { padding: 18px 14px; border-radius: 12px; }
-
-    .clasi-card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .clasi-card { padding: 18px 14px; }
+    .clasi-card-header { flex-direction: column; align-items: flex-start; }
     .clasi-mini-stats { width: 100%; justify-content: space-between; }
 
-    /* Habilitamos el scroll forzando ancho mínimo */
+    /* Forzamos el scroll horizontal */
     .table-responsive table {
-        min-width: 600px; 
+        min-width: 650px; 
     }
 
-    thead th, tbody td {
-        font-size: 0.82em;
-        padding: 10px 4px;
-    }
-
-    /* En móvil mantenemos el flex para que no caiga el nombre debajo */
+    /* En móvil, le damos un ancho mínimo al nombre para que no se apriete */
     td:nth-child(2) { 
-        display: flex !important;
-        align-items: center !important;
-        padding-left: 8px; 
-        padding-right: 15px; 
-        width: 180px; /* Ancho fijo en móvil para asegurar consistencia */
+        min-width: 180px;
+        padding-right: 15px;
     }
 
     .escudo-tabla { width: 22px; height: 22px; margin-right: 8px; }
-
+    
     th:nth-child(n+3), td:nth-child(n+3) { width: 34px; min-width: 34px; }
-    th:nth-child(1), td:nth-child(1) { width: 28px; }
-
+    
     .desktop-only { display: table-cell !important; }
-
-    .chart-container { height: 220px; }
-    .leyenda-container { gap: 12px; font-size: 0.78em; }
-}
-
-@media (max-width: 480px) {
-    .clasi-hero-content h1 { font-size: 1.6em; }
 }
