@@ -224,7 +224,9 @@ function getTemporada(seasonId) {
 
 function getJugadorById(id, seasonId) {
     const temporada = getTemporada(seasonId);
-    return temporada.jugadores.find(j => j.id === parseInt(id));
+    // Primero intenta por código (slug), luego por id numérico
+    return temporada.jugadores.find(j => j.codigo === id) 
+        || temporada.jugadores.find(j => j.id === parseInt(id));
 }
 
 // Nota: formatearFecha ya está definida en app.js, no es necesaria aquí duplicada.
