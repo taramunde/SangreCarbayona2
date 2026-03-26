@@ -121,7 +121,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.88em;
-    table-layout: auto;
+    table-layout: auto; /* Permite ajuste automático para reducir espacios */
 }
 
 thead th {
@@ -153,25 +153,35 @@ tbody tr:hover td { background: #f5f7ff; }
 /* Columna posición */
 th:nth-child(1), td:nth-child(1) { width: 40px; min-width: 36px; }
 
-/* Columna club */
+/* Columna club: Reducimos su ancho al mínimo para eliminar el hueco */
 td:nth-child(2) {
     text-align: left;
     font-weight: 600;
     padding-left: 12px;
+    padding-right: 30px; /* Controla la distancia real entre nombre y puntos */
     white-space: nowrap;
+    width: 1%; /* Truco para que la celda no se expanda más de lo necesario */
 }
 
-/* Columnas numéricas */
-th:nth-child(n+3), td:nth-child(n+3) { width: 44px; max-width: 50px; }
-
-/* Escudos */
+/* Alineación de escudo y nombre */
 .escudo-tabla {
     width: 26px;
     height: 26px;
     object-fit: contain;
     vertical-align: middle;
-    margin-right: 8px;
+    margin-right: 10px;
     border-radius: 2px;
+}
+
+/* Columnas numéricas: Ancho fijo y pequeño para agruparlas */
+th:nth-child(n+3), td:nth-child(n+3) { 
+    width: 44px; 
+    min-width: 44px; 
+}
+
+/* La última columna (DG) se queda con el espacio sobrante para empujar todo a la izquierda */
+th:last-child, td:last-child {
+    width: auto;
 }
 
 /* Filas alternas */
@@ -275,17 +285,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     width: 100%;
 }
 
-td:nth-child(2) { 
-    display: flex;
-    align-items: center; 
-    gap: 8px; /* Reducimos un poco la separación entre escudo y texto */
-    padding-left: 8px; 
-    white-space: nowrap;
-    width: 180px; 
-    min-width: 180px;
-    flex-grow: 0; /* Evita que la celda se estire */
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
 
@@ -298,29 +297,36 @@ td:nth-child(2) {
     .clasi-card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .clasi-mini-stats { width: 100%; justify-content: space-between; }
 
-    thead th, tbody td {
-        font-size: 0.78em;
-        padding: 8px 4px;
+    /* Habilitamos el scroll horizontal forzando un ancho mínimo a la tabla */
+    .table-responsive table {
+        min-width: 650px; 
     }
 
-    .escudo-tabla { width: 18px; height: 18px; margin-right: 4px; }
+    thead th, tbody td {
+        font-size: 0.82em;
+        padding: 10px 4px;
+    }
 
-    th:nth-child(n+3), td:nth-child(n+3) { width: 28px; max-width: 32px; }
-    th:nth-child(1), td:nth-child(1) { width: 24px; }
+    /* Ajustamos el nombre en móvil para que no tenga recortes */
+    td:nth-child(2) { 
+        padding-left: 8px; 
+        padding-right: 15px; /* Menos espacio en móvil para ganar sitio */
+        max-width: none; 
+        overflow: visible; 
+        text-overflow: clip; 
+    }
+
+    .escudo-tabla { width: 20px; height: 20px; margin-right: 6px; }
+
+    th:nth-child(n+3), td:nth-child(n+3) { width: 34px; min-width: 34px; }
+    th:nth-child(1), td:nth-child(1) { width: 28px; }
+
+    /* Eliminamos el bloqueo de columnas para que se vean todas con el scroll */
+    .desktop-only { display: table-cell !important; }
 
     .chart-container { height: 220px; }
 
     .leyenda-container { gap: 12px; font-size: 0.78em; }
-
-    .table-responsive {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Hace que el deslizamiento sea suave en iPhones */
-    }
-
-    .table-responsive table {
-        min-width: 700px; /* Obliga a la tabla a medir al menos 700px, forzando el scroll */
-    }
 }
 
 @media (max-width: 480px) {
