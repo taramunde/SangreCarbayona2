@@ -638,10 +638,73 @@ function initChart() {
     });
 }
 
+// --- TABLA HOME (top 5 + Oviedo si está fuera) ---
+function renderizarTablaHome() {
+    const tbody = document.getElementById('homeCuerpoTabla');
+    if (!tbody) return; // Solo se ejecuta si estamos en index.html
+
+    tbody.innerHTML = '';
+
+    const top5      = equipos.slice(0, 5);
+    const oviedo    = equipos.find(eq => eq.nombre === 'Real Oviedo');
+    const oviedoEn5 = top5.some(eq => eq.nombre === 'Real Oviedo');
+
+    const filas = oviedoEn5 ? top5 : [...top5, null, oviedo]; // null = separador
+
+    filas.forEach(eq => {
+        if (eq === null) {
+            // Fila separadora punteada
+            const trSep = document.createElement('tr');
+            trSep.classList.add('row-oviedo-separator');
+            trSep.innerHTML = `<td colspan="8"></td>`;
+            tbody.appendChild(trSep);
+            return;
+        }
+
+        let claseZona = '';
+        if      (eq.posicion <= 4)  claseZona = 'pos-champions';
+        else if (eq.posicion === 5) claseZona = 'pos-europa';
+        else if (eq.posicion === 6) claseZona = 'pos-conference';
+        else if (eq.posicion >= 18) claseZona = 'pos-descenso';
+
+        const esOviedo = eq.nombre === 'Real Oviedo';
+
+        let claseDG = '', signoDG = '';
+        if      (eq.dg > 0) { claseDG = 'dg-positiva'; signoDG = '+'; }
+        else if (eq.dg < 0) { claseDG = 'dg-negativa'; }
+
+        const tr = document.createElement('tr');
+        if (esOviedo) tr.classList.add('row-oviedo');
+
+        tr.innerHTML = `
+            <td class="${claseZona}">${eq.posicion}</td>
+            <td>
+                <img src="${eq.escudo}" alt="${eq.nombre}" class="home-escudo-tabla">
+                <span>${eq.nombre}</span>
+            </td>
+            <td class="pts-col">${eq.pts}</td>
+            <td>${eq.pj}</td>
+            <td>${eq.pg}</td>
+            <td>${eq.pe}</td>
+            <td>${eq.pp}</td>
+            <td class="${claseDG}">${signoDG}${eq.dg}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    // Actualizar badge jornada en home
+    const badge = document.getElementById('homeJornadaBadge');
+    if (badge) {
+        const j = getJornadaActual();
+        badge.textContent = j > 0 ? `Jornada ${j} · LaLiga 2025/26` : 'LaLiga 2025/26';
+    }
+}
+
 // --- INIT ---
 document.addEventListener('DOMContentLoaded', () => {
     calcularEstadisticas(enfrentamientos);
     renderizarTabla();
     actualizarJornadaBadge();
     initChart();
+    renderizarTablaHome(); // Para index.html (no hace nada si no encuentra el tbody)
 });
