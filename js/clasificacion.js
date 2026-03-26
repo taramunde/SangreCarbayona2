@@ -1,3 +1,5 @@
+(function() {
+
 // js/clasificacion.js
 // =====================================================
 // DATOS: Para actualizar la clasificación solo tienes
@@ -701,10 +703,18 @@ function renderizarTablaHome() {
 }
 
 // --- INIT ---
-document.addEventListener('DOMContentLoaded', () => {
+function initClasificacion() {
     calcularEstadisticas(enfrentamientos);
     renderizarTabla();
     actualizarJornadaBadge();
     initChart();
-    renderizarTablaHome(); // Para index.html (no hace nada si no encuentra el tbody)
-});
+    renderizarTablaHome();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initClasificacion);
+} else {
+    initClasificacion();
+}
+
+})();
