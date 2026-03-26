@@ -167,7 +167,9 @@ const App = {
         let html = '';
         // Mostramos máximo 8 jugadores
         playersToRender.slice(0, 8).forEach(jugador => {
-            html += `<div class="player-card"><a href="ficha-jugador.html?id=${jugador.id}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
+            // Usamos el código si existe, si no, caemos de vuelta al ID
+const parametro = jugador.codigo ? `codigo=${jugador.codigo}` : `id=${jugador.id}`;
+            html += `<div class="player-card"><a href="ficha-jugador.html?${parametro}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
         });
         
         // Si no hay jugadores, mensaje opcional
@@ -262,8 +264,8 @@ const App = {
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
         const playerUrl = jugador.codigo 
-            ? `fichas/${jugador.codigo}.html` 
-            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
+    ? `ficha-jugador.html?codigo=${jugador.codigo}&season=${this.temporadaActiva}` 
+    : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
 
         return `
             <article class="squad-card">
