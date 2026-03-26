@@ -121,7 +121,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.88em;
-    table-layout: auto; /* Permite ajuste automático para reducir espacios */
+    table-layout: auto;
 }
 
 thead th {
@@ -153,33 +153,39 @@ tbody tr:hover td { background: #f5f7ff; }
 /* Columna posición */
 th:nth-child(1), td:nth-child(1) { width: 40px; min-width: 36px; }
 
-/* Columna club: Reducimos su ancho al mínimo para eliminar el hueco */
+/* Columna club: USAMOS FLEX PARA ALINEAR ESCUDO Y NOMBRE */
 td:nth-child(2) {
+    display: flex;
+    align-items: center;
     text-align: left;
     font-weight: 600;
     padding-left: 12px;
-    padding-right: 120px; /* Controla la distancia real entre nombre y puntos */
+    padding-right: 25px; /* Este es el hueco entre nombre y puntos */
     white-space: nowrap;
-    width: 1%; /* Truco para que la celda no se expanda más de lo necesario */
+    width: 1%; /* Mantiene la columna lo más estrecha posible */
 }
 
-/* Alineación de escudo y nombre */
+th:nth-child(2) {
+    text-align: left;
+    padding-left: 12px;
+}
+
+/* Escudos */
 .escudo-tabla {
     width: 26px;
     height: 26px;
     object-fit: contain;
-    vertical-align: middle;
-    margin-right: 10px;
-    border-radius: 2px;
+    margin-right: 10px; /* Separación escudo-nombre */
+    flex-shrink: 0;
 }
 
-/* Columnas numéricas: Ancho fijo y pequeño para agruparlas */
+/* Columnas numéricas: Estrechas para que se peguen a la izquierda */
 th:nth-child(n+3), td:nth-child(n+3) { 
     width: 44px; 
     min-width: 44px; 
 }
 
-/* La última columna (DG) se queda con el espacio sobrante para empujar todo a la izquierda */
+/* El espacio sobrante se va a la última columna para "empujar" el resto */
 th:last-child, td:last-child {
     width: auto;
 }
@@ -277,8 +283,6 @@ td.pts-col { font-weight: 700; color: #001a6e; }
 }
 
 /* ===== GRÁFICA ===== */
-.clasi-chart-card { }
-
 .chart-container {
     position: relative;
     height: 320px;
@@ -297,9 +301,9 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     .clasi-card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .clasi-mini-stats { width: 100%; justify-content: space-between; }
 
-    /* Habilitamos el scroll horizontal forzando un ancho mínimo a la tabla */
+    /* Habilitamos el scroll forzando ancho mínimo */
     .table-responsive table {
-        min-width: 650px; 
+        min-width: 600px; 
     }
 
     thead th, tbody td {
@@ -307,29 +311,26 @@ td.pts-col { font-weight: 700; color: #001a6e; }
         padding: 10px 4px;
     }
 
-    /* Ajustamos el nombre en móvil para que no tenga recortes */
+    /* En móvil mantenemos el flex para que no caiga el nombre debajo */
     td:nth-child(2) { 
+        display: flex !important;
+        align-items: center !important;
         padding-left: 8px; 
-        padding-right: 15px; /* Menos espacio en móvil para ganar sitio */
-        max-width: none; 
-        overflow: visible; 
-        text-overflow: clip; 
+        padding-right: 15px; 
+        width: 180px; /* Ancho fijo en móvil para asegurar consistencia */
     }
 
-    .escudo-tabla { width: 20px; height: 20px; margin-right: 6px; }
+    .escudo-tabla { width: 22px; height: 22px; margin-right: 8px; }
 
     th:nth-child(n+3), td:nth-child(n+3) { width: 34px; min-width: 34px; }
     th:nth-child(1), td:nth-child(1) { width: 28px; }
 
-    /* Eliminamos el bloqueo de columnas para que se vean todas con el scroll */
     .desktop-only { display: table-cell !important; }
 
     .chart-container { height: 220px; }
-
     .leyenda-container { gap: 12px; font-size: 0.78em; }
 }
 
 @media (max-width: 480px) {
     .clasi-hero-content h1 { font-size: 1.6em; }
-    .clasi-badge { font-size: 0.72em; }
 }
