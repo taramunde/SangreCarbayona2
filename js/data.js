@@ -222,14 +222,9 @@ function getTemporada(seasonId) {
     return CLUB_DATA.temporadas[seasonId] || CLUB_DATA.temporadas[CLUB_DATA.temporadaActual];
 }
 
-function getJugadorById(identifier, seasonId) {
+function getJugadorById(id, seasonId) {
     const temporada = getTemporada(seasonId);
-    if (!temporada || !temporada.jugadores) return null;
-    
-    // Busca primero por el "codigo" (ej: "miguel-angel-torres") o por el "id" numérico
-    return temporada.jugadores.find(j => 
-        j.codigo === identifier || j.id == identifier
-    );
+    return temporada.jugadores.find(j => j.id === parseInt(id));
 }
 
 // Nota: formatearFecha ya está definida en app.js, no es necesaria aquí duplicada.
