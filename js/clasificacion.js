@@ -502,6 +502,7 @@ function getJornadaActual() {
 
 function renderizarTabla() {
     const tbody = document.getElementById('cuerpoTabla');
+    if (!tbody) return; // Solo en clasificacion.html
     tbody.innerHTML = '';
 
     equipos.forEach(eq => {
