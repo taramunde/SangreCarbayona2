@@ -39,7 +39,7 @@ const App = {
         this.temporadaActiva = CLUB_DATA.temporadaActual;
         
         // Funciones de renderizado
-        this.renderClasificacion();
+        // renderClasificacion() la gestiona clasificacion.js (se carga después)
         this.renderCalendario();
         this.renderPlantillaHome(); // Carga inicial (Todos)
         this.renderNoticias();
@@ -111,19 +111,16 @@ const App = {
     },
 
     // ===================================
-    // CLASIFICACIÓN
+    // CLASIFICACIÓN HOME
     // ===================================
     renderClasificacion: function() {
-        const container = document.getElementById('clasificacionBody');
-        if (!container) return;
-        const temporada = getTemporada(this.temporadaActiva || CLUB_DATA.temporadaActual);
-        let html = '';
-        temporada.clasificacion.forEach((equipo, index) => {
-            const hiddenClass = index >= 5 ? 'hidden-row' : '';
-            const badgeHtml = equipo.logo ? `<img src="${equipo.logo}" alt="${equipo.siglas}" class="team-badge-img">` : `<span class="team-badge-text">${equipo.siglas}</span>`;
-            html += `<tr class="${equipo.destacado ? 'highlight' : ''} ${hiddenClass}"><td>${equipo.posicion}</td><td><div class="team-cell"><span class="team-badge">${badgeHtml}</span>${equipo.nombre}</div></td><td>${equipo.puntos}</td><td>${equipo.jugados}</td><td>${equipo.gfavor}</td><td>${equipo.gcontra}</td><td>${equipo.dg}</td></tr>`;
-        });
-        container.innerHTML = html;
+        // La tabla home (#homeCuerpoTabla) la rellena clasificacion.js
+        // que se carga después — le damos un tick para que esté listo
+        setTimeout(function() {
+            if (typeof renderizarTablaHome === 'function') {
+                renderizarTablaHome();
+            }
+        }, 0);
     },
 
     // ===================================

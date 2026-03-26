@@ -703,18 +703,12 @@ function renderizarTablaHome() {
 }
 
 // --- INIT ---
-function initClasificacion() {
-    calcularEstadisticas(enfrentamientos);
-    renderizarTabla();
-    actualizarJornadaBadge();
-    initChart();
-    renderizarTablaHome();
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initClasificacion);
-} else {
-    initClasificacion();
-}
+// clasificacion.js siempre se ejecuta después de app.js (orden en el HTML)
+// así que el DOM ya está listo — ejecutamos directamente.
+calcularEstadisticas(enfrentamientos);
+renderizarTabla();
+actualizarJornadaBadge();
+initChart();
+renderizarTablaHome();
 
 })();
