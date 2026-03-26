@@ -47,9 +47,7 @@
     line-height: 1.1;
 }
 
-.clasi-hero-content h1 span {
-    color: #ffcc00;
-}
+.clasi-hero-content h1 span { color: #ffcc00; }
 
 .clasi-hero-content p {
     opacity: 0.8;
@@ -93,11 +91,6 @@
     gap: 10px;
 }
 
-.clasi-card-header h2 i {
-    color: #0033cc;
-    font-size: 0.9em;
-}
-
 .clasi-jornada-badge {
     background: #f0f4ff;
     color: #0033cc;
@@ -118,107 +111,84 @@
 }
 
 table {
-    width: 100%;
+    width: max-content; /* La tabla solo mide lo que miden sus celdas */
+    min-width: 100%;    /* Se estira al 100% solo si el contenedor es más pequeño */
     border-collapse: collapse;
     font-size: 0.88em;
-    table-layout: auto;
 }
 
 thead th {
     background: #001a6e;
     color: white;
-    padding: 12px 8px;
+    padding: 12px 10px;
     text-align: center;
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
     font-size: 0.85em;
-    letter-spacing: 0.5px;
     white-space: nowrap;
 }
 
-thead th:first-child { border-radius: 10px 0 0 0; }
-thead th:last-child  { border-radius: 0 10px 0 0; }
-
 tbody td {
-    padding: 10px 8px;
+    padding: 10px;
     text-align: center;
     border-bottom: 1px solid #f0f2fa;
-    transition: background 0.15s;
 }
 
-tbody tr:hover td { background: #f5f7ff; }
-
 /* Columna posición */
-th:nth-child(1), td:nth-child(1) { width: 40px; min-width: 36px; }
+th:nth-child(1), td:nth-child(1) { width: 45px; }
 
-/* Columna club: Quitamos display flex de la celda para evitar el error en PC */
+/* Columna club: Espacio controlado */
 td:nth-child(2) {
     text-align: left;
     font-weight: 600;
-    padding-left: 12px;
-    padding-right: 30px; /* Espacio nombre-puntos */
+    padding-left: 15px;
+    padding-right: 40px; /* DISTANCIA ENTRE NOMBRE Y PUNTOS */
     white-space: nowrap;
-    width: 1%; /* Mantiene la columna pegada al contenido */
 }
 
-th:nth-child(2) {
-    text-align: left;
-    padding-left: 12px;
-}
+th:nth-child(2) { text-align: left; padding-left: 15px; }
 
-/* Escudos: Alineación perfecta con el texto */
+/* Escudos */
 .escudo-tabla {
     width: 26px;
     height: 26px;
     object-fit: contain;
-    margin-right: 10px;
+    margin-right: 12px;
     display: inline-block;
-    vertical-align: middle; /* Esto pone el nombre a la derecha del escudo */
+    vertical-align: middle;
 }
 
-/* El nombre del equipo también debe alinearse */
 td:nth-child(2) span {
     display: inline-block;
     vertical-align: middle;
 }
 
-/* Columnas numéricas */
+/* Columnas numéricas: Todas con ancho fijo igual */
 th:nth-child(n+3), td:nth-child(n+3) { 
-    width: 44px; 
-    min-width: 44px; 
+    width: 50px; 
+    min-width: 50px; 
 }
 
-/* Empujamos todo a la izquierda enviando el espacio sobrante al final */
+/* Eliminamos el width auto que hacía que DG creciera */
 th:last-child, td:last-child {
-    width: auto;
+    width: 50px;
 }
 
-/* Filas alternas */
+/* Filas alternas y Real Oviedo */
 tbody tr:nth-child(even) td { background: #fafbff; }
+tr.row-oviedo td { background: #e8eeff !important; font-weight: 700; }
+tr.row-oviedo td:first-child { border-left: 4px solid #ffcc00; }
 
-/* Real Oviedo destacado */
-tr.row-oviedo td {
-    background: #e8eeff !important;
-    font-weight: 700;
-}
-tr.row-oviedo td:first-child {
-    border-left: 4px solid #ffcc00;
-}
-
-/* Zonas de clasificación */
+/* Zonas y colores */
 .pos-champions  { border-left: 4px solid #2ecc71; }
 .pos-europa     { border-left: 4px solid #20b2aa; }
 .pos-conference { border-left: 4px solid #3498db; }
 .pos-descenso   { border-left: 4px solid #e74c3c; }
-
-/* Diferencia de goles */
 .dg-positiva { color: #1a8f3c; font-weight: 700; }
 .dg-negativa { color: #cc2200; font-weight: 700; }
-
-/* Puntos en negrita */
 td.pts-col { font-weight: 700; color: #001a6e; }
 
-/* ===== LEYENDA ===== */
+/* ===== LEYENDA Y STATS ===== */
 .leyenda-container {
     display: flex;
     justify-content: center;
@@ -228,85 +198,29 @@ td.pts-col { font-weight: 700; color: #001a6e; }
     padding-top: 16px;
     border-top: 1px solid #eef0f8;
     font-size: 0.82em;
-    color: #555;
 }
 
-.leyenda-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.dot {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot.champions  { background: #2ecc71; }
-.dot.europa     { background: #20b2aa; }
-.dot.conference { background: #3498db; }
-.dot.descenso   { background: #e74c3c; }
-
-/* ===== MINI STATS ===== */
-.clasi-mini-stats {
-    display: flex;
-    gap: 12px;
-}
-
+.clasi-mini-stats { display: flex; gap: 12px; }
 .clasi-mini-stat {
     background: #f0f4ff;
     border: 1px solid #ccd6ff;
     border-radius: 10px;
     padding: 8px 16px;
     text-align: center;
-    min-width: 64px;
-}
-
-.clasi-mini-stat .label {
-    display: block;
-    font-size: 0.72em;
-    color: #666;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-}
-
-.clasi-mini-stat .value {
-    display: block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.3em;
-    font-weight: 600;
-    color: #0033cc;
-}
-
-/* ===== GRÁFICA ===== */
-.chart-container {
-    position: relative;
-    height: 320px;
-    width: 100%;
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .clasi-card { padding: 18px 14px; }
-    .clasi-card-header { flex-direction: column; align-items: flex-start; }
-    .clasi-mini-stats { width: 100%; justify-content: space-between; }
-
-    /* Forzamos el scroll horizontal */
+    
+    /* En móvil forzamos un ancho mínimo para que aparezca el scroll */
     .table-responsive table {
-        min-width: 650px; 
+        min-width: 600px; 
     }
 
-    /* En móvil, le damos un ancho mínimo al nombre para que no se apriete */
     td:nth-child(2) { 
-        min-width: 180px;
-        padding-right: 15px;
+        padding-right: 20px; /* Menos espacio en móvil */
     }
 
-    .escudo-tabla { width: 22px; height: 22px; margin-right: 8px; }
-    
-    th:nth-child(n+3), td:nth-child(n+3) { width: 34px; min-width: 34px; }
-    
-    .desktop-only { display: table-cell !important; }
+    .escudo-tabla { width: 22px; height: 22px; }
 }
