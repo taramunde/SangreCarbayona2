@@ -141,14 +141,13 @@ const App = {
     },
 
     // ===================================
-    // PLANTILLA HOME (MODIFICADO PARA FILTRAR)
+    // PLANTILLA HOME (CORREGIDO PARA COMPARTIR)
     // ===================================
     renderPlantillaHome: function(filter = 'all') {
         const container = document.getElementById('plantillaHomeGrid');
         if (!container) return;
         const temporada = getTemporada(CLUB_DATA.temporadaActual);
 
-        // Mapeo de nombres de datos a posiciones de la base de datos
         const positionGroups = {
             'goalkeeper': ['Portero'],
             'defender': ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
@@ -158,21 +157,33 @@ const App = {
 
         let playersToRender = temporada.jugadores;
 
-        // Si no es 'all', filtramos
         if (filter !== 'all') {
             const validPositions = positionGroups[filter] || [];
             playersToRender = temporada.jugadores.filter(j => validPositions.includes(j.posicion));
         }
 
         let html = '';
-        // Mostramos máximo 8 jugadores
         playersToRender.slice(0, 8).forEach(jugador => {
-            // Usamos el código si existe, si no, caemos de vuelta al ID
-const parametro = jugador.codigo ? `codigo=${jugador.codigo}` : `id=${jugador.id}`;
-            html += `<div class="player-card"><a href="ficha-jugador.html?${parametro}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
+            // CORRECCIÓN: Si el jugador tiene código, enviamos a /fichas/ para que WhatsApp lea la imagen
+            const playerUrl = jugador.codigo 
+                ? `fichas/${jugador.codigo}.html` 
+                : `ficha-jugador.html?id=${jugador.id}&season=${CLUB_DATA.temporadaActual}`;
+
+            html += `
+                <div class="player-card">
+                    <a href="${playerUrl}">
+                        <div class="player-image">
+                            <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
+                            <span class="player-number">${jugador.dorsal}</span>
+                        </div>
+                        <div class="player-info">
+                            <span class="player-position">${translatePosition(jugador.posicion)}</span>
+                            <h4 class="player-name">${jugador.nombreCompleto}</h4>
+                        </div>
+                    </a>
+                </div>`;
         });
         
-        // Si no hay jugadores, mensaje opcional
         if (playersToRender.length === 0) {
             html = '<p style="grid-column: 1/-1; text-align:center; opacity: 0.7;">No hay jugadores en esta categoría.</p>';
         }
@@ -264,8 +275,8 @@ const parametro = jugador.codigo ? `codigo=${jugador.codigo}` : `id=${jugador.id
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
         const playerUrl = jugador.codigo 
-    ? `ficha-jugador.html?codigo=${jugador.codigo}&season=${this.temporadaActiva}` 
-    : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
+            ? `fichas/${jugador.codigo}.html` 
+            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
 
         return `
             <article class="squad-card">
