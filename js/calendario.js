@@ -471,5 +471,6 @@
         }
     `;
     document.head.appendChild(homeStyles);
+    
 
 })();
