@@ -17,9 +17,7 @@
             display: flex;
             flex-direction: column;
             gap: 0;
-            min-width: 0; /* Evita que el contenedor fuerce el ancho de la web */
         }
-
         .home-clasi-header {
             display: flex;
             justify-content: space-between;
@@ -28,127 +26,150 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-
-        .home-clasi-header h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.2rem;
-            color: #001a6e;
-            text-transform: uppercase;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .home-clasi-header h3::before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 20px;
-            background: #ffcc00;
-            border-radius: 2px;
-        }
-
-        /* CONTENEDOR CON SCROLL */
-        .home-clasi-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            padding: 15px;
-            overflow-x: auto; /* Activa el scroll horizontal solo aquí */
-            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-        }
-
-        /* TABLA CON ANCHO MÍNIMO */
-        .home-clasi-card table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9em;
-            text-align: center;
-            min-width: 500px; /* Obliga a la tabla a ser ancha para que aparezca el scroll */
-        }
-
-        .home-clasi-card th {
-            background: #f8f9fa;
-            color: #666;
+        .home-clasi-jornada-badge {
+            background: #f0f4ff;
+            color: #0033cc;
+            border: 1px solid #ccd6ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78em;
             font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            padding: 10px 5px;
-            border-bottom: 2px solid #eee;
+            white-space: nowrap;
         }
-
-        .home-clasi-card td {
-            padding: 10px 5px;
-            border-bottom: 1px solid #f0f0f0;
-            vertical-align: middle;
+        .home-clasi-table-scroll {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 10px;
+            border: 1px solid #eef0f8;
         }
-
-        /* Alineación y Escudos */
-        .home-clasi-card td:nth-child(2) {
+        #homeTablaClasificacion {
+            width: max-content;
+            min-width: 100%;
+            border-collapse: collapse;
+            font-size: 0.87em;
+        }
+        #homeTablaClasificacion thead th {
+            background: #001a6e;
+            color: white;
+            padding: 10px 8px;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 0.84em;
+            white-space: nowrap;
+        }
+        #homeTablaClasificacion tbody td {
+            padding: 9px 8px;
+            text-align: center;
+            border-bottom: 1px solid #f0f2fa;
+        }
+        /* Columna posición */
+        #homeTablaClasificacion th:nth-child(1),
+        #homeTablaClasificacion td:nth-child(1) { width: 40px; }
+        /* Columna club */
+        #homeTablaClasificacion td:nth-child(2) {
             text-align: left;
             font-weight: 600;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 140px; /* Espacio para nombre y escudo */
+            padding-left: 12px;
+            padding-right: 30px;
+            white-space: nowrap;
         }
-
+        #homeTablaClasificacion th:nth-child(2) {
+            text-align: left;
+            padding-left: 12px;
+        }
+        /* Columnas numéricas */
+        #homeTablaClasificacion th:nth-child(n+3),
+        #homeTablaClasificacion td:nth-child(n+3) {
+            width: 44px;
+            min-width: 44px;
+        }
+        /* Escudos */
         .home-escudo-tabla {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             object-fit: contain;
+            margin-right: 10px;
+            vertical-align: middle;
+            display: inline-block;
         }
-
-        /* Estilos de puntos y filas */
-        .pts-col {
-            font-weight: 700;
-            color: #001a6e;
-            background: rgba(0, 51, 204, 0.03);
+        #homeTablaClasificacion td:nth-child(2) span {
+            display: inline-block;
+            vertical-align: middle;
         }
-
-        .row-oviedo td {
+        /* Filas alternas */
+        #homeTablaClasificacion tbody tr:nth-child(even) td { background: #fafbff; }
+        /* Oviedo destacado */
+        #homeTablaClasificacion tr.row-oviedo td {
             background: #e8eeff !important;
             font-weight: 700;
-            color: #001a6e;
         }
-
-        .row-oviedo td:first-child {
+        #homeTablaClasificacion tr.row-oviedo td:first-child {
             border-left: 4px solid #ffcc00;
         }
-
-        /* Badge de Posición */
-        .pos-champions { border-left: 3px solid #2ecc71; }
-        .pos-europa { border-left: 3px solid #20b2aa; }
-        .pos-conference { border-left: 3px solid #3498db; }
-        .pos-descenso { border-left: 3px solid #e74c3c; }
-
-        /* Botón inferior */
-        .home-clasi-footer {
-            margin-top: 15px;
-            text-align: right;
+        /* Separador antes de Oviedo cuando va fuera del top 5 */
+        #homeTablaClasificacion tr.row-oviedo-separator td {
+            padding: 0;
+            height: 3px;
+            background: repeating-linear-gradient(
+                90deg,
+                #ccd6ff 0px, #ccd6ff 6px,
+                transparent 6px, transparent 12px
+            ) !important;
+            border: none;
         }
+        /* Zonas de clasificación */
+        #homeTablaClasificacion .pos-champions  { border-left: 4px solid #2ecc71; }
+        #homeTablaClasificacion .pos-europa     { border-left: 4px solid #20b2aa; }
+        #homeTablaClasificacion .pos-conference { border-left: 4px solid #3498db; }
+        #homeTablaClasificacion .pos-descenso   { border-left: 4px solid #e74c3c; }
+        #homeTablaClasificacion .dg-positiva { color: #1a8f3c; font-weight: 700; }
+        #homeTablaClasificacion .dg-negativa { color: #cc2200; font-weight: 700; }
+        #homeTablaClasificacion td.pts-col { font-weight: 700; color: #001a6e; }
 
-        .btn-view-more {
-            display: inline-flex;
+        /* Leyenda y footer de la card */
+        .home-clasi-leyenda {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 12px 4px 8px;
+            border-top: 1px solid #eef0f8;
+            margin-top: 8px;
+            font-size: 0.78em;
+        }
+        .home-clasi-leyenda .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .dot.champions  { background: #2ecc71; }
+        .dot.europa     { background: #20b2aa; }
+        .dot.conference { background: #3498db; }
+        .dot.descenso   { background: #e74c3c; }
+
+        .home-clasi-ver-todo {
+            display: flex;
             align-items: center;
             gap: 6px;
-            color: #0033cc;
-            text-decoration: none;
-            font-size: 0.85rem;
+            justify-content: flex-end;
+            margin-top: 10px;
+            font-size: 0.85em;
             font-weight: 600;
-            transition: gap 0.2s;
         }
 
-        .btn-view-more:hover {
-            gap: 10px;
-            text-decoration: underline;
+        @media (max-width: 480px) {
+            .home-clasi-table-scroll table { min-width: 380px; }
+            #homeTablaClasificacion td:nth-child(2) { padding-right: 14px; }
         }
-
-        /* Diferencia de Goles */
-        .dg-positiva { color: #1a8f3c; }
-        .dg-negativa { color: #cc2200; }
     </style>
 
     <!-- Meta Tags para Compartir (Open Graph) -->
