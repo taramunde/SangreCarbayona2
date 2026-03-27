@@ -10,10 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <meta property="og:title" content="Calendario LaLiga - Sangre Carbayona">
-    <meta property="og:description" content="Calendario completo del Real Oviedo en LaLiga EA Sports 2025/26.">
-    <meta property="og:type" content="website">
 </head>
 <body>
 
@@ -25,32 +21,22 @@
                 </a>
                 <nav class="main-nav" id="mainNav">
                     <ul>
-                        <li><a href="index.html" data-i18n="nav_inicio">Inicio</a></li>
-                        <li><a href="noticias.html" data-i18n="nav_noticias">Noticias</a></li>
-                        <li><a href="calendario.html" class="active" data-i18n="nav_calendario">Calendario</a></li>
-                        <li><a href="plantilla.html" data-i18n="nav_plantilla">Plantilla</a></li>
-                        <li><a href="estadio.html" data-i18n="nav_estadio">Estadio</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="noticias.html">Noticias</a></li>
+                        <li><a href="calendario.html" class="active">Calendario</a></li>
+                        <li><a href="plantilla.html">Plantilla</a></li>
+                        <li><a href="estadio.html">Estadio</a></li>
                     </ul>
                 </nav>
-                <div class="header-actions">
-                    <button class="lang-switch" id="langSwitch">EN</button>
-                    <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
-                </div>
             </div>
         </div>
     </header>
 
     <main>
         <section class="cal-hero">
-            <div class="cal-hero-bg"></div>
             <div class="container">
                 <div class="cal-hero-content">
-                    <div class="cal-badge">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Temporada 2025/2026</span>
-                    </div>
                     <h1 class="cal-title">Calendario Oficial</h1>
-                    <p class="cal-subtitle">Sigue el camino del Real Oviedo en su regreso a LaLiga EA Sports</p>
                     
                     <div class="cal-stats-grid">
                         <div class="cal-stat-item">
@@ -81,55 +67,18 @@
         <section class="cal-content-section">
             <div class="container">
                 <div class="cal-filters">
-                    <button class="cal-filter-btn active" data-filter="todos">Todos los partidos</button>
+                    <button class="cal-filter-btn active" data-filter="todos">Todos</button>
                     <button class="cal-filter-btn" data-filter="casa">En Casa</button>
                     <button class="cal-filter-btn" data-filter="fuera">Fuera</button>
                 </div>
-
-                <div class="matches-list" id="calendarioList">
-                    </div>
-
-                <div id="calEmpty" class="cal-empty">
-                    <i class="fas fa-search"></i>
-                    <p>No se encontraron partidos con este filtro.</p>
-                </div>
+                <div class="matches-list" id="calendarioList"></div>
             </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-info">
-                    <img src="https://i.postimg.cc/mD797S9G/Logo-Web.png" alt="Logo" class="footer-logo">
-                    <p data-i18n="footer_desc">La web de referencia para todo el oviedismo. Información, historia y pasión por el Real Oviedo.</p>
-                </div>
-                <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright"><p>&copy; 2025 Real Oviedo Sangre Carbayona. <span data-i18n="derechos">Todos los derechos reservados.</span></p></div>
-                    <div class="footer-links">
-                        <a href="#" data-i18n="footer_privacidad">Política de privacidad</a>
-                        <a href="#" data-i18n="footer_cookies">Política de cookies</a>
-                        <a href="#" data-i18n="footer_legal">Aviso legal</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/i18n.js?nocache=20251231v24"></script>
-    <script src="js/script.js?nocache=20251231v24"></script>
-    <script src="js/clasificacion.js?nocache=20251231v28"></script>
-    <script src="js/calendario.js?nocache=20260101v2"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/clasificacion.js"></script>
+    <script src="js/calendario.js"></script>
 </body>
 </html>
