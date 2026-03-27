@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario | Sangre Carbayona</title>
+    <link rel="stylesheet" href="css/styles.css?nocache=20251231v24">
+    <link rel="stylesheet" href="css/calendario.css?nocache=20260101v1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta property="og:title" content="Calendario LaLiga - Sangre Carbayona">
+    <meta property="og:description" content="Calendario completo del Real Oviedo en LaLiga EA Sports 2025/26.">
+    <meta property="og:type" content="website">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-shield">
+                        <img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Escudo" class="logo-img">
+                    </div>
+                    <div class="logo-name">
+                        <span class="club-name">REAL OVIEDO</span>
+                        <span class="team-name">Sangre Carbayona</span>
+                    </div>
+                </a>
+                <nav class="main-nav" id="mainNav">
+                    <div class="mobile-nav-header">
+                        <span class="mobile-nav-title">Menú</span>
+                        <button class="close-mobile-nav" id="closeMobileNav"><i class="fas fa-times"></i></button>
+                    </div>
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" data-i18n="nav_inicio">Inicio</a></li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_club">Club <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#" data-i18n="nav_historia">Historia</a></li>
+                                <li><a href="#" data-i18n="nav_palmares">Palmarés</a></li>
+                                <li><a href="#" data-i18n="nav_estadio">Estadio Municipal</a></li>
+                                <li><a href="#" data-i18n="nav_directiva">Directiva</a></li>
+                                <li><a href="#" data-i18n="nav_fundacion">Fundación</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_equipo">Equipo <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="primer-equipo.html" data-i18n="nav_primer_equipo">1ª Equip.</a></li>
+                                <li><a href="#" data-i18n="nav_cuerpo_tecnico">Cuerpo Técnico</a></li>
+                                <li><a href="#" data-i18n="nav_cantera">Cantera</a></li>
+                                <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-submenu active">
+                            <a href="#" data-i18n="nav_competiciones">Competiciones <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
+                                <li><a href="calendario.html" class="current" data-i18n="nav_calendario">Calendario</a></li>
+                                <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" data-i18n="nav_noticias">Noticias</a></li>
+                        <li class="nav-item has-submenu">
+                            <a href="#" data-i18n="nav_multimedia">Multimedia <i class="fas fa-chevron-down"></i></a>
+                            <ul class="submenu">
+                                <li><a href="juegos.html" data-i18n="nav_juegos">Juegos</a></li>
+                                <li><a href="videos.html" data-i18n="nav_videos">Vídeos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="mobile-nav-footer">
+                        <div class="mobile-social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </nav>
+                <div class="header-actions">
+                    <div class="lang-switcher">
+                        <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')" aria-label="Español">
+                            <img src="https://flagcdn.com/w40/es.png" alt="ES">
+                        </button>
+                        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" aria-label="English">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="EN">
+                        </button>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="cal-hero">
+        <div class="cal-hero-bg"></div>
+        <div class="container">
+            <div class="cal-hero-content">
+                <span class="cal-badge"><i class="fas fa-calendar-alt"></i> LaLiga EA Sports</span>
+                <h1>Calendario <span>2025/26</span></h1>
+                <p>Todos los partidos del Real Oviedo · Primera División</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN ===== -->
+    <main class="cal-main">
+        <div class="container">
+
+            <!-- RESUMEN STATS -->
+            <div class="cal-stats-bar" id="statsBar">
+                <div class="cal-stat-item">
+                    <span class="cal-stat-num" id="statJugados">—</span>
+                    <span class="cal-stat-label">Jugados</span>
+                </div>
+                <div class="cal-stat-divider"></div>
+                <div class="cal-stat-item cal-stat-win">
+                    <span class="cal-stat-num" id="statGanados">—</span>
+                    <span class="cal-stat-label">Victorias</span>
+                </div>
+                <div class="cal-stat-divider"></div>
+                <div class="cal-stat-item cal-stat-draw">
+                    <span class="cal-stat-num" id="statEmpates">—</span>
+                    <span class="cal-stat-label">Empates</span>
+                </div>
+                <div class="cal-stat-divider"></div>
+                <div class="cal-stat-item cal-stat-loss">
+                    <span class="cal-stat-num" id="statDerrotas">—</span>
+                    <span class="cal-stat-label">Derrotas</span>
+                </div>
+                <div class="cal-stat-divider"></div>
+                <div class="cal-stat-item">
+                    <span class="cal-stat-num" id="statGoles">—</span>
+                    <span class="cal-stat-label">Goles</span>
+                </div>
+                <div class="cal-stat-divider"></div>
+                <div class="cal-stat-item">
+                    <span class="cal-stat-num" id="statPendientes">—</span>
+                    <span class="cal-stat-label">Pendientes</span>
+                </div>
+            </div>
+
+            <!-- FILTROS -->
+            <div class="cal-filters">
+                <button class="cal-filter-btn active" data-filter="todos">
+                    <i class="fas fa-list"></i> Todos
+                </button>
+                <button class="cal-filter-btn" data-filter="jugados">
+                    <i class="fas fa-check-circle"></i> Jugados
+                </button>
+                <button class="cal-filter-btn" data-filter="pendientes">
+                    <i class="fas fa-clock"></i> Pendientes
+                </button>
+                <button class="cal-filter-btn" data-filter="local">
+                    <i class="fas fa-home"></i> En casa
+                </button>
+                <button class="cal-filter-btn" data-filter="visitante">
+                    <i class="fas fa-plane"></i> Fuera
+                </button>
+            </div>
+
+            <!-- LISTA DE JORNADAS -->
+            <div id="jornadasContainer">
+                <!-- Generado dinámicamente por calendario.js -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_club">El Club</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="nav_historia">Historia</a></li>
+                            <li><a href="#" data-i18n="nav_palmares">Palmarés</a></li>
+                            <li><a href="#" data-i18n="nav_estadio">Estadio Municipal</a></li>
+                            <li><a href="#" data-i18n="nav_directiva">Directiva</a></li>
+                            <li><a href="#" data-i18n="footer_contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_equipos">Equipos</h4>
+                        <ul>
+                            <li><a href="primer-equipo.html" data-i18n="nav_primer_equipo">Primer Equipo</a></li>
+                            <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
+                            <li><a href="#">Juvenil "A"</a></li>
+                            <li><a href="#" data-i18n="nav_cantera">Cantera</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer_competiciones">Competiciones</h4>
+                        <ul>
+                            <li><a href="#">LaLiga EA Sports</a></li>
+                            <li><a href="calendario.html" data-i18n="nav_calendario">Calendario</a></li>
+                            <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column contact">
+                        <h4 data-i18n="footer_contacto">Contacto</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i><span>Estadio Carlos Tartiere<br>Calle del Deporte s/n<br>33013 Oviedo</span></li>
+                            <li><i class="fas fa-phone"></i><span>985 111 111</span></li>
+                            <li><i class="fas fa-envelope"></i><span>info@sangrecarbayona.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-middle">
+            <div class="container">
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright"><p>&copy; 2025 Real Oviedo Sangre Carbayona. <span data-i18n="derechos">Todos los derechos reservados.</span></p></div>
+                    <div class="footer-links">
+                        <a href="#" data-i18n="footer_privacidad">Política de privacidad</a>
+                        <a href="#" data-i18n="footer_cookies">Política de cookies</a>
+                        <a href="#" data-i18n="footer_legal">Aviso legal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js?nocache=20251231v24"></script>
+    <script src="js/script.js?nocache=20251231v24"></script>
+    <script src="js/clasificacion.js?nocache=20251231v26"></script>
+    <script src="js/calendario.js?nocache=20260101v1"></script>
+</body>
+</html>
