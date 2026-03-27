@@ -247,6 +247,7 @@
         const bloques  = document.querySelectorAll('.cal-jornada-block');
         let   visible  = 0;
 
+        // 1. Filtrar las tarjetas visualmente (lo que ya tenías)
         cards.forEach(card => {
             const estado    = card.dataset.estado;
             const localidad = card.dataset.localidad;
@@ -271,6 +272,32 @@
         });
 
         if (emptyMsg) emptyMsg.classList.toggle('visible', visible === 0);
+
+        // 2. NUEVO: Recalcular las estadísticas de arriba según el filtro
+        const todosLosPartidos = getPartidosOviedo();
+        let partidosFiltrados = [];
+
+        switch (filtro) {
+            case 'todos':
+                partidosFiltrados = todosLosPartidos;
+                break;
+            case 'jugados':
+                partidosFiltrados = todosLosPartidos.filter(p => p.jugado);
+                break;
+            case 'pendientes':
+                partidosFiltrados = todosLosPartidos.filter(p => !p.jugado);
+                break;
+            case 'local':
+                partidosFiltrados = todosLosPartidos.filter(p => p.equipo1 === OVIEDO);
+                break;
+            case 'visitante':
+                partidosFiltrados = todosLosPartidos.filter(p => p.equipo2 === OVIEDO);
+                break;
+        }
+
+        // Usamos tus funciones existentes para calcular y pintar los números
+        const nuevasStats = calcularStats(partidosFiltrados);
+        actualizarStatBar(nuevasStats);
     }
 
     // =====================================================
