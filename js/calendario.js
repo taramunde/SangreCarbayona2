@@ -309,45 +309,10 @@
 
         const partidos = getPartidosOviedo();
         const proximo  = getProximoPartido(partidos);
-        const ultimo   = getUltimoPartido(partidos);
 
         lista.innerHTML = '';
 
-        // ── Último resultado ────────────────────────────
-        if (ultimo) {
-            const esLocal  = ultimo.equipo1 === OVIEDO;
-            const rival    = esLocal ? ultimo.equipo2 : ultimo.equipo1;
-            const golesO   = esLocal ? ultimo.goles1 : ultimo.goles2;
-            const golesR   = esLocal ? ultimo.goles2 : ultimo.goles1;
-            const escudoR  = getEscudo(rival);
-            const estado   = getEstado(ultimo);
-
-            const claseBadge = { victoria: 'home-badge-v', empate: 'home-badge-e', derrota: 'home-badge-d' }[estado];
-            const textoBadge = { victoria: 'V', empate: 'E', derrota: 'D' }[estado];
-
-            const elUltimo = document.createElement('div');
-            elUltimo.className = 'match-item home-match-result';
-            elUltimo.innerHTML = `
-                <div class="home-match-meta">
-                    <span class="home-match-label">Último partido · J${ultimo.jornada}</span>
-                    <span class="home-match-badge ${claseBadge}">${textoBadge}</span>
-                </div>
-                <div class="home-match-teams">
-                    <div class="home-team ${esLocal ? 'oviedo' : ''}">
-                        <img src="${getEscudo(OVIEDO)}" alt="Real Oviedo" class="home-escudo-sm">
-                        <span>${esLocal ? 'Real Oviedo' : rival}</span>
-                    </div>
-                    <div class="home-score">${golesO} – ${golesR}</div>
-                    <div class="home-team ${!esLocal ? 'oviedo' : ''} right">
-                        <img src="${escudoR}" alt="${rival}" class="home-escudo-sm">
-                        <span>${esLocal ? rival : 'Real Oviedo'}</span>
-                    </div>
-                </div>
-            `;
-            lista.appendChild(elUltimo);
-        }
-
-        // ── Próximo partido ─────────────────────────────
+        // ── Próximo partido (Único elemento a mostrar) ────────
         if (proximo) {
             const esLocal  = proximo.equipo1 === OVIEDO;
             const rival    = esLocal ? proximo.equipo2 : proximo.equipo1;
@@ -357,7 +322,7 @@
             elProximo.className = 'match-item home-match-next';
             elProximo.innerHTML = `
                 <div class="home-match-meta">
-                    <span class="home-match-label">Próximo partido · J${proximo.jornada}</span>
+                    <span class="home-match-label">Jornada ${proximo.jornada}</span>
                     <span class="home-localidad-badge">${esLocal ? 'Casa' : 'Fuera'}</span>
                 </div>
                 <div class="home-match-teams">
@@ -373,10 +338,11 @@
                 </div>
             `;
             lista.appendChild(elProximo);
+        } else {
+            lista.innerHTML = '<p style="text-align:center;color:#888;font-size:0.9em;padding:10px;">No hay próximos partidos.</p>';
         }
 
         // Actualizar enlace "Calendario completo"
-        const linkCal = document.querySelector('a[href="#"] .cal-link, a[href="calendario.html"]');
         const verTodo = document.querySelector('.upcoming-matches .view-all');
         if (verTodo) verTodo.href = 'calendario.html';
     }
