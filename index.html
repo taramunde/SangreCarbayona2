@@ -193,8 +193,18 @@
             }
 
             #homeTablaClasificacion td:nth-child(2) {
-                padding-right: 8px;
-                max-width: 100px;
+                padding-right: 6px;
+                max-width: 90px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            /* Fijar ancho mínimo a las columnas numéricas en mobile */
+            #homeTablaClasificacion th:nth-child(n+3),
+            #homeTablaClasificacion td:nth-child(n+3) {
+                width: 34px;
+                min-width: 34px;
             }
 
             .upcoming-matches {
@@ -511,6 +521,6 @@
     <script src="js/app.js?nocache=20251231v40"></script>
     <script src="js/script.js?nocache=20251231v1"></script>
     <script src="js/clasificacion.js?nocache=20251231v29"></script>
-    <script src="js/calendario.js?nocache=20260101v10"></script>
+    <script src="js/calendario.js?nocache=20260101v9"></script>
 </body>
 </html>
