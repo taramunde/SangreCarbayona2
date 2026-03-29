@@ -14,7 +14,7 @@ const translations = {
         // General
         buscar: "Buscar en la web...", ver_todas: "Ver todas", ver_clasificacion: "Ver clasificación completa", calendario_completo: "Calendario completo", ver_plantilla: "Ver plantilla completa", grupo: "Grupo I", current_badge: "Actual",
         // Index
-        ultimas_noticias: "Últimas Noticias", clasificacion: "Clasificación", calendario: "Calendario", plantilla: "Plantilla", patrocinadores: "Patrocinadores",
+        ultimas_noticias: "Últimas Noticias", clasificacion: "Clasificación", calendario: "Calendario", plantilla: "Plantilla", patrocinadores: "Patrocinadores", proximo_partido: "Próximo Partido",
         // Equipo
         equipo_titulo: "Primer Equipo", equipo_subtitulo: "Temporada", posicion: "Posición", victorias: "Victorias", empates: "Empates", derrotas: "Derrotas", goles_favor: "Goles Favor", goles_contra: "Goles Contra",
         // Plantilla
@@ -45,7 +45,7 @@ const translations = {
         // General
         buscar: "Search...", ver_todas: "View all", ver_clasificacion: "View full standings", calendario_completo: "Full calendar", ver_plantilla: "View full squad", grupo: "Group I", current_badge: "Current",
         // Index
-        ultimas_noticias: "Latest News", clasificacion: "Standings", calendario: "Calendar", plantilla: "Squad", patrocinadores: "Sponsors",
+        ultimas_noticias: "Latest News", clasificacion: "Standings", calendario: "Calendar", plantilla: "Squad", patrocinadores: "Sponsors", proximo_partido: "Next Match",
         // Team
         equipo_titulo: "First Team", equipo_subtitulo: "Season", posicion: "Position", victorias: "Wins", empates: "Draws", derrotas: "Losses", goles_favor: "Goals For", goles_contra: "Goals Against",
         // Squad
