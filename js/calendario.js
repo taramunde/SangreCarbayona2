@@ -327,14 +327,14 @@
             elProximo.className = 'match-item home-match-next';
             elProximo.innerHTML = `
                 <div class="home-match-teams">
-                    <div class="home-team">
+                    <div class="home-team home-team-local">
                         <img src="${escudoLocal}" alt="${nombreLocal}" class="home-escudo-sm">
-                        <span class="${nombreLocal === OVIEDO ? 'es-oviedo' : ''}">${nombreLocal}</span>
+                        <span class="${nombreLocal === OVIEDO ? 'home-oviedo' : ''}">${nombreLocal}</span>
                     </div>
                     <div class="home-score home-score-vs">VS</div>
-                    <div class="home-team home-team-right">
+                    <div class="home-team home-team-visitante">
                         <img src="${escudoVisitante}" alt="${nombreVisitante}" class="home-escudo-sm">
-                        <span class="${nombreVisitante === OVIEDO ? 'es-oviedo' : ''}">${nombreVisitante}</span>
+                        <span class="${nombreVisitante === OVIEDO ? 'home-oviedo' : ''}">${nombreVisitante}</span>
                     </div>
                 </div>
                 <div class="home-match-meta">
@@ -359,7 +359,12 @@
     // por lo que `equipos` y `enfrentamientos` están disponibles.
 
     renderCalendario();
-    renderWidgetHome();
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderWidgetHome);
+    } else {
+        renderWidgetHome();
+    }
 
     // ── Estilos inline para el widget home ──────────────
     // (se inyectan aquí para no requerir un CSS extra solo para home)
@@ -380,7 +385,7 @@
             background: linear-gradient(135deg, #fffbea 0%, #fff 60%);
         }
 
-        /* FILA 1: equipos */
+        /* Fila equipos (arriba) */
         .home-match-teams {
             display: flex;
             align-items: center;
@@ -400,7 +405,7 @@
             min-width: 0;
         }
 
-        .home-team-right {
+        .home-team-visitante {
             flex-direction: row-reverse;
             text-align: right;
         }
@@ -411,11 +416,11 @@
             text-overflow: ellipsis;
         }
 
-        .home-team .es-oviedo { color: #001a6e; }
+        .home-oviedo { color: #001a6e; }
 
         .home-escudo-sm {
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             object-fit: contain;
             flex-shrink: 0;
         }
@@ -427,12 +432,12 @@
             color: #001a6e;
             white-space: nowrap;
             text-align: center;
-            min-width: 40px;
+            min-width: 38px;
         }
 
         .home-score-vs { color: #ccd6ff; }
 
-        /* FILA 2: jornada + localidad */
+        /* Fila meta (abajo) */
         .home-match-meta {
             display: flex;
             align-items: center;
@@ -442,9 +447,9 @@
         }
 
         .home-match-label {
-            font-size: 0.73em;
+            font-size: 0.72em;
             font-weight: 600;
-            color: #999;
+            color: #aaa;
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
@@ -461,14 +466,6 @@
         }
 
         .home-localidad-badge i { margin-right: 3px; }
-
-        @media (min-width: 900px) {
-            .home-escudo-sm {
-                width: 38px;
-                height: 38px;
-            }
-            .home-team { font-size: 0.95em; }
-        }
     `;
     document.head.appendChild(homeStyles);
     
