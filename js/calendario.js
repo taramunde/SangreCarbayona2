@@ -304,7 +304,8 @@
     //   RENDERIZADO — index.html (widget próximo partido)
     // =====================================================
     function renderWidgetHome() {
-        const lista = document.getElementById('calendarioList');
+        // Cambiamos 'calendarioList' por 'proximoPartidoWidget'
+        const lista = document.getElementById('proximoPartidoWidget');
         if (!lista) return;   // no estamos en index.html
 
         const partidos = getPartidosOviedo();
