@@ -318,23 +318,28 @@
             const rival    = esLocal ? proximo.equipo2 : proximo.equipo1;
             const escudoR  = getEscudo(rival);
 
+            const nombreLocal     = esLocal ? OVIEDO : rival;
+            const nombreVisitante = esLocal ? rival  : OVIEDO;
+            const escudoLocal     = esLocal ? getEscudo(OVIEDO) : escudoR;
+            const escudoVisitante = esLocal ? escudoR : getEscudo(OVIEDO);
+
             const elProximo = document.createElement('div');
             elProximo.className = 'match-item home-match-next';
             elProximo.innerHTML = `
-                <div class="home-match-meta">
-                    <span class="home-match-label">Jornada ${proximo.jornada}</span>
-                    <span class="home-localidad-badge">${esLocal ? 'Casa' : 'Fuera'}</span>
-                </div>
                 <div class="home-match-teams">
-                    <div class="home-team oviedo">
-                        <img src="${getEscudo(OVIEDO)}" alt="Real Oviedo" class="home-escudo-sm">
-                        <span>${esLocal ? 'Real Oviedo' : rival}</span>
+                    <div class="home-team">
+                        <img src="${escudoLocal}" alt="${nombreLocal}" class="home-escudo-sm">
+                        <span class="${nombreLocal === OVIEDO ? 'es-oviedo' : ''}">${nombreLocal}</span>
                     </div>
                     <div class="home-score home-score-vs">VS</div>
-                    <div class="home-team right">
-                        <img src="${escudoR}" alt="${rival}" class="home-escudo-sm">
-                        <span>${esLocal ? rival : 'Real Oviedo'}</span>
+                    <div class="home-team home-team-right">
+                        <img src="${escudoVisitante}" alt="${nombreVisitante}" class="home-escudo-sm">
+                        <span class="${nombreVisitante === OVIEDO ? 'es-oviedo' : ''}">${nombreVisitante}</span>
                     </div>
+                </div>
+                <div class="home-match-meta">
+                    <span class="home-match-label"><i class="fas fa-calendar-alt"></i> Jornada ${proximo.jornada}</span>
+                    <span class="home-localidad-badge">${esLocal ? '<i class="fas fa-home"></i> Casa' : '<i class="fas fa-plane"></i> Fuera'}</span>
                 </div>
             `;
             lista.appendChild(elProximo);
@@ -354,12 +359,7 @@
     // por lo que `equipos` y `enfrentamientos` están disponibles.
 
     renderCalendario();
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', renderWidgetHome);
-    } else {
-        renderWidgetHome();
-    }
+    renderWidgetHome();
 
     // ── Estilos inline para el widget home ──────────────
     // (se inyectan aquí para no requerir un CSS extra solo para home)
@@ -369,7 +369,7 @@
         .home-match-next {
             background: #fff;
             border-radius: 12px;
-            padding: 14px 16px;
+            padding: 16px 18px 12px;
             margin-bottom: 10px;
             border: 1px solid #eef0f8;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -380,46 +380,13 @@
             background: linear-gradient(135deg, #fffbea 0%, #fff 60%);
         }
 
-        .home-match-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .home-match-label {
-            font-size: 0.75em;
-            font-weight: 600;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-
-        .home-match-badge {
-            font-size: 0.72em;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-
-        .home-badge-v { background: #d4f5e2; color: #1a8f3c; }
-        .home-badge-e { background: #fff3cc; color: #a07800; }
-        .home-badge-d { background: #ffe0dd; color: #cc2200; }
-
-        .home-localidad-badge {
-            font-size: 0.72em;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 10px;
-            background: #e8eeff;
-            color: #0033cc;
-        }
-
+        /* FILA 1: equipos */
         .home-match-teams {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
+            margin-bottom: 10px;
         }
 
         .home-team {
@@ -427,18 +394,16 @@
             align-items: center;
             gap: 8px;
             flex: 1;
-            font-size: 0.88em;
-            font-weight: 600;
-            color: #333;
+            font-size: 0.92em;
+            font-weight: 700;
+            color: #1a1a2e;
             min-width: 0;
         }
 
-        .home-team.right {
+        .home-team-right {
             flex-direction: row-reverse;
             text-align: right;
         }
-
-        .home-team.oviedo span { color: #001a6e; font-weight: 700; }
 
         .home-team span {
             white-space: nowrap;
@@ -446,26 +411,63 @@
             text-overflow: ellipsis;
         }
 
+        .home-team .es-oviedo { color: #001a6e; }
+
         .home-escudo-sm {
-            width: 26px;
-            height: 26px;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
             flex-shrink: 0;
         }
 
         .home-score {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: 700;
             color: #001a6e;
             white-space: nowrap;
             text-align: center;
-            min-width: 52px;
+            min-width: 40px;
         }
 
-        .home-score-vs {
-            color: #ccd6ff;
-            font-size: 1em;
+        .home-score-vs { color: #ccd6ff; }
+
+        /* FILA 2: jornada + localidad */
+        .home-match-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #f0f2fa;
+        }
+
+        .home-match-label {
+            font-size: 0.73em;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .home-match-label i { color: #ccd6ff; margin-right: 3px; }
+
+        .home-localidad-badge {
+            font-size: 0.72em;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 10px;
+            background: #e8eeff;
+            color: #0033cc;
+        }
+
+        .home-localidad-badge i { margin-right: 3px; }
+
+        @media (min-width: 900px) {
+            .home-escudo-sm {
+                width: 38px;
+                height: 38px;
+            }
+            .home-team { font-size: 0.95em; }
         }
     `;
     document.head.appendChild(homeStyles);
