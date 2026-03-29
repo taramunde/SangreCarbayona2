@@ -354,7 +354,12 @@
     // por lo que `equipos` y `enfrentamientos` están disponibles.
 
     renderCalendario();
-    renderWidgetHome();
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', renderWidgetHome);
+    } else {
+        renderWidgetHome();
+    }
 
     // ── Estilos inline para el widget home ──────────────
     // (se inyectan aquí para no requerir un CSS extra solo para home)
