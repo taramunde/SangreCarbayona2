@@ -304,8 +304,7 @@
     //   RENDERIZADO — index.html (widget próximo partido)
     // =====================================================
     function renderWidgetHome() {
-        // Cambiamos 'calendarioList' por 'proximoPartidoWidget'
-        const lista = document.getElementById('proximoPartidoWidget');
+        const lista = document.getElementById('calendarioList');
         if (!lista) return;   // no estamos en index.html
 
         const partidos = getPartidosOviedo();
@@ -315,14 +314,9 @@
 
         // ── Próximo partido (Único elemento a mostrar) ────────
         if (proximo) {
-            const esLocal = proximo.equipo1 === OVIEDO;
-            
-            // Asignamos siempre el equipo 1 a la izquierda (Local) y el 2 a la derecha (Visitante)
-            const equipoLocal = proximo.equipo1;
-            const equipoVisitante = proximo.equipo2;
-            
-            const escudoLocal = getEscudo(equipoLocal);
-            const escudoVisitante = getEscudo(equipoVisitante);
+            const esLocal  = proximo.equipo1 === OVIEDO;
+            const rival    = esLocal ? proximo.equipo2 : proximo.equipo1;
+            const escudoR  = getEscudo(rival);
 
             const elProximo = document.createElement('div');
             elProximo.className = 'match-item home-match-next';
@@ -332,14 +326,14 @@
                     <span class="home-localidad-badge">${esLocal ? 'Casa' : 'Fuera'}</span>
                 </div>
                 <div class="home-match-teams">
-                    <div class="home-team ${equipoLocal === OVIEDO ? 'oviedo' : ''}">
-                        <img src="${escudoLocal}" alt="${equipoLocal}" class="home-escudo-sm">
-                        <span>${equipoLocal}</span>
+                    <div class="home-team oviedo">
+                        <img src="${getEscudo(OVIEDO)}" alt="Real Oviedo" class="home-escudo-sm">
+                        <span>${esLocal ? 'Real Oviedo' : rival}</span>
                     </div>
                     <div class="home-score home-score-vs">VS</div>
-                    <div class="home-team right ${equipoVisitante === OVIEDO ? 'oviedo' : ''}">
-                        <img src="${escudoVisitante}" alt="${equipoVisitante}" class="home-escudo-sm">
-                        <span>${equipoVisitante}</span>
+                    <div class="home-team right">
+                        <img src="${escudoR}" alt="${rival}" class="home-escudo-sm">
+                        <span>${esLocal ? rival : 'Real Oviedo'}</span>
                     </div>
                 </div>
             `;
