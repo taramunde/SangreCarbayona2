@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sangre Carbayona | Web Oficial</title>
-    <link rel="stylesheet" href="css/styles.css?nocache=20251231v2">
+    <link rel="stylesheet" href="css/styles.css?nocache=20251231v3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -171,6 +171,35 @@
         @media (max-width: 480px) {
             .home-clasi-table-scroll table { min-width: 380px; }
             #homeTablaClasificacion td:nth-child(2) { padding-right: 14px; }
+        }
+
+        @media (max-width: 900px) {
+            .standings-grid { gap: 24px; }
+        }
+
+        @media (max-width: 600px) {
+            .home-clasi-wrapper,
+            .upcoming-matches {
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .home-clasi-table-scroll {
+                max-width: calc(100vw - 24px);
+            }
+
+            #homeTablaClasificacion {
+                font-size: 0.78em;
+            }
+
+            #homeTablaClasificacion td:nth-child(2) {
+                padding-right: 8px;
+                max-width: 100px;
+            }
+
+            .upcoming-matches {
+                padding: 14px 12px;
+            }
         }
     </style>
 
@@ -482,6 +511,6 @@
     <script src="js/app.js?nocache=20251231v40"></script>
     <script src="js/script.js?nocache=20251231v1"></script>
     <script src="js/clasificacion.js?nocache=20251231v29"></script>
-    <script src="js/calendario.js?nocache=20260101v7"></script>
+    <script src="js/calendario.js?nocache=20260101v6"></script>
 </body>
 </html>

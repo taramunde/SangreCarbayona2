@@ -889,6 +889,8 @@ img {
     background: var(--gray-50);
     padding: 25px;
     border-radius: 8px;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .matches-list {
@@ -1305,6 +1307,20 @@ img {
     .standings-grid { grid-template-columns: 1fr; }
     .players-grid { grid-template-columns: repeat(3, 1fr); }
     .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .standings-table-wrapper,
+    .upcoming-matches {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .standings-section .container {
+        padding: 0 12px;
+    }
+    .upcoming-matches {
+        padding: 16px 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1490,4 +1506,6 @@ img {
 
    .nav-item.open > a i {
         transform: rotate(180deg);
+}
+
 }
