@@ -162,9 +162,10 @@ const App = {
         }
 
         let html = '';
-        // Mostramos máximo 8 jugadores
+        // Mostramos máximo 8 jugadores — usamos renderJugadorCard para tener
+        // el overlay "Ver ficha" y la URL estática fichas/codigo.html correcta
         playersToRender.slice(0, 8).forEach(jugador => {
-            html += `<div class="player-card"><a href="ficha-jugador.html?id=${jugador.codigo || jugador.id}&season=${CLUB_DATA.temporadaActual}"><div class="player-image"><img src="${jugador.imagen}" alt="${jugador.nombreCompleto}"><span class="player-number">${jugador.dorsal}</span></div><div class="player-info"><span class="player-position">${translatePosition(jugador.posicion)}</span><h4 class="player-name">${jugador.nombreCompleto}</h4></div></a></div>`;
+            html += this.renderJugadorCard(jugador);
         });
         
         // Si no hay jugadores, mensaje opcional
