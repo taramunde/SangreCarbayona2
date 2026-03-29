@@ -185,26 +185,12 @@
             }
 
             .home-clasi-table-scroll {
-                max-width: calc(100vw - 24px);
-            }
-
-            #homeTablaClasificacion {
-                font-size: 0.78em;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             #homeTablaClasificacion td:nth-child(2) {
-                padding-right: 6px;
-                max-width: 90px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            /* Fijar ancho mínimo a las columnas numéricas en mobile */
-            #homeTablaClasificacion th:nth-child(n+3),
-            #homeTablaClasificacion td:nth-child(n+3) {
-                width: 34px;
-                min-width: 34px;
+                padding-right: 30px;
             }
 
             .upcoming-matches {
