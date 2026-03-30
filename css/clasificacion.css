@@ -224,3 +224,19 @@ td.pts-col { font-weight: 700; color: #001a6e; }
 
     .escudo-tabla { width: 22px; height: 22px; }
 }
+
+/* ===== LEYENDA PUNTOS DE COLOR ===== */
+.leyenda-item { display: flex; align-items: center; gap: 8px; }
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot.champions  { background-color: #2ecc71; }
+.dot.europa     { background-color: #20b2aa; }
+.dot.conference { background-color: #3498db; }
+.dot.descenso   { background-color: #e74c3c; }
