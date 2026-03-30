@@ -370,7 +370,7 @@ img {
 .mobile-nav-header { display: none; }
 .mobile-nav-footer { display: none; }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .main-nav {
         position: fixed;
         top: 0;
@@ -1495,7 +1495,7 @@ img {
 }
 
 /* Ajustes responsive */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .header-actions {
         order: 3;
         width: 100%;
