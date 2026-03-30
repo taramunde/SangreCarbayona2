@@ -205,10 +205,12 @@
 .news-card-source-badge img {
     position: static;
     width: auto;
+    max-width: 120px; /* Límite de ancho para logos muy largos */
     height: 18px;
     object-fit: contain;
     inset: unset;
     transform: none !important;
+    flex-shrink: 0;
 }
 .news-card-source-badge span {
     font-family: 'Oswald', sans-serif;
@@ -443,10 +445,12 @@
 .home-news-source img {
     position: static;
     width: auto;
+    max-width: 100px; /* Límite de ancho */
     height: 15px;
     object-fit: contain;
     inset: unset;
     transform: none !important;
+    flex-shrink: 0;
 }
 .home-news-source span {
     font-family: 'Oswald', sans-serif;
