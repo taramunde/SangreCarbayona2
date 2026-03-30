@@ -504,6 +504,103 @@
 .home-news-link i { font-size: .85em; }
 
 /* ================================================================
+   WIDGET HOMEPAGE — 1 NOTICIA DESTACADA (tarjeta horizontal)
+   ================================================================ */
+.home-news-featured-wrap {
+    width: 100%;
+}
+
+.home-news-featured-card {
+    display: flex;
+    flex-direction: row;
+    background: var(--blanco);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gris-borde);
+    transition: transform .25s, box-shadow .25s;
+    animation: fadeInUp .4s ease both;
+    max-height: 280px;
+}
+.home-news-featured-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Imagen izquierda */
+.home-news-featured-img {
+    position: relative;
+    width: 42%;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: var(--azul-dark);
+    min-height: 200px;
+}
+.home-news-featured-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+}
+.home-news-featured-card:hover .home-news-featured-img img {
+    transform: scale(1.05);
+}
+
+/* Cuerpo derecho */
+.home-news-featured-body {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+}
+.home-news-featured-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #1a2040;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.home-news-featured-desc {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .92em;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Responsive: vertical en móvil */
+@media (max-width: 640px) {
+    .home-news-featured-card {
+        flex-direction: column;
+        max-height: none;
+    }
+    .home-news-featured-img {
+        width: 100%;
+        min-height: 200px;
+        padding-top: 0;
+    }
+    .home-news-featured-body {
+        padding: 18px 18px 20px;
+    }
+    .home-news-featured-title {
+        font-size: 1.1em;
+    }
+}
+
+/* ================================================================
    ANIMACIÓN ESCALONADA DE TARJETAS
    ================================================================ */
 .news-card:nth-child(1) { animation-delay: .05s; }

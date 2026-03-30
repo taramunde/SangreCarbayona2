@@ -212,73 +212,64 @@ async function renderNoticiasPage() {
 
 /* ----------------------------------------------------------------
    5. RENDER — Widget homepage (index.html → #noticiasGrid)
+   Solo muestra 1 noticia destacada (índice 0) en formato horizontal.
    ---------------------------------------------------------------- */
 async function renderNoticiasWidget() {
     const grid = document.getElementById('noticiasGrid');
     if (!grid) return; // No estamos en index.html
 
-    // Mostrar esqueleto mientras carga
+    // Esqueleto mientras carga
     grid.innerHTML = `
-        <div class="home-news-grid" id="homeNewsGrid">
-            ${[0,1,2].map(() => `
-                <div class="home-news-card" style="pointer-events:none; opacity:.5;">
-                    <div class="home-news-img-wrap" style="background:#e8eeff;"></div>
-                    <div class="home-news-body">
-                        <div class="home-news-title" style="background:#e8eeff;height:40px;border-radius:4px;"></div>
-                    </div>
+        <div class="home-news-featured-wrap">
+            <div class="home-news-featured-card" style="pointer-events:none; opacity:.45;">
+                <div class="home-news-featured-img" style="background:#e8eeff;"></div>
+                <div class="home-news-featured-body">
+                    <div style="background:#e8eeff;height:18px;border-radius:4px;width:40%;margin-bottom:14px;"></div>
+                    <div style="background:#e8eeff;height:32px;border-radius:4px;margin-bottom:10px;"></div>
+                    <div style="background:#e8eeff;height:20px;border-radius:4px;width:70%;"></div>
                 </div>
-            `).join('')}
+            </div>
         </div>
     `;
 
-    // Solo mostramos la primera noticia destacada + 2 más = 3 total en home
-    const seleccion = [NOTICIAS_DATA[0], NOTICIAS_DATA[1], NOTICIAS_DATA[2]];
+    // Solo la noticia en el índice 0
+    const n = { ...NOTICIAS_DATA[0] };
 
     try {
-        const items = await Promise.all(
-            seleccion.map(async (n) => {
-                let noticia = { ...n };
-                if (!noticia.imagen || !noticia.descripcion) {
-                    const og = await fetchOGData(noticia.url);
-                    if (og) {
-                        noticia.imagen      = noticia.imagen      || og.imagen;
-                        noticia.descripcion = noticia.descripcion || og.descripcion;
-                        noticia.titulo      = noticia.titulo      || og.titulo;
-                    }
-                }
-                return noticia;
-            })
-        );
+        if (!n.imagen || !n.descripcion) {
+            const og = await fetchOGData(n.url);
+            if (og) {
+                n.imagen      = n.imagen      || og.imagen;
+                n.descripcion = n.descripcion || og.descripcion;
+                n.titulo      = n.titulo      || og.titulo;
+            }
+        }
 
-        const homeGrid = document.createElement('div');
-        homeGrid.className = 'home-news-grid';
+        const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
 
-        items.forEach((n, i) => {
-            const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
-            const card  = document.createElement('article');
-            card.className = 'home-news-card';
-
-            card.innerHTML = `
-                <div class="home-news-img-wrap">
-                    ${n.imagen ? `<img src="${n.imagen}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">` : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
-                    <div class="home-news-source">
-                        ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
-                        <span>${escHTML(medio.nombre)}</span>
+        grid.innerHTML = `
+            <div class="home-news-featured-wrap">
+                <article class="home-news-featured-card">
+                    <div class="home-news-featured-img">
+                        ${n.imagen
+                            ? `<img src="${escHTML(n.imagen)}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">`
+                            : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
+                        <div class="home-news-source">
+                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                            <span>${escHTML(medio.nombre)}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="home-news-body">
-                    <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</p>
-                    <h3 class="home-news-title">${escHTML(n.titulo)}</h3>
-                    <a class="home-news-link" href="${n.url}" target="_blank" rel="noopener noreferrer">
-                        Leer <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            `;
-            homeGrid.appendChild(card);
-        });
-
-        grid.innerHTML = '';
-        grid.appendChild(homeGrid);
+                    <div class="home-news-featured-body">
+                        <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</p>
+                        <h3 class="home-news-featured-title">${escHTML(n.titulo)}</h3>
+                        ${n.descripcion ? `<p class="home-news-featured-desc">${escHTML(n.descripcion)}</p>` : ''}
+                        <a class="home-news-link" href="${escHTML(n.url)}" target="_blank" rel="noopener noreferrer">
+                            Leer noticia completa <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        `;
 
     } catch (err) {
         console.error('Error cargando widget de noticias:', err);
