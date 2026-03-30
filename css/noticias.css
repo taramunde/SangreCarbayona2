@@ -460,6 +460,8 @@
     letter-spacing: .03em;
     text-transform: uppercase;
 }
+/* Si el logo carga bien, ocultar el texto redundante */
+.home-news-source.has-logo span { display: none; }
 
 .home-news-body {
     padding: 14px 16px 16px;

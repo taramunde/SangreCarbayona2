@@ -254,8 +254,8 @@ async function renderNoticiasWidget() {
                         ${n.imagen
                             ? `<img src="${escHTML(n.imagen)}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">`
                             : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
-                        <div class="home-news-source">
-                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                        <div class="home-news-source${medio.logo ? ' has-logo' : ''}">
+                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.parentElement.classList.remove('has-logo')">` : ''}
                             <span>${escHTML(medio.nombre)}</span>
                         </div>
                     </div>
