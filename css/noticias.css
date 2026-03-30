@@ -1,0 +1,511 @@
+/* ================================================================
+   NOTICIAS.CSS — Sangre Carbayona 2
+   Estilos para la página noticias.html y el widget de index.html
+   ================================================================ */
+
+/* ---- Variables (consistentes con la web) ---- */
+:root {
+    --azul:      #003DA5;
+    --azul-dark: #001a6e;
+    --azul-mid:  #0050cc;
+    --oro:       #FFD700;
+    --oro-soft:  #ffe44d;
+    --blanco:    #ffffff;
+    --gris-bg:   #f5f7fc;
+    --gris-borde:#eef0f8;
+    --gris-text: #444;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.07);
+    --shadow-md: 0 6px 24px rgba(0,0,0,.11);
+    --radius:    12px;
+}
+
+/* ================================================================
+   PAGE HERO
+   ================================================================ */
+.page-hero {
+    position: relative;
+    background: var(--azul-dark);
+    overflow: hidden;
+    padding: 56px 0 40px;
+}
+.page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, rgba(0,29,110,.95) 0%, rgba(0,61,165,.80) 100%);
+    z-index: 0;
+}
+.page-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,215,0,.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+.page-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+.page-hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,215,0,.15);
+    border: 1px solid rgba(255,215,0,.3);
+    color: var(--oro);
+    font-family: 'Oswald', sans-serif;
+    font-size: .78em;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+.page-hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.6em;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+    line-height: 1.1;
+}
+.page-hero-sub {
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(255,255,255,.65);
+    font-size: 1em;
+    margin: 0;
+}
+
+/* ================================================================
+   FILTRO DE MEDIOS
+   ================================================================ */
+.news-filter-section {
+    background: var(--blanco);
+    border-bottom: 2px solid var(--gris-borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.news-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.news-filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn {
+    flex-shrink: 0;
+    background: var(--gris-bg);
+    border: 1px solid var(--gris-borde);
+    color: var(--gris-text);
+    font-family: 'Oswald', sans-serif;
+    font-size: .82em;
+    font-weight: 500;
+    letter-spacing: .04em;
+    padding: 7px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+}
+.filter-btn:hover {
+    background: #e6ecff;
+    border-color: #b3c3f5;
+    color: var(--azul);
+}
+.filter-btn.active {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: var(--blanco);
+}
+
+/* ================================================================
+   SECCIÓN PRINCIPAL DE NOTICIAS
+   ================================================================ */
+.news-page-section {
+    padding: 48px 0 72px;
+    background: var(--gris-bg);
+    min-height: 400px;
+}
+
+/* Grid 2 columnas en desktop, 1 en móvil */
+.news-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+@media (max-width: 900px) {
+    .news-page-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   TARJETA DE NOTICIA (página completa)
+   ================================================================ */
+.news-card {
+    background: var(--blanco);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gris-borde);
+    transition: transform .25s, box-shadow .25s;
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp .4s ease both;
+}
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Imagen */
+.news-card-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    overflow: hidden;
+    background: var(--azul-dark);
+}
+.news-card-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+}
+.news-card:hover .news-card-img-wrap img {
+    transform: scale(1.04);
+}
+/* Logo del periódico sobre la imagen */
+.news-card-source-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255,255,255,.96);
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    z-index: 2;
+}
+.news-card-source-badge img {
+    position: static;
+    width: auto;
+    height: 18px;
+    object-fit: contain;
+    inset: unset;
+    transform: none !important;
+}
+.news-card-source-badge span {
+    font-family: 'Oswald', sans-serif;
+    font-size: .72em;
+    font-weight: 600;
+    color: var(--azul-dark);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* Cuerpo de la tarjeta */
+.news-card-body {
+    padding: 20px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.news-card-date {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .78em;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.news-card-date i { font-size: .85em; }
+
+.news-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.13em;
+    font-weight: 600;
+    color: #1a2040;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.news-card-desc {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .9em;
+    color: #666;
+    line-height: 1.55;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+.news-card-link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Oswald', sans-serif;
+    font-size: .82em;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--azul);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+}
+.news-card-link:hover {
+    color: var(--azul-dark);
+    border-color: var(--oro);
+}
+.news-card-link i { font-size: .9em; transition: transform .2s; }
+.news-card-link:hover i { transform: translateX(3px); }
+
+/* ================================================================
+   PRIMERA TARJETA — DESTACADA (ocupa 2 columnas)
+   ================================================================ */
+.news-card.featured {
+    grid-column: 1 / -1;
+    flex-direction: row;
+}
+.news-card.featured .news-card-img-wrap {
+    width: 46%;
+    padding-top: 0;
+    flex-shrink: 0;
+    min-height: 280px;
+}
+.news-card.featured .news-card-img-wrap img {
+    position: absolute;
+    inset: 0;
+}
+.news-card.featured .news-card-body {
+    padding: 28px 30px;
+}
+.news-card.featured .news-card-title {
+    font-size: 1.45em;
+    -webkit-line-clamp: 4;
+}
+.news-card.featured .news-card-desc {
+    -webkit-line-clamp: 4;
+}
+@media (max-width: 700px) {
+    .news-card.featured {
+        flex-direction: column;
+    }
+    .news-card.featured .news-card-img-wrap {
+        width: 100%;
+        padding-top: 56.25%;
+        min-height: unset;
+    }
+}
+
+/* ================================================================
+   LOADING / EMPTY STATE
+   ================================================================ */
+.news-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 80px 0;
+    color: #888;
+    font-family: 'Source Sans 3', sans-serif;
+}
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gris-borde);
+    border-top-color: var(--azul);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.news-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 80px 0;
+    color: #aaa;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1em;
+}
+.news-empty i { font-size: 3em; color: #ccd; }
+.btn-retry {
+    margin-top: 6px;
+    background: var(--azul);
+    color: var(--blanco);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-family: 'Oswald', sans-serif;
+    font-size: .88em;
+    font-weight: 600;
+    letter-spacing: .05em;
+    cursor: pointer;
+    transition: background .2s;
+}
+.btn-retry:hover { background: var(--azul-dark); }
+
+/* ================================================================
+   WIDGET HOMEPAGE — Últimas Noticias (dentro de news-section)
+   ================================================================ */
+.home-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+@media (max-width: 900px) {
+    .home-news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+    .home-news-grid { grid-template-columns: 1fr; }
+}
+
+/* Tarjeta compacta para el home */
+.home-news-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gris-borde);
+    transition: transform .22s, box-shadow .22s;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.home-news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.home-news-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 58%;
+    overflow: hidden;
+    background: var(--azul-dark);
+}
+.home-news-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s;
+}
+.home-news-card:hover .home-news-img-wrap img { transform: scale(1.06); }
+
+/* Logo periódico encima de la imagen */
+.home-news-source {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(255,255,255,.95);
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 2;
+    box-shadow: 0 1px 5px rgba(0,0,0,.12);
+}
+.home-news-source img {
+    position: static;
+    width: auto;
+    height: 15px;
+    object-fit: contain;
+    inset: unset;
+    transform: none !important;
+}
+.home-news-source span {
+    font-family: 'Oswald', sans-serif;
+    font-size: .68em;
+    font-weight: 600;
+    color: var(--azul-dark);
+    letter-spacing: .03em;
+    text-transform: uppercase;
+}
+
+.home-news-body {
+    padding: 14px 16px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.home-news-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #1a2040;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+.home-news-date {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: .76em;
+    color: #999;
+    margin-bottom: 10px;
+}
+.home-news-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Oswald', sans-serif;
+    font-size: .76em;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--azul);
+    text-decoration: none;
+    transition: color .18s;
+    align-self: flex-start;
+}
+.home-news-link:hover { color: var(--azul-dark); }
+.home-news-link i { font-size: .85em; }
+
+/* ================================================================
+   ANIMACIÓN ESCALONADA DE TARJETAS
+   ================================================================ */
+.news-card:nth-child(1) { animation-delay: .05s; }
+.news-card:nth-child(2) { animation-delay: .10s; }
+.news-card:nth-child(3) { animation-delay: .15s; }
+.news-card:nth-child(4) { animation-delay: .20s; }
+.home-news-card:nth-child(1) { animation: fadeInUp .35s .05s ease both; }
+.home-news-card:nth-child(2) { animation: fadeInUp .35s .10s ease both; }
+.home-news-card:nth-child(3) { animation: fadeInUp .35s .15s ease both; }

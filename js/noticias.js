@@ -1,0 +1,311 @@
+/* ================================================================
+   NOTICIAS.JS — Sangre Carbayona 2
+   Gestiona la carga de noticias en la página noticias.html
+   y el widget de Últimas Noticias del index.html
+   ================================================================
+
+   INSTRUCCIONES:
+   - Edita el array NOTICIAS_DATA con los 4 artículos que quieras mostrar.
+   - Cada entrada puede tener imagen y descripción propias, o dejarlas en
+     blanco para que el script intente obtenerlas vía jsonlink.io (OG tags).
+   - Los logos de periódicos se cargan desde MEDIOS_CONFIG.
+   - El índice 0 es la noticia DESTACADA (aparece en el home y grande en la página).
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. CONFIGURACIÓN DE MEDIOS
+   ---------------------------------------------------------------- */
+const MEDIOS_CONFIG = {
+    lavozdeasturias: {
+        nombre: 'La Voz de Asturias',
+        logo: 'https://i.postimg.cc/15Qs5NRP/logo_-_La_Voz_de_Asturias.webp',
+        color: '#c0392b'
+    },
+    lanuevaespana: {
+        nombre: 'La Nueva España',
+        logo: 'https://i.postimg.cc/nV7nJ1J0/logo_-_La_Nueva_España.webp',
+        color: '#004a99'
+    },
+    elcomercio: {
+        nombre: 'El Comercio',
+        logo: 'https://i.postimg.cc/FRkN1yJF/logo_-_El_Comercio.webp',
+        color: '#2980b9'
+    },
+    killerasturias: {
+        nombre: 'Killer Asturias',
+        logo: 'https://i.postimg.cc/7hvDz5g3/logo_-_Killer_Asturias.webp',
+        color: '#e74c3c'
+    }
+};
+
+/* ----------------------------------------------------------------
+   2. DATOS DE LAS NOTICIAS
+   Edita estos 4 artículos con URLs reales.
+   Si dejas imagen/descripcion vacíos, se intentará obtener del OG.
+   ---------------------------------------------------------------- */
+const NOTICIAS_DATA = [
+    {
+        medio: 'lavozdeasturias',
+        url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/03/21/real-oviedo-agoniza-primera-divison-derrota-4-2-ante-levante/00031774117963052233391.htm',
+        titulo: 'El Real Oviedo ya agoniza en Primera Divisón: derrota por 4-2 ante el Levante.',
+        descripcion: 'Los azules, que cuajaron 25 minutos terribles y consiguieron empatar al Levante antes del descanso, repitieron los errores defensivos (4-2) y se acabaron hundiendo.',
+        imagen: 'https://i.postimg.cc/52NcHT12/J_29_LVA.jpg',
+        fecha: '23 marzo 2026'
+    },
+    {
+        medio: 'lanuevaespana',
+        url: 'https://www.lne.es/real-oviedo/2026/03/21/oviedo-firma-media-sentencia-segunda-128259928.html',
+        titulo: 'El Oviedo firma media sentencia a Segunda: derrota en su final ante el Levante (4-2).',
+        descripcion: 'Los de Almada fueron arrollados en la primera mitad, pero igualaron con brío para caer después sin fútbol.',
+        imagen: 'https://i.postimg.cc/DwyVWHFy/J_29_LNE.webp',
+        fecha: '23 marzo 2026'
+    },
+    {
+        medio: 'elcomercio',
+        url: 'https://www.elcomercio.es/real-oviedo/errores-falta-futbol-condenan-real-oviedo-levante-20260321223221-nt.html',
+        titulo: 'Los errores y la falta de fútbol condenan al Real Oviedo.',
+        descripcion: 'Las escasas opciones de permanencia que había se quedaron en Valencia después de perder ante el Levante, tras hacer lo más difícil, que fue igualar un 0-2 en cuatro minutos.',
+        imagen: 'https://i.postimg.cc/g2k9wQd0/J_29_EC.jpg',
+        fecha: '23 marzo 2026'
+    },
+    {
+        medio: 'killerasturias',
+        url: 'https://killerasturias.com/cronicas/la-cronica-el-levante-condena-un-desastroso-oviedo',
+        titulo: 'La Crónica: El Levante condena a un desastroso Oviedo',
+        descripcion: 'El equipo azul reaccionó al 2-0, pero volvió a caer víctima de sus fallos defensivos en una segunda parte que le acerca al descenso.',
+        imagen: 'https://i.postimg.cc/7ZYvCdD6/J_29_KA.jpg',
+        fecha: '23 marzo 2026'
+    }
+];
+
+/* ----------------------------------------------------------------
+   3. UTILIDADES
+   ---------------------------------------------------------------- */
+/**
+ * Intenta obtener imagen y descripción de una URL vía jsonlink.io
+ * si el artículo no tiene datos propios.
+ */
+async function fetchOGData(url) {
+    try {
+        const res = await fetch(`https://jsonlink.io/api/extract?url=${encodeURIComponent(url)}`);
+        if (!res.ok) throw new Error('jsonlink error');
+        const data = await res.json();
+        return {
+            titulo: data.title || '',
+            descripcion: data.description || '',
+            imagen: (data.images && data.images[0]) ? data.images[0] : ''
+        };
+    } catch {
+        return null;
+    }
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '';
+    return dateStr;
+}
+
+/* ----------------------------------------------------------------
+   4. RENDER — Página noticias.html
+   ---------------------------------------------------------------- */
+async function renderNoticiasPage() {
+    const grid       = document.getElementById('noticiasPageGrid');
+    const loading    = document.getElementById('noticiasLoading');
+    const emptyState = document.getElementById('noticiasEmpty');
+    const retryBtn   = document.getElementById('btnRetry');
+
+    if (!grid) return; // No estamos en noticias.html
+
+    // Filtro de medios
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const medio = btn.dataset.medio;
+            const cards = grid.querySelectorAll('.news-card');
+            cards.forEach(card => {
+                if (medio === 'all' || card.dataset.medio === medio) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+                // Reajustar destacada si se filtra
+                if (medio !== 'all') {
+                    card.classList.remove('featured');
+                } else {
+                    cards[0] && cards[0].classList.add('featured');
+                }
+            });
+        });
+    });
+
+    if (retryBtn) {
+        retryBtn.addEventListener('click', () => {
+            emptyState.style.display = 'none';
+            loading.style.display    = 'flex';
+            grid.style.display       = 'none';
+            buildCards();
+        });
+    }
+
+    buildCards();
+
+    async function buildCards() {
+        try {
+            const items = await Promise.all(
+                NOTICIAS_DATA.map(async (n, i) => {
+                    let noticia = { ...n };
+                    // Si falta imagen o descripción, intentamos OG
+                    if (!noticia.imagen || !noticia.descripcion) {
+                        const og = await fetchOGData(noticia.url);
+                        if (og) {
+                            noticia.titulo      = noticia.titulo      || og.titulo;
+                            noticia.descripcion = noticia.descripcion || og.descripcion;
+                            noticia.imagen      = noticia.imagen      || og.imagen;
+                        }
+                    }
+                    return { ...noticia, index: i };
+                })
+            );
+
+            grid.innerHTML = '';
+            items.forEach((n, i) => {
+                const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
+                const card  = document.createElement('article');
+                card.className = 'news-card' + (i === 0 ? ' featured' : '');
+                card.dataset.medio = n.medio;
+                card.style.animationDelay = (i * 0.07) + 's';
+
+                card.innerHTML = `
+                    <div class="news-card-img-wrap">
+                        ${n.imagen ? `<img src="${n.imagen}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">` : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
+                        <div class="news-card-source-badge">
+                            ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                            <span>${escHTML(medio.nombre)}</span>
+                        </div>
+                    </div>
+                    <div class="news-card-body">
+                        <div class="news-card-meta">
+                            <span class="news-card-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</span>
+                        </div>
+                        <h2 class="news-card-title">${escHTML(n.titulo)}</h2>
+                        ${n.descripcion ? `<p class="news-card-desc">${escHTML(n.descripcion)}</p>` : ''}
+                        <a class="news-card-link" href="${n.url}" target="_blank" rel="noopener noreferrer">
+                            Leer noticia <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            loading.style.display = 'none';
+            grid.style.display    = 'grid';
+
+        } catch (err) {
+            console.error('Error cargando noticias:', err);
+            loading.style.display    = 'none';
+            emptyState.style.display = 'flex';
+        }
+    }
+}
+
+/* ----------------------------------------------------------------
+   5. RENDER — Widget homepage (index.html → #noticiasGrid)
+   ---------------------------------------------------------------- */
+async function renderNoticiasWidget() {
+    const grid = document.getElementById('noticiasGrid');
+    if (!grid) return; // No estamos en index.html
+
+    // Mostrar esqueleto mientras carga
+    grid.innerHTML = `
+        <div class="home-news-grid" id="homeNewsGrid">
+            ${[0,1,2].map(() => `
+                <div class="home-news-card" style="pointer-events:none; opacity:.5;">
+                    <div class="home-news-img-wrap" style="background:#e8eeff;"></div>
+                    <div class="home-news-body">
+                        <div class="home-news-title" style="background:#e8eeff;height:40px;border-radius:4px;"></div>
+                    </div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    // Solo mostramos la primera noticia destacada + 2 más = 3 total en home
+    const seleccion = [NOTICIAS_DATA[0], NOTICIAS_DATA[1], NOTICIAS_DATA[2]];
+
+    try {
+        const items = await Promise.all(
+            seleccion.map(async (n) => {
+                let noticia = { ...n };
+                if (!noticia.imagen || !noticia.descripcion) {
+                    const og = await fetchOGData(noticia.url);
+                    if (og) {
+                        noticia.imagen      = noticia.imagen      || og.imagen;
+                        noticia.descripcion = noticia.descripcion || og.descripcion;
+                        noticia.titulo      = noticia.titulo      || og.titulo;
+                    }
+                }
+                return noticia;
+            })
+        );
+
+        const homeGrid = document.createElement('div');
+        homeGrid.className = 'home-news-grid';
+
+        items.forEach((n, i) => {
+            const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
+            const card  = document.createElement('article');
+            card.className = 'home-news-card';
+
+            card.innerHTML = `
+                <div class="home-news-img-wrap">
+                    ${n.imagen ? `<img src="${n.imagen}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">` : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
+                    <div class="home-news-source">
+                        ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                        <span>${escHTML(medio.nombre)}</span>
+                    </div>
+                </div>
+                <div class="home-news-body">
+                    <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</p>
+                    <h3 class="home-news-title">${escHTML(n.titulo)}</h3>
+                    <a class="home-news-link" href="${n.url}" target="_blank" rel="noopener noreferrer">
+                        Leer <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            `;
+            homeGrid.appendChild(card);
+        });
+
+        grid.innerHTML = '';
+        grid.appendChild(homeGrid);
+
+    } catch (err) {
+        console.error('Error cargando widget de noticias:', err);
+        grid.innerHTML = '<p style="color:#888;padding:16px;font-family:Source Sans 3,sans-serif;">No se pudieron cargar las noticias.</p>';
+    }
+}
+
+/* ----------------------------------------------------------------
+   6. UTILIDAD: escape HTML básico
+   ---------------------------------------------------------------- */
+function escHTML(str) {
+    if (!str) return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+/* ----------------------------------------------------------------
+   7. INIT — Detecta en qué página estamos y lanza el render
+   ---------------------------------------------------------------- */
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('noticiasPageGrid')) {
+        renderNoticiasPage();
+    }
+    if (document.getElementById('noticiasGrid')) {
+        renderNoticiasWidget();
+    }
+});
