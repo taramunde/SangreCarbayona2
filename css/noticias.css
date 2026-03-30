@@ -462,18 +462,19 @@
     text-transform: uppercase;
     white-space: nowrap;
 }
-/* En la tarjeta destacada del home la imagen es estrecha:
-   mostramos solo el logo, el texto sobra */
-.home-news-featured-img .home-news-source span {
-    display: none;
-}
+/* En la tarjeta destacada del home: solo logo, a su tamaño natural */
 .home-news-featured-img .home-news-source {
     gap: 0;
-    padding: 5px 8px;
+    padding: 8px 12px;
 }
 .home-news-featured-img .home-news-source img {
-    max-width: 120px;
-    height: 20px;
+    width: auto;
+    max-width: 160px;
+    height: auto;
+    max-height: 40px;
+}
+.home-news-featured-img .home-news-source span {
+    display: none;
 }
 
 .home-news-body {
