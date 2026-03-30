@@ -195,31 +195,26 @@
     left: 12px;
     background: rgba(255,255,255,.96);
     border-radius: 8px;
-    padding: 5px 10px;
+    padding: 6px 10px;
     display: flex;
     align-items: center;
-    gap: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,.15);
     z-index: 2;
 }
 .news-card-source-badge img {
     position: static;
     width: auto;
-    max-width: 120px; /* Límite de ancho para logos muy largos */
-    height: 18px;
+    max-width: 140px;
+    height: 20px;
     object-fit: contain;
     inset: unset;
     transform: none !important;
     flex-shrink: 0;
+    display: block;
 }
+/* Texto oculto: el logo ya identifica el medio */
 .news-card-source-badge span {
-    font-family: 'Oswald', sans-serif;
-    font-size: .72em;
-    font-weight: 600;
-    color: var(--azul-dark);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    display: none;
 }
 
 /* Cuerpo de la tarjeta */
@@ -428,39 +423,33 @@
 }
 .home-news-card:hover .home-news-img-wrap img { transform: scale(1.06); }
 
-/* Logo periódico encima de la imagen */
+/* Logo periódico encima de la imagen — solo logo, sin texto al lado */
 .home-news-source {
     position: absolute;
     top: 10px;
     left: 10px;
     background: rgba(255,255,255,.96);
     border-radius: 8px;
-    padding: 6px 12px;
+    padding: 6px 10px;
     display: flex;
     align-items: center;
-    gap: 8px;
     z-index: 2;
     box-shadow: 0 1px 5px rgba(0,0,0,.15);
-    max-width: calc(100% - 20px);
 }
 .home-news-source img {
     position: static;
     width: auto;
-    max-width: 110px;
-    height: 18px;
+    max-width: 130px;
+    height: 20px;
     object-fit: contain;
     inset: unset;
     transform: none !important;
     flex-shrink: 0;
+    display: block;
 }
+/* El span de texto se oculta: el logo ya identifica el medio */
 .home-news-source span {
-    font-family: 'Oswald', sans-serif;
-    font-size: .68em;
-    font-weight: 600;
-    color: var(--azul-dark);
-    letter-spacing: .03em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    display: none;
 }
 
 .home-news-body {
