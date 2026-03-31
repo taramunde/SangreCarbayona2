@@ -1,5 +1,5 @@
 /* ===================================
-   CD VILLAFERREIRA - ESTILOS
+   SANGRE CARBAYONA - ESTILOS
    =================================== */
 
 :root {
@@ -1340,9 +1340,6 @@ img {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 28px 20px;
-    }
-    .footer-column.contact {
-        grid-column: span 2;
     }
     .footer-bottom-content {
         flex-direction: column;
