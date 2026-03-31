@@ -79,7 +79,7 @@ Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
     let htmlContent = template
         .replace(/\{\{NOMBRE\}\}/g,          jugador.nombreCompleto)
         .replace(/\{\{IMAGEN\}\}/g,           jugador.imagen)
-        .replace(/\{\{ID\}\}/g,               jugador.id)
+        .replace(/\{\{ID\}\}/g,               jugador.codigo)
         .replace(/\{\{TEMPORADA_ID\}\}/g,     temporadaId)
         .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
         .replace(/\{\{POSICION\}\}/g,         jugador.posicion)
