@@ -398,8 +398,9 @@ const App = {
 
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
-        // El código (slug) es el identificador único del jugador — siempre presente.
-        const playerUrl = `fichas/${jugador.codigo}.html`;
+        const playerUrl = jugador.codigo 
+            ? `fichas/${jugador.codigo}.html` 
+            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
 
         return `
             <article class="squad-card">
@@ -441,33 +442,25 @@ const App = {
     },
 
     // ===================================
-    // FICHA JUGADOR (CORREGIDA PARA BUSCAR POR CÓDIGO)
+    // FICHA JUGADOR
     // ===================================
     renderFichaJugador: function() {
         const container = document.getElementById('fichaJugadorContent');
         if (!container) return;
 
-        let jugadorCodigo, seasonId;
+        let jugadorId, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            // Fichas estáticas generadas: usan codigo
-            jugadorCodigo = window.PLAYER_DATA_STATIC.codigo;
-            seasonId      = window.PLAYER_DATA_STATIC.season;
+            jugadorId = window.PLAYER_DATA_STATIC.id || window.PLAYER_DATA_STATIC.codigo;
+            seasonId = window.PLAYER_DATA_STATIC.season;
         } else {
-            // URL dinámica: ?codigo=aaron-escandell&season=2024-25
             const urlParams = new URLSearchParams(window.location.search);
-            jugadorCodigo = urlParams.get('codigo') || urlParams.get('player');
-            seasonId      = urlParams.get('season') || CLUB_DATA.temporadaActual;
+            jugadorId = urlParams.get('id') || urlParams.get('codigo') || urlParams.get('player');
+            seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
 
-        // Búsqueda directa por código en los datos del club
-        const temporada = CLUB_DATA.temporadas[seasonId];
-        const jugador = temporada ? temporada.jugadores.find(j => j.codigo === jugadorCodigo) : null;
-
-        if (!jugador) { 
-            container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado: ' + jugadorCodigo + '</p>'; 
-            return; 
-        }
+        const jugador = getJugadorById(jugadorId, seasonId);
+        if (!jugador) { container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>'; return; }
 
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
         this.updateMetaTags(jugador);
@@ -614,8 +607,7 @@ const App = {
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
-            // Corregido: Buscamos por codigo en todas las temporadas
-            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.codigo === jugadorActual.codigo);
+            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo);
             if (jugadorEnTemporada) {
                 historial.push({
                     temporada: temp.nombre,
