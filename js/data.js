@@ -10,7 +10,7 @@ const CLUB_DATA = {
         siglas: "OVI",
         fundacion: 1926,
         estadio: "Estadio Carlos Tartiere",
-        capacidadEstadio: 30400,
+        capacidadEstadio: 30500,
         ciudad: "Oviedo",
         direccion: "Calle Carlos Tartiere s/n, 33013 Oviedo",
         telefono: "985 111 111",
@@ -18,11 +18,12 @@ const CLUB_DATA = {
     },
 
     // Temporada actual (por defecto)
-    temporadaActual: "2024-25",
+    temporadaActual: "2025-26",
     
     // Lista de temporadas disponibles
     temporadasDisponibles: [
-        { id: "2024-25", nombre: "2024/25", actual: true },
+        { id: "2025-26", nombre: "2025/26", actual: true },
+        { id: "2024-25", nombre: "2024/25", actual: false },
         { id: "2023-24", nombre: "2023/24", actual: false },
         { id: "2022-23", nombre: "2022/23", actual: false }
     ],
@@ -30,20 +31,20 @@ const CLUB_DATA = {
     // Datos por temporada
     temporadas: {
         // ===================================
-        // TEMPORADA 2024/25
+        // TEMPORADA 2025/26
         // ===================================
-        "2024-25": {
-            competicion: "Primera RFEF",
-            grupo: "Grupo I",
+        "2025-26": {
+            competicion: "Primera División",
+            grupo: "null",
             
             estadisticasEquipo: {
-                posicion: 2,
-                partidosJugados: 23,
-                victorias: 13,
-                empates: 6,
-                derrotas: 4,
-                golesFavor: 38,
-                golesContra: 18
+                posicion: 20,
+                partidosJugados: 29,
+                victorias: 4,
+                empates: 9,
+                derrotas: 16,
+                golesFavor: 20,
+                golesContra: 48
             },
             
             clasificacion: [
@@ -55,7 +56,8 @@ const CLUB_DATA = {
             ],
             
             jugadores: [
-                { id: "miguel-angel-torres", codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 28, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2026", imagen: "https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp", stats: { partidos: 23, goles: 0, asistencias: 0, minutos: 2070, amarillas: 1, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                // PORTEROS
+                { id: "aaron-escandell-banacloche", codigo: "aaron-escandell-banacloche", nombre: "Aarón", apellidos: "Escandell Banacloche", nombreCompleto: "Aarón Escandell Banacloche", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 30, altura: 1.84, nacionalidad: "Española", lugarNacimiento: "Carcagente, Valencia", fechaNacimiento: "1995-09-27", enClubDesde: "2024", contratoHasta: "2027", imagen: "https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp", stats: { partidos: 29, goles: 48, asistencias: 0, minutos: 0, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
                 { id: "pablo-menendez", codigo: "pablo-menendez", nombre: "Pablo", apellidos: "Menéndez Álvarez", nombreCompleto: "Pablo Menéndez", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 22, altura: 1.83, peso: 78, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Gijón, Asturias", fechaNacimiento: "2002-07-22", enClubDesde: "2024", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk2-24/400/500", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0 }, redes: { instagram: "#", twitter: null } },
                 { id: "dani-fernandez", codigo: "dani-fernandez", nombre: "Dani", apellidos: "Fernández Rodríguez", nombreCompleto: "Dani Fernández", dorsal: 2, posicion: "Lateral Derecho", posicionCorta: "LD", edad: 26, altura: 1.78, peso: 73, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Avilés, Asturias", fechaNacimiento: "1998-11-03", enClubDesde: "2023", contratoHasta: "2025", imagen: "https://picsum.photos/seed/df1-24/400/500", stats: { partidos: 21, goles: 2, asistencias: 4, minutos: 1780, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
                 { id: "adrian-picos", codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 29, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander, Cantabria", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://i.postimg.cc/MZ1ZJxQr/Adri_Lopes_PNG.png", stats: { partidos: 23, goles: 3, asistencias: 1, minutos: 2045, amarillas: 5, rojas: 0 }, redes: { instagram: "#", twitter: null } },
