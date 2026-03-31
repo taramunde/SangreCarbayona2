@@ -1337,7 +1337,13 @@ img {
     .team-name-large { font-size: 1.2rem; }
     .match-actions { flex-direction: column; }
     .players-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr; }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 20px;
+    }
+    .footer-column.contact {
+        grid-column: span 2;
+    }
     .footer-bottom-content {
         flex-direction: column;
         gap: 15px;
