@@ -441,7 +441,7 @@ const App = {
     },
 
     // ===================================
-    // FICHA JUGADOR
+    // FICHA JUGADOR (CORREGIDA PARA BUSCAR POR CÓDIGO)
     // ===================================
     renderFichaJugador: function() {
         const container = document.getElementById('fichaJugadorContent');
@@ -454,14 +454,20 @@ const App = {
             jugadorCodigo = window.PLAYER_DATA_STATIC.codigo;
             seasonId      = window.PLAYER_DATA_STATIC.season;
         } else {
-            // URL dinámica: ?codigo=javi-martinez&season=2024-25
+            // URL dinámica: ?codigo=aaron-escandell&season=2024-25
             const urlParams = new URLSearchParams(window.location.search);
             jugadorCodigo = urlParams.get('codigo') || urlParams.get('player');
             seasonId      = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
 
-        const jugador = getJugadorPorCodigo(jugadorCodigo, seasonId);
-        if (!jugador) { container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>'; return; }
+        // Búsqueda directa por código en los datos del club
+        const temporada = CLUB_DATA.temporadas[seasonId];
+        const jugador = temporada ? temporada.jugadores.find(j => j.codigo === jugadorCodigo) : null;
+
+        if (!jugador) { 
+            container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado: ' + jugadorCodigo + '</p>'; 
+            return; 
+        }
 
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
         this.updateMetaTags(jugador);
@@ -608,6 +614,7 @@ const App = {
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
+            // Corregido: Buscamos por codigo en todas las temporadas
             const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.codigo === jugadorActual.codigo);
             if (jugadorEnTemporada) {
                 historial.push({
