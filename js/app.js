@@ -398,9 +398,8 @@ const App = {
 
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
-        const playerUrl = jugador.codigo 
-            ? `fichas/${jugador.codigo}.html` 
-            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
+        // El código (slug) es el identificador único del jugador — siempre presente.
+        const playerUrl = `fichas/${jugador.codigo}.html`;
 
         return `
             <article class="squad-card">
@@ -448,18 +447,20 @@ const App = {
         const container = document.getElementById('fichaJugadorContent');
         if (!container) return;
 
-        let jugadorId, seasonId;
+        let jugadorCodigo, seasonId;
 
         if (window.PLAYER_DATA_STATIC) {
-            jugadorId = window.PLAYER_DATA_STATIC.id || window.PLAYER_DATA_STATIC.codigo;
-            seasonId = window.PLAYER_DATA_STATIC.season;
+            // Fichas estáticas generadas: usan codigo
+            jugadorCodigo = window.PLAYER_DATA_STATIC.codigo;
+            seasonId      = window.PLAYER_DATA_STATIC.season;
         } else {
+            // URL dinámica: ?codigo=javi-martinez&season=2024-25
             const urlParams = new URLSearchParams(window.location.search);
-            jugadorId = urlParams.get('id') || urlParams.get('codigo') || urlParams.get('player');
-            seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
+            jugadorCodigo = urlParams.get('codigo') || urlParams.get('player');
+            seasonId      = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
 
-        const jugador = getJugadorById(jugadorId, seasonId);
+        const jugador = getJugadorPorCodigo(jugadorCodigo, seasonId);
         if (!jugador) { container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>'; return; }
 
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
@@ -607,7 +608,7 @@ const App = {
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
-            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo);
+            const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.codigo === jugadorActual.codigo);
             if (jugadorEnTemporada) {
                 historial.push({
                     temporada: temp.nombre,
