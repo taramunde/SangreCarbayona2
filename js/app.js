@@ -414,7 +414,7 @@ const App = {
                         </div>
                     </div>
                     <div class="squad-info">
-                        <h4 class="squad-name">${jugador.nombreCompleto}</h4>
+                        <h4 class="squad-name">${jugador.nombre}</h4>
                         <span class="squad-position">${translatePosition(jugador.posicion)}</span>
                         <div class="squad-meta">
                             <span><i class="far fa-calendar"></i> ${jugador.edad} ${t('edad')}</span>
