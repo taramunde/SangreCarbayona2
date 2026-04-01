@@ -548,36 +548,71 @@ const App = {
     },
 
     renderFichaOverview: function(jugador) {
-        const container = document.getElementById('tabOverview');
-        if (!container) return;
-        const fechaNac = formatearFecha(jugador.fechaNacimiento);
-        container.innerHTML = `
-            <div class="overview-grid">
-                <div class="performance-card">
-                    <h3 class="card-title">${t('rendimiento')}</h3>
-                    <div class="performance-stats">
-                        <div class="performance-item"><div class="performance-header"><span>${t('goles_partido')}</span><span class="performance-value">${(jugador.stats.goles / jugador.stats.partidos).toFixed(2)}</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${(jugador.stats.goles / jugador.stats.partidos) * 100}%"></div></div></div>
-                        <div class="performance-item"><div class="performance-header"><span>${t('minutos_partido')}</span><span class="performance-value">${Math.round(jugador.stats.minutos / jugador.stats.partidos)}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${(jugador.stats.minutos / jugador.stats.partidos / 90) * 100}%"></div></div></div>
+    const container = document.getElementById('tabOverview');
+    if (!container) return;
+    const fechaNac = formatearFecha(jugador.fechaNacimiento);
+    
+    // CORRECCIÓN: Evitar división por cero
+    const golesPorPartido = jugador.stats.partidos > 0 
+        ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2) 
+        : '0.00';
+    
+    const minutosPorPartido = jugador.stats.partidos > 0 
+        ? Math.round(jugador.stats.minutos / jugador.stats.partidos) 
+        : 0;
+    
+    // CORRECCIÓN: Porcentaje de la barra de progreso (evitar NaN en width)
+    const golesPorcentaje = jugador.stats.partidos > 0 
+        ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100) 
+        : 0;
+    
+    const minutosPorcentaje = jugador.stats.partidos > 0 
+        ? Math.min((jugador.stats.minutos / jugador.stats.partidos / 90) * 100, 100) 
+        : 0;
+
+    container.innerHTML = `
+        <div class="overview-grid">
+            <div class="performance-card">
+                <h3 class="card-title">${t('rendimiento')}</h3>
+                <div class="performance-stats">
+                    <div class="performance-item">
+                        <div class="performance-header">
+                            <span>${t('goles_partido')}</span>
+                            <span class="performance-value">${golesPorPartido}</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: ${golesPorcentaje}%"></div>
+                        </div>
+                    </div>
+                    <div class="performance-item">
+                        <div class="performance-header">
+                            <span>${t('minutos_partido')}</span>
+                            <span class="performance-value">${minutosPorPartido}'</span>
+                        </div>
+                        <div class="performance-bar">
+                            <div class="performance-fill" style="width: ${minutosPorcentaje}%"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="personal-info-card">
-                    <h3 class="card-title">${t('informacion')}</h3>
-                    <div class="personal-info-list">
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento')}</span><span class="info-value">${fechaNac.completa}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar')}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad')}</span><span class="info-value">${jugador.nacionalidad}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde')}</span><span class="info-value">${jugador.enClubDesde}</span></div>
-                    </div>
+            </div>
+            <div class="personal-info-card">
+                <h3 class="card-title">${t('informacion')}</h3>
+                <div class="personal-info-list">
+                    <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento')}</span><span class="info-value">${fechaNac.completa}</span></div>
+                    <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar')}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
+                    <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad')}</span><span class="info-value">${jugador.nacionalidad}</span></div>
+                    <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde')}</span><span class="info-value">${jugador.enClubDesde}</span></div>
                 </div>
-                <div class="disciplinary-card">
-                    <h3 class="card-title">${t('disciplina')}</h3>
-                    <div class="cards-display">
-                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas}</span><span class="card-label">${t('amarillas')}</span></div></div>
-                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas}</span><span class="card-label">${t('rojas')}</span></div></div>
-                    </div>
+            </div>
+            <div class="disciplinary-card">
+                <h3 class="card-title">${t('disciplina')}</h3>
+                <div class="cards-display">
+                    <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas')}</span></div></div>
+                    <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas')}</span></div></div>
                 </div>
-            </div>`;
-    },
+            </div>
+        </div>`;
+},
 
     renderFichaMatches: function(jugador, seasonId) {
         const container = document.getElementById('tabMatches');
