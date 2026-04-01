@@ -48,14 +48,6 @@ const CLUB_DATA = {
                 golesContra: 48
             },
             
-            clasificacion: [
-                { posicion: 1, siglas: "RAC", nombre: "Racing Ferrol", puntos: 48, jugados: 23, gfavor: 42, gcontra: 15, dg: "+27", destacado: true, logo: "https://picsum.photos/seed/racing-logo/60/60" },
-                { posicion: 2, siglas: "OVI", nombre: "Real Oviedo", puntos: 45, jugados: 23, gfavor: 38, gcontra: 18, dg: "+20", destacado: true, logo: "https://picsum.photos/seed/real-oviedo-logo/60/60" },
-                { posicion: 3, siglas: "UDR", nombre: "UD Rosaleda", puntos: 42, jugados: 23, gfavor: 35, gcontra: 20, dg: "+15", destacado: true, logo: "https://picsum.photos/seed/rosaleda-logo/60/60" },
-                { posicion: 4, siglas: "ATV", nombre: "Atlético Vergara", puntos: 39, jugados: 23, gfavor: 30, gcontra: 22, dg: "+8", destacado: false, logo: "https://picsum.photos/seed/vergara-logo/60/60" },
-                { posicion: 5, siglas: "CDS", nombre: "Cultural Soria", puntos: 37, jugados: 23, gfavor: 28, gcontra: 24, dg: "+4", destacado: false, logo: "https://picsum.photos/seed/soria-logo/60/60" }
-            ],
-            
             jugadores: [
                 // PORTEROS
                 { id: "aaron-escandell-banacloche", codigo: "aaron-escandell-banacloche", nombre: "Aarón", apellidos: "Escandell Banacloche", nombreCompleto: "Aarón Escandell Banacloche", apodo: "Aarón", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 30, altura: 1.84, nacionalidad: "Española", lugarNacimiento: "Carcagente, Valencia", fechaNacimiento: "1995-09-27", enClubDesde: "2024", contratoHasta: "2027", imagen: "https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp", stats: { partidos: 29, goles: 48, asistencias: 0, minutos: 0, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
@@ -98,11 +90,6 @@ const CLUB_DATA = {
             
             estadisticasEquipo: { posicion: 4, partidosJugados: 38, victorias: 18, empates: 10, derrotas: 10, golesFavor: 56, golesContra: 35 },
             
-            clasificacion: [
-                { posicion: 1, siglas: "RAC", nombre: "Racing Ferrol", puntos: 72, jugados: 38, gfavor: 65, gcontra: 28, dg: "+37", destacado: true, logo: "https://picsum.photos/seed/racing-logo/60/60" },
-                { posicion: 4, siglas: "OVI", nombre: "Real Oviedo", puntos: 64, jugados: 38, gfavor: 56, gcontra: 35, dg: "+21", destacado: true, logo: "https://picsum.photos/seed/real-oviedo-logo/60/60" }
-            ],
-            
             jugadores: [
                 { id: "miguel-angel-torres", codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 27, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://picsum.photos/seed/gk1-23/400/500", stats: { partidos: 36, goles: 0, asistencias: 0, minutos: 3240, amarillas: 3, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
                 { id: "adrian-picos", codigo: "adrian-picos", nombre: "Adrián", apellidos: "Picos Menéndez", nombreCompleto: "Adrián Picos", dorsal: 4, posicion: "Central", posicionCorta: "DC", edad: 28, altura: 1.85, peso: 80, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Santander, Cantabria", fechaNacimiento: "1995-06-18", enClubDesde: "2022", contratoHasta: "2025", imagen: "https://i.postimg.cc/MZ1ZJxQr/Adri_Lopes_PNG.png", stats: { partidos: 35, goles: 4, asistencias: 2, minutos: 3080, amarillas: 7, rojas: 0 }, redes: { instagram: "#", twitter: null } },
@@ -127,11 +114,6 @@ const CLUB_DATA = {
             grupo: "Grupo I",
             
             estadisticasEquipo: { posicion: 1, partidosJugados: 34, victorias: 22, empates: 6, derrotas: 6, golesFavor: 62, golesContra: 28 },
-            
-            clasificacion: [
-                { posicion: 1, siglas: "OVI", nombre: "Real Oviedo", puntos: 72, jugados: 34, gfavor: 62, gcontra: 28, dg: "+34", destacado: true, logo: "https://picsum.photos/seed/real-oviedo-logo/60/60" },
-                { posicion: 2, siglas: "ATV", nombre: "Atlético Vergara", puntos: 65, jugados: 34, gfavor: 55, gcontra: 30, dg: "+25", destacado: true, logo: "https://picsum.photos/seed/vergara-logo/60/60" }
-            ],
             
             jugadores: [
                 { id: "miguel-angel-torres", codigo: "miguel-angel-torres", nombre: "Miguel Ángel", apellidos: "Torres García", nombreCompleto: "Miguel Ángel Torres", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 26, altura: 1.87, peso: 82, pie: "Derecho", nacionalidad: "Española", lugarNacimiento: "Oviedo, Asturias", fechaNacimiento: "1997-03-15", enClubDesde: "2022", contratoHasta: "2024", imagen: "https://picsum.photos/seed/gk1-22/400/500", stats: { partidos: 34, goles: 0, asistencias: 0, minutos: 3060, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
