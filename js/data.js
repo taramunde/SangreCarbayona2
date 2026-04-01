@@ -50,7 +50,7 @@ const CLUB_DATA = {
             
             jugadores: [
                 // PORTEROS
-                { id: "aaron-escandell-banacloche", codigo: "aaron-escandell-banacloche", nombre: "Aarón", apellidos: "Escandell Banacloche", nombreCompleto: "Aarón Escandell Banacloche", apodo: "Aarón", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 30, altura: 1.84, nacionalidad: "Española", lugarNacimiento: "Carcagente, Valencia", fechaNacimiento: "1995-09-27", enClubDesde: "2024", contratoHasta: "2027", imagen: "https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp", stats: { partidos: 29, goles: 48, asistencias: 0, minutos: 0, amarillas: 2, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
+                { id: "aaron-escandell-banacloche", codigo: "aaron-escandell-banacloche", nombre: "Aarón", apellidos: "Escandell Banacloche", nombreCompleto: "Aarón Escandell Banacloche", apodo: "Aarón", dorsal: 13, posicion: "Portero", posicionCorta: "POR", edad: 30, altura: 1.84, nacionalidad: "Española", lugarNacimiento: "Carcagente, Valencia", fechaNacimiento: "1995-09-27", enClubDesde: "2024", contratoHasta: "2027", imagen: "https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp", stats: { partidos: 29, goles: 48, asistencias: 0, minutos: 2610, amarillas: 2, rojas: 0, desglose: { "Primera División": { partidos: 24, goles: 40, asistencias: 0, minutos: 2160, amarillas: 1, rojas: 0 }, "Copa del Rey": { partidos: 3, goles: 5, asistencias: 0, minutos: 270, amarillas: 1, rojas: 0 }, "Competición Internacional": { partidos: 2, goles: 3, asistencias: 0, minutos: 180, amarillas: 0, rojas: 0 } } }, redes: { instagram: "#", twitter: "#" } },
                 { id: "horatiu-alexandru-moldovan", codigo: "horatiu-alexandru-moldovan", nombre: "Horațiu Alexandru", apellidos: "Moldovan", nombreCompleto: "Horațiu Alexandru Moldovan", apodo: "Moldovan", dorsal: 1, posicion: "Portero", posicionCorta: "POR", edad: 28, altura: 1.86, nacionalidad: "Rumana", lugarNacimiento: "Cluj-Napoca, Transilvania", fechaNacimiento: "1998-01-20", enClubDesde: "2025", contratoHasta: "2026", imagen: "https://i.postimg.cc/sgPM0mk4/Moldovan_PNG_(2).webp", stats: { partidos: 1, goles: 4, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0 }, redes: { instagram: "#", twitter: null } },
                 { id: "miguel-de-jesus-narvaez-lopez", codigo: "miguel-de-jesus-narvaez-lopez", nombre: "Miguel de Jesús", apellidos: "Narváez López", nombreCompleto: "Miguel de Jesús Narváez López", apodo: "Narváez", dorsal: 26, posicion: "Portero", posicionCorta: "POR", edad: 24, altura: 1.88, nacionalidad: "Española", lugarNacimiento: "Badajoz, Badajoz", fechaNacimiento: "2002-04-29", enClubDesde: "2024", contratoHasta: "2027", imagen: "https://i.postimg.cc/XJqXqbps/Narváez_PNG.webp", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0 }, redes: { instagram: "#", twitter: "#" } },
                 // DEFENSAS
@@ -75,10 +75,9 @@ const CLUB_DATA = {
             ],
 
             partidosJugados: [
-                { id: 1, jornada: 23, fecha: "2025-01-19", local: "Real Oviedo", visitante: "Atlético Vergara", golesLocal: 2, golesVisitante: 1, resultado: "V" },
-                { id: 2, jornada: 22, fecha: "2025-01-12", local: "Cultural Soria", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 3, resultado: "V" },
-                { id: 3, jornada: 21, fecha: "2025-01-05", local: "Real Oviedo", visitante: "Racing Ferrol", golesLocal: 1, golesVisitante: 1, resultado: "E" }
-            ]
+                { id: 1, jornada: 23, competicion: "Primera División", fecha: "2025-01-19", local: "Real Oviedo", visitante: "Atlético Vergara", golesLocal: 2, golesVisitante: 1, resultado: "V" },
+                { id: 2, jornada: "Octavos", competicion: "Copa del Rey", fecha: "2025-01-15", local: "Real Oviedo", visitante: "Sevilla FC", golesLocal: 1, golesVisitante: 0, resultado: "V" }
+           ]
         },
         
         // ===================================

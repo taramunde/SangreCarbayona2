@@ -39,7 +39,6 @@ const App = {
         this.temporadaActiva = CLUB_DATA.temporadaActual;
         
         // Funciones de renderizado
-        // renderClasificacion() la gestiona clasificacion.js (se carga después)
         this.renderCalendario();
         this.renderPlantillaHome(); // Carga inicial (Todos)
         this.renderNoticias();
@@ -54,27 +53,21 @@ const App = {
         this.renderVideos();
 
         // Listeners de eventos
-        this.setupHomeFilters(); // NUEVO: Activa los botones de filtro
+        this.setupHomeFilters(); 
     },
 
     // ===================================
-    // NUEVO: FILTROS HOME
+    // FILTROS HOME
     // ===================================
     setupHomeFilters: function() {
         const tabs = document.querySelectorAll('.position-tabs .tab-btn');
-        // Si no estamos en la home, no hace nada
         if (!tabs.length) return;
 
         tabs.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                // 1. Gestión visual de botón activo
                 tabs.forEach(b => b.classList.remove('active'));
                 e.currentTarget.classList.add('active');
-
-                // 2. Obtener el filtro (ej: 'goalkeeper', 'defender')
                 const position = e.currentTarget.dataset.position;
-                
-                // 3. Llamar a renderizar con ese filtro
                 this.renderPlantillaHome(position);
             });
         });
@@ -114,8 +107,6 @@ const App = {
     // CLASIFICACIÓN HOME
     // ===================================
     renderClasificacion: function() {
-        // La tabla home (#homeCuerpoTabla) la rellena clasificacion.js
-        // que se carga después — le damos un tick para que esté listo
         setTimeout(function() {
             if (typeof renderizarTablaHome === 'function') {
                 renderizarTablaHome();
@@ -138,14 +129,13 @@ const App = {
     },
 
     // ===================================
-    // PLANTILLA HOME (MODIFICADO PARA FILTRAR)
+    // PLANTILLA HOME
     // ===================================
     renderPlantillaHome: function(filter = 'all') {
         const container = document.getElementById('plantillaHomeGrid');
         if (!container) return;
         const temporada = getTemporada(CLUB_DATA.temporadaActual);
 
-        // Mapeo de nombres de datos a posiciones de la base de datos
         const positionGroups = {
             'goalkeeper': ['Portero'],
             'defender': ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
@@ -155,20 +145,16 @@ const App = {
 
         let playersToRender = temporada.jugadores;
 
-        // Si no es 'all', filtramos
         if (filter !== 'all') {
             const validPositions = positionGroups[filter] || [];
             playersToRender = temporada.jugadores.filter(j => validPositions.includes(j.posicion));
         }
 
         let html = '';
-        // Mostramos máximo 8 jugadores — usamos renderJugadorCard para tener
-        // el overlay "Ver ficha" y la URL estática fichas/codigo.html correcta
         playersToRender.slice(0, 8).forEach(jugador => {
             html += this.renderJugadorCard(jugador);
         });
         
-        // Si no hay jugadores, mensaje opcional
         if (playersToRender.length === 0) {
             html = '<p style="grid-column: 1/-1; text-align:center; opacity: 0.7;">No hay jugadores en esta categoría.</p>';
         }
@@ -200,7 +186,6 @@ const App = {
         const container = document.getElementById('heroMatch');
         if (!container) return;
 
-        // ── Escudos por siglas ────────────────────────────────────────
         const ESCUDOS = {
             OVI: 'https://i.postimg.cc/yYcPrs6f/Oviedo.png',
             LEV: 'https://i.postimg.cc/W1FCSyhH/Levante-U-D-PNG.png',
@@ -224,7 +209,6 @@ const App = {
             ELC: 'https://i.postimg.cc/Kj439Dfc/Elche-C-F-2023-PNG.png',
         };
 
-        // ── Datos reales actualizados (API LaLiga 2025/26) ────────────
         const ultimo = {
             jornada: 29, fecha: '21 mar 2026',
             localNom: 'Levante UD',   localSig: 'LEV',
@@ -238,7 +222,6 @@ const App = {
             estadio: 'Carlos Tartiere', esOviedoLocal: true
         };
 
-        // ── Calcular resultado del Oviedo ─────────────────────────────
         const golesOvi  = ultimo.esOviedoLocal ? ultimo.golLocal  : ultimo.golVisit;
         const golesRiv  = ultimo.esOviedoLocal ? ultimo.golVisit  : ultimo.golLocal;
         const resultado = golesOvi > golesRiv ? 'victoria' : golesOvi < golesRiv ? 'derrota' : 'empate';
@@ -313,7 +296,6 @@ const App = {
               '</div>' +
             '</div>';
 
-        // ── Estilos del hero (inyectados una sola vez) ────────────────
         if (!document.getElementById('heroMatchStyles')) {
             const s = document.createElement('style');
             s.id = 'heroMatchStyles';
@@ -548,149 +530,214 @@ const App = {
     },
 
     renderFichaOverview: function(jugador) {
-    const container = document.getElementById('tabOverview');
-    if (!container) return;
-    const fechaNac = formatearFecha(jugador.fechaNacimiento);
-    
-    // CORRECCIÓN: Evitar división por cero
-    const golesPorPartido = jugador.stats.partidos > 0 
-        ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2) 
-        : '0.00';
-    
-    const minutosPorPartido = jugador.stats.partidos > 0 
-        ? Math.round(jugador.stats.minutos / jugador.stats.partidos) 
-        : 0;
-    
-    // CORRECCIÓN: Porcentaje de la barra de progreso (evitar NaN en width)
-    const golesPorcentaje = jugador.stats.partidos > 0 
-        ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100) 
-        : 0;
-    
-    const minutosPorcentaje = jugador.stats.partidos > 0 
-        ? Math.min((jugador.stats.minutos / jugador.stats.partidos / 90) * 100, 100) 
-        : 0;
-
-    container.innerHTML = `
-        <div class="overview-grid">
-            <div class="performance-card">
-                <h3 class="card-title">${t('rendimiento')}</h3>
-                <div class="performance-stats">
-                    <div class="performance-item">
-                        <div class="performance-header">
-                            <span>${t('goles_partido')}</span>
-                            <span class="performance-value">${golesPorPartido}</span>
-                        </div>
-                        <div class="performance-bar">
-                            <div class="performance-fill" style="width: ${golesPorcentaje}%"></div>
-                        </div>
-                    </div>
-                    <div class="performance-item">
-                        <div class="performance-header">
-                            <span>${t('minutos_partido')}</span>
-                            <span class="performance-value">${minutosPorPartido}'</span>
-                        </div>
-                        <div class="performance-bar">
-                            <div class="performance-fill" style="width: ${minutosPorcentaje}%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="personal-info-card">
-                <h3 class="card-title">${t('informacion')}</h3>
-                <div class="personal-info-list">
-                    <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento')}</span><span class="info-value">${fechaNac.completa}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar')}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad')}</span><span class="info-value">${jugador.nacionalidad}</span></div>
-                    <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde')}</span><span class="info-value">${jugador.enClubDesde}</span></div>
-                </div>
-            </div>
-            <div class="disciplinary-card">
-                <h3 class="card-title">${t('disciplina')}</h3>
-                <div class="cards-display">
-                    <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas')}</span></div></div>
-                    <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas')}</span></div></div>
-                </div>
-            </div>
-        </div>`;
-},
-
-    renderFichaMatches: function(jugador, seasonId) {
-    const container = document.getElementById('tabMatches');
-    if (!container) return;
-    
-    const temporada = getTemporada(seasonId);
-    if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
-        return;
-    }
-    
-    let html = '<div class="matches-list">';
-    
-    temporada.partidosJugados.forEach(partido => {
-        const fecha = formatearFecha(partido.fecha);
+        const container = document.getElementById('tabOverview');
+        if (!container) return;
+        const fechaNac = formatearFecha(jugador.fechaNacimiento);
         
-        // Determinar clase de resultado (V, E, D)
-        let resultClass = partido.resultado === 'V' ? 'win' : (partido.resultado === 'E' ? 'draw' : 'loss');
+        const golesPorPartido = jugador.stats.partidos > 0 
+            ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2) 
+            : '0.00';
         
-        html += `
-            <article class="match-detail-card">
-                <div class="match-detail-header">
-                    <div class="match-date-badge ${resultClass}">
-                        <span class="match-day">${fecha.dia}</span>
-                        <span class="match-month">${fecha.mesCorto}</span>
-                    </div>
-                    
-                    <div class="match-competition-info">
-                        <span class="competition-name">${temporada.competicion} - Jornada ${partido.jornada}</span>
-                        
-                        <div class="match-teams-result">
-                            <span class="team-home">${partido.local}</span>
-                            <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
-                            <span class="team-away">${partido.visitante}</span>
+        const minutosPorPartido = jugador.stats.partidos > 0 
+            ? Math.round(jugador.stats.minutos / jugador.stats.partidos) 
+            : 0;
+        
+        const golesPorcentaje = jugador.stats.partidos > 0 
+            ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100) 
+            : 0;
+        
+        const minutosPorcentaje = jugador.stats.partidos > 0 
+            ? Math.min((jugador.stats.minutos / jugador.stats.partidos / 90) * 100, 100) 
+            : 0;
+
+        container.innerHTML = `
+            <div class="overview-grid">
+                <div class="performance-card">
+                    <h3 class="card-title">${t('rendimiento')}</h3>
+                    <div class="performance-stats">
+                        <div class="performance-item">
+                            <div class="performance-header">
+                                <span>${t('goles_partido')}</span>
+                                <span class="performance-value">${golesPorPartido}</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-fill" style="width: ${golesPorcentaje}%"></div>
+                            </div>
+                        </div>
+                        <div class="performance-item">
+                            <div class="performance-header">
+                                <span>${t('minutos_partido')}</span>
+                                <span class="performance-value">${minutosPorPartido}'</span>
+                            </div>
+                            <div class="performance-bar">
+                                <div class="performance-fill" style="width: ${minutosPorcentaje}%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </article>
+                <div class="personal-info-card">
+                    <h3 class="card-title">${t('informacion')}</h3>
+                    <div class="personal-info-list">
+                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento')}</span><span class="info-value">${fechaNac.completa}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar')}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad')}</span><span class="info-value">${jugador.nacionalidad}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde')}</span><span class="info-value">${jugador.enClubDesde}</span></div>
+                    </div>
+                </div>
+                <div class="disciplinary-card">
+                    <h3 class="card-title">${t('disciplina')}</h3>
+                    <div class="cards-display">
+                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas')}</span></div></div>
+                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas')}</span></div></div>
+                    </div>
+                </div>
+            </div>`;
+    },
+
+    // ===================================
+    // PESTAÑA PARTIDOS (CON DROPDOWN)
+    // ===================================
+    renderFichaMatches: function(jugador, seasonId, filtroCompeticion = 'all') {
+        const container = document.getElementById('tabMatches');
+        if (!container) return;
+        
+        const temporada = getTemporada(seasonId);
+        if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
+            container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
+            return;
+        }
+
+        const competiciones = ['all', ...new Set(temporada.partidosJugados.map(p => p.competicion || temporada.competicion))];
+        
+        let html = `
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
+                <label for="filterMatches" style="font-weight: 600; margin-right: 10px; color: #333;">Competición:</label>
+                <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
+                    ${competiciones.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}
+                </select>
+            </div>
+            <div class="matches-list">
         `;
-    });
-    
-    html += '</div>';
-    container.innerHTML = html;
-},
+        
+        const partidosFiltrados = filtroCompeticion === 'all' 
+            ? temporada.partidosJugados 
+            : temporada.partidosJugados.filter(p => (p.competicion || temporada.competicion) === filtroCompeticion);
 
-    renderFichaCareerHistory: function(jugadorActual, currentSeasonId) {
+        if (partidosFiltrados.length === 0) {
+            html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">No hay partidos en esta competición.</p>`;
+        } else {
+            partidosFiltrados.forEach(partido => {
+                const fecha = formatearFecha(partido.fecha);
+                let resultClass = partido.resultado === 'V' ? 'win' : (partido.resultado === 'E' ? 'draw' : 'loss');
+                const compNombre = partido.competicion || temporada.competicion;
+                const jorTexto = typeof partido.jornada === 'number' ? `Jornada ${partido.jornada}` : partido.jornada;
+                
+                html += `
+                    <article class="match-detail-card">
+                        <div class="match-detail-header">
+                            <div class="match-date-badge ${resultClass}">
+                                <span class="match-day">${fecha.dia}</span>
+                                <span class="match-month">${fecha.mesCorto}</span>
+                            </div>
+                            <div class="match-competition-info">
+                                <span class="competition-name">${compNombre} - ${jorTexto}</span>
+                                <div class="match-teams-result">
+                                    <span class="team-home">${partido.local}</span>
+                                    <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
+                                    <span class="team-away">${partido.visitante}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            });
+        }
+        
+        html += '</div>';
+        container.innerHTML = html;
+
+        document.getElementById('filterMatches').addEventListener('change', (e) => {
+            this.renderFichaMatches(jugador, seasonId, e.target.value);
+        });
+    },
+
+    // ===================================
+    // PESTAÑA TRAYECTORIA (CON DROPDOWN Y TOTALES)
+    // ===================================
+    renderFichaCareerHistory: function(jugadorActual, currentSeasonId, filtroCompeticion = 'all') {
         const container = document.getElementById('tabCareer');
         if (!container) return;
         
         const historial = [];
         let totales = { partidos: 0, goles: 0, asistencias: 0, amarillas: 0, rojas: 0, minutos: 0 };
+        const competicionesSet = new Set(); 
 
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
             const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo);
+            
             if (jugadorEnTemporada) {
-                historial.push({
-                    temporada: temp.nombre,
-                    equipo: CLUB_DATA.club.nombreCorto,
-                    logo: CLUB_DATA.club.logo || "",
-                    stats: jugadorEnTemporada.stats,
-                    dorsal: jugadorEnTemporada.dorsal,
-                    posicion: jugadorEnTemporada.posicion,
-                    actual: temp.id === currentSeasonId
-         });
-                totales.partidos += jugadorEnTemporada.stats.partidos;
-                totales.goles += jugadorEnTemporada.stats.goles;
-                totales.asistencias += jugadorEnTemporada.stats.asistencias;
-                totales.amarillas += jugadorEnTemporada.stats.amarillas;
-                totales.rojas += jugadorEnTemporada.stats.rojas;
-                totales.minutos += jugadorEnTemporada.stats.minutos;
+                if (jugadorEnTemporada.stats.desglose) {
+                    Object.keys(jugadorEnTemporada.stats.desglose).forEach(c => competicionesSet.add(c));
+                }
+
+                let statsAMostrar = { ...jugadorEnTemporada.stats };
+                let mostrarEstaTemporada = true;
+
+                if (filtroCompeticion !== 'all') {
+                    if (jugadorEnTemporada.stats.desglose && jugadorEnTemporada.stats.desglose[filtroCompeticion]) {
+                        statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion];
+                    } else {
+                        mostrarEstaTemporada = false; 
+                    }
+                }
+
+                if (mostrarEstaTemporada) {
+                    historial.push({
+                        temporada: temp.nombre,
+                        equipo: CLUB_DATA.club.nombreCorto,
+                        logo: CLUB_DATA.club.logo || "",
+                        stats: statsAMostrar,
+                        statsGlobales: jugadorEnTemporada.stats, 
+                        dorsal: jugadorEnTemporada.dorsal,
+                        posicion: jugadorEnTemporada.posicion,
+                        actual: temp.id === currentSeasonId
+                    });
+                    
+                    totales.partidos += statsAMostrar.partidos || 0;
+                    totales.goles += statsAMostrar.goles || 0;
+                    totales.asistencias += statsAMostrar.asistencias || 0;
+                    totales.amarillas += statsAMostrar.amarillas || 0;
+                    totales.rojas += statsAMostrar.rojas || 0;
+                    totales.minutos += statsAMostrar.minutos || 0;
+                }
             }
         });
 
         let timelineHtml = '';
         historial.forEach(h => {
             const badgeHtml = h.logo ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">` : `<span class="team-badge-text">OVI</span>`;
+            
+            let statsHtml = `
+                <div class="timeline-stats">
+                    <span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span>
+                    <span><strong>${h.stats.goles}</strong> ${t('goles')}</span>
+                    <span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span>
+                </div>
+            `;
+
+            if (filtroCompeticion === 'all' && h.statsGlobales.desglose) {
+                statsHtml += `<div class="timeline-breakdown-box" style="margin-top:10px; font-size:0.85em; background:rgba(0,0,0,0.03); padding:8px; border-radius:4px;">`;
+                for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+                    statsHtml += `<div style="display:flex; justify-content:space-between; margin-bottom:2px;">
+                        <span>${comp}</span>
+                        <span><b>${data.partidos}</b> PJ | <b>${data.goles}</b> G | <b>${data.amarillas}</b> <i class="fas fa-square" style="color:#f1c40f; font-size:10px;"></i></span>
+                    </div>`;
+                }
+                statsHtml += `</div>`;
+            }
+
             timelineHtml += `
                 <div class="timeline-item ${h.actual ? 'current' : ''}">
                     <div class="timeline-marker"></div>
@@ -703,21 +750,28 @@ const App = {
                             <span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span>
                             <span class="pos-name">${translatePosition(h.posicion)}</span>
                         </div>
-                        <div class="timeline-stats">
-                            <span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span>
-                            <span><strong>${h.stats.goles}</strong> ${t('goles')}</span>
-                            <span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span>
-                        </div>
+                        ${statsHtml}
                     </div>
                 </div>
             `;
         });
 
+        const listaComps = ['all', ...Array.from(competicionesSet)];
+        const dropdownHtml = `
+            <div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center;">
+                <label style="margin-right:10px; font-weight:bold;">Filtrar por:</label>
+                <select id="filterCareer" style="padding:5px 10px; border-radius:5px; border:1px solid #001a6e; background:#fff; color:#001a6e;">
+                    ${listaComps.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}
+                </select>
+            </div>
+        `;
+
         container.innerHTML = `
+            ${dropdownHtml}
             <div class="career-grid">
                 <div class="career-timeline-card">
                     <h3 class="card-title">${t('historial')}</h3>
-                    <div class="timeline">${timelineHtml}</div>
+                    <div class="timeline">${timelineHtml || '<p>No hay datos.</p>'}</div>
                 </div>
                 <div class="career-sidebar">
                     <div class="career-totals-card">
@@ -734,6 +788,10 @@ const App = {
                 </div>
             </div>
         `;
+
+        document.getElementById('filterCareer').addEventListener('change', (e) => {
+            this.renderFichaCareerHistory(jugadorActual, currentSeasonId, e.target.value);
+        });
     },
 
     // ===================================
