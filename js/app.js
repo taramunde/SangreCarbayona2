@@ -647,12 +647,12 @@ const App = {
                 historial.push({
                     temporada: temp.nombre,
                     equipo: CLUB_DATA.club.nombreCorto,
-                    logo: datosTemporada.clasificacion.find(e => e.siglas === "OVI")?.logo || "",
+                    logo: CLUB_DATA.club.logo || "",
                     stats: jugadorEnTemporada.stats,
                     dorsal: jugadorEnTemporada.dorsal,
                     posicion: jugadorEnTemporada.posicion,
                     actual: temp.id === currentSeasonId
-                });
+         });
                 totales.partidos += jugadorEnTemporada.stats.partidos;
                 totales.goles += jugadorEnTemporada.stats.goles;
                 totales.asistencias += jugadorEnTemporada.stats.asistencias;

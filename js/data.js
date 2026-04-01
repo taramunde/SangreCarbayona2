@@ -7,6 +7,7 @@ const CLUB_DATA = {
     club: {
         nombre: "Real Oviedo",
         nombreCorto: "Real Oviedo",
+        logo: "https://i.postimg.cc/yYcPrs6f/Oviedo.png",
         siglas: "OVI",
         fundacion: 1926,
         estadio: "Estadio Carlos Tartiere",
