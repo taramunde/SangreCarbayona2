@@ -40,7 +40,7 @@ const App = {
         
         // Funciones de renderizado
         this.renderCalendario();
-        this.renderPlantillaHome(); // Carga inicial (Todos)
+        this.renderPlantillaHome();
         this.renderNoticias();
         this.renderPatrocinadores();
         this.renderProximoPartido();
@@ -56,9 +56,6 @@ const App = {
         this.setupHomeFilters(); 
     },
 
-    // ===================================
-    // FILTROS HOME
-    // ===================================
     setupHomeFilters: function() {
         const tabs = document.querySelectorAll('.position-tabs .tab-btn');
         if (!tabs.length) return;
@@ -73,9 +70,6 @@ const App = {
         });
     },
 
-    // ===================================
-    // SELECTOR DE TEMPORADA
-    // ===================================
     renderSeasonSelector: function() {
         const container = document.getElementById('seasonSelector');
         if (!container) return;
@@ -103,20 +97,6 @@ const App = {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },
 
-    // ===================================
-    // CLASIFICACIÓN HOME
-    // ===================================
-    renderClasificacion: function() {
-        setTimeout(function() {
-            if (typeof renderizarTablaHome === 'function') {
-                renderizarTablaHome();
-            }
-        }, 0);
-    },
-
-    // ===================================
-    // CALENDARIO
-    // ===================================
     renderCalendario: function() {
         const container = document.getElementById('calendarioList');
         if (!container) return;
@@ -128,9 +108,6 @@ const App = {
         container.innerHTML = html;
     },
 
-    // ===================================
-    // PLANTILLA HOME
-    // ===================================
     renderPlantillaHome: function(filter = 'all') {
         const container = document.getElementById('plantillaHomeGrid');
         if (!container) return;
@@ -144,7 +121,6 @@ const App = {
         };
 
         let playersToRender = temporada.jugadores;
-
         if (filter !== 'all') {
             const validPositions = positionGroups[filter] || [];
             playersToRender = temporada.jugadores.filter(j => validPositions.includes(j.posicion));
@@ -158,13 +134,9 @@ const App = {
         if (playersToRender.length === 0) {
             html = '<p style="grid-column: 1/-1; text-align:center; opacity: 0.7;">No hay jugadores en esta categoría.</p>';
         }
-
         container.innerHTML = html;
     },
 
-    // ===================================
-    // NOTICIAS
-    // ===================================
     renderNoticias: function() {
         const container = document.getElementById('noticiasGrid');
         if (!container) return;
@@ -211,27 +183,27 @@ const App = {
 
         const ultimo = {
             jornada: 29, fecha: '21 mar 2026',
-            localNom: 'Levante UD',   localSig: 'LEV',
-            visitNom: 'Real Oviedo',  visitSig: 'OVI',
+            localNom: 'Levante UD', localSig: 'LEV',
+            visitNom: 'Real Oviedo', visitSig: 'OVI',
             golLocal: 4, golVisit: 2, esOviedoLocal: false
         };
         const proximo = {
             jornada: 30, fecha: '5 abr 2026', hora: '18:30',
-            localNom: 'Real Oviedo',  localSig: 'OVI',
-            visitNom: 'Sevilla FC',   visitSig: 'SEV',
+            localNom: 'Real Oviedo', localSig: 'OVI',
+            visitNom: 'Sevilla FC', visitSig: 'SEV',
             estadio: 'Carlos Tartiere', esOviedoLocal: true
         };
 
-        const golesOvi  = ultimo.esOviedoLocal ? ultimo.golLocal  : ultimo.golVisit;
-        const golesRiv  = ultimo.esOviedoLocal ? ultimo.golVisit  : ultimo.golLocal;
+        const golesOvi = ultimo.esOviedoLocal ? ultimo.golLocal : ultimo.golVisit;
+        const golesRiv = ultimo.esOviedoLocal ? ultimo.golVisit : ultimo.golLocal;
         const resultado = golesOvi > golesRiv ? 'victoria' : golesOvi < golesRiv ? 'derrota' : 'empate';
-        const resTexto  = { victoria: 'Victoria', derrota: 'Derrota', empate: 'Empate' }[resultado];
-        const resIcono  = { victoria: 'fa-check-circle', derrota: 'fa-times-circle', empate: 'fa-minus-circle' }[resultado];
-        const scoreCol  = resultado === 'victoria' ? 'hero-score--win' : resultado === 'derrota' ? 'hero-score--lose' : '';
+        const resTexto = { victoria: 'Victoria', derrota: 'Derrota', empate: 'Empate' }[resultado];
+        const resIcono = { victoria: 'fa-check-circle', derrota: 'fa-times-circle', empate: 'fa-minus-circle' }[resultado];
+        const scoreCol = resultado === 'victoria' ? 'hero-score--win' : resultado === 'derrota' ? 'hero-score--lose' : '';
 
-        const escLocal  = (sig) => ESCUDOS[sig] || '';
-        const ovClass   = (sig) => sig === 'OVI' ? ' hero-escudo--oviedo' : '';
-        const ovNameCl  = (sig) => sig === 'OVI' ? ' hero-team-name--oviedo' : '';
+        const escLocal = (sig) => ESCUDOS[sig] || '';
+        const ovClass = (sig) => sig === 'OVI' ? ' hero-escudo--oviedo' : '';
+        const ovNameCl = (sig) => sig === 'OVI' ? ' hero-team-name--oviedo' : '';
 
         container.innerHTML =
             '<div class="hero-block">' +
@@ -263,9 +235,7 @@ const App = {
                 '<i class="fas ' + resIcono + '"></i> ' + resTexto +
               '</div>' +
             '</div>' +
-
             '<div class="hero-divider"></div>' +
-
             '<div class="hero-block">' +
               '<div class="hero-label-row">' +
                 '<span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>' +
@@ -352,25 +322,21 @@ const App = {
         const container = document.getElementById('plantillaCompleta');
         if (!container) return;
         const temporada = getTemporada(this.temporadaActiva);
-        
         const posiciones = {
             [t('porteros')]: ['Portero'],
             [t('defensas')]: ['Lateral Derecho', 'Lateral Izquierdo', 'Central'],
             [t('centrocampistas')]: ['Mediocentro Defensivo', 'Centrocampista', 'Mediocentro', 'Mediapunta'],
             [t('delanteros')]: ['Delantero Centro', 'Extremo Derecho', 'Extremo Izquierdo', 'Delantero']
         };
-        
         let html = '';
         for (const [nombrePosicion, posicionesLista] of Object.entries(posiciones)) {
             const jugadoresPos = temporada.jugadores.filter(j => posicionesLista.includes(j.posicion));
             if (jugadoresPos.length === 0) continue;
-            
             let icon = 'fa-user';
             if (nombrePosicion.includes('Port') || nombrePosicion.includes('Goal')) icon = 'fa-hand-paper';
             else if (nombrePosicion.includes('Def') || nombrePosicion.includes('Back')) icon = 'fa-shield-alt';
             else if (nombrePosicion.includes('Centro') || nombrePosicion.includes('Mid')) icon = 'fa-sync-alt';
             else if (nombrePosicion.includes('Delan') || nombrePosicion.includes('Forward')) icon = 'fa-bullseye';
-
             html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
             jugadoresPos.forEach(jugador => { html += this.renderJugadorCard(jugador); });
             html += `</div></div>`;
@@ -380,10 +346,7 @@ const App = {
 
     renderJugadorCard: function(jugador) {
         const ribbonHtml = jugador.fallecido ? '<div class="deceased-ribbon"></div>' : '';
-        const playerUrl = jugador.codigo 
-            ? `fichas/${jugador.codigo}.html` 
-            : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
-
+        const playerUrl = jugador.codigo ? `fichas/${jugador.codigo}.html` : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
         return `
             <article class="squad-card">
                 <a href="${playerUrl}" class="squad-link">
@@ -391,9 +354,7 @@ const App = {
                         <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
                         <span class="squad-number">${jugador.dorsal}</span>
                         ${ribbonHtml}
-                        <div class="squad-overlay">
-                            <span class="view-profile">${t('ver_ficha')}</span>
-                        </div>
+                        <div class="squad-overlay"><span class="view-profile">${t('ver_ficha')}</span></div>
                     </div>
                     <div class="squad-info">
                         <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
@@ -408,8 +369,7 @@ const App = {
                         </div>
                     </div>
                 </a>
-            </article>
-        `;
+            </article>`;
     },
 
     renderCuerpoTecnico: function() {
@@ -423,15 +383,10 @@ const App = {
         container.innerHTML = html;
     },
 
-    // ===================================
-    // FICHA JUGADOR
-    // ===================================
     renderFichaJugador: function() {
         const container = document.getElementById('fichaJugadorContent');
         if (!container) return;
-
         let jugadorId, seasonId;
-
         if (window.PLAYER_DATA_STATIC) {
             jugadorId = window.PLAYER_DATA_STATIC.id || window.PLAYER_DATA_STATIC.codigo;
             seasonId = window.PLAYER_DATA_STATIC.season;
@@ -440,20 +395,15 @@ const App = {
             jugadorId = urlParams.get('id') || urlParams.get('codigo') || urlParams.get('player');
             seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
         }
-
         const jugador = getJugadorById(jugadorId, seasonId);
         if (!jugador) { container.innerHTML = '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>'; return; }
-
         document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
         this.updateMetaTags(jugador);
-
         const breadcrumb = document.querySelector('.breadcrumb .current');
         if (breadcrumb) breadcrumb.textContent = jugador.nombreCompleto;
-
         const esTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
         const haFallecido = jugador.fallecido === true;
         const fechaFallecimiento = jugador.fechaFallecimiento || null;
-
         let edadMostrar = jugador.edad;
         if (haFallecido && fechaFallecimiento && jugador.fechaNacimiento) {
             const nacimiento = new Date(jugador.fechaNacimiento);
@@ -463,15 +413,12 @@ const App = {
             if (m < 0 || (m === 0 && muerte.getDate() < nacimiento.getDate())) edadMuerte--;
             edadMostrar = edadMuerte;
         }
-
         const pageUrl = window.location.href;
         const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
         const shareLinks = `
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
-        `;
-
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
         container.innerHTML = `
             <div class="player-photo-container">
                 <div class="player-photo-wrapper">
@@ -487,9 +434,7 @@ const App = {
                     <h1 class="player-full-name">${jugador.nombreCompleto}</h1>
                     <div class="player-social-links">${shareLinks}</div>
                 </div>
-                <div class="player-quick-stats">
-                    ${this.renderQuickStats(jugador, haFallecido, fechaFallecimiento, edadMostrar, esTemporadaActual)}
-                </div>
+                <div class="player-quick-stats">${this.renderQuickStats(jugador, haFallecido, fechaFallecimiento, edadMostrar, esTemporadaActual)}</div>
                 <div class="player-season-stats">
                     <h3 class="stats-title">${t('temporada')} ${seasonId.replace('-', '/')}</h3>
                     <div class="season-stats-grid">
@@ -499,9 +444,7 @@ const App = {
                         <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.minutos.toLocaleString()}</span><span class="season-stat-label">${t('minutos')}</span></div></div>
                     </div>
                 </div>
-            </div>
-        `;
-
+            </div>`;
         this.renderFichaOverview(jugador);
         this.renderFichaMatches(jugador, seasonId);
         this.renderFichaCareerHistory(jugador, seasonId);
@@ -533,46 +476,17 @@ const App = {
         const container = document.getElementById('tabOverview');
         if (!container) return;
         const fechaNac = formatearFecha(jugador.fechaNacimiento);
-        
-        const golesPorPartido = jugador.stats.partidos > 0 
-            ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2) 
-            : '0.00';
-        
-        const minutosPorPartido = jugador.stats.partidos > 0 
-            ? Math.round(jugador.stats.minutos / jugador.stats.partidos) 
-            : 0;
-        
-        const golesPorcentaje = jugador.stats.partidos > 0 
-            ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100) 
-            : 0;
-        
-        const minutosPorcentaje = jugador.stats.partidos > 0 
-            ? Math.min((jugador.stats.minutos / jugador.stats.partidos / 90) * 100, 100) 
-            : 0;
-
+        const golesPorPartido = jugador.stats.partidos > 0 ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2) : '0.00';
+        const minutosPorPartido = jugador.stats.partidos > 0 ? Math.round(jugador.stats.minutos / jugador.stats.partidos) : 0;
+        const golesPorcentaje = jugador.stats.partidos > 0 ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100) : 0;
+        const minutosPorcentaje = jugador.stats.partidos > 0 ? Math.min((jugador.stats.minutos / jugador.stats.partidos / 90) * 100, 100) : 0;
         container.innerHTML = `
             <div class="overview-grid">
                 <div class="performance-card">
                     <h3 class="card-title">${t('rendimiento')}</h3>
                     <div class="performance-stats">
-                        <div class="performance-item">
-                            <div class="performance-header">
-                                <span>${t('goles_partido')}</span>
-                                <span class="performance-value">${golesPorPartido}</span>
-                            </div>
-                            <div class="performance-bar">
-                                <div class="performance-fill" style="width: ${golesPorcentaje}%"></div>
-                            </div>
-                        </div>
-                        <div class="performance-item">
-                            <div class="performance-header">
-                                <span>${t('minutos_partido')}</span>
-                                <span class="performance-value">${minutosPorPartido}'</span>
-                            </div>
-                            <div class="performance-bar">
-                                <div class="performance-fill" style="width: ${minutosPorcentaje}%"></div>
-                            </div>
-                        </div>
+                        <div class="performance-item"><div class="performance-header"><span>${t('goles_partido')}</span><span class="performance-value">${golesPorPartido}</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${golesPorcentaje}%"></div></div></div>
+                        <div class="performance-item"><div class="performance-header"><span>${t('minutos_partido')}</span><span class="performance-value">${minutosPorPartido}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${minutosPorcentaje}%"></div></div></div>
                     </div>
                 </div>
                 <div class="personal-info-card">
@@ -594,21 +508,15 @@ const App = {
             </div>`;
     },
 
-    // ===================================
-    // PESTAÑA PARTIDOS (CON DROPDOWN)
-    // ===================================
     renderFichaMatches: function(jugador, seasonId, filtroCompeticion = 'all') {
         const container = document.getElementById('tabMatches');
         if (!container) return;
-        
         const temporada = getTemporada(seasonId);
         if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
             container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
             return;
         }
-
         const competiciones = ['all', ...new Set(temporada.partidosJugados.map(p => p.competicion || temporada.competicion))];
-        
         let html = `
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
                 <label for="filterMatches" style="font-weight: 600; margin-right: 10px; color: #333;">Competición:</label>
@@ -616,13 +524,8 @@ const App = {
                     ${competiciones.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}
                 </select>
             </div>
-            <div class="matches-list">
-        `;
-        
-        const partidosFiltrados = filtroCompeticion === 'all' 
-            ? temporada.partidosJugados 
-            : temporada.partidosJugados.filter(p => (p.competicion || temporada.competicion) === filtroCompeticion);
-
+            <div class="matches-list">`;
+        const partidosFiltrados = filtroCompeticion === 'all' ? temporada.partidosJugados : temporada.partidosJugados.filter(p => (p.competicion || temporada.competicion) === filtroCompeticion);
         if (partidosFiltrados.length === 0) {
             html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">No hay partidos en esta competición.</p>`;
         } else {
@@ -631,80 +534,46 @@ const App = {
                 let resultClass = partido.resultado === 'V' ? 'win' : (partido.resultado === 'E' ? 'draw' : 'loss');
                 const compNombre = partido.competicion || temporada.competicion;
                 const jorTexto = typeof partido.jornada === 'number' ? `Jornada ${partido.jornada}` : partido.jornada;
-                
                 html += `
                     <article class="match-detail-card">
                         <div class="match-detail-header">
-                            <div class="match-date-badge ${resultClass}">
-                                <span class="match-day">${fecha.dia}</span>
-                                <span class="match-month">${fecha.mesCorto}</span>
-                            </div>
+                            <div class="match-date-badge ${resultClass}"><span class="match-day">${fecha.dia}</span><span class="match-month">${fecha.mesCorto}</span></div>
                             <div class="match-competition-info">
                                 <span class="competition-name">${compNombre} - ${jorTexto}</span>
-                                <div class="match-teams-result">
-                                    <span class="team-home">${partido.local}</span>
-                                    <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
-                                    <span class="team-away">${partido.visitante}</span>
-                                </div>
+                                <div class="match-teams-result"><span class="team-home">${partido.local}</span><span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span><span class="team-away">${partido.visitante}</span></div>
                             </div>
                         </div>
-                    </article>
-                `;
+                    </article>`;
             });
         }
-        
         html += '</div>';
         container.innerHTML = html;
-
-        document.getElementById('filterMatches').addEventListener('change', (e) => {
-            this.renderFichaMatches(jugador, seasonId, e.target.value);
-        });
+        document.getElementById('filterMatches').addEventListener('change', (e) => { this.renderFichaMatches(jugador, seasonId, e.target.value); });
     },
 
     // ===================================
-    // PESTAÑA TRAYECTORIA (CON DROPDOWN Y TOTALES)
+    // TRAYECTORIA CORREGIDA PARA MÓVIL
     // ===================================
     renderFichaCareerHistory: function(jugadorActual, currentSeasonId, filtroCompeticion = 'all') {
         const container = document.getElementById('tabCareer');
         if (!container) return;
-        
         const historial = [];
         let totales = { partidos: 0, goles: 0, asistencias: 0, amarillas: 0, rojas: 0, minutos: 0 };
         const competicionesSet = new Set(); 
-
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
             const jugadorEnTemporada = datosTemporada.jugadores.find(j => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo);
-            
             if (jugadorEnTemporada) {
-                if (jugadorEnTemporada.stats.desglose) {
-                    Object.keys(jugadorEnTemporada.stats.desglose).forEach(c => competicionesSet.add(c));
-                }
-
+                if (jugadorEnTemporada.stats.desglose) { Object.keys(jugadorEnTemporada.stats.desglose).forEach(c => competicionesSet.add(c)); }
                 let statsAMostrar = { ...jugadorEnTemporada.stats };
                 let mostrarEstaTemporada = true;
-
                 if (filtroCompeticion !== 'all') {
-                    if (jugadorEnTemporada.stats.desglose && jugadorEnTemporada.stats.desglose[filtroCompeticion]) {
-                        statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion];
-                    } else {
-                        mostrarEstaTemporada = false; 
-                    }
+                    if (jugadorEnTemporada.stats.desglose && jugadorEnTemporada.stats.desglose[filtroCompeticion]) { statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion]; }
+                    else { mostrarEstaTemporada = false; }
                 }
-
                 if (mostrarEstaTemporada) {
-                    historial.push({
-                        temporada: temp.nombre,
-                        equipo: CLUB_DATA.club.nombreCorto,
-                        logo: CLUB_DATA.club.logo || "",
-                        stats: statsAMostrar,
-                        statsGlobales: jugadorEnTemporada.stats, 
-                        dorsal: jugadorEnTemporada.dorsal,
-                        posicion: jugadorEnTemporada.posicion,
-                        actual: temp.id === currentSeasonId
-                    });
-                    
+                    historial.push({ temporada: temp.nombre, equipo: CLUB_DATA.club.nombreCorto, logo: CLUB_DATA.club.logo || "", stats: statsAMostrar, statsGlobales: jugadorEnTemporada.stats, dorsal: jugadorEnTemporada.dorsal, posicion: jugadorEnTemporada.posicion, actual: temp.id === currentSeasonId });
                     totales.partidos += statsAMostrar.partidos || 0;
                     totales.goles += statsAMostrar.goles || 0;
                     totales.asistencias += statsAMostrar.asistencias || 0;
@@ -714,89 +583,43 @@ const App = {
                 }
             }
         });
-
         let timelineHtml = '';
         historial.forEach(h => {
             const badgeHtml = h.logo ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">` : `<span class="team-badge-text">OVI</span>`;
+            let statsHtml = `<div class="timeline-stats"><span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span><span><strong>${h.stats.goles}</strong> ${t('goles')}</span><span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span></div>`;
             
-            let statsHtml = `
-                <div class="timeline-stats">
-                    <span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span>
-                    <span><strong>${h.stats.goles}</strong> ${t('goles')}</span>
-                    <span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span>
-                </div>
-            `;
-
+            // DESGLOSE MEJORADO PARA MÓVIL
             if (filtroCompeticion === 'all' && h.statsGlobales.desglose) {
-                statsHtml += `<div class="timeline-breakdown-box" style="margin-top:10px; font-size:0.85em; background:rgba(0,0,0,0.03); padding:8px; border-radius:4px;">`;
+                statsHtml += `<div class="timeline-breakdown-box">`;
                 for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
-                    statsHtml += `<div style="display:flex; justify-content:space-between; margin-bottom:2px;">
-                        <span>${comp}</span>
-                        <span><b>${data.partidos}</b> PJ | <b>${data.goles}</b> G | <b>${data.amarillas}</b> <i class="fas fa-square" style="color:#f1c40f; font-size:10px;"></i></span>
-                    </div>`;
+                    statsHtml += `
+                        <div class="breakdown-row">
+                            <span class="breakdown-comp-name">${comp}</span>
+                            <div class="breakdown-data-chips">
+                                <span class="chip"><b>${data.partidos}</b> PJ</span>
+                                <span class="chip"><b>${data.goles}</b> G</span>
+                                <span class="chip chip-yellow"><b>${data.amarillas}</b> <i class="fas fa-square"></i></span>
+                            </div>
+                        </div>`;
                 }
                 statsHtml += `</div>`;
             }
-
             timelineHtml += `
                 <div class="timeline-item ${h.actual ? 'current' : ''}">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-header">
-                            <span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span>
-                            <span class="timeline-years">${h.temporada}</span>
-                        </div>
-                        <div class="timeline-position">
-                            <span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span>
-                            <span class="pos-name">${translatePosition(h.posicion)}</span>
-                        </div>
+                        <div class="timeline-header"><span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span><span class="timeline-years">${h.temporada}</span></div>
+                        <div class="timeline-position"><span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span><span class="pos-name">${translatePosition(h.posicion)}</span></div>
                         ${statsHtml}
                     </div>
-                </div>
-            `;
+                </div>`;
         });
-
         const listaComps = ['all', ...Array.from(competicionesSet)];
-        const dropdownHtml = `
-            <div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center;">
-                <label style="margin-right:10px; font-weight:bold;">Filtrar por:</label>
-                <select id="filterCareer" style="padding:5px 10px; border-radius:5px; border:1px solid #001a6e; background:#fff; color:#001a6e;">
-                    ${listaComps.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}
-                </select>
-            </div>
-        `;
-
-        container.innerHTML = `
-            ${dropdownHtml}
-            <div class="career-grid">
-                <div class="career-timeline-card">
-                    <h3 class="card-title">${t('historial')}</h3>
-                    <div class="timeline">${timelineHtml || '<p>No hay datos.</p>'}</div>
-                </div>
-                <div class="career-sidebar">
-                    <div class="career-totals-card">
-                        <h3 class="card-title">${t('totales')}</h3>
-                        <div class="totals-grid">
-                            <div class="total-item"><span class="total-value">${totales.partidos}</span><span class="total-label">${t('partidos')}</span></div>
-                            <div class="total-item highlight"><span class="total-value">${totales.goles}</span><span class="total-label">${t('goles')}</span></div>
-                            <div class="total-item"><span class="total-value">${totales.asistencias}</span><span class="total-label">${t('asistencias')}</span></div>
-                            <div class="total-item yellow-card"><span class="total-value">${totales.amarillas}</span><span class="total-label">${t('amarillas')}</span></div>
-                            <div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t('rojas')}</span></div>
-                            <div class="total-item minutes"><span class="total-value">${Math.round(totales.minutos/60)}h</span><span class="total-label">${t('minutos')}</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        document.getElementById('filterCareer').addEventListener('change', (e) => {
-            this.renderFichaCareerHistory(jugadorActual, currentSeasonId, e.target.value);
-        });
+        const dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center;"><label style="margin-right:10px; font-weight:bold;">Filtrar:</label><select id="filterCareer" style="padding:5px 10px; border-radius:5px; border:1px solid #001a6e; background:#fff; color:#001a6e;">${listaComps.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}</select></div>`;
+        container.innerHTML = `${dropdownHtml}<div class="career-grid"><div class="career-timeline-card"><h3 class="card-title">${t('historial')}</h3><div class="timeline">${timelineHtml || '<p>No hay datos.</p>'}</div></div><div class="career-sidebar"><div class="career-totals-card"><h3 class="card-title">${t('totales')}</h3><div class="totals-grid"><div class="total-item"><span class="total-value">${totales.partidos}</span><span class="total-label">${t('partidos')}</span></div><div class="total-item highlight"><span class="total-value">${totales.goles}</span><span class="total-label">${t('goles')}</span></div><div class="total-item"><span class="total-value">${totales.asistencias}</span><span class="total-label">${t('asistencias')}</span></div><div class="total-item yellow-card"><span class="total-value">${totales.amarillas}</span><span class="total-label">${t('amarillas')}</span></div><div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t('rojas')}</span></div><div class="total-item minutes"><span class="total-value">${Math.round(totales.minutos/60)}h</span><span class="total-label">${t('minutos')}</span></div></div></div></div></div>`;
+        document.getElementById('filterCareer').addEventListener('change', (e) => { this.renderFichaCareerHistory(jugadorActual, currentSeasonId, e.target.value); });
     },
 
-    // ===================================
-    // JUEGOS
-    // ===================================
     renderJuegos: function() {
         const container = document.getElementById('juegosGrid');
         if (!container || !CLUB_DATA.juegos) return; 
@@ -808,46 +631,45 @@ const App = {
         container.innerHTML = html;
     },
 
-    // ===================================
-    // VIDEOS
-    // ===================================
     renderVideos: function() {
         const container = document.getElementById('videosGrid');
         if (!container || !CLUB_DATA.videos) return;
-
         let html = '';
         CLUB_DATA.videos.forEach(video => {
             const fecha = video.fecha ? formatearFecha(video.fecha).completa : '';
             const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
             const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
             const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-
-            html += `
-                <div class="video-card">
-                    <a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;">
-                        <div class="video-thumbnail">
-                            <img src="${thumbnailUrl}" alt="${video.titulo}">
-                            <div class="play-overlay"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-info">
-                            <h3>${video.titulo}</h3>
-                            <div class="video-meta">
-                                <span><i class="far fa-calendar"></i> ${fecha}</span>
-                                ${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> J${video.jornada}</span>` : ''}
-                            </div>
-                        </div>
-                    </a>
-                    <div class="video-card-actions">
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-                    </div>
-                </div>
-            `;
+            html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> J${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
         });
         container.innerHTML = html;
     }
 };
+
+/* ===================================
+   ESTILOS DINÁMICOS CORRECCIÓN MÓVIL
+   =================================== */
+if (!document.getElementById('responsiveAppStyles')) {
+    const s = document.createElement('style');
+    s.id = 'responsiveAppStyles';
+    s.textContent = `
+        .timeline-breakdown-box { margin-top:12px; background:rgba(0,0,0,0.04); padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.05); }
+        .breakdown-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,0.05); }
+        .breakdown-row:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+        .breakdown-comp-name { font-weight:600; font-size:0.85em; color:#001a6e; }
+        .breakdown-data-chips { display:flex; gap:4px; }
+        .chip { background:#fff; padding:2px 6px; border-radius:4px; font-size:0.75em; border:1px solid #ddd; white-space:nowrap; }
+        .chip-yellow { border-color:#f1c40f; color:#967b00; }
+        .chip i { font-size:0.8em; margin-left:2px; }
+
+        @media (max-width: 600px) {
+            .breakdown-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+            .breakdown-data-chips { width: 100%; justify-content: space-between; }
+            .chip { flex: 1; text-align: center; }
+        }
+    `;
+    document.head.appendChild(s);
+}
 
 document.addEventListener('DOMContentLoaded', function() { App.init(); });
 window.App = App;
