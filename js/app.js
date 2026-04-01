@@ -551,15 +551,13 @@ const App = {
         document.getElementById('filterMatches').addEventListener('change', (e) => { this.renderFichaMatches(jugador, seasonId, e.target.value); });
     },
 
-    // ===================================
-    // TRAYECTORIA CORREGIDA PARA MÓVIL
-    // ===================================
     renderFichaCareerHistory: function(jugadorActual, currentSeasonId, filtroCompeticion = 'all') {
         const container = document.getElementById('tabCareer');
         if (!container) return;
         const historial = [];
         let totales = { partidos: 0, goles: 0, asistencias: 0, amarillas: 0, rojas: 0, minutos: 0 };
         const competicionesSet = new Set(); 
+
         CLUB_DATA.temporadasDisponibles.forEach(temp => {
             const datosTemporada = CLUB_DATA.temporadas[temp.id];
             if (!datosTemporada) return;
@@ -583,12 +581,12 @@ const App = {
                 }
             }
         });
+
         let timelineHtml = '';
         historial.forEach(h => {
             const badgeHtml = h.logo ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">` : `<span class="team-badge-text">OVI</span>`;
             let statsHtml = `<div class="timeline-stats"><span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span><span><strong>${h.stats.goles}</strong> ${t('goles')}</span><span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span></div>`;
             
-            // DESGLOSE MEJORADO PARA MÓVIL
             if (filtroCompeticion === 'all' && h.statsGlobales.desglose) {
                 statsHtml += `<div class="timeline-breakdown-box">`;
                 for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
@@ -598,12 +596,14 @@ const App = {
                             <div class="breakdown-data-chips">
                                 <span class="chip"><b>${data.partidos}</b> PJ</span>
                                 <span class="chip"><b>${data.goles}</b> G</span>
-                                <span class="chip chip-yellow"><b>${data.amarillas}</b> <i class="fas fa-square"></i></span>
+                                <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
+                                ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ''}
                             </div>
                         </div>`;
                 }
                 statsHtml += `</div>`;
             }
+
             timelineHtml += `
                 <div class="timeline-item ${h.actual ? 'current' : ''}">
                     <div class="timeline-marker"></div>
@@ -614,9 +614,12 @@ const App = {
                     </div>
                 </div>`;
         });
+
         const listaComps = ['all', ...Array.from(competicionesSet)];
         const dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center;"><label style="margin-right:10px; font-weight:bold;">Filtrar:</label><select id="filterCareer" style="padding:5px 10px; border-radius:5px; border:1px solid #001a6e; background:#fff; color:#001a6e;">${listaComps.map(c => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? 'Todas las competiciones' : c}</option>`).join('')}</select></div>`;
+        
         container.innerHTML = `${dropdownHtml}<div class="career-grid"><div class="career-timeline-card"><h3 class="card-title">${t('historial')}</h3><div class="timeline">${timelineHtml || '<p>No hay datos.</p>'}</div></div><div class="career-sidebar"><div class="career-totals-card"><h3 class="card-title">${t('totales')}</h3><div class="totals-grid"><div class="total-item"><span class="total-value">${totales.partidos}</span><span class="total-label">${t('partidos')}</span></div><div class="total-item highlight"><span class="total-value">${totales.goles}</span><span class="total-label">${t('goles')}</span></div><div class="total-item"><span class="total-value">${totales.asistencias}</span><span class="total-label">${t('asistencias')}</span></div><div class="total-item yellow-card"><span class="total-value">${totales.amarillas}</span><span class="total-label">${t('amarillas')}</span></div><div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t('rojas')}</span></div><div class="total-item minutes"><span class="total-value">${Math.round(totales.minutos/60)}h</span><span class="total-label">${t('minutos')}</span></div></div></div></div></div>`;
+        
         document.getElementById('filterCareer').addEventListener('change', (e) => { this.renderFichaCareerHistory(jugadorActual, currentSeasonId, e.target.value); });
     },
 
@@ -647,25 +650,35 @@ const App = {
 };
 
 /* ===================================
-   ESTILOS DINÁMICOS CORRECCIÓN MÓVIL
+   ESTILOS DINÁMICOS RESPONSIVE
    =================================== */
 if (!document.getElementById('responsiveAppStyles')) {
     const s = document.createElement('style');
     s.id = 'responsiveAppStyles';
     s.textContent = `
-        .timeline-breakdown-box { margin-top:12px; background:rgba(0,0,0,0.04); padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.05); }
+        /* Caja de desglose */
+        .timeline-breakdown-box { margin-top:12px; background:rgba(0,0,0,0.03); padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.05); }
         .breakdown-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid rgba(0,0,0,0.05); }
         .breakdown-row:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
-        .breakdown-comp-name { font-weight:600; font-size:0.85em; color:#001a6e; }
+        .breakdown-comp-name { font-weight:700; font-size:0.8em; color:#001a6e; text-transform: uppercase; }
         .breakdown-data-chips { display:flex; gap:4px; }
-        .chip { background:#fff; padding:2px 6px; border-radius:4px; font-size:0.75em; border:1px solid #ddd; white-space:nowrap; }
-        .chip-yellow { border-color:#f1c40f; color:#967b00; }
-        .chip i { font-size:0.8em; margin-left:2px; }
+        
+        /* Estilo de los chips de datos */
+        .chip { background:#fff; padding:2px 8px; border-radius:4px; font-size:0.75em; border:1px solid #ddd; white-space:nowrap; display:flex; align-items:center; gap:4px; font-weight:600; color: #333; }
+        
+        /* Tarjetas con colores vibrantes y sombras para que se distingan */
+        .chip-yellow i { color: #FFD700 !important; filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.3)); font-size: 1.1em; }
+        .chip-red i { color: #FF4136 !important; filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.3)); font-size: 1.1em; }
+        
+        .chip-yellow { border-color: #FFD700; background: #FFFFF0; }
+        .chip-red { border-color: #FF4136; background: #FFF5F5; }
 
-        @media (max-width: 600px) {
-            .breakdown-row { flex-direction: column; align-items: flex-start; gap: 6px; }
-            .breakdown-data-chips { width: 100%; justify-content: space-between; }
-            .chip { flex: 1; text-align: center; }
+        /* Adaptación móvil y tablet */
+        @media (max-width: 768px) {
+            .breakdown-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .breakdown-data-chips { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+            .chip { justify-content: center; padding: 6px; font-size: 0.8em; }
+            .breakdown-comp-name { font-size: 0.85em; margin-bottom: 2px; }
         }
     `;
     document.head.appendChild(s);
