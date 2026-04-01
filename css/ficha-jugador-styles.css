@@ -479,7 +479,7 @@
 }
 
 /* ===================================
-   MATCHES TAB
+   MATCHES TAB - ESTILOS BASE (DESKTOP)
    =================================== */
 .matches-list {
     display: flex;
@@ -582,6 +582,212 @@
 .performance-badge.assist {
     background: rgba(59, 130, 246, 0.1);
     color: #3b82f6;
+}
+
+/* ===================================
+   MATCHES TAB - RESPONSIVE MEJORADO
+   =================================== */
+
+/* TABLET (768px - 1023px) - Layout horizontal compacto */
+@media (max-width: 1023px) {
+    .match-detail-header {
+        padding: 18px;
+        gap: 16px;
+    }
+    
+    .match-date-badge {
+        width: 55px;
+        height: 60px;
+    }
+    
+    .match-day {
+        font-size: 1.4rem;
+    }
+    
+    .match-teams-result {
+        gap: 12px;
+    }
+    
+    .match-score {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+    }
+}
+
+/* MÓVIL (< 768px) - Layout vertical apilado */
+@media (max-width: 767px) {
+    .matches-list {
+        gap: 12px;
+        padding: 10px 0;
+    }
+    
+    .match-detail-card {
+        border-radius: 12px;
+    }
+    
+    .match-detail-header {
+        flex-direction: column;
+        padding: 16px;
+        gap: 14px;
+        align-items: stretch;
+    }
+    
+    /* Fecha: Barra horizontal completa */
+    .match-date-badge {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        order: 0;
+    }
+    
+    .match-day {
+        font-size: 1.3rem;
+    }
+    
+    .match-month {
+        font-size: 0.8rem;
+    }
+    
+    /* Competición centrada */
+    .match-competition-info {
+        text-align: center;
+        order: 1;
+    }
+    
+    .competition-name {
+        font-size: 0.7rem;
+        margin-bottom: 10px;
+    }
+    
+    /* GRID 3 COLUMNAS: Local | Marcador | Visitante */
+    .match-teams-result {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px 12px;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* Equipo local - derecha, fila 1 */
+    .team-home {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: right;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        padding-right: 5px;
+        line-height: 1.2;
+    }
+    
+    /* Marcador - centro, ocupa 2 filas */
+    .match-score {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        font-size: 1.6rem;
+        font-weight: 700;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+        min-width: 75px;
+        box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+    }
+    
+    /* Equipo visitante - izquierda, fila 1 */
+    .team-away {
+        grid-column: 3;
+        grid-row: 1;
+        text-align: left;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        padding-left: 5px;
+        line-height: 1.2;
+    }
+    
+    /* Etiquetas Local/Visitante */
+    .team-home::after {
+        content: "Local";
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 500;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 3px;
+    }
+    
+    .team-away::after {
+        content: "Visitante";
+        display: block;
+        font-size: 0.65rem;
+        font-weight: 500;
+        color: var(--gray-400);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 3px;
+    }
+    
+    /* Ocultar VS si existe */
+    .match-vs {
+        display: none;
+    }
+    
+    /* Badges de rendimiento debajo */
+    .match-player-performance {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        order: 2;
+    }
+}
+
+/* MÓVIL PEQUEÑO (< 480px) */
+@media (max-width: 480px) {
+    .match-detail-header {
+        padding: 14px;
+        gap: 12px;
+    }
+    
+    .match-date-badge {
+        padding: 8px 12px;
+    }
+    
+    .match-day {
+        font-size: 1.15rem;
+    }
+    
+    .match-month {
+        font-size: 0.75rem;
+    }
+    
+    .team-home,
+    .team-away {
+        font-size: 0.95rem;
+    }
+    
+    .match-score {
+        font-size: 1.4rem;
+        padding: 10px 12px;
+        min-width: 65px;
+    }
+    
+    .competition-name {
+        font-size: 0.65rem;
+    }
+    
+    .performance-badge {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
 }
 
 /* ===================================
@@ -761,7 +967,7 @@
 }
 
 /* ===================================
-   RESPONSIVE
+   RESPONSIVE GENERAL
    =================================== */
 @media (max-width: 1200px) {
     .player-hero-content {
@@ -805,6 +1011,7 @@
     .player-quick-stats {
         flex-wrap: wrap;
         gap: 20px;
+        justify-content: center;
     }
     
     .stats-tabs {
@@ -819,22 +1026,31 @@
         font-size: 0.85rem;
     }
     
-    .match-detail-header { flex-wrap: wrap; }
-    
-    .match-player-performance {
-        width: 100%;
-        justify-content: center;
-        margin-top: 15px;
-    }
+    .goals-grid { grid-template-columns: repeat(2, 1fr); }
+    .cards-display { grid-template-columns: 1fr; }
+    .totals-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
     .player-full-name { font-size: 2rem; }
     
     .season-stats-grid { grid-template-columns: 1fr 1fr; }
-    .goals-grid { grid-template-columns: 1fr 1fr; }
-    .cards-display { grid-template-columns: 1fr; }
-    .totals-grid { grid-template-columns: 1fr; }
+    
+    .player-number-large {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .quick-stat-value { font-size: 1.6rem; }
+    
+    .season-stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .season-stat-value { font-size: 1.4rem; }
 }
 
 /* ===================================
@@ -878,23 +1094,23 @@
 
 /* Contenedor del breadcrumb */
 .player-hero .breadcrumb {
-    color: rgba(255, 255, 255, 0.6); /* Color para el separador "/" */
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* Enlaces del breadcrumb */
 .player-hero .breadcrumb a {
-    color: rgba(255, 255, 255, 0.8); /* Blanco semi-transparente */
+    color: rgba(255, 255, 255, 0.8);
     transition: color 0.3s ease;
 }
 
 /* Enlace al pasar el ratón */
 .player-hero .breadcrumb a:hover {
-    color: var(--secondary-color); /* Dorado */
+    color: var(--secondary-color);
 }
 
 /* Texto actual (ej: "Miguel Ángel Torres") */
 .player-hero .breadcrumb .current {
-    color: var(--white); /* Blanco puro */
+    color: var(--white);
     font-weight: 600;
 }
 
@@ -912,20 +1128,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.deceased-ribbon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100px;  /* Ajusta al tamaño de tu imagen */
-    height: 100px;  /* Ajusta al tamaño de tu imagen */
-    background-image: url('https://i.postimg.cc/vmNGQqTS/lazo-negro.webp'); /* TU URL AQUÍ */
+    width: 100px;
+    height: 100px;
+    background-image: url('https://i.postimg.cc/vmNGQqTS/lazo-negro.webp');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top right;
@@ -935,7 +1140,7 @@
 
 /* Estilo para fecha de fallecimiento en grid */
 .quick-stat .deceased-text {
-    font-size: 0.9rem !important; /* Un poco más pequeño si la fecha es larga */
+    font-size: 0.9rem !important;
     line-height: 1.1;
     text-align: center;
     color: var(--accent-color) !important;
@@ -1043,5 +1248,80 @@
     .national-team-card, .career-totals-card {
         flex: 1;
         min-width: 280px;
+    }
+}
+
+/* ===================================
+   ANIMACIONES Y TRANSICIONES
+   =================================== */
+
+/* Transiciones suaves para cambios de tamaño */
+.match-detail-header,
+.match-teams-result,
+.match-date-badge,
+.match-score,
+.team-home,
+.team-away {
+    transition: all 0.3s ease;
+}
+
+/* Hover suave en tarjetas de partido */
+.match-detail-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.match-detail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ===================================
+   MODO OSCURO (Preferencias del sistema)
+   =================================== */
+
+@media (prefers-color-scheme: dark) {
+    @media (max-width: 767px) {
+        .match-detail-header {
+            background: #1f2937;
+        }
+        
+        .team-home,
+        .team-away {
+            color: #e5e7eb;
+        }
+        
+        .match-score {
+            background: linear-gradient(135deg, #1e3a5f, #0f2340);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .competition-name {
+            color: #9ca3af;
+        }
+        
+        .team-home::after,
+        .team-away::after {
+            color: #6b7280;
+        }
+    }
+}
+
+/* ===================================
+   REDUCED MOTION (Accesibilidad)
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .match-detail-header,
+    .match-teams-result,
+    .match-date-badge,
+    .match-score,
+    .team-home,
+    .team-away,
+    .match-detail-card {
+        transition: none;
+    }
+    
+    .match-detail-card:hover {
+        transform: none;
     }
 }

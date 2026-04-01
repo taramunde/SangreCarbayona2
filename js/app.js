@@ -615,22 +615,48 @@ const App = {
 },
 
     renderFichaMatches: function(jugador, seasonId) {
-        const container = document.getElementById('tabMatches');
-        if (!container) return;
-        const temporada = getTemporada(seasonId);
-        if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
-            return;
-        }
-        let html = '<div class="matches-list">';
-        temporada.partidosJugados.forEach(partido => {
-            const fecha = formatearFecha(partido.fecha);
-            let resultClass = partido.resultado === 'V' ? 'win' : (partido.resultado === 'E' ? 'draw' : 'loss');
-            html += `<article class="match-detail-card"><div class="match-detail-header"><div class="match-date-badge ${resultClass}"><span class="match-day">${fecha.dia}</span><span class="match-month">${fecha.mesCorto}</span></div><div class="match-competition-info"><span class="competition-name">${temporada.competicion} - ${t('jornada')} ${partido.jornada}</span><div class="match-teams-result"><span class="team-home">${partido.local}</span><span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span><span class="team-away">${partido.visitante}</span></div></div></div></article>`;
-        });
-        html += '</div>';
-        container.innerHTML = html;
-    },
+    const container = document.getElementById('tabMatches');
+    if (!container) return;
+    
+    const temporada = getTemporada(seasonId);
+    if (!temporada.partidosJugados || temporada.partidosJugados.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos.</p>`;
+        return;
+    }
+    
+    let html = '<div class="matches-list">';
+    
+    temporada.partidosJugados.forEach(partido => {
+        const fecha = formatearFecha(partido.fecha);
+        
+        // Determinar clase de resultado (V, E, D)
+        let resultClass = partido.resultado === 'V' ? 'win' : (partido.resultado === 'E' ? 'draw' : 'loss');
+        
+        html += `
+            <article class="match-detail-card">
+                <div class="match-detail-header">
+                    <div class="match-date-badge ${resultClass}">
+                        <span class="match-day">${fecha.dia}</span>
+                        <span class="match-month">${fecha.mesCorto}</span>
+                    </div>
+                    
+                    <div class="match-competition-info">
+                        <span class="competition-name">${temporada.competicion} - Jornada ${partido.jornada}</span>
+                        
+                        <div class="match-teams-result">
+                            <span class="team-home">${partido.local}</span>
+                            <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
+                            <span class="team-away">${partido.visitante}</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        `;
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+},
 
     renderFichaCareerHistory: function(jugadorActual, currentSeasonId) {
         const container = document.getElementById('tabCareer');
