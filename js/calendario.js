@@ -140,14 +140,17 @@
 
                     // Datos visuales del resultado
                     let centroHTML;
-                    if (p.jugado) {
-                        const golesO = esLocal ? p.goles1 : p.goles2;
-                        const golesR = esLocal ? p.goles2 : p.goles1;
+                                        if (p.jugado) {
+                        // El marcador debe coincidir con el orden visual: Local (Izq) - Visitante (Der)
+                        // equipoIzq siempre es p.equipo1 (local), equipoDer siempre es p.equipo2 (visitante)
+                        const golesIzq = p.goles1;
+                        const golesDer = p.goles2;
+                        
                         const badgeClass = { victoria: 'badge-victoria', empate: 'badge-empate', derrota: 'badge-derrota' }[estado];
                         const badgeText  = { victoria: 'Victoria', empate: 'Empate', derrota: 'Derrota' }[estado];
                         centroHTML = `
                             <div class="cal-resultado">
-                                ${golesO}<span class="cal-resultado-sep">–</span>${golesR}
+                                ${golesIzq}<span class="cal-resultado-sep">–</span>${golesDer}
                             </div>
                             <span class="cal-resultado-badge ${badgeClass}">${badgeText}</span>
                         `;
