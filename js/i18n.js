@@ -8,7 +8,7 @@ const translations = {
         nav_inicio: "Inicio", nav_club: "Club", nav_equipo: "Equipo", nav_competiciones: "Competiciones", nav_noticias: "Noticias", nav_multimedia: "Multimedia",
         nav_historia: "Historia", nav_palmares: "Palmarés", nav_estadio: "Estadio Municipal", nav_directiva: "Directiva",
         nav_primer_equipo: "1ª Equip.", nav_cuerpo_tecnico: "Cuerpo Técnico", nav_cantera: "Cantera", nav_fem: "Fútbol Femenino",
-        nav_primera_rfef: "Primera RFEF", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendario", nav_clasificacion: "Clasificacion", nav_fundacion: "Fundación",
+        nav_primera_div: "Primera Div.", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendario", nav_clasificacion: "Clasificacion", nav_fundacion: "Fundación",
         nav_juegos: "Juegos", 
         nav_videos: "Vídeos",
         // General
@@ -39,7 +39,7 @@ const translations = {
         nav_inicio: "Home", nav_club: "Club", nav_equipo: "Team", nav_competiciones: "Competitions", nav_noticias: "News", nav_multimedia: "Multimedia",
         nav_historia: "History", nav_palmares: "Honours", nav_estadio: "Municipal Stadium", nav_directiva: "Board",
         nav_primer_equipo: "1st Team", nav_cuerpo_tecnico: "Technical Staff", nav_cantera: "Academy", nav_fem: "Women's Football",
-        nav_primera_rfef: "Primera RFEF", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendar", nav_clasificacion: "Standings", nav_fundacion: "Foundation",
+        nav_primera_div: "Primera Div.", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendar", nav_clasificacion: "Standings", nav_fundacion: "Foundation",
         nav_juegos: "Games",
         nav_videos: "Videos",
         // General
