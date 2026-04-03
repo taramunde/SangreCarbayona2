@@ -13,6 +13,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+        .player-main-photo,
+        .squad-image img,
+        .player-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transform: scale(1.08);
+        }
+        
+        /* Para la ficha individual - altura fija */
+        .player-photo-wrapper {
+            height: 450px;
+            overflow: hidden;
+        }
+        
+        .player-main-photo {
+            height: 100%;
+        }
+    </style>
+    
     <!-- ============================================================
          META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
          ============================================================ -->
@@ -21,6 +44,7 @@
     <meta property="og:image"       content="https://picsum.photos/seed/gk1-23/400/500">
     <meta property="og:image:width"  content="400">
     <meta property="og:image:height" content="400">
+    <meta property="og:image:alt"   content="Foto de Miguel Ángel Torres - Real Oviedo">
     <meta property="og:url"         content="https://taramunde.github.io/SangreCarbayona2/fichas/miguel-angel-torres.html">
     <meta property="og:type"        content="profile">
     <meta property="og:site_name"   content="Sangre Carbayona">
@@ -28,6 +52,8 @@
     <meta name="twitter:title"      content="Miguel Ángel Torres - Real Oviedo">
     <meta name="twitter:description" content="Estadísticas, trayectoria y ficha técnica de Miguel Ángel Torres. Temporada 2023/24.">
     <meta name="twitter:image"      content="https://picsum.photos/seed/gk1-23/400/500">
+    
+    <link rel="preconnect" href="https://picsum.photos/seed/gk1-23/400/500">
 
     <!-- Datos inyectados para que app.js funcione -->
     <script>
@@ -86,8 +112,8 @@
                             <a href="#" data-i18n="nav_competiciones">Competiciones <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
                                 <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
-                                <li><a href="calendario.html" data-i18n="nav_calendario">Calendario</a></li>
-                                <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
+                                <li><a href="../calendario.html" data-i18n="nav_calendario">Calendario</a></li>
+                                <li><a href="../clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
                                 <li><a href="#" data-i18n="nav_copa_rey">Copa del Rey</a></li>
                             </ul>   
                         </li>
@@ -158,7 +184,7 @@
                     <div class="footer-column">
                         <h4 data-i18n="footer_equipos">Equipos</h4>
                         <ul>
-                            <li><a href="primer-equipo.html" data-i18n="nav_primer_equipo">Primer Equipo</a></li>
+                            <li><a href="../primer-equipo.html" data-i18n="nav_primer_equipo">Primer Equipo</a></li>
                             <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
                             <li><a href="#">Juvenil "A"</a></li>
                             <li><a href="#" data-i18n="nav_cantera">Cantera</a></li>
@@ -169,9 +195,9 @@
                         <ul>
                             <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
                             <li><a href="#" data-i18n="nav_copa_rey">Copa del Rey</a></li>
-                            <li><a href="calendario.html" data-i18n="nav_calendario">Calendario</a></li>
-                            <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
-                            <li><a href="noticias.html" data-i18n="nav_noticias">Noticias</a></li>
+                            <li><a href="../calendario.html" data-i18n="nav_calendario">Calendario</a></li>
+                            <li><a href="../clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
+                            <li><a href="../noticias.html" data-i18n="nav_noticias">Noticias</a></li>
                         </ul>
                     </div>
                     <div class="footer-column contact">
