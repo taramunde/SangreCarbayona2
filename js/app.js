@@ -684,5 +684,76 @@ if (!document.getElementById('responsiveAppStyles')) {
     document.head.appendChild(s);
 }
 
+/* ===================================
+   AJUSTE UNIFORME DE FOTOS DE JUGADORES
+   =================================== */
+function ajustarFotosJugadores() {
+    // Selecciona todas las imágenes de jugadores en todas las vistas
+    const selectores = [
+        '.player-main-photo',           // Ficha individual
+        '.squad-image img',             // Plantilla completa
+        '.player-card img',             // Grid de la home
+        '.squad-card .squad-image img'  // Tarjetas de plantilla
+    ];
+    
+    const fotos = document.querySelectorAll(selectores.join(', '));
+    
+    fotos.forEach(img => {
+        // Si la imagen ya cargó
+        if (img.complete) {
+            aplicarAjuste(img);
+        } else {
+            // Esperar a que cargue
+            img.onload = function() { aplicarAjuste(this); };
+            img.onerror = function() { 
+                // Imagen por defecto si hay error
+                this.src = 'https://via.placeholder.com/400x500/1a365d/ffffff?text=Jugador';
+            };
+        }
+    });
+}
+
+function aplicarAjuste(img) {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    
+    // Detectar tipo de foto según proporción
+    if (ratio < 0.6) {
+        // Muy vertical (solo cara) - hacer zoom out
+        img.style.objectPosition = 'center 20%';
+        img.style.transform = 'scale(1.1)';
+    } else if (ratio < 0.8) {
+        // Vertical estándar (retrato) - ajuste medio
+        img.style.objectPosition = 'center 15%';
+        img.style.transform = 'scale(1.05)';
+    } else if (ratio > 1.3) {
+        // Horizontal (foto completa con fondo) - enfocar torso
+        img.style.objectPosition = 'center 25%';
+        img.style.transform = 'scale(1.15)';
+    } else {
+        // Cuadrada - centrado estándar
+        img.style.objectPosition = 'center 20%';
+        img.style.transform = 'scale(1.08)';
+    }
+}
+
+// Ejecutar después de renderizar cada sección
+const originalRenderFichaJugador = App.renderFichaJugador;
+App.renderFichaJugador = function() {
+    originalRenderFichaJugador.call(this);
+    setTimeout(ajustarFotosJugadores, 100); // Pequeña espera para que el DOM se actualice
+};
+
+const originalRenderPlantillaCompleta = App.renderPlantillaCompleta;
+App.renderPlantillaCompleta = function() {
+    originalRenderPlantillaCompleta.call(this);
+    setTimeout(ajustarFotosJugadores, 100);
+};
+
+const originalRenderPlantillaHome = App.renderPlantillaHome;
+App.renderPlantillaHome = function(filter) {
+    originalRenderPlantillaHome.call(this, filter);
+    setTimeout(ajustarFotosJugadores, 100);
+};
+
 document.addEventListener('DOMContentLoaded', function() { App.init(); });
 window.App = App;
