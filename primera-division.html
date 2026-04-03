@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha Jugador | Sangre Carbayona</title>
-
-    <!-- ============================================================
-         IMPORTANTE: Esta página es dinámica (carga datos por JS).
-         Los crawlers (WhatsApp, Telegram, Google) deben usar las
-         fichas estáticas de /fichas/, no esta URL genérica.
-         ============================================================ -->
-    <meta name="robots" content="noindex, nofollow">
-
+    <title>Primera División | Sangre Carbayona</title>
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v4">
-    <link rel="stylesheet" href="css/ficha-jugador-styles.css?nocache=20251231v3">
+    <link rel="stylesheet" href="css/equipo-styles.css?nocache=20251231v4">
+    <link rel="stylesheet" href="css/primera-division.css?nocache=20251231v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Meta Tags para Compartir — imagen genérica del club -->
-    <meta property="og:title"       content="Ficha Jugador - Sangre Carbayona">
-    <meta property="og:description" content="Ficha detallada del jugador.">
-    <meta property="og:image"       content="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png">
-    <meta property="og:url"         content="https://taramunde.github.io/SangreCarbayona2/ficha-jugador.html">
-    <meta property="og:type"        content="profile">
-    <meta name="twitter:card"       content="summary_large_image">
+    <meta property="og:title" content="Primera División - Sangre Carbayona">
+    <meta property="og:description" content="Histórico de partidos de Primera División del Real Oviedo">
+    <meta property="og:image" content="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <!-- Header Principal -->
@@ -69,20 +59,20 @@
                                 <li><a href="#" data-i18n="nav_fem">Fútbol Femenino</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item has-submenu">
+                        <li class="nav-item has-submenu active">
                             <a href="#" data-i18n="nav_competiciones">Competiciones <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
-                                <li><a href="primera-division.html" data-i18n="nav_primera_div">Primera Div.</a></li>
+                                <li><a href="primera-division.html" class="current" data-i18n="nav_primera_div">Primera Div.</a></li>
                                 <li><a href="#" data-i18n="nav_copa_rey">Copa del Rey</a></li>
                                 <li><a href="calendario.html" data-i18n="nav_calendario">Calendario</a></li>
                                 <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a href="#" data-i18n="nav_noticias">Noticias</a></li>
-                        <li class="nav-item has-submenu active">
+                        <li class="nav-item"><a href="noticias.html" data-i18n="nav_noticias">Noticias</a></li>
+                        <li class="nav-item has-submenu">
                             <a href="#" data-i18n="nav_multimedia">Multimedia <i class="fas fa-chevron-down"></i></a>
                             <ul class="submenu">
-                                <li><a href="juegos.html" class="current" data-i18n="nav_juegos">Juegos</a></li>
+                                <li><a href="juegos.html" data-i18n="nav_juegos">Juegos</a></li>
                                 <li><a href="videos.html" data-i18n="nav_videos">Vídeos</a></li>
                             </ul>
                         </li>
@@ -128,32 +118,83 @@
         </div>
     </div>
 
-    <!-- Player Hero -->
-    <section class="player-hero">
-        <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-bg">
+            <img src="https://picsum.photos/seed/stadium-laliga/1920/400" alt="Primera División">
+        </div>
         <div class="container">
             <div class="breadcrumb">
                 <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
-                <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
-                <a href="primer-equipo.html" data-i18n="nav_primer_equipo">1ª Equip.</a><span>/</span>
-                <span class="current"></span>
+                <a href="#" data-i18n="nav_competiciones">Competiciones</a><span>/</span>
+                <span class="current">Primera División</span>
             </div>
-            
-            <div class="player-hero-content" id="fichaJugadorContent"></div>
+            <h1 class="page-title">Primera División</h1>
+            <p class="page-subtitle">Histórico de partidos temporada por temporada</p>
         </div>
     </section>
 
-    <!-- Player Stats Tabs -->
-    <section class="player-stats-section">
+    <!-- Contenido Principal -->
+    <section class=" primera-division-section">
         <div class="container">
-            <div class="stats-tabs">
-                <button class="stats-tab active" data-tab="Overview" data-i18n="rendimiento">Resumen</button>
-                <button class="stats-tab" data-tab="Matches" data-i18n="partidos">Partidos</button>
-                <button class="stats-tab" data-tab="Career" data-i18n="historial">Trayectoria</button>
+            <!-- Selector de Temporadas -->
+            <div class="temporada-tabs" id="temporadaSelector">
+                <!-- Se genera dinámicamente desde JS -->
             </div>
-            <div class="tab-content active" id="tabOverview"></div>
-            <div class="tab-content" id="tabMatches"></div>
-            <div class="tab-content" id="tabCareer"></div>
+
+            <!-- Panel de Filtros -->
+            <div class="filtros-panel">
+                <div class="filtro-grupo">
+                    <label class="filtro-label">
+                        <input type="checkbox" id="soloOviedo" checked>
+                        <span>Solo partidos del Real Oviedo</span>
+                    </label>
+                </div>
+                
+                <div class="filtro-grupo">
+                    <label class="filtro-label">Rival:</label>
+                    <select id="filtroRival" class="filtro-select">
+                        <option value="todos">Todos los equipos</option>
+                        <!-- Se rellena dinámicamente -->
+                    </select>
+                </div>
+                
+                <div class="filtro-grupo">
+                    <label class="filtro-label">Resultado:</label>
+                    <select id="filtroResultado" class="filtro-select">
+                        <option value="todos">Todos</option>
+                        <option value="victoria">Victorias Oviedo</option>
+                        <option value="empate">Empates</option>
+                        <option value="derrota">Derrotas Oviedo</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-grupo">
+                    <button class="btn-toggle-all" id="colapsarTodas">
+                        <i class="fas fa-compress-alt"></i> Colapsar todas
+                    </button>
+                    <button class="btn-toggle-all" id="expandirTodas" style="display:none;">
+                        <i class="fas fa-expand-alt"></i> Expandir todas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumen de filtros activos -->
+            <div class="resumen-filtros" id="resumenFiltros" style="display:none;">
+                <span>Mostrando: <strong id="contadorPartidos">0</strong> partidos</span>
+                <button class="btn-limpiar" id="limpiarFiltros">Limpiar filtros</button>
+            </div>
+
+            <!-- Contenedor de Jornadas -->
+            <div id="jornadasContainer">
+                <!-- Se genera dinámicamente -->
+            </div>
+            
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-resultados" id="noResultados" style="display:none;">
+                <i class="fas fa-search"></i>
+                <p>No se encontraron partidos con los filtros seleccionados</p>
+            </div>
         </div>
     </section>
 
@@ -184,7 +225,7 @@
                     <div class="footer-column">
                         <h4 data-i18n="footer_competiciones">Competiciones</h4>
                         <ul>
-                            <li><a href="#" data-i18n="nav_primera_rfef">Primera RFEF</a></li>
+                            <li><a href="primera-division.html" data-i18n="nav_primera_div">Primera Div.</a></li>
                             <li><a href="#" data-i18n="nav_copa_rey">Copa del Rey</a></li>
                             <li><a href="calendario.html" data-i18n="nav_calendario">Calendario</a></li>
                             <li><a href="clasificacion.html" data-i18n="nav_clasificacion">Clasificación</a></li>
@@ -227,10 +268,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/i18n.js?nocache=20251231v22"></script>
     <script src="js/data.js?nocache=20251231v46"></script>
-    <script src="js/app.js?nocache=20251231v47"></script>
+    <script src="js/primera-division.js?nocache=20251231v1"></script>
     <script src="js/script.js?nocache=20251231v1"></script>
 </body>
 </html>
