@@ -51,7 +51,7 @@ const CLUB_DATA = {
       jugadores: [
         // PORTEROS
         {
-          codigo: "aaron",
+          codigo: "aaron-escandell-banacloche",
           dorsal: 13,
           edad: 30,
           enClubDesde: "2024",
@@ -2318,11 +2318,13 @@ const CLUB_DATA = {
 // ===================================
 
 const JUGADORES_BASE = {
-  aaron: {
-    codigo: "aaron",
+  "aaron-escandell-banacloche": {
+    id: "aaron-escandell-banacloche",
+    codigo: "aaron-escandell-banacloche",
     nombre: "Aarón",
     apellidos: "Escandell Banacloche",
     nombreCompleto: "Aarón Escandell Banacloche",
+    apodo: "Aarón",
     posicion: "Portero",
     posicionCorta: "POR",
     altura: 1.84,
@@ -2690,4 +2692,4 @@ window.CLUB_DATA = CLUB_DATA;
 window.JUGADORES_BASE = JUGADORES_BASE;
 window.getTemporada = getTemporada;
 window.getJugadorById = getJugadorById;
-window.getJugadorCom;
+window.getJugadorCompleto = getJugadorCompleto;
