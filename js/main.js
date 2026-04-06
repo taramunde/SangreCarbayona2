@@ -1,6 +1,4 @@
-// Función para cargar el Header y el Footer automáticamente
 function cargarComunes() {
-  // Detectamos si estamos dentro de la carpeta /fichas/ viendo la URL
   const esFicha = window.location.pathname.includes("/fichas/");
   const rutaBase = esFicha ? "../" : "";
 
@@ -12,10 +10,9 @@ function cargarComunes() {
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = data;
 
-        // Activar eventos del menú UNA VEZ que el HTML ya existe
-        activarMenuMovil();
+        // --- ACTIVAMOS TODO LO DEL HEADER AQUÍ ---
+        inicializarFuncionesHeader();
 
-        // Ajustar rutas relativas si estamos en la carpeta fichas
         if (esFicha) {
           ajustarRutasEnlacesFichas();
         }
@@ -33,32 +30,69 @@ function cargarComunes() {
     });
 }
 
-function activarMenuMovil() {
+function inicializarFuncionesHeader() {
+  // 1. ELEMENTOS DEL MENÚ MÓVIL
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const mainNav = document.getElementById("mainNav");
   const closeMobileNav = document.getElementById("closeMobileNav");
 
-  // Abrir menú
   if (mobileMenuBtn && mainNav) {
-    mobileMenuBtn.addEventListener("click", function (e) {
-      e.preventDefault(); // Prevenir comportamientos por defecto
-      this.classList.add("active");
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      mobileMenuBtn.classList.add("active");
       mainNav.classList.add("active");
-      document.body.style.overflow = "hidden"; // Evitar scroll de fondo
+      document.body.style.overflow = "hidden";
     });
   }
 
-  // Cerrar menú con el botón X
   if (closeMobileNav && mainNav && mobileMenuBtn) {
-    closeMobileNav.addEventListener("click", function (e) {
+    closeMobileNav.addEventListener("click", (e) => {
       e.preventDefault();
       mainNav.classList.remove("active");
       mobileMenuBtn.classList.remove("active");
-      document.body.style.overflow = ""; // Restaurar scroll
+      document.body.style.overflow = "";
     });
   }
 
-  // Comportamiento de submenús en versión móvil
+  // 2. ELEMENTOS DEL BUSCADOR (LUPA)
+  const searchBtn = document.getElementById("searchBtn");
+  const searchOverlay = document.getElementById("searchOverlay");
+  const closeSearch = document.getElementById("closeSearch");
+
+  if (searchBtn && searchOverlay) {
+    searchBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      // Poner el foco en el input automáticamente
+      setTimeout(() => {
+        const input = searchOverlay.querySelector("input");
+        if (input) input.focus();
+      }, 300);
+    });
+  }
+
+  if (closeSearch && searchOverlay) {
+    closeSearch.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  }
+
+  // Cerrar buscador con tecla Escape
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      searchOverlay &&
+      searchOverlay.classList.contains("active")
+    ) {
+      searchOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  });
+
+  // 3. SUBMENÚS Y CIERRE AUTOMÁTICO
   const navItemsWithSubmenu = document.querySelectorAll(
     ".nav-item.has-submenu",
   );
@@ -74,12 +108,11 @@ function activarMenuMovil() {
     }
   });
 
-  // Cerrar menú al hacer clic en un enlace normal (no submenú)
   const simpleNavLinks = document.querySelectorAll(
     ".nav-item:not(.has-submenu) a, .submenu a",
   );
   simpleNavLinks.forEach((link) => {
-    link.addEventListener("click", function () {
+    link.addEventListener("click", () => {
       if (window.innerWidth <= 1024 && mainNav && mobileMenuBtn) {
         mainNav.classList.remove("active");
         mobileMenuBtn.classList.remove("active");
@@ -101,5 +134,4 @@ function ajustarRutasEnlacesFichas() {
   });
 }
 
-// Ejecutar la función cuando el DOM principal esté listo
 document.addEventListener("DOMContentLoaded", cargarComunes);

@@ -56,39 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ===================================
-  // SEARCH OVERLAY
-  // ===================================
-  if (searchBtn && searchOverlay && closeSearch) {
-    searchBtn.addEventListener("click", function () {
-      searchOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
-      setTimeout(() => {
-        const input = searchOverlay.querySelector("input");
-        if (input) input.focus();
-      }, 300);
-    });
-
-    closeSearch.addEventListener("click", function () {
-      searchOverlay.classList.remove("active");
-      document.body.style.overflow = "";
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && searchOverlay.classList.contains("active")) {
-        searchOverlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-    });
-
-    searchOverlay.addEventListener("click", function (e) {
-      if (e.target === searchOverlay) {
-        searchOverlay.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-    });
-  }
-
-  // ===================================
   // FILTROS PLANTILLA
   // ===================================
   const tabBtns = document.querySelectorAll(".tab-btn");
