@@ -848,6 +848,11 @@ const App = {
   ) {
     const container = document.getElementById("tabCareer");
     if (!container) return;
+
+    // Normalizar IDs para búsqueda (convertir a string para comparación flexible)
+    const buscaId = String(jugadorActual.id || "");
+    const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
+
     const historial = [];
     let totales = {
       partidos: 0,
@@ -862,10 +867,21 @@ const App = {
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
       const datosTemporada = CLUB_DATA.temporadas[temp.id];
       if (!datosTemporada) return;
+
+      // Comparación flexible de IDs (string o number)
       const jugadorEnTemporada = datosTemporada.jugadores.find(
-        (j) => j.id === jugadorActual.id || j.codigo === jugadorActual.codigo,
+        (j) =>
+          String(j.id) === buscaId ||
+          String(j.codigo) === buscaCodigo ||
+          String(j.id) === buscaCodigo ||
+          String(j.codigo) === buscaId,
       );
+
       if (jugadorEnTemporada) {
+        // Obtener datos del maestro para esta temporada (para tener posición, nombre, etc.)
+        const datosMaestro =
+          CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
+
         if (jugadorEnTemporada.stats.desglose) {
           Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
             competicionesSet.add(c),
@@ -892,7 +908,11 @@ const App = {
             stats: statsAMostrar,
             statsGlobales: jugadorEnTemporada.stats,
             dorsal: jugadorEnTemporada.dorsal,
-            posicion: jugadorEnTemporada.posicion,
+            // Usar posición del maestro si no está en los datos de temporada
+            posicion:
+              datosMaestro.posicion ||
+              jugadorEnTemporada.posicion ||
+              "Desconocida",
             actual: temp.id === currentSeasonId,
           });
           totales.partidos += statsAMostrar.partidos || 0;
@@ -916,28 +936,28 @@ const App = {
         statsHtml += `<div class="timeline-breakdown-box">`;
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           statsHtml += `
-                        <div class="breakdown-row">
-                            <span class="breakdown-comp-name">${comp}</span>
-                            <div class="breakdown-data-chips">
-                                <span class="chip"><b>${data.partidos}</b> PJ</span>
-                                <span class="chip"><b>${data.goles}</b> G</span>
-                                <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
-                                ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
-                            </div>
-                        </div>`;
+          <div class="breakdown-row">
+            <span class="breakdown-comp-name">${comp}</span>
+            <div class="breakdown-data-chips">
+              <span class="chip"><b>${data.partidos}</b> PJ</span>
+              <span class="chip"><b>${data.goles}</b> G</span>
+              <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
+              ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
+            </div>
+          </div>`;
         }
         statsHtml += `</div>`;
       }
 
       timelineHtml += `
-                <div class="timeline-item ${h.actual ? "current" : ""}">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header"><span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span><span class="timeline-years">${h.temporada}</span></div>
-                        <div class="timeline-position"><span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span><span class="pos-name">${translatePosition(h.posicion)}</span></div>
-                        ${statsHtml}
-                    </div>
-                </div>`;
+      <div class="timeline-item ${h.actual ? "current" : ""}">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-header"><span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span><span class="timeline-years">${h.temporada}</span></div>
+          <div class="timeline-position"><span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span><span class="pos-name">${translatePosition(h.posicion)}</span></div>
+          ${statsHtml}
+        </div>
+      </div>`;
     });
 
     const listaComps = ["all", ...Array.from(competicionesSet)];
@@ -945,13 +965,16 @@ const App = {
 
     container.innerHTML = `${dropdownHtml}<div class="career-grid"><div class="career-timeline-card"><h3 class="card-title">${t("historial")}</h3><div class="timeline">${timelineHtml || "<p>No hay datos.</p>"}</div></div><div class="career-sidebar"><div class="career-totals-card"><h3 class="card-title">${t("totales")}</h3><div class="totals-grid"><div class="total-item"><span class="total-value">${totales.partidos}</span><span class="total-label">${t("partidos")}</span></div><div class="total-item highlight"><span class="total-value">${totales.goles}</span><span class="total-label">${t("goles")}</span></div><div class="total-item"><span class="total-value">${totales.asistencias}</span><span class="total-label">${t("asistencias")}</span></div><div class="total-item yellow-card"><span class="total-value">${totales.amarillas}</span><span class="total-label">${t("amarillas")}</span></div><div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t("rojas")}</span></div><div class="total-item minutes"><span class="total-value">${totales.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div></div></div></div></div>`;
 
-    document.getElementById("filterCareer").addEventListener("change", (e) => {
-      this.renderFichaCareerHistory(
-        jugadorActual,
-        currentSeasonId,
-        e.target.value,
-      );
-    });
+    const filterSelect = document.getElementById("filterCareer");
+    if (filterSelect) {
+      filterSelect.addEventListener("change", (e) => {
+        this.renderFichaCareerHistory(
+          jugadorActual,
+          currentSeasonId,
+          e.target.value,
+        );
+      });
+    }
   },
 
   renderJuegos: function () {
