@@ -33,6 +33,14 @@ function formatearFecha(fechaStr) {
 }
 
 /* ===================================
+   FUNCIONES AUXILIARES PARA PORTEROS
+   =================================== */
+
+function esPortero(jugador) {
+  return jugador.posicion === "Portero" || jugador.posicionCorta === "POR";
+}
+
+/* ===================================
    APLICACIÓN - RENDERIZADO DINÁMICO
    =================================== */
 
@@ -527,6 +535,13 @@ const App = {
     const playerUrl = jugador.codigo
       ? `fichas/${jugador.codigo}.html`
       : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
+
+    // DIFERENCIAR GOLES/ENCAJADOS PARA PORTEROS
+    const esPorteroPos = esPortero(jugador);
+    const golesStats = esPorteroPos
+      ? `<div class="mini-stat conceded"><span class="mini-stat-value" style="color:#e74c3c">${jugador.stats.goles || 0}</span><span class="mini-stat-label">Encajados</span></div>`
+      : `<div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t("goles")}</span></div>`;
+
     return `
     <article class="squad-card">
       <a href="${playerUrl}" class="squad-link">
@@ -545,7 +560,7 @@ const App = {
           </div>
           <div class="squad-stats">
             <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
-            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles}</span><span class="mini-stat-label">${t("goles")}</span></div>
+            ${golesStats}
           </div>
         </div>
       </a>
@@ -625,6 +640,15 @@ const App = {
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+
+    // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
+    const esPorteroPos = esPortero(jugador);
+    const golesLabel = esPorteroPos ? "Goles Encajados" : t("goles") || "Goles";
+    const golesValue = esPorteroPos
+      ? `<span style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span>`
+      : jugador.stats.goles || 0;
+    const iconoGoles = esPorteroPos ? "fa-shield-alt" : "fa-futbol";
+
     container.innerHTML = `
             <div class="player-photo-container">
                 <div class="player-photo-wrapper">
@@ -644,8 +668,8 @@ const App = {
                 <div class="player-season-stats">
                     <h3 class="stats-title">${t("temporada")} ${seasonId.replace("-", "/")}</h3>
                     <div class="season-stats-grid">
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-futbol"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.goles}</span><span class="season-stat-label">${t("goles")}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.asistencias}</span><span class="season-stat-label">${t("asistencias")}</span></div></div>
+                        <div class="season-stat ${esPorteroPos ? "portero-stat" : ""}"><div class="season-stat-icon"><i class="fas ${iconoGoles}"></i></div><div class="season-stat-content"><span class="season-stat-value">${golesValue}</span><span class="season-stat-label">${golesLabel}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.asistencias || 0}</span><span class="season-stat-label">${t("asistencias")}</span></div></div>
                         <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-running"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.partidos}</span><span class="season-stat-label">${t("partidos")}</span></div></div>
                         <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.minutos.toLocaleString()}</span><span class="season-stat-label">${t("minutos")}</span></div></div>
                     </div>
@@ -674,9 +698,17 @@ const App = {
     esTemporadaActual,
   ) {
     const altura = jugador.altura ? `${jugador.altura}m` : t("desconocida");
+    const esPorteroPos = esPortero(jugador);
     let html = "";
     if (esTemporadaActual) {
       html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
+
+      // Añadir estadística de goles/encajados
+      if (esPorteroPos) {
+        html += `<div class="quick-stat conceded"><span class="quick-stat-value" style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span><span class="quick-stat-label">Goles Encajados</span></div>`;
+      } else {
+        html += `<div class="quick-stat"><span class="quick-stat-value">${jugador.stats.goles || 0}</span><span class="quick-stat-label">${t("goles") || "Goles"}</span></div>`;
+      }
     } else {
       if (haFallecido) {
         const fechaFormateada = fechaFallecimiento
@@ -685,6 +717,13 @@ const App = {
         html = `<div class="quick-stat"><span class="quick-stat-value deceased-text">${fechaFormateada}</span><span class="quick-stat-label">${t("fallecimiento")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div><div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div>`;
       } else {
         html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
+
+        // Añadir goles/encajados para temporadas históricas también
+        if (esPorteroPos) {
+          html += `<div class="quick-stat conceded"><span class="quick-stat-value" style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span><span class="quick-stat-label">Goles Encajados</span></div>`;
+        } else {
+          html += `<div class="quick-stat"><span class="quick-stat-value">${jugador.stats.goles || 0}</span><span class="quick-stat-label">${t("goles") || "Goles"}</span></div>`;
+        }
       }
     }
     return html;
@@ -694,18 +733,27 @@ const App = {
     const container = document.getElementById("tabOverview");
     if (!container) return;
     const fechaNac = formatearFecha(jugador.fechaNacimiento);
-    const golesPorPartido =
-      jugador.stats.partidos > 0
+
+    // DIFERENCIAR CÁLCULOS PARA PORTEROS
+    const esPorteroPos = esPortero(jugador);
+    const golesPorPartido = esPorteroPos
+      ? jugador.stats.partidos > 0
+        ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
+        : "0.00"
+      : jugador.stats.partidos > 0
         ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
         : "0.00";
+
     const minutosPorPartido =
       jugador.stats.partidos > 0
         ? Math.round(jugador.stats.minutos / jugador.stats.partidos)
         : 0;
+
     const golesPorcentaje =
       jugador.stats.partidos > 0
         ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100)
         : 0;
+
     const minutosPorcentaje =
       jugador.stats.partidos > 0
         ? Math.min(
@@ -713,29 +761,38 @@ const App = {
             100,
           )
         : 0;
+
+    const rendimientoTitle = esPorteroPos
+      ? "Rendimiento Defensivo"
+      : t("rendimiento") || "Rendimiento";
+    const golesPartidoLabel = esPorteroPos
+      ? "Goles Encajados/Partido"
+      : t("goles_partido") || "Goles por partido";
+    const golesColor = esPorteroPos ? "#e74c3c" : "var(--secondary-color)";
+
     container.innerHTML = `
             <div class="overview-grid">
                 <div class="performance-card">
-                    <h3 class="card-title">${t("rendimiento")}</h3>
+                    <h3 class="card-title">${rendimientoTitle}</h3>
                     <div class="performance-stats">
-                        <div class="performance-item"><div class="performance-header"><span>${t("goles_partido")}</span><span class="performance-value">${golesPorPartido}</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${golesPorcentaje}%"></div></div></div>
-                        <div class="performance-item"><div class="performance-header"><span>${t("minutos_partido")}</span><span class="performance-value">${minutosPorPartido}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${minutosPorcentaje}%"></div></div></div>
+                        <div class="performance-item"><div class="performance-header"><span>${golesPartidoLabel}</span><span class="performance-value" style="color:${golesColor}">${golesPorPartido}</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${golesPorcentaje}%; background:${golesColor}"></div></div></div>
+                        <div class="performance-item"><div class="performance-header"><span>${t("minutos_partido") || "Minutos por partido"}</span><span class="performance-value">${minutosPorPartido}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${minutosPorcentaje}%"></div></div></div>
                     </div>
                 </div>
                 <div class="personal-info-card">
-                    <h3 class="card-title">${t("informacion")}</h3>
+                    <h3 class="card-title">${t("informacion") || "Información Personal"}</h3>
                     <div class="personal-info-list">
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento")}</span><span class="info-value">${fechaNac.completa}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar")}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad")}</span><span class="info-value">${jugador.nacionalidad}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde")}</span><span class="info-value">${jugador.enClubDesde}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento") || "Nacimiento"}</span><span class="info-value">${fechaNac.completa}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span><span class="info-value">${jugador.nacionalidad}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span><span class="info-value">${jugador.enClubDesde}</span></div>
                     </div>
                 </div>
                 <div class="disciplinary-card">
-                    <h3 class="card-title">${t("disciplina")}</h3>
+                    <h3 class="card-title">${t("disciplina") || "Disciplina"}</h3>
                     <div class="cards-display">
-                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t("amarillas")}</span></div></div>
-                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t("rojas")}</span></div></div>
+                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t("amarillas") || "Amarillas"}</span></div></div>
+                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t("rojas") || "Rojas"}</span></div></div>
                     </div>
                 </div>
             </div>`;
@@ -807,10 +864,20 @@ const App = {
             chips.push(
               `<span class="match-chip"><i class="fas fa-clock"></i> ${partido.minutos}'</span>`,
             );
-          if (partido.goles > 0)
+          // Para porteros, mostrar goles encajados en rojo si es > 0
+          if (partido.goles > 0) {
+            const esPorteroPos = esPortero(jugador);
+            const goalChipClass = esPorteroPos ? "chip-conceded" : "chip-goal";
+            const goalIcon = esPorteroPos ? "fa-shield-alt" : "fa-futbol";
+            const goalText = esPorteroPos
+              ? "Encajados"
+              : partido.goles > 1
+                ? partido.goles + " goles"
+                : "Gol";
             chips.push(
-              `<span class="match-chip chip-goal"><i class="fas fa-futbol"></i> ${partido.goles > 1 ? partido.goles + " goles" : "Gol"}</span>`,
+              `<span class="match-chip ${goalChipClass}"><i class="fas ${goalIcon}"></i> ${partido.goles} ${esPorteroPos ? "Enc." : partido.goles > 1 ? "Goles" : "Gol"}</span>`,
             );
+          }
           if (partido.asistencias > 0)
             chips.push(
               `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + " asis." : "Asist."}</span>`,
@@ -858,6 +925,7 @@ const App = {
                 .match-player-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
                 .match-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-size: 0.75em; font-weight: 600; background: #f0f4ff; border: 1px solid #ccd6ff; color: #001a6e; }
                 .chip-goal { background: #e6f9ed; border-color: #6dcc8a; color: #1a7a3c; }
+                .chip-conceded { background: #ffe6e6; border-color: #e74c3c; color: #c0392b; }
                 .chip-assist { background: #e8f4fd; border-color: #6bb8e8; color: #1a5a8a; }
                 .chip-yellow { background: #FFFFF0; border-color: #FFD700; color: #8a7000; }
                 .chip-red { background: #FFF5F5; border-color: #FF4136; color: #8a1010; }
@@ -880,6 +948,7 @@ const App = {
 
     const buscaId = String(jugadorActual.id || "");
     const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
+    const esPorteroActual = esPortero(jugadorActual);
 
     const historial = [];
 
@@ -963,6 +1032,7 @@ const App = {
           posicion: jugadorActual.posicion || "Jugador",
           actual: false,
           statsGlobales: null,
+          esPortero: esPorteroActual,
         });
       });
     }
@@ -986,6 +1056,10 @@ const App = {
       const datosMaestro =
         CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
       const compNombre = datosTemporada.competicion || "Competición";
+      const esPorteroTemp = esPortero({
+        ...datosMaestro,
+        ...jugadorEnTemporada,
+      });
 
       if (jugadorEnTemporada.stats.desglose) {
         Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
@@ -1035,6 +1109,7 @@ const App = {
             jugadorEnTemporada.posicion ||
             "Desconocida",
           actual: temp.id === currentSeasonId,
+          esPortero: esPorteroTemp,
         });
 
         // Sumar solo a totales de club
@@ -1069,9 +1144,15 @@ const App = {
         ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
         : `<span class="team-badge-text">OVI</span>`;
 
+      // DIFERENCIAR GOLES/ENCAJADOS EN EL TIMELINE
+      const golesLabelTimeline = h.esPortero ? "Enc." : t("goles") || "Goles";
+      const golesStyleTimeline = h.esPortero
+        ? 'style="color:#e74c3c;font-weight:700"'
+        : "";
+
       let statsHtml = `<div class="timeline-stats">
       <span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span>
-      <span><strong>${h.stats.goles}</strong> ${t("goles")}</span>
+      <span><strong ${golesStyleTimeline}>${h.stats.goles}</strong> ${golesLabelTimeline}</span>
       ${!h.esSeleccion ? `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>` : `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>`}
     </div>`;
 
@@ -1084,12 +1165,13 @@ const App = {
       ) {
         statsHtml += `<div class="timeline-breakdown-box">`;
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+          const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
           statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${comp}</span>
             <div class="breakdown-data-chips">
               <span class="chip"><b>${data.partidos}</b> PJ</span>
-              <span class="chip"><b>${data.goles}</b> G</span>
+              <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${h.esPortero ? "Enc." : "G"}</span>
               <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
               ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
             </div>
@@ -1172,12 +1254,17 @@ const App = {
       totalesSeleccion.partidos > 0;
 
     if (mostrarTotalesClub) {
+      const golesLabelTotal = esPorteroActual
+        ? "Encajados"
+        : t("goles") || "Goles";
+      const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
+
       totalesHtml += `
       <div class="career-totals-card club-totals">
         <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>Total Club</h3>
         <div class="totals-grid">
           <div class="total-item"><span class="total-value">${totalesClub.partidos}</span><span class="total-label">${t("partidos")}</span></div>
-          <div class="total-item highlight"><span class="total-value">${totalesClub.goles}</span><span class="total-label">${t("goles")}</span></div>
+          <div class="total-item highlight" ${golesStyleTotal}><span class="total-value" ${golesStyleTotal}>${totalesClub.goles}</span><span class="total-label">${golesLabelTotal}</span></div>
           <div class="total-item"><span class="total-value">${totalesClub.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
           <div class="total-item yellow-card"><span class="total-value">${totalesClub.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
           <div class="total-item red-card"><span class="total-value">${totalesClub.rojas}</span><span class="total-label">${t("rojas")}</span></div>
@@ -1315,6 +1402,49 @@ if (!document.getElementById("responsiveAppStyles")) {
             .breakdown-comp-name { font-size: 0.85em; margin-bottom: 2px; }
         }
     `;
+  document.head.appendChild(s);
+}
+
+/* ===================================
+   ESTILOS PARA PORTEROS (GOLES ENCAJADOS)
+   =================================== */
+if (!document.getElementById("porteroStyles")) {
+  const s = document.createElement("style");
+  s.id = "porteroStyles";
+  s.textContent = `
+    .mini-stat.conceded .mini-stat-value {
+      color: #e74c3c !important;
+      font-weight: 700;
+    }
+    .mini-stat.conceded .mini-stat-label {
+      color: #c0392b;
+      font-size: 0.7em;
+      font-weight: 600;
+    }
+    .quick-stat.conceded .quick-stat-value {
+      color: #e74c3c !important;
+      font-weight: 700;
+    }
+    .quick-stat.conceded .quick-stat-label {
+      color: #c0392b;
+      font-weight: 600;
+    }
+    .season-stat.portero-stat .season-stat-value {
+      color: #e74c3c;
+      font-weight: 700;
+    }
+    .season-stat.portero-stat .season-stat-label {
+      color: #c0392b;
+    }
+    .chip-conceded {
+      background: #ffe6e6 !important;
+      border-color: #e74c3c !important;
+      color: #c0392b !important;
+    }
+    .chip-conceded i {
+      color: #e74c3c !important;
+    }
+  `;
   document.head.appendChild(s);
 }
 
