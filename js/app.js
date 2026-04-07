@@ -698,17 +698,10 @@ const App = {
     esTemporadaActual,
   ) {
     const altura = jugador.altura ? `${jugador.altura}m` : t("desconocida");
-    const esPorteroPos = esPortero(jugador);
     let html = "";
     if (esTemporadaActual) {
+      // Solo mostrar edad y altura, los goles/encajados aparecen abajo en el grid
       html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
-
-      // Añadir estadística de goles/encajados
-      if (esPorteroPos) {
-        html += `<div class="quick-stat conceded"><span class="quick-stat-value" style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span><span class="quick-stat-label">Goles Encajados</span></div>`;
-      } else {
-        html += `<div class="quick-stat"><span class="quick-stat-value">${jugador.stats.goles || 0}</span><span class="quick-stat-label">${t("goles") || "Goles"}</span></div>`;
-      }
     } else {
       if (haFallecido) {
         const fechaFormateada = fechaFallecimiento
@@ -716,14 +709,8 @@ const App = {
           : t("fecha_desconocida");
         html = `<div class="quick-stat"><span class="quick-stat-value deceased-text">${fechaFormateada}</span><span class="quick-stat-label">${t("fallecimiento")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div><div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div>`;
       } else {
+        // Solo edad y altura, sin goles/encajados (ya aparecen abajo)
         html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
-
-        // Añadir goles/encajados para temporadas históricas también
-        if (esPorteroPos) {
-          html += `<div class="quick-stat conceded"><span class="quick-stat-value" style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span><span class="quick-stat-label">Goles Encajados</span></div>`;
-        } else {
-          html += `<div class="quick-stat"><span class="quick-stat-value">${jugador.stats.goles || 0}</span><span class="quick-stat-label">${t("goles") || "Goles"}</span></div>`;
-        }
       }
     }
     return html;
@@ -1166,12 +1153,13 @@ const App = {
         statsHtml += `<div class="timeline-breakdown-box">`;
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
+          const goalLabel = h.esPortero ? "Enc." : "G";
           statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${comp}</span>
             <div class="breakdown-data-chips">
               <span class="chip"><b>${data.partidos}</b> PJ</span>
-              <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${h.esPortero ? "Enc." : "G"}</span>
+              <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${goalLabel}</span>
               <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
               ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
             </div>
@@ -1274,6 +1262,12 @@ const App = {
     }
 
     if (mostrarTotalesSeleccion) {
+      // Detectar si es portero para aplicar estilos de goles encajados
+      const golesLabelSel = esPorteroActual
+        ? "Encajados"
+        : t("goles") || "Goles";
+      const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
+
       // Si filtramos por categoría específica, mostrar solo esa
       const esFiltroCategoriaEspecifica =
         filtroCompeticion.startsWith("Selección");
@@ -1287,24 +1281,24 @@ const App = {
         esFiltroCategoriaEspecifica &&
         totalesSeleccion.categorias[categoriaFiltro]
       ) {
-        // Solo esa categoría - ahora con todos los campos igual que el club
+        // Solo esa categoría
         const cat = totalesSeleccion.categorias[categoriaFiltro];
         statsSeleccionHtml = `
         <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
           <span style="font-weight: 600; color: #001a6e;">${categoriaFiltro}</span>
         </div>
         <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
-        <div class="total-item highlight"><span class="total-value">${cat.goles}</span><span class="total-label">${t("goles")}</span></div>
+        <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${cat.goles}</span><span class="total-label">${golesLabelSel}</span></div>
         <div class="total-item"><span class="total-value">${cat.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
         <div class="total-item yellow-card"><span class="total-value">${cat.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
         <div class="total-item red-card"><span class="total-value">${cat.rojas}</span><span class="total-label">${t("rojas")}</span></div>
         <div class="total-item minutes"><span class="total-value">${cat.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
       `;
       } else {
-        // Todas las categorías de selección - igual que el club
+        // Todas las categorías de selección
         statsSeleccionHtml = `
         <div class="total-item"><span class="total-value">${totalesSeleccion.partidos}</span><span class="total-label">${t("partidos")}</span></div>
-        <div class="total-item highlight"><span class="total-value">${totalesSeleccion.goles}</span><span class="total-label">${t("goles")}</span></div>
+        <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${totalesSeleccion.goles}</span><span class="total-label">${golesLabelSel}</span></div>
         <div class="total-item"><span class="total-value">${totalesSeleccion.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
         <div class="total-item yellow-card"><span class="total-value">${totalesSeleccion.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
         <div class="total-item red-card"><span class="total-value">${totalesSeleccion.rojas}</span><span class="total-label">${t("rojas")}</span></div>
