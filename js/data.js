@@ -64,6 +64,14 @@ const CLUB_DATA = {
       lugarNacimiento: "Cluj-Napoca, Transilvania",
       fechaNacimiento: "1998-01-20",
       imagen: "https://i.postimg.cc/sgPM0mk4/Moldovan_PNG_(2).webp",
+      seleccion: {
+        pais: "Rumanía",
+        bandera: "https://flagcdn.com/16x12/ro.webp",
+        datos: [
+          { categoria: "Absoluta", partidos: 16, goles: 17 },
+          { categoria: "U21", partidos: 0, goles: 0 },
+        ],
+      },
     },
 
     "miguel-de-jesus-narvaez-lopez": {
