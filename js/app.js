@@ -896,6 +896,10 @@ const App = {
     let totalesSeleccion = {
       partidos: 0,
       goles: 0,
+      asistencias: 0,
+      amarillas: 0,
+      rojas: 0,
+      minutos: 0,
       categorias: {}, // Para desglose por categoría
     };
 
@@ -911,20 +915,34 @@ const App = {
         const nombreCompeticion = `Selección ${cat.categoria}`;
         competicionesSet.add(nombreCompeticion);
 
-        // Guardar en totales por categoría
+        // Guardar en totales por categoría (todos los campos disponibles)
         if (!totalesSeleccion.categorias[cat.categoria]) {
           totalesSeleccion.categorias[cat.categoria] = {
             partidos: 0,
             goles: 0,
+            asistencias: 0,
+            amarillas: 0,
+            rojas: 0,
+            minutos: 0,
           };
         }
         totalesSeleccion.categorias[cat.categoria].partidos +=
           cat.partidos || 0;
         totalesSeleccion.categorias[cat.categoria].goles += cat.goles || 0;
+        totalesSeleccion.categorias[cat.categoria].asistencias +=
+          cat.asistencias || 0;
+        totalesSeleccion.categorias[cat.categoria].amarillas +=
+          cat.amarillas || 0;
+        totalesSeleccion.categorias[cat.categoria].rojas += cat.rojas || 0;
+        totalesSeleccion.categorias[cat.categoria].minutos += cat.minutos || 0;
 
-        // Totales generales selección
+        // Totales generales selección (todos los campos)
         totalesSeleccion.partidos += cat.partidos || 0;
         totalesSeleccion.goles += cat.goles || 0;
+        totalesSeleccion.asistencias += cat.asistencias || 0;
+        totalesSeleccion.amarillas += cat.amarillas || 0;
+        totalesSeleccion.rojas += cat.rojas || 0;
+        totalesSeleccion.minutos += cat.minutos || 0;
 
         historial.push({
           temporada: cat.categoria, // "Absoluta", "U21", etc.
@@ -934,12 +952,12 @@ const App = {
           categoriaSeleccion: cat.categoria,
           competicionFiltro: nombreCompeticion, // Para el filtrado
           stats: {
-            partidos: cat.partidos,
-            goles: cat.goles,
-            asistencias: 0,
-            amarillas: 0,
-            rojas: 0,
-            minutos: 0,
+            partidos: cat.partidos || 0,
+            goles: cat.goles || 0,
+            asistencias: cat.asistencias || 0,
+            amarillas: cat.amarillas || 0,
+            rojas: cat.rojas || 0,
+            minutos: cat.minutos || 0,
           },
           dorsal: "-",
           posicion: jugadorActual.posicion || "Jugador",
@@ -1054,7 +1072,7 @@ const App = {
       let statsHtml = `<div class="timeline-stats">
       <span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span>
       <span><strong>${h.stats.goles}</strong> ${t("goles")}</span>
-      ${!h.esSeleccion ? `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>` : ""}
+      ${!h.esSeleccion ? `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>` : `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>`}
     </div>`;
 
       // Desglose solo para clubes
@@ -1182,36 +1200,35 @@ const App = {
         esFiltroCategoriaEspecifica &&
         totalesSeleccion.categorias[categoriaFiltro]
       ) {
-        // Solo esa categoría
+        // Solo esa categoría - ahora con todos los campos igual que el club
         const cat = totalesSeleccion.categorias[categoriaFiltro];
         statsSeleccionHtml = `
-        <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 15px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 10px;">
+        <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
           <span style="font-weight: 600; color: #001a6e;">${categoriaFiltro}</span>
         </div>
         <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
         <div class="total-item highlight"><span class="total-value">${cat.goles}</span><span class="total-label">${t("goles")}</span></div>
+        <div class="total-item"><span class="total-value">${cat.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
+        <div class="total-item yellow-card"><span class="total-value">${cat.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
+        <div class="total-item red-card"><span class="total-value">${cat.rojas}</span><span class="total-label">${t("rojas")}</span></div>
+        <div class="total-item minutes"><span class="total-value">${cat.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
       `;
       } else {
-        // Todas las categorías de selección
-        statsSeleccionHtml = `<div class="total-item"><span class="total-value">${totalesSeleccion.partidos}</span><span class="total-label">${t("partidos")}</span></div>
-        <div class="total-item highlight"><span class="total-value">${totalesSeleccion.goles}</span><span class="total-label">${t("goles")}</span></div>`;
-
-        // Desglose por categorías
-        Object.entries(totalesSeleccion.categorias).forEach(([cat, data]) => {
-          if (data.partidos > 0) {
-            statsSeleccionHtml += `
-            <div class="total-item" style="background: rgba(0,0,0,0.03); padding: 10px;">
-              <span style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 2px;">${cat}</span>
-              <span style="font-weight: 700; color: #001a6e;">${data.partidos} PJ / ${data.goles} G</span>
-            </div>`;
-          }
-        });
+        // Todas las categorías de selección - igual que el club
+        statsSeleccionHtml = `
+        <div class="total-item"><span class="total-value">${totalesSeleccion.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+        <div class="total-item highlight"><span class="total-value">${totalesSeleccion.goles}</span><span class="total-label">${t("goles")}</span></div>
+        <div class="total-item"><span class="total-value">${totalesSeleccion.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
+        <div class="total-item yellow-card"><span class="total-value">${totalesSeleccion.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
+        <div class="total-item red-card"><span class="total-value">${totalesSeleccion.rojas}</span><span class="total-label">${t("rojas")}</span></div>
+        <div class="total-item minutes"><span class="total-value">${totalesSeleccion.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
+      `;
       }
 
       totalesHtml += `
       <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700;">
         <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>Total Selección</h3>
-        <div class="totals-grid" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="totals-grid">
           ${statsSeleccionHtml}
         </div>
       </div>`;
