@@ -80,6 +80,45 @@ const CLUB_DATA = {
       imagen: "https://i.postimg.cc/XJqXqbps/Narváez_PNG.webp",
     },
 
+    "adrian-picos": {
+      nombre: "Adrián",
+      apellidos: "Picos Menéndez",
+      nombreCompleto: "Adrián Picos",
+      posicion: "Defensa",
+      posicionCorta: "DC",
+      altura: 1.85,
+      nacionalidad: "Española",
+      lugarNacimiento: "Santander, Cantabria",
+      fechaNacimiento: "1995-06-18",
+      imagen: "https://picsum.photos/seed/adrian-picos/400/500",
+    },
+
+    "victor-marquez": {
+      nombre: "Víctor",
+      apellidos: "Márquez López",
+      nombreCompleto: "Víctor Márquez",
+      posicion: "Defensa",
+      posicionCorta: "DC",
+      altura: 1.82,
+      nacionalidad: "Española",
+      lugarNacimiento: "León",
+      fechaNacimiento: "1997-09-30",
+      imagen: "https://picsum.photos/seed/victor-marquez/400/500",
+    },
+
+    "sergio-nunez": {
+      nombre: "Sergio",
+      apellidos: "Núñez Pérez",
+      nombreCompleto: "Sergio Núñez",
+      posicion: "Lateral Izquierdo",
+      posicionCorta: "LI",
+      altura: 1.76,
+      nacionalidad: "Española",
+      lugarNacimiento: "Madrid",
+      fechaNacimiento: "2000-02-14",
+      imagen: "https://picsum.photos/seed/sergio-nunez/400/500",
+    },
+
     // ── DEFENSAS ──────────────────────────────────────────────
 
     "eric-bertrand-bailly": {
