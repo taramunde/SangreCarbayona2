@@ -506,6 +506,22 @@ const App = {
   },
 
   renderJugadorCard: function (jugador) {
+    // Calcular edad si no existe pero hay fecha de nacimiento
+    let edadMostrar = jugador.edad;
+    if (!edadMostrar && jugador.fechaNacimiento) {
+      const hoy = new Date();
+      const nacimiento = new Date(jugador.fechaNacimiento);
+      edadMostrar = hoy.getFullYear() - nacimiento.getFullYear();
+      const m = hoy.getMonth() - nacimiento.getMonth();
+      if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edadMostrar--;
+      }
+    }
+    // Si sigue sin haber edad, mostrar mensaje
+    if (!edadMostrar) {
+      edadMostrar = t("desconocida") || "Desconocida";
+    }
+
     const ribbonHtml = jugador.fallecido
       ? '<div class="deceased-ribbon"></div>'
       : "";
@@ -513,28 +529,28 @@ const App = {
       ? `fichas/${jugador.codigo}.html`
       : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
     return `
-            <article class="squad-card">
-                <a href="${playerUrl}" class="squad-link">
-                    <div class="squad-image">
-                        <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
-                        <span class="squad-number">${jugador.dorsal}</span>
-                        ${ribbonHtml}
-                        <div class="squad-overlay"><span class="view-profile">${t("ver_ficha")}</span></div>
-                    </div>
-                    <div class="squad-info">
-                        <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
-                        <span class="squad-position">${translatePosition(jugador.posicion)}</span>
-                        <div class="squad-meta">
-                            <span><i class="far fa-calendar"></i> ${jugador.edad} ${t("edad")}</span>
-                            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida")}</span>
-                        </div>
-                        <div class="squad-stats">
-                            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
-                            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles}</span><span class="mini-stat-label">${t("goles")}</span></div>
-                        </div>
-                    </div>
-                </a>
-            </article>`;
+    <article class="squad-card">
+      <a href="${playerUrl}" class="squad-link">
+        <div class="squad-image">
+          <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
+          <span class="squad-number">${jugador.dorsal}</span>
+          ${ribbonHtml}
+          <div class="squad-overlay"><span class="view-profile">${t("ver_ficha")}</span></div>
+        </div>
+        <div class="squad-info">
+          <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
+          <span class="squad-position">${translatePosition(jugador.posicion)}</span>
+          <div class="squad-meta">
+            <span><i class="far fa-calendar"></i> ${edadMostrar} ${typeof edadMostrar === "number" ? t("edad") || "años" : ""}</span>
+            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida") || "Desconocida"}</span>
+          </div>
+          <div class="squad-stats">
+            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
+            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles}</span><span class="mini-stat-label">${t("goles")}</span></div>
+          </div>
+        </div>
+      </a>
+    </article>`;
   },
 
   renderCuerpoTecnico: function () {
