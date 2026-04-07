@@ -541,9 +541,9 @@ const App = {
           <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
           <span class="squad-position">${translatePosition(jugador.posicion)}</span>
           <div class="squad-meta">
-            <span><i class="far fa-calendar"></i> ${edadMostrar} ${typeof edadMostrar === "number" ? t("edad") || "años" : ""}</span>
-            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida") || "Desconocida"}</span>
-          </div>
+    <span><i class="far fa-calendar"></i> ${edadMostrar}${typeof edadMostrar === 'number' ? ' ' + (t("edad") || 'años') : ''}</span>
+    <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida")}</span>
+</div>
           <div class="squad-stats">
             <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
             <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles}</span><span class="mini-stat-label">${t("goles")}</span></div>
@@ -594,7 +594,33 @@ const App = {
     const haFallecido = jugador.fallecido === true;
     const fechaFallecimiento = jugador.fechaFallecimiento || null;
     let edadMostrar = jugador.edad;
-    if (haFallecido && fechaFallecimiento && jugador.fechaNacimiento) {
+
+// CALCULAR EDAD si no existe pero hay fecha de nacimiento
+if (!edadMostrar && jugador.fechaNacimiento) {
+  const hoy = new Date();
+  const nacimiento = new Date(jugador.fechaNacimiento);
+  edadMostrar = hoy.getFullYear() - nacimiento.getFullYear();
+  const m = hoy.getMonth() - nacimiento.getMonth();
+  if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+    edadMostrar--;
+  }
+}
+
+// Si está fallecido, calcular edad al fallecer
+if (haFallecido && fechaFallecimiento && jugador.fechaNacimiento) {
+  const nacimiento = new Date(jugador.fechaNacimiento);
+  const muerte = new Date(fechaFallecimiento);
+  let edadMuerte = muerte.getFullYear() - nacimiento.getFullYear();
+  const m = muerte.getMonth() - nacimiento.getMonth();
+  if (m < 0 || (m === 0 && muerte.getDate() < nacimiento.getDate()))
+    edadMuerte--;
+  edadMostrar = edadMuerte;
+}
+
+// Fallback final - si sigue sin haber edad
+if (!edadMostrar) {
+  edadMostrar = t("desconocida") || "Desconocida";
+}
       const nacimiento = new Date(jugador.fechaNacimiento);
       const muerte = new Date(fechaFallecimiento);
       let edadMuerte = muerte.getFullYear() - nacimiento.getFullYear();
