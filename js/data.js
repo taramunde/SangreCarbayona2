@@ -645,7 +645,7 @@ const CLUB_DATA = {
               golesVisitante: 0,
               resultado: "D",
               minutos: 90,
-              goles: 0,
+              goles: 1,
               asistencias: 0,
               amarilla: true,
               roja: false,
