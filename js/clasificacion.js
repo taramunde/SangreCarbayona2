@@ -12,84 +12,83 @@
   const equipos = [
     {
       nombre: "Deportivo Alavés",
-      escudo: "https://i.postimg.cc/Jzk39hHH/Alav-s.jpg",
+      escudo: "https://i.postimg.cc/XJ1JCghx/Alaves-KIMI.webp",
     },
     {
       nombre: "Athletic Club",
-      escudo: "https://i.postimg.cc/wvk3Y2Hv/Athletic-Club-2025.png",
+      escudo: "https://i.postimg.cc/mDpDHSqw/Athletic-KIMI.webp",
     },
     {
       nombre: "Atlético de Madrid",
-      escudo: "https://i.postimg.cc/RFg8098M/Club-Atl-tico-de-Madrid-1989.jpg",
+      escudo: "https://i.postimg.cc/d1N1y9Xj/At-Madrid-KIMI.webp",
     },
     {
       nombre: "F.C. Barcelona",
-      escudo: "https://i.postimg.cc/0yH0rj5X/F-C-Barcelona-C-2007.jpg",
+      escudo: "https://i.postimg.cc/50K0CmGs/FC-Barcelona-KIMI.webp",
     },
     {
       nombre: "Celta de Vigo",
-      escudo: "https://i.postimg.cc/GtF1h6kz/R-C-Celta-de-Vigo-2016.jpg",
+      escudo: "https://i.postimg.cc/d1N1y9Xm/Celta-de-Vigo-KIMI.webp",
     },
     {
       nombre: "Elche C.F.",
-      escudo: "https://i.postimg.cc/Kj439Dfc/Elche-C-F-2023-PNG.png",
+      escudo: "https://i.postimg.cc/76t62Ncm/Elche-KIMI.webp",
     },
     {
       nombre: "R.C.D. Espanyol",
-      escudo: "https://i.postimg.cc/ydBThzdg/RCD-Espanyol-2023.png",
+      escudo: "https://i.postimg.cc/tTvTxzfw/RCD-Espanyol-KIMI.webp",
     },
     {
       nombre: "Getafe C.F.",
-      escudo: "https://i.postimg.cc/kXgS8Cp0/Getafe-C-F-2018.jpg",
+      escudo: "https://i.postimg.cc/pTcTFB7G/Getafe-KIMI.webp",
     },
     {
       nombre: "Girona F.C.",
-      escudo: "https://i.postimg.cc/d0xBnVnf/Girona-F-C-2025.png",
+      escudo: "https://i.postimg.cc/cHkHncjk/Girona-KIMI.webp",
     },
     {
       nombre: "Levante U.D.",
-      escudo: "https://i.postimg.cc/W1FCSyhH/Levante-U-D-PNG.png",
+      escudo: "https://i.postimg.cc/tTvTxzfm/Levante-KIMI.webp",
     },
     {
       nombre: "R.C.D. Mallorca",
-      escudo: "https://i.postimg.cc/PryB3WKL/R-C-D-Mallorca-1996.jpg",
+      escudo: "https://i.postimg.cc/G2g2yjN6/RCD-Mallorca-KIMI.webp",
     },
     {
       nombre: "C.A. Osasuna",
-      escudo: "https://i.postimg.cc/mkhYyGr2/C-A-Osasuna-2015.jpg",
+      escudo: "https://i.postimg.cc/C1r1q4tQ/Osasuna-KIMI.webp",
     },
     {
       nombre: "Rayo Vallecano",
-      escudo:
-        "https://i.postimg.cc/153WzLct/Rayo-Vallecano-de-Madrid-B-2007.jpg",
+      escudo: "https://i.postimg.cc/rmZmr9bH/Rayo-Vallecano-KIMI.webp",
     },
     {
       nombre: "Real Betis",
-      escudo: "https://i.postimg.cc/J49HDXVF/Real-Betis-Balompi-2016.jpg",
+      escudo: "https://i.postimg.cc/3RfRvZ6P/Real-Betis-KIMI.webp",
     },
     {
       nombre: "Real Madrid",
-      escudo: "https://i.postimg.cc/FHcQ5ZGr/Real-Madrid-2022.png",
+      escudo: "https://i.postimg.cc/xCpCzPhr/Real-Madrid-KIMI.webp",
     },
     {
       nombre: "Real Oviedo",
-      escudo: "https://i.postimg.cc/yYcPrs6f/Oviedo.png",
+      escudo: "https://i.postimg.cc/zB2Bgk6Y/Real-Oviedo-KIMI.webp",
     },
     {
       nombre: "Real Sociedad",
-      escudo: "https://i.postimg.cc/GtykfwWL/Real-Sociedad-de-F-tbol-2002.jpg",
+      escudo: "https://i.postimg.cc/85X56b9Q/Real-Sociedad-KIMI.webp",
     },
     {
       nombre: "Sevilla F.C.",
-      escudo: "https://i.postimg.cc/KzFSjx5V/Sevilla-F-C-2020.jpg",
+      escudo: "https://i.postimg.cc/LXQX1Vwp/Sevilla-KIMI.webp",
     },
     {
       nombre: "Valencia C.F.",
-      escudo: "https://i.postimg.cc/pTD6xZ98/Valencia-C-F.png",
+      escudo: "https://i.postimg.cc/k4Y4byzd/Valencia-KIMI.webp",
     },
     {
       nombre: "Villarreal C.F.",
-      escudo: "https://i.postimg.cc/wBRLMdBh/Villarreal-C-F-B-2020.jpg",
+      escudo: "https://i.postimg.cc/B676KCk3/Villarreal-KIMI.webp",
     },
   ];
 
