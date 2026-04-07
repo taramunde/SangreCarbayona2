@@ -121,7 +121,7 @@ const App = {
     if (!container) return;
     const temporada = getTemporada(CLUB_DATA.temporadaActual);
 
-    // FUSIONAR con datos del maestro - ESTO FALTABA
+    // FUSIONAR con datos del maestro
     const jugadoresCompletos = temporada.jugadores
       .map((j) => getJugadorById(j.codigo || j.id, CLUB_DATA.temporadaActual))
       .filter((j) => j !== null);
@@ -447,7 +447,7 @@ const App = {
     if (!container) return;
     const temporada = getTemporada(this.temporadaActiva);
 
-    // FUSIONAR con datos del maestro - ESTO FALTABA
+    // FUSIONAR con datos del maestro
     const jugadoresCompletos = temporada.jugadores
       .map((j) => getJugadorById(j.codigo || j.id, this.temporadaActiva))
       .filter((j) => j !== null);
@@ -473,7 +473,6 @@ const App = {
     for (const [nombrePosicion, posicionesLista] of Object.entries(
       posiciones,
     )) {
-      // Ahora filtramos sobre jugadoresCompletos que SÍ tienen posición
       const jugadoresPos = jugadoresCompletos.filter((j) =>
         posicionesLista.includes(j.posicion),
       );
@@ -541,9 +540,9 @@ const App = {
           <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
           <span class="squad-position">${translatePosition(jugador.posicion)}</span>
           <div class="squad-meta">
-    <span><i class="far fa-calendar"></i> ${edadMostrar}${typeof edadMostrar === 'number' ? ' ' + (t("edad") || 'años') : ''}</span>
-    <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida")}</span>
-</div>
+            <span><i class="far fa-calendar"></i> ${edadMostrar}${typeof edadMostrar === "number" ? " " + (t("edad") || "años") : ""}</span>
+            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida")}</span>
+          </div>
           <div class="squad-stats">
             <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
             <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles}</span><span class="mini-stat-label">${t("goles")}</span></div>
@@ -593,34 +592,20 @@ const App = {
     const esTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
     const haFallecido = jugador.fallecido === true;
     const fechaFallecimiento = jugador.fechaFallecimiento || null;
+
+    // CALCULAR EDAD
     let edadMostrar = jugador.edad;
-
-// CALCULAR EDAD si no existe pero hay fecha de nacimiento
-if (!edadMostrar && jugador.fechaNacimiento) {
-  const hoy = new Date();
-  const nacimiento = new Date(jugador.fechaNacimiento);
-  edadMostrar = hoy.getFullYear() - nacimiento.getFullYear();
-  const m = hoy.getMonth() - nacimiento.getMonth();
-  if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
-    edadMostrar--;
-  }
-}
-
-// Si está fallecido, calcular edad al fallecer
-if (haFallecido && fechaFallecimiento && jugador.fechaNacimiento) {
-  const nacimiento = new Date(jugador.fechaNacimiento);
-  const muerte = new Date(fechaFallecimiento);
-  let edadMuerte = muerte.getFullYear() - nacimiento.getFullYear();
-  const m = muerte.getMonth() - nacimiento.getMonth();
-  if (m < 0 || (m === 0 && muerte.getDate() < nacimiento.getDate()))
-    edadMuerte--;
-  edadMostrar = edadMuerte;
-}
-
-// Fallback final - si sigue sin haber edad
-if (!edadMostrar) {
-  edadMostrar = t("desconocida") || "Desconocida";
-}
+    if (!edadMostrar && jugador.fechaNacimiento) {
+      const hoy = new Date();
+      const nacimiento = new Date(jugador.fechaNacimiento);
+      edadMostrar = hoy.getFullYear() - nacimiento.getFullYear();
+      const m = hoy.getMonth() - nacimiento.getMonth();
+      if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edadMostrar--;
+      }
+    }
+    // Si está fallecido, calcular edad al fallecer
+    if (haFallecido && fechaFallecimiento && jugador.fechaNacimiento) {
       const nacimiento = new Date(jugador.fechaNacimiento);
       const muerte = new Date(fechaFallecimiento);
       let edadMuerte = muerte.getFullYear() - nacimiento.getFullYear();
@@ -629,6 +614,11 @@ if (!edadMostrar) {
         edadMuerte--;
       edadMostrar = edadMuerte;
     }
+    // Fallback final
+    if (!edadMostrar) {
+      edadMostrar = t("desconocida") || "Desconocida";
+    }
+
     const pageUrl = window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
@@ -755,7 +745,6 @@ if (!edadMostrar) {
     const container = document.getElementById("tabMatches");
     if (!container) return;
 
-    // Usar partidos individuales del jugador si existen, si no usar los del equipo
     const temporada = getTemporada(seasonId);
     const listaPartidos =
       jugador.partidos && jugador.partidos.length > 0
@@ -811,7 +800,6 @@ if (!edadMostrar) {
             ? `J${partido.jornada}`
             : partido.jornada;
 
-        // Stats individuales del jugador en este partido (solo si hay partidos individuales)
         let playerStatsHtml = "";
         if (tienePartidosIndividuales) {
           const chips = [];
@@ -863,7 +851,6 @@ if (!edadMostrar) {
     html += "</div>";
     container.innerHTML = html;
 
-    // Inyectar estilos de los chips si no existen
     if (!document.getElementById("matchChipsStyles")) {
       const s = document.createElement("style");
       s.id = "matchChipsStyles";
@@ -891,7 +878,6 @@ if (!edadMostrar) {
     const container = document.getElementById("tabCareer");
     if (!container) return;
 
-    // Normalizar IDs para búsqueda (convertir a string para comparación flexible)
     const buscaId = String(jugadorActual.id || "");
     const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
 
@@ -910,7 +896,6 @@ if (!edadMostrar) {
       const datosTemporada = CLUB_DATA.temporadas[temp.id];
       if (!datosTemporada) return;
 
-      // Comparación flexible de IDs (string o number)
       const jugadorEnTemporada = datosTemporada.jugadores.find(
         (j) =>
           String(j.id) === buscaId ||
@@ -920,7 +905,6 @@ if (!edadMostrar) {
       );
 
       if (jugadorEnTemporada) {
-        // Obtener datos del maestro para esta temporada (para tener posición, nombre, etc.)
         const datosMaestro =
           CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
 
@@ -950,7 +934,6 @@ if (!edadMostrar) {
             stats: statsAMostrar,
             statsGlobales: jugadorEnTemporada.stats,
             dorsal: jugadorEnTemporada.dorsal,
-            // Usar posición del maestro si no está en los datos de temporada
             posicion:
               datosMaestro.posicion ||
               jugadorEnTemporada.posicion ||
@@ -1084,27 +1067,23 @@ if (!document.getElementById("responsiveAppStyles")) {
    AJUSTE UNIFORME DE FOTOS DE JUGADORES
    =================================== */
 function ajustarFotosJugadores() {
-  // Selecciona todas las imágenes de jugadores en todas las vistas
   const selectores = [
-    ".player-main-photo", // Ficha individual
-    ".squad-image img", // Plantilla completa
-    ".player-card img", // Grid de la home
-    ".squad-card .squad-image img", // Tarjetas de plantilla
+    ".player-main-photo",
+    ".squad-image img",
+    ".player-card img",
+    ".squad-card .squad-image img",
   ];
 
   const fotos = document.querySelectorAll(selectores.join(", "));
 
   fotos.forEach((img) => {
-    // Si la imagen ya cargó
     if (img.complete) {
       aplicarAjuste(img);
     } else {
-      // Esperar a que cargue
       img.onload = function () {
         aplicarAjuste(this);
       };
       img.onerror = function () {
-        // Imagen por defecto si hay error
         this.src =
           "https://via.placeholder.com/400x500/1a365d/ffffff?text=Jugador";
       };
@@ -1115,31 +1094,25 @@ function ajustarFotosJugadores() {
 function aplicarAjuste(img) {
   const ratio = img.naturalWidth / img.naturalHeight;
 
-  // Detectar tipo de foto según proporción
   if (ratio < 0.6) {
-    // Muy vertical (solo cara) - hacer zoom out
     img.style.objectPosition = "center 20%";
     img.style.transform = "scale(1.1)";
   } else if (ratio < 0.8) {
-    // Vertical estándar (retrato) - ajuste medio
     img.style.objectPosition = "center 15%";
     img.style.transform = "scale(1.05)";
   } else if (ratio > 1.3) {
-    // Horizontal (foto completa con fondo) - enfocar torso
     img.style.objectPosition = "center 25%";
     img.style.transform = "scale(1.15)";
   } else {
-    // Cuadrada - centrado estándar
     img.style.objectPosition = "center 20%";
     img.style.transform = "scale(1.08)";
   }
 }
 
-// Ejecutar después de renderizar cada sección
 const originalRenderFichaJugador = App.renderFichaJugador;
 App.renderFichaJugador = function () {
   originalRenderFichaJugador.call(this);
-  setTimeout(ajustarFotosJugadores, 100); // Pequeña espera para que el DOM se actualice
+  setTimeout(ajustarFotosJugadores, 100);
 };
 
 const originalRenderPlantillaCompleta = App.renderPlantillaCompleta;
