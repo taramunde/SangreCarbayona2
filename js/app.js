@@ -914,17 +914,17 @@ const App = {
           dorsal: "-",
           posicion: jugadorActual.posicion || "Jugador",
           actual: false,
+          statsGlobales: null, // Las selecciones no tienen desglose
         });
         // Sumar a totales si quieres incluir selección en los totales del jugador
-        // (opcional, quita estas líneas si no quieres que sume)
         totales.partidos += cat.partidos || 0;
         totales.goles += cat.goles || 0;
       });
     }
     // ============================================
 
+    // RECORRER TEMPORADAS DEL CLUB
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-      // ... resto del código existente sin cambios ...
       const datosTemporada = CLUB_DATA.temporadas[temp.id];
       if (!datosTemporada) return;
 
@@ -936,58 +936,73 @@ const App = {
           String(j.codigo) === buscaId,
       );
 
-      if (jugadorEnTemporada) {
-        // ... el resto del código que ya tienes ...
-        if (jugadorEnTemporada.stats.desglose) {
-          Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
-            competicionesSet.add(c),
-          );
+      if (!jugadorEnTemporada) return;
+
+      // Obtener datos maestro para esta temporada
+      const datosMaestro =
+        CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
+
+      if (jugadorEnTemporada.stats.desglose) {
+        Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
+          competicionesSet.add(c),
+        );
+      }
+
+      let statsAMostrar = { ...jugadorEnTemporada.stats };
+      let mostrarEstaTemporada = true;
+
+      if (filtroCompeticion !== "all") {
+        if (
+          jugadorEnTemporada.stats.desglose &&
+          jugadorEnTemporada.stats.desglose[filtroCompeticion]
+        ) {
+          statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion];
+        } else {
+          mostrarEstaTemporada = false;
         }
-        let statsAMostrar = { ...jugadorEnTemporada.stats };
-        let mostrarEstaTemporada = true;
-        if (filtroCompeticion !== "all") {
-          if (
-            jugadorEnTemporada.stats.desglose &&
-            jugadorEnTemporada.stats.desglose[filtroCompeticion]
-          ) {
-            statsAMostrar =
-              jugadorEnTemporada.stats.desglose[filtroCompeticion];
-          } else {
-            mostrarEstaTemporada = false;
-          }
-        }
-        if (mostrarEstaTemporada) {
-          historial.push({
-            temporada: temp.nombre,
-            equipo: CLUB_DATA.club.nombreCorto,
-            logo: CLUB_DATA.club.logo || "",
-            stats: statsAMostrar,
-            statsGlobales: jugadorEnTemporada.stats,
-            dorsal: jugadorEnTemporada.dorsal,
-            posicion:
-              datosMaestro.posicion ||
-              jugadorEnTemporada.posicion ||
-              "Desconocida",
-            actual: temp.id === currentSeasonId,
-          });
-          totales.partidos += statsAMostrar.partidos || 0;
-          totales.goles += statsAMostrar.goles || 0;
-          totales.asistencias += statsAMostrar.asistencias || 0;
-          totales.amarillas += statsAMostrar.amarillas || 0;
-          totales.rojas += statsAMostrar.rojas || 0;
-          totales.minutos += statsAMostrar.minutos || 0;
-        }
+      }
+
+      if (mostrarEstaTemporada) {
+        historial.push({
+          temporada: temp.nombre,
+          equipo: CLUB_DATA.club.nombreCorto,
+          logo: CLUB_DATA.club.logo || "",
+          stats: statsAMostrar,
+          statsGlobales: jugadorEnTemporada.stats,
+          dorsal: jugadorEnTemporada.dorsal,
+          posicion:
+            datosMaestro.posicion ||
+            jugadorEnTemporada.posicion ||
+            "Desconocida",
+          actual: temp.id === currentSeasonId,
+          esSeleccion: false,
+        });
+
+        totales.partidos += statsAMostrar.partidos || 0;
+        totales.goles += statsAMostrar.goles || 0;
+        totales.asistencias += statsAMostrar.asistencias || 0;
+        totales.amarillas += statsAMostrar.amarillas || 0;
+        totales.rojas += statsAMostrar.rojas || 0;
+        totales.minutos += statsAMostrar.minutos || 0;
       }
     });
 
+    // GENERAR HTML DEL TIMELINE
     let timelineHtml = "";
     historial.forEach((h) => {
       const badgeHtml = h.logo
         ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
         : `<span class="team-badge-text">OVI</span>`;
+
       let statsHtml = `<div class="timeline-stats"><span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span><span><strong>${h.stats.goles}</strong> ${t("goles")}</span><span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span></div>`;
 
-      if (filtroCompeticion === "all" && h.statsGlobales.desglose) {
+      // Solo mostrar desglose para clubes (no para selección)
+      if (
+        !h.esSeleccion &&
+        filtroCompeticion === "all" &&
+        h.statsGlobales &&
+        h.statsGlobales.desglose
+      ) {
         statsHtml += `<div class="timeline-breakdown-box">`;
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           statsHtml += `
