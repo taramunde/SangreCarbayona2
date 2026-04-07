@@ -197,244 +197,152 @@ const App = {
     const container = document.getElementById("heroMatch");
     if (!container) return;
 
-    const ESCUDOS = {
-      OVI: "https://i.postimg.cc/yYcPrs6f/Oviedo.png",
-      LEV: "https://i.postimg.cc/W1FCSyhH/Levante-U-D-PNG.png",
-      SEV: "https://i.postimg.cc/KzFSjx5V/Sevilla-F-C-2020.jpg",
-      BAR: "https://i.postimg.cc/0yH0rj5X/F-C-Barcelona-C-2007.jpg",
-      RMA: "https://i.postimg.cc/FHcQ5ZGr/Real-Madrid-2022.png",
-      ATM: "https://i.postimg.cc/RFg8098M/Club-Atl-tico-de-Madrid-1989.jpg",
-      ATH: "https://i.postimg.cc/wvk3Y2Hv/Athletic-Club-2025.png",
-      RSO: "https://i.postimg.cc/GtykfwWL/Real-Sociedad-de-F-tbol-2002.jpg",
-      VCF: "https://i.postimg.cc/pTD6xZ98/Valencia-C-F.png",
-      VIL: "https://i.postimg.cc/wBRLMdBh/Villarreal-C-F-B-2020.jpg",
-      RBB: "https://i.postimg.cc/J49HDXVF/Real-Betis-Balompi-2016.jpg",
-      GIR: "https://i.postimg.cc/d0xBnVnf/Girona-F-C-2025.png",
-      OSA: "https://i.postimg.cc/mkhYyGr2/C-A-Osasuna-2015.jpg",
-      RVC: "https://i.postimg.cc/153WzLct/Rayo-Vallecano-de-Madrid-B-2007.jpg",
-      ESP: "https://i.postimg.cc/ydBThzdg/RCD-Espanyol-2023.png",
-      RCC: "https://i.postimg.cc/GtF1h6kz/R-C-Celta-de-Vigo-2016.jpg",
-      GET: "https://i.postimg.cc/kXgS8Cp0/Getafe-C-F-2018.jpg",
-      ALA: "https://i.postimg.cc/Jzk39hHH/Alav-s.jpg",
-      MAL: "https://i.postimg.cc/W1FCSyhH/Levante-U-D-PNG.png",
-      ELC: "https://i.postimg.cc/Kj439Dfc/Elche-C-F-2023-PNG.png",
+    // Usar datos de clasificacion.js (window.enfrentamientos y window.equipos)
+    const partidos = window.enfrentamientos || [];
+    const equipos = window.equipos || [];
+
+    // Encontrar partidos del Oviedo
+    const OVIEDO = "Real Oviedo";
+    const partidosOviedo = partidos
+      .map((p, idx) => ({
+        ...p,
+        jornada: Math.floor(idx / 10) + 1,
+        jugado: p.goles1 !== null && p.goles2 !== null,
+      }))
+      .filter((p) => p.equipo1 === OVIEDO || p.equipo2 === OVIEDO);
+
+    if (partidosOviedo.length === 0) return;
+
+    // Encontrar último jugado y próximo
+    const jugados = partidosOviedo.filter((p) => p.jugado);
+    const ultimo = jugados.length > 0 ? jugados[jugados.length - 1] : null;
+    const proximo = partidosOviedo.find((p) => !p.jugado) || null;
+
+    // Helper para escudos
+    const getEscudo = (nombre) => {
+      const eq = equipos.find((e) => e.nombre === nombre);
+      return eq ? eq.escudo : "";
     };
 
-    const ultimo = {
-      jornada: 29,
-      fecha: "21 mar 2026",
-      localNom: "Levante UD",
-      localSig: "LEV",
-      visitNom: "Real Oviedo",
-      visitSig: "OVI",
-      golLocal: 4,
-      golVisit: 2,
-      esOviedoLocal: false,
+    // Helper para determinar resultado
+    const getResultadoData = (p) => {
+      const esLocal = p.equipo1 === OVIEDO;
+      const golesO = esLocal ? p.goles1 : p.goles2;
+      const golesR = esLocal ? p.goles2 : p.goles1;
+      if (golesO > golesR)
+        return {
+          tipo: "victoria",
+          texto: "Victoria",
+          icono: "fa-check-circle",
+          color: "win",
+        };
+      if (golesO < golesR)
+        return {
+          tipo: "derrota",
+          texto: "Derrota",
+          icono: "fa-times-circle",
+          color: "lose",
+        };
+      return {
+        tipo: "empate",
+        texto: "Empate",
+        icono: "fa-minus-circle",
+        color: "",
+      };
     };
-    const proximo = {
-      jornada: 30,
-      fecha: "5 abr 2026",
-      hora: "18:30",
-      localNom: "Real Oviedo",
-      localSig: "OVI",
-      visitNom: "Sevilla FC",
-      visitSig: "SEV",
-      estadio: "Carlos Tartiere",
-      esOviedoLocal: true,
-    };
 
-    const golesOvi = ultimo.esOviedoLocal ? ultimo.golLocal : ultimo.golVisit;
-    const golesRiv = ultimo.esOviedoLocal ? ultimo.golVisit : ultimo.golLocal;
-    const resultado =
-      golesOvi > golesRiv
-        ? "victoria"
-        : golesOvi < golesRiv
-          ? "derrota"
-          : "empate";
-    const resTexto = {
-      victoria: "Victoria",
-      derrota: "Derrota",
-      empate: "Empate",
-    }[resultado];
-    const resIcono = {
-      victoria: "fa-check-circle",
-      derrota: "fa-times-circle",
-      empate: "fa-minus-circle",
-    }[resultado];
-    const scoreCol =
-      resultado === "victoria"
-        ? "hero-score--win"
-        : resultado === "derrota"
-          ? "hero-score--lose"
-          : "";
+    let html = "";
 
-    const escLocal = (sig) => ESCUDOS[sig] || "";
-    const ovClass = (sig) => (sig === "OVI" ? " hero-escudo--oviedo" : "");
-    const ovNameCl = (sig) => (sig === "OVI" ? " hero-team-name--oviedo" : "");
+    // === ÚLTIMO PARTIDO ===
+    if (ultimo) {
+      const esLocal = ultimo.equipo1 === OVIEDO;
+      const rival = esLocal ? ultimo.equipo2 : ultimo.equipo1;
+      const resultado = getResultadoData(ultimo);
+      const escudoO = getEscudo(OVIEDO);
+      const escudoR = getEscudo(rival);
+      const fechaStr = `J${ultimo.jornada}`; // Puedes formatear mejor si tienes fechas reales
 
-    container.innerHTML =
-      '<div class="hero-block">' +
-      '<div class="hero-label-row">' +
-      '<span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>' +
-      '<span class="hero-jornada-badge">J' +
-      ultimo.jornada +
-      " \u00b7 " +
-      ultimo.fecha +
-      "</span>" +
-      "</div>" +
-      '<div class="hero-scoreboard">' +
-      '<div class="hero-team">' +
-      '<img src="' +
-      escLocal(ultimo.localSig) +
-      '" alt="' +
-      ultimo.localNom +
-      '" class="hero-escudo' +
-      ovClass(ultimo.localSig) +
-      '">' +
-      '<span class="hero-team-name' +
-      ovNameCl(ultimo.localSig) +
-      '">' +
-      ultimo.localNom +
-      "</span>" +
-      '<span class="hero-team-tag">Local</span>' +
-      "</div>" +
-      '<div class="hero-score-center">' +
-      '<div class="hero-score-box">' +
-      '<span class="hero-score ' +
-      scoreCol +
-      '">' +
-      ultimo.golLocal +
-      "</span>" +
-      '<span class="hero-score-sep">\u2013</span>' +
-      '<span class="hero-score ' +
-      scoreCol +
-      '">' +
-      ultimo.golVisit +
-      "</span>" +
-      "</div>" +
-      '<span class="hero-status hero-status--final">Finalizado</span>' +
-      "</div>" +
-      '<div class="hero-team">' +
-      '<img src="' +
-      escLocal(ultimo.visitSig) +
-      '" alt="' +
-      ultimo.visitNom +
-      '" class="hero-escudo' +
-      ovClass(ultimo.visitSig) +
-      '">' +
-      '<span class="hero-team-name' +
-      ovNameCl(ultimo.visitSig) +
-      '">' +
-      ultimo.visitNom +
-      "</span>" +
-      '<span class="hero-team-tag">Visitante</span>' +
-      "</div>" +
-      "</div>" +
-      '<div class="hero-badge-result hero-badge--' +
-      resultado +
-      '">' +
-      '<i class="fas ' +
-      resIcono +
-      '"></i> ' +
-      resTexto +
-      "</div>" +
-      "</div>" +
-      '<div class="hero-divider"></div>' +
-      '<div class="hero-block">' +
-      '<div class="hero-label-row">' +
-      '<span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>' +
-      '<span class="hero-jornada-badge">J' +
-      proximo.jornada +
-      " \u00b7 " +
-      proximo.fecha +
-      "</span>" +
-      "</div>" +
-      '<div class="hero-scoreboard">' +
-      '<div class="hero-team">' +
-      '<img src="' +
-      escLocal(proximo.localSig) +
-      '" alt="' +
-      proximo.localNom +
-      '" class="hero-escudo' +
-      ovClass(proximo.localSig) +
-      '">' +
-      '<span class="hero-team-name' +
-      ovNameCl(proximo.localSig) +
-      '">' +
-      proximo.localNom +
-      "</span>" +
-      '<span class="hero-team-tag">Local</span>' +
-      "</div>" +
-      '<div class="hero-score-center">' +
-      '<div class="hero-score-box hero-score-box--upcoming">' +
-      '<span class="hero-vs">VS</span>' +
-      "</div>" +
-      '<span class="hero-status hero-status--upcoming">' +
-      '<i class="fas fa-clock"></i> ' +
-      proximo.hora +
-      "h \u00b7 " +
-      proximo.estadio +
-      "</span>" +
-      "</div>" +
-      '<div class="hero-team">' +
-      '<img src="' +
-      escLocal(proximo.visitSig) +
-      '" alt="' +
-      proximo.visitNom +
-      '" class="hero-escudo' +
-      ovClass(proximo.visitSig) +
-      '">' +
-      '<span class="hero-team-name' +
-      ovNameCl(proximo.visitSig) +
-      '">' +
-      proximo.visitNom +
-      "</span>" +
-      '<span class="hero-team-tag">Visitante</span>' +
-      "</div>" +
-      "</div>" +
-      '<div class="hero-badge-result hero-badge--proximo">' +
-      '<i class="fas fa-calendar-alt"></i> Pr\u00f3ximo partido \u00b7 ' +
-      (proximo.esOviedoLocal ? "En casa" : "Fuera") +
-      "</div>" +
-      "</div>";
-
-    if (!document.getElementById("heroMatchStyles")) {
-      const s = document.createElement("style");
-      s.id = "heroMatchStyles";
-      s.textContent = [
-        "#heroMatch{display:flex;align-items:stretch;justify-content:center;flex-wrap:wrap;gap:0}",
-        ".hero-block{flex:1;min-width:260px;max-width:460px;display:flex;flex-direction:column;gap:14px;padding:28px 20px 20px}",
-        ".hero-divider{width:1px;background:rgba(255,255,255,0.12);margin:24px 0;flex-shrink:0}",
-        ".hero-label-row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}",
-        ".hero-comp-badge{font-size:.7em;font-weight:700;color:#ffcc00;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:5px}",
-        ".hero-jornada-badge{font-size:.68em;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.4px}",
-        ".hero-scoreboard{display:flex;align-items:center;justify-content:space-between;gap:10px}",
-        ".hero-team{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:0}",
-        ".hero-escudo{width:54px;height:54px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}",
-        ".hero-escudo--oviedo{filter:drop-shadow(0 0 10px rgba(255,204,0,.4))}",
-        ".hero-team-name{font-family:'Oswald',sans-serif;font-size:.8em;font-weight:600;color:rgba(255,255,255,.8);text-align:center;text-transform:uppercase;letter-spacing:.3px;line-height:1.2}",
-        ".hero-team-name--oviedo{color:#ffcc00}",
-        ".hero-team-tag{font-size:.6em;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.5px;font-weight:600}",
-        ".hero-score-center{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}",
-        ".hero-score-box{display:flex;align-items:center;gap:2px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 18px}",
-        ".hero-score-box--upcoming{background:rgba(255,204,0,.08);border-color:rgba(255,204,0,.2);padding:12px 22px}",
-        ".hero-score{font-family:'Oswald',sans-serif;font-size:2em;font-weight:700;color:white;line-height:1;min-width:26px;text-align:center}",
-        ".hero-score--win{color:#69f0ae}",
-        ".hero-score--lose{color:#ff6e6e}",
-        ".hero-score-sep{font-family:'Oswald',sans-serif;font-size:1.4em;color:rgba(255,255,255,.25);margin:0 5px}",
-        ".hero-vs{font-family:'Oswald',sans-serif;font-size:1.6em;font-weight:700;color:rgba(255,204,0,.65);letter-spacing:3px}",
-        ".hero-status{font-size:.68em;font-weight:600;text-transform:uppercase;letter-spacing:.5px}",
-        ".hero-status--final{color:rgba(255,255,255,.4)}",
-        ".hero-status--upcoming{color:rgba(255,204,0,.75);display:flex;align-items:center;gap:5px;text-align:center}",
-        ".hero-badge-result{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.7em;font-weight:700;padding:5px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px;align-self:center}",
-        ".hero-badge--victoria{background:rgba(105,240,174,.15);color:#69f0ae;border:1px solid rgba(105,240,174,.3)}",
-        ".hero-badge--derrota{background:rgba(255,110,110,.15);color:#ff6e6e;border:1px solid rgba(255,110,110,.3)}",
-        ".hero-badge--empate{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2)}",
-        ".hero-badge--proximo{background:rgba(255,204,0,.15);color:#ffcc00;border:1px solid rgba(255,204,0,.3)}",
-        "@media(max-width:640px){.hero-block{padding:18px 12px 14px;min-width:100%}.hero-divider{width:100%;height:1px;margin:0}.hero-escudo{width:42px;height:42px}.hero-score{font-size:1.6em}.hero-team-name{font-size:.72em}}",
-      ].join("");
-      document.head.appendChild(s);
+      html += `
+        <div class="hero-block">
+            <div class="hero-label-row">
+                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>
+                <span class="hero-jornada-badge">${fechaStr}</span>
+            </div>
+            <div class="hero-scoreboard">
+                <div class="hero-team">
+                    <img src="${escudoO}" alt="Real Oviedo" class="hero-escudo hero-escudo--oviedo">
+                    <span class="hero-team-name hero-team-name--oviedo">Real Oviedo</span>
+                    <span class="hero-team-tag">${esLocal ? "Local" : "Visitante"}</span>
+                </div>
+                <div class="hero-score-center">
+                    <div class="hero-score-box">
+                        <span class="hero-score hero-score--${resultado.color}">${esLocal ? ultimo.goles1 : ultimo.goles2}</span>
+                        <span class="hero-score-sep">–</span>
+                        <span class="hero-score hero-score--${resultado.color}">${esLocal ? ultimo.goles2 : ultimo.goles1}</span>
+                    </div>
+                    <span class="hero-status hero-status--final">Finalizado</span>
+                </div>
+                <div class="hero-team">
+                    <img src="${escudoR}" alt="${rival}" class="hero-escudo">
+                    <span class="hero-team-name">${rival}</span>
+                    <span class="hero-team-tag">${esLocal ? "Visitante" : "Local"}</span>
+                </div>
+            </div>
+            <div class="hero-badge-result hero-badge--${resultado.tipo}">
+                <i class="fas ${resultado.icono}"></i> ${resultado.texto}
+            </div>
+        </div>`;
     }
+
+    // Separador
+    if (ultimo && proximo) {
+      html += '<div class="hero-divider"></div>';
+    }
+
+    // === PRÓXIMO PARTIDO ===
+    if (proximo) {
+      const esLocal = proximo.equipo1 === OVIEDO;
+      const rival = esLocal ? proximo.equipo2 : proximo.equipo1;
+      const escudoO = getEscudo(OVIEDO);
+      const escudoR = getEscudo(rival);
+      const fechaStr = `J${proximo.jornada}`;
+
+      html += `
+        <div class="hero-block">
+            <div class="hero-label-row">
+                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>
+                <span class="hero-jornada-badge">${fechaStr} · Próximo</span>
+            </div>
+            <div class="hero-scoreboard">
+                <div class="hero-team">
+                    <img src="${escudoO}" alt="Real Oviedo" class="hero-escudo hero-escudo--oviedo">
+                    <span class="hero-team-name hero-team-name--oviedo">Real Oviedo</span>
+                    <span class="hero-team-tag">${esLocal ? "Local" : "Visitante"}</span>
+                </div>
+                <div class="hero-score-center">
+                    <div class="hero-score-box hero-score-box--upcoming">
+                        <span class="hero-vs">VS</span>
+                    </div>
+                    <span class="hero-status hero-status--upcoming">
+                        <i class="fas fa-calendar"></i> Por disputar
+                    </span>
+                </div>
+                <div class="hero-team">
+                    <img src="${escudoR}" alt="${rival}" class="hero-escudo">
+                    <span class="hero-team-name">${rival}</span>
+                    <span class="hero-team-tag">${esLocal ? "Visitante" : "Local"}</span>
+                </div>
+            </div>
+            <div class="hero-badge-result hero-badge--proximo">
+                <i class="fas fa-calendar-alt"></i> Próximo partido · ${esLocal ? "En casa" : "Fuera"}
+            </div>
+        </div>`;
+    } else if (!ultimo) {
+      html =
+        '<p style="text-align:center;color:white;">No hay datos de partidos disponibles.</p>';
+    }
+
+    container.innerHTML = html;
   },
 
   renderEstadisticasEquipo: function () {
