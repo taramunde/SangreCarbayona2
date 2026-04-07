@@ -121,6 +121,11 @@ const App = {
     if (!container) return;
     const temporada = getTemporada(CLUB_DATA.temporadaActual);
 
+    // FUSIONAR con datos del maestro - ESTO FALTABA
+    const jugadoresCompletos = temporada.jugadores
+      .map((j) => getJugadorById(j.codigo || j.id, CLUB_DATA.temporadaActual))
+      .filter((j) => j !== null);
+
     const positionGroups = {
       goalkeeper: ["Portero"],
       defender: ["Defensa", "Central", "Lateral Derecho", "Lateral Izquierdo"],
@@ -138,10 +143,10 @@ const App = {
       ],
     };
 
-    let playersToRender = temporada.jugadores;
+    let playersToRender = jugadoresCompletos;
     if (filter !== "all") {
       const validPositions = positionGroups[filter] || [];
-      playersToRender = temporada.jugadores.filter((j) =>
+      playersToRender = jugadoresCompletos.filter((j) =>
         validPositions.includes(j.posicion),
       );
     }
@@ -441,6 +446,12 @@ const App = {
     const container = document.getElementById("plantillaCompleta");
     if (!container) return;
     const temporada = getTemporada(this.temporadaActiva);
+
+    // FUSIONAR con datos del maestro - ESTO FALTABA
+    const jugadoresCompletos = temporada.jugadores
+      .map((j) => getJugadorById(j.codigo || j.id, this.temporadaActiva))
+      .filter((j) => j !== null);
+
     const posiciones = {
       [t("porteros")]: ["Portero"],
       [t("defensas")]: ["Lateral Derecho", "Lateral Izquierdo", "Central"],
@@ -457,11 +468,13 @@ const App = {
         "Delantero",
       ],
     };
+
     let html = "";
     for (const [nombrePosicion, posicionesLista] of Object.entries(
       posiciones,
     )) {
-      const jugadoresPos = temporada.jugadores.filter((j) =>
+      // Ahora filtramos sobre jugadoresCompletos que SÍ tienen posición
+      const jugadoresPos = jugadoresCompletos.filter((j) =>
         posicionesLista.includes(j.posicion),
       );
       if (jugadoresPos.length === 0) continue;
