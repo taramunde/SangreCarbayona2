@@ -882,7 +882,9 @@ const App = {
     const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
 
     const historial = [];
-    let totales = {
+
+    // TOTALES SEPARADOS: Club vs Selección
+    let totalesClub = {
       partidos: 0,
       goles: 0,
       asistencias: 0,
@@ -890,19 +892,47 @@ const App = {
       rojas: 0,
       minutos: 0,
     };
+
+    let totalesSeleccion = {
+      partidos: 0,
+      goles: 0,
+      categorias: {}, // Para desglose por categoría
+    };
+
     const competicionesSet = new Set();
 
     // ============================================
-    // NUEVO: AÑADIR SELECCIÓN NACIONAL AL HISTORIAL
+    // PROCESAR SELECCIÓN NACIONAL
     // ============================================
     if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
       const sel = jugadorActual.seleccion;
+
       sel.datos.forEach((cat) => {
+        const nombreCompeticion = `Selección ${cat.categoria}`;
+        competicionesSet.add(nombreCompeticion);
+
+        // Guardar en totales por categoría
+        if (!totalesSeleccion.categorias[cat.categoria]) {
+          totalesSeleccion.categorias[cat.categoria] = {
+            partidos: 0,
+            goles: 0,
+          };
+        }
+        totalesSeleccion.categorias[cat.categoria].partidos +=
+          cat.partidos || 0;
+        totalesSeleccion.categorias[cat.categoria].goles += cat.goles || 0;
+
+        // Totales generales selección
+        totalesSeleccion.partidos += cat.partidos || 0;
+        totalesSeleccion.goles += cat.goles || 0;
+
         historial.push({
           temporada: cat.categoria, // "Absoluta", "U21", etc.
           equipo: sel.pais,
-          logo: sel.bandera, // Usará la bandera como "escudo"
-          esSeleccion: true, // Flag para estilos especiales
+          logo: sel.bandera,
+          esSeleccion: true,
+          categoriaSeleccion: cat.categoria,
+          competicionFiltro: nombreCompeticion, // Para el filtrado
           stats: {
             partidos: cat.partidos,
             goles: cat.goles,
@@ -914,11 +944,8 @@ const App = {
           dorsal: "-",
           posicion: jugadorActual.posicion || "Jugador",
           actual: false,
-          statsGlobales: null, // Las selecciones no tienen desglose
+          statsGlobales: null,
         });
-        // Sumar a totales si quieres incluir selección en los totales del jugador
-        totales.partidos += cat.partidos || 0;
-        totales.goles += cat.goles || 0;
       });
     }
     // ============================================
@@ -938,9 +965,9 @@ const App = {
 
       if (!jugadorEnTemporada) return;
 
-      // Obtener datos maestro para esta temporada
       const datosMaestro =
         CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
+      const compNombre = datosTemporada.competicion || "Competición";
 
       if (jugadorEnTemporada.stats.desglose) {
         Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
@@ -948,17 +975,30 @@ const App = {
         );
       }
 
+      // Siempre añadimos la competición principal al set
+      competicionesSet.add(compNombre);
+
       let statsAMostrar = { ...jugadorEnTemporada.stats };
       let mostrarEstaTemporada = true;
 
+      // Lógica de filtrado mejorada
       if (filtroCompeticion !== "all") {
-        if (
-          jugadorEnTemporada.stats.desglose &&
-          jugadorEnTemporada.stats.desglose[filtroCompeticion]
-        ) {
-          statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion];
-        } else {
+        const esFiltroSeleccion = filtroCompeticion.startsWith("Selección");
+
+        if (esFiltroSeleccion) {
+          // Si filtro es selección, no mostrar temporadas de club
           mostrarEstaTemporada = false;
+        } else {
+          // Si filtro es competición de club
+          if (
+            jugadorEnTemporada.stats.desglose &&
+            jugadorEnTemporada.stats.desglose[filtroCompeticion]
+          ) {
+            statsAMostrar =
+              jugadorEnTemporada.stats.desglose[filtroCompeticion];
+          } else if (compNombre !== filtroCompeticion) {
+            mostrarEstaTemporada = false;
+          }
         }
       }
 
@@ -967,6 +1007,8 @@ const App = {
           temporada: temp.nombre,
           equipo: CLUB_DATA.club.nombreCorto,
           logo: CLUB_DATA.club.logo || "",
+          esSeleccion: false,
+          competicionFiltro: compNombre,
           stats: statsAMostrar,
           statsGlobales: jugadorEnTemporada.stats,
           dorsal: jugadorEnTemporada.dorsal,
@@ -975,28 +1017,47 @@ const App = {
             jugadorEnTemporada.posicion ||
             "Desconocida",
           actual: temp.id === currentSeasonId,
-          esSeleccion: false,
         });
 
-        totales.partidos += statsAMostrar.partidos || 0;
-        totales.goles += statsAMostrar.goles || 0;
-        totales.asistencias += statsAMostrar.asistencias || 0;
-        totales.amarillas += statsAMostrar.amarillas || 0;
-        totales.rojas += statsAMostrar.rojas || 0;
-        totales.minutos += statsAMostrar.minutos || 0;
+        // Sumar solo a totales de club
+        totalesClub.partidos += statsAMostrar.partidos || 0;
+        totalesClub.goles += statsAMostrar.goles || 0;
+        totalesClub.asistencias += statsAMostrar.asistencias || 0;
+        totalesClub.amarillas += statsAMostrar.amarillas || 0;
+        totalesClub.rojas += statsAMostrar.rojas || 0;
+        totalesClub.minutos += statsAMostrar.minutos || 0;
       }
     });
 
+    // FILTRAR HISTORIAL SI ES SELECCIÓN
+    let historialFiltrado = historial;
+    if (
+      filtroCompeticion !== "all" &&
+      filtroCompeticion.startsWith("Selección")
+    ) {
+      const categoriaBuscada = filtroCompeticion.replace("Selección ", "");
+      historialFiltrado = historial.filter(
+        (h) => h.esSeleccion && h.categoriaSeleccion === categoriaBuscada,
+      );
+    } else if (filtroCompeticion !== "all") {
+      // Filtrar solo club para competiciones normales
+      historialFiltrado = historial.filter((h) => !h.esSeleccion);
+    }
+
     // GENERAR HTML DEL TIMELINE
     let timelineHtml = "";
-    historial.forEach((h) => {
+    historialFiltrado.forEach((h) => {
       const badgeHtml = h.logo
         ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
         : `<span class="team-badge-text">OVI</span>`;
 
-      let statsHtml = `<div class="timeline-stats"><span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span><span><strong>${h.stats.goles}</strong> ${t("goles")}</span><span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span></div>`;
+      let statsHtml = `<div class="timeline-stats">
+      <span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span>
+      <span><strong>${h.stats.goles}</strong> ${t("goles")}</span>
+      ${!h.esSeleccion ? `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>` : ""}
+    </div>`;
 
-      // Solo mostrar desglose para clubes (no para selección)
+      // Desglose solo para clubes
       if (
         !h.esSeleccion &&
         filtroCompeticion === "all" &&
@@ -1023,17 +1084,149 @@ const App = {
       <div class="timeline-item ${h.actual ? "current" : ""} ${h.esSeleccion ? "seleccion-nacional" : ""}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <div class="timeline-header"><span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span><span class="timeline-years">${h.temporada}</span></div>
-          <div class="timeline-position"><span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span><span class="pos-name">${translatePosition(h.posicion)}</span></div>
+          <div class="timeline-header">
+            <span class="timeline-club">
+              <span class="team-badge">${badgeHtml}</span>
+              ${h.esSeleccion ? `<i class="fas fa-flag" style="margin-right: 8px; color: var(--secondary-color);"></i>` : ""}
+              ${h.equipo}
+            </span>
+            <span class="timeline-years">${h.temporada}</span>
+          </div>
+          <div class="timeline-position">
+            <span class="pos-label"><i class="fas fa-tshirt"></i> #${h.dorsal}</span>
+            <span class="pos-name">${translatePosition(h.posicion)}</span>
+          </div>
           ${statsHtml}
         </div>
       </div>`;
     });
 
-    const listaComps = ["all", ...Array.from(competicionesSet)];
-    const dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center;"><label style="margin-right:10px; font-weight:bold;">Filtrar:</label><select id="filterCareer" style="padding:5px 10px; border-radius:5px; border:1px solid #001a6e; background:#fff; color:#001a6e;">${listaComps.map((c) => `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c === "all" ? "Todas las competiciones" : c}</option>`).join("")}</select></div>`;
+    // CONSTRUIR DROPDOWN CON GRUPOS
+    const listaComps = Array.from(competicionesSet).sort();
+    const tieneSeleccion =
+      jugadorActual.seleccion && jugadorActual.seleccion.datos;
+    const tieneClub = historial.some((h) => !h.esSeleccion);
 
-    container.innerHTML = `${dropdownHtml}<div class="career-grid"><div class="career-timeline-card"><h3 class="card-title">${t("historial")}</h3><div class="timeline">${timelineHtml || "<p>No hay datos.</p>"}</div></div><div class="career-sidebar"><div class="career-totals-card"><h3 class="card-title">${t("totales")}</h3><div class="totals-grid"><div class="total-item"><span class="total-value">${totales.partidos}</span><span class="total-label">${t("partidos")}</span></div><div class="total-item highlight"><span class="total-value">${totales.goles}</span><span class="total-label">${t("goles")}</span></div><div class="total-item"><span class="total-value">${totales.asistencias}</span><span class="total-label">${t("asistencias")}</span></div><div class="total-item yellow-card"><span class="total-value">${totales.amarillas}</span><span class="total-label">${t("amarillas")}</span></div><div class="total-item red-card"><span class="total-value">${totales.rojas}</span><span class="total-label">${t("rojas")}</span></div><div class="total-item minutes"><span class="total-value">${totales.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div></div></div></div></div>`;
+    let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
+    <label style="font-weight:bold;">Filtrar:</label>
+    <select id="filterCareer" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit;">`;
+
+    dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>Todas las competiciones</option>`;
+
+    // Grupo Club
+    if (tieneClub) {
+      dropdownHtml += `<optgroup label="Club">`;
+      listaComps
+        .filter((c) => !c.startsWith("Selección"))
+        .forEach((c) => {
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c}</option>`;
+        });
+      dropdownHtml += `</optgroup>`;
+    }
+
+    // Grupo Selección
+    if (tieneSeleccion) {
+      dropdownHtml += `<optgroup label="Selección Nacional">`;
+      listaComps
+        .filter((c) => c.startsWith("Selección"))
+        .forEach((c) => {
+          const cat = c.replace("Selección ", "");
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cat}</option>`;
+        });
+      dropdownHtml += `</optgroup>`;
+    }
+
+    dropdownHtml += `</select></div>`;
+
+    // GENERAR TARJETAS DE TOTALES SEPARADAS
+    let totalesHtml = "";
+
+    // Solo mostrar totales de club si hay datos de club y el filtro lo permite
+    const mostrarTotalesClub =
+      (filtroCompeticion === "all" ||
+        !filtroCompeticion.startsWith("Selección")) &&
+      totalesClub.partidos > 0;
+
+    // Solo mostrar totales de selección si hay datos de selección y el filtro lo permite
+    const mostrarTotalesSeleccion =
+      (filtroCompeticion === "all" ||
+        filtroCompeticion.startsWith("Selección")) &&
+      totalesSeleccion.partidos > 0;
+
+    if (mostrarTotalesClub) {
+      totalesHtml += `
+      <div class="career-totals-card club-totals">
+        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>Total Club</h3>
+        <div class="totals-grid">
+          <div class="total-item"><span class="total-value">${totalesClub.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+          <div class="total-item highlight"><span class="total-value">${totalesClub.goles}</span><span class="total-label">${t("goles")}</span></div>
+          <div class="total-item"><span class="total-value">${totalesClub.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
+          <div class="total-item yellow-card"><span class="total-value">${totalesClub.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
+          <div class="total-item red-card"><span class="total-value">${totalesClub.rojas}</span><span class="total-label">${t("rojas")}</span></div>
+          <div class="total-item minutes"><span class="total-value">${totalesClub.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
+        </div>
+      </div>`;
+    }
+
+    if (mostrarTotalesSeleccion) {
+      // Si filtramos por categoría específica, mostrar solo esa
+      const esFiltroCategoriaEspecifica =
+        filtroCompeticion.startsWith("Selección");
+      const categoriaFiltro = esFiltroCategoriaEspecifica
+        ? filtroCompeticion.replace("Selección ", "")
+        : null;
+
+      let statsSeleccionHtml = "";
+
+      if (
+        esFiltroCategoriaEspecifica &&
+        totalesSeleccion.categorias[categoriaFiltro]
+      ) {
+        // Solo esa categoría
+        const cat = totalesSeleccion.categorias[categoriaFiltro];
+        statsSeleccionHtml = `
+        <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 15px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 10px;">
+          <span style="font-weight: 600; color: #001a6e;">${categoriaFiltro}</span>
+        </div>
+        <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+        <div class="total-item highlight"><span class="total-value">${cat.goles}</span><span class="total-label">${t("goles")}</span></div>
+      `;
+      } else {
+        // Todas las categorías de selección
+        statsSeleccionHtml = `<div class="total-item"><span class="total-value">${totalesSeleccion.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+        <div class="total-item highlight"><span class="total-value">${totalesSeleccion.goles}</span><span class="total-label">${t("goles")}</span></div>`;
+
+        // Desglose por categorías
+        Object.entries(totalesSeleccion.categorias).forEach(([cat, data]) => {
+          if (data.partidos > 0) {
+            statsSeleccionHtml += `
+            <div class="total-item" style="background: rgba(0,0,0,0.03); padding: 10px;">
+              <span style="font-size: 0.75rem; color: #666; display: block; margin-bottom: 2px;">${cat}</span>
+              <span style="font-weight: 700; color: #001a6e;">${data.partidos} PJ / ${data.goles} G</span>
+            </div>`;
+          }
+        });
+      }
+
+      totalesHtml += `
+      <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700;">
+        <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>Total Selección</h3>
+        <div class="totals-grid" style="grid-template-columns: repeat(2, 1fr);">
+          ${statsSeleccionHtml}
+        </div>
+      </div>`;
+    }
+
+    container.innerHTML = `${dropdownHtml}
+    <div class="career-grid">
+      <div class="career-timeline-card">
+        <h3 class="card-title">${t("historial")}</h3>
+        <div class="timeline">${timelineHtml || "<p>No hay datos.</p>"}</div>
+      </div>
+      <div class="career-sidebar">
+        ${totalesHtml}
+      </div>
+    </div>`;
 
     const filterSelect = document.getElementById("filterCareer");
     if (filterSelect) {
