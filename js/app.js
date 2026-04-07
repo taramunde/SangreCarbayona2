@@ -892,7 +892,39 @@ const App = {
     };
     const competicionesSet = new Set();
 
+    // ============================================
+    // NUEVO: AÑADIR SELECCIÓN NACIONAL AL HISTORIAL
+    // ============================================
+    if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
+      const sel = jugadorActual.seleccion;
+      sel.datos.forEach((cat) => {
+        historial.push({
+          temporada: cat.categoria, // "Absoluta", "U21", etc.
+          equipo: sel.pais,
+          logo: sel.bandera, // Usará la bandera como "escudo"
+          esSeleccion: true, // Flag para estilos especiales
+          stats: {
+            partidos: cat.partidos,
+            goles: cat.goles,
+            asistencias: 0,
+            amarillas: 0,
+            rojas: 0,
+            minutos: 0,
+          },
+          dorsal: "-",
+          posicion: jugadorActual.posicion || "Jugador",
+          actual: false,
+        });
+        // Sumar a totales si quieres incluir selección en los totales del jugador
+        // (opcional, quita estas líneas si no quieres que sume)
+        totales.partidos += cat.partidos || 0;
+        totales.goles += cat.goles || 0;
+      });
+    }
+    // ============================================
+
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      // ... resto del código existente sin cambios ...
       const datosTemporada = CLUB_DATA.temporadas[temp.id];
       if (!datosTemporada) return;
 
@@ -905,9 +937,7 @@ const App = {
       );
 
       if (jugadorEnTemporada) {
-        const datosMaestro =
-          CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
-
+        // ... el resto del código que ya tienes ...
         if (jugadorEnTemporada.stats.desglose) {
           Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
             competicionesSet.add(c),
@@ -975,7 +1005,7 @@ const App = {
       }
 
       timelineHtml += `
-      <div class="timeline-item ${h.actual ? "current" : ""}">
+      <div class="timeline-item ${h.actual ? "current" : ""} ${h.esSeleccion ? "seleccion-nacional" : ""}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <div class="timeline-header"><span class="timeline-club"><span class="team-badge">${badgeHtml}</span>${h.equipo}</span><span class="timeline-years">${h.temporada}</span></div>
