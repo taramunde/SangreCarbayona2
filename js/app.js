@@ -747,14 +747,17 @@ const App = {
     if (!container) return;
 
     const temporada = getTemporada(seasonId);
-    const listaPartidos =
-      jugador.partidos && jugador.partidos.length > 0
-        ? jugador.partidos
-        : temporada.partidosJugados || [];
 
-    const tienePartidosIndividuales = !!(
-      jugador.partidos && jugador.partidos.length > 0
-    );
+    // FIX: Solo usar fallback de temporada si partidos es null/undefined
+    // Si es array vacío [], significa que el jugador no ha jugado partidos (no hay fallback)
+    const tienePartidosDefinidos =
+      jugador.partidos !== null && jugador.partidos !== undefined;
+    const listaPartidos = tienePartidosDefinidos
+      ? jugador.partidos
+      : temporada.partidosJugados || [];
+
+    // El jugador tiene array de partidos explícito (incluso si está vacío)
+    const tienePartidosIndividuales = tienePartidosDefinidos;
 
     if (listaPartidos.length === 0) {
       container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos para este jugador.</p>`;
@@ -877,9 +880,12 @@ const App = {
       document.head.appendChild(s);
     }
 
-    document.getElementById("filterMatches").addEventListener("change", (e) => {
-      this.renderFichaMatches(jugador, seasonId, e.target.value);
-    });
+    const filterSelect = document.getElementById("filterMatches");
+    if (filterSelect) {
+      filterSelect.addEventListener("change", (e) => {
+        this.renderFichaMatches(jugador, seasonId, e.target.value);
+      });
+    }
   },
 
   renderFichaCareerHistory: function (
