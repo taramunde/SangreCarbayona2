@@ -1028,7 +1028,34 @@ const CLUB_DATA = {
             minutos: 0,
             amarillas: 0,
             rojas: 0,
+            desglose: {
+              "Primera División": {
+                partidos: 0,
+                goles: 0,
+                asistencias: 0,
+                minutos: 0,
+                amarillas: 0,
+                rojas: 0,
+              },
+              "Copa del Rey": {
+                partidos: 0,
+                goles: 0,
+                asistencias: 0,
+                minutos: 0,
+                amarillas: 0,
+                rojas: 0,
+              },
+              "Competición Internacional": {
+                partidos: 0,
+                goles: 0,
+                asistencias: 0,
+                minutos: 0,
+                amarillas: 0,
+                rojas: 0,
+              },
+            },
           },
+          partidos: [],
         },
         // DEFENSAS
         {
