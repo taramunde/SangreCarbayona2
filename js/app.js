@@ -174,17 +174,40 @@ const App = {
   renderNoticias: function () {
     const container = document.getElementById("noticiasGrid");
     if (!container) return;
-    let html = "";
-    const timestamp = Date.now(); // Timestamp único por sesión
-    CLUB_DATA.noticias.forEach((noticia, index) => {
-      const fecha = formatearFecha(noticia.fecha);
-      // Añade cache buster único por noticia
-      const imgUrl = noticia.imagen.includes("?")
-        ? noticia.imagen + `&_cb=${timestamp}-${index}`
-        : noticia.imagen + `?_cb=${timestamp}-${index}`;
 
-      html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}"><a href="#" class="news-link"><div class="news-image"><img src="${imgUrl}" alt="${noticia.titulo}"><span class="news-category">${noticia.categoria}</span></div><div class="news-content"><h3>${noticia.titulo}</h3>${noticia.esPrincipal ? `<p>${noticia.resumen}</p>` : ""}<span class="news-date">${fecha.completa}</span></div></a></article>`;
+    // LIMPIAR COMPLETAMENTE el contenedor para evitar reutilización de elementos DOM cacheados
+    container.innerHTML = "";
+
+    let html = "";
+    // Timestamp único para forzar recarga fresca de imágenes (evita caché del navegador)
+    const cacheBuster = Date.now();
+
+    CLUB_DATA.noticias.forEach((noticia) => {
+      const fecha = formatearFecha(noticia.fecha);
+
+      // Agregar cache buster a la URL de la imagen
+      // Esto fuerza al navegador a hacer una nueva petición HTTP en lugar de usar la imagen cacheada
+      let imageUrl = noticia.imagen;
+      if (imageUrl) {
+        const separator = imageUrl.includes("?") ? "&" : "?";
+        imageUrl = `${imageUrl}${separator}_cb=${cacheBuster}`;
+      }
+
+      html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}">
+        <a href="#" class="news-link">
+          <div class="news-image">
+            <img src="${imageUrl}" alt="${noticia.titulo}" loading="eager">
+            <span class="news-category">${noticia.categoria}</span>
+          </div>
+          <div class="news-content">
+            <h3>${noticia.titulo}</h3>
+            ${noticia.esPrincipal ? `<p>${noticia.resumen}</p>` : ""}
+            <span class="news-date">${fecha.completa}</span>
+          </div>
+        </a>
+      </article>`;
     });
+
     container.innerHTML = html;
   },
 
