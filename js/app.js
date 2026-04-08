@@ -256,6 +256,12 @@ const App = {
       const escudoR = getEscudo(rival);
       const fechaStr = `J${ultimo.jornada}`;
 
+      // Para el último partido: equipo1 (local) a la izquierda, equipo2 (visitante) a la derecha
+      const escudoIzq = ultimo.goles1 !== null ? getEscudo(ultimo.equipo1) : "";
+      const escudoDer = ultimo.goles2 !== null ? getEscudo(ultimo.equipo2) : "";
+      const equipoIzq = ultimo.equipo1;
+      const equipoDer = ultimo.equipo2;
+
       html += `
         <div class="hero-block">
             <div class="hero-label-row">
@@ -264,22 +270,22 @@ const App = {
             </div>
             <div class="hero-scoreboard">
                 <div class="hero-team">
-                    <img src="${escudoO}" alt="Real Oviedo" class="hero-escudo hero-escudo--oviedo">
-                    <span class="hero-team-name hero-team-name--oviedo">Real Oviedo</span>
-                    <span class="hero-team-tag">${esLocal ? "Local" : "Visitante"}</span>
+                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
+                    <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
+                    <span class="hero-team-tag">Local</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box">
-                        <span class="hero-score hero-score--${resultado.color}">${esLocal ? ultimo.goles1 : ultimo.goles2}</span>
+                        <span class="hero-score hero-score--${resultado.color}">${ultimo.goles1}</span>
                         <span class="hero-score-sep">–</span>
-                        <span class="hero-score hero-score--${resultado.color}">${esLocal ? ultimo.goles2 : ultimo.goles1}</span>
+                        <span class="hero-score hero-score--${resultado.color}">${ultimo.goles2}</span>
                     </div>
                     <span class="hero-status hero-status--final">Finalizado</span>
                 </div>
                 <div class="hero-team">
-                    <img src="${escudoR}" alt="${rival}" class="hero-escudo">
-                    <span class="hero-team-name">${rival}</span>
-                    <span class="hero-team-tag">${esLocal ? "Visitante" : "Local"}</span>
+                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
+                    <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
+                    <span class="hero-team-tag">Visitante</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--${resultado.tipo}">
@@ -298,6 +304,13 @@ const App = {
       const rival = esLocal ? proximo.equipo2 : proximo.equipo1;
       const escudoO = getEscudo(OVIEDO);
       const escudoR = getEscudo(rival);
+
+      // CORRECCIÓN: equipo1 siempre es local (izquierda), equipo2 siempre es visitante (derecha)
+      const escudoIzq = getEscudo(proximo.equipo1);
+      const escudoDer = getEscudo(proximo.equipo2);
+      const equipoIzq = proximo.equipo1;
+      const equipoDer = proximo.equipo2;
+
       const fechaStr = `J${proximo.jornada}`;
 
       html += `
@@ -308,9 +321,9 @@ const App = {
             </div>
             <div class="hero-scoreboard">
                 <div class="hero-team">
-                    <img src="${escudoO}" alt="Real Oviedo" class="hero-escudo hero-escudo--oviedo">
-                    <span class="hero-team-name hero-team-name--oviedo">Real Oviedo</span>
-                    <span class="hero-team-tag">${esLocal ? "Local" : "Visitante"}</span>
+                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
+                    <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
+                    <span class="hero-team-tag">Local</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box hero-score-box--upcoming">
@@ -321,9 +334,9 @@ const App = {
                     </span>
                 </div>
                 <div class="hero-team">
-                    <img src="${escudoR}" alt="${rival}" class="hero-escudo">
-                    <span class="hero-team-name">${rival}</span>
-                    <span class="hero-team-tag">${esLocal ? "Visitante" : "Local"}</span>
+                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
+                    <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
+                    <span class="hero-team-tag">Visitante</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--proximo">
