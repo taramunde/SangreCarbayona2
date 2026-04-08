@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clasificación LaLiga | Sangre Carbayona</title>
+    <title data-i18n="clasificacion_titulo">
+      Clasificación LaLiga | Sangre Carbayona
+    </title>
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v26" />
     <link rel="stylesheet" href="css/clasificacion.css?nocache=20251231v34" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,11 +39,15 @@
       <div class="clasi-hero-bg"></div>
       <div class="container">
         <div class="clasi-hero-content">
-          <span class="clasi-badge"
+          <span class="clasi-badge" data-i18n="laliga_ea_sports"
             ><i class="fas fa-trophy"></i> LaLiga EA Sports</span
           >
-          <h1>Clasificación <span>2025/26</span></h1>
-          <p>Seguimiento jornada a jornada · Real Oviedo en Primera División</p>
+          <h1 data-i18n="clasificacion_titulo">
+            Clasificación <span>2025/26</span>
+          </h1>
+          <p data-i18n="clasificacion_subtitulo">
+            Seguimiento jornada a jornada · Real Oviedo en Primera División
+          </p>
         </div>
       </div>
     </section>
@@ -52,8 +58,13 @@
         <!-- TABLA -->
         <div class="clasi-card">
           <div class="clasi-card-header">
-            <h2><i class="fas fa-list-ol"></i> Tabla de Clasificación</h2>
-            <span class="clasi-jornada-badge" id="jornadaBadge"
+            <h2 data-i18n="tabla_clasificacion">
+              <i class="fas fa-list-ol"></i> Tabla de Clasificación
+            </h2>
+            <span
+              class="clasi-jornada-badge"
+              id="jornadaBadge"
+              data-i18n="cargando"
               >Cargando...</span
             >
           </div>
@@ -80,16 +91,20 @@
           <!-- LEYENDA -->
           <div class="leyenda-container">
             <div class="leyenda-item">
-              <span class="dot champions"></span> Champions League
+              <span class="dot champions"></span>
+              <span data-i18n="champions_league">Champions League</span>
             </div>
             <div class="leyenda-item">
-              <span class="dot europa"></span> Europa League
+              <span class="dot europa"></span>
+              <span data-i18n="europa_league">Europa League</span>
             </div>
             <div class="leyenda-item">
-              <span class="dot conference"></span> Conference League
+              <span class="dot conference"></span>
+              <span data-i18n="conference_league">Conference League</span>
             </div>
             <div class="leyenda-item">
-              <span class="dot descenso"></span> Descenso
+              <span class="dot descenso"></span>
+              <span data-i18n="descenso_liga">Descenso</span>
             </div>
           </div>
         </div>
@@ -97,18 +112,20 @@
         <!-- GRÁFICA EVOLUCIÓN -->
         <div class="clasi-card clasi-chart-card">
           <div class="clasi-card-header">
-            <h2><i class="fas fa-chart-line"></i> Evolución Real Oviedo</h2>
+            <h2 data-i18n="evolucion_oviedo">
+              <i class="fas fa-chart-line"></i> Evolución Real Oviedo
+            </h2>
             <div class="clasi-mini-stats">
               <div class="clasi-mini-stat">
-                <span class="label">Mejor</span>
+                <span class="label" data-i18n="mejor_posicion">Mejor</span>
                 <span class="value" id="team-position-best">—</span>
               </div>
               <div class="clasi-mini-stat">
-                <span class="label">Peor</span>
+                <span class="label" data-i18n="peor_posicion">Peor</span>
                 <span class="value" id="team-position-worst">—</span>
               </div>
               <div class="clasi-mini-stat">
-                <span class="label">Actual</span>
+                <span class="label" data-i18n="actual_posicion">Actual</span>
                 <span class="value" id="team-position-current">—</span>
               </div>
             </div>
@@ -123,7 +140,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
-    <script src="js/i18n.js?nocache=20251231v24"></script>
+    <script src="js/i18n.js?nocache=20251231v25"></script>
     <script src="js/script.js?nocache=20251231v26"></script>
     <script src="js/clasificacion.js?nocache=20251231v30"></script>
     <script src="js/main.js?nocache=20251231v30"></script>

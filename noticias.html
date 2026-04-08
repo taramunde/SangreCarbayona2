@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noticias | Sangre Carbayona</title>
+    <title data-i18n="noticias_titulo">Noticias | Sangre Carbayona</title>
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v5" />
     <link rel="stylesheet" href="css/noticias.css?nocache=20260330v8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,11 +52,13 @@
       <div class="page-hero-bg"></div>
       <div class="container">
         <div class="page-hero-content">
-          <span class="page-hero-label"
+          <span class="page-hero-label" data-i18n="noticias_medios"
             ><i class="fas fa-newspaper"></i> Medios</span
           >
-          <h1 class="page-hero-title">Últimas Noticias</h1>
-          <p class="page-hero-sub">
+          <h1 class="page-hero-title" data-i18n="noticias_titulo">
+            Últimas Noticias
+          </h1>
+          <p class="page-hero-sub" data-i18n="noticias_subtitulo">
             Toda la actualidad del Real Oviedo en los principales medios
           </p>
         </div>
@@ -67,17 +69,39 @@
     <section class="news-filter-section">
       <div class="container">
         <div class="news-filter-bar">
-          <button class="filter-btn active" data-medio="all">Todos</button>
-          <button class="filter-btn" data-medio="lavozdeasturias">
+          <button
+            class="filter-btn active"
+            data-medio="all"
+            data-i18n="noticias_todos"
+          >
+            Todos
+          </button>
+          <button
+            class="filter-btn"
+            data-medio="lavozdeasturias"
+            data-i18n="noticias_lavoz"
+          >
             La Voz de Asturias
           </button>
-          <button class="filter-btn" data-medio="elcomercio">
+          <button
+            class="filter-btn"
+            data-medio="elcomercio"
+            data-i18n="noticias_elcomercio"
+          >
             El Comercio
           </button>
-          <button class="filter-btn" data-medio="lasnuevas">
+          <button
+            class="filter-btn"
+            data-medio="lasnuevas"
+            data-i18n="noticias_lasnuevas"
+          >
             Las Nuevas de Asturias
           </button>
-          <button class="filter-btn" data-medio="killerasturias">
+          <button
+            class="filter-btn"
+            data-medio="killerasturias"
+            data-i18n="noticias_killer"
+          >
             Killer Asturias
           </button>
         </div>
@@ -90,7 +114,7 @@
         <!-- Estado de carga -->
         <div class="news-loading" id="noticiasLoading">
           <div class="loading-spinner"></div>
-          <p>Cargando noticias...</p>
+          <p data-i18n="noticias_cargando">Cargando noticias...</p>
         </div>
 
         <!-- Grid principal -->
@@ -101,8 +125,12 @@
         <!-- Estado vacío / error -->
         <div class="news-empty" id="noticiasEmpty" style="display: none">
           <i class="fas fa-newspaper"></i>
-          <p>No se pudieron cargar las noticias en este momento.</p>
-          <button class="btn-retry" id="btnRetry">Intentar de nuevo</button>
+          <p data-i18n="noticias_error">
+            No se pudieron cargar las noticias en este momento.
+          </p>
+          <button class="btn-retry" id="btnRetry" data-i18n="intentar_de_nuevo">
+            Intentar de nuevo
+          </button>
         </div>
       </div>
     </section>
@@ -124,7 +152,7 @@
       </div>
     </div>
 
-    <script src="js/i18n.js?nocache=20251231v25"></script>
+    <script src="js/i18n.js?nocache=20251231v26"></script>
     <script src="js/script.js?nocache=20251231v6"></script>
     <script src="js/noticias.js?nocache=20260330v4"></script>
     <script src="js/main.js?nocache=20260330v6"></script>

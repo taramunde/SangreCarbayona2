@@ -3,118 +3,521 @@
    =================================== */
 
 const translations = {
-    es: {
-        // Navegación
-        nav_inicio: "Inicio", nav_club: "Club", nav_equipo: "Equipo", nav_competiciones: "Competiciones", nav_noticias: "Noticias", nav_multimedia: "Multimedia",
-        nav_historia: "Historia", nav_palmares: "Palmarés", nav_estadio: "Estadio Municipal", nav_directiva: "Directiva",
-        nav_primer_equipo: "1ª Equip.", nav_cuerpo_tecnico: "Cuerpo Técnico", nav_cantera: "Cantera", nav_fem: "Fútbol Femenino",
-        nav_primera_div: "Primera Div.", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendario", nav_clasificacion: "Clasificacion", nav_fundacion: "Fundación",
-        nav_juegos: "Juegos", 
-        nav_videos: "Vídeos",
-        // General
-        buscar: "Buscar en la web...", ver_todas: "Ver todas", ver_clasificacion: "Ver clasificación completa", calendario_completo: "Calendario completo", ver_plantilla: "Ver plantilla completa", grupo: "Grupo I", current_badge: "Actual",
-        // Index
-        ultimas_noticias: "Últimas Noticias", clasificacion: "Clasificación", calendario: "Calendario", plantilla: "Plantilla", patrocinadores: "Patrocinadores", proximo_partido: "Próximo Partido",
-        // Equipo
-        equipo_titulo: "Primer Equipo", equipo_subtitulo: "Temporada", posicion: "Posición", victorias: "Victorias", empates: "Empates", derrotas: "Derrotas", goles_favor: "Goles Favor", goles_contra: "Goles Contra",
-        // Plantilla
-        porteros: "Porteros", defensas: "Defensas", centrocampistas: "Centrocampistas", delanteros: "Delanteros",
-        partidos: "Partidos", goles: "Goles", edad: "años", ver_ficha: "Ver ficha", todos: "Todos",
-        // Ficha
-        temporada: "Temporada", asistencias: "Asistencias", minutos: "Minutos", altura: "Altura", peso: "Peso", pie: "Pie",
-        rendimiento: "Resumen", informacion: "Información Personal", nacimiento: "Nacimiento", lugar: "Lugar", nacionalidad: "Nacionalidad",
-        en_club_desde: "En el club desde", disciplina: "Disciplina Temporada", amarillas: "Amarillas", rojas: "Rojas",
-        historial: "Trayectoria", totales: "Totales en el Club", logros: "Logros", fallecimiento: "Fallecimiento",
-        // Selección
-        seleccion: "Selección Nacional",
-        // Extras
-        desconocida: "Desconocida", fecha_desconocida: "Fecha desconocida", goles_partido: "Goles por partido", minutos_partido: "Minutos por partido", jornada: "Jornada",
-        // Footer
-        footer_club: "El Club", footer_equipos: "Equipos", footer_competiciones: "Competiciones", footer_contacto: "Contacto", footer_privacidad: "Política de privacidad", footer_cookies: "Política de cookies", footer_legal: "Aviso legal", derechos: "Todos los derechos reservados.",
-        // Posiciones
-        pos_portero: "Portero", pos_lateral_derecho: "Lateral Derecho", pos_lateral_izquierdo: "Lateral Izquierdo", pos_central: "Central", pos_mediocentro_defensivo: "Mediocentro Defensivo", pos_centrocampista: "Centrocampista", pos_mediacentro: "Mediocentro", pos_mediapunta: "Mediapunta", pos_delantero_centro: "Delantero Centro", pos_extremo_derecho: "Extremo Derecho", pos_extremo_izquierdo: "Extremo Izquierdo", pos_delantero: "Delantero"
-    },
-    en: {
-        // Navigation
-        nav_inicio: "Home", nav_club: "Club", nav_equipo: "Team", nav_competiciones: "Competitions", nav_noticias: "News", nav_multimedia: "Multimedia",
-        nav_historia: "History", nav_palmares: "Honours", nav_estadio: "Municipal Stadium", nav_directiva: "Board",
-        nav_primer_equipo: "1st Team", nav_cuerpo_tecnico: "Technical Staff", nav_cantera: "Academy", nav_fem: "Women's Football",
-        nav_primera_div: "Primera Div.", nav_copa_rey: "Copa del Rey", nav_calendario: "Calendar", nav_clasificacion: "Standings", nav_fundacion: "Foundation",
-        nav_juegos: "Games",
-        nav_videos: "Videos",
-        // General
-        buscar: "Search...", ver_todas: "View all", ver_clasificacion: "View full standings", calendario_completo: "Full calendar", ver_plantilla: "View full squad", grupo: "Group I", current_badge: "Current",
-        // Index
-        ultimas_noticias: "Latest News", clasificacion: "Standings", calendario: "Calendar", plantilla: "Squad", patrocinadores: "Sponsors", proximo_partido: "Next Match",
-        // Team
-        equipo_titulo: "First Team", equipo_subtitulo: "Season", posicion: "Position", victorias: "Wins", empates: "Draws", derrotas: "Losses", goles_favor: "Goals For", goles_contra: "Goals Against",
-        // Squad
-        porteros: "Goalkeepers", defensas: "Defenders", centrocampistas: "Midfielders", delanteros: "Forwards",
-        partidos: "Matches", goles: "Goals", edad: "years old", ver_ficha: "View profile", todos: "All",
-        // Profile
-        temporada: "Season", asistencias: "Assists", minutos: "Minutes", altura: "Height", peso: "Weight", pie: "Foot",
-        rendimiento: "Overview", informacion: "Personal Info", nacimiento: "Birthdate", lugar: "Birthplace", nacionalidad: "Nationality",
-        en_club_desde: "At club since", disciplina: "Discipline", amarillas: "Yellow Cards", rojas: "Red Cards",
-        historial: "Career", totales: "Club Totals", logros: "Achievements", fallecimiento: "Passed away",
-        // National Team
-        seleccion: "National Team",
-        // Extras
-        desconocida: "Unknown", fecha_desconocida: "Date unknown", goles_partido: "Goals per game", minutos_partido: "Minutes per game", jornada: "Matchday",
-        // Footer
-        footer_club: "The Club", footer_equipos: "Teams", footer_competiciones: "Competitions", footer_contacto: "Contact", footer_privacidad: "Privacy Policy", footer_cookies: "Cookie Policy", footer_legal: "Legal Notice", derechos: "All rights reserved.",
-        // Positions
-        pos_portero: "Goalkeeper", pos_lateral_derecho: "Right Back", pos_lateral_izquierdo: "Left Back", pos_central: "Centre Back", pos_mediocentro_defensivo: "Defensive Midfielder", pos_centrocampista: "Midfielder", pos_mediacentro: "Central Midfielder", pos_mediapunta: "Attacking Midfielder", pos_delantero_centro: "Centre Forward", pos_extremo_derecho: "Right Winger", pos_extremo_izquierdo: "Left Winger", pos_delantero: "Forward"
-    }
+  es: {
+    // ============================================
+    // NAVEGACIÓN
+    // ============================================
+    nav_inicio: "Inicio",
+    nav_club: "Club",
+    nav_equipo: "Equipo",
+    nav_competiciones: "Competiciones",
+    nav_noticias: "Noticias",
+    nav_multimedia: "Multimedia",
+    nav_historia: "Historia",
+    nav_palmares: "Palmarés",
+    nav_estadio: "Estadio Municipal",
+    nav_directiva: "Directiva",
+    nav_primer_equipo: "1ª Equip.",
+    nav_cuerpo_tecnico: "Cuerpo Técnico",
+    nav_cantera: "Cantera",
+    nav_fem: "Fútbol Femenino",
+    nav_primera_div: "Primera Div.",
+    nav_copa_rey: "Copa del Rey",
+    nav_calendario: "Calendario",
+    nav_clasificacion: "Clasificación",
+    nav_fundacion: "Fundación",
+    nav_juegos: "Juegos",
+    nav_videos: "Vídeos",
+
+    // ============================================
+    // GENERAL / COMUNES
+    // ============================================
+    buscar: "Buscar en la web...",
+    ver_todas: "Ver todas",
+    ver_clasificacion: "Ver clasificación completa",
+    calendario_completo: "Calendario completo",
+    ver_plantilla: "Ver plantilla completa",
+    grupo: "Grupo I",
+    current_badge: "Actual",
+    todos: "Todos",
+    cargando: "Cargando...",
+    limpiar_filtros: "Limpiar filtros",
+    intentar_de_nuevo: "Intentar de nuevo",
+
+    // ============================================
+    // INDEX / HOME
+    // ============================================
+    ultimas_noticias: "Últimas Noticias",
+    clasificacion: "Clasificación",
+    calendario: "Calendario",
+    plantilla: "Plantilla",
+    patrocinadores: "Patrocinadores",
+    proximo_partido: "Próximo Partido",
+    laliga_temporada: "LaLiga 2025/26",
+    champions: "Champions",
+    europa: "Europa",
+    conference: "Conference",
+    descenso: "Descenso",
+    temporada_actual: "Temporada 2025/26 - Primera Div.",
+
+    // ============================================
+    // EQUIPO / PLANTILLA
+    // ============================================
+    equipo_titulo: "Primer Equipo",
+    equipo_subtitulo: "Temporada",
+    posicion: "Posición",
+    victorias: "Victorias",
+    empates: "Empates",
+    derrotas: "Derrotas",
+    goles_favor: "Goles Favor",
+    goles_contra: "Goles Contra",
+    porteros: "Porteros",
+    defensas: "Defensas",
+    centrocampistas: "Centrocampistas",
+    delanteros: "Delanteros",
+    partidos: "Partidos",
+    goles: "Goles",
+    edad: "años",
+    ver_ficha: "Ver ficha",
+    plantilla_completa: "Plantilla Completa",
+    cuerpo_tecnico_titulo: "Cuerpo Técnico",
+
+    // ============================================
+    // FICHA JUGADOR
+    // ============================================
+    temporada: "Temporada",
+    asistencias: "Asistencias",
+    minutos: "Minutos",
+    altura: "Altura",
+    peso: "Peso",
+    pie: "Pie",
+    rendimiento: "Resumen",
+    informacion: "Información Personal",
+    nacimiento: "Nacimiento",
+    lugar: "Lugar",
+    nacionalidad: "Nacionalidad",
+    en_club_desde: "En el club desde",
+    disciplina: "Disciplina Temporada",
+    amarillas: "Amarillas",
+    rojas: "Rojas",
+    historial: "Trayectoria",
+    totales: "Totales en el Club",
+    logros: "Logros",
+    fallecimiento: "Fallecimiento",
+    seleccion: "Selección Nacional",
+    desconocida: "Desconocida",
+    fecha_desconocida: "Fecha desconocida",
+    goles_partido: "Goles por partido",
+    minutos_partido: "Minutos por partido",
+    jornada: "Jornada",
+    encajados: "Encajados",
+    portero_stat: "Rendimiento Defensivo",
+    goles_encajados_partido: "Goles Encajados/Partido",
+
+    // ============================================
+    // CALENDARIO
+    // ============================================
+    calendario_titulo: "Calendario",
+    calendario_subtitulo:
+      "Todos los partidos del Real Oviedo · Primera División",
+    calendario_jugados: "Jugados",
+    calendario_victorias: "Victorias",
+    calendario_empates: "Empates",
+    calendario_derrotas: "Derrotas",
+    calendario_goles: "Goles",
+    calendario_pendientes: "Pendientes",
+    calendario_todos: "Todos",
+    calendario_jugados_filtro: "Jugados",
+    calendario_pendientes_filtro: "Pendientes",
+    calendario_en_casa: "En casa",
+    calendario_fuera: "Fuera",
+    laliga_ea_sports: "LaLiga EA Sports",
+
+    // ============================================
+    // CLASIFICACIÓN
+    // ============================================
+    clasificacion_titulo: "Clasificación",
+    clasificacion_subtitulo:
+      "Seguimiento jornada a jornada · Real Oviedo en Primera División",
+    tabla_clasificacion: "Tabla de Clasificación",
+    champions_league: "Champions League",
+    europa_league: "Europa League",
+    conference_league: "Conference League",
+    descenso_liga: "Descenso",
+    evolucion_oviedo: "Evolución Real Oviedo",
+    mejor_posicion: "Mejor",
+    peor_posicion: "Peor",
+    actual_posicion: "Actual",
+
+    // ============================================
+    // NOTICIAS
+    // ============================================
+    noticias_titulo: "Últimas Noticias",
+    noticias_subtitulo:
+      "Toda la actualidad del Real Oviedo en los principales medios",
+    noticias_medios: "Medios",
+    noticias_todos: "Todos",
+    noticias_lavoz: "La Voz de Asturias",
+    noticias_elcomercio: "El Comercio",
+    noticias_lasnuevas: "Las Nuevas de Asturias",
+    noticias_killer: "Killer Asturias",
+    noticias_cargando: "Cargando noticias...",
+    noticias_error: "No se pudieron cargar las noticias en este momento.",
+
+    // ============================================
+    // PRIMERA DIVISIÓN
+    // ============================================
+    primera_div_titulo: "Primera División",
+    primera_div_subtitulo: "Histórico de partidos temporada por temporada",
+    solo_oviedo: "Solo partidos del Real Oviedo",
+    filtro_rival: "Rival:",
+    todos_equipos: "Todos los equipos",
+    filtro_resultado: "Resultado:",
+    filtro_todos: "Todos",
+    victorias_oviedo: "Victorias Oviedo",
+    empates_resultado: "Empates",
+    derrotas_oviedo: "Derrotas Oviedo",
+    colapsar_todas: "Colapsar todas",
+    expandir_todas: "Expandir todas",
+    mostrando_partidos: "Mostrando:",
+    partidos_contador: "partidos",
+    no_resultados_filtros:
+      "No se encontraron partidos con los filtros seleccionados",
+
+    // ============================================
+    // JUEGOS
+    // ============================================
+    juegos_titulo: "Juegos",
+    juegos_subtitulo: "Zona de Juegos y Entretenimiento",
+    juegos_disponibles: "Juegos Disponibles",
+
+    // ============================================
+    // VÍDEOS
+    // ============================================
+    videos_titulo: "Vídeos",
+    videos_subtitulo: "Resúmenes y mejores momentos de la temporada",
+    videos_resumenes: "Resúmenes de Partidos",
+    compartir_pagina: "Comparte esta página",
+    compartir_whatsapp: "Compartir en WhatsApp",
+    compartir_twitter: "Compartir en Twitter",
+    compartir_telegram: "Compartir en Telegram",
+    compartir_facebook: "Compartir en Facebook",
+
+    // ============================================
+    // FOOTER
+    // ============================================
+    footer_club: "El Club",
+    footer_equipos: "Equipos",
+    footer_competiciones: "Competiciones",
+    footer_contacto: "Contacto",
+    footer_privacidad: "Política de privacidad",
+    footer_cookies: "Política de cookies",
+    footer_legal: "Aviso legal",
+    derechos: "Todos los derechos reservados.",
+
+    // ============================================
+    // POSICIONES
+    // ============================================
+    pos_portero: "Portero",
+    pos_lateral_derecho: "Lateral Derecho",
+    pos_lateral_izquierdo: "Lateral Izquierdo",
+    pos_central: "Central",
+    pos_mediocentro_defensivo: "Mediocentro Defensivo",
+    pos_centrocampista: "Centrocampista",
+    pos_mediacentro: "Mediocentro",
+    pos_mediapunta: "Mediapunta",
+    pos_delantero_centro: "Delantero Centro",
+    pos_extremo_derecho: "Extremo Derecho",
+    pos_extremo_izquierdo: "Extremo Izquierdo",
+    pos_delantero: "Delantero",
+  },
+
+  en: {
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    nav_inicio: "Home",
+    nav_club: "Club",
+    nav_equipo: "Team",
+    nav_competiciones: "Competitions",
+    nav_noticias: "News",
+    nav_multimedia: "Multimedia",
+    nav_historia: "History",
+    nav_palmares: "Honours",
+    nav_estadio: "Municipal Stadium",
+    nav_directiva: "Board",
+    nav_primer_equipo: "1st Team",
+    nav_cuerpo_tecnico: "Technical Staff",
+    nav_cantera: "Academy",
+    nav_fem: "Women's Football",
+    nav_primera_div: "First Division",
+    nav_copa_rey: "Copa del Rey",
+    nav_calendario: "Calendar",
+    nav_clasificacion: "Standings",
+    nav_fundacion: "Foundation",
+    nav_juegos: "Games",
+    nav_videos: "Videos",
+
+    // ============================================
+    // GENERAL / COMMON
+    // ============================================
+    buscar: "Search...",
+    ver_todas: "View all",
+    ver_clasificacion: "View full standings",
+    calendario_completo: "Full calendar",
+    ver_plantilla: "View full squad",
+    grupo: "Group I",
+    current_badge: "Current",
+    todos: "All",
+    cargando: "Loading...",
+    limpiar_filtros: "Clear filters",
+    intentar_de_nuevo: "Try again",
+
+    // ============================================
+    // INDEX / HOME
+    // ============================================
+    ultimas_noticias: "Latest News",
+    clasificacion: "Standings",
+    calendario: "Calendar",
+    plantilla: "Squad",
+    patrocinadores: "Sponsors",
+    proximo_partido: "Next Match",
+    laliga_temporada: "LaLiga 2025/26",
+    champions: "Champions",
+    europa: "Europa",
+    conference: "Conference",
+    descenso: "Relegation",
+    temporada_actual: "2025/26 Season - First Division",
+
+    // ============================================
+    // TEAM / SQUAD
+    // ============================================
+    equipo_titulo: "First Team",
+    equipo_subtitulo: "Season",
+    posicion: "Position",
+    victorias: "Wins",
+    empates: "Draws",
+    derrotas: "Losses",
+    goles_favor: "Goals For",
+    goles_contra: "Goals Against",
+    porteros: "Goalkeepers",
+    defensas: "Defenders",
+    centrocampistas: "Midfielders",
+    delanteros: "Forwards",
+    partidos: "Matches",
+    goles: "Goals",
+    edad: "years old",
+    ver_ficha: "View profile",
+    plantilla_completa: "Full Squad",
+    cuerpo_tecnico_titulo: "Technical Staff",
+
+    // ============================================
+    // PLAYER PROFILE
+    // ============================================
+    temporada: "Season",
+    asistencias: "Assists",
+    minutos: "Minutes",
+    altura: "Height",
+    peso: "Weight",
+    pie: "Foot",
+    rendimiento: "Overview",
+    informacion: "Personal Info",
+    nacimiento: "Birthdate",
+    lugar: "Birthplace",
+    nacionalidad: "Nationality",
+    en_club_desde: "At club since",
+    disciplina: "Discipline",
+    amarillas: "Yellow Cards",
+    rojas: "Red Cards",
+    historial: "Career",
+    totales: "Club Totals",
+    logros: "Achievements",
+    fallecimiento: "Passed away",
+    seleccion: "National Team",
+    desconocida: "Unknown",
+    fecha_desconocida: "Date unknown",
+    goles_partido: "Goals per game",
+    minutos_partido: "Minutes per game",
+    jornada: "Matchday",
+    encajados: "Conceded",
+    portero_stat: "Defensive Performance",
+    goles_encajados_partido: "Goals Conceded/Match",
+
+    // ============================================
+    // CALENDAR
+    // ============================================
+    calendario_titulo: "Calendar",
+    calendario_subtitulo: "All Real Oviedo matches · First Division",
+    calendario_jugados: "Played",
+    calendario_victorias: "Wins",
+    calendario_empates: "Draws",
+    calendario_derrotas: "Losses",
+    calendario_goles: "Goals",
+    calendario_pendientes: "Pending",
+    calendario_todos: "All",
+    calendario_jugados_filtro: "Played",
+    calendario_pendientes_filtro: "Pending",
+    calendario_en_casa: "Home",
+    calendario_fuera: "Away",
+    laliga_ea_sports: "LaLiga EA Sports",
+
+    // ============================================
+    // STANDINGS
+    // ============================================
+    clasificacion_titulo: "Standings",
+    clasificacion_subtitulo:
+      "Matchday by matchday tracking · Real Oviedo in First Division",
+    tabla_clasificacion: "League Table",
+    champions_league: "Champions League",
+    europa_league: "Europa League",
+    conference_league: "Conference League",
+    descenso_liga: "Relegation",
+    evolucion_oviedo: "Real Oviedo Evolution",
+    mejor_posicion: "Best",
+    peor_posicion: "Worst",
+    actual_posicion: "Current",
+
+    // ============================================
+    // NEWS
+    // ============================================
+    noticias_titulo: "Latest News",
+    noticias_subtitulo: "All Real Oviedo news from the main media outlets",
+    noticias_medios: "Media",
+    noticias_todos: "All",
+    noticias_lavoz: "La Voz de Asturias",
+    noticias_elcomercio: "El Comercio",
+    noticias_lasnuevas: "Las Nuevas de Asturias",
+    noticias_killer: "Killer Asturias",
+    noticias_cargando: "Loading news...",
+    noticias_error: "News could not be loaded at this time.",
+
+    // ============================================
+    // FIRST DIVISION
+    // ============================================
+    primera_div_titulo: "First Division",
+    primera_div_subtitulo: "Match history season by season",
+    solo_oviedo: "Only Real Oviedo matches",
+    filtro_rival: "Opponent:",
+    todos_equipos: "All teams",
+    filtro_resultado: "Result:",
+    filtro_todos: "All",
+    victorias_oviedo: "Oviedo Wins",
+    empates_resultado: "Draws",
+    derrotas_oviedo: "Oviedo Losses",
+    colapsar_todas: "Collapse all",
+    expandir_todas: "Expand all",
+    mostrando_partidos: "Showing:",
+    partidos_contador: "matches",
+    no_resultados_filtros: "No matches found with selected filters",
+
+    // ============================================
+    // GAMES
+    // ============================================
+    juegos_titulo: "Games",
+    juegos_subtitulo: "Games and Entertainment Zone",
+    juegos_disponibles: "Available Games",
+
+    // ============================================
+    // VIDEOS
+    // ============================================
+    videos_titulo: "Videos",
+    videos_subtitulo: "Match highlights and best moments of the season",
+    videos_resumenes: "Match Highlights",
+    compartir_pagina: "Share this page",
+    compartir_whatsapp: "Share on WhatsApp",
+    compartir_twitter: "Share on Twitter",
+    compartir_telegram: "Share on Telegram",
+    compartir_facebook: "Share on Facebook",
+
+    // ============================================
+    // FOOTER
+    // ============================================
+    footer_club: "The Club",
+    footer_equipos: "Teams",
+    footer_competiciones: "Competitions",
+    footer_contacto: "Contact",
+    footer_privacidad: "Privacy Policy",
+    footer_cookies: "Cookie Policy",
+    footer_legal: "Legal Notice",
+    derechos: "All rights reserved.",
+
+    // ============================================
+    // POSITIONS
+    // ============================================
+    pos_portero: "Goalkeeper",
+    pos_lateral_derecho: "Right Back",
+    pos_lateral_izquierdo: "Left Back",
+    pos_central: "Centre Back",
+    pos_mediocentro_defensivo: "Defensive Midfielder",
+    pos_centrocampista: "Midfielder",
+    pos_mediacentro: "Central Midfielder",
+    pos_mediapunta: "Attacking Midfielder",
+    pos_delantero_centro: "Centre Forward",
+    pos_extremo_derecho: "Right Winger",
+    pos_extremo_izquierdo: "Left Winger",
+    pos_delantero: "Forward",
+  },
 };
 
 // IMPORTANTE: El '|| 'es'' fuerza a que sea español si no hay nada guardado
-let currentLang = localStorage.getItem('lang') || 'es';
+let currentLang = localStorage.getItem("lang") || "es";
 
-function t(key) { return translations[currentLang][key] || translations['es'][key] || key; }
+function t(key) {
+  return translations[currentLang][key] || translations["es"][key] || key;
+}
 
 function translatePosition(positionName) {
-    const key = 'pos_' + positionName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_");
-    return t(key);
+  const key =
+    "pos_" +
+    positionName
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, "_");
+  return t(key);
 }
 
 function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    
-    // Actualiza el botón activo
-    document.querySelectorAll('.lang-btn').forEach(btn => { 
-        btn.classList.toggle('active', btn.dataset.lang === lang); 
-    });
-    
-    // Traduce los textos estáticos
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') { 
-            el.placeholder = t(key); 
-        } else { 
-            el.textContent = t(key); 
-        }
-    });
-    
-    // Re-renderiza las partes dinámicas
-    if (window.App) {
-        App.renderSeasonSelector(); 
-        App.renderEstadisticasEquipo(); 
-        App.renderPlantillaCompleta(); 
-        App.renderCuerpoTecnico(); 
-        App.renderProximoPartido();
-        App.renderNoticias();      
-        App.renderPlantillaHome(); 
-        // Añadimos renderJuegos si existe
-        if (typeof App.renderJuegos === 'function') {
-            App.renderJuegos();
-        }
-        
-        if (document.getElementById('fichaJugadorContent')) App.renderFichaJugador();
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+
+  // Actualiza el botón activo
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+
+  // Traduce los textos estáticos
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n;
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      el.placeholder = t(key);
+    } else {
+      el.textContent = t(key);
     }
+  });
+
+  // Re-renderiza las partes dinámicas
+  if (window.App) {
+    App.renderSeasonSelector();
+    App.renderEstadisticasEquipo();
+    App.renderPlantillaCompleta();
+    App.renderCuerpoTecnico();
+    App.renderProximoPartido();
+    App.renderNoticias();
+    App.renderPlantillaHome();
+    // Añadimos renderJuegos si existe
+    if (typeof App.renderJuegos === "function") {
+      App.renderJuegos();
+    }
+
+    if (document.getElementById("fichaJugadorContent"))
+      App.renderFichaJugador();
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => { setLanguage(currentLang); });
+document.addEventListener("DOMContentLoaded", () => {
+  setLanguage(currentLang);
+});
 
 window.t = t;
 window.translatePosition = translatePosition;

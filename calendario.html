@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendario | Sangre Carbayona</title>
+    <title data-i18n="calendario_titulo">Calendario | Sangre Carbayona</title>
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v26" />
     <link rel="stylesheet" href="css/calendario.css?nocache=20260101v1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,11 +33,13 @@
       <div class="cal-hero-bg"></div>
       <div class="container">
         <div class="cal-hero-content">
-          <span class="cal-badge"
+          <span class="cal-badge" data-i18n="laliga_ea_sports"
             ><i class="fas fa-calendar-alt"></i> LaLiga EA Sports</span
           >
-          <h1>Calendario <span>2025/26</span></h1>
-          <p>Todos los partidos del Real Oviedo · Primera División</p>
+          <h1 data-i18n="calendario_titulo">Calendario <span>2025/26</span></h1>
+          <p data-i18n="calendario_subtitulo">
+            Todos los partidos del Real Oviedo · Primera División
+          </p>
         </div>
       </div>
     </section>
@@ -49,50 +51,82 @@
         <div class="cal-stats-bar" id="statsBar">
           <div class="cal-stat-item">
             <span class="cal-stat-num" id="statJugados">—</span>
-            <span class="cal-stat-label">Jugados</span>
+            <span class="cal-stat-label" data-i18n="calendario_jugados"
+              >Jugados</span
+            >
           </div>
           <div class="cal-stat-divider"></div>
           <div class="cal-stat-item cal-stat-win">
             <span class="cal-stat-num" id="statGanados">—</span>
-            <span class="cal-stat-label">Victorias</span>
+            <span class="cal-stat-label" data-i18n="calendario_victorias"
+              >Victorias</span
+            >
           </div>
           <div class="cal-stat-divider"></div>
           <div class="cal-stat-item cal-stat-draw">
             <span class="cal-stat-num" id="statEmpates">—</span>
-            <span class="cal-stat-label">Empates</span>
+            <span class="cal-stat-label" data-i18n="calendario_empates"
+              >Empates</span
+            >
           </div>
           <div class="cal-stat-divider"></div>
           <div class="cal-stat-item cal-stat-loss">
             <span class="cal-stat-num" id="statDerrotas">—</span>
-            <span class="cal-stat-label">Derrotas</span>
+            <span class="cal-stat-label" data-i18n="calendario_derrotas"
+              >Derrotas</span
+            >
           </div>
           <div class="cal-stat-divider"></div>
           <div class="cal-stat-item">
             <span class="cal-stat-num" id="statGoles">—</span>
-            <span class="cal-stat-label">Goles</span>
+            <span class="cal-stat-label" data-i18n="calendario_goles"
+              >Goles</span
+            >
           </div>
           <div class="cal-stat-divider"></div>
           <div class="cal-stat-item">
             <span class="cal-stat-num" id="statPendientes">—</span>
-            <span class="cal-stat-label">Pendientes</span>
+            <span class="cal-stat-label" data-i18n="calendario_pendientes"
+              >Pendientes</span
+            >
           </div>
         </div>
 
         <!-- FILTROS -->
         <div class="cal-filters">
-          <button class="cal-filter-btn active" data-filter="todos">
+          <button
+            class="cal-filter-btn active"
+            data-filter="todos"
+            data-i18n="calendario_todos"
+          >
             <i class="fas fa-list"></i> Todos
           </button>
-          <button class="cal-filter-btn" data-filter="jugados">
+          <button
+            class="cal-filter-btn"
+            data-filter="jugados"
+            data-i18n="calendario_jugados_filtro"
+          >
             <i class="fas fa-check-circle"></i> Jugados
           </button>
-          <button class="cal-filter-btn" data-filter="pendientes">
+          <button
+            class="cal-filter-btn"
+            data-filter="pendientes"
+            data-i18n="calendario_pendientes_filtro"
+          >
             <i class="fas fa-clock"></i> Pendientes
           </button>
-          <button class="cal-filter-btn" data-filter="local">
+          <button
+            class="cal-filter-btn"
+            data-filter="local"
+            data-i18n="calendario_en_casa"
+          >
             <i class="fas fa-home"></i> En casa
           </button>
-          <button class="cal-filter-btn" data-filter="visitante">
+          <button
+            class="cal-filter-btn"
+            data-filter="visitante"
+            data-i18n="calendario_fuera"
+          >
             <i class="fas fa-plane"></i> Fuera
           </button>
         </div>
@@ -107,7 +141,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
-    <script src="js/i18n.js?nocache=20251231v24"></script>
+    <script src="js/i18n.js?nocache=20251231v25"></script>
     <script src="js/script.js?nocache=20251231v26"></script>
     <script src="js/clasificacion.js?nocache=20251231v30"></script>
     <script src="js/calendario.js?nocache=20260101v7"></script>

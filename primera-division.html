@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Primera División | Sangre Carbayona</title>
+    <title data-i18n="primera_div_titulo">
+      Primera División | Sangre Carbayona
+    </title>
     <link rel="stylesheet" href="css/styles.css?nocache=20251231v4" />
     <link rel="stylesheet" href="css/equipo-styles.css?nocache=20251231v4" />
     <link rel="stylesheet" href="css/primera-division.css?nocache=20251231v1" />
@@ -63,10 +65,14 @@
           <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
           <a href="#" data-i18n="nav_competiciones">Competiciones</a
           ><span>/</span>
-          <span class="current">Primera División</span>
+          <span class="current" data-i18n="primera_div_titulo"
+            >Primera División</span
+          >
         </div>
-        <h1 class="page-title">Primera División</h1>
-        <p class="page-subtitle">
+        <h1 class="page-title" data-i18n="primera_div_titulo">
+          Primera División
+        </h1>
+        <p class="page-subtitle" data-i18n="primera_div_subtitulo">
           Histórico de partidos temporada por temporada
         </p>
       </div>
@@ -83,38 +89,53 @@
         <!-- Panel de Filtros -->
         <div class="filtros-panel">
           <div class="filtro-grupo">
-            <label class="filtro-label">
+            <label class="filtro-label" data-i18n="solo_oviedo">
               <input type="checkbox" id="soloOviedo" checked />
               <span>Solo partidos del Real Oviedo</span>
             </label>
           </div>
 
           <div class="filtro-grupo">
-            <label class="filtro-label">Rival:</label>
+            <label class="filtro-label" data-i18n="filtro_rival">Rival:</label>
             <select id="filtroRival" class="filtro-select">
-              <option value="todos">Todos los equipos</option>
+              <option value="todos" data-i18n="todos_equipos">
+                Todos los equipos
+              </option>
               <!-- Se rellena dinámicamente -->
             </select>
           </div>
 
           <div class="filtro-grupo">
-            <label class="filtro-label">Resultado:</label>
+            <label class="filtro-label" data-i18n="filtro_resultado"
+              >Resultado:</label
+            >
             <select id="filtroResultado" class="filtro-select">
-              <option value="todos">Todos</option>
-              <option value="victoria">Victorias Oviedo</option>
-              <option value="empate">Empates</option>
-              <option value="derrota">Derrotas Oviedo</option>
+              <option value="todos" data-i18n="filtro_todos">Todos</option>
+              <option value="victoria" data-i18n="victorias_oviedo">
+                Victorias Oviedo
+              </option>
+              <option value="empate" data-i18n="empates_resultado">
+                Empates
+              </option>
+              <option value="derrota" data-i18n="derrotas_oviedo">
+                Derrotas Oviedo
+              </option>
             </select>
           </div>
 
           <div class="filtro-grupo">
-            <button class="btn-toggle-all" id="colapsarTodas">
+            <button
+              class="btn-toggle-all"
+              id="colapsarTodas"
+              data-i18n="colapsar_todas"
+            >
               <i class="fas fa-compress-alt"></i> Colapsar todas
             </button>
             <button
               class="btn-toggle-all"
               id="expandirTodas"
               style="display: none"
+              data-i18n="expandir_todas"
             >
               <i class="fas fa-expand-alt"></i> Expandir todas
             </button>
@@ -124,9 +145,15 @@
         <!-- Resumen de filtros activos -->
         <div class="resumen-filtros" id="resumenFiltros" style="display: none">
           <span
-            >Mostrando: <strong id="contadorPartidos">0</strong> partidos</span
+            ><span data-i18n="mostrando_partidos">Mostrando:</span>
+            <strong id="contadorPartidos">0</strong>
+            <span data-i18n="partidos_contador">partidos</span></span
           >
-          <button class="btn-limpiar" id="limpiarFiltros">
+          <button
+            class="btn-limpiar"
+            id="limpiarFiltros"
+            data-i18n="limpiar_filtros"
+          >
             Limpiar filtros
           </button>
         </div>
@@ -139,7 +166,9 @@
         <!-- Mensaje cuando no hay resultados -->
         <div class="no-resultados" id="noResultados" style="display: none">
           <i class="fas fa-search"></i>
-          <p>No se encontraron partidos con los filtros seleccionados</p>
+          <p data-i18n="no_resultados_filtros">
+            No se encontraron partidos con los filtros seleccionados
+          </p>
         </div>
       </div>
     </section>
@@ -147,7 +176,7 @@
     <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
-    <script src="js/i18n.js?nocache=20251231v22"></script>
+    <script src="js/i18n.js?nocache=20251231v23"></script>
     <script src="js/data.js?nocache=20251231v56"></script>
     <script src="js/primera-division.js?nocache=20251231v1"></script>
     <script src="js/script.js?nocache=20251231v3"></script>
