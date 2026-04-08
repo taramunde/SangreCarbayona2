@@ -226,20 +226,20 @@ const App = {
       if (golesO > golesR)
         return {
           tipo: "victoria",
-          texto: "Victoria",
+          texto: t("victoria"),
           icono: "fa-check-circle",
           color: "win",
         };
       if (golesO < golesR)
         return {
           tipo: "derrota",
-          texto: "Derrota",
+          texto: t("derrota"),
           icono: "fa-times-circle",
           color: "lose",
         };
       return {
         tipo: "empate",
-        texto: "Empate",
+        texto: t("empate"),
         icono: "fa-minus-circle",
         color: "",
       };
@@ -254,7 +254,7 @@ const App = {
       const resultado = getResultadoData(ultimo);
       const escudoO = getEscudo(OVIEDO);
       const escudoR = getEscudo(rival);
-      const fechaStr = `J${ultimo.jornada}`;
+      const fechaStr = `${t("jornada_abrev")}${ultimo.jornada}`;
 
       // Para el último partido: equipo1 (local) a la izquierda, equipo2 (visitante) a la derecha
       const escudoIzq = ultimo.goles1 !== null ? getEscudo(ultimo.equipo1) : "";
@@ -272,7 +272,7 @@ const App = {
                 <div class="hero-team">
                     <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
                     <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
-                    <span class="hero-team-tag">Local</span>
+                    <span class="hero-team-tag">${t("local")}</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box">
@@ -280,12 +280,12 @@ const App = {
                         <span class="hero-score-sep">–</span>
                         <span class="hero-score hero-score--${resultado.color}">${ultimo.goles2}</span>
                     </div>
-                    <span class="hero-status hero-status--final">Finalizado</span>
+                    <span class="hero-status hero-status--final">${t("finalizado")}</span>
                 </div>
                 <div class="hero-team">
                     <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
                     <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
-                    <span class="hero-team-tag">Visitante</span>
+                    <span class="hero-team-tag">${t("visitante")}</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--${resultado.tipo}">
@@ -311,7 +311,7 @@ const App = {
       const equipoIzq = proximo.equipo1;
       const equipoDer = proximo.equipo2;
 
-      const fechaStr = `J${proximo.jornada}`;
+      const fechaStr = `${t("jornada_abrev")}${proximo.jornada}`;
 
       html += `
         <div class="hero-block">
@@ -323,24 +323,24 @@ const App = {
                 <div class="hero-team">
                     <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
                     <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
-                    <span class="hero-team-tag">Local</span>
+                    <span class="hero-team-tag">${t("local")}</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box hero-score-box--upcoming">
                         <span class="hero-vs">VS</span>
                     </div>
                     <span class="hero-status hero-status--upcoming">
-                        <i class="fas fa-clock"></i> Por disputar
+                        <i class="fas fa-clock"></i> ${t("por_disputar")}
                     </span>
                 </div>
                 <div class="hero-team">
                     <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
                     <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
-                    <span class="hero-team-tag">Visitante</span>
+                    <span class="hero-team-tag">${t("visitante")}</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--proximo">
-                <i class="fas fa-calendar-alt"></i> Próximo partido · ${esLocal ? "En casa" : "Fuera"}
+                <i class="fas fa-calendar-alt"></i> ${t("proximo_partido_label")} · ${esLocal ? t("en_casa") : t("fuera")}
             </div>
         </div>`;
     }

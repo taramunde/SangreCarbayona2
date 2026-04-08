@@ -61,6 +61,21 @@ const translations = {
     temporada_actual: "Temporada 2025/26 - Primera Div.",
 
     // ============================================
+    // HERO MATCH (NUEVOS)
+    // ============================================
+    local: "Local",
+    visitante: "Visitante",
+    victoria: "Victoria",
+    derrota: "Derrota",
+    empate: "Empate",
+    finalizado: "Finalizado",
+    por_disputar: "Por disputar",
+    proximo_partido_label: "Próximo partido",
+    en_casa: "En casa",
+    fuera: "Fuera",
+    jornada_abrev: "J",
+
+    // ============================================
     // EQUIPO / PLANTILLA
     // ============================================
     equipo_titulo: "Primer Equipo",
@@ -288,6 +303,21 @@ const translations = {
     conference: "Conference",
     descenso: "Relegation",
     temporada_actual: "2025/26 Season - First Division",
+
+    // ============================================
+    // HERO MATCH (NEW)
+    // ============================================
+    local: "Home",
+    visitante: "Away",
+    victoria: "Win",
+    derrota: "Loss",
+    empate: "Draw",
+    finalizado: "Finished",
+    por_disputar: "Upcoming",
+    proximo_partido_label: "Next match",
+    en_casa: "Home",
+    fuera: "Away",
+    jornada_abrev: "M", // Matchday
 
     // ============================================
     // TEAM / SQUAD
