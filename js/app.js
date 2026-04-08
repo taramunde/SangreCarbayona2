@@ -175,9 +175,15 @@ const App = {
     const container = document.getElementById("noticiasGrid");
     if (!container) return;
     let html = "";
-    CLUB_DATA.noticias.forEach((noticia) => {
+    const timestamp = Date.now(); // Timestamp único por sesión
+    CLUB_DATA.noticias.forEach((noticia, index) => {
       const fecha = formatearFecha(noticia.fecha);
-      html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}"><a href="#" class="news-link"><div class="news-image"><img src="${noticia.imagen}" alt="${noticia.titulo}"><span class="news-category">${noticia.categoria}</span></div><div class="news-content"><h3>${noticia.titulo}</h3>${noticia.esPrincipal ? `<p>${noticia.resumen}</p>` : ""}<span class="news-date">${fecha.completa}</span></div></a></article>`;
+      // Añade cache buster único por noticia
+      const imgUrl = noticia.imagen.includes("?")
+        ? noticia.imagen + `&_cb=${timestamp}-${index}`
+        : noticia.imagen + `?_cb=${timestamp}-${index}`;
+
+      html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}"><a href="#" class="news-link"><div class="news-image"><img src="${imgUrl}" alt="${noticia.titulo}"><span class="news-category">${noticia.categoria}</span></div><div class="news-content"><h3>${noticia.titulo}</h3>${noticia.esPrincipal ? `<p>${noticia.resumen}</p>` : ""}<span class="news-date">${fecha.completa}</span></div></a></article>`;
     });
     container.innerHTML = html;
   },
