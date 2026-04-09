@@ -1136,6 +1136,22 @@ const CLUB_DATA = {
             },
             {
               id: 4,
+              jornada: "Primera Ronda",
+              competicion: "Copa del Rey",
+              fecha: "2025-10-28",
+              local: "Ourense C.F.",
+              visitante: "Real Oviedo",
+              golesLocal: 4,
+              golesVisitante: 2,
+              resultado: "D",
+              minutos: 120,
+              goles: 0,
+              asistencias: 0,
+              amarilla: false,
+              roja: false,
+            },
+            {
+              id: 5,
               jornada: 17,
               competicion: "Primera División",
               fecha: "2025-12-20",
@@ -1151,7 +1167,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 5,
+              id: 6,
               jornada: 18,
               competicion: "Primera División",
               fecha: "2026-01-04",
@@ -1167,7 +1183,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 6,
+              id: 7,
               jornada: 24,
               competicion: "Primera División",
               fecha: "2026-02-15",
@@ -1183,7 +1199,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 7,
+              id: 8,
               jornada: 25,
               competicion: "Primera División",
               fecha: "2026-02-21",
@@ -1199,7 +1215,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 8,
+              id: 9,
               jornada: 28,
               competicion: "Primera División",
               fecha: "2026-03-14",
@@ -1215,7 +1231,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 9,
+              id: 10,
               jornada: 29,
               competicion: "Primera División",
               fecha: "2026-03-21",
@@ -1231,7 +1247,7 @@ const CLUB_DATA = {
               roja: false,
             },
             {
-              id: 10,
+              id: 11,
               jornada: 30,
               competicion: "Primera División",
               fecha: "2026-04-05",
