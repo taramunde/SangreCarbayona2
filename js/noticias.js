@@ -16,26 +16,26 @@
    1. CONFIGURACIÓN DE MEDIOS
    ---------------------------------------------------------------- */
 const MEDIOS_CONFIG = {
-    lavozdeasturias: {
-        nombre: 'La Voz de Asturias',
-        logo: 'https://i.postimg.cc/15Qs5NRP/logo_-_La_Voz_de_Asturias.webp',
-        color: '#c0392b'
-    },
-    lanuevaespana: {
-        nombre: 'La Nueva España',
-        logo: 'https://i.postimg.cc/nV7nJ1J0/logo_-_La_Nueva_España.webp',
-        color: '#004a99'
-    },
-    elcomercio: {
-        nombre: 'El Comercio',
-        logo: 'https://i.postimg.cc/FRkN1yJF/logo_-_El_Comercio.webp',
-        color: '#2980b9'
-    },
-    killerasturias: {
-        nombre: 'Killer Asturias',
-        logo: 'https://i.postimg.cc/7hvDz5g3/logo_-_Killer_Asturias.webp',
-        color: '#e74c3c'
-    }
+  lavozdeasturias: {
+    nombre: "La Voz de Asturias",
+    logo: "https://i.postimg.cc/15Qs5NRP/logo_-_La_Voz_de_Asturias.webp",
+    color: "#c0392b",
+  },
+  lanuevaespana: {
+    nombre: "La Nueva España",
+    logo: "https://i.postimg.cc/nV7nJ1J0/logo_-_La_Nueva_España.webp",
+    color: "#004a99",
+  },
+  elcomercio: {
+    nombre: "El Comercio",
+    logo: "https://i.postimg.cc/FRkN1yJF/logo_-_El_Comercio.webp",
+    color: "#2980b9",
+  },
+  killerasturias: {
+    nombre: "Killer Asturias",
+    logo: "https://i.postimg.cc/7hvDz5g3/logo_-_Killer_Asturias.webp",
+    color: "#e74c3c",
+  },
 };
 
 /* ----------------------------------------------------------------
@@ -44,38 +44,43 @@ const MEDIOS_CONFIG = {
    Si dejas imagen/descripcion vacíos, se intentará obtener del OG.
    ---------------------------------------------------------------- */
 const NOTICIAS_DATA = [
-    {
-        medio: 'lavozdeasturias',
-        url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/03/21/real-oviedo-agoniza-primera-divison-derrota-4-2-ante-levante/00031774117963052233391.htm',
-        titulo: 'El Real Oviedo ya agoniza en Primera Divisón: derrota por 4-2 ante el Levante.',
-        descripcion: 'Los azules, que cuajaron 25 minutos terribles y consiguieron empatar al Levante antes del descanso, repitieron los errores defensivos (4-2) y se acabaron hundiendo.',
-        imagen: 'https://i.postimg.cc/52NcHT12/J_29_LVA.jpg',
-        fecha: '23 marzo 2026'
-    },
-    {
-        medio: 'lanuevaespana',
-        url: 'https://www.lne.es/real-oviedo/2026/03/21/oviedo-firma-media-sentencia-segunda-128259928.html',
-        titulo: 'El Oviedo firma media sentencia a Segunda: derrota en su final ante el Levante (4-2).',
-        descripcion: 'Los de Almada fueron arrollados en la primera mitad, pero igualaron con brío para caer después sin fútbol.',
-        imagen: 'https://i.postimg.cc/DwyVWHFy/J_29_LNE.webp',
-        fecha: '23 marzo 2026'
-    },
-    {
-        medio: 'elcomercio',
-        url: 'https://www.elcomercio.es/real-oviedo/errores-falta-futbol-condenan-real-oviedo-levante-20260321223221-nt.html',
-        titulo: 'Los errores y la falta de fútbol condenan al Real Oviedo.',
-        descripcion: 'Las escasas opciones de permanencia que había se quedaron en Valencia después de perder ante el Levante, tras hacer lo más difícil, que fue igualar un 0-2 en cuatro minutos.',
-        imagen: 'https://i.postimg.cc/g2k9wQd0/J_29_EC.jpg',
-        fecha: '23 marzo 2026'
-    },
-    {
-        medio: 'killerasturias',
-        url: 'https://killerasturias.com/cronicas/la-cronica-el-levante-condena-un-desastroso-oviedo',
-        titulo: 'La Crónica: El Levante condena a un desastroso Oviedo',
-        descripcion: 'El equipo azul reaccionó al 2-0, pero volvió a caer víctima de sus fallos defensivos en una segunda parte que le acerca al descenso.',
-        imagen: 'https://i.postimg.cc/7ZYvCdD6/J_29_KA.jpg',
-        fecha: '23 marzo 2026'
-    }
+  {
+    medio: "lavozdeasturias",
+    url: "https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/04/05/real-oviedo-pega-mordisco-sevilla/00031775410699936494113.htm",
+    titulo: "El Real Oviedo le pega un mordisco al Sevilla.",
+    descripcion:
+      "Los azules, en un partido poco atractivo, sumaron el segundo triunfo seguido en el Carlos Tartiere gracias a otro gol de Fede Viñas. La permanencia, a siete puntos.",
+    imagen: "https://i.postimg.cc/63ZRBFBV/J-30-LVA.webp",
+    fecha: "05 abril 2026",
+  },
+  {
+    medio: "lanuevaespana",
+    url: "https://www.lne.es/real-oviedo/2026/04/05/victoria-superviviente-oviedio-tira-coraje-128770019.html",
+    titulo:
+      "Victoria de superviviente: el Oviedo tira de coraje (1-0) ante el Sevilla.",
+    descripcion:
+      "Un gol de Fede Viñas concede una victoria allanada por la expulsión de Nianzou en la primera parte.",
+    imagen: "https://i.postimg.cc/NGT7t203/J-30-LNE.webp",
+    fecha: "05 abril 2026",
+  },
+  {
+    medio: "elcomercio",
+    url: "https://www.elcomercio.es/real-oviedo/real-oviedo-vuelve-ganar-aferra-hilo-vida-20260406225130-nt.html",
+    titulo: "El Real Oviedo vuelve ganar y se aferra al hilo de vida.",
+    descripcion:
+      "Los azules se impusieron por la mínina al Sevilla en un partido de escaso fútbol, pero en el que después de mucho tiempo no cometieron errores.",
+    imagen: "https://i.postimg.cc/wj9k0xgb/J-30-EC.webp",
+    fecha: "05 abril 2026",
+  },
+  {
+    medio: "killerasturias",
+    url: "https://killerasturias.com/cronicas/la-cronica-fede-vinas-devuelve-algo-de-fe-al-oviedo",
+    titulo: "La Crónica: Fede Viñas devuelve algo de fe al Oviedo.",
+    descripcion:
+      "El uruguayo decidió en el Tartiere con un gol a balón parado en un partido serio de los de Almada, que supieron gestionar la ventaja y resistir con uno más ante un Sevilla insistente hasta el final.",
+    imagen: "https://i.postimg.cc/wjzwZcQ8/J-30-KA.jpg",
+    fecha: "05 abril 2026",
+  },
 ];
 
 /* ----------------------------------------------------------------
@@ -86,102 +91,108 @@ const NOTICIAS_DATA = [
  * si el artículo no tiene datos propios.
  */
 async function fetchOGData(url) {
-    try {
-        const res = await fetch(`https://jsonlink.io/api/extract?url=${encodeURIComponent(url)}`);
-        if (!res.ok) throw new Error('jsonlink error');
-        const data = await res.json();
-        return {
-            titulo: data.title || '',
-            descripcion: data.description || '',
-            imagen: (data.images && data.images[0]) ? data.images[0] : ''
-        };
-    } catch {
-        return null;
-    }
+  try {
+    const res = await fetch(
+      `https://jsonlink.io/api/extract?url=${encodeURIComponent(url)}`,
+    );
+    if (!res.ok) throw new Error("jsonlink error");
+    const data = await res.json();
+    return {
+      titulo: data.title || "",
+      descripcion: data.description || "",
+      imagen: data.images && data.images[0] ? data.images[0] : "",
+    };
+  } catch {
+    return null;
+  }
 }
 
 function formatDate(dateStr) {
-    if (!dateStr) return '';
-    return dateStr;
+  if (!dateStr) return "";
+  return dateStr;
 }
 
 /* ----------------------------------------------------------------
    4. RENDER — Página noticias.html
    ---------------------------------------------------------------- */
 async function renderNoticiasPage() {
-    const grid       = document.getElementById('noticiasPageGrid');
-    const loading    = document.getElementById('noticiasLoading');
-    const emptyState = document.getElementById('noticiasEmpty');
-    const retryBtn   = document.getElementById('btnRetry');
+  const grid = document.getElementById("noticiasPageGrid");
+  const loading = document.getElementById("noticiasLoading");
+  const emptyState = document.getElementById("noticiasEmpty");
+  const retryBtn = document.getElementById("btnRetry");
 
-    if (!grid) return; // No estamos en noticias.html
+  if (!grid) return; // No estamos en noticias.html
 
-    // Filtro de medios
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const medio = btn.dataset.medio;
-            const cards = grid.querySelectorAll('.news-card');
-            cards.forEach(card => {
-                if (medio === 'all' || card.dataset.medio === medio) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
-                // Reajustar destacada si se filtra
-                if (medio !== 'all') {
-                    card.classList.remove('featured');
-                } else {
-                    cards[0] && cards[0].classList.add('featured');
-                }
-            });
-        });
+  // Filtro de medios
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const medio = btn.dataset.medio;
+      const cards = grid.querySelectorAll(".news-card");
+      cards.forEach((card) => {
+        if (medio === "all" || card.dataset.medio === medio) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+        // Reajustar destacada si se filtra
+        if (medio !== "all") {
+          card.classList.remove("featured");
+        } else {
+          cards[0] && cards[0].classList.add("featured");
+        }
+      });
     });
+  });
 
-    if (retryBtn) {
-        retryBtn.addEventListener('click', () => {
-            emptyState.style.display = 'none';
-            loading.style.display    = 'flex';
-            grid.style.display       = 'none';
-            buildCards();
-        });
-    }
+  if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+      emptyState.style.display = "none";
+      loading.style.display = "flex";
+      grid.style.display = "none";
+      buildCards();
+    });
+  }
 
-    buildCards();
+  buildCards();
 
-    async function buildCards() {
-        try {
-            const items = await Promise.all(
-                NOTICIAS_DATA.map(async (n, i) => {
-                    let noticia = { ...n };
-                    // Si falta imagen o descripción, intentamos OG
-                    if (!noticia.imagen || !noticia.descripcion) {
-                        const og = await fetchOGData(noticia.url);
-                        if (og) {
-                            noticia.titulo      = noticia.titulo      || og.titulo;
-                            noticia.descripcion = noticia.descripcion || og.descripcion;
-                            noticia.imagen      = noticia.imagen      || og.imagen;
-                        }
-                    }
-                    return { ...noticia, index: i };
-                })
-            );
+  async function buildCards() {
+    try {
+      const items = await Promise.all(
+        NOTICIAS_DATA.map(async (n, i) => {
+          let noticia = { ...n };
+          // Si falta imagen o descripción, intentamos OG
+          if (!noticia.imagen || !noticia.descripcion) {
+            const og = await fetchOGData(noticia.url);
+            if (og) {
+              noticia.titulo = noticia.titulo || og.titulo;
+              noticia.descripcion = noticia.descripcion || og.descripcion;
+              noticia.imagen = noticia.imagen || og.imagen;
+            }
+          }
+          return { ...noticia, index: i };
+        }),
+      );
 
-            grid.innerHTML = '';
-            items.forEach((n, i) => {
-                const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
-                const card  = document.createElement('article');
-                card.className = 'news-card' + (i === 0 ? ' featured' : '');
-                card.dataset.medio = n.medio;
-                card.style.animationDelay = (i * 0.07) + 's';
+      grid.innerHTML = "";
+      items.forEach((n, i) => {
+        const medio = MEDIOS_CONFIG[n.medio] || {
+          nombre: n.medio,
+          logo: "",
+          color: "#333",
+        };
+        const card = document.createElement("article");
+        card.className = "news-card" + (i === 0 ? " featured" : "");
+        card.dataset.medio = n.medio;
+        card.style.animationDelay = i * 0.07 + "s";
 
-                card.innerHTML = `
+        card.innerHTML = `
                     <div class="news-card-img-wrap">
                         ${n.imagen ? `<img src="${n.imagen}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">` : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
                         <div class="news-card-source-badge">
-                            ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                            ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ""}
                             <span>${escHTML(medio.nombre)}</span>
                         </div>
                     </div>
@@ -190,24 +201,23 @@ async function renderNoticiasPage() {
                             <span class="news-card-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</span>
                         </div>
                         <h2 class="news-card-title">${escHTML(n.titulo)}</h2>
-                        ${n.descripcion ? `<p class="news-card-desc">${escHTML(n.descripcion)}</p>` : ''}
+                        ${n.descripcion ? `<p class="news-card-desc">${escHTML(n.descripcion)}</p>` : ""}
                         <a class="news-card-link" href="${n.url}" target="_blank" rel="noopener noreferrer">
                             Leer noticia <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 `;
-                grid.appendChild(card);
-            });
+        grid.appendChild(card);
+      });
 
-            loading.style.display = 'none';
-            grid.style.display    = 'grid';
-
-        } catch (err) {
-            console.error('Error cargando noticias:', err);
-            loading.style.display    = 'none';
-            emptyState.style.display = 'flex';
-        }
+      loading.style.display = "none";
+      grid.style.display = "grid";
+    } catch (err) {
+      console.error("Error cargando noticias:", err);
+      loading.style.display = "none";
+      emptyState.style.display = "flex";
     }
+  }
 }
 
 /* ----------------------------------------------------------------
@@ -215,11 +225,11 @@ async function renderNoticiasPage() {
    Solo muestra 1 noticia destacada (índice 0) en formato horizontal.
    ---------------------------------------------------------------- */
 async function renderNoticiasWidget() {
-    const grid = document.getElementById('noticiasGrid');
-    if (!grid) return; // No estamos en index.html
+  const grid = document.getElementById("noticiasGrid");
+  if (!grid) return; // No estamos en index.html
 
-    // Esqueleto mientras carga
-    grid.innerHTML = `
+  // Esqueleto mientras carga
+  grid.innerHTML = `
         <div class="home-news-featured-wrap">
             <div class="home-news-featured-card" style="pointer-events:none; opacity:.45;">
                 <div class="home-news-featured-img" style="background:#e8eeff;"></div>
@@ -232,37 +242,43 @@ async function renderNoticiasWidget() {
         </div>
     `;
 
-    // Solo la noticia en el índice 0
-    const n = { ...NOTICIAS_DATA[0] };
+  // Solo la noticia en el índice 0
+  const n = { ...NOTICIAS_DATA[0] };
 
-    try {
-        if (!n.imagen || !n.descripcion) {
-            const og = await fetchOGData(n.url);
-            if (og) {
-                n.imagen      = n.imagen      || og.imagen;
-                n.descripcion = n.descripcion || og.descripcion;
-                n.titulo      = n.titulo      || og.titulo;
-            }
-        }
+  try {
+    if (!n.imagen || !n.descripcion) {
+      const og = await fetchOGData(n.url);
+      if (og) {
+        n.imagen = n.imagen || og.imagen;
+        n.descripcion = n.descripcion || og.descripcion;
+        n.titulo = n.titulo || og.titulo;
+      }
+    }
 
-        const medio = MEDIOS_CONFIG[n.medio] || { nombre: n.medio, logo: '', color: '#333' };
+    const medio = MEDIOS_CONFIG[n.medio] || {
+      nombre: n.medio,
+      logo: "",
+      color: "#333",
+    };
 
-        grid.innerHTML = `
+    grid.innerHTML = `
             <div class="home-news-featured-wrap">
                 <article class="home-news-featured-card">
                     <div class="home-news-featured-img">
-                        ${n.imagen
+                        ${
+                          n.imagen
                             ? `<img src="${escHTML(n.imagen)}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">`
-                            : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
+                            : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`
+                        }
                         <div class="home-news-source">
-                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
+                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ""}
                             <span>${escHTML(medio.nombre)}</span>
                         </div>
                     </div>
                     <div class="home-news-featured-body">
                         <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</p>
                         <h3 class="home-news-featured-title">${escHTML(n.titulo)}</h3>
-                        ${n.descripcion ? `<p class="home-news-featured-desc">${escHTML(n.descripcion)}</p>` : ''}
+                        ${n.descripcion ? `<p class="home-news-featured-desc">${escHTML(n.descripcion)}</p>` : ""}
                         <a class="home-news-link" href="${escHTML(n.url)}" target="_blank" rel="noopener noreferrer">
                             Leer noticia completa <i class="fas fa-external-link-alt"></i>
                         </a>
@@ -270,33 +286,33 @@ async function renderNoticiasWidget() {
                 </article>
             </div>
         `;
-
-    } catch (err) {
-        console.error('Error cargando widget de noticias:', err);
-        grid.innerHTML = '<p style="color:#888;padding:16px;font-family:Source Sans 3,sans-serif;">No se pudieron cargar las noticias.</p>';
-    }
+  } catch (err) {
+    console.error("Error cargando widget de noticias:", err);
+    grid.innerHTML =
+      '<p style="color:#888;padding:16px;font-family:Source Sans 3,sans-serif;">No se pudieron cargar las noticias.</p>';
+  }
 }
 
 /* ----------------------------------------------------------------
    6. UTILIDAD: escape HTML básico
    ---------------------------------------------------------------- */
 function escHTML(str) {
-    if (!str) return '';
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+  if (!str) return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 /* ----------------------------------------------------------------
    7. INIT — Detecta en qué página estamos y lanza el render
    ---------------------------------------------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('noticiasPageGrid')) {
-        renderNoticiasPage();
-    }
-    if (document.getElementById('noticiasGrid')) {
-        renderNoticiasWidget();
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("noticiasPageGrid")) {
+    renderNoticiasPage();
+  }
+  if (document.getElementById("noticiasGrid")) {
+    renderNoticiasWidget();
+  }
 });
