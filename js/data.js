@@ -136,6 +136,7 @@ const CLUB_DATA = {
       nombre: "Eric Bertrand",
       apellidos: "Bailly",
       nombreCompleto: "Eric Bertrand Bailly",
+      apodo: "Bailly",
       posicion: "Defensa",
       posicionCorta: "DC",
       altura: 1.87,
