@@ -634,7 +634,9 @@ const App = {
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
-    const golesLabel = esPorteroPos ? "Goles Encajados" : t("goles") || "Goles";
+    const golesLabel = esPorteroPos
+      ? t("goles_encajados")
+      : t("goles") || "Goles";
     const golesValue = esPorteroPos
       ? `<span style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span>`
       : jugador.stats.goles || 0;
@@ -669,16 +671,6 @@ const App = {
     this.renderFichaOverview(jugador);
     this.renderFichaMatches(jugador, seasonId);
     this.renderFichaCareerHistory(jugador, seasonId);
-  },
-
-  updateMetaTags: function (jugador) {
-    let metaImage = document.querySelector('meta[property="og:image"]');
-    if (!metaImage) {
-      metaImage = document.createElement("meta");
-      metaImage.setAttribute("property", "og:image");
-      document.head.appendChild(metaImage);
-    }
-    metaImage.setAttribute("content", jugador.imagen);
   },
 
   renderQuickStats: function (
@@ -741,10 +733,10 @@ const App = {
         : 0;
 
     const rendimientoTitle = esPorteroPos
-      ? "Rendimiento Defensivo"
+      ? t("portero_stat")
       : t("rendimiento") || "Rendimiento";
     const golesPartidoLabel = esPorteroPos
-      ? "Goles Encajados/Partido"
+      ? t("goles_encajados_partido") || "Goles Encajados/Partido"
       : t("goles_partido") || "Goles por partido";
     const golesColor = esPorteroPos ? "#e74c3c" : "var(--secondary-color)";
 
@@ -1129,7 +1121,9 @@ const App = {
         : `<span class="team-badge-text">OVI</span>`;
 
       // DIFERENCIAR GOLES/ENCAJADOS EN EL TIMELINE
-      const golesLabelTimeline = h.esPortero ? "Enc." : t("goles") || "Goles";
+      const golesLabelTimeline = h.esPortero
+        ? t("goles_encajados_abrev")
+        : t("goles") || "Goles";
       const golesStyleTimeline = h.esPortero
         ? 'style="color:#e74c3c;font-weight:700"'
         : "";
@@ -1150,7 +1144,7 @@ const App = {
         statsHtml += `<div class="timeline-breakdown-box">`;
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
-          const goalLabel = h.esPortero ? "Enc." : "G";
+          const goalLabel = h.esPortero ? t("goles_encajados_abrev") : "G";
           statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${comp}</span>
@@ -1240,7 +1234,7 @@ const App = {
 
     if (mostrarTotalesClub) {
       const golesLabelTotal = esPorteroActual
-        ? "Encajados"
+        ? t("goles_encajados_corto")
         : t("goles") || "Goles";
       const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
@@ -1261,7 +1255,7 @@ const App = {
     if (mostrarTotalesSeleccion) {
       // Detectar si es portero para aplicar estilos de goles encajados
       const golesLabelSel = esPorteroActual
-        ? "Encajados"
+        ? t("goles_encajados_corto")
         : t("goles") || "Goles";
       const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
