@@ -175,28 +175,45 @@ const App = {
     const container = document.getElementById("noticiasGrid");
     if (!container) return;
 
-    // LIMPIAR COMPLETAMENTE el contenedor para evitar reutilización de elementos DOM cacheados
-    container.innerHTML = "";
+    // DESTRUIR IMÁGENES CACHEADAS: eliminar el contenedor del DOM completamente
+    // y crear uno nuevo para evitar que el navegador reutilice imágenes en memoria
+    const parent = container.parentNode;
+    const newContainer = document.createElement("div");
+    newContainer.id = "noticiasGrid";
+    newContainer.className = "news-grid";
+
+    // Limpiar cualquier referencia cacheada
+    const oldImages = container.querySelectorAll("img");
+    oldImages.forEach((img) => {
+      img.src = ""; // Liberar la referencia a la imagen
+      img.removeAttribute("src");
+    });
+
+    parent.replaceChild(newContainer, container);
 
     let html = "";
-    // Timestamp único para forzar recarga fresca de imágenes (evita caché del navegador)
-    const cacheBuster = Date.now();
+    // Timestamp único por sesión para forzar recarga HTTP
+    const sessionId = Date.now();
 
-    CLUB_DATA.noticias.forEach((noticia) => {
+    CLUB_DATA.noticias.forEach((noticia, index) => {
       const fecha = formatearFecha(noticia.fecha);
 
-      // Agregar cache buster a la URL de la imagen
-      // Esto fuerza al navegador a hacer una nueva petición HTTP en lugar de usar la imagen cacheada
+      // CRÍTICO: Invalidar caché de la URL
+      // Picsum ignora parámetros, pero el navegador hace nueva petición
       let imageUrl = noticia.imagen;
-      if (imageUrl) {
+      if (imageUrl && imageUrl.includes("picsum.photos")) {
+        // Reconstruir URL limpia y añadir parámetros anti-caché
+        const baseUrl = imageUrl.split("?")[0];
+        imageUrl = `${baseUrl}?random=${sessionId}-${index}`;
+      } else if (imageUrl) {
         const separator = imageUrl.includes("?") ? "&" : "?";
-        imageUrl = `${imageUrl}${separator}_cb=${cacheBuster}`;
+        imageUrl = `${imageUrl}${separator}cb=${sessionId}-${index}`;
       }
 
       html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}">
         <a href="#" class="news-link">
           <div class="news-image">
-            <img src="${imageUrl}" alt="${noticia.titulo}" loading="eager">
+            <img src="${imageUrl}" alt="${noticia.titulo}" crossorigin="anonymous" decoding="async" loading="eager">
             <span class="news-category">${noticia.categoria}</span>
           </div>
           <div class="news-content">
@@ -208,7 +225,7 @@ const App = {
       </article>`;
     });
 
-    container.innerHTML = html;
+    newContainer.innerHTML = html;
   },
 
   renderPatrocinadores: function () {
