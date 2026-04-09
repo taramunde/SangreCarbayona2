@@ -143,6 +143,30 @@ const CLUB_DATA = {
       lugarNacimiento: "Bingerville, Lagunes",
       fechaNacimiento: "1994-04-12",
       imagen: "https://i.postimg.cc/qRHtqnX7/Bailly_PNG_(2).webp",
+      seleccion: {
+        pais: "Rumanía",
+        bandera: "https://flagcdn.com/16x12/ci.png",
+        datos: [
+          {
+            categoria: "Absoluta",
+            partidos: 16,
+            goles: 17,
+            asistencias: 0,
+            minutos: 1440,
+            amarillas: 0,
+            rojas: 0,
+          },
+          {
+            categoria: "U21",
+            partidos: 0,
+            goles: 0,
+            asistencias: 0,
+            minutos: 0,
+            amarillas: 0,
+            rojas: 0,
+          },
+        ],
+      },
     },
 
     "abdel-rahim-alhassane-bonkano": {
