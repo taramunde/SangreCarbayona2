@@ -2140,17 +2140,6 @@ const CLUB_DATA = {
       esProximo: true,
     },
   ],
-  noticias: [
-    {
-      id: 1,
-      titulo: "El Real Oviedo encadena victorias",
-      resumen: "Gran momento de forma.",
-      categoria: "Primer Equipo",
-      fecha: "2025-01-24",
-      imagen: "https://picsum.photos/seed/news1/800/500",
-      esPrincipal: true,
-    },
-  ],
   patrocinadores: [{ id: 1, nombre: "Grupo Norte" }],
   proximoPartido: {
     jornada: 24,

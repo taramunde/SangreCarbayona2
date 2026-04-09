@@ -175,57 +175,45 @@ const App = {
     const container = document.getElementById("noticiasGrid");
     if (!container) return;
 
-    // DESTRUIR IMÁGENES CACHEADAS: eliminar el contenedor del DOM completamente
-    // y crear uno nuevo para evitar que el navegador reutilice imágenes en memoria
-    const parent = container.parentNode;
-    const newContainer = document.createElement("div");
-    newContainer.id = "noticiasGrid";
-    newContainer.className = "news-grid";
+    // Usar NOTICIAS_DATA de noticias.js (primera noticia = destacada)
+    if (typeof NOTICIAS_DATA === "undefined" || NOTICIAS_DATA.length === 0) {
+      container.innerHTML =
+        '<p style="text-align:center; padding:20px;">No hay noticias disponibles.</p>';
+      return;
+    }
 
-    // Limpiar cualquier referencia cacheada
-    const oldImages = container.querySelectorAll("img");
-    oldImages.forEach((img) => {
-      img.src = ""; // Liberar la referencia a la imagen
-      img.removeAttribute("src");
-    });
+    const noticia = NOTICIAS_DATA[0]; // La Voz de Asturias (primera)
+    const medio = MEDIOS_CONFIG[noticia.medio] || {
+      nombre: noticia.medio,
+      logo: "",
+      color: "#333",
+    };
 
-    parent.replaceChild(newContainer, container);
-
-    let html = "";
-    // Timestamp único por sesión para forzar recarga HTTP
-    const sessionId = Date.now();
-
-    CLUB_DATA.noticias.forEach((noticia, index) => {
-      const fecha = formatearFecha(noticia.fecha);
-
-      // CRÍTICO: Invalidar caché de la URL
-      // Picsum ignora parámetros, pero el navegador hace nueva petición
-      let imageUrl = noticia.imagen;
-      if (imageUrl && imageUrl.includes("picsum.photos")) {
-        // Reconstruir URL limpia y añadir parámetros anti-caché
-        const baseUrl = imageUrl.split("?")[0];
-        imageUrl = `${baseUrl}?random=${sessionId}-${index}`;
-      } else if (imageUrl) {
-        const separator = imageUrl.includes("?") ? "&" : "?";
-        imageUrl = `${imageUrl}${separator}cb=${sessionId}-${index}`;
-      }
-
-      html += `<article class="news-card ${noticia.esPrincipal ? "main-news" : ""}">
-        <a href="#" class="news-link">
-          <div class="news-image">
-            <img src="${imageUrl}" alt="${noticia.titulo}" crossorigin="anonymous" decoding="async" loading="eager">
-            <span class="news-category">${noticia.categoria}</span>
-          </div>
-          <div class="news-content">
-            <h3>${noticia.titulo}</h3>
-            ${noticia.esPrincipal ? `<p>${noticia.resumen}</p>` : ""}
-            <span class="news-date">${fecha.completa}</span>
-          </div>
-        </a>
-      </article>`;
-    });
-
-    newContainer.innerHTML = html;
+    container.innerHTML = `
+        <div class="home-news-featured-wrap">
+            <article class="home-news-featured-card">
+                <div class="home-news-featured-img">
+                    ${
+                      noticia.imagen
+                        ? `<img src="${noticia.imagen}" alt="${noticia.titulo}" loading="eager" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">`
+                        : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`
+                    }
+                    <div class="home-news-source">
+                        ${medio.logo ? `<img src="${medio.logo}" alt="${medio.nombre}" onerror="this.style.display='none'">` : ""}
+                        <span>${medio.nombre}</span>
+                    </div>
+                </div>
+                <div class="home-news-featured-body">
+                    <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${noticia.fecha}</p>
+                    <h3 class="home-news-featured-title">${noticia.titulo}</h3>
+                    ${noticia.descripcion ? `<p class="home-news-featured-desc">${noticia.descripcion}</p>` : ""}
+                    <a class="home-news-link" href="${noticia.url}" target="_blank" rel="noopener noreferrer">
+                        Leer noticia completa <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    `;
   },
 
   renderPatrocinadores: function () {
