@@ -208,8 +208,8 @@ const App = {
                     <h3 class="home-news-featured-title">${noticia.titulo}</h3>
                     ${noticia.descripcion ? `<p class="home-news-featured-desc">${noticia.descripcion}</p>` : ""}
                     <a class="home-news-link" href="${noticia.url}" target="_blank" rel="noopener noreferrer">
-                        Leer noticia completa <i class="fas fa-external-link-alt"></i>
-                    </a>
+    ${t("leer_noticia")} <i class="fas fa-external-link-alt"></i>
+</a>
                 </div>
             </article>
         </div>
