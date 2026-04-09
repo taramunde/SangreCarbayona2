@@ -208,8 +208,8 @@ const App = {
                     <h3 class="home-news-featured-title">${noticia.titulo}</h3>
                     ${noticia.descripcion ? `<p class="home-news-featured-desc">${noticia.descripcion}</p>` : ""}
                     <a class="home-news-link" href="${noticia.url}" target="_blank" rel="noopener noreferrer">
-    ${t("leer_noticia")} <i class="fas fa-external-link-alt"></i>
-</a>
+                        ${t("leer_noticia")} <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </article>
         </div>
@@ -530,7 +530,7 @@ const App = {
     // DIFERENCIAR GOLES/ENCAJADOS PARA PORTEROS
     const esPorteroPos = esPortero(jugador);
     const golesStats = esPorteroPos
-      ? `<div class="mini-stat conceded"><span class="mini-stat-value" style="color:#e74c3c">${jugador.stats.goles || 0}</span><span class="mini-stat-label">Encajados</span></div>`
+      ? `<div class="mini-stat conceded"><span class="mini-stat-value" style="color:#e74c3c">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t("encajados") || "Encajados"}</span></div>`
       : `<div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t("goles")}</span></div>`;
 
     return `
@@ -634,9 +634,7 @@ const App = {
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
-    const golesLabel = esPorteroPos
-      ? t("goles_encajados")
-      : t("goles") || "Goles";
+    const golesLabel = esPorteroPos ? t("goles_encajados") : t("goles");
     const golesValue = esPorteroPos
       ? `<span style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span>`
       : jugador.stats.goles || 0;
@@ -671,6 +669,16 @@ const App = {
     this.renderFichaOverview(jugador);
     this.renderFichaMatches(jugador, seasonId);
     this.renderFichaCareerHistory(jugador, seasonId);
+  },
+
+  updateMetaTags: function (jugador) {
+    let metaImage = document.querySelector('meta[property="og:image"]');
+    if (!metaImage) {
+      metaImage = document.createElement("meta");
+      metaImage.setAttribute("property", "og:image");
+      document.head.appendChild(metaImage);
+    }
+    metaImage.setAttribute("content", jugador.imagen);
   },
 
   renderQuickStats: function (
@@ -786,7 +794,7 @@ const App = {
     const tienePartidosIndividuales = tienePartidosDefinidos;
 
     if (listaPartidos.length === 0) {
-      container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">No hay datos de partidos para este jugador.</p>`;
+      container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">${t("no_datos_partidos") || "No hay datos de partidos para este jugador."}</p>`;
       return;
     }
 
@@ -808,13 +816,13 @@ const App = {
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
                 <label for="filterMatches" style="font-weight: 600; color: #333;">Competición:</label>
                 <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
-                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c === "all" ? "Todas las competiciones" : c}</option>`).join("")}
+                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c === "all" ? t("todas_competiciones") || "Todas las competiciones" : c}</option>`).join("")}
                 </select>
             </div>
             <div class="matches-list">`;
 
     if (partidosFiltrados.length === 0) {
-      html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">No hay partidos en esta competición.</p>`;
+      html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">${t("no_partidos_competicion") || "No hay partidos en esta competición."}</p>`;
     } else {
       partidosFiltrados.forEach((partido) => {
         const fecha = formatearFecha(partido.fecha);
@@ -843,17 +851,17 @@ const App = {
             const goalChipClass = esPorteroPos ? "chip-conceded" : "chip-goal";
             const goalIcon = esPorteroPos ? "fa-shield-alt" : "fa-futbol";
             const goalText = esPorteroPos
-              ? "Encajados"
+              ? t("goles_encajados_abrev")
               : partido.goles > 1
-                ? partido.goles + " goles"
-                : "Gol";
+                ? partido.goles + " " + t("goles")
+                : t("gol");
             chips.push(
-              `<span class="match-chip ${goalChipClass}"><i class="fas ${goalIcon}"></i> ${partido.goles} ${esPorteroPos ? "Enc." : partido.goles > 1 ? "Goles" : "Gol"}</span>`,
+              `<span class="match-chip ${goalChipClass}"><i class="fas ${goalIcon}"></i> ${partido.goles} ${goalText}</span>`,
             );
           }
           if (partido.asistencias > 0)
             chips.push(
-              `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + " asis." : "Asist."}</span>`,
+              `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + " " + t("asistencias") : t("asistencia")}</span>`,
             );
           if (partido.amarilla)
             chips.push(
@@ -1123,7 +1131,7 @@ const App = {
       // DIFERENCIAR GOLES/ENCAJADOS EN EL TIMELINE
       const golesLabelTimeline = h.esPortero
         ? t("goles_encajados_abrev")
-        : t("goles") || "Goles";
+        : t("goles");
       const golesStyleTimeline = h.esPortero
         ? 'style="color:#e74c3c;font-weight:700"'
         : "";
@@ -1187,14 +1195,14 @@ const App = {
     const tieneClub = historial.some((h) => !h.esSeleccion);
 
     let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
-    <label style="font-weight:bold;">Filtrar:</label>
+    <label style="font-weight:bold;">${t("filtrar") || "Filtrar"}:</label>
     <select id="filterCareer" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit;">`;
 
-    dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>Todas las competiciones</option>`;
+    dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>${t("todas_competiciones") || "Todas las competiciones"}</option>`;
 
     // Grupo Club
     if (tieneClub) {
-      dropdownHtml += `<optgroup label="Club">`;
+      dropdownHtml += `<optgroup label="${t("club") || "Club"}">`;
       listaComps
         .filter((c) => !c.startsWith("Selección"))
         .forEach((c) => {
@@ -1205,7 +1213,7 @@ const App = {
 
     // Grupo Selección
     if (tieneSeleccion) {
-      dropdownHtml += `<optgroup label="Selección Nacional">`;
+      dropdownHtml += `<optgroup label="${t("seleccion_nacional") || "Selección Nacional"}">`;
       listaComps
         .filter((c) => c.startsWith("Selección"))
         .forEach((c) => {
@@ -1235,12 +1243,12 @@ const App = {
     if (mostrarTotalesClub) {
       const golesLabelTotal = esPorteroActual
         ? t("goles_encajados_corto")
-        : t("goles") || "Goles";
+        : t("goles");
       const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
       totalesHtml += `
       <div class="career-totals-card club-totals">
-        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>Total Club</h3>
+        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>${t("total_club") || "Total Club"}</h3>
         <div class="totals-grid">
           <div class="total-item"><span class="total-value">${totalesClub.partidos}</span><span class="total-label">${t("partidos")}</span></div>
           <div class="total-item highlight" ${golesStyleTotal}><span class="total-value" ${golesStyleTotal}>${totalesClub.goles}</span><span class="total-label">${golesLabelTotal}</span></div>
@@ -1256,7 +1264,7 @@ const App = {
       // Detectar si es portero para aplicar estilos de goles encajados
       const golesLabelSel = esPorteroActual
         ? t("goles_encajados_corto")
-        : t("goles") || "Goles";
+        : t("goles");
       const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
       // Si filtramos por categoría específica, mostrar solo esa
@@ -1299,7 +1307,7 @@ const App = {
 
       totalesHtml += `
       <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700;">
-        <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>Total Selección</h3>
+        <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>${t("total_seleccion") || "Total Selección"}</h3>
         <div class="totals-grid">
           ${statsSeleccionHtml}
         </div>
@@ -1310,7 +1318,7 @@ const App = {
     <div class="career-grid">
       <div class="career-timeline-card">
         <h3 class="card-title">${t("historial")}</h3>
-        <div class="timeline">${timelineHtml || "<p>No hay datos.</p>"}</div>
+        <div class="timeline">${timelineHtml || "<p>" + (t("no_datos") || "No hay datos.") + "</p>"}</div>
       </div>
       <div class="career-sidebar">
         ${totalesHtml}

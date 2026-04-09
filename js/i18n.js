@@ -100,6 +100,15 @@ const translations = {
     ver_ficha: "Ver ficha",
     plantilla_completa: "Plantilla Completa",
     cuerpo_tecnico_titulo: "Cuerpo Técnico",
+    filtrar: "Filtrar",
+    club: "Club",
+    seleccion_nacional: "Selección Nacional",
+    total_club: "Total Club",
+    total_seleccion: "Total Selección",
+    no_datos: "No hay datos",
+    no_datos_partidos: "No hay datos de partidos para este jugador",
+    no_partidos_competicion: "No hay partidos en esta competición",
+    todas_competiciones: "Todas las competiciones",
 
     // ============================================
     // FICHA JUGADOR
@@ -349,6 +358,15 @@ const translations = {
     ver_ficha: "View profile",
     plantilla_completa: "Full Squad",
     cuerpo_tecnico_titulo: "Technical Staff",
+    filtrar: "Filter",
+    club: "Club",
+    seleccion_nacional: "National Team",
+    total_club: "Club Total",
+    total_seleccion: "National Team Total",
+    no_datos: "No data available",
+    no_datos_partidos: "No match data available for this player",
+    no_partidos_competicion: "No matches in this competition",
+    todas_competiciones: "All competitions",
 
     // ============================================
     // PLAYER PROFILE
