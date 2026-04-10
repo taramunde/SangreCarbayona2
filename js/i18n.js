@@ -640,8 +640,8 @@ const geoTranslations = {
       britanica: "Británica",
       rumano: "Rumano", // <-- Para Moldovan
       rumana: "Rumana", // <-- Para Moldovan
-      costamarfileño: "Costamarfileño", // <-- Para Bailly
-      costamarfileña: "Costamarfileña",
+      costamarfileno: "Costamarfileño", // <-- Para Bailly
+      costamarfilena: "Costamarfileña",
       nigeriano: "Nigeriano",
       nigeriana: "Nigeriana",
       argentino: "Argentino",
@@ -654,8 +654,8 @@ const geoTranslations = {
       britanica: "British",
       rumano: "Romanian", // <-- Para Moldovan
       rumana: "Romanian",
-      costamarfileño: "Ivorian",
-      costamarfileña: "Ivorian",
+      costamarfileno: "Ivorian",
+      costamarfilena: "Ivorian",
       nigeriano: "Nigerian",
       nigeriana: "Nigerian",
       argentino: "Argentine",
