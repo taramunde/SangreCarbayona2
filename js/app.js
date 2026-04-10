@@ -80,7 +80,11 @@ function translateNationality(nationality) {
 
 // Función auxiliar para traducir una sola nacionalidad
 function translateNationalitySingle(nationality) {
-  const normalized = nationality.toLowerCase().trim();
+  const normalized = nationality
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
   return (
     window.geoTranslations?.nationalities?.[currentLang]?.[normalized] ||
     nationality
