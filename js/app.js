@@ -647,6 +647,13 @@ const App = {
         '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>';
       return;
     }
+
+    // === NUEVO: SEPARAR POSICIÓN GENÉRICA DE ESPECÍFICA ===
+    const datosMaestro = CLUB_DATA.jugadoresMaestro[jugador.codigo] || {};
+    const posicionGenerica = datosMaestro.posicion || jugador.posicion; // Para la foto (Defensa, Centrocampista...)
+    const posicionEspecifica = jugador.posicion; // Para la etiqueta de abajo (Central, Lateral Derecho...)
+    // =====================================================
+
     document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
     this.updateMetaTags(jugador);
     const breadcrumb = document.querySelector(".breadcrumb .current");
@@ -701,13 +708,13 @@ const App = {
                 <div class="player-photo-wrapper">
                     <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}" class="player-main-photo">
                     <div class="player-number-large">${jugador.dorsal}</div>
-                    <div class="player-role-badge"><span>${translatePosition(jugador.posicion)}</span></div>
+                    <div class="player-role-badge"><span>${translatePosition(posicionGenerica)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ""}
                 </div>
             </div>
             <div class="player-info-container">
                 <div class="player-name-section">
-                    <span class="player-position-label">${translatePosition(jugador.posicion)}</span>
+                    <span class="player-position-label">${translatePosition(posicionEspecifica)}</span>
                     <h1 class="player-full-name">${jugador.nombreCompleto}</h1>
                     <div class="player-social-links">${shareLinks}</div>
                 </div>
@@ -725,16 +732,6 @@ const App = {
     this.renderFichaOverview(jugador);
     this.renderFichaMatches(jugador, seasonId);
     this.renderFichaCareerHistory(jugador, seasonId);
-  },
-
-  updateMetaTags: function (jugador) {
-    let metaImage = document.querySelector('meta[property="og:image"]');
-    if (!metaImage) {
-      metaImage = document.createElement("meta");
-      metaImage.setAttribute("property", "og:image");
-      document.head.appendChild(metaImage);
-    }
-    metaImage.setAttribute("content", jugador.imagen);
   },
 
   renderQuickStats: function (

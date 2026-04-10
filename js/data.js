@@ -1078,6 +1078,7 @@ const CLUB_DATA = {
           id: "eric-bertrand-bailly",
           codigo: "eric-bertrand-bailly",
           dorsal: 2,
+          posicion: "Central",
           enClubDesde: "2025",
           contratoHasta: "2027",
           stats: {
