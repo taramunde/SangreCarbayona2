@@ -46,7 +46,7 @@ function esPortero(jugador) {
 
 function translateCountry(country) {
   if (!country) return country;
-  const normalized = country.toLowerCase().trim();
+  const normalized = country.toLowerCase().trim().replace(/\s/g, "");
   return (
     window.geoTranslations?.countries?.[currentLang]?.[normalized] || country
   );
@@ -1156,7 +1156,7 @@ const App = {
 
         historial.push({
           temporada: cat.categoria, // "Absoluta", "U21", etc.
-          equipo: sel.pais,
+          equipo: translateCountry(sel.pais),
           logo: sel.bandera,
           esSeleccion: true,
           categoriaSeleccion: cat.categoria,
