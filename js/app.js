@@ -504,7 +504,12 @@ const App = {
 
     const posiciones = {
       [t("porteros")]: ["Portero"],
-      [t("defensas")]: ["Lateral Derecho", "Lateral Izquierdo", "Central"],
+      [t("defensas")]: [
+        "Lateral Derecho",
+        "Lateral Izquierdo",
+        "Defensa",
+        "Central",
+      ],
       [t("centrocampistas")]: [
         "Mediocentro Defensivo",
         "Centrocampista",
