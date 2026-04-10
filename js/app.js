@@ -748,6 +748,51 @@ const App = {
       : t("goles_partido") || "Goles por partido";
     const golesColor = esPorteroPos ? "#e74c3c" : "var(--secondary-color)";
 
+    // ============================================
+    // NUEVO: FORMATEAR NACIONALIDAD (array o string legacy)
+    // ============================================
+    let nacionalidadMostrar;
+    if (Array.isArray(jugador.nacionalidad)) {
+      nacionalidadMostrar = jugador.nacionalidad.join(", ");
+    } else if (typeof jugador.nacionalidad === "string") {
+      nacionalidadMostrar = jugador.nacionalidad;
+    } else {
+      nacionalidadMostrar = t("desconocida") || "Desconocida";
+    }
+
+    // ============================================
+    // NUEVO: FORMATEAR LUGAR DE NACIMIENTO (separado o legacy)
+    // ============================================
+    let lugarMostrar;
+    let ciudadData = "";
+    let provinciaData = "";
+
+    // Si tiene el nuevo formato separado
+    if (jugador.lugarNacimiento && jugador.provinciaNacimiento) {
+      ciudadData = jugador.lugarNacimiento;
+      provinciaData = jugador.provinciaNacimiento;
+      // Mostrar ciudad y provincia solo si son diferentes
+      if (ciudadData !== provinciaData) {
+        lugarMostrar = `${ciudadData}, ${provinciaData}`;
+      } else {
+        lugarMostrar = ciudadData;
+      }
+    }
+    // Fallback: formato antiguo "Ciudad, Provincia" en un solo campo
+    else if (jugador.lugarNacimiento && jugador.lugarNacimiento.includes(",")) {
+      const partes = jugador.lugarNacimiento.split(",").map((p) => p.trim());
+      ciudadData = partes[0];
+      provinciaData = partes[partes.length - 1];
+      lugarMostrar = jugador.lugarNacimiento;
+    }
+    // Solo ciudad, sin provincia
+    else {
+      lugarMostrar =
+        jugador.lugarNacimiento || t("desconocida") || "Desconocido";
+      ciudadData = jugador.lugarNacimiento || "";
+    }
+    // ============================================
+
     container.innerHTML = `
             <div class="overview-grid">
                 <div class="performance-card">
@@ -761,8 +806,8 @@ const App = {
                     <h3 class="card-title">${t("informacion") || "Información Personal"}</h3>
                     <div class="personal-info-list">
                         <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento") || "Nacimiento"}</span><span class="info-value">${fechaNac.completa}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span><span class="info-value">${jugador.lugarNacimiento}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span><span class="info-value">${jugador.nacionalidad}</span></div>
+                        <div class="info-row" data-ciudad="${ciudadData}" data-provincia="${provinciaData}"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span><span class="info-value">${lugarMostrar}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span><span class="info-value" data-nacionalidades='${JSON.stringify(Array.isArray(jugador.nacionalidad) ? jugador.nacionalidad : [jugador.nacionalidad])}'>${nacionalidadMostrar}</span></div>
                         <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span><span class="info-value">${jugador.enClubDesde}</span></div>
                     </div>
                 </div>
