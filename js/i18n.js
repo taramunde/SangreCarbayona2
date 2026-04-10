@@ -599,16 +599,16 @@ window.setLanguage = setLanguage;
 const geoTranslations = {
   countries: {
     es: {
-      "reino unido": "Reino Unido",
+      reinounido: "Reino Unido",
       costademarfil: "Costa de Marfil",
-      "estados unidos": "Estados Unidos",
+      estadosunidos: "Estados Unidos",
       francia: "Francia",
       alemania: "Alemania",
     },
     en: {
-      "united kingdom": "United Kingdom",
+      reinounido: "United Kingdom",
       costademarfil: "Ivory Coast",
-      "united states": "United States",
+      estadosunidos: "United States",
       france: "France",
       germany: "Germany",
     },
@@ -616,12 +616,12 @@ const geoTranslations = {
 
   cities: {
     es: {
-      london: "Londres",
-      "new york": "Nueva York",
+      londres: "Londres",
+      nuevayork: "Nueva York",
     },
     en: {
       londres: "London",
-      "nueva york": "New York",
+      nuevayork: "New York",
     },
   },
 
