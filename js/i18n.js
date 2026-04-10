@@ -599,13 +599,13 @@ window.setLanguage = setLanguage;
 const geoTranslations = {
   countries: {
     es: {
-      costademarfil: "Costa de Marfil",
+      "reino unido": "Reino Unido",
       "estados unidos": "Estados Unidos",
       francia: "Francia",
       alemania: "Alemania",
     },
     en: {
-      costademarfil: "Ivory Coast",
+      "united kingdom": "United Kingdom",
       "united states": "United States",
       france: "France",
       germany: "Germany",
