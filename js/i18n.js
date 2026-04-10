@@ -313,6 +313,7 @@ const translations = {
     plantilla: "Squad",
     patrocinadores: "Sponsors",
     proximo_partido: "Next Match",
+    proximo_partido: "Next Match",
     laliga_temporada: "LaLiga 2025/26",
     champions: "Champions",
     europa: "Europa",

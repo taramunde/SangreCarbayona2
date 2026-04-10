@@ -181,6 +181,7 @@
           card.dataset.localidad = esLocal ? "local" : "visitante";
 
           card.innerHTML = `
+                        ${esProximo ? `<div class="cal-proximo-badge">${t("proximo_partido")}</div>` : ""}
                         <div class="cal-team local">
                             <img src="${escudoIzq}" alt="${equipoIzq}" class="cal-team-escudo">
                             <span class="cal-team-nombre${equipoIzq === OVIEDO ? " es-oviedo" : ""}">${equipoIzq}</span>
