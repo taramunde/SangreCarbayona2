@@ -852,7 +852,9 @@ const App = {
 
     // Normalizar a array
     if (Array.isArray(jugador.nacionalidad)) {
-      nacionalidadesArray = jugador.nacionalidad;
+      nacionalidadesArray = jugador.nacionalidad.map((n) =>
+        translateNationalitySingle(n),
+      );
     } else if (typeof jugador.nacionalidad === "string") {
       // Si es string con comas, separar
       if (jugador.nacionalidad.includes(",")) {
@@ -860,7 +862,9 @@ const App = {
           .split(",")
           .map((n) => translateNationality(n.trim()));
       } else {
-        nacionalidadesArray = [jugador.nacionalidad];
+        nacionalidadesArray = [
+          translateNationalitySingle(jugador.nacionalidad),
+        ];
       }
     }
 
