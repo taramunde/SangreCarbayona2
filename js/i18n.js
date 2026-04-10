@@ -567,13 +567,19 @@ function setLanguage(lang) {
     App.renderProximoPartido();
     App.renderNoticias();
     App.renderPlantillaHome();
-    // Añadimos renderJuegos si existe
     if (typeof App.renderJuegos === "function") {
       App.renderJuegos();
     }
-
     if (document.getElementById("fichaJugadorContent"))
       App.renderFichaJugador();
+  }
+
+  // Re-renderiza el calendario dinámico (calendario.html y widget home)
+  if (typeof window.renderCalendario === "function") {
+    window.renderCalendario();
+  }
+  if (typeof window.renderWidgetHome === "function") {
+    window.renderWidgetHome();
   }
 }
 
