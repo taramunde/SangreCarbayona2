@@ -41,6 +41,41 @@ function esPortero(jugador) {
 }
 
 /* ===================================
+   FUNCIONES DE TRADUCCIÓN GEOGRÁFICA
+   =================================== */
+
+function translateCountry(country) {
+  if (!country) return country;
+  const normalized = country.toLowerCase().trim();
+  return (
+    window.geoTranslations?.countries?.[currentLang]?.[normalized] || country
+  );
+}
+
+function translateCity(city) {
+  if (!city) return city;
+  const normalized = city.toLowerCase().trim();
+  return window.geoTranslations?.cities?.[currentLang]?.[normalized] || city;
+}
+
+function translateProvince(province) {
+  if (!province) return province;
+  const normalized = province.toLowerCase().trim();
+  return (
+    window.geoTranslations?.provinces?.[currentLang]?.[normalized] || province
+  );
+}
+
+function translateNationality(nationality) {
+  if (!nationality) return nationality;
+  const normalized = nationality.toLowerCase().trim();
+  return (
+    window.geoTranslations?.nationalities?.[currentLang]?.[normalized] ||
+    nationality
+  );
+}
+
+/* ===================================
    APLICACIÓN - RENDERIZADO DINÁMICO
    =================================== */
 
@@ -755,8 +790,8 @@ const App = {
 
     // Si tiene el nuevo formato separado (ciudad y provincia diferentes)
     if (jugador.lugarNacimiento && jugador.provinciaNacimiento) {
-      const ciudad = jugador.lugarNacimiento;
-      const provincia = jugador.provinciaNacimiento;
+      const ciudad = translateCity(jugador.lugarNacimiento);
+      const provincia = translateProvince(jugador.provinciaNacimiento);
 
       // Siempre mostrar ambas filas separadas
       lugarRowsHtml += `
@@ -811,7 +846,7 @@ const App = {
       if (jugador.nacionalidad.includes(",")) {
         nacionalidadesArray = jugador.nacionalidad
           .split(",")
-          .map((n) => n.trim());
+          .map((n) => translateNationality(n.trim()));
       } else {
         nacionalidadesArray = [jugador.nacionalidad];
       }

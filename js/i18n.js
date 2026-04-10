@@ -584,3 +584,58 @@ document.addEventListener("DOMContentLoaded", () => {
 window.t = t;
 window.translatePosition = translatePosition;
 window.setLanguage = setLanguage;
+
+// ============================================
+// TRADUCCIONES GEOGRÁFICAS (Diccionarios)
+// ============================================
+
+const geoTranslations = {
+  countries: {
+    es: {
+      "reino unido": "Reino Unido",
+      "estados unidos": "Estados Unidos",
+      francia: "Francia",
+      alemania: "Alemania",
+    },
+    en: {
+      "united kingdom": "United Kingdom",
+      "united states": "United States",
+      france: "France",
+      germany: "Germany",
+    },
+  },
+
+  cities: {
+    es: {
+      london: "Londres",
+      "new york": "Nueva York",
+    },
+    en: {
+      londres: "London",
+      "nueva york": "New York",
+    },
+  },
+
+  provinces: {
+    es: {
+      asturias: "Asturias",
+    },
+    en: {
+      asturias: "Asturias",
+    },
+  },
+
+  nationalities: {
+    es: {
+      spanish: "Español",
+      british: "Británico",
+    },
+    en: {
+      espanol: "Spanish",
+      britanico: "British",
+    },
+  },
+};
+
+// Exportar para usar en app.js
+window.geoTranslations = geoTranslations;
