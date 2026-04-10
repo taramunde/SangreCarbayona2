@@ -141,6 +141,8 @@ const translations = {
     encajados: "Encajados",
     portero_stat: "Rendimiento Defensivo",
     goles_encajados_partido: "Goles Encajados/Partido",
+    provincia: "Provincia",
+    nacionalidad_adicional: "Nacionalidad",
 
     // ============================================
     // CALENDARIO
@@ -399,6 +401,8 @@ const translations = {
     encajados: "Conceded",
     portero_stat: "Defensive Performance",
     goles_encajados_partido: "Goals Conceded/Match",
+    provincia: "Province",
+    nacionalidad_adicional: "Nationality",
 
     // ============================================
     // CALENDAR

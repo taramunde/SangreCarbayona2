@@ -749,49 +749,106 @@ const App = {
     const golesColor = esPorteroPos ? "#e74c3c" : "var(--secondary-color)";
 
     // ============================================
-    // NUEVO: FORMATEAR NACIONALIDAD (array o string legacy)
+    // NUEVO: GENERAR FILAS SEPARADAS PARA LUGAR Y PROVINCIA
     // ============================================
-    let nacionalidadMostrar;
-    if (Array.isArray(jugador.nacionalidad)) {
-      nacionalidadMostrar = jugador.nacionalidad.join(", ");
-    } else if (typeof jugador.nacionalidad === "string") {
-      nacionalidadMostrar = jugador.nacionalidad;
-    } else {
-      nacionalidadMostrar = t("desconocida") || "Desconocida";
-    }
+    let lugarRowsHtml = "";
 
-    // ============================================
-    // NUEVO: FORMATEAR LUGAR DE NACIMIENTO (separado o legacy)
-    // ============================================
-    let lugarMostrar;
-    let ciudadData = "";
-    let provinciaData = "";
-
-    // Si tiene el nuevo formato separado
+    // Si tiene el nuevo formato separado (ciudad y provincia diferentes)
     if (jugador.lugarNacimiento && jugador.provinciaNacimiento) {
-      ciudadData = jugador.lugarNacimiento;
-      provinciaData = jugador.provinciaNacimiento;
-      // Mostrar ciudad y provincia solo si son diferentes
-      if (ciudadData !== provinciaData) {
-        lugarMostrar = `${ciudadData}, ${provinciaData}`;
-      } else {
-        lugarMostrar = ciudadData;
-      }
+      const ciudad = jugador.lugarNacimiento;
+      const provincia = jugador.provinciaNacimiento;
+
+      // Siempre mostrar ambas filas separadas
+      lugarRowsHtml += `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
+          <span class="info-value">${ciudad}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t("provincia") || "Provincia"}</span>
+          <span class="info-value">${provincia}</span>
+        </div>
+      `;
     }
     // Fallback: formato antiguo "Ciudad, Provincia" en un solo campo
     else if (jugador.lugarNacimiento && jugador.lugarNacimiento.includes(",")) {
       const partes = jugador.lugarNacimiento.split(",").map((p) => p.trim());
-      ciudadData = partes[0];
-      provinciaData = partes[partes.length - 1];
-      lugarMostrar = jugador.lugarNacimiento;
+      const ciudad = partes[0];
+      const provincia = partes[partes.length - 1];
+
+      lugarRowsHtml += `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
+          <span class="info-value">${ciudad}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t("provincia") || "Provincia"}</span>
+          <span class="info-value">${provincia}</span>
+        </div>
+      `;
     }
     // Solo ciudad, sin provincia
     else {
-      lugarMostrar =
-        jugador.lugarNacimiento || t("desconocida") || "Desconocido";
-      ciudadData = jugador.lugarNacimiento || "";
+      lugarRowsHtml += `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
+          <span class="info-value">${jugador.lugarNacimiento || t("desconocida") || "Desconocido"}</span>
+        </div>
+      `;
     }
+
     // ============================================
+    // NUEVO: GENERAR FILAS SEPARADAS PARA NACIONALIDADES
+    // ============================================
+    let nacionalidadRowsHtml = "";
+    let nacionalidadesArray = [];
+
+    // Normalizar a array
+    if (Array.isArray(jugador.nacionalidad)) {
+      nacionalidadesArray = jugador.nacionalidad;
+    } else if (typeof jugador.nacionalidad === "string") {
+      // Si es string con comas, separar
+      if (jugador.nacionalidad.includes(",")) {
+        nacionalidadesArray = jugador.nacionalidad
+          .split(",")
+          .map((n) => n.trim());
+      } else {
+        nacionalidadesArray = [jugador.nacionalidad];
+      }
+    }
+
+    // Generar fila para cada nacionalidad
+    if (nacionalidadesArray.length === 1) {
+      // Una sola nacionalidad - mostrar normal
+      nacionalidadRowsHtml += `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span>
+          <span class="info-value">${nacionalidadesArray[0]}</span>
+        </div>
+      `;
+    } else if (nacionalidadesArray.length > 1) {
+      // Múltiples nacionalidades - mostrar cada una en su fila
+      nacionalidadesArray.forEach((nacionalidad, index) => {
+        const label =
+          index === 0
+            ? t("nacionalidad") || "Nacionalidad"
+            : t("nacionalidad_adicional") || "Nacionalidad";
+        nacionalidadRowsHtml += `
+          <div class="info-row">
+            <span class="info-label"><i class="fas fa-flag"></i> ${label}</span>
+            <span class="info-value">${nacionalidad}</span>
+          </div>
+        `;
+      });
+    } else {
+      // Sin nacionalidad
+      nacionalidadRowsHtml += `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span>
+          <span class="info-value">${t("desconocida") || "Desconocida"}</span>
+        </div>
+      `;
+    }
 
     container.innerHTML = `
             <div class="overview-grid">
@@ -806,8 +863,8 @@ const App = {
                     <h3 class="card-title">${t("informacion") || "Información Personal"}</h3>
                     <div class="personal-info-list">
                         <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento") || "Nacimiento"}</span><span class="info-value">${fechaNac.completa}</span></div>
-                        <div class="info-row" data-ciudad="${ciudadData}" data-provincia="${provinciaData}"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span><span class="info-value">${lugarMostrar}</span></div>
-                        <div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span><span class="info-value" data-nacionalidades='${JSON.stringify(Array.isArray(jugador.nacionalidad) ? jugador.nacionalidad : [jugador.nacionalidad])}'>${nacionalidadMostrar}</span></div>
+                        ${lugarRowsHtml}
+                        ${nacionalidadRowsHtml}
                         <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span><span class="info-value">${jugador.enClubDesde}</span></div>
                     </div>
                 </div>
