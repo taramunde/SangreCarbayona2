@@ -600,12 +600,14 @@ const geoTranslations = {
   countries: {
     es: {
       "reino unido": "Reino Unido",
+      costademarfil: "Costa de Marfil",
       "estados unidos": "Estados Unidos",
       francia: "Francia",
       alemania: "Alemania",
     },
     en: {
       "united kingdom": "United Kingdom",
+      costademarfil: "Ivory Coast",
       "united states": "United States",
       france: "France",
       germany: "Germany",
