@@ -316,7 +316,7 @@ const translations = {
     proximo_partido: "Next Match",
     laliga_temporada: "LaLiga 2025/26",
     champions: "Champions",
-    europa: "Europa",
+    europa: "Europe",
     conference: "Conference",
     descenso: "Relegation",
     temporada_actual: "2025/26 Season - First Division",
