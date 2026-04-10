@@ -68,6 +68,18 @@ function translateProvince(province) {
 
 function translateNationality(nationality) {
   if (!nationality) return nationality;
+
+  // Si es array, traducir cada elemento
+  if (Array.isArray(nationality)) {
+    return nationality.map((n) => translateNationalitySingle(n)).join(", ");
+  }
+
+  // Si es string, traducir directamente
+  return translateNationalitySingle(nationality);
+}
+
+// Función auxiliar para traducir una sola nacionalidad
+function translateNationalitySingle(nationality) {
   const normalized = nationality.toLowerCase().trim();
   return (
     window.geoTranslations?.nationalities?.[currentLang]?.[normalized] ||

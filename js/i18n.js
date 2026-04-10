@@ -627,12 +627,32 @@ const geoTranslations = {
 
   nationalities: {
     es: {
-      spanish: "Español",
-      british: "Británico",
+      espanol: "Español",
+      espanola: "Española", // <-- Añade esta
+      britanico: "Británico",
+      britanica: "Británica",
+      rumano: "Rumano", // <-- Para Moldovan
+      rumana: "Rumana", // <-- Para Moldovan
+      costamarfileño: "Costamarfileño", // <-- Para Bailly
+      costamarfileña: "Costamarfileña",
+      nigeriano: "Nigeriano",
+      nigeriana: "Nigeriana",
+      argentino: "Argentino",
+      argentina: "Argentina",
     },
     en: {
       espanol: "Spanish",
+      espanola: "Spanish", // <-- Añade esta
       britanico: "British",
+      britanica: "British",
+      rumano: "Romanian", // <-- Para Moldovan
+      rumana: "Romanian",
+      costamarfileño: "Ivorian",
+      costamarfileña: "Ivorian",
+      nigeriano: "Nigerian",
+      nigeriana: "Nigerian",
+      argentino: "Argentine",
+      argentina: "Argentine",
     },
   },
 };
