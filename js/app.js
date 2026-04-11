@@ -1157,7 +1157,9 @@ const App = {
         totalesSeleccion.minutos += cat.minutos || 0;
 
         historial.push({
-          temporada: cat.categoria, // "Absoluta", "U21", etc.
+          temporada:
+            t("sel_" + cat.categoria.toLowerCase().replace("-", "")) ||
+            cat.categoria, // "Absoluta"→"Senior", "U21"→"U21"
           equipo: translateCountry(sel.pais),
           logo: sel.bandera,
           esSeleccion: true,
@@ -1313,11 +1315,15 @@ const App = {
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
           const goalLabel = h.esPortero ? t("goles_encajados_abrev") : "G";
+          const compTraducida =
+            comp === "Competición Internacional"
+              ? t("competicion_internacional")
+              : comp;
           statsHtml += `
           <div class="breakdown-row">
-            <span class="breakdown-comp-name">${comp}</span>
+            <span class="breakdown-comp-name">${compTraducida}</span>
             <div class="breakdown-data-chips">
-              <span class="chip"><b>${data.partidos}</b> PJ</span>
+              <span class="chip"><b>${data.partidos}</b> ${t("pj")}</span>
               <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${goalLabel}</span>
               <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
               ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
@@ -1378,7 +1384,9 @@ const App = {
         .filter((c) => c.startsWith("Selección"))
         .forEach((c) => {
           const cat = c.replace("Selección ", "");
-          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cat}</option>`;
+          const catTraducida =
+            t("sel_" + cat.toLowerCase().replace("-", "")) || cat;
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${catTraducida}</option>`;
         });
       dropdownHtml += `</optgroup>`;
     }
@@ -1444,7 +1452,7 @@ const App = {
         const cat = totalesSeleccion.categorias[categoriaFiltro];
         statsSeleccionHtml = `
         <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
-          <span style="font-weight: 600; color: #001a6e;">${categoriaFiltro}</span>
+          <span style="font-weight: 600; color: #001a6e;">${t("sel_" + categoriaFiltro.toLowerCase().replace("-", "")) || categoriaFiltro}</span>
         </div>
         <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
         <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${cat.goles}</span><span class="total-label">${golesLabelSel}</span></div>

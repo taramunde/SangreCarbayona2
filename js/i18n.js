@@ -149,6 +149,11 @@ const translations = {
     goles_encajados_partido: "Goles Encajados/Partido",
     provincia: "Provincia",
     nacionalidad_adicional: "Nacionalidad",
+    pj: "PJ",
+    competicion_internacional: "Competición Internacional",
+    sel_absoluta: "Absoluta",
+    sel_u21: "Sub-21",
+    sel_u23: "Sub-23",
 
     // ============================================
     // CALENDARIO
@@ -416,6 +421,11 @@ const translations = {
     goles_encajados_partido: "Goals Conceded/Match",
     provincia: "Province",
     nacionalidad_adicional: "Nationality",
+    pj: "MP",
+    competicion_internacional: "International Competition",
+    sel_absoluta: "Senior",
+    sel_u21: "U21",
+    sel_u23: "U23",
 
     // ============================================
     // CALENDAR
