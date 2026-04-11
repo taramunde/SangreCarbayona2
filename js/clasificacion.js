@@ -1834,7 +1834,7 @@
       badge.removeAttribute("data-i18n"); // evita que i18n lo sobreescriba
       badge.textContent =
         jornada > 0
-          ? `${t("jornada_abrev")}${jornada} · LaLiga 2025/26`
+          ? `${t("jornada")} ${jornada} · LaLiga 2025/26`
           : "LaLiga 2025/26";
     }
   }
