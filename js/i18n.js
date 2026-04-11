@@ -194,6 +194,16 @@ const translations = {
     mejor_posicion: "Mejor",
     peor_posicion: "Peor",
     actual_posicion: "Actual",
+    col_pos: "Pos",
+    col_club: "Club",
+    col_pts: "Pts",
+    col_pj: "PJ",
+    col_pg: "PG",
+    col_pe: "PE",
+    col_pp: "PP",
+    col_gf: "GF",
+    col_gc: "GC",
+    col_dg: "DG",
 
     // ============================================
     // NOTICIAS
@@ -470,6 +480,16 @@ const translations = {
     mejor_posicion: "Best",
     peor_posicion: "Worst",
     actual_posicion: "Current",
+    col_pos: "Pos",
+    col_club: "Club",
+    col_pts: "Pts",
+    col_pj: "MP",
+    col_pg: "W",
+    col_pe: "D",
+    col_pp: "L",
+    col_gf: "GF",
+    col_gc: "GA",
+    col_dg: "GD",
 
     // ============================================
     // NEWS
