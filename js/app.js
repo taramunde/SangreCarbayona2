@@ -1385,7 +1385,15 @@ const App = {
       listaComps
         .filter((c) => !c.startsWith("Selección"))
         .forEach((c) => {
-          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c}</option>`;
+          const cKey =
+            "comp_" +
+            c
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/\s+/g, "_");
+          const cTraducida = t(cKey) || c;
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cTraducida}</option>`;
         });
       dropdownHtml += `</optgroup>`;
     }
