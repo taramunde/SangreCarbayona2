@@ -2033,4 +2033,5 @@
   // AÑADE ESTAS DOS LÍNEAS PARA COMPARTIR LOS DATOS CON CALENDARIO.JS
   window.equipos = equipos;
   window.enfrentamientos = enfrentamientos;
+  window.actualizarJornadaBadge = actualizarJornadaBadge;
 })();

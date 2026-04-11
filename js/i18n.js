@@ -631,6 +631,11 @@ function setLanguage(lang) {
   if (typeof window.renderCalendario === "function") {
     window.renderCalendario();
   }
+
+  if (typeof window.actualizarJornadaBadge === "function") {
+    window.actualizarJornadaBadge();
+  }
+
   if (typeof window.renderWidgetHome === "function") {
     window.renderWidgetHome();
   }
