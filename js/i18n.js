@@ -156,6 +156,9 @@ const translations = {
     sel_u23: "Sub-23",
     gol: "gol",
     asistencia: "asistencia",
+    comp_competicion_internacional: "Competición Internacional",
+    comp_copa_del_rey: "Copa del Rey",
+    comp_primera_division: "Primera División",
 
     // ============================================
     // CALENDARIO
@@ -430,6 +433,9 @@ const translations = {
     sel_u23: "U23",
     gol: "goal",
     asistencia: "assist",
+    comp_competicion_internacional: "International Competition",
+    comp_copa_del_rey: "Copa del Rey",
+    comp_primera_division: "First Division",
 
     // ============================================
     // CALENDAR

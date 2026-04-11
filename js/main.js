@@ -16,6 +16,12 @@ function cargarComunes() {
         if (esFicha) {
           ajustarRutasEnlacesFichas();
         }
+
+        // Aplicar el idioma guardado al header recién inyectado
+        // (el fetch es asíncrono y llega después de que setLanguage ya se ejecutó)
+        if (typeof setLanguage === "function") {
+          setLanguage(localStorage.getItem("lang") || "es");
+        }
       }
     });
 
@@ -26,6 +32,11 @@ function cargarComunes() {
       const footerPlaceholder = document.getElementById("footer-placeholder");
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = data;
+
+        // Traducir el footer recién inyectado
+        if (typeof setLanguage === "function") {
+          setLanguage(localStorage.getItem("lang") || "es");
+        }
       }
     });
 }
@@ -64,7 +75,6 @@ function inicializarFuncionesHeader() {
       e.preventDefault();
       searchOverlay.classList.add("active");
       document.body.style.overflow = "hidden";
-      // Poner el foco en el input automáticamente
       setTimeout(() => {
         const input = searchOverlay.querySelector("input");
         if (input) input.focus();
