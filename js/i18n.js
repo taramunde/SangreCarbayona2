@@ -630,6 +630,7 @@ const geoTranslations = {
       estadosunidos: "Estados Unidos",
       francia: "Francia",
       alemania: "Alemania",
+      rumania: "Rumanía",
     },
     en: {
       reinounido: "United Kingdom",
@@ -637,6 +638,7 @@ const geoTranslations = {
       estadosunidos: "United States",
       france: "France",
       germany: "Germany",
+      rumania: "Romania",
     },
   },
 
