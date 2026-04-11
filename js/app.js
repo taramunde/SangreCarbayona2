@@ -46,7 +46,12 @@ function esPortero(jugador) {
 
 function translateCountry(country) {
   if (!country) return country;
-  const normalized = country.toLowerCase().trim().replace(/\s/g, "");
+  const normalized = country
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s/g, "");
   return (
     window.geoTranslations?.countries?.[currentLang]?.[normalized] || country
   );
@@ -54,13 +59,21 @@ function translateCountry(country) {
 
 function translateCity(city) {
   if (!city) return city;
-  const normalized = city.toLowerCase().trim();
+  const normalized = city
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
   return window.geoTranslations?.cities?.[currentLang]?.[normalized] || city;
 }
 
 function translateProvince(province) {
   if (!province) return province;
-  const normalized = province.toLowerCase().trim();
+  const normalized = province
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
   return (
     window.geoTranslations?.provinces?.[currentLang]?.[normalized] || province
   );
