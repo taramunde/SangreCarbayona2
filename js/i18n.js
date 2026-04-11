@@ -154,6 +154,8 @@ const translations = {
     sel_absoluta: "Absoluta",
     sel_u21: "Sub-21",
     sel_u23: "Sub-23",
+    gol: "gol",
+    asistencia: "asistencia",
 
     // ============================================
     // CALENDARIO
@@ -426,6 +428,8 @@ const translations = {
     sel_absoluta: "Senior",
     sel_u21: "U21",
     sel_u23: "U23",
+    gol: "goal",
+    asistencia: "assist",
 
     // ============================================
     // CALENDAR
