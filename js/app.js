@@ -971,7 +971,7 @@ const App = {
 
     let html = `
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-                <label for="filterMatches" style="font-weight: 600; color: #333;">Competición:</label>
+                <label for="filterMatches" style="font-weight: 600; color: #333;">${t("competicion_label") || "Competición"}:</label>
                 <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
                     ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c === "all" ? t("todas_competiciones") || "Todas las competiciones" : c}</option>`).join("")}
                 </select>
@@ -992,8 +992,10 @@ const App = {
         const compNombre = partido.competicion || temporada.competicion;
         const jorTexto =
           typeof partido.jornada === "number"
-            ? `J${partido.jornada}`
-            : partido.jornada;
+            ? `${t("jornada_abrev")}${partido.jornada}`
+            : t(
+                `copa_ronda_${String(partido.jornada).toLowerCase().replace(/\s+/g, "_")}`,
+              ) || partido.jornada;
 
         let playerStatsHtml = "";
         if (tienePartidosIndividuales) {
@@ -1196,7 +1198,8 @@ const App = {
 
       const datosMaestro =
         CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
-      const compNombre = datosTemporada.competicion || "Competición";
+      const compNombre =
+        datosTemporada.competicion || t("competicion_label") || "Competición";
       const esPorteroTemp = esPortero({
         ...datosMaestro,
         ...jugadorEnTemporada,
@@ -1514,7 +1517,7 @@ const App = {
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> J${video.jornada}</span>` : ""}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
+      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t("jornada_abrev")}${video.jornada}</span>` : ""}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
     });
     container.innerHTML = html;
   },

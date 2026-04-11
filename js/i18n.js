@@ -109,6 +109,12 @@ const translations = {
     no_datos_partidos: "No hay datos de partidos para este jugador",
     no_partidos_competicion: "No hay partidos en esta competición",
     todas_competiciones: "Todas las competiciones",
+    competicion_label: "Competición",
+    copa_ronda_primera_ronda: "Primera Ronda",
+    copa_ronda_segunda_ronda: "Segunda Ronda",
+    copa_ronda_cuartos_de_final: "Cuartos de Final",
+    copa_ronda_semifinal: "Semifinal",
+    copa_ronda_final: "Final",
 
     // ============================================
     // FICHA JUGADOR
@@ -370,6 +376,12 @@ const translations = {
     no_datos_partidos: "No match data available for this player",
     no_partidos_competicion: "No matches in this competition",
     todas_competiciones: "All competitions",
+    competicion_label: "Competition",
+    copa_ronda_primera_ronda: "Round of 32",
+    copa_ronda_segunda_ronda: "Round of 16",
+    copa_ronda_cuartos_de_final: "Quarter-final",
+    copa_ronda_semifinal: "Semi-final",
+    copa_ronda_final: "Final",
 
     // ============================================
     // PLAYER PROFILE
