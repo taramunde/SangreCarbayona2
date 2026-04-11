@@ -40,6 +40,34 @@ function esPortero(jugador) {
   return jugador.posicion === "Portero" || jugador.posicionCorta === "POR";
 }
 
+function getCategoriaJugador(jugador) {
+  const pos = jugador.posicion;
+  if (["Portero"].includes(pos)) return t("porteros");
+  if (
+    ["Defensa", "Central", "Lateral Derecho", "Lateral Izquierdo"].includes(pos)
+  )
+    return t("defensas");
+  if (
+    [
+      "Centrocampista",
+      "Mediocentro",
+      "Mediocentro Defensivo",
+      "Mediapunta",
+    ].includes(pos)
+  )
+    return t("centrocampistas");
+  if (
+    [
+      "Delantero",
+      "Delantero Centro",
+      "Extremo Derecho",
+      "Extremo Izquierdo",
+    ].includes(pos)
+  )
+    return t("delanteros");
+  return translatePosition(pos);
+}
+
 /* ===================================
    FUNCIONES DE TRADUCCIÓN GEOGRÁFICA
    =================================== */
@@ -709,7 +737,7 @@ const App = {
                 <div class="player-photo-wrapper">
                     <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}" class="player-main-photo">
                     <div class="player-number-large">${jugador.dorsal}</div>
-                    <div class="player-role-badge"><span>${translatePosition(jugador.posicion)}</span></div>
+                    <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ""}
                 </div>
             </div>
