@@ -178,6 +178,7 @@ const CLUB_DATA = {
       nombre: "Abdel Rahim",
       apellidos: "Alhassane Bonkano",
       nombreCompleto: "Abdel Rahim Alhassane Bonkano",
+      apodo: "Rahim",
       posicion: "Defensa",
       posicionCorta: "DC",
       altura: 1.84,
