@@ -1231,8 +1231,8 @@
     {
       equipo1: "F.C. Barcelona",
       equipo2: "R.C.D. Espanyol",
-      goles1: null,
-      goles2: null,
+      goles1: 4,
+      goles2: 1,
     },
     {
       equipo1: "Celta de Vigo",
@@ -1243,8 +1243,8 @@
     {
       equipo1: "Elche C.F.",
       equipo2: "Valencia C.F.",
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: "R.C.D. Mallorca",
@@ -1255,14 +1255,14 @@
     {
       equipo1: "Real Sociedad",
       equipo2: "Deportivo Alavés",
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 3,
     },
     {
       equipo1: "Sevilla F.C.",
       equipo2: "Atlético de Madrid",
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: "C.A. Osasuna",
@@ -1279,8 +1279,8 @@
     {
       equipo1: "Real Madrid",
       equipo2: "Girona F.C.",
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     // Jornada 32
     {
