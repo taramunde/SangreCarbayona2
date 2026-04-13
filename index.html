@@ -4,9 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sangre Carbayona | Real Oviedo</title>
-    <link rel="stylesheet" href="css/styles.css?nocache=20251231v4" />
-    <link rel="stylesheet" href="css/equipo-styles.css?nocache=20251231v6" />
-    <link rel="stylesheet" href="css/noticias.css?nocache=20260330v3" />
+
+    <!-- CONFIGURACIÓN DE VERSIONES (Cargar PRIMERO) -->
+    <script src="js/config.js?nocache=20260413v1"></script>
+
+    <!-- CARGA DINÁMICA DE CSS CON VERSIÓN AUTOMÁTICA -->
+    <script>
+      loadMultipleCSS([
+        { href: "css/styles.css", id: "styles-css" },
+        { href: "css/equipo-styles.css", id: "equipo-css" },
+        { href: "css/noticias.css", id: "noticias-css" },
+      ]);
+    </script>
+
+    <!-- Fuentes y FontAwesome (externos, no necesitan versión) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -465,14 +476,19 @@
       </div>
     </div>
 
-    <!-- Scripts (Importante el orden: i18n primero) -->
-    <script src="js/i18n.js?nocache=20251231v56"></script>
-    <script src="js/data.js?nocache=20251231v76"></script>
-    <script src="js/clasificacion.js?nocache=20251231v34"></script>
-    <script src="js/noticias.js?nocache=20260330v2"></script>
-    <script src="js/app.js?nocache=20251231v94"></script>
-    <script src="js/script.js?nocache=20251231v3"></script>
-    <script src="js/calendario.js?nocache=20260101v11"></script>
-    <script src="js/main.js?nocache=20260101v16"></script>
+    <!-- CARGA DINÁMICA DE JAVASCRIPT CON VERSIÓN AUTOMÁTICA -->
+    <script>
+      // IMPORTANTE: i18n.js debe cargarse PRIMERO
+      loadMultipleJS([
+        { src: "js/i18n.js", id: "i18n-js" },
+        { src: "js/data.js", id: "data-js" },
+        { src: "js/clasificacion.js", id: "clasificacion-js" },
+        { src: "js/noticias.js", id: "noticias-js" },
+        { src: "js/app.js", id: "app-js" },
+        { src: "js/script.js", id: "script-js" },
+        { src: "js/calendario.js", id: "calendario-js" },
+        { src: "js/main.js", id: "main-js" },
+      ]);
+    </script>
   </body>
 </html>
