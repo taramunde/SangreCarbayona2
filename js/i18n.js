@@ -662,6 +662,7 @@ const geoTranslations = {
       francia: "Francia",
       alemania: "Alemania",
       rumania: "Rumanía",
+      niger: "Níger",
     },
     en: {
       reinounido: "United Kingdom",
@@ -670,6 +671,7 @@ const geoTranslations = {
       france: "France",
       germany: "Germany",
       rumania: "Romania",
+      niger: "Niger",
     },
   },
 
@@ -696,12 +698,12 @@ const geoTranslations = {
   nationalities: {
     es: {
       espanol: "Español",
-      espanola: "Española", // <-- Añade esta
+      espanola: "Española",
       britanico: "Británico",
       britanica: "Británica",
-      rumano: "Rumano", // <-- Para Moldovan
-      rumana: "Rumana", // <-- Para Moldovan
-      costamarfileno: "Costamarfileño", // <-- Para Bailly
+      rumano: "Rumano",
+      rumana: "Rumana",
+      costamarfileno: "Costamarfileño",
       costamarfilena: "Costamarfileña",
       nigeriano: "Nigeriano",
       nigeriana: "Nigeriana",
