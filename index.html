@@ -6,18 +6,18 @@
     <title>Sangre Carbayona | Real Oviedo</title>
 
     <!-- CONFIGURACIÓN DE VERSIONES (Cargar PRIMERO) -->
-    <script src="js/config.js?nocache=20260413v1"></script>
+    <script src="js/config.js?nocache=20260413v2"></script>
 
-    <!-- CARGA DINÁMICA DE CSS CON VERSIÓN AUTOMÁTICA -->
+    <!-- CARGA SÍNCRONA DE CSS (se aplican inmediatamente) -->
     <script>
       loadMultipleCSS([
-        { href: "css/styles.css", id: "styles-css" },
-        { href: "css/equipo-styles.css", id: "equipo-css" },
-        { href: "css/noticias.css", id: "noticias-css" },
+        "css/styles.css",
+        "css/equipo-styles.css",
+        "css/noticias.css",
       ]);
     </script>
 
-    <!-- Fuentes y FontAwesome (externos, no necesitan versión) -->
+    <!-- Fuentes y FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -36,7 +36,7 @@
         display: flex;
         flex-direction: column;
         gap: 0;
-        min-width: 0; /* ¡La clave mágica! Permite que el contenedor no ensanche toda la web */
+        min-width: 0;
         width: 100%;
       }
       .home-clasi-header {
@@ -85,12 +85,10 @@
         text-align: center;
         border-bottom: 1px solid #f0f2fa;
       }
-      /* Columna posición */
       #homeTablaClasificacion th:nth-child(1),
       #homeTablaClasificacion td:nth-child(1) {
         width: 40px;
       }
-      /* Columna club */
       #homeTablaClasificacion td:nth-child(2) {
         text-align: left;
         font-weight: 600;
@@ -102,13 +100,11 @@
         text-align: left;
         padding-left: 12px;
       }
-      /* Columnas numéricas */
       #homeTablaClasificacion th:nth-child(n + 3),
       #homeTablaClasificacion td:nth-child(n + 3) {
         width: 44px;
         min-width: 44px;
       }
-      /* Escudos */
       .home-escudo-tabla {
         width: 22px;
         height: 22px;
@@ -121,11 +117,9 @@
         display: inline-block;
         vertical-align: middle;
       }
-      /* Filas alternas */
       #homeTablaClasificacion tbody tr:nth-child(even) td {
         background: #fafbff;
       }
-      /* Oviedo destacado */
       #homeTablaClasificacion tr.row-oviedo td {
         background: #e8eeff !important;
         font-weight: 700;
@@ -133,7 +127,6 @@
       #homeTablaClasificacion tr.row-oviedo td:first-child {
         border-left: 4px solid #ffcc00;
       }
-      /* Separador antes de Oviedo cuando va fuera del top 5 */
       #homeTablaClasificacion tr.row-oviedo-separator td {
         padding: 0;
         height: 3px;
@@ -146,7 +139,6 @@
         ) !important;
         border: none;
       }
-      /* Zonas de clasificación */
       #homeTablaClasificacion .pos-champions {
         border-left: 4px solid #2ecc71;
       }
@@ -171,8 +163,6 @@
         font-weight: 700;
         color: #001a6e;
       }
-
-      /* Leyenda y footer de la card */
       .home-clasi-leyenda {
         display: flex;
         flex-wrap: wrap;
@@ -207,7 +197,6 @@
       .dot.descenso {
         background: #e74c3c;
       }
-
       .home-clasi-ver-todo {
         display: flex;
         align-items: center;
@@ -217,7 +206,6 @@
         font-size: 0.85em;
         font-weight: 600;
       }
-
       @media (max-width: 480px) {
         .home-clasi-table-scroll table {
           min-width: 380px;
@@ -226,36 +214,31 @@
           padding-right: 14px;
         }
       }
-
       @media (max-width: 900px) {
         .standings-grid {
           gap: 24px;
         }
       }
-
       @media (max-width: 600px) {
         .home-clasi-wrapper,
         .upcoming-matches {
           max-width: 100%;
           overflow: hidden;
         }
-
         .home-clasi-table-scroll {
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
         }
-
         #homeTablaClasificacion td:nth-child(2) {
           padding-right: 30px;
         }
-
         .upcoming-matches {
           padding: 14px 12px;
         }
       }
     </style>
 
-    <!-- Meta Tags para Compartir (Open Graph) -->
+    <!-- Meta Tags para Compartir -->
     <meta property="og:title" content="Sangre Carbayona - Real Oviedo" />
     <meta
       property="og:description"
@@ -306,7 +289,6 @@
           <h2 class="section-title" data-i18n="ultimas_noticias">
             Últimas Noticias
           </h2>
-          <!-- CORREGIDO: Añadido span para no borrar la flecha al traducir -->
           <a href="noticias.html" class="view-all"
             ><span data-i18n="ver_todas">Ver todas</span>
             <i class="fas fa-arrow-right"></i
@@ -351,7 +333,6 @@
                 <tbody id="homeCuerpoTabla"></tbody>
               </table>
             </div>
-            <!-- Leyenda compacta -->
             <div class="home-clasi-leyenda">
               <div class="leyenda-item">
                 <span class="dot champions"></span>
@@ -387,7 +368,6 @@
             <div class="matches-list" id="calendarioList">
               <!-- Contenido dinámico -->
             </div>
-            <!-- CORREGIDO: Añadido span con data-i18n="calendario_completo" -->
             <a href="calendario.html" class="view-all">
               <span data-i18n="calendario_completo">Calendario completo</span>
               <i class="fas fa-arrow-right"></i>
@@ -404,7 +384,6 @@
           <h2 class="section-title">
             <span data-i18n="plantilla">Plantilla</span> 2025/26
           </h2>
-          <!-- CORREGIDO: Añadido span para no borrar la flecha al traducir -->
           <a href="primer-equipo.html" class="view-all"
             ><span data-i18n="ver_plantilla">Ver plantilla completa</span>
             <i class="fas fa-arrow-right"></i
@@ -476,18 +455,17 @@
       </div>
     </div>
 
-    <!-- CARGA DINÁMICA DE JAVASCRIPT CON VERSIÓN AUTOMÁTICA -->
+    <!-- CARGA SÍNCRONA DE JAVASCRIPT (en orden, bloqueante) -->
     <script>
-      // IMPORTANTE: i18n.js debe cargarse PRIMERO
       loadMultipleJS([
-        { src: "js/i18n.js", id: "i18n-js" },
-        { src: "js/data.js", id: "data-js" },
-        { src: "js/clasificacion.js", id: "clasificacion-js" },
-        { src: "js/noticias.js", id: "noticias-js" },
-        { src: "js/app.js", id: "app-js" },
-        { src: "js/script.js", id: "script-js" },
-        { src: "js/calendario.js", id: "calendario-js" },
-        { src: "js/main.js", id: "main-js" },
+        "js/i18n.js",
+        "js/data.js",
+        "js/clasificacion.js",
+        "js/noticias.js",
+        "js/app.js",
+        "js/script.js",
+        "js/calendario.js",
+        "js/main.js",
       ]);
     </script>
   </body>

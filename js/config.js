@@ -1,14 +1,11 @@
 /**
  * CONFIGURACIÓN GLOBAL DE VERSIONES
  * Cambia SOLO la constante APP_VERSION y se aplicará a todos los archivos
- * Formato sugerido: AÑOMESDIA + v + número (ej: 20260413v1)
  */
-const APP_VERSION = "20260413v1";
+const APP_VERSION = "20260413v2";
 
 /**
  * Genera una URL con el parámetro de versión para evitar caché
- * @param {string} path - Ruta del archivo (ej: 'css/styles.css')
- * @returns {string} URL con versión (ej: 'css/styles.css?nocache=20260413v1')
  */
 function getVersionedUrl(path) {
   const separator = path.includes("?") ? "&" : "?";
@@ -16,37 +13,25 @@ function getVersionedUrl(path) {
 }
 
 /**
- * Carga un archivo CSS dinámicamente con versión
- * @param {string} href - Ruta del CSS
- * @param {string} id - ID opcional para el elemento link
+ * Carga CSS de forma síncrona (bloqueante)
  */
 function loadCSS(href, id) {
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = getVersionedUrl(href);
-  if (id) link.id = id;
-  document.head.appendChild(link);
+  document.write(
+    `<link rel="stylesheet" href="${getVersionedUrl(href)}"${id ? ` id="${id}"` : ""}>`,
+  );
 }
 
 /**
- * Carga un archivo JavaScript dinámicamente con versión
- * @param {string} src - Ruta del JS
- * @param {string} id - ID opcional para el elemento script
- * @param {boolean} async - Si debe cargarse de forma asíncrona
- * @param {boolean} defer - Si debe diferir la ejecución
+ * Carga JS de forma síncrona (bloqueante) - IMPORTANTE para el orden
  */
-function loadJS(src, id, async = false, defer = false) {
-  const script = document.createElement("script");
-  script.src = getVersionedUrl(src);
-  if (id) script.id = id;
-  if (async) script.async = true;
-  if (defer) script.defer = true;
-  document.head.appendChild(script);
+function loadJS(src, id) {
+  document.write(
+    `<script src="${getVersionedUrl(src)}"${id ? ` id="${id}"` : ""}><\/script>`,
+  );
 }
 
 /**
- * Carga múltiples CSS a la vez
- * @param {Array} paths - Array de objetos {href, id}
+ * Carga múltiples CSS
  */
 function loadMultipleCSS(paths) {
   paths.forEach((item) => {
@@ -59,15 +44,14 @@ function loadMultipleCSS(paths) {
 }
 
 /**
- * Carga múltiples JS a la vez (en orden)
- * @param {Array} paths - Array de objetos {src, id, async, defer}
+ * Carga múltiples JS en orden (síncrono)
  */
 function loadMultipleJS(paths) {
   paths.forEach((item) => {
     if (typeof item === "string") {
       loadJS(item);
     } else {
-      loadJS(item.src, item.id, item.async, item.defer);
+      loadJS(item.src, item.id);
     }
   });
 }
