@@ -723,6 +723,7 @@ const geoTranslations = {
       costamarfilena: "Ivorian",
       nigerino: "Nigerien",
       nigerina: "Nigerien",
+      nigeriano: "Nigerian",
       nigeriana: "Nigerian",
       argentino: "Argentine",
       argentina: "Argentine",
