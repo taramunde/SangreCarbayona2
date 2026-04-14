@@ -1225,8 +1225,8 @@
     {
       equipo1: "Athletic Club",
       equipo2: "Villarreal C.F.",
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: "F.C. Barcelona",
@@ -1237,8 +1237,8 @@
     {
       equipo1: "Celta de Vigo",
       equipo2: "Real Oviedo",
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 3,
     },
     {
       equipo1: "Elche C.F.",
@@ -1249,8 +1249,8 @@
     {
       equipo1: "R.C.D. Mallorca",
       equipo2: "Rayo Vallecano",
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: "Real Sociedad",
@@ -1267,14 +1267,14 @@
     {
       equipo1: "C.A. Osasuna",
       equipo2: "Real Betis",
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: "Levante U.D.",
       equipo2: "Getafe C.F.",
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: "Real Madrid",
