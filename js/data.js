@@ -223,17 +223,34 @@ const CLUB_DATA = {
     },
 
     "david-costas-cordal": {
-      nombre: "David",
-      apellidos: "Costas Cordal",
-      nombreCompleto: "David Costas Cordal",
-      posicion: "Defensa",
-      posicionCorta: "DC",
-      altura: 1.84,
-      nacionalidad: "Española",
-      lugarNacimiento: "Chapela, Pontevedra",
-      fechaNacimiento: "1995-03-26",
-      imagen: "https://i.postimg.cc/V6ScxHbr/David_Costas_PNG.webp",
-    },
+  nombre: "David",
+  apellidos: "Costas Cordal",
+  nombreCompleto: "David Costas Cordal",
+  apodo: "David Costas",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Chapela",
+  provinciaNacimiento: "Pontevedra",
+  fechaNacimiento: "1995-03-26",
+  imagen: "https://i.postimg.cc/V6ScxHbr/David-Costas-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "es",
+    datos: [
+      {
+        categoria: "U21",
+        partidos: 1,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
 
     "daniel-pedro-calvo-san-roman": {
       nombre: "Daniel Pedro",
