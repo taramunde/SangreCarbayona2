@@ -239,7 +239,7 @@ const CLUB_DATA = {
   provinciaNacimiento: "Huesca",
   fechaNacimiento: "1994-04-01",
   imagen: "https://i.postimg.cc/Wb0spKY0/Dani-Calvo-PNG.webp",
-}
+},
 
     "borja-trujillo": {
       nombre: "Borja",
@@ -2131,7 +2131,7 @@ const CLUB_DATA = {
     },
   ],
 },
-        {
+{
   id: "daniel-pedro-calvo-san-roman",
   codigo: "daniel-pedro-calvo-san-roman",
   dorsal: 12,
