@@ -946,6 +946,42 @@ const App = {
       `;
     }
 
+    // ============================================
+    // NUEVO: GENERAR FILAS DE ESTADO EN EL CLUB
+    // ============================================
+    let estadoClubHtml = "";
+
+    // Si el jugador tiene estado "baja", mostrar como ex-jugador
+    if (jugador.estado === "baja") {
+      estadoClubHtml = `
+        <div class="info-row baja-row">
+          <span class="info-label"><i class="fas fa-sign-out-alt"></i> ${t("estado") || "Estado"}</span>
+          <span class="info-value">${t("ex_jugador") || "Ex jugador"}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span>
+          <span class="info-value">${jugador.enClubDesde}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-times"></i> ${t("contrato_hasta") || "Contrato hasta"}</span>
+          <span class="info-value">${jugador.contratoHasta}</span>
+        </div>
+      `;
+    } else {
+      // Jugador activo - mostrar normal
+      estadoClubHtml = `
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span>
+          <span class="info-value">${jugador.enClubDesde}</span>
+        </div>
+        ${jugador.contratoHasta ? `
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-alt"></i> ${t("contrato_hasta") || "Contrato hasta"}</span>
+          <span class="info-value">${jugador.contratoHasta}</span>
+        </div>` : ''}
+      `;
+    }
+
     container.innerHTML = `
             <div class="overview-grid">
                 <div class="performance-card">
@@ -961,7 +997,7 @@ const App = {
                         <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento") || "Nacimiento"}</span><span class="info-value">${fechaNac.completa}</span></div>
                         ${lugarRowsHtml}
                         ${nacionalidadRowsHtml}
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span><span class="info-value">${jugador.enClubDesde}</span></div>
+                        ${estadoClubHtml}
                     </div>
                 </div>
                 <div class="disciplinary-card">
@@ -1324,6 +1360,11 @@ const App = {
       historialFiltrado = historial.filter((h) => !h.esSeleccion);
     }
 
+    // ============================================
+    // NUEVO: DETECTAR SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+    // ============================================
+    const yaNoEstaEnClub = jugadorActual.estado === "baja";
+
     // GENERAR HTML DEL TIMELINE
     let timelineHtml = "";
     historialFiltrado.forEach((h) => {
@@ -1374,8 +1415,22 @@ const App = {
         statsHtml += `</div>`;
       }
 
+      // ============================================
+      // NUEVO: CLASE ESPECIAL PARA TEMPORADA ACTUAL SI EL JUGADOR YA NO ESTÁ
+      // ============================================
+      let clasesTimeline = "";
+      if (h.actual) {
+        clasesTimeline += "current ";
+        if (yaNoEstaEnClub) {
+          clasesTimeline += "finalizado ";
+        }
+      }
+      if (h.esSeleccion) {
+        clasesTimeline += "seleccion-nacional ";
+      }
+
       timelineHtml += `
-      <div class="timeline-item ${h.actual ? "current" : ""} ${h.esSeleccion ? "seleccion-nacional" : ""}">
+      <div class="timeline-item ${clasesTimeline.trim()}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <div class="timeline-header">
@@ -1394,6 +1449,21 @@ const App = {
         </div>
       </div>`;
     });
+
+    // ============================================
+    // NUEVO: MENSAJE SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+    // ============================================
+    let mensajeBajaHtml = "";
+    if (yaNoEstaEnClub) {
+      mensajeBajaHtml = `
+        <div class="baja-notice" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 15px 20px; margin-bottom: 20px; border-radius: 8px;">
+          <p style="margin: 0; color: #c0392b; font-weight: 600;">
+            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+            ${t("jugador_baja_notice") || "Este jugador finalizó su etapa en el club en la temporada indicada."}
+          </p>
+        </div>
+      `;
+    }
 
     // CONSTRUIR DROPDOWN CON GRUPOS
     const listaComps = Array.from(competicionesSet).sort();
@@ -1532,6 +1602,7 @@ const App = {
     }
 
     container.innerHTML = `${dropdownHtml}
+    ${mensajeBajaHtml}
     <div class="career-grid">
       <div class="career-timeline-card">
         <h3 class="card-title">${t("historial")}</h3>

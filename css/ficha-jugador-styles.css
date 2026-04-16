@@ -1436,3 +1436,55 @@
   color: #001a6e;
   font-weight: 700;
 }
+
+/* Estilo para fila de baja en información personal */
+.info-row.baja-row {
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.info-row.baja-row .info-label {
+    color: #c0392b;
+}
+
+.info-row.baja-row .info-value {
+    color: #c0392b;
+    font-weight: 700;
+}
+
+/* Timeline item finalizado (jugador ya no en el club) */
+.timeline-item.finalizado .timeline-marker {
+    background: #e74c3c !important;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.3) !important;
+}
+
+.timeline-item.finalizado .timeline-content {
+    opacity: 0.7;
+    background: rgba(231, 76, 60, 0.05);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.timeline-item.finalizado .timeline-years::after {
+    content: " (Finalizado)";
+    color: #e74c3c;
+    font-weight: 600;
+    font-size: 0.75em;
+}
+
+/* Noticia de baja en trayectoria */
+.baja-notice {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid #e74c3c;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.baja-notice p {
+    margin: 0;
+    color: #c0392b;
+    font-weight: 600;
+}

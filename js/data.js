@@ -2437,6 +2437,7 @@ const CLUB_DATA = {
   posicion: "Central",
   enClubDesde: "2022",
   contratoHasta: "2026",
+  estado: "baja",
   stats: {
     partidos: 3,
     goles: 0,
