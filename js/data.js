@@ -2273,7 +2273,7 @@ const CLUB_DATA = {
       id: 7,
       jornada: "Primera Ronda",
       competicion: "Copa del Rey",
-      fecha: "2025-01-28",
+      fecha: "2025-10-28",
       local: "Ourense C.F.",
       visitante: "Real Oviedo",
       golesLocal: 4,
