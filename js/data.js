@@ -224,7 +224,7 @@ const CLUB_DATA = {
   imagen: "https://i.postimg.cc/V6ScxHbr/David-Costas-PNG.webp",
   seleccion: {
     pais: "España",
-    bandera: "es",
+    bandera: "https://flagcdn.com/16x12/es.webp",
     datos: [
       {
         categoria: "U21",
