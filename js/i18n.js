@@ -163,6 +163,7 @@ const translations = {
     ex_jugador: "Ex jugador",
     jugador_baja_notice: "Este jugador finalizó su etapa en el club en la temporada indicada.",
     estado: "Estado",
+    contrato_hasta: "Contrato hasta",
 
     // ============================================
     // CALENDARIO
@@ -454,6 +455,7 @@ const translations = {
     ex_jugador: "Former player",
     jugador_baja_notice: "This player ended his time at the club in the indicated season.",
     estado: "Status",
+    contrato_hasta: "Contract until",
 
     // ============================================
     // CALENDAR
