@@ -270,7 +270,7 @@ const CLUB_DATA = {
   imagen: "https://i.postimg.cc/ZqxmPdzn/Carmo-PNG-(2).webp",
   seleccion: {
     pais: "Angola",
-    bandera: "ao",
+    bandera: "https://flagcdn.com/16x12/ao.webp",
     datos: [
       {
         categoria: "Absoluta",
