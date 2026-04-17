@@ -8,5 +8,8 @@
     "forzar": "node Generador/generar.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force"
   },
   "author": "Taramunde",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
 }
