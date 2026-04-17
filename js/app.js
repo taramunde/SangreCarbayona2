@@ -1159,54 +1159,125 @@ const App = {
   },
 
   renderFichaCareerHistory: function (
-    jugadorActual,
-    currentSeasonId,
-    filtroCompeticion = "all",
-  ) {
-    const container = document.getElementById("tabCareer");
-    if (!container) return;
+  jugadorActual,
+  currentSeasonId,
+  filtroCompeticion = "all",
+) {
+  const container = document.getElementById("tabCareer");
+  if (!container) return;
 
-    const buscaId = String(jugadorActual.id || "");
-    const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
-    const esPorteroActual = esPortero(jugadorActual);
+  const buscaId = String(jugadorActual.id || "");
+  const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
+  const esPorteroActual = esPortero(jugadorActual);
 
-    const historial = [];
+  const historial = [];
 
-    // TOTALES SEPARADOS: Club vs Selección
-    let totalesClub = {
-      partidos: 0,
-      goles: 0,
-      asistencias: 0,
-      amarillas: 0,
-      rojas: 0,
-      minutos: 0,
-    };
+  // TOTALES SEPARADOS: Club vs Selección
+  let totalesClub = {
+    partidos: 0,
+    goles: 0,
+    asistencias: 0,
+    amarillas: 0,
+    rojas: 0,
+    minutos: 0,
+  };
 
-    let totalesSeleccion = {
-      partidos: 0,
-      goles: 0,
-      asistencias: 0,
-      amarillas: 0,
-      rojas: 0,
-      minutos: 0,
-      categorias: {}, // Para desglose por categoría
-    };
+  let totalesSeleccion = {
+    partidos: 0,
+    goles: 0,
+    asistencias: 0,
+    amarillas: 0,
+    rojas: 0,
+    minutos: 0,
+    categorias: {}, // Para desglose por categoría
+  };
 
-    const competicionesSet = new Set();
+  const competicionesSet = new Set();
 
-    // ============================================
-    // PROCESAR SELECCIÓN NACIONAL
-    // ============================================
-    if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
-      const sel = jugadorActual.seleccion;
+  // ============================================
+  // PROCESAR SELECCIÓN NACIONAL PRINCIPAL
+  // ============================================
+  if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
+    const sel = jugadorActual.seleccion;
 
-      sel.datos.forEach((cat) => {
-        const nombreCompeticion = `Selección ${cat.categoria}`;
+    sel.datos.forEach((cat) => {
+      const nombreCompeticion = `Selección ${cat.categoria}`;
+      competicionesSet.add(nombreCompeticion);
+
+      // Guardar en totales por categoría (todos los campos disponibles)
+      if (!totalesSeleccion.categorias[cat.categoria]) {
+        totalesSeleccion.categorias[cat.categoria] = {
+          partidos: 0,
+          goles: 0,
+          asistencias: 0,
+          amarillas: 0,
+          rojas: 0,
+          minutos: 0,
+        };
+      }
+      totalesSeleccion.categorias[cat.categoria].partidos +=
+        cat.partidos || 0;
+      totalesSeleccion.categorias[cat.categoria].goles += cat.goles || 0;
+      totalesSeleccion.categorias[cat.categoria].asistencias +=
+        cat.asistencias || 0;
+      totalesSeleccion.categorias[cat.categoria].amarillas +=
+        cat.amarillas || 0;
+      totalesSeleccion.categorias[cat.categoria].rojas += cat.rojas || 0;
+      totalesSeleccion.categorias[cat.categoria].minutos += cat.minutos || 0;
+
+      // Totales generales selección (todos los campos)
+      totalesSeleccion.partidos += cat.partidos || 0;
+      totalesSeleccion.goles += cat.goles || 0;
+      totalesSeleccion.asistencias += cat.asistencias || 0;
+      totalesSeleccion.amarillas += cat.amarillas || 0;
+      totalesSeleccion.rojas += cat.rojas || 0;
+      totalesSeleccion.minutos += cat.minutos || 0;
+
+      historial.push({
+        temporada:
+          t("sel_" + cat.categoria.toLowerCase().replace("-", "")) ||
+          cat.categoria, // "Absoluta"→"Senior", "U21"→"U21"
+        equipo: translateCountry(sel.pais),
+        logo: sel.bandera,
+        esSeleccion: true,
+        categoriaSeleccion: cat.categoria,
+        competicionFiltro: nombreCompeticion, // Para el filtrado
+        stats: {
+          partidos: cat.partidos || 0,
+          goles: cat.goles || 0,
+          asistencias: cat.asistencias || 0,
+          amarillas: cat.amarillas || 0,
+          rojas: cat.rojas || 0,
+          minutos: cat.minutos || 0,
+        },
+        dorsal: "-",
+        posicion: jugadorActual.posicion || "Jugador",
+        actual: false,
+        statsGlobales: null,
+        esPortero: esPorteroActual,
+      });
+    });
+  }
+
+  // ============================================
+  // PROCESAR OTRAS SELECCIONES (ej: Portugal para David Carmo)
+  // ============================================
+  if (jugadorActual.otrasSelecciones && Array.isArray(jugadorActual.otrasSelecciones)) {
+    jugadorActual.otrasSelecciones.forEach((otraSel) => {
+      if (!otraSel.datos || !Array.isArray(otraSel.datos)) return;
+      
+      const paisOtra = translateCountry(otraSel.pais);
+      const banderaOtra = otraSel.bandera;
+
+      otraSel.datos.forEach((cat) => {
+        // Nombre único para el filtro, incluyendo el país
+        const nombreCompeticion = `Selección ${cat.categoria} (${paisOtra})`;
         competicionesSet.add(nombreCompeticion);
 
-        // Guardar en totales por categoría (todos los campos disponibles)
-        if (!totalesSeleccion.categorias[cat.categoria]) {
-          totalesSeleccion.categorias[cat.categoria] = {
+        // Guardar en totales por categoría para esta selección
+        const catKey = `${paisOtra}_${cat.categoria}`;
+        if (!totalesSeleccion.categorias[catKey]) {
+          totalesSeleccion.categorias[catKey] = {
             partidos: 0,
             goles: 0,
             asistencias: 0,
@@ -1215,17 +1286,14 @@ const App = {
             minutos: 0,
           };
         }
-        totalesSeleccion.categorias[cat.categoria].partidos +=
-          cat.partidos || 0;
-        totalesSeleccion.categorias[cat.categoria].goles += cat.goles || 0;
-        totalesSeleccion.categorias[cat.categoria].asistencias +=
-          cat.asistencias || 0;
-        totalesSeleccion.categorias[cat.categoria].amarillas +=
-          cat.amarillas || 0;
-        totalesSeleccion.categorias[cat.categoria].rojas += cat.rojas || 0;
-        totalesSeleccion.categorias[cat.categoria].minutos += cat.minutos || 0;
+        totalesSeleccion.categorias[catKey].partidos += cat.partidos || 0;
+        totalesSeleccion.categorias[catKey].goles += cat.goles || 0;
+        totalesSeleccion.categorias[catKey].asistencias += cat.asistencias || 0;
+        totalesSeleccion.categorias[catKey].amarillas += cat.amarillas || 0;
+        totalesSeleccion.categorias[catKey].rojas += cat.rojas || 0;
+        totalesSeleccion.categorias[catKey].minutos += cat.minutos || 0;
 
-        // Totales generales selección (todos los campos)
+        // Sumar a totales generales de selección
         totalesSeleccion.partidos += cat.partidos || 0;
         totalesSeleccion.goles += cat.goles || 0;
         totalesSeleccion.asistencias += cat.asistencias || 0;
@@ -1236,12 +1304,13 @@ const App = {
         historial.push({
           temporada:
             t("sel_" + cat.categoria.toLowerCase().replace("-", "")) ||
-            cat.categoria, // "Absoluta"→"Senior", "U21"→"U21"
-          equipo: translateCountry(sel.pais),
-          logo: sel.bandera,
+            cat.categoria,
+          equipo: paisOtra,
+          logo: banderaOtra,
           esSeleccion: true,
           categoriaSeleccion: cat.categoria,
-          competicionFiltro: nombreCompeticion, // Para el filtrado
+          paisSeleccion: paisOtra, // Guardar el país para referencia
+          competicionFiltro: nombreCompeticion,
           stats: {
             partidos: cat.partidos || 0,
             goles: cat.goles || 0,
@@ -1257,151 +1326,149 @@ const App = {
           esPortero: esPorteroActual,
         });
       });
-    }
-    // ============================================
+    });
+  }
 
-    // RECORRER TEMPORADAS DEL CLUB
-    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-      const datosTemporada = CLUB_DATA.temporadas[temp.id];
-      if (!datosTemporada) return;
+  // RECORRER TEMPORADAS DEL CLUB
+  CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+    const datosTemporada = CLUB_DATA.temporadas[temp.id];
+    if (!datosTemporada) return;
 
-      const jugadorEnTemporada = datosTemporada.jugadores.find(
-        (j) =>
-          String(j.id) === buscaId ||
-          String(j.codigo) === buscaCodigo ||
-          String(j.id) === buscaCodigo ||
-          String(j.codigo) === buscaId,
-      );
+    const jugadorEnTemporada = datosTemporada.jugadores.find(
+      (j) =>
+        String(j.id) === buscaId ||
+        String(j.codigo) === buscaCodigo ||
+        String(j.id) === buscaCodigo ||
+        String(j.codigo) === buscaId,
+    );
 
-      if (!jugadorEnTemporada) return;
+    if (!jugadorEnTemporada) return;
 
-      const datosMaestro =
-        CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
-      const compNombre =
-        datosTemporada.competicion || t("competicion_label") || "Competición";
-      const esPorteroTemp = esPortero({
-        ...datosMaestro,
-        ...jugadorEnTemporada,
-      });
-
-      if (jugadorEnTemporada.stats.desglose) {
-        Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
-          competicionesSet.add(c),
-        );
-      }
-
-      // Siempre añadimos la competición principal al set
-      competicionesSet.add(compNombre);
-
-      let statsAMostrar = { ...jugadorEnTemporada.stats };
-      let mostrarEstaTemporada = true;
-
-      // Lógica de filtrado mejorada
-      if (filtroCompeticion !== "all") {
-        const esFiltroSeleccion = filtroCompeticion.startsWith("Selección");
-
-        if (esFiltroSeleccion) {
-          // Si filtro es selección, no mostrar temporadas de club
-          mostrarEstaTemporada = false;
-        } else {
-          // Si filtro es competición de club
-          if (
-            jugadorEnTemporada.stats.desglose &&
-            jugadorEnTemporada.stats.desglose[filtroCompeticion]
-          ) {
-            statsAMostrar =
-              jugadorEnTemporada.stats.desglose[filtroCompeticion];
-          } else if (compNombre !== filtroCompeticion) {
-            mostrarEstaTemporada = false;
-          }
-        }
-      }
-
-      if (mostrarEstaTemporada) {
-        historial.push({
-          temporada: temp.nombre,
-          equipo: CLUB_DATA.club.nombreCorto,
-          logo: CLUB_DATA.club.logo || "",
-          esSeleccion: false,
-          competicionFiltro: compNombre,
-          stats: statsAMostrar,
-          statsGlobales: jugadorEnTemporada.stats,
-          dorsal: jugadorEnTemporada.dorsal,
-          posicion:
-            datosMaestro.posicion ||
-            jugadorEnTemporada.posicion ||
-            "Desconocida",
-          actual: temp.id === currentSeasonId,
-          esPortero: esPorteroTemp,
-        });
-
-        // Sumar solo a totales de club
-        totalesClub.partidos += statsAMostrar.partidos || 0;
-        totalesClub.goles += statsAMostrar.goles || 0;
-        totalesClub.asistencias += statsAMostrar.asistencias || 0;
-        totalesClub.amarillas += statsAMostrar.amarillas || 0;
-        totalesClub.rojas += statsAMostrar.rojas || 0;
-        totalesClub.minutos += statsAMostrar.minutos || 0;
-      }
+    const datosMaestro =
+      CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
+    const compNombre =
+      datosTemporada.competicion || t("competicion_label") || "Competición";
+    const esPorteroTemp = esPortero({
+      ...datosMaestro,
+      ...jugadorEnTemporada,
     });
 
-    // FILTRAR HISTORIAL SI ES SELECCIÓN
-    let historialFiltrado = historial;
-    if (
-      filtroCompeticion !== "all" &&
-      filtroCompeticion.startsWith("Selección")
-    ) {
-      const categoriaBuscada = filtroCompeticion.replace("Selección ", "");
-      historialFiltrado = historial.filter(
-        (h) => h.esSeleccion && h.categoriaSeleccion === categoriaBuscada,
+    if (jugadorEnTemporada.stats.desglose) {
+      Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
+        competicionesSet.add(c),
       );
-    } else if (filtroCompeticion !== "all") {
-      // Filtrar solo club para competiciones normales
-      historialFiltrado = historial.filter((h) => !h.esSeleccion);
     }
 
-    // ============================================
-    // NUEVO: DETECTAR SI EL JUGADOR YA NO ESTÁ EN EL CLUB
-    // ============================================
-    const yaNoEstaEnClub = jugadorActual.estado === "baja";
+    // Siempre añadimos la competición principal al set
+    competicionesSet.add(compNombre);
 
-    // GENERAR HTML DEL TIMELINE
-    let timelineHtml = "";
-    historialFiltrado.forEach((h) => {
-      const badgeHtml = h.logo
-        ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
-        : `<span class="team-badge-text">OVI</span>`;
+    let statsAMostrar = { ...jugadorEnTemporada.stats };
+    let mostrarEstaTemporada = true;
 
-      // DIFERENCIAR GOLES/ENCAJADOS EN EL TIMELINE
-      const golesLabelTimeline = h.esPortero
-        ? t("goles_encajados_abrev")
-        : t("goles");
-      const golesStyleTimeline = h.esPortero
-        ? 'style="color:#e74c3c;font-weight:700"'
-        : "";
+    // Lógica de filtrado mejorada
+    if (filtroCompeticion !== "all") {
+      const esFiltroSeleccion = filtroCompeticion.startsWith("Selección");
 
-      let statsHtml = `<div class="timeline-stats">
+      if (esFiltroSeleccion) {
+        // Si filtro es selección, no mostrar temporadas de club
+        mostrarEstaTemporada = false;
+      } else {
+        // Si filtro es competición de club
+        if (
+          jugadorEnTemporada.stats.desglose &&
+          jugadorEnTemporada.stats.desglose[filtroCompeticion]
+        ) {
+          statsAMostrar =
+            jugadorEnTemporada.stats.desglose[filtroCompeticion];
+        } else if (compNombre !== filtroCompeticion) {
+          mostrarEstaTemporada = false;
+        }
+      }
+    }
+
+    if (mostrarEstaTemporada) {
+      historial.push({
+        temporada: temp.nombre,
+        equipo: CLUB_DATA.club.nombreCorto,
+        logo: CLUB_DATA.club.logo || "",
+        esSeleccion: false,
+        competicionFiltro: compNombre,
+        stats: statsAMostrar,
+        statsGlobales: jugadorEnTemporada.stats,
+        dorsal: jugadorEnTemporada.dorsal,
+        posicion:
+          datosMaestro.posicion ||
+          jugadorEnTemporada.posicion ||
+          "Desconocida",
+        actual: temp.id === currentSeasonId,
+        esPortero: esPorteroTemp,
+      });
+
+      // Sumar solo a totales de club
+      totalesClub.partidos += statsAMostrar.partidos || 0;
+      totalesClub.goles += statsAMostrar.goles || 0;
+      totalesClub.asistencias += statsAMostrar.asistencias || 0;
+      totalesClub.amarillas += statsAMostrar.amarillas || 0;
+      totalesClub.rojas += statsAMostrar.rojas || 0;
+      totalesClub.minutos += statsAMostrar.minutos || 0;
+    }
+  });
+
+  // FILTRAR HISTORIAL SI ES SELECCIÓN
+  let historialFiltrado = historial;
+  if (
+    filtroCompeticion !== "all" &&
+    filtroCompeticion.startsWith("Selección")
+  ) {
+    // Filtrar por selección específica (principal u otras)
+    historialFiltrado = historial.filter(
+      (h) => h.esSeleccion && h.competicionFiltro === filtroCompeticion,
+    );
+  } else if (filtroCompeticion !== "all") {
+    // Filtrar solo club para competiciones normales
+    historialFiltrado = historial.filter((h) => !h.esSeleccion);
+  }
+
+  // DETECTAR SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+  const yaNoEstaEnClub = jugadorActual.estado === "baja";
+
+  // GENERAR HTML DEL TIMELINE
+  let timelineHtml = "";
+  historialFiltrado.forEach((h) => {
+    const badgeHtml = h.logo
+      ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
+      : `<span class="team-badge-text">OVI</span>`;
+
+    // DIFERENCIAR GOLES/ENCAJADOS EN EL TIMELINE
+    const golesLabelTimeline = h.esPortero
+      ? t("goles_encajados_abrev")
+      : t("goles");
+    const golesStyleTimeline = h.esPortero
+      ? 'style="color:#e74c3c;font-weight:700"'
+      : "";
+
+    let statsHtml = `<div class="timeline-stats">
       <span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span>
       <span><strong ${golesStyleTimeline}>${h.stats.goles}</strong> ${golesLabelTimeline}</span>
       ${!h.esSeleccion ? `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>` : `<span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>`}
     </div>`;
 
-      // Desglose solo para clubes
-      if (
-        !h.esSeleccion &&
-        filtroCompeticion === "all" &&
-        h.statsGlobales &&
-        h.statsGlobales.desglose
-      ) {
-        statsHtml += `<div class="timeline-breakdown-box">`;
-        for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
-          const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
-          const goalLabel = h.esPortero ? t("goles_encajados_abrev") : "G";
-          const compTraducida =
-            comp === "Competición Internacional"
-              ? t("competicion_internacional")
-              : comp;
-          statsHtml += `
+    // Desglose solo para clubes
+    if (
+      !h.esSeleccion &&
+      filtroCompeticion === "all" &&
+      h.statsGlobales &&
+      h.statsGlobales.desglose
+    ) {
+      statsHtml += `<div class="timeline-breakdown-box">`;
+      for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+        const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
+        const goalLabel = h.esPortero ? t("goles_encajados_abrev") : "G";
+        const compTraducida =
+          comp === "Competición Internacional"
+            ? t("competicion_internacional")
+            : comp;
+        statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${compTraducida}</span>
             <div class="breakdown-data-chips">
@@ -1411,25 +1478,28 @@ const App = {
               ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
             </div>
           </div>`;
-        }
-        statsHtml += `</div>`;
       }
+      statsHtml += `</div>`;
+    }
 
-      // ============================================
-      // NUEVO: CLASE ESPECIAL PARA TEMPORADA ACTUAL SI EL JUGADOR YA NO ESTÁ
-      // ============================================
-      let clasesTimeline = "";
-      if (h.actual) {
-        clasesTimeline += "current ";
-        if (yaNoEstaEnClub) {
-          clasesTimeline += "finalizado ";
-        }
+    // CLASE ESPECIAL PARA TEMPORADA ACTUAL SI EL JUGADOR YA NO ESTÁ
+    let clasesTimeline = "";
+    if (h.actual) {
+      clasesTimeline += "current ";
+      if (yaNoEstaEnClub) {
+        clasesTimeline += "finalizado ";
       }
-      if (h.esSeleccion) {
-        clasesTimeline += "seleccion-nacional ";
-      }
+    }
+    if (h.esSeleccion) {
+      clasesTimeline += "seleccion-nacional ";
+    }
 
-      timelineHtml += `
+    // Mostrar país de la selección si es otra selección
+    const seleccionInfo = h.esSeleccion && h.paisSeleccion
+      ? `<span style="font-size:0.75em;color:var(--gray-500);display:block;margin-top:2px;">${h.paisSeleccion}</span>`
+      : "";
+
+    timelineHtml += `
       <div class="timeline-item ${clasesTimeline.trim()}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
@@ -1438,6 +1508,7 @@ const App = {
               <span class="team-badge">${badgeHtml}</span>
               ${h.esSeleccion ? `<i class="fas fa-flag" style="margin-right: 8px; color: var(--secondary-color);"></i>` : ""}
               ${h.equipo}
+              ${seleccionInfo}
             </span>
             <span class="timeline-years">${h.temporada}</span>
           </div>
@@ -1448,92 +1519,110 @@ const App = {
           ${statsHtml}
         </div>
       </div>`;
-    });
+  });
 
-    // ============================================
-    // NUEVO: MENSAJE SI EL JUGADOR YA NO ESTÁ EN EL CLUB
-    // ============================================
-    let mensajeBajaHtml = "";
-    if (yaNoEstaEnClub) {
-      mensajeBajaHtml = `
-        <div class="baja-notice" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 15px 20px; margin-bottom: 20px; border-radius: 8px;">
-          <p style="margin: 0; color: #c0392b; font-weight: 600;">
-            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
-            ${t("jugador_baja_notice") || "Este jugador finalizó su etapa en el club en la temporada indicada."}
-          </p>
-        </div>
-      `;
-    }
+  // MENSAJE SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+  let mensajeBajaHtml = "";
+  if (yaNoEstaEnClub) {
+    mensajeBajaHtml = `
+      <div class="baja-notice" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 15px 20px; margin-bottom: 20px; border-radius: 8px;">
+        <p style="margin: 0; color: #c0392b; font-weight: 600;">
+          <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+          ${t("jugador_baja_notice") || "Este jugador finalizó su etapa en el club en la temporada indicada."}
+        </p>
+      </div>
+    `;
+  }
 
-    // CONSTRUIR DROPDOWN CON GRUPOS
-    const listaComps = Array.from(competicionesSet).sort();
-    const tieneSeleccion =
-      jugadorActual.seleccion && jugadorActual.seleccion.datos;
-    const tieneClub = historial.some((h) => !h.esSeleccion);
+  // CONSTRUIR DROPDOWN CON GRUPOS
+  const listaComps = Array.from(competicionesSet).sort();
+  const tieneSeleccion =
+    jugadorActual.seleccion && jugadorActual.seleccion.datos;
+  const tieneOtrasSelecciones = 
+    jugadorActual.otrasSelecciones && 
+    jugadorActual.otrasSelecciones.length > 0 &&
+    jugadorActual.otrasSelecciones.some(s => s.datos && s.datos.length > 0);
+  const tieneClub = historial.some((h) => !h.esSeleccion);
 
-    let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
+  let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
     <label style="font-weight:bold;">${t("filtrar") || "Filtrar"}:</label>
     <select id="filterCareer" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit;">`;
 
-    dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>${t("todas_competiciones") || "Todas las competiciones"}</option>`;
+  dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>${t("todas_competiciones") || "Todas las competiciones"}</option>`;
 
-    // Grupo Club
-    if (tieneClub) {
-      dropdownHtml += `<optgroup label="${t("club") || "Club"}">`;
-      listaComps
-        .filter((c) => !c.startsWith("Selección"))
-        .forEach((c) => {
-          const cKey =
-            "comp_" +
-            c
-              .toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .replace(/\s+/g, "_");
-          const cTraducida = t(cKey) || c;
-          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cTraducida}</option>`;
-        });
-      dropdownHtml += `</optgroup>`;
-    }
+  // Grupo Club
+  if (tieneClub) {
+    dropdownHtml += `<optgroup label="${t("club") || "Club"}">`;
+    listaComps
+      .filter((c) => !c.startsWith("Selección"))
+      .forEach((c) => {
+        const cKey =
+          "comp_" +
+          c
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, "_");
+        const cTraducida = t(cKey) || c;
+        dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cTraducida}</option>`;
+      });
+    dropdownHtml += `</optgroup>`;
+  }
 
-    // Grupo Selección
-    if (tieneSeleccion) {
-      dropdownHtml += `<optgroup label="${t("seleccion_nacional") || "Selección Nacional"}">`;
-      listaComps
-        .filter((c) => c.startsWith("Selección"))
-        .forEach((c) => {
-          const cat = c.replace("Selección ", "");
-          const catTraducida =
-            t("sel_" + cat.toLowerCase().replace("-", "")) || cat;
-          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${catTraducida}</option>`;
-        });
-      dropdownHtml += `</optgroup>`;
-    }
+  // Grupo Selección Nacional (principal + otras)
+  if (tieneSeleccion || tieneOtrasSelecciones) {
+    dropdownHtml += `<optgroup label="${t("seleccion_nacional") || "Selección Nacional"}">`;
+    
+    // Selección principal (sin país entre paréntesis)
+    listaComps
+      .filter((c) => c.startsWith("Selección") && !c.includes("("))
+      .forEach((c) => {
+        const cat = c.replace("Selección ", "");
+        const catTraducida =
+          t("sel_" + cat.toLowerCase().replace("-", "")) || cat;
+        dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${catTraducida}</option>`;
+      });
+    
+    // Otras selecciones (con país entre paréntesis)
+    listaComps
+      .filter((c) => c.startsWith("Selección") && c.includes("("))
+      .forEach((c) => {
+        const match = c.match(/Selección (.+) \((.+)\)/);
+        if (match) {
+          const cat = match[1];
+          const pais = match[2];
+          const catTraducida = t("sel_" + cat.toLowerCase().replace("-", "")) || cat;
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${catTraducida} (${pais})</option>`;
+        }
+      });
+    
+    dropdownHtml += `</optgroup>`;
+  }
 
-    dropdownHtml += `</select></div>`;
+  dropdownHtml += `</select></div>`;
 
-    // GENERAR TARJETAS DE TOTALES SEPARADAS
-    let totalesHtml = "";
+  // GENERAR TARJETAS DE TOTALES SEPARADAS
+  let totalesHtml = "";
 
-    // Solo mostrar totales de club si hay datos de club y el filtro lo permite
-    const mostrarTotalesClub =
-      (filtroCompeticion === "all" ||
-        !filtroCompeticion.startsWith("Selección")) &&
-      totalesClub.partidos > 0;
+  // Solo mostrar totales de club si hay datos de club y el filtro lo permite
+  const mostrarTotalesClub =
+    (filtroCompeticion === "all" ||
+      !filtroCompeticion.startsWith("Selección")) &&
+    totalesClub.partidos > 0;
 
-    // Solo mostrar totales de selección si hay datos de selección y el filtro lo permite
-    const mostrarTotalesSeleccion =
-      (filtroCompeticion === "all" ||
-        filtroCompeticion.startsWith("Selección")) &&
-      totalesSeleccion.partidos > 0;
+  // Solo mostrar totales de selección si hay datos de selección y el filtro lo permite
+  const mostrarTotalesSeleccion =
+    (filtroCompeticion === "all" ||
+      filtroCompeticion.startsWith("Selección")) &&
+    totalesSeleccion.partidos > 0;
 
-    if (mostrarTotalesClub) {
-      const golesLabelTotal = esPorteroActual
-        ? t("goles_encajados_corto")
-        : t("goles");
-      const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
+  if (mostrarTotalesClub) {
+    const golesLabelTotal = esPorteroActual
+      ? t("goles_encajados_corto")
+      : t("goles");
+    const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
-      totalesHtml += `
+    totalesHtml += `
       <div class="career-totals-card club-totals">
         <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>${t("total_club") || "Total Club"}</h3>
         <div class="totals-grid">
@@ -1545,33 +1634,40 @@ const App = {
           <div class="total-item minutes"><span class="total-value">${totalesClub.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
         </div>
       </div>`;
-    }
+  }
 
-    if (mostrarTotalesSeleccion) {
-      // Detectar si es portero para aplicar estilos de goles encajados
-      const golesLabelSel = esPorteroActual
-        ? t("goles_encajados_corto")
-        : t("goles");
-      const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
+  if (mostrarTotalesSeleccion) {
+    // Detectar si es portero para aplicar estilos de goles encajados
+    const golesLabelSel = esPorteroActual
+      ? t("goles_encajados_corto")
+      : t("goles");
+    const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
 
-      // Si filtramos por categoría específica, mostrar solo esa
-      const esFiltroCategoriaEspecifica =
-        filtroCompeticion.startsWith("Selección");
-      const categoriaFiltro = esFiltroCategoriaEspecifica
-        ? filtroCompeticion.replace("Selección ", "")
-        : null;
+    // Si filtramos por categoría específica, mostrar solo esa
+    const esFiltroCategoriaEspecifica =
+      filtroCompeticion.startsWith("Selección");
+    const categoriaFiltro = esFiltroCategoriaEspecifica
+      ? filtroCompeticion.replace("Selección ", "").replace(/\s*\(.+\)$/, "") // Quitar el país si existe
+      : null;
+    const paisFiltro = esFiltroCategoriaEspecifica && filtroCompeticion.includes("(")
+      ? filtroCompeticion.match(/\((.+)\)$/)?.[1]
+      : null;
 
-      let statsSeleccionHtml = "";
+    let statsSeleccionHtml = "";
 
-      if (
-        esFiltroCategoriaEspecifica &&
-        totalesSeleccion.categorias[categoriaFiltro]
-      ) {
-        // Solo esa categoría
-        const cat = totalesSeleccion.categorias[categoriaFiltro];
+    if (esFiltroCategoriaEspecifica && categoriaFiltro) {
+      // Buscar la categoría específica (puede ser de selección principal u otra)
+      let cat = null;
+      const catKeyPrincipal = categoriaFiltro;
+      const catKeyOtra = paisFiltro ? `${paisFiltro}_${categoriaFiltro}` : null;
+      
+      cat = totalesSeleccion.categorias[catKeyPrincipal] || 
+            (catKeyOtra && totalesSeleccion.categorias[catKeyOtra]);
+      
+      if (cat) {
         statsSeleccionHtml = `
         <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
-          <span style="font-weight: 600; color: #001a6e;">${t("sel_" + categoriaFiltro.toLowerCase().replace("-", "")) || categoriaFiltro}</span>
+          <span style="font-weight: 600; color: #001a6e;">${t("sel_" + categoriaFiltro.toLowerCase().replace("-", "")) || categoriaFiltro}${paisFiltro ? ` (${paisFiltro})` : ""}</span>
         </div>
         <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
         <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${cat.goles}</span><span class="total-label">${golesLabelSel}</span></div>
@@ -1580,9 +1676,10 @@ const App = {
         <div class="total-item red-card"><span class="total-value">${cat.rojas}</span><span class="total-label">${t("rojas")}</span></div>
         <div class="total-item minutes"><span class="total-value">${cat.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
       `;
-      } else {
-        // Todas las categorías de selección
-        statsSeleccionHtml = `
+      }
+    } else {
+      // Todas las categorías de selección
+      statsSeleccionHtml = `
         <div class="total-item"><span class="total-value">${totalesSeleccion.partidos}</span><span class="total-label">${t("partidos")}</span></div>
         <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${totalesSeleccion.goles}</span><span class="total-label">${golesLabelSel}</span></div>
         <div class="total-item"><span class="total-value">${totalesSeleccion.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
@@ -1590,18 +1687,18 @@ const App = {
         <div class="total-item red-card"><span class="total-value">${totalesSeleccion.rojas}</span><span class="total-label">${t("rojas")}</span></div>
         <div class="total-item minutes"><span class="total-value">${totalesSeleccion.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
       `;
-      }
+    }
 
-      totalesHtml += `
+    totalesHtml += `
       <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700;">
         <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>${t("total_seleccion") || "Total Selección"}</h3>
         <div class="totals-grid">
           ${statsSeleccionHtml}
         </div>
       </div>`;
-    }
+  }
 
-    container.innerHTML = `${dropdownHtml}
+  container.innerHTML = `${dropdownHtml}
     ${mensajeBajaHtml}
     <div class="career-grid">
       <div class="career-timeline-card">
@@ -1613,17 +1710,17 @@ const App = {
       </div>
     </div>`;
 
-    const filterSelect = document.getElementById("filterCareer");
-    if (filterSelect) {
-      filterSelect.addEventListener("change", (e) => {
-        this.renderFichaCareerHistory(
-          jugadorActual,
-          currentSeasonId,
-          e.target.value,
-        );
-      });
-    }
-  },
+  const filterSelect = document.getElementById("filterCareer");
+  if (filterSelect) {
+    filterSelect.addEventListener("change", (e) => {
+      this.renderFichaCareerHistory(
+        jugadorActual,
+        currentSeasonId,
+        e.target.value,
+      );
+    });
+  }
+},
 
   renderJuegos: function () {
     const container = document.getElementById("juegosGrid");
