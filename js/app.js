@@ -252,7 +252,7 @@ const App = {
     }
 
     let html = "";
-    playersToRender.slice(0, 8).forEach((jugador) => {
+    playersToRender.slice(0, 30).forEach((jugador) => {
       html += this.renderJugadorCard(jugador);
     });
 
