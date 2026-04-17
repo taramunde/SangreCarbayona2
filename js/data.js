@@ -286,7 +286,7 @@ const CLUB_DATA = {
   otrasSelecciones: [
     {
       pais: "Portugal",
-      bandera: "pt",
+      bandera: "https://flagcdn.com/16x12/pt.webp",
       datos: [
         {
           categoria: "Absoluta",
