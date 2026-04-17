@@ -446,7 +446,6 @@ const translations = {
     pj: 'MP',
     competicion_internacional: 'International Competition',
     sel_absoluta: 'Senior',
-
     sel_u19: 'U19',
     sel_u20: 'U20',
     sel_u21: 'U21',
