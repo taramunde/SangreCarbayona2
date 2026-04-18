@@ -357,6 +357,14 @@ const CLUB_DATA = {
       posicion: 'Defensa',
       posicionCorta: 'LD',
       altura: 1.74,
+      posiciones: [
+        {
+          desde: 2013,
+          hasta: 2018,
+          posicion: 'Centrocampista',
+          posicionCorta: 'MC',
+        },
+      ],
       nacionalidad: ['Española'],
       lugarNacimiento: 'Oviedo',
       provinciaNacimiento: 'Asturias',
