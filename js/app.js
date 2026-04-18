@@ -4,21 +4,21 @@
 
 function formatearFecha(fechaStr) {
   let fecha;
-  if (fechaStr.includes("T")) {
+  if (fechaStr.includes('T')) {
     fecha = new Date(fechaStr);
   } else {
-    const parts = fechaStr.split("-");
+    const parts = fechaStr.split('-');
     fecha = new Date(parts[0], parts[1] - 1, parts[2]);
   }
 
-  const lang = localStorage.getItem("lang") || "es";
+  const lang = localStorage.getItem('lang') || 'es';
 
-  const mesNombre = fecha.toLocaleDateString(lang, { month: "long" });
-  const mesCorto = fecha.toLocaleDateString(lang, { month: "short" });
+  const mesNombre = fecha.toLocaleDateString(lang, { month: 'long' });
+  const mesCorto = fecha.toLocaleDateString(lang, { month: 'short' });
   let completa = fecha.toLocaleDateString(lang, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   });
 
   const capitalizar = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -26,7 +26,7 @@ function formatearFecha(fechaStr) {
   return {
     dia: fecha.getDate(),
     mes: capitalizar(mesNombre),
-    mesCorto: capitalizar(mesCorto).replace(".", ""),
+    mesCorto: capitalizar(mesCorto).replace('.', ''),
     año: fecha.getFullYear(),
     completa: completa,
   };
@@ -37,34 +37,34 @@ function formatearFecha(fechaStr) {
    =================================== */
 
 function esPortero(jugador) {
-  return jugador.posicion === "Portero" || jugador.posicionCorta === "POR";
+  return jugador.posicion === 'Portero' || jugador.posicionCorta === 'POR';
 }
 
 function getCategoriaJugador(jugador) {
   const pos = jugador.posicion;
-  if (["Portero"].includes(pos)) return t("porteros");
+  if (['Portero'].includes(pos)) return t('porteros');
   if (
-    ["Defensa", "Central", "Lateral Derecho", "Lateral Izquierdo"].includes(pos)
+    ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'].includes(pos)
   )
-    return t("defensas");
-  if (
-    [
-      "Centrocampista",
-      "Mediocentro",
-      "Mediocentro Defensivo",
-      "Mediapunta",
-    ].includes(pos)
-  )
-    return t("centrocampistas");
+    return t('defensas');
   if (
     [
-      "Delantero",
-      "Delantero Centro",
-      "Extremo Derecho",
-      "Extremo Izquierdo",
+      'Centrocampista',
+      'Mediocentro',
+      'Mediocentro Defensivo',
+      'Mediapunta',
     ].includes(pos)
   )
-    return t("delanteros");
+    return t('centrocampistas');
+  if (
+    [
+      'Delantero',
+      'Delantero Centro',
+      'Extremo Derecho',
+      'Extremo Izquierdo',
+    ].includes(pos)
+  )
+    return t('delanteros');
   return translatePosition(pos);
 }
 
@@ -77,9 +77,9 @@ function translateCountry(country) {
   const normalized = country
     .toLowerCase()
     .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s/g, "");
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s/g, '');
   return (
     window.geoTranslations?.countries?.[currentLang]?.[normalized] || country
   );
@@ -90,8 +90,8 @@ function translateCity(city) {
   const normalized = city
     .toLowerCase()
     .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
   return window.geoTranslations?.cities?.[currentLang]?.[normalized] || city;
 }
 
@@ -100,8 +100,8 @@ function translateProvince(province) {
   const normalized = province
     .toLowerCase()
     .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
   return (
     window.geoTranslations?.provinces?.[currentLang]?.[normalized] || province
   );
@@ -112,7 +112,7 @@ function translateNationality(nationality) {
 
   // Si es array, traducir cada elemento
   if (Array.isArray(nationality)) {
-    return nationality.map((n) => translateNationalitySingle(n)).join(", ");
+    return nationality.map((n) => translateNationalitySingle(n)).join(', ');
   }
 
   // Si es string, traducir directamente
@@ -124,8 +124,8 @@ function translateNationalitySingle(nationality) {
   const normalized = nationality
     .toLowerCase()
     .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
   return (
     window.geoTranslations?.nationalities?.[currentLang]?.[normalized] ||
     nationality
@@ -161,13 +161,13 @@ const App = {
   },
 
   setupHomeFilters: function () {
-    const tabs = document.querySelectorAll(".position-tabs .tab-btn");
+    const tabs = document.querySelectorAll('.position-tabs .tab-btn');
     if (!tabs.length) return;
 
     tabs.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        tabs.forEach((b) => b.classList.remove("active"));
-        e.currentTarget.classList.add("active");
+      btn.addEventListener('click', (e) => {
+        tabs.forEach((b) => b.classList.remove('active'));
+        e.currentTarget.classList.add('active');
         const position = e.currentTarget.dataset.position;
         this.renderPlantillaHome(position);
       });
@@ -175,20 +175,20 @@ const App = {
   },
 
   renderSeasonSelector: function () {
-    const container = document.getElementById("seasonSelector");
+    const container = document.getElementById('seasonSelector');
     if (!container) return;
     let html = '<div class="season-tabs">';
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-      const activeClass = temp.id === this.temporadaActiva ? "active" : "";
+      const activeClass = temp.id === this.temporadaActiva ? 'active' : '';
       const currentBadge = temp.actual
-        ? '<span class="current-badge">' + t("current_badge") + "</span>"
-        : "";
+        ? '<span class="current-badge">' + t('current_badge') + '</span>'
+        : '';
       html += `<button class="season-tab ${activeClass}" data-season="${temp.id}">${temp.nombre} ${currentBadge}</button>`;
     });
-    html += "</div>";
+    html += '</div>';
     container.innerHTML = html;
-    container.querySelectorAll(".season-tab").forEach((tab) => {
-      tab.addEventListener("click", (e) => {
+    container.querySelectorAll('.season-tab').forEach((tab) => {
+      tab.addEventListener('click', (e) => {
         this.changeSeason(e.currentTarget.dataset.season);
       });
     });
@@ -196,28 +196,28 @@ const App = {
 
   changeSeason: function (seasonId) {
     this.temporadaActiva = seasonId;
-    document.querySelectorAll(".season-tab").forEach((tab) => {
-      tab.classList.toggle("active", tab.dataset.season === seasonId);
+    document.querySelectorAll('.season-tab').forEach((tab) => {
+      tab.classList.toggle('active', tab.dataset.season === seasonId);
     });
     this.renderEstadisticasEquipo();
     this.renderPlantillaCompleta();
     this.renderCuerpoTecnico();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 
   renderCalendario: function () {
-    const container = document.getElementById("calendarioList");
+    const container = document.getElementById('calendarioList');
     if (!container) return;
-    let html = "";
+    let html = '';
     CLUB_DATA.calendario.forEach((partido) => {
       const fecha = formatearFecha(partido.fecha);
-      html += `<div class="match-item ${partido.esProximo ? "next" : ""}"><div class="match-date-box"><span class="day">${fecha.dia}</span><span class="month">${fecha.mesCorto}</span></div><div class="match-detail"><div class="teams"><span class="home-team">${partido.local}</span><span class="vs">-</span><span class="away-team">${partido.visitante}</span></div><div class="match-meta"><span><i class="far fa-clock"></i> ${partido.hora}</span><span><i class="fas fa-map-marker-alt"></i> ${partido.estadio}</span></div></div></div>`;
+      html += `<div class="match-item ${partido.esProximo ? 'next' : ''}"><div class="match-date-box"><span class="day">${fecha.dia}</span><span class="month">${fecha.mesCorto}</span></div><div class="match-detail"><div class="teams"><span class="home-team">${partido.local}</span><span class="vs">-</span><span class="away-team">${partido.visitante}</span></div><div class="match-meta"><span><i class="far fa-clock"></i> ${partido.hora}</span><span><i class="fas fa-map-marker-alt"></i> ${partido.estadio}</span></div></div></div>`;
     });
     container.innerHTML = html;
   },
 
-  renderPlantillaHome: function (filter = "all") {
-    const container = document.getElementById("plantillaHomeGrid");
+  renderPlantillaHome: function (filter = 'all') {
+    const container = document.getElementById('plantillaHomeGrid');
     if (!container) return;
     const temporada = getTemporada(CLUB_DATA.temporadaActual);
 
@@ -227,31 +227,31 @@ const App = {
       .filter((j) => j !== null);
 
     const positionGroups = {
-      goalkeeper: ["Portero"],
-      defender: ["Defensa", "Central", "Lateral Derecho", "Lateral Izquierdo"],
+      goalkeeper: ['Portero'],
+      defender: ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
       midfielder: [
-        "Centrocampista",
-        "Mediocentro",
-        "Mediocentro Defensivo",
-        "Mediapunta",
+        'Centrocampista',
+        'Mediocentro',
+        'Mediocentro Defensivo',
+        'Mediapunta',
       ],
       forward: [
-        "Delantero",
-        "Delantero Centro",
-        "Extremo Derecho",
-        "Extremo Izquierdo",
+        'Delantero',
+        'Delantero Centro',
+        'Extremo Derecho',
+        'Extremo Izquierdo',
       ],
     };
 
     let playersToRender = jugadoresCompletos;
-    if (filter !== "all") {
+    if (filter !== 'all') {
       const validPositions = positionGroups[filter] || [];
       playersToRender = jugadoresCompletos.filter((j) =>
         validPositions.includes(j.posicion),
       );
     }
 
-    let html = "";
+    let html = '';
     playersToRender.slice(0, 30).forEach((jugador) => {
       html += this.renderJugadorCard(jugador);
     });
@@ -264,11 +264,11 @@ const App = {
   },
 
   renderNoticias: function () {
-    const container = document.getElementById("noticiasGrid");
+    const container = document.getElementById('noticiasGrid');
     if (!container) return;
 
     // Usar NOTICIAS_DATA de noticias.js (primera noticia = destacada)
-    if (typeof NOTICIAS_DATA === "undefined" || NOTICIAS_DATA.length === 0) {
+    if (typeof NOTICIAS_DATA === 'undefined' || NOTICIAS_DATA.length === 0) {
       container.innerHTML =
         '<p style="text-align:center; padding:20px;">No hay noticias disponibles.</p>';
       return;
@@ -277,8 +277,8 @@ const App = {
     const noticia = NOTICIAS_DATA[0]; // La Voz de Asturias (primera)
     const medio = MEDIOS_CONFIG[noticia.medio] || {
       nombre: noticia.medio,
-      logo: "",
-      color: "#333",
+      logo: '',
+      color: '#333',
     };
 
     container.innerHTML = `
@@ -291,16 +291,16 @@ const App = {
                         : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`
                     }
                     <div class="home-news-source">
-                        ${medio.logo ? `<img src="${medio.logo}" alt="${medio.nombre}" onerror="this.style.display='none'">` : ""}
+                        ${medio.logo ? `<img src="${medio.logo}" alt="${medio.nombre}" onerror="this.style.display='none'">` : ''}
                         <span>${medio.nombre}</span>
                     </div>
                 </div>
                 <div class="home-news-featured-body">
                     <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${noticia.fecha}</p>
                     <h3 class="home-news-featured-title">${noticia.titulo}</h3>
-                    ${noticia.descripcion ? `<p class="home-news-featured-desc">${noticia.descripcion}</p>` : ""}
+                    ${noticia.descripcion ? `<p class="home-news-featured-desc">${noticia.descripcion}</p>` : ''}
                     <a class="home-news-link" href="${noticia.url}" target="_blank" rel="noopener noreferrer">
-                        ${t("leer_noticia")} <i class="fas fa-external-link-alt"></i>
+                        ${t('leer_noticia')} <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
             </article>
@@ -309,25 +309,25 @@ const App = {
   },
 
   renderPatrocinadores: function () {
-    const container = document.getElementById("patrocinadoresGrid");
+    const container = document.getElementById('patrocinadoresGrid');
     if (!container) return;
     container.innerHTML = CLUB_DATA.patrocinadores
       .map(
         (pat) =>
           `<div class="sponsor-item"><div class="sponsor-logo"><span>${pat.nombre}</span></div></div>`,
       )
-      .join("");
+      .join('');
   },
 
   renderProximoPartido: function () {
-    const container = document.getElementById("heroMatch");
+    const container = document.getElementById('heroMatch');
     if (!container) return;
 
     // Usar datos de clasificacion.js
     const partidos = window.enfrentamientos || [];
     const equipos = window.equipos || [];
 
-    const OVIEDO = "Real Oviedo";
+    const OVIEDO = 'Real Oviedo';
     const partidosOviedo = partidos
       .map((p, idx) => ({
         ...p,
@@ -342,7 +342,7 @@ const App = {
 
     const getEscudo = (nombre) => {
       const eq = equipos.find((e) => e.nombre === nombre);
-      return eq ? eq.escudo : "";
+      return eq ? eq.escudo : '';
     };
 
     const getResultadoData = (p) => {
@@ -351,27 +351,27 @@ const App = {
       const golesR = esLocal ? p.goles2 : p.goles1;
       if (golesO > golesR)
         return {
-          tipo: "victoria",
-          texto: t("victoria"),
-          icono: "fa-check-circle",
-          color: "win",
+          tipo: 'victoria',
+          texto: t('victoria'),
+          icono: 'fa-check-circle',
+          color: 'win',
         };
       if (golesO < golesR)
         return {
-          tipo: "derrota",
-          texto: t("derrota"),
-          icono: "fa-times-circle",
-          color: "lose",
+          tipo: 'derrota',
+          texto: t('derrota'),
+          icono: 'fa-times-circle',
+          color: 'lose',
         };
       return {
-        tipo: "empate",
-        texto: t("empate"),
-        icono: "fa-minus-circle",
-        color: "",
+        tipo: 'empate',
+        texto: t('empate'),
+        icono: 'fa-minus-circle',
+        color: '',
       };
     };
 
-    let html = "";
+    let html = '';
 
     // === ÚLTIMO PARTIDO ===
     if (ultimo) {
@@ -380,11 +380,11 @@ const App = {
       const resultado = getResultadoData(ultimo);
       const escudoO = getEscudo(OVIEDO);
       const escudoR = getEscudo(rival);
-      const fechaStr = `${t("jornada_abrev")}${ultimo.jornada}`;
+      const fechaStr = `${t('jornada_abrev')}${ultimo.jornada}`;
 
       // Para el último partido: equipo1 (local) a la izquierda, equipo2 (visitante) a la derecha
-      const escudoIzq = ultimo.goles1 !== null ? getEscudo(ultimo.equipo1) : "";
-      const escudoDer = ultimo.goles2 !== null ? getEscudo(ultimo.equipo2) : "";
+      const escudoIzq = ultimo.goles1 !== null ? getEscudo(ultimo.equipo1) : '';
+      const escudoDer = ultimo.goles2 !== null ? getEscudo(ultimo.equipo2) : '';
       const equipoIzq = ultimo.equipo1;
       const equipoDer = ultimo.equipo2;
 
@@ -396,9 +396,9 @@ const App = {
             </div>
             <div class="hero-scoreboard">
                 <div class="hero-team">
-                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
-                    <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
-                    <span class="hero-team-tag">${t("local")}</span>
+                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? 'hero-escudo--oviedo' : ''}">
+                    <span class="hero-team-name ${equipoIzq === OVIEDO ? 'hero-team-name--oviedo' : ''}">${equipoIzq}</span>
+                    <span class="hero-team-tag">${t('local')}</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box">
@@ -406,12 +406,12 @@ const App = {
                         <span class="hero-score-sep">–</span>
                         <span class="hero-score hero-score--${resultado.color}">${ultimo.goles2}</span>
                     </div>
-                    <span class="hero-status hero-status--final">${t("finalizado")}</span>
+                    <span class="hero-status hero-status--final">${t('finalizado')}</span>
                 </div>
                 <div class="hero-team">
-                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
-                    <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
-                    <span class="hero-team-tag">${t("visitante")}</span>
+                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? 'hero-escudo--oviedo' : ''}">
+                    <span class="hero-team-name ${equipoDer === OVIEDO ? 'hero-team-name--oviedo' : ''}">${equipoDer}</span>
+                    <span class="hero-team-tag">${t('visitante')}</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--${resultado.tipo}">
@@ -437,7 +437,7 @@ const App = {
       const equipoIzq = proximo.equipo1;
       const equipoDer = proximo.equipo2;
 
-      const fechaStr = `${t("jornada_abrev")}${proximo.jornada}`;
+      const fechaStr = `${t('jornada_abrev')}${proximo.jornada}`;
 
       html += `
         <div class="hero-block">
@@ -447,26 +447,26 @@ const App = {
             </div>
             <div class="hero-scoreboard">
                 <div class="hero-team">
-                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? "hero-escudo--oviedo" : ""}">
-                    <span class="hero-team-name ${equipoIzq === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoIzq}</span>
-                    <span class="hero-team-tag">${t("local")}</span>
+                    <img src="${escudoIzq}" alt="${equipoIzq}" class="hero-escudo ${equipoIzq === OVIEDO ? 'hero-escudo--oviedo' : ''}">
+                    <span class="hero-team-name ${equipoIzq === OVIEDO ? 'hero-team-name--oviedo' : ''}">${equipoIzq}</span>
+                    <span class="hero-team-tag">${t('local')}</span>
                 </div>
                 <div class="hero-score-center">
                     <div class="hero-score-box hero-score-box--upcoming">
                         <span class="hero-vs">VS</span>
                     </div>
                     <span class="hero-status hero-status--upcoming">
-                        <i class="fas fa-clock"></i> ${t("por_disputar")}
+                        <i class="fas fa-clock"></i> ${t('por_disputar')}
                     </span>
                 </div>
                 <div class="hero-team">
-                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? "hero-escudo--oviedo" : ""}">
-                    <span class="hero-team-name ${equipoDer === OVIEDO ? "hero-team-name--oviedo" : ""}">${equipoDer}</span>
-                    <span class="hero-team-tag">${t("visitante")}</span>
+                    <img src="${escudoDer}" alt="${equipoDer}" class="hero-escudo ${equipoDer === OVIEDO ? 'hero-escudo--oviedo' : ''}">
+                    <span class="hero-team-name ${equipoDer === OVIEDO ? 'hero-team-name--oviedo' : ''}">${equipoDer}</span>
+                    <span class="hero-team-tag">${t('visitante')}</span>
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--proximo">
-                <i class="fas fa-calendar-alt"></i> ${t("proximo_partido_label")} · ${esLocal ? t("en_casa") : t("fuera")}
+                <i class="fas fa-calendar-alt"></i> ${t('proximo_partido_label')} · ${esLocal ? t('en_casa') : t('fuera')}
             </div>
         </div>`;
     }
@@ -474,9 +474,9 @@ const App = {
     container.innerHTML = html;
 
     // === INYECTAR ESTILOS CSS (crítico para el tamaño correcto) ===
-    if (!document.getElementById("heroMatchStyles")) {
-      const s = document.createElement("style");
-      s.id = "heroMatchStyles";
+    if (!document.getElementById('heroMatchStyles')) {
+      const s = document.createElement('style');
+      s.id = 'heroMatchStyles';
       s.textContent = `
             #heroMatch { display: flex; align-items: stretch; justify-content: center; flex-wrap: wrap; gap: 0; }
             .hero-block { flex: 1; min-width: 260px; max-width: 460px; display: flex; flex-direction: column; gap: 14px; padding: 28px 20px 20px; }
@@ -521,20 +521,20 @@ const App = {
   },
 
   renderEstadisticasEquipo: function () {
-    const container = document.getElementById("teamStatsGrid");
+    const container = document.getElementById('teamStatsGrid');
     if (!container) return;
     const stats = getTemporada(this.temporadaActiva).estadisticasEquipo;
     container.innerHTML = `
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${stats.posicion}º</div><div class="stat-label">${t("posicion")}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${stats.golesFavor}</div><div class="stat-label">${t("goles_favor")}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">${stats.golesContra}</div><div class="stat-label">${t("goles_contra")}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${stats.victorias}</div><div class="stat-label">${t("victorias")}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${stats.empates}</div><div class="stat-label">${t("empates")}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${stats.derrotas}</div><div class="stat-label">${t("derrotas")}</div></div>`;
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${stats.posicion}º</div><div class="stat-label">${t('posicion')}</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${stats.golesFavor}</div><div class="stat-label">${t('goles_favor')}</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">${stats.golesContra}</div><div class="stat-label">${t('goles_contra')}</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${stats.victorias}</div><div class="stat-label">${t('victorias')}</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${stats.empates}</div><div class="stat-label">${t('empates')}</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${stats.derrotas}</div><div class="stat-label">${t('derrotas')}</div></div>`;
   },
 
   renderPlantillaCompleta: function () {
-    const container = document.getElementById("plantillaCompleta");
+    const container = document.getElementById('plantillaCompleta');
     if (!container) return;
     const temporada = getTemporada(this.temporadaActiva);
 
@@ -544,23 +544,23 @@ const App = {
       .filter((j) => j !== null);
 
     const posiciones = {
-      [t("porteros")]: ["Portero"],
-      [t("defensas")]: ["Lateral Derecho", "Lateral Izquierdo", "Central"],
-      [t("centrocampistas")]: [
-        "Mediocentro Defensivo",
-        "Centrocampista",
-        "Mediocentro",
-        "Mediapunta",
+      [t('porteros')]: ['Portero'],
+      [t('defensas')]: ['Lateral Derecho', 'Lateral Izquierdo', 'Central'],
+      [t('centrocampistas')]: [
+        'Mediocentro Defensivo',
+        'Centrocampista',
+        'Mediocentro',
+        'Mediapunta',
       ],
-      [t("delanteros")]: [
-        "Delantero Centro",
-        "Extremo Derecho",
-        "Extremo Izquierdo",
-        "Delantero",
+      [t('delanteros')]: [
+        'Delantero Centro',
+        'Extremo Derecho',
+        'Extremo Izquierdo',
+        'Delantero',
       ],
     };
 
-    let html = "";
+    let html = '';
     for (const [nombrePosicion, posicionesLista] of Object.entries(
       posiciones,
     )) {
@@ -568,24 +568,24 @@ const App = {
         posicionesLista.includes(j.posicion),
       );
       if (jugadoresPos.length === 0) continue;
-      let icon = "fa-user";
-      if (nombrePosicion.includes("Port") || nombrePosicion.includes("Goal"))
-        icon = "fa-hand-paper";
+      let icon = 'fa-user';
+      if (nombrePosicion.includes('Port') || nombrePosicion.includes('Goal'))
+        icon = 'fa-hand-paper';
       else if (
-        nombrePosicion.includes("Def") ||
-        nombrePosicion.includes("Back")
+        nombrePosicion.includes('Def') ||
+        nombrePosicion.includes('Back')
       )
-        icon = "fa-shield-alt";
+        icon = 'fa-shield-alt';
       else if (
-        nombrePosicion.includes("Centro") ||
-        nombrePosicion.includes("Mid")
+        nombrePosicion.includes('Centro') ||
+        nombrePosicion.includes('Mid')
       )
-        icon = "fa-sync-alt";
+        icon = 'fa-sync-alt';
       else if (
-        nombrePosicion.includes("Delan") ||
-        nombrePosicion.includes("Forward")
+        nombrePosicion.includes('Delan') ||
+        nombrePosicion.includes('Forward')
       )
-        icon = "fa-bullseye";
+        icon = 'fa-bullseye';
       html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
       jugadoresPos.forEach((jugador) => {
         html += this.renderJugadorCard(jugador);
@@ -609,12 +609,12 @@ const App = {
     }
     // Si sigue sin haber edad, mostrar mensaje
     if (!edadMostrar) {
-      edadMostrar = t("desconocida") || "Desconocida";
+      edadMostrar = t('desconocida') || 'Desconocida';
     }
 
     const ribbonHtml = jugador.fallecido
       ? '<div class="deceased-ribbon"></div>'
-      : "";
+      : '';
     const playerUrl = jugador.codigo
       ? `fichas/${jugador.codigo}.html`
       : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
@@ -622,8 +622,8 @@ const App = {
     // DIFERENCIAR GOLES/ENCAJADOS PARA PORTEROS
     const esPorteroPos = esPortero(jugador);
     const golesStats = esPorteroPos
-      ? `<div class="mini-stat conceded"><span class="mini-stat-value" style="color:#e74c3c">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t("encajados") || "Encajados"}</span></div>`
-      : `<div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t("goles")}</span></div>`;
+      ? `<div class="mini-stat conceded"><span class="mini-stat-value" style="color:#e74c3c">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t('encajados') || 'Encajados'}</span></div>`
+      : `<div class="mini-stat"><span class="mini-stat-value">${jugador.stats.goles || 0}</span><span class="mini-stat-label">${t('goles')}</span></div>`;
 
     return `
     <article class="squad-card">
@@ -632,17 +632,17 @@ const App = {
           <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}">
           <span class="squad-number">${jugador.dorsal}</span>
           ${ribbonHtml}
-          <div class="squad-overlay"><span class="view-profile">${t("ver_ficha")}</span></div>
+          <div class="squad-overlay"><span class="view-profile">${t('ver_ficha')}</span></div>
         </div>
         <div class="squad-info">
           <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
           <span class="squad-position">${translatePosition(jugador.posicion)}</span>
           <div class="squad-meta">
-            <span><i class="far fa-calendar"></i> ${edadMostrar}${typeof edadMostrar === "number" ? " " + (t("edad") || "años") : ""}</span>
-            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + "m" : t("desconocida")}</span>
+            <span><i class="far fa-calendar"></i> ${edadMostrar}${typeof edadMostrar === 'number' ? ' ' + (t('edad') || 'años') : ''}</span>
+            <span><i class="fas fa-ruler-vertical"></i> ${jugador.altura ? jugador.altura + 'm' : t('desconocida')}</span>
           </div>
           <div class="squad-stats">
-            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t("partidos")}</span></div>
+            <div class="mini-stat"><span class="mini-stat-value">${jugador.stats.partidos}</span><span class="mini-stat-label">${t('partidos')}</span></div>
             ${golesStats}
           </div>
         </div>
@@ -651,18 +651,18 @@ const App = {
   },
 
   renderCuerpoTecnico: function () {
-    const container = document.getElementById("cuerpoTecnicoGrid");
+    const container = document.getElementById('cuerpoTecnicoGrid');
     if (!container) return;
     const temporada = getTemporada(this.temporadaActiva);
-    let html = "";
+    let html = '';
     temporada.cuerpoTecnico.forEach((miembro) => {
-      html += `<article class="coach-card ${miembro.esPrincipal ? "main-coach" : ""}"><div class="coach-image"><img src="${miembro.imagen}" alt="${miembro.nombre}"></div><div class="coach-info"><span class="coach-role">${miembro.cargo}</span><h3 class="coach-name">${miembro.nombre}</h3><p class="coach-bio">${miembro.descripcion}</p>${miembro.estadisticas ? `<div class="coach-stats"><div class="coach-stat"><span class="coach-stat-value">${miembro.estadisticas.partidos}</span><span class="coach-stat-label">${t("partidos")}</span></div><div class="coach-stat"><span class="coach-stat-value">${Math.round((miembro.estadisticas.victorias / miembro.estadisticas.partidos) * 100)}%</span><span class="coach-stat-label">${t("victorias")}</span></div></div>` : ""}</div></article>`;
+      html += `<article class="coach-card ${miembro.esPrincipal ? 'main-coach' : ''}"><div class="coach-image"><img src="${miembro.imagen}" alt="${miembro.nombre}"></div><div class="coach-info"><span class="coach-role">${miembro.cargo}</span><h3 class="coach-name">${miembro.nombre}</h3><p class="coach-bio">${miembro.descripcion}</p>${miembro.estadisticas ? `<div class="coach-stats"><div class="coach-stat"><span class="coach-stat-value">${miembro.estadisticas.partidos}</span><span class="coach-stat-label">${t('partidos')}</span></div><div class="coach-stat"><span class="coach-stat-value">${Math.round((miembro.estadisticas.victorias / miembro.estadisticas.partidos) * 100)}%</span><span class="coach-stat-label">${t('victorias')}</span></div></div>` : ''}</div></article>`;
     });
     container.innerHTML = html;
   },
 
   renderFichaJugador: function () {
-    const container = document.getElementById("fichaJugadorContent");
+    const container = document.getElementById('fichaJugadorContent');
     if (!container) return;
     let jugadorId, seasonId;
     if (window.PLAYER_DATA_STATIC) {
@@ -672,10 +672,10 @@ const App = {
     } else {
       const urlParams = new URLSearchParams(window.location.search);
       jugadorId =
-        urlParams.get("id") ||
-        urlParams.get("codigo") ||
-        urlParams.get("player");
-      seasonId = urlParams.get("season") || CLUB_DATA.temporadaActual;
+        urlParams.get('id') ||
+        urlParams.get('codigo') ||
+        urlParams.get('player');
+      seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
     }
     const jugador = getJugadorById(jugadorId, seasonId);
     if (!jugador) {
@@ -685,7 +685,7 @@ const App = {
     }
     document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
     this.updateMetaTags(jugador);
-    const breadcrumb = document.querySelector(".breadcrumb .current");
+    const breadcrumb = document.querySelector('.breadcrumb .current');
     if (breadcrumb) breadcrumb.textContent = jugador.nombreCompleto;
     const esTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
     const haFallecido = jugador.fallecido === true;
@@ -714,23 +714,23 @@ const App = {
     }
     // Fallback final
     if (!edadMostrar) {
-      edadMostrar = t("desconocida") || "Desconocida";
+      edadMostrar = t('desconocida') || 'Desconocida';
     }
 
     const pageUrl = window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
-    const golesLabel = esPorteroPos ? t("goles_encajados") : t("goles");
+    const golesLabel = esPorteroPos ? t('goles_encajados') : t('goles');
     const golesValue = esPorteroPos
       ? `<span style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span>`
       : jugador.stats.goles || 0;
-    const iconoGoles = esPorteroPos ? "fa-shield-alt" : "fa-futbol";
+    const iconoGoles = esPorteroPos ? 'fa-shield-alt' : 'fa-futbol';
 
     container.innerHTML = `
             <div class="player-photo-container">
@@ -738,7 +738,7 @@ const App = {
                     <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}" class="player-main-photo">
                     <div class="player-number-large">${jugador.dorsal}</div>
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
-                    ${haFallecido ? '<div class="deceased-ribbon"></div>' : ""}
+                    ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
                 </div>
             </div>
             <div class="player-info-container">
@@ -749,12 +749,12 @@ const App = {
                 </div>
                 <div class="player-quick-stats">${this.renderQuickStats(jugador, haFallecido, fechaFallecimiento, edadMostrar, esTemporadaActual)}</div>
                 <div class="player-season-stats">
-                    <h3 class="stats-title">${t("temporada")} ${seasonId.replace("-", "/")}</h3>
+                    <h3 class="stats-title">${t('temporada')} ${seasonId.replace('-', '/')}</h3>
                     <div class="season-stats-grid">
-                        <div class="season-stat ${esPorteroPos ? "portero-stat" : ""}"><div class="season-stat-icon"><i class="fas ${iconoGoles}"></i></div><div class="season-stat-content"><span class="season-stat-value">${golesValue}</span><span class="season-stat-label">${golesLabel}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.asistencias || 0}</span><span class="season-stat-label">${t("asistencias")}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-running"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.partidos}</span><span class="season-stat-label">${t("partidos")}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.minutos.toLocaleString()}</span><span class="season-stat-label">${t("minutos")}</span></div></div>
+                        <div class="season-stat ${esPorteroPos ? 'portero-stat' : ''}"><div class="season-stat-icon"><i class="fas ${iconoGoles}"></i></div><div class="season-stat-content"><span class="season-stat-value">${golesValue}</span><span class="season-stat-label">${golesLabel}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.asistencias || 0}</span><span class="season-stat-label">${t('asistencias')}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-running"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.partidos}</span><span class="season-stat-label">${t('partidos')}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.minutos.toLocaleString()}</span><span class="season-stat-label">${t('minutos')}</span></div></div>
                     </div>
                 </div>
             </div>`;
@@ -766,11 +766,11 @@ const App = {
   updateMetaTags: function (jugador) {
     let metaImage = document.querySelector('meta[property="og:image"]');
     if (!metaImage) {
-      metaImage = document.createElement("meta");
-      metaImage.setAttribute("property", "og:image");
+      metaImage = document.createElement('meta');
+      metaImage.setAttribute('property', 'og:image');
       document.head.appendChild(metaImage);
     }
-    metaImage.setAttribute("content", jugador.imagen);
+    metaImage.setAttribute('content', jugador.imagen);
   },
 
   renderQuickStats: function (
@@ -780,27 +780,27 @@ const App = {
     edadMostrar,
     esTemporadaActual,
   ) {
-    const altura = jugador.altura ? `${jugador.altura}m` : t("desconocida");
-    let html = "";
+    const altura = jugador.altura ? `${jugador.altura}m` : t('desconocida');
+    let html = '';
     if (esTemporadaActual) {
       // Solo mostrar edad y altura, los goles/encajados aparecen abajo en el grid
-      html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
+      html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t('edad')}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t('altura')}</span></div>`;
     } else {
       if (haFallecido) {
         const fechaFormateada = fechaFallecimiento
           ? formatearFecha(fechaFallecimiento).completa
-          : t("fecha_desconocida");
-        html = `<div class="quick-stat"><span class="quick-stat-value deceased-text">${fechaFormateada}</span><span class="quick-stat-label">${t("fallecimiento")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div><div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div>`;
+          : t('fecha_desconocida');
+        html = `<div class="quick-stat"><span class="quick-stat-value deceased-text">${fechaFormateada}</span><span class="quick-stat-label">${t('fallecimiento')}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t('altura')}</span></div><div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t('edad')}</span></div>`;
       } else {
         // Solo edad y altura, sin goles/encajados (ya aparecen abajo)
-        html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t("edad")}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t("altura")}</span></div>`;
+        html = `<div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t('edad')}</span></div><div class="quick-stat"><span class="quick-stat-value">${altura}</span><span class="quick-stat-label">${t('altura')}</span></div>`;
       }
     }
     return html;
   },
 
   renderFichaOverview: function (jugador) {
-    const container = document.getElementById("tabOverview");
+    const container = document.getElementById('tabOverview');
     if (!container) return;
     const fechaNac = formatearFecha(jugador.fechaNacimiento);
 
@@ -809,10 +809,10 @@ const App = {
     const golesPorPartido = esPorteroPos
       ? jugador.stats.partidos > 0
         ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
-        : "0.00"
+        : '0.00'
       : jugador.stats.partidos > 0
         ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
-        : "0.00";
+        : '0.00';
 
     const minutosPorPartido =
       jugador.stats.partidos > 0
@@ -833,17 +833,17 @@ const App = {
         : 0;
 
     const rendimientoTitle = esPorteroPos
-      ? t("portero_stat")
-      : t("rendimiento") || "Rendimiento";
+      ? t('portero_stat')
+      : t('rendimiento') || 'Rendimiento';
     const golesPartidoLabel = esPorteroPos
-      ? t("goles_encajados_partido") || "Goles Encajados/Partido"
-      : t("goles_partido") || "Goles por partido";
-    const golesColor = esPorteroPos ? "#e74c3c" : "var(--secondary-color)";
+      ? t('goles_encajados_partido') || 'Goles Encajados/Partido'
+      : t('goles_partido') || 'Goles por partido';
+    const golesColor = esPorteroPos ? '#e74c3c' : 'var(--secondary-color)';
 
     // ============================================
     // NUEVO: GENERAR FILAS SEPARADAS PARA LUGAR Y PROVINCIA
     // ============================================
-    let lugarRowsHtml = "";
+    let lugarRowsHtml = '';
 
     // Si tiene el nuevo formato separado (ciudad y provincia diferentes)
     if (jugador.lugarNacimiento && jugador.provinciaNacimiento) {
@@ -853,28 +853,28 @@ const App = {
       // Siempre mostrar ambas filas separadas
       lugarRowsHtml += `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
           <span class="info-value">${ciudad}</span>
         </div>
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t("provincia") || "Provincia"}</span>
+          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t('provincia') || 'Provincia'}</span>
           <span class="info-value">${provincia}</span>
         </div>
       `;
     }
     // Fallback: formato antiguo "Ciudad, Provincia" en un solo campo
-    else if (jugador.lugarNacimiento && jugador.lugarNacimiento.includes(",")) {
-      const partes = jugador.lugarNacimiento.split(",").map((p) => p.trim());
+    else if (jugador.lugarNacimiento && jugador.lugarNacimiento.includes(',')) {
+      const partes = jugador.lugarNacimiento.split(',').map((p) => p.trim());
       const ciudad = partes[0];
       const provincia = partes[partes.length - 1];
 
       lugarRowsHtml += `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
           <span class="info-value">${ciudad}</span>
         </div>
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t("provincia") || "Provincia"}</span>
+          <span class="info-label"><i class="fas fa-map-marked-alt"></i> ${t('provincia') || 'Provincia'}</span>
           <span class="info-value">${provincia}</span>
         </div>
       `;
@@ -883,8 +883,8 @@ const App = {
     else {
       lugarRowsHtml += `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t("lugar") || "Lugar"}</span>
-          <span class="info-value">${jugador.lugarNacimiento || t("desconocida") || "Desconocido"}</span>
+          <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
+          <span class="info-value">${jugador.lugarNacimiento || t('desconocida') || 'Desconocido'}</span>
         </div>
       `;
     }
@@ -892,7 +892,7 @@ const App = {
     // ============================================
     // NUEVO: GENERAR FILAS SEPARADAS PARA NACIONALIDADES
     // ============================================
-    let nacionalidadRowsHtml = "";
+    let nacionalidadRowsHtml = '';
     let nacionalidadesArray = [];
 
     // Normalizar a array
@@ -900,11 +900,11 @@ const App = {
       nacionalidadesArray = jugador.nacionalidad.map((n) =>
         translateNationalitySingle(n),
       );
-    } else if (typeof jugador.nacionalidad === "string") {
+    } else if (typeof jugador.nacionalidad === 'string') {
       // Si es string con comas, separar
-      if (jugador.nacionalidad.includes(",")) {
+      if (jugador.nacionalidad.includes(',')) {
         nacionalidadesArray = jugador.nacionalidad
-          .split(",")
+          .split(',')
           .map((n) => translateNationality(n.trim()));
       } else {
         nacionalidadesArray = [
@@ -918,7 +918,7 @@ const App = {
       // Una sola nacionalidad - mostrar normal
       nacionalidadRowsHtml += `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span>
+          <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
           <span class="info-value">${nacionalidadesArray[0]}</span>
         </div>
       `;
@@ -927,8 +927,8 @@ const App = {
       nacionalidadesArray.forEach((nacionalidad, index) => {
         const label =
           index === 0
-            ? t("nacionalidad") || "Nacionalidad"
-            : t("nacionalidad_adicional") || "Nacionalidad";
+            ? t('nacionalidad') || 'Nacionalidad'
+            : t('nacionalidad_adicional') || 'Nacionalidad';
         nacionalidadRowsHtml += `
           <div class="info-row">
             <span class="info-label"><i class="fas fa-flag"></i> ${label}</span>
@@ -940,8 +940,8 @@ const App = {
       // Sin nacionalidad
       nacionalidadRowsHtml += `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-flag"></i> ${t("nacionalidad") || "Nacionalidad"}</span>
-          <span class="info-value">${t("desconocida") || "Desconocida"}</span>
+          <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
+          <span class="info-value">${t('desconocida') || 'Desconocida'}</span>
         </div>
       `;
     }
@@ -949,21 +949,21 @@ const App = {
     // ============================================
     // NUEVO: GENERAR FILAS DE ESTADO EN EL CLUB
     // ============================================
-    let estadoClubHtml = "";
+    let estadoClubHtml = '';
 
     // Si el jugador tiene estado "baja", mostrar como ex-jugador
-    if (jugador.estado === "baja") {
+    if (jugador.estado === 'baja') {
       estadoClubHtml = `
         <div class="info-row baja-row">
-          <span class="info-label"><i class="fas fa-sign-out-alt"></i> ${t("estado") || "Estado"}</span>
-          <span class="info-value">${t("ex_jugador") || "Ex jugador"}</span>
+          <span class="info-label"><i class="fas fa-sign-out-alt"></i> ${t('estado') || 'Estado'}</span>
+          <span class="info-value">${t('ex_jugador') || 'Ex jugador'}</span>
         </div>
         <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span>
+          <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
           <span class="info-value">${jugador.enClubDesde}</span>
         </div>
         <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-times"></i> ${t("contrato_hasta") || "Contrato hasta"}</span>
+          <span class="info-label"><i class="far fa-calendar-times"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
           <span class="info-value">${jugador.contratoHasta}</span>
         </div>
       `;
@@ -971,14 +971,18 @@ const App = {
       // Jugador activo - mostrar normal
       estadoClubHtml = `
         <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-check"></i> ${t("en_club_desde") || "En club desde"}</span>
+          <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
           <span class="info-value">${jugador.enClubDesde}</span>
         </div>
-        ${jugador.contratoHasta ? `
+        ${
+          jugador.contratoHasta
+            ? `
         <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-alt"></i> ${t("contrato_hasta") || "Contrato hasta"}</span>
+          <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
           <span class="info-value">${jugador.contratoHasta}</span>
-        </div>` : ''}
+        </div>`
+            : ''
+        }
       `;
     }
 
@@ -988,30 +992,30 @@ const App = {
                     <h3 class="card-title">${rendimientoTitle}</h3>
                     <div class="performance-stats">
                         <div class="performance-item"><div class="performance-header"><span>${golesPartidoLabel}</span><span class="performance-value" style="color:${golesColor}">${golesPorPartido}</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${golesPorcentaje}%; background:${golesColor}"></div></div></div>
-                        <div class="performance-item"><div class="performance-header"><span>${t("minutos_partido") || "Minutos por partido"}</span><span class="performance-value">${minutosPorPartido}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${minutosPorcentaje}%"></div></div></div>
+                        <div class="performance-item"><div class="performance-header"><span>${t('minutos_partido') || 'Minutos por partido'}</span><span class="performance-value">${minutosPorPartido}'</span></div><div class="performance-bar"><div class="performance-fill" style="width: ${minutosPorcentaje}%"></div></div></div>
                     </div>
                 </div>
                 <div class="personal-info-card">
-                    <h3 class="card-title">${t("informacion") || "Información Personal"}</h3>
+                    <h3 class="card-title">${t('informacion') || 'Información Personal'}</h3>
                     <div class="personal-info-list">
-                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t("nacimiento") || "Nacimiento"}</span><span class="info-value">${fechaNac.completa}</span></div>
+                        <div class="info-row"><span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento') || 'Nacimiento'}</span><span class="info-value">${fechaNac.completa}</span></div>
                         ${lugarRowsHtml}
                         ${nacionalidadRowsHtml}
                         ${estadoClubHtml}
                     </div>
                 </div>
                 <div class="disciplinary-card">
-                    <h3 class="card-title">${t("disciplina") || "Disciplina"}</h3>
+                    <h3 class="card-title">${t('disciplina') || 'Disciplina'}</h3>
                     <div class="cards-display">
-                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t("amarillas") || "Amarillas"}</span></div></div>
-                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t("rojas") || "Rojas"}</span></div></div>
+                        <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas') || 'Amarillas'}</span></div></div>
+                        <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas') || 'Rojas'}</span></div></div>
                     </div>
                 </div>
             </div>`;
   },
 
-  renderFichaMatches: function (jugador, seasonId, filtroCompeticion = "all") {
-    const container = document.getElementById("tabMatches");
+  renderFichaMatches: function (jugador, seasonId, filtroCompeticion = 'all') {
+    const container = document.getElementById('tabMatches');
     if (!container) return;
 
     const temporada = getTemporada(seasonId);
@@ -1028,18 +1032,18 @@ const App = {
     const tienePartidosIndividuales = tienePartidosDefinidos;
 
     if (listaPartidos.length === 0) {
-      container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">${t("no_datos_partidos") || "No hay datos de partidos para este jugador."}</p>`;
+      container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">${t('no_datos_partidos') || 'No hay datos de partidos para este jugador.'}</p>`;
       return;
     }
 
     const competiciones = [
-      "all",
+      'all',
       ...new Set(
         listaPartidos.map((p) => p.competicion || temporada.competicion),
       ),
     ];
     const partidosFiltrados =
-      filtroCompeticion === "all"
+      filtroCompeticion === 'all'
         ? listaPartidos
         : listaPartidos.filter(
             (p) =>
@@ -1048,33 +1052,33 @@ const App = {
 
     let html = `
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-                <label for="filterMatches" style="font-weight: 600; color: #333;">${t("competicion_label") || "Competición"}:</label>
+                <label for="filterMatches" style="font-weight: 600; color: #333;">${t('competicion_label') || 'Competición'}:</label>
                 <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
-                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${c === "all" ? t("todas_competiciones") || "Todas las competiciones" : c}</option>`).join("")}
+                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? t('todas_competiciones') || 'Todas las competiciones' : c}</option>`).join('')}
                 </select>
             </div>
             <div class="matches-list">`;
 
     if (partidosFiltrados.length === 0) {
-      html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">${t("no_partidos_competicion") || "No hay partidos en esta competición."}</p>`;
+      html += `<p style="text-align:center; color:#666; padding: 20px; width: 100%;">${t('no_partidos_competicion') || 'No hay partidos en esta competición.'}</p>`;
     } else {
       partidosFiltrados.forEach((partido) => {
         const fecha = formatearFecha(partido.fecha);
         const resultClass =
-          partido.resultado === "V"
-            ? "win"
-            : partido.resultado === "E"
-              ? "draw"
-              : "loss";
+          partido.resultado === 'V'
+            ? 'win'
+            : partido.resultado === 'E'
+              ? 'draw'
+              : 'loss';
         const compNombre = partido.competicion || temporada.competicion;
         const jorTexto =
-          typeof partido.jornada === "number"
-            ? `${t("jornada_abrev")}${partido.jornada}`
+          typeof partido.jornada === 'number'
+            ? `${t('jornada_abrev')}${partido.jornada}`
             : t(
-                `copa_ronda_${String(partido.jornada).toLowerCase().replace(/\s+/g, "_")}`,
+                `copa_ronda_${String(partido.jornada).toLowerCase().replace(/\s+/g, '_')}`,
               ) || partido.jornada;
 
-        let playerStatsHtml = "";
+        let playerStatsHtml = '';
         if (tienePartidosIndividuales) {
           const chips = [];
           if (partido.minutos !== undefined)
@@ -1084,20 +1088,20 @@ const App = {
           // Para porteros, mostrar goles encajados en rojo si es > 0
           if (partido.goles > 0) {
             const esPorteroPos = esPortero(jugador);
-            const goalChipClass = esPorteroPos ? "chip-conceded" : "chip-goal";
-            const goalIcon = esPorteroPos ? "fa-shield-alt" : "fa-futbol";
+            const goalChipClass = esPorteroPos ? 'chip-conceded' : 'chip-goal';
+            const goalIcon = esPorteroPos ? 'fa-shield-alt' : 'fa-futbol';
             const goalText = esPorteroPos
-              ? t("goles_encajados_abrev")
+              ? t('goles_encajados_abrev')
               : partido.goles > 1
-                ? partido.goles + " " + t("goles")
-                : t("gol");
+                ? partido.goles + ' ' + t('goles')
+                : t('gol');
             chips.push(
               `<span class="match-chip ${goalChipClass}"><i class="fas ${goalIcon}"></i> ${partido.goles} ${goalText}</span>`,
             );
           }
           if (partido.asistencias > 0)
             chips.push(
-              `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + " " + t("asistencias") : t("asistencia")}</span>`,
+              `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + ' ' + t('asistencias') : t('asistencia')}</span>`,
             );
           if (partido.amarilla)
             chips.push(
@@ -1108,7 +1112,7 @@ const App = {
               `<span class="match-chip chip-red"><i class="fas fa-square"></i></span>`,
             );
           if (chips.length > 0)
-            playerStatsHtml = `<div class="match-player-chips">${chips.join("")}</div>`;
+            playerStatsHtml = `<div class="match-player-chips">${chips.join('')}</div>`;
         }
 
         html += `
@@ -1132,12 +1136,12 @@ const App = {
       });
     }
 
-    html += "</div>";
+    html += '</div>';
     container.innerHTML = html;
 
-    if (!document.getElementById("matchChipsStyles")) {
-      const s = document.createElement("style");
-      s.id = "matchChipsStyles";
+    if (!document.getElementById('matchChipsStyles')) {
+      const s = document.createElement('style');
+      s.id = 'matchChipsStyles';
       s.textContent = `
                 .match-player-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
                 .match-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-size: 0.75em; font-weight: 600; background: #f0f4ff; border: 1px solid #ccd6ff; color: #001a6e; }
@@ -1150,148 +1154,63 @@ const App = {
       document.head.appendChild(s);
     }
 
-    const filterSelect = document.getElementById("filterMatches");
+    const filterSelect = document.getElementById('filterMatches');
     if (filterSelect) {
-      filterSelect.addEventListener("change", (e) => {
+      filterSelect.addEventListener('change', (e) => {
         this.renderFichaMatches(jugador, seasonId, e.target.value);
       });
     }
   },
 
   renderFichaCareerHistory: function (
-  jugadorActual,
-  currentSeasonId,
-  filtroCompeticion = "all",
-) {
-  const container = document.getElementById("tabCareer");
-  if (!container) return;
+    jugadorActual,
+    currentSeasonId,
+    filtroCompeticion = 'all',
+  ) {
+    const container = document.getElementById('tabCareer');
+    if (!container) return;
 
-  const buscaId = String(jugadorActual.id || "");
-  const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || "");
-  const esPorteroActual = esPortero(jugadorActual);
+    const buscaId = String(jugadorActual.id || '');
+    const buscaCodigo = String(jugadorActual.codigo || jugadorActual.id || '');
+    const esPorteroActual = esPortero(jugadorActual);
 
-  const historial = [];
+    const historial = [];
 
-  // TOTALES SEPARADOS: Club vs Selección (ahora por país)
-  let totalesClub = {
-    partidos: 0,
-    goles: 0,
-    asistencias: 0,
-    amarillas: 0,
-    rojas: 0,
-    minutos: 0,
-  };
+    // TOTALES SEPARADOS: Club vs Selección (ahora por país)
+    let totalesClub = {
+      partidos: 0,
+      goles: 0,
+      asistencias: 0,
+      amarillas: 0,
+      rojas: 0,
+      minutos: 0,
+    };
 
-  // Totales de selección separados por país
-  let totalesSeleccionPorPais = {};
+    // Totales de selección separados por país
+    let totalesSeleccionPorPais = {};
 
-  const competicionesSet = new Set();
+    const competicionesSet = new Set();
 
-  // ============================================
-  // DETECTAR SI HAY MÚLTIPLES SELECCIONES
-  // ============================================
-  const tieneOtrasSelecciones = 
-    jugadorActual.otrasSelecciones && 
-    jugadorActual.otrasSelecciones.length > 0 &&
-    jugadorActual.otrasSelecciones.some(s => s.datos && s.datos.length > 0);
-  
-  const esMultiplesSelecciones = tieneOtrasSelecciones;
+    // ============================================
+    // DETECTAR SI HAY MÚLTIPLES SELECCIONES
+    // ============================================
+    const tieneOtrasSelecciones =
+      jugadorActual.otrasSelecciones &&
+      jugadorActual.otrasSelecciones.length > 0 &&
+      jugadorActual.otrasSelecciones.some((s) => s.datos && s.datos.length > 0);
 
-  // ============================================
-  // PROCESAR SELECCIÓN NACIONAL PRINCIPAL
-  // ============================================
-  if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
-    const sel = jugadorActual.seleccion;
-    const paisPrincipal = translateCountry(sel.pais);
+    const esMultiplesSelecciones = tieneOtrasSelecciones;
 
-    // Inicializar totales para este país
-    if (!totalesSeleccionPorPais[paisPrincipal]) {
-      totalesSeleccionPorPais[paisPrincipal] = {
-        partidos: 0,
-        goles: 0,
-        asistencias: 0,
-        amarillas: 0,
-        rojas: 0,
-        minutos: 0,
-        categorias: {},
-        bandera: sel.bandera,
-      };
-    }
-
-    sel.datos.forEach((cat) => {
-      // Si hay múltiples selecciones, añadir país al nombre
-      const nombreCompeticion = esMultiplesSelecciones 
-        ? `Selección ${cat.categoria} (${paisPrincipal})`
-        : `Selección ${cat.categoria}`;
-      competicionesSet.add(nombreCompeticion);
-
-      // Guardar en totales por categoría
-      if (!totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria]) {
-        totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria] = {
-          partidos: 0,
-          goles: 0,
-          asistencias: 0,
-          amarillas: 0,
-          rojas: 0,
-          minutos: 0,
-        };
-      }
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].partidos += cat.partidos || 0;
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].goles += cat.goles || 0;
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].asistencias += cat.asistencias || 0;
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].amarillas += cat.amarillas || 0;
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].rojas += cat.rojas || 0;
-      totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria].minutos += cat.minutos || 0;
-
-      // Totales por país
-      totalesSeleccionPorPais[paisPrincipal].partidos += cat.partidos || 0;
-      totalesSeleccionPorPais[paisPrincipal].goles += cat.goles || 0;
-      totalesSeleccionPorPais[paisPrincipal].asistencias += cat.asistencias || 0;
-      totalesSeleccionPorPais[paisPrincipal].amarillas += cat.amarillas || 0;
-      totalesSeleccionPorPais[paisPrincipal].rojas += cat.rojas || 0;
-      totalesSeleccionPorPais[paisPrincipal].minutos += cat.minutos || 0;
-
-      historial.push({
-        temporada:
-          t("sel_" + cat.categoria.toLowerCase().replace("-", "")) ||
-          cat.categoria,
-        equipo: paisPrincipal,
-        logo: sel.bandera,
-        esSeleccion: true,
-        esSeleccionPrincipal: true,
-        categoriaSeleccion: cat.categoria,
-        paisSeleccion: paisPrincipal,
-        competicionFiltro: nombreCompeticion,
-        stats: {
-          partidos: cat.partidos || 0,
-          goles: cat.goles || 0,
-          asistencias: cat.asistencias || 0,
-          amarillas: cat.amarillas || 0,
-          rojas: cat.rojas || 0,
-          minutos: cat.minutos || 0,
-        },
-        dorsal: "-",
-        posicion: jugadorActual.posicion || "Jugador",
-        actual: false,
-        statsGlobales: null,
-        esPortero: esPorteroActual,
-      });
-    });
-  }
-
-  // ============================================
-  // PROCESAR OTRAS SELECCIONES
-  // ============================================
-  if (jugadorActual.otrasSelecciones && Array.isArray(jugadorActual.otrasSelecciones)) {
-    jugadorActual.otrasSelecciones.forEach((otraSel) => {
-      if (!otraSel.datos || !Array.isArray(otraSel.datos)) return;
-      
-      const paisOtra = translateCountry(otraSel.pais);
-      const banderaOtra = otraSel.bandera;
+    // ============================================
+    // PROCESAR SELECCIÓN NACIONAL PRINCIPAL
+    // ============================================
+    if (jugadorActual.seleccion && jugadorActual.seleccion.datos) {
+      const sel = jugadorActual.seleccion;
+      const paisPrincipal = translateCountry(sel.pais);
 
       // Inicializar totales para este país
-      if (!totalesSeleccionPorPais[paisOtra]) {
-        totalesSeleccionPorPais[paisOtra] = {
+      if (!totalesSeleccionPorPais[paisPrincipal]) {
+        totalesSeleccionPorPais[paisPrincipal] = {
           partidos: 0,
           goles: 0,
           asistencias: 0,
@@ -1299,17 +1218,22 @@ const App = {
           rojas: 0,
           minutos: 0,
           categorias: {},
-          bandera: banderaOtra,
+          bandera: sel.bandera,
         };
       }
 
-      otraSel.datos.forEach((cat) => {
-        const nombreCompeticion = `Selección ${cat.categoria} (${paisOtra})`;
+      sel.datos.forEach((cat) => {
+        // Si hay múltiples selecciones, añadir país al nombre
+        const nombreCompeticion = esMultiplesSelecciones
+          ? `Selección ${cat.categoria} (${paisPrincipal})`
+          : `Selección ${cat.categoria}`;
+
+        // ✅ CORRECCIÓN: Agregar al Set para que aparezca en el dropdown
         competicionesSet.add(nombreCompeticion);
 
         // Guardar en totales por categoría
-        if (!totalesSeleccionPorPais[paisOtra].categorias[cat.categoria]) {
-          totalesSeleccionPorPais[paisOtra].categorias[cat.categoria] = {
+        if (!totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria]) {
+          totalesSeleccionPorPais[paisPrincipal].categorias[cat.categoria] = {
             partidos: 0,
             goles: 0,
             asistencias: 0,
@@ -1318,30 +1242,44 @@ const App = {
             minutos: 0,
           };
         }
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].partidos += cat.partidos || 0;
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].goles += cat.goles || 0;
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].asistencias += cat.asistencias || 0;
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].amarillas += cat.amarillas || 0;
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].rojas += cat.rojas || 0;
-        totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].minutos += cat.minutos || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].partidos += cat.partidos || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].goles += cat.goles || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].asistencias += cat.asistencias || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].amarillas += cat.amarillas || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].rojas += cat.rojas || 0;
+        totalesSeleccionPorPais[paisPrincipal].categorias[
+          cat.categoria
+        ].minutos += cat.minutos || 0;
 
         // Totales por país
-        totalesSeleccionPorPais[paisOtra].partidos += cat.partidos || 0;
-        totalesSeleccionPorPais[paisOtra].goles += cat.goles || 0;
-        totalesSeleccionPorPais[paisOtra].asistencias += cat.asistencias || 0;
-        totalesSeleccionPorPais[paisOtra].amarillas += cat.amarillas || 0;
-        totalesSeleccionPorPais[paisOtra].rojas += cat.rojas || 0;
-        totalesSeleccionPorPais[paisOtra].minutos += cat.minutos || 0;
+        totalesSeleccionPorPais[paisPrincipal].partidos += cat.partidos || 0;
+        totalesSeleccionPorPais[paisPrincipal].goles += cat.goles || 0;
+        totalesSeleccionPorPais[paisPrincipal].asistencias +=
+          cat.asistencias || 0;
+        totalesSeleccionPorPais[paisPrincipal].amarillas += cat.amarillas || 0;
+        totalesSeleccionPorPais[paisPrincipal].rojas += cat.rojas || 0;
+        totalesSeleccionPorPais[paisPrincipal].minutos += cat.minutos || 0;
 
         historial.push({
           temporada:
-            t("sel_" + cat.categoria.toLowerCase().replace("-", "")) ||
+            t('sel_' + cat.categoria.toLowerCase().replace('-', '')) ||
             cat.categoria,
-          equipo: paisOtra,
-          logo: banderaOtra,
+          equipo: paisPrincipal,
+          logo: sel.bandera,
           esSeleccion: true,
+          esSeleccionPrincipal: true,
           categoriaSeleccion: cat.categoria,
-          paisSeleccion: paisOtra,
+          paisSeleccion: paisPrincipal,
           competicionFiltro: nombreCompeticion,
           stats: {
             partidos: cat.partidos || 0,
@@ -1351,175 +1289,274 @@ const App = {
             rojas: cat.rojas || 0,
             minutos: cat.minutos || 0,
           },
-          dorsal: "-",
-          posicion: jugadorActual.posicion || "Jugador",
+          dorsal: '-',
+          posicion: jugadorActual.posicion || 'Jugador',
           actual: false,
           statsGlobales: null,
           esPortero: esPorteroActual,
         });
       });
-    });
-  }
-
-  // RECORRER TEMPORADAS DEL CLUB
-  CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-    const datosTemporada = CLUB_DATA.temporadas[temp.id];
-    if (!datosTemporada) return;
-
-    const jugadorEnTemporada = datosTemporada.jugadores.find(
-      (j) =>
-        String(j.id) === buscaId ||
-        String(j.codigo) === buscaCodigo ||
-        String(j.id) === buscaCodigo ||
-        String(j.codigo) === buscaId,
-    );
-
-    if (!jugadorEnTemporada) return;
-
-    const datosMaestro =
-      CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
-    const compNombre =
-      datosTemporada.competicion || t("competicion_label") || "Competición";
-    const esPorteroTemp = esPortero({
-      ...datosMaestro,
-      ...jugadorEnTemporada,
-    });
-
-    if (jugadorEnTemporada.stats.desglose) {
-      Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
-        competicionesSet.add(c),
-      );
     }
 
-    competicionesSet.add(compNombre);
+    // ============================================
+    // PROCESAR OTRAS SELECCIONES
+    // ============================================
+    if (
+      jugadorActual.otrasSelecciones &&
+      Array.isArray(jugadorActual.otrasSelecciones)
+    ) {
+      jugadorActual.otrasSelecciones.forEach((otraSel) => {
+        if (!otraSel.datos || !Array.isArray(otraSel.datos)) return;
 
-    let statsAMostrar = { ...jugadorEnTemporada.stats };
-    let mostrarEstaTemporada = true;
+        const paisOtra = translateCountry(otraSel.pais);
+        const banderaOtra = otraSel.bandera;
 
-    if (filtroCompeticion !== "all") {
-      const esFiltroSeleccion = filtroCompeticion.startsWith("Selección");
-
-      if (esFiltroSeleccion) {
-        mostrarEstaTemporada = false;
-      } else {
-        if (
-          jugadorEnTemporada.stats.desglose &&
-          jugadorEnTemporada.stats.desglose[filtroCompeticion]
-        ) {
-          statsAMostrar = jugadorEnTemporada.stats.desglose[filtroCompeticion];
-        } else if (compNombre !== filtroCompeticion) {
-          mostrarEstaTemporada = false;
+        // Inicializar totales para este país
+        if (!totalesSeleccionPorPais[paisOtra]) {
+          totalesSeleccionPorPais[paisOtra] = {
+            partidos: 0,
+            goles: 0,
+            asistencias: 0,
+            amarillas: 0,
+            rojas: 0,
+            minutos: 0,
+            categorias: {},
+            bandera: banderaOtra,
+          };
         }
-      }
+
+        otraSel.datos.forEach((cat) => {
+          const nombreCompeticion = `Selección ${cat.categoria} (${paisOtra})`;
+
+          // ✅ CORRECCIÓN: Agregar al Set para que aparezca en el dropdown
+          competicionesSet.add(nombreCompeticion);
+
+          // Guardar en totales por categoría
+          if (!totalesSeleccionPorPais[paisOtra].categorias[cat.categoria]) {
+            totalesSeleccionPorPais[paisOtra].categorias[cat.categoria] = {
+              partidos: 0,
+              goles: 0,
+              asistencias: 0,
+              amarillas: 0,
+              rojas: 0,
+              minutos: 0,
+            };
+          }
+          totalesSeleccionPorPais[paisOtra].categorias[
+            cat.categoria
+          ].partidos += cat.partidos || 0;
+          totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].goles +=
+            cat.goles || 0;
+          totalesSeleccionPorPais[paisOtra].categorias[
+            cat.categoria
+          ].asistencias += cat.asistencias || 0;
+          totalesSeleccionPorPais[paisOtra].categorias[
+            cat.categoria
+          ].amarillas += cat.amarillas || 0;
+          totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].rojas +=
+            cat.rojas || 0;
+          totalesSeleccionPorPais[paisOtra].categorias[cat.categoria].minutos +=
+            cat.minutos || 0;
+
+          // Totales por país
+          totalesSeleccionPorPais[paisOtra].partidos += cat.partidos || 0;
+          totalesSeleccionPorPais[paisOtra].goles += cat.goles || 0;
+          totalesSeleccionPorPais[paisOtra].asistencias += cat.asistencias || 0;
+          totalesSeleccionPorPais[paisOtra].amarillas += cat.amarillas || 0;
+          totalesSeleccionPorPais[paisOtra].rojas += cat.rojas || 0;
+          totalesSeleccionPorPais[paisOtra].minutos += cat.minutos || 0;
+
+          historial.push({
+            temporada:
+              t('sel_' + cat.categoria.toLowerCase().replace('-', '')) ||
+              cat.categoria,
+            equipo: paisOtra,
+            logo: banderaOtra,
+            esSeleccion: true,
+            categoriaSeleccion: cat.categoria,
+            paisSeleccion: paisOtra,
+            competicionFiltro: nombreCompeticion,
+            stats: {
+              partidos: cat.partidos || 0,
+              goles: cat.goles || 0,
+              asistencias: cat.asistencias || 0,
+              amarillas: cat.amarillas || 0,
+              rojas: cat.rojas || 0,
+              minutos: cat.minutos || 0,
+            },
+            dorsal: '-',
+            posicion: jugadorActual.posicion || 'Jugador',
+            actual: false,
+            statsGlobales: null,
+            esPortero: esPorteroActual,
+          });
+        });
+      });
     }
 
-    if (mostrarEstaTemporada) {
-      historial.push({
-        temporada: temp.nombre,
-        equipo: CLUB_DATA.club.nombreCorto,
-        logo: CLUB_DATA.club.logo || "",
-        esSeleccion: false,
-        competicionFiltro: compNombre,
-        stats: statsAMostrar,
-        statsGlobales: jugadorEnTemporada.stats,
-        dorsal: jugadorEnTemporada.dorsal,
-        posicion:
-          datosMaestro.posicion ||
-          jugadorEnTemporada.posicion ||
-          "Desconocida",
-        actual: temp.id === currentSeasonId,
-        esPortero: esPorteroTemp,
+    // RECORRER TEMPORADAS DEL CLUB
+    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      const datosTemporada = CLUB_DATA.temporadas[temp.id];
+      if (!datosTemporada) return;
+
+      const jugadorEnTemporada = datosTemporada.jugadores.find(
+        (j) =>
+          String(j.id) === buscaId ||
+          String(j.codigo) === buscaCodigo ||
+          String(j.id) === buscaCodigo ||
+          String(j.codigo) === buscaId,
+      );
+
+      if (!jugadorEnTemporada) return;
+
+      const datosMaestro =
+        CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
+      const compNombre =
+        datosTemporada.competicion || t('competicion_label') || 'Competición';
+      const esPorteroTemp = esPortero({
+        ...datosMaestro,
+        ...jugadorEnTemporada,
       });
 
-      totalesClub.partidos += statsAMostrar.partidos || 0;
-      totalesClub.goles += statsAMostrar.goles || 0;
-      totalesClub.asistencias += statsAMostrar.asistencias || 0;
-      totalesClub.amarillas += statsAMostrar.amarillas || 0;
-      totalesClub.rojas += statsAMostrar.rojas || 0;
-      totalesClub.minutos += statsAMostrar.minutos || 0;
+      if (jugadorEnTemporada.stats.desglose) {
+        Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
+          competicionesSet.add(c),
+        );
+      }
+
+      competicionesSet.add(compNombre);
+
+      let statsAMostrar = { ...jugadorEnTemporada.stats };
+      let mostrarEstaTemporada = true;
+
+      if (filtroCompeticion !== 'all') {
+        const esFiltroSeleccion = filtroCompeticion.startsWith('Selección');
+
+        if (esFiltroSeleccion) {
+          mostrarEstaTemporada = false;
+        } else {
+          if (
+            jugadorEnTemporada.stats.desglose &&
+            jugadorEnTemporada.stats.desglose[filtroCompeticion]
+          ) {
+            statsAMostrar =
+              jugadorEnTemporada.stats.desglose[filtroCompeticion];
+          } else if (compNombre !== filtroCompeticion) {
+            mostrarEstaTemporada = false;
+          }
+        }
+      }
+
+      if (mostrarEstaTemporada) {
+        historial.push({
+          temporada: temp.nombre,
+          equipo: CLUB_DATA.club.nombreCorto,
+          logo: CLUB_DATA.club.logo || '',
+          esSeleccion: false,
+          competicionFiltro: compNombre,
+          stats: statsAMostrar,
+          statsGlobales: jugadorEnTemporada.stats,
+          dorsal: jugadorEnTemporada.dorsal,
+          posicion:
+            datosMaestro.posicion ||
+            jugadorEnTemporada.posicion ||
+            'Desconocida',
+          actual: temp.id === currentSeasonId,
+          esPortero: esPorteroTemp,
+        });
+
+        totalesClub.partidos += statsAMostrar.partidos || 0;
+        totalesClub.goles += statsAMostrar.goles || 0;
+        totalesClub.asistencias += statsAMostrar.asistencias || 0;
+        totalesClub.amarillas += statsAMostrar.amarillas || 0;
+        totalesClub.rojas += statsAMostrar.rojas || 0;
+        totalesClub.minutos += statsAMostrar.minutos || 0;
+      }
+    });
+
+    // FILTRAR HISTORIAL
+    let historialFiltrado = historial;
+    if (
+      filtroCompeticion !== 'all' &&
+      filtroCompeticion.startsWith('Selección')
+    ) {
+      historialFiltrado = historial.filter(
+        (h) => h.esSeleccion && h.competicionFiltro === filtroCompeticion,
+      );
+    } else if (filtroCompeticion !== 'all') {
+      historialFiltrado = historial.filter((h) => !h.esSeleccion);
     }
-  });
 
-  // FILTRAR HISTORIAL
-  let historialFiltrado = historial;
-  if (filtroCompeticion !== "all" && filtroCompeticion.startsWith("Selección")) {
-    historialFiltrado = historial.filter(
-      (h) => h.esSeleccion && h.competicionFiltro === filtroCompeticion,
-    );
-  } else if (filtroCompeticion !== "all") {
-    historialFiltrado = historial.filter((h) => !h.esSeleccion);
-  }
+    // DETECTAR SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+    const yaNoEstaEnClub = jugadorActual.estado === 'baja';
 
-  // DETECTAR SI EL JUGADOR YA NO ESTÁ EN EL CLUB
-  const yaNoEstaEnClub = jugadorActual.estado === "baja";
+    // GENERAR HTML DEL TIMELINE
+    let timelineHtml = '';
+    historialFiltrado.forEach((h) => {
+      const badgeHtml = h.logo
+        ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
+        : `<span class="team-badge-text">OVI</span>`;
 
-  // GENERAR HTML DEL TIMELINE
-  let timelineHtml = "";
-  historialFiltrado.forEach((h) => {
-    const badgeHtml = h.logo
-      ? `<img src="${h.logo}" alt="Logo" class="team-badge-img">`
-      : `<span class="team-badge-text">OVI</span>`;
+      const golesLabelTimeline = h.esPortero
+        ? t('goles_encajados_abrev')
+        : t('goles');
+      const golesStyleTimeline = h.esPortero
+        ? 'style="color:#e74c3c;font-weight:700"'
+        : '';
 
-    const golesLabelTimeline = h.esPortero
-      ? t("goles_encajados_abrev")
-      : t("goles");
-    const golesStyleTimeline = h.esPortero
-      ? 'style="color:#e74c3c;font-weight:700"'
-      : "";
-
-    let statsHtml = `<div class="timeline-stats">
-      <span><strong>${h.stats.partidos}</strong> ${t("partidos")}</span>
+      let statsHtml = `<div class="timeline-stats">
+      <span><strong>${h.stats.partidos}</strong> ${t('partidos')}</span>
       <span><strong ${golesStyleTimeline}>${h.stats.goles}</strong> ${golesLabelTimeline}</span>
-      <span><strong>${h.stats.asistencias}</strong> ${t("asistencias")}</span>
+      <span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span>
     </div>`;
 
-    if (
-      !h.esSeleccion &&
-      filtroCompeticion === "all" &&
-      h.statsGlobales &&
-      h.statsGlobales.desglose
-    ) {
-      statsHtml += `<div class="timeline-breakdown-box">`;
-      for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
-        const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : "";
-        const goalLabel = h.esPortero ? t("goles_encajados_abrev") : "G";
-        const compTraducida =
-          comp === "Competición Internacional"
-            ? t("competicion_internacional")
-            : comp;
-        statsHtml += `
+      if (
+        !h.esSeleccion &&
+        filtroCompeticion === 'all' &&
+        h.statsGlobales &&
+        h.statsGlobales.desglose
+      ) {
+        statsHtml += `<div class="timeline-breakdown-box">`;
+        for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+          const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : '';
+          const goalLabel = h.esPortero ? t('goles_encajados_abrev') : 'G';
+          const compTraducida =
+            comp === 'Competición Internacional'
+              ? t('competicion_internacional')
+              : comp;
+          statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${compTraducida}</span>
             <div class="breakdown-data-chips">
-              <span class="chip"><b>${data.partidos}</b> ${t("pj")}</span>
+              <span class="chip"><b>${data.partidos}</b> ${t('pj')}</span>
               <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${goalLabel}</span>
               <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
-              ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ""}
+              ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ''}
             </div>
           </div>`;
+        }
+        statsHtml += `</div>`;
       }
-      statsHtml += `</div>`;
-    }
 
-    let clasesTimeline = "";
-    if (h.actual) {
-      clasesTimeline += "current ";
-      if (yaNoEstaEnClub) {
-        clasesTimeline += "finalizado ";
+      let clasesTimeline = '';
+      if (h.actual) {
+        clasesTimeline += 'current ';
+        if (yaNoEstaEnClub) {
+          clasesTimeline += 'finalizado ';
+        }
       }
-    }
-    if (h.esSeleccion) {
-      clasesTimeline += "seleccion-nacional ";
-    }
+      if (h.esSeleccion) {
+        clasesTimeline += 'seleccion-nacional ';
+      }
 
-    timelineHtml += `
+      timelineHtml += `
       <div class="timeline-item ${clasesTimeline.trim()}">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <div class="timeline-header">
             <span class="timeline-club">
               <span class="team-badge">${badgeHtml}</span>
-              ${h.esSeleccion ? `<i class="fas fa-flag" style="margin-right: 8px; color: var(--secondary-color);"></i>` : ""}
+              ${h.esSeleccion ? `<i class="fas fa-flag" style="margin-right: 8px; color: var(--secondary-color);"></i>` : ''}
               ${h.equipo}
             </span>
             <span class="timeline-years">${h.temporada}</span>
@@ -1531,218 +1568,222 @@ const App = {
           ${statsHtml}
         </div>
       </div>`;
-  });
+    });
 
-  // MENSAJE SI EL JUGADOR YA NO ESTÁ EN EL CLUB
-  let mensajeBajaHtml = "";
-  if (yaNoEstaEnClub) {
-    mensajeBajaHtml = `
+    // MENSAJE SI EL JUGADOR YA NO ESTÁ EN EL CLUB
+    let mensajeBajaHtml = '';
+    if (yaNoEstaEnClub) {
+      mensajeBajaHtml = `
       <div class="baja-notice" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid #e74c3c; padding: 15px 20px; margin-bottom: 20px; border-radius: 8px;">
         <p style="margin: 0; color: #c0392b; font-weight: 600;">
           <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
-          ${t("jugador_baja_notice") || "Este jugador finalizó su etapa en el club en la temporada indicada."}
+          ${t('jugador_baja_notice') || 'Este jugador finalizó su etapa en el club en la temporada indicada.'}
         </p>
       </div>
     `;
-  }
+    }
 
-  // CONSTRUIR DROPDOWN
-  const listaComps = Array.from(competicionesSet).sort();
-  const paisesSeleccion = Object.keys(totalesSeleccionPorPais);
-  const tieneSeleccion = paisesSeleccion.length > 0;
-  const tieneClub = historial.some((h) => !h.esSeleccion);
+    // CONSTRUIR DROPDOWN
+    const listaComps = Array.from(competicionesSet).sort();
+    const paisesSeleccion = Object.keys(totalesSeleccionPorPais);
+    const tieneSeleccion = paisesSeleccion.length > 0;
+    const tieneClub = historial.some((h) => !h.esSeleccion);
 
-  let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
-    <label style="font-weight:bold;">${t("filtrar") || "Filtrar"}:</label>
+    let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
+    <label style="font-weight:bold;">${t('filtrar') || 'Filtrar'}:</label>
     <select id="filterCareer" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit;">`;
 
-  dropdownHtml += `<option value="all" ${filtroCompeticion === "all" ? "selected" : ""}>${t("todas_competiciones") || "Todas las competiciones"}</option>`;
+    dropdownHtml += `<option value="all" ${filtroCompeticion === 'all' ? 'selected' : ''}>${t('todas_competiciones') || 'Todas las competiciones'}</option>`;
 
-  // Grupo Club
-  if (tieneClub) {
-    dropdownHtml += `<optgroup label="${t("club") || "Club"}">`;
-    listaComps
-      .filter((c) => !c.startsWith("Selección"))
-      .forEach((c) => {
-        const cKey =
-          "comp_" +
-          c
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, "_");
-        const cTraducida = t(cKey) || c;
-        dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${cTraducida}</option>`;
-      });
-    dropdownHtml += `</optgroup>`;
-  }
+    // Grupo Club
+    if (tieneClub) {
+      dropdownHtml += `<optgroup label="${t('club') || 'Club'}">`;
+      listaComps
+        .filter((c) => !c.startsWith('Selección'))
+        .forEach((c) => {
+          const cKey =
+            'comp_' +
+            c
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/\s+/g, '_');
+          const cTraducida = t(cKey) || c;
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${cTraducida}</option>`;
+        });
+      dropdownHtml += `</optgroup>`;
+    }
 
-  // Grupo Selección Nacional - todas con país entre paréntesis
-  if (tieneSeleccion) {
-    dropdownHtml += `<optgroup label="${t("seleccion_nacional") || "Selección Nacional"}">`;
-    
-    listaComps
-      .filter((c) => c.startsWith("Selección"))
-      .forEach((c) => {
-        const match = c.match(/Selección (.+) \((.+)\)/);
-        if (match) {
-          const cat = match[1];
-          const pais = match[2];
-          const catTraducida = t("sel_" + cat.toLowerCase().replace("-", "")) || cat;
-          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? "selected" : ""}>${catTraducida} (${pais})</option>`;
-        }
-      });
-    
-    dropdownHtml += `</optgroup>`;
-  }
+    // Grupo Selección Nacional - todas con país entre paréntesis
+    if (tieneSeleccion) {
+      dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'}">`;
 
-  dropdownHtml += `</select></div>`;
+      listaComps
+        .filter((c) => c.startsWith('Selección'))
+        .forEach((c) => {
+          const match = c.match(/Selección (.+) \((.+)\)/);
+          if (match) {
+            const cat = match[1];
+            const pais = match[2];
+            const catTraducida =
+              t('sel_' + cat.toLowerCase().replace('-', '')) || cat;
+            dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${catTraducida} (${pais})</option>`;
+          }
+        });
 
-  // GENERAR TARJETAS DE TOTALES
-  let totalesHtml = "";
+      dropdownHtml += `</optgroup>`;
+    }
 
-  // Totales de Club
-  const mostrarTotalesClub =
-    (filtroCompeticion === "all" || !filtroCompeticion.startsWith("Selección")) &&
-    totalesClub.partidos > 0;
+    dropdownHtml += `</select></div>`;
 
-  if (mostrarTotalesClub) {
-    const golesLabelTotal = esPorteroActual
-      ? t("goles_encajados_corto")
-      : t("goles");
-    const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : "";
+    // GENERAR TARJETAS DE TOTALES
+    let totalesHtml = '';
 
-    totalesHtml += `
+    // Totales de Club
+    const mostrarTotalesClub =
+      (filtroCompeticion === 'all' ||
+        !filtroCompeticion.startsWith('Selección')) &&
+      totalesClub.partidos > 0;
+
+    if (mostrarTotalesClub) {
+      const golesLabelTotal = esPorteroActual
+        ? t('goles_encajados_corto')
+        : t('goles');
+      const golesStyleTotal = esPorteroActual ? 'style="color:#e74c3c"' : '';
+
+      totalesHtml += `
       <div class="career-totals-card club-totals">
-        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>${t("total_club") || "Total Club"}</h3>
+        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right: 8px;"></i>${t('total_club') || 'Total Club'}</h3>
         <div class="totals-grid">
-          <div class="total-item"><span class="total-value">${totalesClub.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+          <div class="total-item"><span class="total-value">${totalesClub.partidos}</span><span class="total-label">${t('partidos')}</span></div>
           <div class="total-item highlight" ${golesStyleTotal}><span class="total-value" ${golesStyleTotal}>${totalesClub.goles}</span><span class="total-label">${golesLabelTotal}</span></div>
-          <div class="total-item"><span class="total-value">${totalesClub.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
-          <div class="total-item yellow-card"><span class="total-value">${totalesClub.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
-          <div class="total-item red-card"><span class="total-value">${totalesClub.rojas}</span><span class="total-label">${t("rojas")}</span></div>
-          <div class="total-item minutes"><span class="total-value">${totalesClub.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
+          <div class="total-item"><span class="total-value">${totalesClub.asistencias}</span><span class="total-label">${t('asistencias')}</span></div>
+          <div class="total-item yellow-card"><span class="total-value">${totalesClub.amarillas}</span><span class="total-label">${t('amarillas')}</span></div>
+          <div class="total-item red-card"><span class="total-value">${totalesClub.rojas}</span><span class="total-label">${t('rojas')}</span></div>
+          <div class="total-item minutes"><span class="total-value">${totalesClub.minutos.toLocaleString()}</span><span class="total-label">${t('minutos')}</span></div>
         </div>
       </div>`;
-  }
+    }
 
-  // Totales de Selección - SEPARADOS POR PAÍS
-  const mostrarTotalesSeleccion =
-    (filtroCompeticion === "all" || filtroCompeticion.startsWith("Selección"));
+    // Totales de Selección - SEPARADOS POR PAÍS
+    const mostrarTotalesSeleccion =
+      filtroCompeticion === 'all' || filtroCompeticion.startsWith('Selección');
 
-  if (mostrarTotalesSeleccion && paisesSeleccion.length > 0) {
-    paisesSeleccion.forEach((pais) => {
-      const totalesPais = totalesSeleccionPorPais[pais];
-      if (totalesPais.partidos === 0) return;
+    if (mostrarTotalesSeleccion && paisesSeleccion.length > 0) {
+      paisesSeleccion.forEach((pais) => {
+        const totalesPais = totalesSeleccionPorPais[pais];
+        if (totalesPais.partidos === 0) return;
 
-      const golesLabelSel = esPorteroActual
-        ? t("goles_encajados_corto")
-        : t("goles");
-      const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : "";
+        const golesLabelSel = esPorteroActual
+          ? t('goles_encajados_corto')
+          : t('goles');
+        const golesStyleSel = esPorteroActual ? 'style="color:#e74c3c"' : '';
 
-      // Si hay filtro específico de selección, solo mostrar ese país
-      if (filtroCompeticion.startsWith("Selección")) {
-        const matchFiltro = filtroCompeticion.match(/\((.+)\)/);
-        const paisFiltro = matchFiltro ? matchFiltro[1] : null;
-        if (paisFiltro && paisFiltro !== pais) return;
-      }
-
-      // Buscar categoría específica si hay filtro
-      let statsHtml = "";
-      const esFiltroCategoriaEspecifica = filtroCompeticion.startsWith("Selección");
-      
-      if (esFiltroCategoriaEspecifica) {
-        const matchCat = filtroCompeticion.match(/Selección (.+) \(/);
-        const catBuscada = matchCat ? matchCat[1] : null;
-        const cat = catBuscada && totalesPais.categorias[catBuscada] 
-          ? totalesPais.categorias[catBuscada] 
-          : null;
-        
-        if (cat) {
-          statsHtml = `
-            <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
-              <span style="font-weight: 600; color: #001a6e;">${t("sel_" + catBuscada.toLowerCase().replace("-", "")) || catBuscada}</span>
-            </div>
-            <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t("partidos")}</span></div>
-            <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${cat.goles}</span><span class="total-label">${golesLabelSel}</span></div>
-            <div class="total-item"><span class="total-value">${cat.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
-            <div class="total-item yellow-card"><span class="total-value">${cat.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
-            <div class="total-item red-card"><span class="total-value">${cat.rojas}</span><span class="total-label">${t("rojas")}</span></div>
-            <div class="total-item minutes"><span class="total-value">${cat.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
-          `;
+        // Si hay filtro específico de selección, solo mostrar ese país
+        if (filtroCompeticion.startsWith('Selección')) {
+          const matchFiltro = filtroCompeticion.match(/\((.+)\)/);
+          const paisFiltro = matchFiltro ? matchFiltro[1] : null;
+          if (paisFiltro && paisFiltro !== pais) return;
         }
-      }
 
-      // Si no hay stats específicos (filtro "all" o categoría no encontrada), mostrar totales del país
-      if (!statsHtml) {
-        statsHtml = `
+        // Buscar categoría específica si hay filtro
+        let statsHtml = '';
+        const esFiltroCategoriaEspecifica =
+          filtroCompeticion.startsWith('Selección');
+
+        if (esFiltroCategoriaEspecifica) {
+          const matchCat = filtroCompeticion.match(/Selección (.+) \(/);
+          const catBuscada = matchCat ? matchCat[1] : null;
+          const cat =
+            catBuscada && totalesPais.categorias[catBuscada]
+              ? totalesPais.categorias[catBuscada]
+              : null;
+
+          if (cat) {
+            statsHtml = `
+            <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
+              <span style="font-weight: 600; color: #001a6e;">${t('sel_' + catBuscada.toLowerCase().replace('-', '')) || catBuscada}</span>
+            </div>
+            <div class="total-item"><span class="total-value">${cat.partidos}</span><span class="total-label">${t('partidos')}</span></div>
+            <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${cat.goles}</span><span class="total-label">${golesLabelSel}</span></div>
+            <div class="total-item"><span class="total-value">${cat.asistencias}</span><span class="total-label">${t('asistencias')}</span></div>
+            <div class="total-item yellow-card"><span class="total-value">${cat.amarillas}</span><span class="total-label">${t('amarillas')}</span></div>
+            <div class="total-item red-card"><span class="total-value">${cat.rojas}</span><span class="total-label">${t('rojas')}</span></div>
+            <div class="total-item minutes"><span class="total-value">${cat.minutos.toLocaleString()}</span><span class="total-label">${t('minutos')}</span></div>
+          `;
+          }
+        }
+
+        // Si no hay stats específicos (filtro "all" o categoría no encontrada), mostrar totales del país
+        if (!statsHtml) {
+          statsHtml = `
           <div class="total-item" style="grid-column: 1 / -1; text-align: center; padding: 10px; background: rgba(255,215,0,0.1); border-radius: 8px; margin-bottom: 5px;">
             <span style="font-weight: 600; color: #001a6e;">${pais}</span>
           </div>
-          <div class="total-item"><span class="total-value">${totalesPais.partidos}</span><span class="total-label">${t("partidos")}</span></div>
+          <div class="total-item"><span class="total-value">${totalesPais.partidos}</span><span class="total-label">${t('partidos')}</span></div>
           <div class="total-item highlight" ${golesStyleSel}><span class="total-value" ${golesStyleSel}>${totalesPais.goles}</span><span class="total-label">${golesLabelSel}</span></div>
-          <div class="total-item"><span class="total-value">${totalesPais.asistencias}</span><span class="total-label">${t("asistencias")}</span></div>
-          <div class="total-item yellow-card"><span class="total-value">${totalesPais.amarillas}</span><span class="total-label">${t("amarillas")}</span></div>
-          <div class="total-item red-card"><span class="total-value">${totalesPais.rojas}</span><span class="total-label">${t("rojas")}</span></div>
-          <div class="total-item minutes"><span class="total-value">${totalesPais.minutos.toLocaleString()}</span><span class="total-label">${t("minutos")}</span></div>
+          <div class="total-item"><span class="total-value">${totalesPais.asistencias}</span><span class="total-label">${t('asistencias')}</span></div>
+          <div class="total-item yellow-card"><span class="total-value">${totalesPais.amarillas}</span><span class="total-label">${t('amarillas')}</span></div>
+          <div class="total-item red-card"><span class="total-value">${totalesPais.rojas}</span><span class="total-label">${t('rojas')}</span></div>
+          <div class="total-item minutes"><span class="total-value">${totalesPais.minutos.toLocaleString()}</span><span class="total-label">${t('minutos')}</span></div>
         `;
-      }
+        }
 
-      totalesHtml += `
+        totalesHtml += `
         <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700; margin-bottom: 15px;">
-          <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>${t("total_seleccion") || "Total Selección"}</h3>
+          <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>${t('total_seleccion') || 'Total Selección'}</h3>
           <div class="totals-grid">
             ${statsHtml}
           </div>
         </div>`;
-    });
-  }
+      });
+    }
 
-  container.innerHTML = `${dropdownHtml}
+    container.innerHTML = `${dropdownHtml}
     ${mensajeBajaHtml}
     <div class="career-grid">
       <div class="career-timeline-card">
-        <h3 class="card-title">${t("historial")}</h3>
-        <div class="timeline">${timelineHtml || "<p>" + (t("no_datos") || "No hay datos.") + "</p>"}</div>
+        <h3 class="card-title">${t('historial')}</h3>
+        <div class="timeline">${timelineHtml || '<p>' + (t('no_datos') || 'No hay datos.') + '</p>'}</div>
       </div>
       <div class="career-sidebar">
         ${totalesHtml}
       </div>
     </div>`;
 
-  const filterSelect = document.getElementById("filterCareer");
-  if (filterSelect) {
-    filterSelect.addEventListener("change", (e) => {
-      this.renderFichaCareerHistory(
-        jugadorActual,
-        currentSeasonId,
-        e.target.value,
-      );
-    });
-  }
-},
+    const filterSelect = document.getElementById('filterCareer');
+    if (filterSelect) {
+      filterSelect.addEventListener('change', (e) => {
+        this.renderFichaCareerHistory(
+          jugadorActual,
+          currentSeasonId,
+          e.target.value,
+        );
+      });
+    }
+  },
 
   renderJuegos: function () {
-    const container = document.getElementById("juegosGrid");
+    const container = document.getElementById('juegosGrid');
     if (!container || !CLUB_DATA.juegos) return;
-    let html = "";
+    let html = '';
     CLUB_DATA.juegos.forEach((juego) => {
-      const specialClass = juego.esEspecial ? "especial" : "";
+      const specialClass = juego.esEspecial ? 'especial' : '';
       html += `<a href="${juego.enlace}" class="juego-card ${specialClass}"><img src="${juego.imagen}" alt="${juego.titulo}"><h3>${juego.titulo}</h3><p>${juego.descripcion}</p></a>`;
     });
     container.innerHTML = html;
   },
 
   renderVideos: function () {
-    const container = document.getElementById("videosGrid");
+    const container = document.getElementById('videosGrid');
     if (!container || !CLUB_DATA.videos) return;
-    let html = "";
+    let html = '';
     CLUB_DATA.videos.forEach((video) => {
-      const fecha = video.fecha ? formatearFecha(video.fecha).completa : "";
+      const fecha = video.fecha ? formatearFecha(video.fecha).completa : '';
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t("jornada_abrev")}${video.jornada}</span>` : ""}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
+      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
     });
     container.innerHTML = html;
   },
@@ -1751,9 +1792,9 @@ const App = {
 /* ===================================
    ESTILOS DINÁMICOS RESPONSIVE
    =================================== */
-if (!document.getElementById("responsiveAppStyles")) {
-  const s = document.createElement("style");
-  s.id = "responsiveAppStyles";
+if (!document.getElementById('responsiveAppStyles')) {
+  const s = document.createElement('style');
+  s.id = 'responsiveAppStyles';
   s.textContent = `
         /* Caja de desglose */
         .timeline-breakdown-box { margin-top:12px; background:rgba(0,0,0,0.03); padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.05); }
@@ -1786,9 +1827,9 @@ if (!document.getElementById("responsiveAppStyles")) {
 /* ===================================
    ESTILOS PARA PORTEROS (GOLES ENCAJADOS)
    =================================== */
-if (!document.getElementById("porteroStyles")) {
-  const s = document.createElement("style");
-  s.id = "porteroStyles";
+if (!document.getElementById('porteroStyles')) {
+  const s = document.createElement('style');
+  s.id = 'porteroStyles';
   s.textContent = `
     .mini-stat.conceded .mini-stat-value {
       color: #e74c3c !important;
@@ -1831,13 +1872,13 @@ if (!document.getElementById("porteroStyles")) {
    =================================== */
 function ajustarFotosJugadores() {
   const selectores = [
-    ".player-main-photo",
-    ".squad-image img",
-    ".player-card img",
-    ".squad-card .squad-image img",
+    '.player-main-photo',
+    '.squad-image img',
+    '.player-card img',
+    '.squad-card .squad-image img',
   ];
 
-  const fotos = document.querySelectorAll(selectores.join(", "));
+  const fotos = document.querySelectorAll(selectores.join(', '));
 
   fotos.forEach((img) => {
     if (img.complete) {
@@ -1848,7 +1889,7 @@ function ajustarFotosJugadores() {
       };
       img.onerror = function () {
         this.src =
-          "https://via.placeholder.com/400x500/1a365d/ffffff?text=Jugador";
+          'https://via.placeholder.com/400x500/1a365d/ffffff?text=Jugador';
       };
     }
   });
@@ -1858,17 +1899,17 @@ function aplicarAjuste(img) {
   const ratio = img.naturalWidth / img.naturalHeight;
 
   if (ratio < 0.6) {
-    img.style.objectPosition = "center 20%";
-    img.style.transform = "scale(1.1)";
+    img.style.objectPosition = 'center 20%';
+    img.style.transform = 'scale(1.1)';
   } else if (ratio < 0.8) {
-    img.style.objectPosition = "center 15%";
-    img.style.transform = "scale(1.05)";
+    img.style.objectPosition = 'center 15%';
+    img.style.transform = 'scale(1.05)';
   } else if (ratio > 1.3) {
-    img.style.objectPosition = "center 25%";
-    img.style.transform = "scale(1.15)";
+    img.style.objectPosition = 'center 25%';
+    img.style.transform = 'scale(1.15)';
   } else {
-    img.style.objectPosition = "center 20%";
-    img.style.transform = "scale(1.08)";
+    img.style.objectPosition = 'center 20%';
+    img.style.transform = 'scale(1.08)';
   }
 }
 
@@ -1890,7 +1931,7 @@ App.renderPlantillaHome = function (filter) {
   setTimeout(ajustarFotosJugadores, 100);
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   App.init();
 });
 window.App = App;
