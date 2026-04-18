@@ -1224,9 +1224,7 @@ const App = {
 
       sel.datos.forEach((cat) => {
         // Si hay múltiples selecciones, añadir país al nombre
-        const nombreCompeticion = esMultiplesSelecciones
-          ? `Selección ${cat.categoria} (${paisPrincipal})`
-          : `Selección ${cat.categoria}`;
+        const nombreCompeticion = `Selección ${cat.categoria} (${paisPrincipal})`;
         competicionesSet.add(nombreCompeticion);
 
         // Guardar en totales por categoría
