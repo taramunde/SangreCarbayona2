@@ -142,9 +142,13 @@ const App = {
   init: function () {
     this.temporadaActiva = CLUB_DATA.temporadaActual;
 
+    // Detectar qué filtro está activo en el HTML al cargar
+    const activeTab = document.querySelector('.position-tabs .tab-btn.active');
+    const initialFilter = activeTab ? activeTab.dataset.position : 'all';
+
     // Funciones de renderizado
     this.renderCalendario();
-    this.renderPlantillaHome();
+    this.renderPlantillaHome(initialFilter); // ← Usar el filtro del botón activo
     this.renderNoticias();
     this.renderPatrocinadores();
     this.renderProximoPartido();
