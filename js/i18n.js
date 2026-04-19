@@ -686,6 +686,7 @@ const geoTranslations = {
       portugal: 'Portugal',
       reinounido: 'Reino Unido',
       rumania: 'Rumanía',
+      senegal: 'Senegal',
     },
     en: {
       alemania: 'Germany',
@@ -698,6 +699,7 @@ const geoTranslations = {
       portugal: 'Portugal',
       reinounido: 'United Kingdom',
       rumania: 'Romania',
+      senegal: 'Senegal',
     },
   },
 
@@ -746,6 +748,8 @@ const geoTranslations = {
       portugués: 'Portugués',
       rumano: 'Rumano',
       rumana: 'Rumana',
+      senegales: 'Senegalés',
+      senegalesa: 'Senegalesa',
     },
     en: {
       aleman: 'German',
@@ -763,8 +767,6 @@ const geoTranslations = {
       estadounidense: 'American',
       francesa: 'French',
       frances: 'French',
-      espanol: 'Spanish',
-      espanola: 'Spanish',
       nigerino: 'Nigerien',
       nigerina: 'Nigerien',
       nigeriano: 'Nigerian',
@@ -773,6 +775,8 @@ const geoTranslations = {
       portugués: 'Portuguese',
       rumano: 'Romanian',
       rumana: 'Romanian',
+      senegales: 'Senegalese',
+      senegalesa: 'Senegalese',
     },
   },
 };
