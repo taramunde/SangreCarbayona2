@@ -4395,7 +4395,7 @@ const CLUB_DATA = {
         {
           id: 'adrian-lopes-marques',
           codigo: 'adrian-lopes-marques',
-          dorsal: NaN,
+          dorsal: '-',
           posicion: 'Central',
           enClubDesde: '2024',
           contratoHasta: '2026',
