@@ -173,6 +173,7 @@ const App = {
         tabs.forEach((b) => b.classList.remove('active'));
         e.currentTarget.classList.add('active');
         const position = e.currentTarget.dataset.position;
+        this.filtroHomeActivo = position;
         this.renderPlantillaHome(position);
       });
     });

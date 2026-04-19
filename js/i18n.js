@@ -639,7 +639,7 @@ function setLanguage(lang) {
     App.renderCuerpoTecnico();
     App.renderProximoPartido();
     App.renderNoticias();
-    App.renderPlantillaHome();
+    App.renderPlantillaHome(App.filtroHomeActivo || 'goalkeeper');
     if (typeof App.renderJuegos === 'function') {
       App.renderJuegos();
     }
