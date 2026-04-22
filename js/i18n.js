@@ -716,7 +716,7 @@ const geoTranslations = {
       nuevayork: 'Nueva York',
     },
     en: {
-      isladefrancia: 'Île-de-France',
+      isladefrancia: 'Île de France',
       londres: 'London',
       nuevayork: 'New York',
     },
