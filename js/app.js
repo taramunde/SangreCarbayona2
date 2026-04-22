@@ -81,7 +81,9 @@ function translateCountry(country) {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/\s/g, '');
   return (
-    window.geoTranslations?.countries?.[currentLang]?.[normalized] || country
+    window.geoTranslations?.countries?.[window.currentLang || 'es']?.[
+      normalized
+    ] || country
   );
 }
 
@@ -92,7 +94,11 @@ function translateCity(city) {
     .trim()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
-  return window.geoTranslations?.cities?.[currentLang]?.[normalized] || city;
+  return (
+    window.geoTranslations?.cities?.[window.currentLang || 'es']?.[
+      normalized
+    ] || city
+  );
 }
 
 function translateProvince(province) {
@@ -103,7 +109,9 @@ function translateProvince(province) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
   return (
-    window.geoTranslations?.provinces?.[currentLang]?.[normalized] || province
+    window.geoTranslations?.provinces?.[window.currentLang || 'es']?.[
+      normalized
+    ] || province
   );
 }
 
@@ -127,8 +135,9 @@ function translateNationalitySingle(nationality) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
   return (
-    window.geoTranslations?.nationalities?.[currentLang]?.[normalized] ||
-    nationality
+    window.geoTranslations?.nationalities?.[window.currentLang || 'es']?.[
+      normalized
+    ] || nationality
   );
 }
 
@@ -870,8 +879,8 @@ const App = {
     // Fallback: formato antiguo "Ciudad, Provincia" en un solo campo
     else if (jugador.lugarNacimiento && jugador.lugarNacimiento.includes(',')) {
       const partes = jugador.lugarNacimiento.split(',').map((p) => p.trim());
-      const ciudad = partes[0];
-      const provincia = partes[partes.length - 1];
+      const ciudad = translateCity(partes[0]);
+      const provincia = translateProvince(partes[partes.length - 1]);
 
       lugarRowsHtml += `
         <div class="info-row">
@@ -886,10 +895,13 @@ const App = {
     }
     // Solo ciudad, sin provincia
     else {
+      const ciudad = jugador.lugarNacimiento
+        ? translateCity(jugador.lugarNacimiento)
+        : t('desconocida') || 'Desconocido';
       lugarRowsHtml += `
         <div class="info-row">
           <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
-          <span class="info-value">${jugador.lugarNacimiento || t('desconocida') || 'Desconocido'}</span>
+          <span class="info-value">${ciudad}</span>
         </div>
       `;
     }

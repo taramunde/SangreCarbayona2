@@ -596,6 +596,7 @@ const translations = {
 
 // IMPORTANTE: El '|| 'es'' fuerza a que sea español si no hay nada guardado
 let currentLang = localStorage.getItem('lang') || 'es';
+window.currentLang = currentLang;
 
 function t(key) {
   return translations[currentLang][key] || translations['es'][key] || key;
@@ -614,6 +615,7 @@ function translatePosition(positionName) {
 
 function setLanguage(lang) {
   currentLang = lang;
+  window.currentLang = lang;
   localStorage.setItem('lang', lang);
 
   // Actualiza el botón activo
@@ -789,3 +791,6 @@ const geoTranslations = {
 
 // Exportar para usar en app.js
 window.geoTranslations = geoTranslations;
+
+// Exponer currentLang globalmente
+window.currentLang = currentLang;
