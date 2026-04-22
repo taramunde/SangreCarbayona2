@@ -717,9 +717,11 @@ const geoTranslations = {
   provinces: {
     es: {
       asturias: 'Asturias',
+      regiondelaltooeste: 'Región del Alto Oeste',
     },
     en: {
       asturias: 'Asturias',
+      regiondelaltooeste: 'Upper West Region',
     },
   },
 
