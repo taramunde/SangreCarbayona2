@@ -600,7 +600,7 @@ const CLUB_DATA = {
       lugarNacimiento: 'Fonciello',
       provinciaNacimiento: 'Asturias',
       fechaNacimiento: '1984-12-13',
-      imagen: 'https://i.postimg.cc/6qQmv7tk/Santi-Cazorla-PNG.webp',
+      imagen: 'https://i.postimg.cc/4dZX91Km/Santi-Cazorla-PNG-Alineacion.webp',
       seleccion: {
         pais: 'España',
         bandera: 'https://flagcdn.com/16x12/es.webp',
