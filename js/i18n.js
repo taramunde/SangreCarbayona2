@@ -682,6 +682,8 @@ const geoTranslations = {
       angola: 'Angola',
       argentina: 'Argentina',
       costademarfil: 'Costa de Marfil',
+      egipto: 'Egipto',
+      espana: 'España',
       estadosunidos: 'Estados Unidos',
       francia: 'Francia',
       niger: 'Níger',
@@ -695,6 +697,8 @@ const geoTranslations = {
       angola: 'Angola',
       argentina: 'Argentina',
       costademarfil: 'Ivory Coast',
+      egipto: 'Egypt',
+      espana: 'Spain',
       estadosunidos: 'United States',
       francia: 'France',
       niger: 'Niger',
@@ -707,10 +711,12 @@ const geoTranslations = {
 
   cities: {
     es: {
+      isladefrancia: 'Isla de Francia',
       londres: 'Londres',
       nuevayork: 'Nueva York',
     },
     en: {
+      isladefrancia: 'Île-de-France',
       londres: 'London',
       nuevayork: 'New York',
     },
@@ -739,6 +745,8 @@ const geoTranslations = {
       britanica: 'Británica',
       costamarfileno: 'Costamarfileño',
       costamarfilena: 'Costamarfileña',
+      egipcia: 'Egipcia',
+      egipcio: 'Egipcio',
       espanol: 'Español',
       espanola: 'Española',
       estadounidense: 'Estadounidense',
@@ -768,6 +776,8 @@ const geoTranslations = {
       britanica: 'British',
       costamarfileno: 'Ivorian',
       costamarfilena: 'Ivorian',
+      egipcia: 'Egyptian',
+      egipcio: 'Egyptian',
       espanol: 'Spanish',
       espanola: 'Spanish',
       estadounidense: 'American',
