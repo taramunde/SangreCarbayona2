@@ -107,7 +107,8 @@ function translateProvince(province) {
     .toLowerCase()
     .trim()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '');
   return (
     window.geoTranslations?.provinces?.[window.currentLang || 'es']?.[
       normalized
