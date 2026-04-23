@@ -7910,6 +7910,56 @@ const CLUB_DATA = {
 };
 
 // ===================================
+// GRUPOS DE POSICIONES (centralizado)
+// Añade aquí nuevas posiciones y se reflejarán
+// automáticamente en filtros, categorías y agrupaciones.
+// ===================================
+const POSITION_GROUPS = {
+  goalkeeper: {
+    key: 'porteros',
+    positions: ['Portero'],
+    icon: 'fa-hand-paper',
+  },
+  defender: {
+    key: 'defensas',
+    positions: ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
+    icon: 'fa-shield-alt',
+  },
+  midfielder: {
+    key: 'centrocampistas',
+    positions: [
+      'Centrocampista',
+      'Mediocentro',
+      'Mediocentro Defensivo',
+      'Mediapunta',
+      'Pivote',
+    ],
+    icon: 'fa-sync-alt',
+  },
+  forward: {
+    key: 'delanteros',
+    positions: [
+      'Delantero',
+      'Delantero Centro',
+      'Extremo Derecho',
+      'Extremo Izquierdo',
+    ],
+    icon: 'fa-bullseye',
+  },
+};
+
+// Devuelve a qué grupo (Porteros/Defensas/Centrocampistas/Delanteros)
+// pertenece una posición concreta, para poder traducirla o clasificarla.
+function getPositionGroup(posicion) {
+  for (const group of Object.values(POSITION_GROUPS)) {
+    if (group.positions.includes(posicion)) {
+      return group;
+    }
+  }
+  return null;
+}
+
+// ===================================
 // FUNCIONES DE AYUDA
 // ===================================
 

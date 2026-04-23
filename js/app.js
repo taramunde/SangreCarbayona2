@@ -42,29 +42,8 @@ function esPortero(jugador) {
 
 function getCategoriaJugador(jugador) {
   const pos = jugador.posicion;
-  if (['Portero'].includes(pos)) return t('porteros');
-  if (
-    ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'].includes(pos)
-  )
-    return t('defensas');
-  if (
-    [
-      'Centrocampista',
-      'Mediocentro',
-      'Mediocentro Defensivo',
-      'Mediapunta',
-    ].includes(pos)
-  )
-    return t('centrocampistas');
-  if (
-    [
-      'Delantero',
-      'Delantero Centro',
-      'Extremo Derecho',
-      'Extremo Izquierdo',
-    ].includes(pos)
-  )
-    return t('delanteros');
+  const group = getPositionGroup(pos);
+  if (group) return t(group.key);
   return translatePosition(pos);
 }
 
@@ -241,26 +220,11 @@ const App = {
       .map((j) => getJugadorById(j.codigo || j.id, CLUB_DATA.temporadaActual))
       .filter((j) => j !== null);
 
-    const positionGroups = {
-      goalkeeper: ['Portero'],
-      defender: ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
-      midfielder: [
-        'Centrocampista',
-        'Mediocentro',
-        'Mediocentro Defensivo',
-        'Mediapunta',
-      ],
-      forward: [
-        'Delantero',
-        'Delantero Centro',
-        'Extremo Derecho',
-        'Extremo Izquierdo',
-      ],
-    };
-
+    // Usa POSITION_GROUPS definido en data.js (centralizado)
     let playersToRender = jugadoresCompletos;
     if (filter !== 'all') {
-      const validPositions = positionGroups[filter] || [];
+      const group = POSITION_GROUPS[filter];
+      const validPositions = group ? group.positions : [];
       playersToRender = jugadoresCompletos.filter((j) =>
         validPositions.includes(j.posicion),
       );
@@ -558,54 +522,24 @@ const App = {
       .map((j) => getJugadorById(j.codigo || j.id, this.temporadaActiva))
       .filter((j) => j !== null);
 
-    const posiciones = {
-      [t('porteros')]: ['Portero'],
-      [t('defensas')]: ['Lateral Derecho', 'Lateral Izquierdo', 'Central'],
-      [t('centrocampistas')]: [
-        'Mediocentro Defensivo',
-        'Centrocampista',
-        'Mediocentro',
-        'Mediapunta',
-      ],
-      [t('delanteros')]: [
-        'Delantero Centro',
-        'Extremo Derecho',
-        'Extremo Izquierdo',
-        'Delantero',
-      ],
-    };
-
+    // Usa POSITION_GROUPS definido en data.js (centralizado)
     let html = '';
-    for (const [nombrePosicion, posicionesLista] of Object.entries(
-      posiciones,
-    )) {
+    for (const group of Object.values(POSITION_GROUPS)) {
+      const nombrePosicion = t(group.key);
       const jugadoresPos = jugadoresCompletos.filter((j) =>
-        posicionesLista.includes(j.posicion),
+        group.positions.includes(j.posicion),
       );
       if (jugadoresPos.length === 0) continue;
-      let icon = 'fa-user';
-      if (nombrePosicion.includes('Port') || nombrePosicion.includes('Goal'))
-        icon = 'fa-hand-paper';
-      else if (
-        nombrePosicion.includes('Def') ||
-        nombrePosicion.includes('Back')
-      )
-        icon = 'fa-shield-alt';
-      else if (
-        nombrePosicion.includes('Centro') ||
-        nombrePosicion.includes('Mid')
-      )
-        icon = 'fa-sync-alt';
-      else if (
-        nombrePosicion.includes('Delan') ||
-        nombrePosicion.includes('Forward')
-      )
-        icon = 'fa-bullseye';
-      html += `<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ${icon}"></i></span>${nombrePosicion}</h3><div class="squad-grid">`;
+      html +=
+        '<div class="position-group"><h3 class="position-title"><span class="position-icon"><i class="fas ' +
+        group.icon +
+        '"></i></span>' +
+        nombrePosicion +
+        '</h3><div class="squad-grid">';
       jugadoresPos.forEach((jugador) => {
         html += this.renderJugadorCard(jugador);
       });
-      html += `</div></div>`;
+      html += '</div></div>';
     }
     container.innerHTML = html;
   },
