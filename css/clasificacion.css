@@ -307,26 +307,20 @@ td.pts-col {
 .chart-scroll-wrapper {
   width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Scroll suave y nativo en iOS */
-  padding-bottom: 10px; /* Da un poco de aire a la barra de scroll */
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* Scroll nativo en móviles */
+  padding-bottom: 15px;
 }
 
 .chart-container {
   position: relative;
-  /* Altura fija para evitar que se comprima verticalmente */
-  height: 380px;
+  /* Altura fija ideal para que nunca se vea aplastada */
+  height: 400px;
   width: 100%;
-  /* Ancho mínimo: si la pantalla es menor a 800px, aparecerá el scroll horizontal */
-  min-width: 800px;
 }
 
-/* Ajustes para móviles */
 @media (max-width: 768px) {
   .chart-container {
-    /* En móviles la hacemos un pelín más bajita para que quepa bien en pantalla */
-    height: 320px;
-    /* Obligamos a que sea aún más ancha en móvil si hay muchas jornadas 
-           para que los puntos de la gráfica no se pisen entre ellos */
-    min-width: 900px;
+    height: 350px; /* Un poco más pequeña en móviles */
   }
 }

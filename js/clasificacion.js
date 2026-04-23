@@ -1887,6 +1887,13 @@
       posiciones.push(calcularPosicionJornada(j));
     }
 
+    // --- LA MAGIA PARA EL SCROLL HORIZONTAL ---
+    // Le damos 45px por cada jornada (con un mínimo de 600px).
+    // Si hay muchas jornadas, el contenedor crecerá y aparecerá el scroll lateral.
+    canvas.parentElement.style.minWidth =
+      Math.max(posiciones.length * 45, 600) + 'px';
+    // ------------------------------------------
+
     const mejor = Math.min(...posiciones);
     const peor = Math.max(...posiciones);
     const actual = posiciones[posiciones.length - 1];
