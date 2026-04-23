@@ -297,6 +297,7 @@ const translations = {
     pos_extremo_derecho: 'Extremo Derecho',
     pos_extremo_izquierdo: 'Extremo Izquierdo',
     pos_delantero: 'Delantero',
+    pos_pivote: 'Pivote',
   },
 
   en: {
@@ -591,6 +592,7 @@ const translations = {
     pos_extremo_derecho: 'Right Winger',
     pos_extremo_izquierdo: 'Left Winger',
     pos_delantero: 'Forward',
+    pos_pivote: 'Pivot',
   },
 };
 
@@ -686,6 +688,7 @@ const geoTranslations = {
       espana: 'España',
       estadosunidos: 'Estados Unidos',
       francia: 'Francia',
+      italia: 'Italia',
       niger: 'Níger',
       portugal: 'Portugal',
       reinounido: 'Reino Unido',
@@ -701,6 +704,7 @@ const geoTranslations = {
       espana: 'Spain',
       estadosunidos: 'United States',
       francia: 'France',
+      italia: 'Italy',
       niger: 'Niger',
       portugal: 'Portugal',
       reinounido: 'United Kingdom',
@@ -754,6 +758,8 @@ const geoTranslations = {
       frances: 'Francés',
       ghanes: 'Ghanés',
       ghanesa: 'Ghanesa',
+      italiana: 'Italiana',
+      italiano: 'Italiano',
       nigerino: 'Nigerino',
       nigerina: 'Nigerina',
       nigeriano: 'Nigeriano',
@@ -785,6 +791,8 @@ const geoTranslations = {
       frances: 'French',
       ghanes: 'Ghanaian',
       ghanesa: 'Ghanaian',
+      italiana: 'Italian',
+      italiano: 'Italian',
       nigerino: 'Nigerien',
       nigerina: 'Nigerien',
       nigeriano: 'Nigerian',
