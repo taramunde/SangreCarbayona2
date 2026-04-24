@@ -17,24 +17,24 @@
    ---------------------------------------------------------------- */
 const MEDIOS_CONFIG = {
   lavozdeasturias: {
-    nombre: "La Voz de Asturias",
-    logo: "https://i.postimg.cc/15Qs5NRP/logo_-_La_Voz_de_Asturias.webp",
-    color: "#c0392b",
+    nombre: 'La Voz de Asturias',
+    logo: 'https://i.postimg.cc/15Qs5NRP/logo_-_La_Voz_de_Asturias.webp',
+    color: '#c0392b',
   },
   lanuevaespana: {
-    nombre: "La Nueva España",
-    logo: "https://i.postimg.cc/nV7nJ1J0/logo_-_La_Nueva_España.webp",
-    color: "#004a99",
+    nombre: 'La Nueva España',
+    logo: 'https://i.postimg.cc/nV7nJ1J0/logo_-_La_Nueva_España.webp',
+    color: '#004a99',
   },
   elcomercio: {
-    nombre: "El Comercio",
-    logo: "https://i.postimg.cc/FRkN1yJF/logo_-_El_Comercio.webp",
-    color: "#2980b9",
+    nombre: 'El Comercio',
+    logo: 'https://i.postimg.cc/FRkN1yJF/logo_-_El_Comercio.webp',
+    color: '#2980b9',
   },
   killerasturias: {
-    nombre: "Killer Asturias",
-    logo: "https://i.postimg.cc/7hvDz5g3/logo_-_Killer_Asturias.webp",
-    color: "#e74c3c",
+    nombre: 'Killer Asturias',
+    logo: 'https://i.postimg.cc/7hvDz5g3/logo_-_Killer_Asturias.webp',
+    color: '#e74c3c',
   },
 };
 
@@ -45,41 +45,42 @@ const MEDIOS_CONFIG = {
    ---------------------------------------------------------------- */
 const NOTICIAS_DATA = [
   {
-    medio: "lavozdeasturias",
-    url: "https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/04/05/real-oviedo-pega-mordisco-sevilla/00031775410699936494113.htm",
-    titulo: "El Real Oviedo le pega un mordisco al Sevilla.",
+    medio: 'lavozdeasturias',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/04/23/cronica/00031776976353117623891.htm',
+    titulo: 'Punto guerrero del Real Oviedo ante el Villarreal.',
     descripcion:
-      "Los azules, en un partido poco atractivo, sumaron el segundo triunfo seguido en el Carlos Tartiere gracias a otro gol de Fede Viñas. La permanencia, a siete puntos.",
-    imagen: "https://i.postimg.cc/63ZRBFBV/J-30-LVA.webp",
-    fecha: "05 abril 2026",
+      'Los azules, con mucho orgullo y muchos kilómetros en sus piernas, se repusieron a una de las polémicas de la temporada y se mantienen vivos (1-1) en la lucha por la permanencia. La salvación sigue a seis puntos.',
+    imagen: 'https://i.postimg.cc/mkfcyBsX/J-33-LVA.jpg',
+    fecha: '23 abril 2026',
   },
   {
-    medio: "lanuevaespana",
-    url: "https://www.lne.es/real-oviedo/2026/04/05/victoria-superviviente-oviedio-tira-coraje-128770019.html",
+    medio: 'lanuevaespana',
+    url: 'https://www.lne.es/real-oviedo/2026/04/23/punto-pudieron-tres-oviedo-levanta-129460419.html',
     titulo:
-      "Victoria de superviviente: el Oviedo tira de coraje (1-0) ante el Sevilla.",
+      'Un punto que pudieron ser tres: el Oviedo se levanta con brío y sigue vivo (1-1).',
     descripcion:
-      "Un gol de Fede Viñas concede una victoria allanada por la expulsión de Nianzou en la primera parte.",
-    imagen: "https://i.postimg.cc/NGT7t203/J-30-LNE.webp",
-    fecha: "05 abril 2026",
+      'Los azules, superiores al Villarreal, se reponen del show del VAR y someten a los de Marcelino hasta firmar un empate que supo a poco.',
+    imagen: 'https://i.postimg.cc/kG3Vvqmj/J-33-LNE.webp',
+    fecha: '23 abril 2026',
   },
   {
-    medio: "elcomercio",
-    url: "https://www.elcomercio.es/real-oviedo/real-oviedo-vuelve-ganar-aferra-hilo-vida-20260406225130-nt.html",
-    titulo: "El Real Oviedo vuelve ganar y se aferra al hilo de vida.",
+    medio: 'elcomercio',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-tira-epica-aferrarse-primera-20260423235455-nt.html',
+    titulo: 'El Real Oviedo tira de épica para aferrarse a Primera.',
     descripcion:
-      "Los azules se impusieron por la mínina al Sevilla en un partido de escaso fútbol, pero en el que después de mucho tiempo no cometieron errores.",
-    imagen: "https://i.postimg.cc/wj9k0xgb/J-30-EC.webp",
-    fecha: "05 abril 2026",
+      'Los ovetenses empatan ante el Villarreal en un partido marcado por las decisiones arbitrales polémicas y en el que remontan en la segunda mitad.',
+    imagen: 'https://i.postimg.cc/cCyKB0S5/J-33-EC.jpg',
+    fecha: '23 abril 2026',
   },
   {
-    medio: "killerasturias",
-    url: "https://killerasturias.com/cronicas/la-cronica-fede-vinas-devuelve-algo-de-fe-al-oviedo",
-    titulo: "La Crónica: Fede Viñas devuelve algo de fe al Oviedo.",
+    medio: 'killerasturias',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-se-levanta-ante-el-villarreal-y-mantiene-viva-la-llama',
+    titulo:
+      'La Crónica: El Oviedo se levanta ante el Villarreal y mantiene viva la llama.',
     descripcion:
-      "El uruguayo decidió en el Tartiere con un gol a balón parado en un partido serio de los de Almada, que supieron gestionar la ventaja y resistir con uno más ante un Sevilla insistente hasta el final.",
-    imagen: "https://i.postimg.cc/wjzwZcQ8/J-30-KA.jpg",
-    fecha: "05 abril 2026",
+      'Un gol de Ilyas rescata un punto en el Tartiere tras un penalti polémico y una segunda parte de empuje total ante un rival de Champions.',
+    imagen: 'https://i.postimg.cc/6qJ7ftXP/J-33-KA.jpg',
+    fecha: '23 abril 2026',
   },
 ];
 
@@ -95,12 +96,12 @@ async function fetchOGData(url) {
     const res = await fetch(
       `https://jsonlink.io/api/extract?url=${encodeURIComponent(url)}`,
     );
-    if (!res.ok) throw new Error("jsonlink error");
+    if (!res.ok) throw new Error('jsonlink error');
     const data = await res.json();
     return {
-      titulo: data.title || "",
-      descripcion: data.description || "",
-      imagen: data.images && data.images[0] ? data.images[0] : "",
+      titulo: data.title || '',
+      descripcion: data.description || '',
+      imagen: data.images && data.images[0] ? data.images[0] : '',
     };
   } catch {
     return null;
@@ -108,7 +109,7 @@ async function fetchOGData(url) {
 }
 
 function formatDate(dateStr) {
-  if (!dateStr) return "";
+  if (!dateStr) return '';
   return dateStr;
 }
 
@@ -116,42 +117,42 @@ function formatDate(dateStr) {
    4. RENDER — Página noticias.html
    ---------------------------------------------------------------- */
 async function renderNoticiasPage() {
-  const grid = document.getElementById("noticiasPageGrid");
-  const loading = document.getElementById("noticiasLoading");
-  const emptyState = document.getElementById("noticiasEmpty");
-  const retryBtn = document.getElementById("btnRetry");
+  const grid = document.getElementById('noticiasPageGrid');
+  const loading = document.getElementById('noticiasLoading');
+  const emptyState = document.getElementById('noticiasEmpty');
+  const retryBtn = document.getElementById('btnRetry');
 
   if (!grid) return; // No estamos en noticias.html
 
   // Filtro de medios
-  const filterBtns = document.querySelectorAll(".filter-btn");
+  const filterBtns = document.querySelectorAll('.filter-btn');
   filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+    btn.addEventListener('click', () => {
+      filterBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
       const medio = btn.dataset.medio;
-      const cards = grid.querySelectorAll(".news-card");
+      const cards = grid.querySelectorAll('.news-card');
       cards.forEach((card) => {
-        if (medio === "all" || card.dataset.medio === medio) {
-          card.style.display = "";
+        if (medio === 'all' || card.dataset.medio === medio) {
+          card.style.display = '';
         } else {
-          card.style.display = "none";
+          card.style.display = 'none';
         }
         // Reajustar destacada si se filtra
-        if (medio !== "all") {
-          card.classList.remove("featured");
+        if (medio !== 'all') {
+          card.classList.remove('featured');
         } else {
-          cards[0] && cards[0].classList.add("featured");
+          cards[0] && cards[0].classList.add('featured');
         }
       });
     });
   });
 
   if (retryBtn) {
-    retryBtn.addEventListener("click", () => {
-      emptyState.style.display = "none";
-      loading.style.display = "flex";
-      grid.style.display = "none";
+    retryBtn.addEventListener('click', () => {
+      emptyState.style.display = 'none';
+      loading.style.display = 'flex';
+      grid.style.display = 'none';
       buildCards();
     });
   }
@@ -176,23 +177,23 @@ async function renderNoticiasPage() {
         }),
       );
 
-      grid.innerHTML = "";
+      grid.innerHTML = '';
       items.forEach((n, i) => {
         const medio = MEDIOS_CONFIG[n.medio] || {
           nombre: n.medio,
-          logo: "",
-          color: "#333",
+          logo: '',
+          color: '#333',
         };
-        const card = document.createElement("article");
-        card.className = "news-card" + (i === 0 ? " featured" : "");
+        const card = document.createElement('article');
+        card.className = 'news-card' + (i === 0 ? ' featured' : '');
         card.dataset.medio = n.medio;
-        card.style.animationDelay = i * 0.07 + "s";
+        card.style.animationDelay = i * 0.07 + 's';
 
         card.innerHTML = `
                     <div class="news-card-img-wrap">
                         ${n.imagen ? `<img src="${n.imagen}" alt="${escHTML(n.titulo)}" loading="lazy" onerror="this.src='https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png'">` : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`}
                         <div class="news-card-source-badge">
-                            ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ""}
+                            ${medio.logo ? `<img src="${medio.logo}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
                             <span>${escHTML(medio.nombre)}</span>
                         </div>
                     </div>
@@ -201,7 +202,7 @@ async function renderNoticiasPage() {
                             <span class="news-card-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</span>
                         </div>
                         <h2 class="news-card-title">${escHTML(n.titulo)}</h2>
-                        ${n.descripcion ? `<p class="news-card-desc">${escHTML(n.descripcion)}</p>` : ""}
+                        ${n.descripcion ? `<p class="news-card-desc">${escHTML(n.descripcion)}</p>` : ''}
                         <a class="news-card-link" href="${n.url}" target="_blank" rel="noopener noreferrer">
                             Leer noticia <i class="fas fa-external-link-alt"></i>
                         </a>
@@ -210,12 +211,12 @@ async function renderNoticiasPage() {
         grid.appendChild(card);
       });
 
-      loading.style.display = "none";
-      grid.style.display = "grid";
+      loading.style.display = 'none';
+      grid.style.display = 'grid';
     } catch (err) {
-      console.error("Error cargando noticias:", err);
-      loading.style.display = "none";
-      emptyState.style.display = "flex";
+      console.error('Error cargando noticias:', err);
+      loading.style.display = 'none';
+      emptyState.style.display = 'flex';
     }
   }
 }
@@ -225,7 +226,7 @@ async function renderNoticiasPage() {
    Solo muestra 1 noticia destacada (índice 0) en formato horizontal.
    ---------------------------------------------------------------- */
 async function renderNoticiasWidget() {
-  const grid = document.getElementById("noticiasGrid");
+  const grid = document.getElementById('noticiasGrid');
   if (!grid) return; // No estamos en index.html
 
   // Esqueleto mientras carga
@@ -257,8 +258,8 @@ async function renderNoticiasWidget() {
 
     const medio = MEDIOS_CONFIG[n.medio] || {
       nombre: n.medio,
-      logo: "",
-      color: "#333",
+      logo: '',
+      color: '#333',
     };
 
     grid.innerHTML = `
@@ -271,14 +272,14 @@ async function renderNoticiasWidget() {
                             : `<img src="https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png" alt="Real Oviedo">`
                         }
                         <div class="home-news-source">
-                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ""}
+                            ${medio.logo ? `<img src="${escHTML(medio.logo)}" alt="${escHTML(medio.nombre)}" onerror="this.style.display='none'">` : ''}
                             <span>${escHTML(medio.nombre)}</span>
                         </div>
                     </div>
                     <div class="home-news-featured-body">
                         <p class="home-news-date"><i class="far fa-calendar-alt"></i> ${escHTML(n.fecha)}</p>
                         <h3 class="home-news-featured-title">${escHTML(n.titulo)}</h3>
-                        ${n.descripcion ? `<p class="home-news-featured-desc">${escHTML(n.descripcion)}</p>` : ""}
+                        ${n.descripcion ? `<p class="home-news-featured-desc">${escHTML(n.descripcion)}</p>` : ''}
                         <a class="home-news-link" href="${escHTML(n.url)}" target="_blank" rel="noopener noreferrer">
                             Leer noticia completa <i class="fas fa-external-link-alt"></i>
                         </a>
@@ -287,7 +288,7 @@ async function renderNoticiasWidget() {
             </div>
         `;
   } catch (err) {
-    console.error("Error cargando widget de noticias:", err);
+    console.error('Error cargando widget de noticias:', err);
     grid.innerHTML =
       '<p style="color:#888;padding:16px;font-family:Source Sans 3,sans-serif;">No se pudieron cargar las noticias.</p>';
   }
@@ -297,22 +298,22 @@ async function renderNoticiasWidget() {
    6. UTILIDAD: escape HTML básico
    ---------------------------------------------------------------- */
 function escHTML(str) {
-  if (!str) return "";
+  if (!str) return '';
   return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 /* ----------------------------------------------------------------
    7. INIT — Detecta en qué página estamos y lanza el render
    ---------------------------------------------------------------- */
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("noticiasPageGrid")) {
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('noticiasPageGrid')) {
     renderNoticiasPage();
   }
-  if (document.getElementById("noticiasGrid")) {
+  if (document.getElementById('noticiasGrid')) {
     renderNoticiasWidget();
   }
 });
