@@ -310,7 +310,7 @@ const App = {
     const partidosOviedo = partidos
       .map((p, idx) => ({
         ...p,
-        jornada: Math.floor(idx / 10) + 1,
+        jornada: p.jornada ?? Math.floor(idx / 10) + 1,
         jugado: p.goles1 !== null && p.goles2 !== null,
       }))
       .filter((p) => p.equipo1 === OVIEDO || p.equipo2 === OVIEDO);
