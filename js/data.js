@@ -7345,6 +7345,7 @@ const CLUB_DATA = {
           id: 'borja-sanchez-laborde',
           codigo: 'borja-sanchez-laborde',
           dorsal: 16,
+          posicion: 'Mediocentro',
           enClubDesde: '2024',
           contratoHasta: '2026',
           estado: 'baja',
