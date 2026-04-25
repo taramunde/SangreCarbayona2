@@ -788,36 +788,6 @@ const CLUB_DATA = {
       },
     },
 
-    'borja-sanchez-laborde': {
-      nombre: 'Borja',
-      apellidos: 'Sánchez Laborde',
-      nombreCompleto: 'Borja Sánchez Laborde',
-      apodo: 'Borja Sánchez',
-      posicion: 'Centrocampista',
-      posicionCorta: 'MC',
-      altura: 1.86,
-      nacionalidad: ['Española'],
-      lugarNacimiento: 'Oviedo',
-      provinciaNacimiento: 'Asturias',
-      fechaNacimiento: '1996-02-26',
-      imagen: 'https://i.postimg.cc/v82kfvkD/Borja-Sanchez-PNG.webp',
-      seleccion: {
-        pais: 'España',
-        bandera: 'https://flagcdn.com/16x12/es.webp',
-        datos: [
-          {
-            categoria: 'U16',
-            partidos: 3,
-            goles: 1,
-            asistencias: 0,
-            minutos: 0,
-            amarillas: 0,
-            rojas: 0,
-          },
-        ],
-      },
-    },
-
     // ── DELANTEROS ────────────────────────────────────────────
 
     'javi-martinez': {
@@ -7341,67 +7311,7 @@ const CLUB_DATA = {
             },
           ],
         },
-        {
-          id: 'borja-sanchez-laborde',
-          codigo: 'borja-sanchez-laborde',
-          dorsal: 16,
-          posicion: 'Mediocentro',
-          enClubDesde: '2024',
-          contratoHasta: '2026',
-          estado: 'baja',
-          stats: {
-            partidos: 1,
-            goles: 0,
-            asistencias: 0,
-            minutos: 13,
-            amarillas: 0,
-            rojas: 0,
-            desglose: {
-              'Primera División': {
-                partidos: 1,
-                goles: 0,
-                asistencias: 0,
-                minutos: 13,
-                amarillas: 0,
-                rojas: 0,
-              },
-              'Copa del Rey': {
-                partidos: 0,
-                goles: 0,
-                asistencias: 0,
-                minutos: 0,
-                amarillas: 0,
-                rojas: 0,
-              },
-              'Competición Internacional': {
-                partidos: 0,
-                goles: 0,
-                asistencias: 0,
-                minutos: 0,
-                amarillas: 0,
-                rojas: 0,
-              },
-            },
-          },
-          partidos: [
-            {
-              id: 1,
-              jornada: 1,
-              competicion: 'Primera División',
-              fecha: '2025-08-15',
-              local: 'Villarreal C.F.',
-              visitante: 'Real Oviedo',
-              golesLocal: 2,
-              golesVisitante: 0,
-              resultado: 'D',
-              minutos: 13,
-              goles: 0,
-              asistencias: 0,
-              amarilla: false,
-              roja: false,
-            },
-          ],
-        },
+
         {
           id: 'javi-martinez',
           codigo: 'javi-martinez',
