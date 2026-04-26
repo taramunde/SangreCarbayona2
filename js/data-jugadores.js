@@ -792,6 +792,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'brandon-jose-domingues': {
+    nombre: 'Brandon José',
+    apellidos: 'Dominguès',
+    nombreCompleto: 'Brandon José Dominguès',
+    apodo: 'Brandon Dominguès',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.72,
+    nacionalidad: ['Francesa', 'Portuguesa'],
+    lugarNacimiento: 'Grenoble',
+    provinciaNacimiento: 'Auvernia-Ródano-Alpes',
+    fechaNacimiento: '2000-06-06',
+    imagen: 'https://i.postimg.cc/rpTPMZ0Z/Brandon-Domingues-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'javi-martinez': {
