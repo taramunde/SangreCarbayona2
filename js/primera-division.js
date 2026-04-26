@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function aplicarFiltros() {
     if (!datosTemporada || !datosTemporada.jornadas) return;
-
+    if (!soloOviedo || !filtroRival || !filtroResultado) return; // ← añade esto
     const soloOviedoChecked = soloOviedo.checked;
     const rivalSeleccionado = filtroRival.value;
     const resultadoSeleccionado = filtroResultado.value;
