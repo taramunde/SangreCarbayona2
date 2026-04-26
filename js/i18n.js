@@ -732,10 +732,12 @@ const geoTranslations = {
     es: {
       asturias: 'Asturias',
       regiondelaltooeste: 'Región del Alto Oeste',
+      inglaterra: 'Inglaterra',
     },
     en: {
       asturias: 'Asturias',
       regiondelaltooeste: 'Upper West Region',
+      inglaterra: 'England',
     },
   },
 
