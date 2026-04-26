@@ -4,22 +4,43 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   // Referencias a elementos del DOM
-  const temporadaSelector = document.getElementById('temporadaSelector');
-  const jornadasContainer = document.getElementById('jornadasContainer');
+  const soloOviedo = document.getElementById('soloOviedo');
   const filtroRival = document.getElementById('filtroRival');
   const filtroResultado = document.getElementById('filtroResultado');
-  const soloOviedo = document.getElementById('soloOviedo');
   const btnExpandir = document.getElementById('expandirTodas');
   const btnColapsar = document.getElementById('colapsarTodas');
+  const btnLimpiar = document.getElementById('limpiarFiltros');
   const resumenFiltros = document.getElementById('resumenFiltros');
   const contadorPartidos = document.getElementById('contadorPartidos');
   const noResultados = document.getElementById('noResultados');
-  const btnLimpiar = document.getElementById('limpiarFiltros');
+
+  // Verificar que todos existen
+  const elementosFaltantes = {
+    soloOviedo,
+    filtroRival,
+    filtroResultado,
+    btnExpandir,
+    btnColapsar,
+    btnLimpiar,
+    resumenFiltros,
+    contadorPartidos,
+    noResultados,
+  };
+  Object.entries(elementosFaltantes).forEach(([nombre, el]) => {
+    if (!el) console.error('FALTA ELEMENTO:', nombre);
+  });
 
   // Estado actual
   let temporadaActiva = null;
   let datosTemporada = null;
   let todosLosRivales = new Set();
+
+  // DEBUG temporal
+  console.log('soloOviedo:', document.getElementById('soloOviedo'));
+  console.log('filtroRival:', document.getElementById('filtroRival'));
+  console.log('filtroResultado:', document.getElementById('filtroResultado'));
+  console.log('btnExpandir:', document.getElementById('expandirTodas'));
+  console.log('btnColapsar:', document.getElementById('colapsarTodas'));
 
   // Inicializar
   init();
