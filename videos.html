@@ -134,26 +134,28 @@
 
     <!-- Scripts -->
     <script src="js/i18n.js?nocache=20251231v29"></script>
-    <script src="js/data.js?nocache=20251231v28"></script>
+    <script src="js/data-club.js?nocache=20260426v1"></script>
+    <script src="js/data-historico.js?nocache=20260426v1"></script>
+    <script src="js/data-utils.js?nocache=20260426v1"></script>
     <script src="js/app.js?nocache=20251231v35"></script>
     <script src="js/script.js?nocache=20251231v4"></script>
     <script src="js/main.js?nocache=20251231v6"></script>
 
     <!-- Script para asignar URL actual a botones de compartir página -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener('DOMContentLoaded', function () {
         const pageUrl = encodeURIComponent(window.location.href);
         const shareText = encodeURIComponent(
-          "Resúmenes y mejores momentos del Real Oviedo - Sangre Carbayona",
+          'Resúmenes y mejores momentos del Real Oviedo - Sangre Carbayona',
         );
 
-        document.getElementById("share-whatsapp").href =
+        document.getElementById('share-whatsapp').href =
           `https://api.whatsapp.com/send?text=${shareText} ${pageUrl}`;
-        document.getElementById("share-twitter").href =
+        document.getElementById('share-twitter').href =
           `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
-        document.getElementById("share-telegram").href =
+        document.getElementById('share-telegram').href =
           `https://t.me/share/url?url=${pageUrl}&text=${shareText}`;
-        document.getElementById("share-facebook").href =
+        document.getElementById('share-facebook').href =
           `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
       });
     </script>
