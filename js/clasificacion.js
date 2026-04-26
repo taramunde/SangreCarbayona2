@@ -1367,8 +1367,8 @@
     {
       equipo1: 'C.A. Osasuna',
       equipo2: 'Sevilla F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Rayo Vallecano',
