@@ -1336,6 +1336,7 @@
       equipo2: 'Elche C.F.',
       goles1: 1,
       goles2: 2,
+      jornada: 32,
     },
     {
       equipo1: 'Valencia C.F.',
