@@ -762,6 +762,36 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'borja-sanchez-laborde': {
+    nombre: 'Borja',
+    apellidos: 'Sánchez Laborde',
+    nombreCompleto: 'Borja Sánchez Laborde',
+    apodo: 'Borja Sánchez',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.86,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1996-02-26',
+    imagen: 'https://i.postimg.cc/v82kfvkD/Borja-Sanchez-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U16',
+          partidos: 3,
+          goles: 1,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'javi-martinez': {
