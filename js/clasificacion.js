@@ -1282,6 +1282,69 @@
       goles1: 1,
       goles2: 1,
     },
+
+    // Jornada 33
+    {
+      equipo1: 'Athletic Club',
+      equipo2: 'C.A. Osasuna',
+      goles1: 1,
+      goles2: 0,
+    },
+    {
+      equipo1: 'F.C. Barcelona',
+      equipo2: 'Celta de Vigo',
+      goles1: 1,
+      goles2: 0,
+    },
+    {
+      equipo1: 'Levante U.D.',
+      equipo2: 'Sevilla F.C.',
+      goles1: 2,
+      goles2: 0,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Valencia C.F.',
+      goles1: 1,
+      goles2: 1,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Villarreal C.F.',
+      goles1: 1,
+      goles2: 1,
+    },
+    {
+      equipo1: 'Real Madrid',
+      equipo2: 'Deportivo Alavés',
+      goles1: 2,
+      goles2: 1,
+    },
+    {
+      equipo1: 'Elche C.F.',
+      equipo2: 'Atlético de Madrid',
+      goles1: 3,
+      goles2: 2,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Real Betis',
+      goles1: 2,
+      goles2: 3,
+    },
+    {
+      equipo1: 'Rayo Vallecano',
+      equipo2: 'R.C.D. Espanyol',
+      goles1: 1,
+      goles2: 0,
+    },
+    {
+      equipo1: 'Real Sociedad',
+      equipo2: 'Getafe C.F.',
+      goles1: 0,
+      goles2: 1,
+    },
+
     // Jornada 32
     {
       equipo1: 'Deportivo Alavés',
@@ -1344,67 +1407,7 @@
       goles1: 2,
       goles2: 1,
     },
-    // Jornada 33
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Celta de Vigo',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Sevilla F.C.',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Valencia C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Deportivo Alavés',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Elche C.F.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Real Betis',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Getafe C.F.',
-      goles1: 0,
-      goles2: 1,
-    },
+
     // Jornada 34
     {
       equipo1: 'Deportivo Alavés',
