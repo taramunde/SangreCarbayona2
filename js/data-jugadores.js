@@ -81,6 +81,45 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/XJqXqbps/Narváez_PNG.webp',
   },
 
+  'quentin-jean-pierre-guy-braat': {
+    nombre: 'Quentin Jean-Pierre Guy',
+    apellidos: 'Braat',
+    nombreCompleto: 'Quentin Jean-Pierre Guy Braat',
+    apodo: 'Quentin Braat',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.94,
+    nacionalidad: ['Francesa'],
+    lugarNacimiento: 'Fontainebleau',
+    provinciaNacimiento: 'Isla de Francia',
+    fechaNacimiento: '1997-07-06',
+    imagen: 'https://i.postimg.cc/wxsLQXj0/Quentin-Braat-PNG.webp',
+    seleccion: {
+      pais: 'Francia',
+      bandera: 'https://flagcdn.com/16x12/fr.webp',
+      datos: [
+        {
+          categoria: 'U20',
+          partidos: 1,
+          goles: 3,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U19',
+          partidos: 4,
+          goles: 4,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
