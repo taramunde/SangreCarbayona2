@@ -1361,8 +1361,8 @@
     {
       equipo1: 'R.C.D. Espanyol',
       equipo2: 'Levante U.D.',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'C.A. Osasuna',
