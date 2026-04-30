@@ -1068,7 +1068,7 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/CL5zYC6k/Fonseca-PNG.webp',
     seleccion: {
       pais: 'Uruguay',
-      bandera: 'https://flagcdn.com/16x12/uy.webp Categorías',
+      bandera: 'https://flagcdn.com/16x12/uy.webp',
       datos: [
         {
           categoria: 'Absoluta',
