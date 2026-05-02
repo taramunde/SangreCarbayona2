@@ -48,22 +48,6 @@ CLUB_DATA.temporadas['2025-26'] = {
             amarillas: 3,
             rojas: 0,
           },
-          'Copa del Rey': {
-            partidos: 0,
-            goles: 0,
-            asistencias: 0,
-            minutos: 0,
-            amarillas: 0,
-            rojas: 0,
-          },
-          'Competición Internacional': {
-            partidos: 0,
-            goles: 0,
-            asistencias: 0,
-            minutos: 0,
-            amarillas: 0,
-            rojas: 0,
-          },
         },
       },
       partidos: [
@@ -7453,7 +7437,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       contratoHasta: '2028',
       stats: {
         partidos: 19,
-        goles: 5,
+        goles: 2,
         asistencias: 0,
         minutos: 777,
         amarillas: 3,
