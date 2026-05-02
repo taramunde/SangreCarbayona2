@@ -7453,7 +7453,7 @@ CLUB_DATA.temporadas['2025-26'] = {
           },
           'Copa del Rey (Felipe VI)': {
             partidos: 1,
-            goles: 4,
+            goles: 1,
             asistencias: 0,
             minutos: 64,
             amarillas: 0,
@@ -7617,7 +7617,7 @@ CLUB_DATA.temporadas['2025-26'] = {
           golesVisitante: 2,
           resultado: 'D',
           minutos: 64,
-          goles: 4,
+          goles: 1,
           asistencias: 0,
           amarilla: false,
           roja: false,
