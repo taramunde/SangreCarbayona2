@@ -688,8 +688,8 @@ const App = {
                     <div class="player-number-large">${jugador.dorsal}</div>
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
-                    ${jugador.estado === 'cedido' ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${jugador.cedidoEn ? jugador.cedidoEn : t('cedido') || 'Cedido'}</div>` : ''}
                 </div>
+                ${jugador.estado === 'cedido' ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${jugador.cedidoEn ? jugador.cedidoEn : t('cedido') || 'Cedido'}</div>` : ''}
             </div>
             <div class="player-info-container">
                 <div class="player-name-section">
@@ -1856,24 +1856,32 @@ if (!document.getElementById('cedidoStyles')) {
       font-weight: 700;
     }
     .cedido-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       background: rgba(230, 126, 34, 0.92);
       color: #fff;
       font-size: 0.72em;
       font-weight: 700;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      letter-spacing: 0.03em;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      z-index: 2;
+      margin-top: 10px;
+      text-align: center;
+      white-space: normal;
+      word-break: break-word;
+      max-width: 100%;
+    }
+    @media (max-width: 600px) {
+      .cedido-badge {
+        font-size: 0.68em;
+        padding: 5px 10px;
+        flex-wrap: wrap;
+        line-height: 1.4;
+      }
     }
   `;
   document.head.appendChild(s);
