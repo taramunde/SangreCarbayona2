@@ -689,7 +689,18 @@ const App = {
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
                 </div>
-                ${jugador.estado === 'cedido' ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${jugador.cedidoEn ? jugador.cedidoEn : t('cedido') || 'Cedido'}</div>` : ''}
+                ${
+                  jugador.estado === 'cedido'
+                    ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${
+                        jugador.cedidoEn
+                          ? jugador.cedidoEn
+                              .split(',')
+                              .map((c) => c.trim())
+                              .join('<br>')
+                          : t('cedido') || 'Cedido'
+                      }</div>`
+                    : ''
+                }
             </div>
             <div class="player-info-container">
                 <div class="player-name-section">
