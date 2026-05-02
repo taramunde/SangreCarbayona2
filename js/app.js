@@ -688,6 +688,7 @@ const App = {
                     <div class="player-number-large">${jugador.dorsal}</div>
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
+                    ${jugador.estado === 'cedido' ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${jugador.cedidoEn ? jugador.cedidoEn : t('cedido') || 'Cedido'}</div>` : ''}
                 </div>
             </div>
             <div class="player-info-container">
@@ -918,6 +919,35 @@ const App = {
           <span class="info-label"><i class="far fa-calendar-times"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
           <span class="info-value">${jugador.contratoHasta}</span>
         </div>
+      `;
+    } else if (jugador.estado === 'cedido') {
+      estadoClubHtml = `
+        <div class="info-row cedido-row">
+          <span class="info-label"><i class="fas fa-exchange-alt"></i> ${t('estado') || 'Estado'}</span>
+          <span class="info-value cedido-value">${t('cedido') || 'Cedido'}</span>
+        </div>
+        ${
+          jugador.cedidoEn
+            ? `
+        <div class="info-row">
+          <span class="info-label"><i class="fas fa-shield-alt"></i> ${t('cedido_en') || 'Cedido en'}</span>
+          <span class="info-value">${jugador.cedidoEn}</span>
+        </div>`
+            : ''
+        }
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
+          <span class="info-value">${jugador.enClubDesde}</span>
+        </div>
+        ${
+          jugador.contratoHasta
+            ? `
+        <div class="info-row">
+          <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
+          <span class="info-value">${jugador.contratoHasta}</span>
+        </div>`
+            : ''
+        }
       `;
     } else {
       // Jugador activo - mostrar normal
@@ -1808,6 +1838,42 @@ if (!document.getElementById('porteroStyles')) {
     }
     .chip-conceded i {
       color: #e74c3c !important;
+    }
+  `;
+  document.head.appendChild(s);
+}
+
+/* ===================================
+   ESTILOS PARA JUGADORES CEDIDOS
+   =================================== */
+if (!document.getElementById('cedidoStyles')) {
+  const s = document.createElement('style');
+  s.id = 'cedidoStyles';
+  s.textContent = `
+    .cedido-row .info-value,
+    .cedido-value {
+      color: #e67e22;
+      font-weight: 700;
+    }
+    .cedido-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(230, 126, 34, 0.92);
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2;
     }
   `;
   document.head.appendChild(s);
