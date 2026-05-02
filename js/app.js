@@ -942,11 +942,16 @@ const App = {
         </div>
         ${
           jugador.cedidoEn
-            ? `
+            ? jugador.cedidoEn
+                .split(',')
+                .map(
+                  (club, i) => `
         <div class="info-row">
-          <span class="info-label"><i class="fas fa-shield-alt"></i> ${t('cedido_en') || 'Cedido en'}</span>
-          <span class="info-value">${jugador.cedidoEn}</span>
-        </div>`
+          <span class="info-label">${i === 0 ? `<i class="fas fa-shield-alt"></i> ${t('cedido_en') || 'Cedido en'}` : ''}</span>
+          <span class="info-value">${club.trim()}</span>
+        </div>`,
+                )
+                .join('')
             : ''
         }
         <div class="info-row">
