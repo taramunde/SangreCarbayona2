@@ -691,14 +691,17 @@ const App = {
                 </div>
                 ${
                   jugador.estado === 'cedido'
-                    ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i> ${
+                    ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i><span class="cedido-clubs">${
                         jugador.cedidoEn
                           ? jugador.cedidoEn
                               .split(',')
-                              .map((c) => c.trim())
-                              .join('<br>')
+                              .map(
+                                (c) =>
+                                  `<span class="cedido-club">${c.trim()}</span>`,
+                              )
+                              .join('')
                           : t('cedido') || 'Cedido'
-                      }</div>`
+                      }</span></div>`
                     : ''
                 }
             </div>
@@ -1882,16 +1885,33 @@ if (!document.getElementById('cedidoStyles')) {
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       margin-top: 10px;
       text-align: center;
-      white-space: normal;
-      word-break: break-word;
       max-width: 100%;
+    }
+    .cedido-clubs {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0 6px;
+      justify-content: center;
+    }
+    .cedido-club {
+      white-space: nowrap;
+    }
+    .cedido-club:not(:last-child)::after {
+      content: ',';
+      margin-right: 2px;
     }
     @media (max-width: 600px) {
       .cedido-badge {
         font-size: 0.68em;
         padding: 5px 10px;
-        flex-wrap: wrap;
-        line-height: 1.4;
+      }
+      .cedido-clubs {
+        flex-direction: column;
+        gap: 2px;
+      }
+      .cedido-club:not(:last-child)::after {
+        content: '';
       }
     }
   `;
