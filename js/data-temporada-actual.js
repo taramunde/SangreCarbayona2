@@ -8039,6 +8039,26 @@ CLUB_DATA.temporadas['2025-26'] = {
     },
 
     {
+      id: 'alejandro-suarez-cardero',
+      codigo: 'alejandro-suarez-cardero',
+      dorsal: 27,
+      posicion: 'Mediapunta',
+      enClubDesde: '2020',
+      contratoHasta: '2028',
+      estado: 'cedido',
+      cedidoEn: 'C.D. Mirandés, A.E.K. Larnaca',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
+    {
       id: 'ruben-cano',
       codigo: 'ruben-cano',
       dorsal: 7,
