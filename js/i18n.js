@@ -170,6 +170,8 @@ const translations = {
       'Este jugador finalizó su etapa en el club en la temporada indicada.',
     estado: 'Estado',
     contrato_hasta: 'Contrato hasta',
+    cedido: 'Cedido',
+    cedido_en: 'Cedido en',
 
     // ============================================
     // CALENDARIO
@@ -469,6 +471,8 @@ const translations = {
       'This player ended his time at the club in the indicated season.',
     estado: 'Status',
     contrato_hasta: 'Contract until',
+    cedido: 'On Loan',
+    cedido_en: 'On Loan at',
 
     // ============================================
     // CALENDAR
