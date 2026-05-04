@@ -46,41 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/04/23/cronica/00031776976353117623891.htm',
-    titulo: 'Punto guerrero del Real Oviedo ante el Villarreal.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/03/betis-ovi/00031777829093136246760.htm',
+    titulo: 'El Betis se aprovecha de los fallos del Real Oviedo.',
     descripcion:
-      'Los azules, con mucho orgullo y muchos kilómetros en sus piernas, se repusieron a una de las polémicas de la temporada y se mantienen vivos (1-1) en la lucha por la permanencia. La salvación sigue a seis puntos.',
-    imagen: 'https://i.postimg.cc/mkfcyBsX/J-33-LVA.jpg',
-    fecha: '23 abril 2026',
+      'El Real Oviedo, más cerca que nunca del descenso matemático tras un encuentro en el que no empezó mal y acabó mordiendo el polvo (3-0) por los fallos propios. De nuevo, las acciones polémicas del VAR fueron en contra de los carbayones.',
+    imagen: 'https://i.postimg.cc/d3B2164W/J-34-LVA.webp',
+    fecha: '03 mayo 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/04/23/punto-pudieron-tres-oviedo-levanta-129460419.html',
+    url: 'https://www.lne.es/real-oviedo/2026/05/03/oviedo-elige-pelear-goleada-betis-129803829.html',
     titulo:
-      'Un punto que pudieron ser tres: el Oviedo se levanta con brío y sigue vivo (1-1).',
+      'El Oviedo elige no pelear: goleada ante un Betis que se aprovechó de los errores azules (3-0).',
     descripcion:
-      'Los azules, superiores al Villarreal, se reponen del show del VAR y someten a los de Marcelino hasta firmar un empate que supo a poco.',
-    imagen: 'https://i.postimg.cc/kG3Vvqmj/J-33-LNE.webp',
-    fecha: '23 abril 2026',
+      'Los azules, tibios en ataque y que solo hicieron 4 faltas en todo el partido, conceden atrás para olvidarse de la lucha por la salvación, solo pendiente ahora de certificar matemáticamente.',
+    imagen: 'https://i.postimg.cc/T19Vw0C4/J-34-LNE.jpg',
+    fecha: '03 mayo 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-tira-epica-aferrarse-primera-20260423235455-nt.html',
-    titulo: 'El Real Oviedo tira de épica para aferrarse a Primera.',
+    url: 'https://www.elcomercio.es/real-oviedo/betis-hurga-herida-flojo-real-oviedo-20260503214712-nt.html',
+    titulo: 'El Betis hurga en la herida de un flojo Real Oviedo.',
     descripcion:
-      'Los ovetenses empatan ante el Villarreal en un partido marcado por las decisiones arbitrales polémicas y en el que remontan en la segunda mitad.',
-    imagen: 'https://i.postimg.cc/cCyKB0S5/J-33-EC.jpg',
-    fecha: '23 abril 2026',
+      'Hundido. El conjunto ovetense entró muy bien al encuentro, pero poco a poco se fue diluyendo y acabó goleado por un Betis superior. El árbitro no señaló un penalti sobre Thiago.',
+    imagen: 'https://i.postimg.cc/zvjCB70M/J-34-EC.webp',
+    fecha: '03 mayo 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-se-levanta-ante-el-villarreal-y-mantiene-viva-la-llama',
-    titulo:
-      'La Crónica: El Oviedo se levanta ante el Villarreal y mantiene viva la llama.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-betis-y-el-var-castigan-un-competitivo-oviedo',
+    titulo: 'La Crónica: El Betis y el VAR castigan a un competitivo Oviedo.',
     descripcion:
-      'Un gol de Ilyas rescata un punto en el Tartiere tras un penalti polémico y una segunda parte de empuje total ante un rival de Champions.',
-    imagen: 'https://i.postimg.cc/6qJ7ftXP/J-33-KA.jpg',
-    fecha: '23 abril 2026',
+      'El conjunto azul compitió durante muchos tramos, pero la pegada verdiblanca y varias acciones polémicas marcaron el 3-0 final.',
+    imagen: 'https://i.postimg.cc/QCbQtm0z/J-34-KA.jpg',
+    fecha: '03 mayo 2026',
   },
 ];
 
