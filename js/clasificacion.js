@@ -1391,8 +1391,8 @@
     {
       equipo1: 'Villarreal C.F.',
       equipo2: 'Celta de Vigo',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Real Oviedo',
