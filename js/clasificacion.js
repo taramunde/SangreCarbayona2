@@ -1418,8 +1418,8 @@
     {
       equipo1: 'Real Betis',
       equipo2: 'Real Oviedo',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'Celta de Vigo',
@@ -1430,14 +1430,14 @@
     {
       equipo1: 'R.C.D. Espanyol',
       equipo2: 'Real Madrid',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'Getafe C.F.',
       equipo2: 'Rayo Vallecano',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'Girona F.C.',
