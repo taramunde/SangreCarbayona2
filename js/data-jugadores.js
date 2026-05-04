@@ -1217,7 +1217,7 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/xCTdXSFX/Ilyas-PNG-(3).webp',
     seleccion: {
       pais: 'Marruecos',
-      bandera: '',
+      bandera: 'https://flagcdn.com/16x12/ma.webp',
       datos: [
         {
           categoria: 'U20',
