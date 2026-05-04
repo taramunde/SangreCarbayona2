@@ -8003,20 +8003,212 @@ CLUB_DATA.temporadas['2025-26'] = {
     // DELANTEROS
 
     {
-      id: 'ruben-cano',
-      codigo: 'ruben-cano',
+      id: 'ilyas-chaira-oihi',
+      codigo: 'ilyas-chaira-oihi',
       dorsal: 7,
-      enClubDesde: '2023',
-      contratoHasta: '2025',
+      posicion: 'Extremo Izquierdo',
+      enClubDesde: '2025',
+      contratoHasta: '2028',
       stats: {
-        partidos: 20,
-        goles: 6,
-        asistencias: 8,
-        minutos: 1450,
-        amarillas: 1,
-        rojas: 0,
+        partidos: 33,
+        goles: 8,
+        asistencias: 2,
+        minutos: 2228,
+        amarillas: 2,
+        rojas: 1,
+        desglose: {
+          'Primera División': {
+            partidos: 32,
+            goles: 8,
+            asistencias: 2,
+            minutos: 2207,
+            amarillas: 2,
+            rojas: 1,
+          },
+          'Copa del Rey (Felipe VI)': {
+            partidos: 1,
+            goles: 0,
+            asistencias: 0,
+            minutos: 21,
+            amarillas: 0,
+            rojas: 0,
+          },
+        },
       },
+      partidos: [
+        {
+          id: 1,
+          jornada: 1,
+          competicion: 'Primera División',
+          fecha: '2025-08-15',
+          local: 'Villarreal C.F.',
+          visitante: 'Real Oviedo',
+          golesLocal: 2,
+          golesVisitante: 0,
+          resultado: 'D',
+          minutos: 77,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 2,
+          jornada: 2,
+          competicion: 'Primera División',
+          fecha: '2025-08-24',
+          local: 'Real Oviedo',
+          visitante: 'Real Madrid',
+          golesLocal: 0,
+          golesVisitante: 3,
+          resultado: 'D',
+          minutos: 79,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 3,
+          jornada: 3,
+          competicion: 'Primera División',
+          fecha: '2025-08-30',
+          local: 'Real Oviedo',
+          visitante: 'Real Sociedad',
+          golesLocal: 1,
+          golesVisitante: 0,
+          resultado: 'V',
+          minutos: 31,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 4,
+          jornada: 5,
+          competicion: 'Primera División',
+          fecha: '2025-09-21',
+          local: 'Elche C.F.',
+          visitante: 'Real Oviedo',
+          golesLocal: 1,
+          golesVisitante: 0,
+          resultado: 'D',
+          minutos: 32,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 5,
+          jornada: 6,
+          competicion: 'Primera División',
+          fecha: '2025-09-25',
+          local: 'Real Oviedo',
+          visitante: 'F.C. Barcelona',
+          golesLocal: 1,
+          golesVisitante: 3,
+          resultado: 'D',
+          minutos: 75,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 6,
+          jornada: 7,
+          competicion: 'Primera División',
+          fecha: '2025-09-30',
+          local: 'Valencia C.F.',
+          visitante: 'Real Oviedo',
+          golesLocal: 1,
+          golesVisitante: 2,
+          resultado: 'V',
+          minutos: 13,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+
+        {
+          id: 7,
+          jornada: 8,
+          competicion: 'Primera División',
+          fecha: '2025-10-04',
+          local: 'Real Oviedo',
+          visitante: 'Levante U.D.',
+          golesLocal: 0,
+          golesVisitante: 2,
+          resultado: 'D',
+          minutos: 45,
+          goles: 0,
+          asistencias: 0,
+          amarilla: false,
+          roja: false,
+        },
+        // prettier-ignore
+        { id: 8, jornada: 9, competicion: "Primera División", fecha: "2025-10-17", local: "Real Oviedo", visitante: "R.C.D. Espanyol", golesLocal: 0, golesVisitante: 2, resultado: "D", minutos: 80, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 9, jornada: 10, competicion: "Primera División", fecha: "2025-10-25", local: "Girona F.C.", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 3, resultado: "E", minutos: 76, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 10, jornada: "Primera Ronda", competicion: "Copa del Rey (Felipe VI)", fecha: "2025-10-28", local: "Ourense C.F.", visitante: "Real Oviedo", golesLocal: 4, golesVisitante: 2, resultado: "D", minutos: 21, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 11, jornada: 11, competicion: "Primera División", fecha: "2025-11-03", local: "Real Oviedo", visitante: "C.A. Osasuna", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 69, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 12, jornada: 12, competicion: "Primera División", fecha: "2025-11-09", local: "Athletic Club", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 0, resultado: "D", minutos: 53, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 13, jornada: 13, competicion: "Primera División", fecha: "2025-11-23", local: "Real Oviedo", visitante: "Rayo Vallecano", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 53, goles: 0, asistencias: 0, amarilla: false, roja: true },
+        // prettier-ignore
+        { id: 14, jornada: 15, competicion: "Primera División", fecha: "2025-12-05", local: "Real Oviedo", visitante: "R.C.D. Mallorca", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 66, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 15, jornada: 16, competicion: "Primera División", fecha: "2025-12-14", local: "Sevilla F.C.", visitante: "Real Oviedo", golesLocal: 4, golesVisitante: 0, resultado: "D", minutos: 45, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 16, jornada: 17, competicion: "Primera División", fecha: "2025-12-20", local: "Real Oviedo", visitante: "R.C. Celta de Vigo", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 82, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 17, jornada: 18, competicion: "Primera División", fecha: "2026-01-04", local: "Deportivo Alavés", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 85, goles: 0, asistencias: 1, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 18, jornada: 19, competicion: "Primera División", fecha: "2026-01-10", local: "Real Oviedo", visitante: "Real Betis", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 85, goles: 1, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 19, jornada: 20, competicion: "Primera División", fecha: "2026-01-17", local: "C.A. Osasuna", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 2, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: true, roja: false },
+        // prettier-ignore
+        { id: 20, jornada: 21, competicion: "Primera División", fecha: "2026-01-25", local: "F.C. Barcelona", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 0, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 21, jornada: 22, competicion: "Primera División", fecha: "2026-01-31", local: "Real Oviedo", visitante: "Girona F.C.", golesLocal: 1, golesVisitante: 0, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 22, jornada: 24, competicion: "Primera División", fecha: "2026-02-15", local: "Real Oviedo", visitante: "Athletic Club", golesLocal: 1, golesVisitante: 2, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 23, jornada: 25, competicion: "Primera División", fecha: "2026-02-21", local: "Real Sociedad", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 3, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 24, jornada: 26, competicion: "Primera División", fecha: "2026-02-28", local: "Real Oviedo", visitante: "Atlético de Madrid", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 72, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 25, jornada: 23, competicion: "Primera División", fecha: "2026-03-04", local: "Rayo Vallecano", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 0, resultado: "D", minutos: 45, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 26, jornada: 27, competicion: "Primera División", fecha: "2026-03-09", local: "R.C.D. Espanyol", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 34, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 27, jornada: 28, competicion: "Primera División", fecha: "2026-03-14", local: "Real Oviedo", visitante: "Valencia C.F.", golesLocal: 1, golesVisitante: 0, resultado: "V", minutos: 27, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 28, jornada: 29, competicion: "Primera División", fecha: "2026-03-21", local: "Levante U.D.", visitante: "Real Oviedo", golesLocal: 4, golesVisitante: 2, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 29, jornada: 30, competicion: "Primera División", fecha: "2026-04-05", local: "Real Oviedo", visitante: "Sevilla F.C.", golesLocal: 1, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: true, roja: false },
+        // prettier-ignore
+        { id: 30, jornada: 31, competicion: "Primera División", fecha: "2026-04-12", local: "R.C. Celta de Vigo", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 3, resultado: "V", minutos: 83, goles: 0, asistencias: 1, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 31, jornada: 33, competicion: "Primera División", fecha: "2026-04-23", local: "Real Oviedo", visitante: "Villarreal C.F.", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 3, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 32, jornada: 32, competicion: "Primera División", fecha: "2026-04-26", local: "Real Oviedo", visitante: "Elche C.F.", golesLocal: 1, golesVisitante: 2, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false },
+        // prettier-ignore
+        { id: 33, jornada: 34, competicion: "Primera División", fecha: "2026-05-03", local: "Real Betis", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 0, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+      ],
     },
+
     {
       id: 'luis-garcia',
       codigo: 'luis-garcia',
