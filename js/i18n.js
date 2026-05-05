@@ -740,6 +740,7 @@ const geoTranslations = {
       rumania: 'Rumanía',
       senegal: 'Senegal',
       uruguay: 'Uruguay',
+      venezuela: 'Venezuela',
     },
     en: {
       alemania: 'Germany',
@@ -758,6 +759,7 @@ const geoTranslations = {
       rumania: 'Romania',
       senegal: 'Senegal',
       uruguay: 'Uruguay',
+      venezuela: 'Venezuela',
     },
   },
 
@@ -823,6 +825,7 @@ const geoTranslations = {
       senegalesa: 'Senegalesa',
       uruguayo: 'Uruguayo',
       uruguaya: 'Uruguaya',
+      venezolana: 'Venezolana',
     },
     en: {
       aleman: 'German',
@@ -859,6 +862,7 @@ const geoTranslations = {
       senegalesa: 'Senegalese',
       uruguayo: 'Uruguayan',
       uruguaya: 'Uruguayan',
+      venezolana: 'Venezuelan',
     },
   },
 };
