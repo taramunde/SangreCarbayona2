@@ -1466,8 +1466,8 @@
     {
       equipo1: 'Sevilla F.C.',
       equipo2: 'Real Sociedad',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     // Jornada 35
     {
