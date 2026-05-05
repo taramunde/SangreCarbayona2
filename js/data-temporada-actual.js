@@ -8571,7 +8571,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       id: 'federico-sebastian-vinas-barboza',
       codigo: 'federico-sebastian-vinas-barboza',
       dorsal: 9,
-      posicion: 'Delantero centro',
+      posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2026',
       stats: {
