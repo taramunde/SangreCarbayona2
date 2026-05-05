@@ -176,7 +176,7 @@ const translations = {
     comp_campeonato_de_asturias: 'Campeonato de Asturias',
     comp_campeonato_astur_cantabro: 'Campeonato Astur-Cántabro',
     comp_campeonato_astur_gallego: 'Campeonato Astur-Gallego',
-    comp_amistoso: 'Partido Amistoso',
+    comp_partido_amistoso: 'Partido Amistoso',
     ex_jugador: 'Ex jugador',
     jugador_baja_notice:
       'Este jugador finalizó su etapa en el club en la temporada indicada.',
@@ -483,13 +483,13 @@ const translations = {
     comp_copa_del_rey_felipe_vi: 'Copa del Rey (Felipe VI)',
     comp_copa_rfef: 'R.F.E.F. Cup',
     comp_primera_division: 'First Division',
-    comp_segunda_division: 'Second División',
-    comp_segunda_division_b: 'Second División B',
-    comp_tercera_division: 'Third División',
+    comp_segunda_division: 'Second Division',
+    comp_segunda_division_b: 'Second Division B',
+    comp_tercera_division: 'Third Division',
     comp_campeonato_de_asturias: 'Asturias Championship',
     comp_campeonato_astur_cantabro: 'Asturian-Cantabrian Championship',
     comp_campeonato_astur_gallego: 'Asturian-Galician Championship',
-    comp_amistoso: 'Friendly matches',
+    comp_partido_amistoso: 'Friendly Match',
     ex_jugador: 'Former player',
     jugador_baja_notice:
       'This player ended his time at the club in the indicated season.',
@@ -644,6 +644,20 @@ function translatePosition(positionName) {
       .replace(/ /g, '_');
   return t(key);
 }
+
+function translateCompeticion(nombre) {
+  const key =
+    'comp_' +
+    nombre
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[().]/g, '')
+      .replace(/[-\s]+/g, '_')
+      .replace(/_+/g, '_');
+  return t(key) || nombre;
+}
+window.translateCompeticion = translateCompeticion;
 
 function setLanguage(lang) {
   currentLang = lang;

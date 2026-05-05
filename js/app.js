@@ -1124,7 +1124,7 @@ const App = {
                                 <span class="match-month">${fecha.mesCorto}</span>
                             </div>
                             <div class="match-competition-info">
-                                <span class="competition-name">${compNombre} · ${jorTexto}</span>
+                                <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
                                 <div class="match-teams-result">
                                     <span class="team-home">${partido.local}</span>
                                     <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
@@ -1515,10 +1515,7 @@ const App = {
         for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
           const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : '';
           const goalLabel = h.esPortero ? t('goles_encajados_abrev') : 'G';
-          const compTraducida =
-            comp === 'Competición Internacional'
-              ? t('competicion_internacional')
-              : comp;
+          const compTraducida = translateCompeticion(comp);
           statsHtml += `
           <div class="breakdown-row">
             <span class="breakdown-comp-name">${compTraducida}</span>
@@ -1596,14 +1593,7 @@ const App = {
       listaComps
         .filter((c) => !c.startsWith('Selección'))
         .forEach((c) => {
-          const cKey =
-            'comp_' +
-            c
-              .toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
-              .replace(/\s+/g, '_');
-          const cTraducida = t(cKey) || c;
+          const cTraducida = translateCompeticion(c);
           dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${cTraducida}</option>`;
         });
       dropdownHtml += `</optgroup>`;
