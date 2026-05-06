@@ -891,59 +891,166 @@ const App = {
     const stats = ent.estadisticas || {};
     const gf = stats.golesFavor || 0;
     const gc = stats.golesContra || 0;
+    const pctE = pj > 0 ? Math.round((e2 / pj) * 100) : 0;
+    const pctD = pj > 0 ? Math.round((d / pj) * 100) : 0;
+    const gfPP = pj > 0 ? (gf / pj).toFixed(2) : '0.00';
+    const gcPP = pj > 0 ? (gc / pj).toFixed(2) : '0.00';
 
-    // 1. SECCIÓN: Datos personales (ahora usando el diseño .info-row idéntico a jugadores)
-    let personalHtml = `<div class="overview-section"><h3 class="overview-title">${t('datos_personales') || 'Datos personales'}</h3>`;
+    // Colores dinámicos según % victorias (igual que goles/partido en jugadores)
+    const pctVColor =
+      pctV >= 50 ? '#2ecc71' : pctV >= 33 ? '#f39c12' : '#e74c3c';
+
+    // ── COLUMNA IZQUIERDA: Rendimiento (barras, como jugadores) ──
+    const leftHtml = `
+      <div class="performance-card">
+        <h3 class="card-title">${t('rendimiento') || 'Rendimiento'}</h3>
+        <div class="performance-stats">
+
+          <div class="performance-item">
+            <div class="performance-header">
+              <span>${t('victorias') || 'Victorias'}</span>
+              <span class="performance-value" style="color:${pctVColor}">${pctV}%</span>
+            </div>
+            <div class="performance-bar">
+              <div class="performance-fill" style="width:${pctV}%; background:${pctVColor}"></div>
+            </div>
+          </div>
+
+          <div class="performance-item">
+            <div class="performance-header">
+              <span>${t('empates') || 'Empates'}</span>
+              <span class="performance-value" style="color:#f39c12">${pctE}%</span>
+            </div>
+            <div class="performance-bar">
+              <div class="performance-fill" style="width:${pctE}%; background:#f39c12"></div>
+            </div>
+          </div>
+
+          <div class="performance-item">
+            <div class="performance-header">
+              <span>${t('derrotas') || 'Derrotas'}</span>
+              <span class="performance-value" style="color:#e74c3c">${pctD}%</span>
+            </div>
+            <div class="performance-bar">
+              <div class="performance-fill" style="width:${pctD}%; background:#e74c3c"></div>
+            </div>
+          </div>
+
+          <div class="performance-item">
+            <div class="performance-header">
+              <span>${t('goles_favor_partido') || 'Goles a favor / partido'}</span>
+              <span class="performance-value" style="color:#2ecc71">${gfPP}</span>
+            </div>
+            <div class="performance-bar">
+              <div class="performance-fill" style="width:${Math.min(parseFloat(gfPP) * 33, 100)}%; background:#2ecc71"></div>
+            </div>
+          </div>
+
+          <div class="performance-item">
+            <div class="performance-header">
+              <span>${t('goles_contra_partido') || 'Goles en contra / partido'}</span>
+              <span class="performance-value" style="color:#e74c3c">${gcPP}</span>
+            </div>
+            <div class="performance-bar">
+              <div class="performance-fill" style="width:${Math.min(parseFloat(gcPP) * 33, 100)}%; background:#e74c3c"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>`;
+
+    // ── COLUMNA DERECHA: Información Personal ──────────────────
+    let infoRows = '';
 
     if (fechaNac) {
-      personalHtml += `<div class="info-row"><span class="info-label"><i class="far fa-calendar-alt"></i> ${t('fecha_nacimiento') || 'F. Nacimiento'}</span><span class="info-value">${fechaNac.completa}</span></div>`;
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento') || 'Nacimiento'}</span>
+        <span class="info-value">${fechaNac.completa}</span>
+      </div>`;
     }
     if (ent.lugarNacimiento) {
-      personalHtml += `<div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar_nacimiento') || 'Lugar'}</span><span class="info-value">${ent.lugarNacimiento}${ent.provinciaNacimiento ? ', ' + ent.provinciaNacimiento : ''}</span></div>`;
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
+        <span class="info-value">${translateCity ? translateCity(ent.lugarNacimiento) : ent.lugarNacimiento}</span>
+      </div>`;
+    }
+    if (ent.provinciaNacimiento) {
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="fas fa-map"></i> ${t('provincia') || 'Provincia'}</span>
+        <span class="info-value">${translateProvince ? translateProvince(ent.provinciaNacimiento) : ent.provinciaNacimiento}</span>
+      </div>`;
     }
     if (ent.nacionalidad) {
       const nac = Array.isArray(ent.nacionalidad)
-        ? ent.nacionalidad.join(', ')
-        : ent.nacionalidad;
-      personalHtml += `<div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span><span class="info-value">${nac}</span></div>`;
+        ? ent.nacionalidad
+            .map((n) => (translateNationality ? translateNationality(n) : n))
+            .join(' / ')
+        : translateNationality
+          ? translateNationality(ent.nacionalidad)
+          : ent.nacionalidad;
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
+        <span class="info-value">${nac}</span>
+      </div>`;
+    }
+    if (ent.enClubDesde) {
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En el club desde'}</span>
+        <span class="info-value">${ent.enClubDesde}</span>
+      </div>`;
     }
     if (ent.contratoHasta) {
-      personalHtml += `<div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span><span class="info-value">${ent.contratoHasta}</span></div>`;
+      infoRows += `<div class="info-row">
+        <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
+        <span class="info-value">${ent.contratoHasta}</span>
+      </div>`;
     }
-    personalHtml += `</div>`;
 
-    // 2. SECCIÓN: Estadísticas globales
-    let statsHtml = `<div class="overview-section"><h3 class="overview-title">${t('estadisticas_globales') || 'Estadísticas globales en el club'}</h3>
-      <div class="season-stats-grid" style="margin-bottom:16px">
-        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="season-stat-content"><span class="season-stat-value">${pj}</span><span class="season-stat-label">${t('partidos') || 'PJ'}</span></div></div>
-        <div class="season-stat"><div class="season-stat-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#2ecc71">${v}</span><span class="season-stat-label">${t('victorias') || 'V'}</span></div></div>
-        <div class="season-stat"><div class="season-stat-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#f39c12">${e2}</span><span class="season-stat-label">${t('empates') || 'E'}</span></div></div>
-        <div class="season-stat"><div class="season-stat-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#e74c3c">${d}</span><span class="season-stat-label">${t('derrotas') || 'D'}</span></div></div>
-      </div>
-      <div class="performance-stats">
-        <div class="performance-item">
-          <div class="performance-label"><span>${t('victorias') || 'Victorias'}</span><span>${pctV}%</span></div>
-          <div class="performance-bar"><div class="performance-fill" style="width:${pctV}%; background:#2ecc71"></div></div>
-        </div>
-        <div class="performance-item">
-          <div class="performance-label"><span>${t('empates') || 'Empates'}</span><span>${pj > 0 ? Math.round((e2 / pj) * 100) : 0}%</span></div>
-          <div class="performance-bar"><div class="performance-fill" style="width:${pj > 0 ? Math.round((e2 / pj) * 100) : 0}%; background:#f39c12"></div></div>
-        </div>
-        <div class="performance-item">
-          <div class="performance-label"><span>${t('derrotas') || 'Derrotas'}</span><span>${pj > 0 ? Math.round((d / pj) * 100) : 0}%</span></div>
-          <div class="performance-bar"><div class="performance-fill" style="width:${pj > 0 ? Math.round((d / pj) * 100) : 0}%; background:#e74c3c"></div></div>
+    const rightHtml = `
+      <div class="personal-info-card">
+        <h3 class="card-title">${t('informacion') || 'Información Personal'}</h3>
+        <div class="personal-info-list">
+          ${infoRows}
         </div>
       </div>`;
 
-    if (gf || gc) {
-      statsHtml += `<div class="overview-section" style="margin-top:16px;">
-        <div class="info-row"><span class="info-label"><i class="fas fa-futbol" style="color:#2ecc71"></i> ${t('goles_favor') || 'Goles a favor'}</span><span class="info-value" style="color:#2ecc71;font-weight:700">${gf}</span></div>
-        <div class="info-row"><span class="info-label"><i class="fas fa-shield-alt" style="color:#e74c3c"></i> ${t('goles_contra') || 'Goles en contra'}</span><span class="info-value" style="color:#e74c3c;font-weight:700">${gc}</span></div>
+    // ── FILA DE TOTALES (bajo el grid, igual que disciplina en jugadores) ──
+    const disciplinaHtml = `
+      <div class="disciplinary-card">
+        <h3 class="card-title">${t('estadisticas_temporada') || 'Estadísticas de temporada'}</h3>
+        <div class="cards-display" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="card-item" style="background:#f0fff4; border-color:#2ecc71">
+            <div class="card-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div>
+            <div class="card-info">
+              <span class="card-count" style="color:#2ecc71">${v}</span>
+              <span class="card-label">V</span>
+            </div>
+          </div>
+          <div class="card-item" style="background:#fffbf0; border-color:#f39c12">
+            <div class="card-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div>
+            <div class="card-info">
+              <span class="card-count" style="color:#f39c12">${e2}</span>
+              <span class="card-label">E</span>
+            </div>
+          </div>
+          <div class="card-item" style="background:#fff5f5; border-color:#e74c3c">
+            <div class="card-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div>
+            <div class="card-info">
+              <span class="card-count" style="color:#e74c3c">${d}</span>
+              <span class="card-label">D</span>
+            </div>
+          </div>
+          <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
+            <div class="card-icon" style="color:#001a6e"><i class="fas fa-clipboard-list"></i></div>
+            <div class="card-info">
+              <span class="card-count" style="color:#001a6e">${pj}</span>
+              <span class="card-label">PJ</span>
+            </div>
+          </div>
+        </div>
       </div>`;
-    }
-    statsHtml += `</div>`;
 
-    // 3. SECCIÓN: Selección (Se mantiene igual que antes)
+    // ── SELECCIÓN como entrenador (si tiene) ───────────────────
     let selHtml = '';
     if (
       ent.seleccionComoEntrenador &&
@@ -955,17 +1062,41 @@ const App = {
         sel.bandera && /^[a-z]{2}$/.test(sel.bandera)
           ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
           : sel.bandera || '';
-      selHtml = `<div class="overview-section"><h3 class="overview-title">${t('seleccion_nacional') || 'Selección nacional'}</h3>
-        <div class="career-table-wrapper"><table class="career-table">
-          <thead><tr><th>${t('categoria') || 'Categoría'}</th><th>${t('col_pj') || 'PJ'}</th><th style="color:#2ecc71">V</th><th style="color:#f39c12">E</th><th style="color:#e74c3c">D</th><th>${t('goles_favor') || 'GF'}</th><th>${t('goles_contra') || 'GC'}</th></tr></thead>
-          <tbody>`;
+      selHtml = `
+        <div class="overview-section" style="margin-top:24px;">
+          <h3 class="overview-title">${t('seleccion_nacional') || 'Selección nacional'}</h3>
+          <div class="career-table-wrapper">
+            <table class="career-table">
+              <thead><tr>
+                <th>${t('categoria') || 'Categoría'}</th>
+                <th>${t('col_pj') || 'PJ'}</th>
+                <th style="color:#2ecc71">V</th>
+                <th style="color:#f39c12">E</th>
+                <th style="color:#e74c3c">D</th>
+                <th>GF</th><th>GC</th>
+              </tr></thead>
+              <tbody>`;
       sel.datos.forEach((cat) => {
-        selHtml += `<tr><td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td><td>${cat.partidos || 0}</td><td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td><td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td><td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td><td>${cat.golesFavor || 0}</td><td>${cat.golesContra || 0}</td></tr>`;
+        selHtml += `<tr>
+          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td>
+          <td>${cat.partidos || 0}</td>
+          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
+          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
+          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
+          <td>${cat.golesFavor || 0}</td>
+          <td>${cat.golesContra || 0}</td>
+        </tr>`;
       });
       selHtml += `</tbody></table></div></div>`;
     }
 
-    container.innerHTML = personalHtml + statsHtml + selHtml;
+    container.innerHTML = `
+      <div class="overview-grid">
+        ${leftHtml}
+        ${rightHtml}
+        ${disciplinaHtml}
+      </div>
+      ${selHtml}`;
   },
 
   renderFichaEntrenadorMatches: function (ent, seasonId) {
