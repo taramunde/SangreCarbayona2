@@ -1050,53 +1050,12 @@ const App = {
         </div>
       </div>`;
 
-    // ── SELECCIÓN como entrenador (si tiene) ───────────────────
-    let selHtml = '';
-    if (
-      ent.seleccionComoEntrenador &&
-      ent.seleccionComoEntrenador.datos &&
-      ent.seleccionComoEntrenador.datos.length
-    ) {
-      const sel = ent.seleccionComoEntrenador;
-      const bandera =
-        sel.bandera && /^[a-z]{2}$/.test(sel.bandera)
-          ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
-          : sel.bandera || '';
-      selHtml = `
-        <div class="overview-section" style="margin-top:24px;">
-          <h3 class="overview-title">${t('seleccion_nacional') || 'Selección nacional'}</h3>
-          <div class="career-table-wrapper">
-            <table class="career-table">
-              <thead><tr>
-                <th>${t('categoria') || 'Categoría'}</th>
-                <th>${t('col_pj') || 'PJ'}</th>
-                <th style="color:#2ecc71">V</th>
-                <th style="color:#f39c12">E</th>
-                <th style="color:#e74c3c">D</th>
-                <th>GF</th><th>GC</th>
-              </tr></thead>
-              <tbody>`;
-      sel.datos.forEach((cat) => {
-        selHtml += `<tr>
-          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td>
-          <td>${cat.partidos || 0}</td>
-          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
-          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
-          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
-          <td>${cat.golesFavor || 0}</td>
-          <td>${cat.golesContra || 0}</td>
-        </tr>`;
-      });
-      selHtml += `</tbody></table></div></div>`;
-    }
-
     container.innerHTML = `
       <div class="overview-grid">
         ${leftHtml}
         ${rightHtml}
         ${disciplinaHtml}
-      </div>
-      ${selHtml}`;
+      </div>`;
   },
 
   renderFichaEntrenadorMatches: function (ent, seasonId) {
