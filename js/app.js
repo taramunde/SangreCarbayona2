@@ -607,25 +607,35 @@ const App = {
     temporada.cuerpoTecnico.forEach((miembro) => {
       const entId = miembro.codigo || miembro.id;
       const stats = miembro.estadisticas;
-      const pctV =
-        stats && stats.partidos > 0
-          ? Math.round((stats.victorias / stats.partidos) * 100)
-          : 0;
       const fichaUrl = `ficha-jugador.html?tipo=entrenador&id=${entId}&season=${this.temporadaActiva}`;
-      html += `<article class="coach-card ${miembro.esPrincipal ? 'main-coach' : ''}" style="cursor:pointer" onclick="window.location.href='${fichaUrl}'">
-        <div class="coach-image"><img src="${miembro.imagen}" alt="${miembro.nombre}"></div>
-        <div class="coach-info">
-          <span class="coach-role">${miembro.cargo}</span>
-          <h3 class="coach-name">${miembro.nombre}</h3>
-          ${
-            stats
-              ? `<div class="coach-stats">
-            <div class="coach-stat"><span class="coach-stat-value">${stats.partidos}</span><span class="coach-stat-label">${t('partidos')}</span></div>
-            <div class="coach-stat"><span class="coach-stat-value">${pctV}%</span><span class="coach-stat-label">${t('victorias')}</span></div>
-          </div>`
-              : ''
-          }
-        </div>
+
+      // Usamos el diseño idéntico al de renderJugadorCard (.squad-card)
+      html += `
+      <article class="squad-card ${miembro.esPrincipal ? 'main-coach' : ''}">
+        <a href="${fichaUrl}" class="squad-link">
+          <div class="squad-image">
+            <img src="${miembro.imagen}" alt="${miembro.nombre}">
+            <span class="squad-number" style="font-size: 1.2rem;">DT</span>
+            <div class="squad-overlay"><span class="view-profile">${t('ver_ficha') || 'Ver ficha'}</span></div>
+          </div>
+          <div class="squad-info">
+            <h4 class="squad-name">${miembro.nombre}</h4>
+            <span class="squad-position">${miembro.cargo}</span>
+            <div class="squad-meta">
+              <span><i class="fas fa-clipboard"></i> Cuerpo Técnico</span>
+            </div>
+            <div class="squad-stats">
+              ${
+                stats
+                  ? `
+              <div class="mini-stat"><span class="mini-stat-value">${stats.partidos}</span><span class="mini-stat-label">${t('partidos') || 'PJ'}</span></div>
+              <div class="mini-stat"><span class="mini-stat-value" style="color:#2ecc71">${stats.victorias}</span><span class="mini-stat-label">${t('victorias') || 'V'}</span></div>
+              `
+                  : '<div class="mini-stat"></div>'
+              }
+            </div>
+          </div>
+        </a>
       </article>`;
     });
     container.innerHTML = html;
@@ -882,23 +892,27 @@ const App = {
     const gf = stats.golesFavor || 0;
     const gc = stats.golesContra || 0;
 
-    // Sección de datos personales
-    let personalHtml = `<div class="overview-section"><h3 class="overview-title">${t('datos_personales') || 'Datos personales'}</h3><div class="personal-info-grid">`;
-    if (fechaNac)
-      personalHtml += `<div class="info-item"><span class="info-label">${t('fecha_nacimiento') || 'F. Nacimiento'}</span><span class="info-value">${fechaNac.completa}</span></div>`;
-    if (ent.lugarNacimiento)
-      personalHtml += `<div class="info-item"><span class="info-label">${t('lugar_nacimiento') || 'Lugar'}</span><span class="info-value">${ent.lugarNacimiento}${ent.provinciaNacimiento ? ', ' + ent.provinciaNacimiento : ''}</span></div>`;
+    // 1. SECCIÓN: Datos personales (ahora usando el diseño .info-row idéntico a jugadores)
+    let personalHtml = `<div class="overview-section"><h3 class="overview-title">${t('datos_personales') || 'Datos personales'}</h3>`;
+
+    if (fechaNac) {
+      personalHtml += `<div class="info-row"><span class="info-label"><i class="far fa-calendar-alt"></i> ${t('fecha_nacimiento') || 'F. Nacimiento'}</span><span class="info-value">${fechaNac.completa}</span></div>`;
+    }
+    if (ent.lugarNacimiento) {
+      personalHtml += `<div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar_nacimiento') || 'Lugar'}</span><span class="info-value">${ent.lugarNacimiento}${ent.provinciaNacimiento ? ', ' + ent.provinciaNacimiento : ''}</span></div>`;
+    }
     if (ent.nacionalidad) {
       const nac = Array.isArray(ent.nacionalidad)
         ? ent.nacionalidad.join(', ')
         : ent.nacionalidad;
-      personalHtml += `<div class="info-item"><span class="info-label">${t('nacionalidad') || 'Nacionalidad'}</span><span class="info-value">${nac}</span></div>`;
+      personalHtml += `<div class="info-row"><span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span><span class="info-value">${nac}</span></div>`;
     }
-    if (ent.contratoHasta)
-      personalHtml += `<div class="info-item"><span class="info-label">${t('contrato_hasta') || 'Contrato hasta'}</span><span class="info-value">${ent.contratoHasta}</span></div>`;
-    personalHtml += `</div></div>`;
+    if (ent.contratoHasta) {
+      personalHtml += `<div class="info-row"><span class="info-label"><i class="far fa-calendar-check"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span><span class="info-value">${ent.contratoHasta}</span></div>`;
+    }
+    personalHtml += `</div>`;
 
-    // Estadísticas globales
+    // 2. SECCIÓN: Estadísticas globales
     let statsHtml = `<div class="overview-section"><h3 class="overview-title">${t('estadisticas_globales') || 'Estadísticas globales en el club'}</h3>
       <div class="season-stats-grid" style="margin-bottom:16px">
         <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="season-stat-content"><span class="season-stat-value">${pj}</span><span class="season-stat-label">${t('partidos') || 'PJ'}</span></div></div>
@@ -920,15 +934,16 @@ const App = {
           <div class="performance-bar"><div class="performance-fill" style="width:${pj > 0 ? Math.round((d / pj) * 100) : 0}%; background:#e74c3c"></div></div>
         </div>
       </div>`;
+
     if (gf || gc) {
-      statsHtml += `<div class="personal-info-grid" style="margin-top:12px">
-        <div class="info-item"><span class="info-label">${t('goles_favor') || 'Goles a favor'}</span><span class="info-value" style="color:#2ecc71;font-weight:700">${gf}</span></div>
-        <div class="info-item"><span class="info-label">${t('goles_contra') || 'Goles en contra'}</span><span class="info-value" style="color:#e74c3c;font-weight:700">${gc}</span></div>
+      statsHtml += `<div class="overview-section" style="margin-top:16px;">
+        <div class="info-row"><span class="info-label"><i class="fas fa-futbol" style="color:#2ecc71"></i> ${t('goles_favor') || 'Goles a favor'}</span><span class="info-value" style="color:#2ecc71;font-weight:700">${gf}</span></div>
+        <div class="info-row"><span class="info-label"><i class="fas fa-shield-alt" style="color:#e74c3c"></i> ${t('goles_contra') || 'Goles en contra'}</span><span class="info-value" style="color:#e74c3c;font-weight:700">${gc}</span></div>
       </div>`;
     }
     statsHtml += `</div>`;
 
-    // Selección como entrenador
+    // 3. SECCIÓN: Selección (Se mantiene igual que antes)
     let selHtml = '';
     if (
       ent.seleccionComoEntrenador &&
@@ -942,26 +957,10 @@ const App = {
           : sel.bandera || '';
       selHtml = `<div class="overview-section"><h3 class="overview-title">${t('seleccion_nacional') || 'Selección nacional'}</h3>
         <div class="career-table-wrapper"><table class="career-table">
-          <thead><tr>
-            <th>${t('categoria') || 'Categoría'}</th>
-            <th>${t('col_pj') || 'PJ'}</th>
-            <th style="color:#2ecc71">V</th>
-            <th style="color:#f39c12">E</th>
-            <th style="color:#e74c3c">D</th>
-            <th>${t('goles_favor') || 'GF'}</th>
-            <th>${t('goles_contra') || 'GC'}</th>
-          </tr></thead>
+          <thead><tr><th>${t('categoria') || 'Categoría'}</th><th>${t('col_pj') || 'PJ'}</th><th style="color:#2ecc71">V</th><th style="color:#f39c12">E</th><th style="color:#e74c3c">D</th><th>${t('goles_favor') || 'GF'}</th><th>${t('goles_contra') || 'GC'}</th></tr></thead>
           <tbody>`;
       sel.datos.forEach((cat) => {
-        selHtml += `<tr>
-          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td>
-          <td>${cat.partidos || 0}</td>
-          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
-          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
-          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
-          <td>${cat.golesFavor || 0}</td>
-          <td>${cat.golesContra || 0}</td>
-        </tr>`;
+        selHtml += `<tr><td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td><td>${cat.partidos || 0}</td><td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td><td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td><td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td><td>${cat.golesFavor || 0}</td><td>${cat.golesContra || 0}</td></tr>`;
       });
       selHtml += `</tbody></table></div></div>`;
     }
