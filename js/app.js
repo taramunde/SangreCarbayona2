@@ -605,7 +605,28 @@ const App = {
     const temporada = getTemporada(this.temporadaActiva);
     let html = '';
     temporada.cuerpoTecnico.forEach((miembro) => {
-      html += `<article class="coach-card ${miembro.esPrincipal ? 'main-coach' : ''}"><div class="coach-image"><img src="${miembro.imagen}" alt="${miembro.nombre}"></div><div class="coach-info"><span class="coach-role">${miembro.cargo}</span><h3 class="coach-name">${miembro.nombre}</h3><p class="coach-bio">${miembro.descripcion}</p>${miembro.estadisticas ? `<div class="coach-stats"><div class="coach-stat"><span class="coach-stat-value">${miembro.estadisticas.partidos}</span><span class="coach-stat-label">${t('partidos')}</span></div><div class="coach-stat"><span class="coach-stat-value">${Math.round((miembro.estadisticas.victorias / miembro.estadisticas.partidos) * 100)}%</span><span class="coach-stat-label">${t('victorias')}</span></div></div>` : ''}</div></article>`;
+      const entId = miembro.codigo || miembro.id;
+      const stats = miembro.estadisticas;
+      const pctV =
+        stats && stats.partidos > 0
+          ? Math.round((stats.victorias / stats.partidos) * 100)
+          : 0;
+      const fichaUrl = `ficha-jugador.html?tipo=entrenador&id=${entId}&season=${this.temporadaActiva}`;
+      html += `<article class="coach-card ${miembro.esPrincipal ? 'main-coach' : ''}" style="cursor:pointer" onclick="window.location.href='${fichaUrl}'">
+        <div class="coach-image"><img src="${miembro.imagen}" alt="${miembro.nombre}"></div>
+        <div class="coach-info">
+          <span class="coach-role">${miembro.cargo}</span>
+          <h3 class="coach-name">${miembro.nombre}</h3>
+          ${
+            stats
+              ? `<div class="coach-stats">
+            <div class="coach-stat"><span class="coach-stat-value">${stats.partidos}</span><span class="coach-stat-label">${t('partidos')}</span></div>
+            <div class="coach-stat"><span class="coach-stat-value">${pctV}%</span><span class="coach-stat-label">${t('victorias')}</span></div>
+          </div>`
+              : ''
+          }
+        </div>
+      </article>`;
     });
     container.innerHTML = html;
   },
@@ -613,6 +634,20 @@ const App = {
   renderFichaJugador: function () {
     const container = document.getElementById('fichaJugadorContent');
     if (!container) return;
+
+    // Detectar si es ficha de entrenador
+    let tipoFicha = 'jugador';
+    if (window.PLAYER_DATA_STATIC) {
+      tipoFicha = window.PLAYER_DATA_STATIC.tipo || 'jugador';
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      tipoFicha = urlParams.get('tipo') || 'jugador';
+    }
+    if (tipoFicha === 'entrenador') {
+      this.renderFichaEntrenador();
+      return;
+    }
+
     let jugadorId, seasonId;
     if (window.PLAYER_DATA_STATIC) {
       jugadorId =
@@ -725,6 +760,391 @@ const App = {
     this.renderFichaOverview(jugador);
     this.renderFichaMatches(jugador, seasonId);
     this.renderFichaCareerHistory(jugador, seasonId);
+  },
+
+  // ============================================================
+  // FICHA DE ENTRENADOR
+  // ============================================================
+  renderFichaEntrenador: function () {
+    const container = document.getElementById('fichaJugadorContent');
+    if (!container) return;
+
+    let entrenadorId, seasonId;
+    if (window.PLAYER_DATA_STATIC) {
+      entrenadorId =
+        window.PLAYER_DATA_STATIC.id || window.PLAYER_DATA_STATIC.codigo;
+      seasonId = window.PLAYER_DATA_STATIC.season || CLUB_DATA.temporadaActual;
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      entrenadorId = urlParams.get('id') || urlParams.get('codigo');
+      seasonId = urlParams.get('season') || CLUB_DATA.temporadaActual;
+    }
+
+    // Buscar en cuerpoTecnico de la temporada
+    const temporada = getTemporada(seasonId);
+    const miembro = temporada.cuerpoTecnico
+      ? temporada.cuerpoTecnico.find(
+          (m) =>
+            m.codigo === entrenadorId ||
+            m.id === entrenadorId ||
+            String(m.id) === String(entrenadorId),
+        )
+      : null;
+
+    // Combinar con datos maestros si existen
+    const maestro =
+      (CLUB_DATA.entrenadorMaestro &&
+        CLUB_DATA.entrenadorMaestro[entrenadorId]) ||
+      {};
+    const ent = miembro ? { ...maestro, ...miembro } : maestro;
+
+    if (!ent || (!ent.nombre && !ent.nombreCompleto)) {
+      container.innerHTML =
+        '<p style="text-align:center; padding:40px;">Entrenador no encontrado</p>';
+      return;
+    }
+
+    const nombre = ent.nombreCompleto || ent.nombre || '';
+    document.title = `${nombre} | ${CLUB_DATA.club.nombreCorto}`;
+    this.updateMetaTags(ent);
+    const breadcrumb = document.querySelector('.breadcrumb .current');
+    if (breadcrumb) breadcrumb.textContent = nombre;
+
+    // Calcular edad
+    let edadMostrar = '—';
+    if (ent.fechaNacimiento) {
+      const hoy = new Date();
+      const nac = new Date(ent.fechaNacimiento);
+      let edad = hoy.getFullYear() - nac.getFullYear();
+      if (
+        hoy.getMonth() < nac.getMonth() ||
+        (hoy.getMonth() === nac.getMonth() && hoy.getDate() < nac.getDate())
+      )
+        edad--;
+      edadMostrar = edad;
+    }
+
+    const stats = ent.estadisticas || {};
+    const pj = stats.partidos || 0;
+    const v = stats.victorias || 0;
+    const e2 = stats.empates || 0;
+    const d = stats.derrotas || 0;
+    const pctV = pj > 0 ? Math.round((v / pj) * 100) : 0;
+
+    const pageUrl = window.location.href;
+    const shareText = `${nombre} - ${CLUB_DATA.club.nombreCorto}`;
+    const shareLinks = `
+      <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+
+    container.innerHTML = `
+      <div class="player-photo-container">
+        <div class="player-photo-wrapper">
+          <img src="${ent.imagen || ''}" alt="${nombre}" class="player-main-photo">
+          <div class="player-role-badge"><span>${ent.cargo || t('entrenador') || 'Entrenador'}</span></div>
+        </div>
+      </div>
+      <div class="player-info-container">
+        <div class="player-name-section">
+          <span class="player-position-label">${ent.cargo || ''}</span>
+          <h1 class="player-full-name">${nombre}</h1>
+          <div class="player-social-links">${shareLinks}</div>
+        </div>
+        <div class="player-quick-stats">
+          <div class="quick-stat"><span class="quick-stat-value">${edadMostrar}</span><span class="quick-stat-label">${t('edad') || 'Edad'}</span></div>
+          <div class="quick-stat"><span class="quick-stat-value">${ent.enClubDesde || '—'}</span><span class="quick-stat-label">${t('en_club_desde') || 'En el club'}</span></div>
+        </div>
+        <div class="player-season-stats">
+          <h3 class="stats-title">${t('temporada') || 'Temporada'} ${seasonId.replace('-', '/')}</h3>
+          <div class="season-stats-grid">
+            <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="season-stat-content"><span class="season-stat-value">${pj}</span><span class="season-stat-label">${t('partidos') || 'Partidos'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#2ecc71">${v}</span><span class="season-stat-label">${t('victorias') || 'Victorias'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#f39c12">${e2}</span><span class="season-stat-label">${t('empates') || 'Empates'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#e74c3c">${d}</span><span class="season-stat-label">${t('derrotas') || 'Derrotas'}</span></div></div>
+          </div>
+        </div>
+      </div>`;
+
+    this.renderFichaEntrenadorOverview(ent, pj, v, e2, d, pctV, seasonId);
+    this.renderFichaEntrenadorMatches(ent, seasonId);
+    this.renderFichaEntrenadorCareer(ent);
+  },
+
+  renderFichaEntrenadorOverview: function (ent, pj, v, e2, d, pctV, seasonId) {
+    const container = document.getElementById('tabOverview');
+    if (!container) return;
+
+    const fechaNac = ent.fechaNacimiento
+      ? formatearFecha(ent.fechaNacimiento)
+      : null;
+    const stats = ent.estadisticas || {};
+    const gf = stats.golesFavor || 0;
+    const gc = stats.golesContra || 0;
+
+    // Sección de datos personales
+    let personalHtml = `<div class="overview-section"><h3 class="overview-title">${t('datos_personales') || 'Datos personales'}</h3><div class="personal-info-grid">`;
+    if (fechaNac)
+      personalHtml += `<div class="info-item"><span class="info-label">${t('fecha_nacimiento') || 'F. Nacimiento'}</span><span class="info-value">${fechaNac.completa}</span></div>`;
+    if (ent.lugarNacimiento)
+      personalHtml += `<div class="info-item"><span class="info-label">${t('lugar_nacimiento') || 'Lugar'}</span><span class="info-value">${ent.lugarNacimiento}${ent.provinciaNacimiento ? ', ' + ent.provinciaNacimiento : ''}</span></div>`;
+    if (ent.nacionalidad) {
+      const nac = Array.isArray(ent.nacionalidad)
+        ? ent.nacionalidad.join(', ')
+        : ent.nacionalidad;
+      personalHtml += `<div class="info-item"><span class="info-label">${t('nacionalidad') || 'Nacionalidad'}</span><span class="info-value">${nac}</span></div>`;
+    }
+    if (ent.contratoHasta)
+      personalHtml += `<div class="info-item"><span class="info-label">${t('contrato_hasta') || 'Contrato hasta'}</span><span class="info-value">${ent.contratoHasta}</span></div>`;
+    personalHtml += `</div></div>`;
+
+    // Estadísticas globales
+    let statsHtml = `<div class="overview-section"><h3 class="overview-title">${t('estadisticas_globales') || 'Estadísticas globales en el club'}</h3>
+      <div class="season-stats-grid" style="margin-bottom:16px">
+        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="season-stat-content"><span class="season-stat-value">${pj}</span><span class="season-stat-label">${t('partidos') || 'PJ'}</span></div></div>
+        <div class="season-stat"><div class="season-stat-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#2ecc71">${v}</span><span class="season-stat-label">${t('victorias') || 'V'}</span></div></div>
+        <div class="season-stat"><div class="season-stat-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#f39c12">${e2}</span><span class="season-stat-label">${t('empates') || 'E'}</span></div></div>
+        <div class="season-stat"><div class="season-stat-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#e74c3c">${d}</span><span class="season-stat-label">${t('derrotas') || 'D'}</span></div></div>
+      </div>
+      <div class="performance-stats">
+        <div class="performance-item">
+          <div class="performance-label"><span>${t('victorias') || 'Victorias'}</span><span>${pctV}%</span></div>
+          <div class="performance-bar"><div class="performance-fill" style="width:${pctV}%; background:#2ecc71"></div></div>
+        </div>
+        <div class="performance-item">
+          <div class="performance-label"><span>${t('empates') || 'Empates'}</span><span>${pj > 0 ? Math.round((e2 / pj) * 100) : 0}%</span></div>
+          <div class="performance-bar"><div class="performance-fill" style="width:${pj > 0 ? Math.round((e2 / pj) * 100) : 0}%; background:#f39c12"></div></div>
+        </div>
+        <div class="performance-item">
+          <div class="performance-label"><span>${t('derrotas') || 'Derrotas'}</span><span>${pj > 0 ? Math.round((d / pj) * 100) : 0}%</span></div>
+          <div class="performance-bar"><div class="performance-fill" style="width:${pj > 0 ? Math.round((d / pj) * 100) : 0}%; background:#e74c3c"></div></div>
+        </div>
+      </div>`;
+    if (gf || gc) {
+      statsHtml += `<div class="personal-info-grid" style="margin-top:12px">
+        <div class="info-item"><span class="info-label">${t('goles_favor') || 'Goles a favor'}</span><span class="info-value" style="color:#2ecc71;font-weight:700">${gf}</span></div>
+        <div class="info-item"><span class="info-label">${t('goles_contra') || 'Goles en contra'}</span><span class="info-value" style="color:#e74c3c;font-weight:700">${gc}</span></div>
+      </div>`;
+    }
+    statsHtml += `</div>`;
+
+    // Selección como entrenador
+    let selHtml = '';
+    if (
+      ent.seleccionComoEntrenador &&
+      ent.seleccionComoEntrenador.datos &&
+      ent.seleccionComoEntrenador.datos.length
+    ) {
+      const sel = ent.seleccionComoEntrenador;
+      const bandera =
+        sel.bandera && /^[a-z]{2}$/.test(sel.bandera)
+          ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
+          : sel.bandera || '';
+      selHtml = `<div class="overview-section"><h3 class="overview-title">${t('seleccion_nacional') || 'Selección nacional'}</h3>
+        <div class="career-table-wrapper"><table class="career-table">
+          <thead><tr>
+            <th>${t('categoria') || 'Categoría'}</th>
+            <th>${t('col_pj') || 'PJ'}</th>
+            <th style="color:#2ecc71">V</th>
+            <th style="color:#f39c12">E</th>
+            <th style="color:#e74c3c">D</th>
+            <th>${t('goles_favor') || 'GF'}</th>
+            <th>${t('goles_contra') || 'GC'}</th>
+          </tr></thead>
+          <tbody>`;
+      sel.datos.forEach((cat) => {
+        selHtml += `<tr>
+          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} (${cat.categoria})</span></td>
+          <td>${cat.partidos || 0}</td>
+          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
+          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
+          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
+          <td>${cat.golesFavor || 0}</td>
+          <td>${cat.golesContra || 0}</td>
+        </tr>`;
+      });
+      selHtml += `</tbody></table></div></div>`;
+    }
+
+    container.innerHTML = personalHtml + statsHtml + selHtml;
+  },
+
+  renderFichaEntrenadorMatches: function (ent, seasonId) {
+    const container = document.getElementById('tabMatches');
+    if (!container) return;
+
+    const temporada = getTemporada(seasonId);
+    // Usar partidos del miembro del cuerpo técnico si los tiene, o los del equipo
+    const listaPartidos =
+      ent.partidos && ent.partidos.length
+        ? ent.partidos
+        : temporada.partidosJugados || [];
+
+    if (!listaPartidos.length) {
+      container.innerHTML = `<p style="text-align:center; color:#666; padding:20px;">${t('no_datos_partidos') || 'No hay datos de partidos.'}</p>`;
+      return;
+    }
+
+    const competiciones = [
+      'all',
+      ...new Set(
+        listaPartidos.map((p) => p.competicion || temporada.competicion),
+      ),
+    ];
+    let html = `<div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:20px; gap:10px; flex-wrap:wrap;">
+      <label style="font-weight:600; color:#333;">${t('competicion_label') || 'Competición'}:</label>
+      <select id="filterMatchesCoach" style="padding:8px 12px; border-radius:6px; border:1px solid #ccd6ff; background:#f0f4ff; color:#001a6e; font-weight:600; cursor:pointer; outline:none;">
+        ${competiciones.map((c) => `<option value="${c}">${c === 'all' ? t('todas_competiciones') || 'Todas' : c}</option>`).join('')}
+      </select>
+    </div><div class="matches-list" id="coachMatchList">`;
+
+    listaPartidos.forEach((partido) => {
+      const fecha = formatearFecha(partido.fecha);
+      const resultClass =
+        partido.resultado === 'V'
+          ? 'win'
+          : partido.resultado === 'E'
+            ? 'draw'
+            : 'loss';
+      const compNombre = partido.competicion || temporada.competicion;
+      const jorTexto =
+        typeof partido.jornada === 'number'
+          ? `${t('jornada_abrev') || 'J'}${partido.jornada}`
+          : partido.jornada;
+      html += `<article class="match-detail-card">
+        <div class="match-detail-header">
+          <div class="match-date-badge ${resultClass}">
+            <span class="match-day">${fecha.dia}</span>
+            <span class="match-month">${fecha.mesCorto}</span>
+          </div>
+          <div class="match-competition-info">
+            <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
+            <div class="match-teams-result">
+              <span class="team-home">${partido.local}</span>
+              <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
+              <span class="team-away">${partido.visitante}</span>
+            </div>
+          </div>
+        </div>
+      </article>`;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+
+    // Filtro
+    const filterSelect = document.getElementById('filterMatchesCoach');
+    if (filterSelect) {
+      filterSelect.addEventListener('change', (e) => {
+        const filtro = e.target.value;
+        const cards = container.querySelectorAll('.match-detail-card');
+        cards.forEach((card) => {
+          const comp =
+            card.querySelector('.competition-name')?.textContent || '';
+          card.style.display =
+            filtro === 'all' || comp.includes(filtro) ? '' : 'none';
+        });
+      });
+    }
+  },
+
+  renderFichaEntrenadorCareer: function (ent) {
+    const container = document.getElementById('tabCareer');
+    if (!container) return;
+
+    // Recopilar historial por temporada de todas las temporadas disponibles
+    const historial = [];
+    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      const datosTemp = CLUB_DATA.temporadas[temp.id];
+      if (!datosTemp || !datosTemp.cuerpoTecnico) return;
+      const miembro = datosTemp.cuerpoTecnico.find(
+        (m) =>
+          m.codigo === (ent.codigo || ent.id) ||
+          String(m.id) === String(ent.id),
+      );
+      if (!miembro) return;
+      const stats = miembro.estadisticas || {};
+      historial.push({
+        temporada: temp.nombre,
+        competicion: datosTemp.competicion || '—',
+        cargo: miembro.cargo || ent.cargo || '—',
+        pj: stats.partidos || 0,
+        v: stats.victorias || 0,
+        e: stats.empates || 0,
+        d: stats.derrotas || 0,
+        gf: stats.golesFavor || 0,
+        gc: stats.golesContra || 0,
+      });
+    });
+
+    let html = '';
+
+    if (historial.length) {
+      html += `<div class="career-table-wrapper" style="margin-bottom:32px">
+        <h3 class="overview-title" style="padding:0 0 12px">${t('historial_club') || 'Historial en el club'}</h3>
+        <table class="career-table"><thead><tr>
+          <th>${t('temporada') || 'Temporada'}</th>
+          <th>${t('competicion_label') || 'Competición'}</th>
+          <th>${t('cargo') || 'Cargo'}</th>
+          <th>${t('col_pj') || 'PJ'}</th>
+          <th style="color:#2ecc71">V</th>
+          <th style="color:#f39c12">E</th>
+          <th style="color:#e74c3c">D</th>
+          <th>GF</th><th>GC</th>
+        </tr></thead><tbody>`;
+      historial.forEach((h) => {
+        const pct = h.pj > 0 ? Math.round((h.v / h.pj) * 100) : 0;
+        html += `<tr>
+          <td style="font-weight:700">${h.temporada}</td>
+          <td>${h.competicion}</td>
+          <td>${h.cargo}</td>
+          <td>${h.pj}</td>
+          <td style="color:#2ecc71;font-weight:700">${h.v}</td>
+          <td style="color:#f39c12;font-weight:700">${h.e}</td>
+          <td style="color:#e74c3c;font-weight:700">${h.d}</td>
+          <td>${h.gf}</td><td>${h.gc}</td>
+        </tr>`;
+      });
+      html += `</tbody></table></div>`;
+    } else {
+      html += `<p style="color:#666; padding:20px; text-align:center">${t('sin_historial') || 'No hay historial disponible.'}</p>`;
+    }
+
+    // Selección como entrenador en trayectoria
+    if (
+      ent.seleccionComoEntrenador &&
+      ent.seleccionComoEntrenador.datos &&
+      ent.seleccionComoEntrenador.datos.length
+    ) {
+      const sel = ent.seleccionComoEntrenador;
+      const bandera =
+        sel.bandera && /^[a-z]{2}$/.test(sel.bandera)
+          ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
+          : sel.bandera || '';
+      html += `<div class="career-table-wrapper">
+        <h3 class="overview-title" style="padding:0 0 12px">${t('seleccion_nacional') || 'Selección nacional'}</h3>
+        <table class="career-table"><thead><tr>
+          <th>${t('categoria') || 'Categoría'}</th>
+          <th>${t('col_pj') || 'PJ'}</th>
+          <th style="color:#2ecc71">V</th><th style="color:#f39c12">E</th><th style="color:#e74c3c">D</th>
+          <th>GF</th><th>GC</th>
+        </tr></thead><tbody>`;
+      sel.datos.forEach((cat) => {
+        html += `<tr>
+          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} — ${cat.categoria}</span></td>
+          <td>${cat.partidos || 0}</td>
+          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
+          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
+          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
+          <td>${cat.golesFavor || 0}</td>
+          <td>${cat.golesContra || 0}</td>
+        </tr>`;
+      });
+      html += `</tbody></table></div>`;
+    }
+
+    container.innerHTML =
+      html ||
+      `<p style="color:#666; padding:20px; text-align:center">${t('sin_historial') || 'No hay historial disponible.'}</p>`;
   },
 
   updateMetaTags: function (jugador) {
