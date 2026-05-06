@@ -10092,19 +10092,46 @@ CLUB_DATA.temporadas['2025-26'] = {
 
   cuerpoTecnico: [
     {
-      id: 1,
-      nombre: 'Carlos Mendoza',
+      id: 'veljko-paunovic',
+      codigo: 'veljko-paunovic',
+      nombre: 'Veljko Paunović',
       cargo: 'Entrenador Principal',
-      imagen: 'https://picsum.photos/seed/coach1/400/450',
-      descripcion:
-        'Licenciado en Educación Física con más de 15 años de experiencia.',
+      imagen: 'https: //i.postimg.cc/9FK0fKhp/Paunovic-(3)-(entrenador).webp',
       esPrincipal: true,
+      enClubDesde: '2025',
+      contratoHasta: '2026',
+      estado: 'baja',
       estadisticas: {
-        partidos: 89,
-        victorias: 46,
-        empates: 22,
-        derrotas: 21,
+        partidos: 1,
+        victorias: 0,
+        empates: 0,
+        derrotas: 1,
+        golesFavor: 0,
+        golesContra: 2,
+        desglose: {
+          'Primera División': {
+            partidos: 1,
+            victorias: 0,
+            empates: 0,
+            derrotas: 1,
+            golesFavor: 0,
+            golesContra: 2,
+          },
+        },
       },
+      partidos: [
+        {
+          id: 1,
+          jornada: 1,
+          competicion: 'Primera División',
+          fecha: '2025-08-15',
+          local: 'Villarreal C.F.',
+          visitante: 'Real Oviedo',
+          golesLocal: 2,
+          golesVisitante: 0,
+          resultado: 'D',
+        },
+      ],
     },
     {
       id: 2,
