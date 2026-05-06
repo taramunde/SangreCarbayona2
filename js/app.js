@@ -981,16 +981,22 @@ const App = {
       </div>`;
     }
     if (ent.nacionalidad) {
-      const nac = Array.isArray(ent.nacionalidad)
+      const nacs = Array.isArray(ent.nacionalidad)
         ? ent.nacionalidad
-            .map((n) => (translateNationality ? translateNationality(n) : n))
-            .join(' / ')
-        : translateNationality
-          ? translateNationality(ent.nacionalidad)
-          : ent.nacionalidad;
-      infoRows += `<div class="info-row">
-        <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
-        <span class="info-value">${nac}</span>
+        : [ent.nacionalidad];
+      nacs.forEach((n) => {
+        const nac = translateNationality ? translateNationality(n) : n;
+        infoRows += `<div class="info-row">
+          <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
+          <span class="info-value">${nac}</span>
+        </div>`;
+      });
+    }
+    if (ent.estado === 'baja') {
+      const estadoLabel = t('ex_entrenador') || 'Ex entrenador';
+      infoRows += `<div class="info-row" style="background:#fff5f5; border-radius:6px; border-left:3px solid #e74c3c; padding-left:10px;">
+        <span class="info-label" style="color:#e74c3c"><i class="fas fa-sign-out-alt"></i> ${t('estado') || 'Estado'}</span>
+        <span class="info-value" style="color:#e74c3c; font-weight:700">${estadoLabel}</span>
       </div>`;
     }
     if (ent.enClubDesde) {
