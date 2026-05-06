@@ -1384,9 +1384,13 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+}; // fin jugadoresMaestro
 
-  // ── ENTRENADORES ────────────────────────────────────────────
+// ── ENTRENADORES ────────────────────────────────────────────
+// Datos fijos del cuerpo técnico (equivalente a jugadoresMaestro para entrenadores).
+// La app los busca en CLUB_DATA.entrenadorMaestro[codigo].
 
+CLUB_DATA.entrenadorMaestro = {
   'veljko-paunovic': {
     nombre: 'Veljko',
     apellidos: 'Paunović',
@@ -1420,6 +1424,6 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
-}; // fin jugadoresMaestro
+};
 
 window.CLUB_DATA = CLUB_DATA;

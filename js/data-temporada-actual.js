@@ -10096,7 +10096,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       codigo: 'veljko-paunovic',
       nombre: 'Veljko Paunović',
       cargo: 'Entrenador Principal',
-      imagen: 'https: //i.postimg.cc/9FK0fKhp/Paunovic-(3)-(entrenador).webp',
+      imagen: 'https://i.postimg.cc/9FK0fKhp/Paunovic-(3)-(entrenador).webp',
       esPrincipal: true,
       enClubDesde: '2025',
       contratoHasta: '2026',
