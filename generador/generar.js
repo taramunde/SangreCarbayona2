@@ -104,9 +104,81 @@ Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
   console.log(`  ✔ ${fileName}  (datos de ${temporadaId})`);
 });
 
-// 8. Borrar fichas antiguas con formato "codigo-temporada.html"
-//    que ya no se usan (ej: javi-martinez-2024-25.html)
-const slugsValidos = new Set(Object.keys(mapaJugadores));
+// ===================================
+// 7b. Generar fichas de ENTRENADORES
+// ===================================
+//
+// Un entrenador puede aparecer en varias temporadas.
+// Recorremos de MÁS ANTIGUA a MÁS RECIENTE para que la
+// temporada más reciente gane (igual que con jugadores).
+// El slug lleva el prefijo "entrenador-" para evitar
+// colisiones con jugadores que tengan el mismo nombre.
+
+const mapaEntrenadores = {}; // slug → { miembro, temporadaId }
+
+[...temporadasOrdenadas].reverse().forEach((temporadaId) => {
+  const temporada = CLUB_DATA.temporadas[temporadaId];
+  if (!temporada || !temporada.cuerpoTecnico) return;
+
+  temporada.cuerpoTecnico.forEach((miembro) => {
+    // Usar codigo si existe, si no construir slug desde el nombre
+    let entId = miembro.codigo || miembro.id;
+    if (!entId || typeof entId === 'number') {
+      // Generar slug desde el nombre
+      entId = miembro.nombre
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
+    const slug = `entrenador-${entId}`;
+    mapaEntrenadores[slug] = { miembro, temporadaId };
+  });
+});
+
+let contadorEnt = 0;
+
+Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
+  const fileName = `${slug}.html`;
+  const filePath = path.join(outputDir, fileName);
+  const temporadaNombre = temporadaId.replace('-', '/');
+
+  // Fusionar con datos maestros si existen
+  const entId = miembro.codigo || miembro.id;
+  const maestro =
+    (CLUB_DATA.entrenadorMaestro &&
+      CLUB_DATA.entrenadorMaestro[String(entId)]) ||
+    {};
+  const nombre = maestro.nombreCompleto || miembro.nombre || '';
+  const imagen = maestro.imagen || miembro.imagen || '';
+
+  let htmlContent = template
+    .replace(/\{\{NOMBRE\}\}/g, nombre)
+    .replace(/\{\{IMAGEN\}\}/g, imagen)
+    .replace(/\{\{ID\}\}/g, String(entId))
+    .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
+    .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
+    .replace(/\{\{POSICION\}\}/g, miembro.cargo || 'Entrenador')
+    .replace(/\{\{SLUG\}\}/g, slug);
+
+  // Inyectar tipo=entrenador en el PLAYER_DATA_STATIC
+  htmlContent = htmlContent.replace(
+    'window.PLAYER_DATA_STATIC = {',
+    "window.PLAYER_DATA_STATIC = {\n        tipo: 'entrenador',",
+  );
+
+  fs.writeFileSync(filePath, htmlContent);
+  contadorEnt++;
+  console.log(`  ✔ ${fileName}  [entrenador] (datos de ${temporadaId})`);
+});
+
+// 8. Borrar fichas antiguas que ya no tienen jugador/entrenador activo
+const slugsValidos = new Set([
+  ...Object.keys(mapaJugadores),
+  ...Object.keys(mapaEntrenadores),
+]);
 const archivosExistentes = fs.readdirSync(outputDir);
 let borrados = 0;
 
@@ -121,5 +193,5 @@ archivosExistentes.forEach((archivo) => {
 });
 
 console.log(
-  `\n✅ ¡ÉXITO! ${contador} fichas generadas, ${borrados} fichas antiguas eliminadas.`,
+  `\n✅ ¡ÉXITO! ${contador} fichas de jugadores + ${contadorEnt} fichas de entrenadores generadas, ${borrados} fichas antiguas eliminadas.`,
 );
