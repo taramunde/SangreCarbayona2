@@ -611,7 +611,7 @@ const App = {
 
       // Usamos el diseño idéntico al de renderJugadorCard (.squad-card)
       html += `
-      <article class="squad-card ${miembro.esPrincipal ? 'main-coach' : ''}">
+      <article class="squad-card">
         <a href="${fichaUrl}" class="squad-link">
           <div class="squad-image">
             <img src="${miembro.imagen}" alt="${miembro.nombre}">
@@ -622,14 +622,14 @@ const App = {
             <h4 class="squad-name">${miembro.nombre}</h4>
             <span class="squad-position">${miembro.cargo}</span>
             <div class="squad-meta">
-              <span><i class="fas fa-clipboard"></i> Cuerpo Técnico</span>
+              <span><i class="fas fa-clipboard"></i> ${t('cuerpo_tecnico') || 'Cuerpo Técnico'}</span>
             </div>
             <div class="squad-stats">
               ${
                 stats
                   ? `
               <div class="mini-stat"><span class="mini-stat-value">${stats.partidos}</span><span class="mini-stat-label">${t('partidos') || 'PJ'}</span></div>
-              <div class="mini-stat"><span class="mini-stat-value" style="color:#2ecc71">${stats.victorias}</span><span class="mini-stat-label">${t('victorias') || 'V'}</span></div>
+              <div class="mini-stat"><span class="mini-stat-value">${stats.victorias}</span><span class="mini-stat-label">${t('victorias') || 'V'}</span></div>
               `
                   : '<div class="mini-stat"></div>'
               }
@@ -869,9 +869,9 @@ const App = {
           <h3 class="stats-title">${t('temporada') || 'Temporada'} ${seasonId.replace('-', '/')}</h3>
           <div class="season-stats-grid">
             <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clipboard-list"></i></div><div class="season-stat-content"><span class="season-stat-value">${pj}</span><span class="season-stat-label">${t('partidos') || 'Partidos'}</span></div></div>
-            <div class="season-stat"><div class="season-stat-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#2ecc71">${v}</span><span class="season-stat-label">${t('victorias') || 'Victorias'}</span></div></div>
-            <div class="season-stat"><div class="season-stat-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#f39c12">${e2}</span><span class="season-stat-label">${t('empates') || 'Empates'}</span></div></div>
-            <div class="season-stat"><div class="season-stat-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div><div class="season-stat-content"><span class="season-stat-value" style="color:#e74c3c">${d}</span><span class="season-stat-label">${t('derrotas') || 'Derrotas'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-trophy"></i></div><div class="season-stat-content"><span class="season-stat-value">${v}</span><span class="season-stat-label">${t('victorias') || 'Victorias'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-equals"></i></div><div class="season-stat-content"><span class="season-stat-value">${e2}</span><span class="season-stat-label">${t('empates') || 'Empates'}</span></div></div>
+            <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-times-circle"></i></div><div class="season-stat-content"><span class="season-stat-value">${d}</span><span class="season-stat-label">${t('derrotas') || 'Derrotas'}</span></div></div>
           </div>
         </div>
       </div>`;
