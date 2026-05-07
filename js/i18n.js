@@ -319,6 +319,16 @@ const translations = {
     pos_extremo_izquierdo: 'Extremo Izquierdo',
     pos_delantero: 'Delantero',
     pos_pivote: 'Pivote',
+
+    // ============================================
+    // CARGOS CUERPO TÉCNICO
+    // ============================================
+    cargo_entrenador_principal: 'Entrenador Principal',
+    cargo_segundo_entrenador: 'Segundo Entrenador',
+    cargo_preparador_fisico: 'Preparador Físico',
+    cargo_entrenador_porteros: 'Entrenador de Porteros',
+    cargo_analista: 'Analista',
+    cargo_medico: 'Médico',
   },
 
   en: {
@@ -635,6 +645,16 @@ const translations = {
     pos_extremo_izquierdo: 'Left Winger',
     pos_delantero: 'Forward',
     pos_pivote: 'Pivot',
+
+    // ============================================
+    // COACHING STAFF ROLES
+    // ============================================
+    cargo_entrenador_principal: 'Head Coach',
+    cargo_segundo_entrenador: 'Assistant Coach',
+    cargo_preparador_fisico: 'Fitness Coach',
+    cargo_entrenador_porteros: 'Goalkeeping Coach',
+    cargo_analista: 'Analyst',
+    cargo_medico: 'Team Doctor',
   },
 };
 
@@ -656,6 +676,19 @@ function translatePosition(positionName) {
       .replace(/ /g, '_');
   return t(key);
 }
+
+function translateCargo(cargo) {
+  if (!cargo) return '';
+  const key =
+    'cargo_' +
+    cargo
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ /g, '_');
+  return t(key) !== key ? t(key) : cargo;
+}
+window.translateCargo = translateCargo;
 
 function translateCompeticion(nombre) {
   const key =

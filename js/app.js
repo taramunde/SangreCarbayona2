@@ -620,7 +620,7 @@ const App = {
           </div>
           <div class="squad-info">
             <h4 class="squad-name">${miembro.nombre}</h4>
-            <span class="squad-position">${miembro.cargo}</span>
+            <span class="squad-position">${translateCargo(miembro.cargo)}</span>
             <div class="squad-meta">
               <span><i class="fas fa-clipboard"></i> ${t('cuerpo_tecnico') || 'Cuerpo Técnico'}</span>
             </div>
@@ -852,12 +852,12 @@ const App = {
       <div class="player-photo-container">
         <div class="player-photo-wrapper">
           <img src="${ent.imagen || ''}" alt="${nombre}" class="player-main-photo">
-          <div class="player-role-badge"><span>${ent.cargo || t('entrenador') || 'Entrenador'}</span></div>
+          <div class="player-role-badge"><span>${translateCargo(ent.cargo) || t('entrenador')}</span></div>
         </div>
       </div>
       <div class="player-info-container">
         <div class="player-name-section">
-          <span class="player-position-label">${ent.cargo || ''}</span>
+          <span class="player-position-label">${translateCargo(ent.cargo) || ''}</span>
           <h1 class="player-full-name">${nombre}</h1>
           <div class="player-social-links">${shareLinks}</div>
         </div>
@@ -1185,7 +1185,12 @@ const App = {
         historialClub.push({
           temporada: temp.nombre,
           competicion: compNombre,
-          cargo: miembro.cargo || ent.cargo || '—',
+          cargo: translateCargo
+            ? translateCargo(miembro.cargo || ent.cargo) ||
+              miembro.cargo ||
+              ent.cargo ||
+              '—'
+            : miembro.cargo || ent.cargo || '—',
           pj: statsAMostrar.partidos || 0,
           v: statsAMostrar.victorias || 0,
           e: statsAMostrar.empates || 0,
