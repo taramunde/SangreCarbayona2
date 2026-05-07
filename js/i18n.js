@@ -179,6 +179,7 @@ const translations = {
     comp_partido_amistoso: 'Partido Amistoso',
     ex_jugador: 'Ex jugador',
     ex_entrenador: 'Ex entrenador',
+    cuerpo_tecnico: 'Cuerpo Técnico',
     jugador_baja_notice:
       'Este jugador finalizó su etapa en el club en la temporada indicada.',
     estado: 'Estado',
@@ -496,6 +497,7 @@ const translations = {
     comp_partido_amistoso: 'Friendly Match',
     ex_jugador: 'Former player',
     ex_entrenador: 'Former coach',
+    cuerpo_tecnico: 'Technical Staff',
     jugador_baja_notice:
       'This player ended his time at the club in the indicated season.',
     estado: 'Status',
