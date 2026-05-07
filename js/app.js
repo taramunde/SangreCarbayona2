@@ -903,12 +903,12 @@ const App = {
     // ── COLUMNA IZQUIERDA: Rendimiento (barras, como jugadores) ──
     const leftHtml = `
       <div class="performance-card">
-        <h3 class="card-title">${t('rendimiento') || 'Rendimiento'}</h3>
+        <h3 class="card-title">${t('rendimiento')}</h3>
         <div class="performance-stats">
 
           <div class="performance-item">
             <div class="performance-header">
-              <span>${t('victorias') || 'Victorias'}</span>
+              <span>${t('victorias')}</span>
               <span class="performance-value" style="color:${pctVColor}">${pctV}%</span>
             </div>
             <div class="performance-bar">
@@ -918,7 +918,7 @@ const App = {
 
           <div class="performance-item">
             <div class="performance-header">
-              <span>${t('empates') || 'Empates'}</span>
+              <span>${t('empates')}</span>
               <span class="performance-value" style="color:#f39c12">${pctE}%</span>
             </div>
             <div class="performance-bar">
@@ -928,7 +928,7 @@ const App = {
 
           <div class="performance-item">
             <div class="performance-header">
-              <span>${t('derrotas') || 'Derrotas'}</span>
+              <span>${t('derrotas')}</span>
               <span class="performance-value" style="color:#e74c3c">${pctD}%</span>
             </div>
             <div class="performance-bar">
@@ -938,7 +938,7 @@ const App = {
 
           <div class="performance-item">
             <div class="performance-header">
-              <span>${t('goles_favor_partido') || 'Goles a favor / partido'}</span>
+              <span>${t('goles_favor_partido')}</span>
               <span class="performance-value" style="color:#2ecc71">${gfPP}</span>
             </div>
             <div class="performance-bar">
@@ -948,7 +948,7 @@ const App = {
 
           <div class="performance-item">
             <div class="performance-header">
-              <span>${t('goles_contra_partido') || 'Goles en contra / partido'}</span>
+              <span>${t('goles_contra_partido')}</span>
               <span class="performance-value" style="color:#e74c3c">${gcPP}</span>
             </div>
             <div class="performance-bar">
@@ -964,19 +964,19 @@ const App = {
 
     if (fechaNac) {
       infoRows += `<div class="info-row">
-        <span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento') || 'Nacimiento'}</span>
+        <span class="info-label"><i class="far fa-calendar"></i> ${t('nacimiento')}</span>
         <span class="info-value">${fechaNac.completa}</span>
       </div>`;
     }
     if (ent.lugarNacimiento) {
       infoRows += `<div class="info-row">
-        <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar') || 'Lugar'}</span>
+        <span class="info-label"><i class="fas fa-map-marker-alt"></i> ${t('lugar')}</span>
         <span class="info-value">${translateCity ? translateCity(ent.lugarNacimiento) : ent.lugarNacimiento}</span>
       </div>`;
     }
     if (ent.provinciaNacimiento) {
       infoRows += `<div class="info-row">
-        <span class="info-label"><i class="fas fa-map"></i> ${t('provincia') || 'Provincia'}</span>
+        <span class="info-label"><i class="fas fa-map"></i> ${t('provincia')}</span>
         <span class="info-value">${translateProvince ? translateProvince(ent.provinciaNacimiento) : ent.provinciaNacimiento}</span>
       </div>`;
     }
@@ -987,34 +987,33 @@ const App = {
       nacs.forEach((n) => {
         const nac = translateNationality ? translateNationality(n) : n;
         infoRows += `<div class="info-row">
-          <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad') || 'Nacionalidad'}</span>
+          <span class="info-label"><i class="fas fa-flag"></i> ${t('nacionalidad')}</span>
           <span class="info-value">${nac}</span>
         </div>`;
       });
     }
     if (ent.estado === 'baja') {
-      const estadoLabel = t('ex_entrenador') || 'Ex entrenador';
       infoRows += `<div class="info-row" style="background:#fff5f5; border-radius:6px; border-left:3px solid #e74c3c; padding-left:10px;">
-        <span class="info-label" style="color:#e74c3c"><i class="fas fa-sign-out-alt"></i> ${t('estado') || 'Estado'}</span>
-        <span class="info-value" style="color:#e74c3c; font-weight:700">${estadoLabel}</span>
+        <span class="info-label" style="color:#e74c3c"><i class="fas fa-sign-out-alt"></i> ${t('estado')}</span>
+        <span class="info-value" style="color:#e74c3c; font-weight:700">${t('ex_entrenador')}</span>
       </div>`;
     }
     if (ent.enClubDesde) {
       infoRows += `<div class="info-row">
-        <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En el club desde'}</span>
+        <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde')}</span>
         <span class="info-value">${ent.enClubDesde}</span>
       </div>`;
     }
     if (ent.contratoHasta) {
       infoRows += `<div class="info-row">
-        <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
+        <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta')}</span>
         <span class="info-value">${ent.contratoHasta}</span>
       </div>`;
     }
 
     const rightHtml = `
       <div class="personal-info-card">
-        <h3 class="card-title">${t('informacion') || 'Información Personal'}</h3>
+        <h3 class="card-title">${t('informacion')}</h3>
         <div class="personal-info-list">
           ${infoRows}
         </div>
@@ -1060,7 +1059,6 @@ const App = {
       <div class="overview-grid">
         ${leftHtml}
         ${rightHtml}
-        ${disciplinaHtml}
       </div>`;
   },
 

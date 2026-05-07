@@ -178,10 +178,14 @@ const translations = {
     comp_campeonato_astur_gallego: 'Campeonato Astur-Gallego',
     comp_partido_amistoso: 'Partido Amistoso',
     ex_jugador: 'Ex jugador',
+    ex_entrenador: 'Ex entrenador',
     jugador_baja_notice:
       'Este jugador finalizó su etapa en el club en la temporada indicada.',
     estado: 'Estado',
     contrato_hasta: 'Contrato hasta',
+    goles_favor_partido: 'Goles a favor / partido',
+    goles_contra_partido: 'Goles en contra / partido',
+    estadisticas_temporada: 'Estadísticas de temporada',
     cedido: 'Cedido',
     cedido_en: 'Cedido en',
 
@@ -491,10 +495,14 @@ const translations = {
     comp_campeonato_astur_gallego: 'Asturian-Galician Championship',
     comp_partido_amistoso: 'Friendly Match',
     ex_jugador: 'Former player',
+    ex_entrenador: 'Former coach',
     jugador_baja_notice:
       'This player ended his time at the club in the indicated season.',
     estado: 'Status',
     contrato_hasta: 'Contract until',
+    goles_favor_partido: 'Goals scored / match',
+    goles_contra_partido: 'Goals conceded / match',
+    estadisticas_temporada: 'Season statistics',
     cedido: 'On Loan',
     cedido_en: 'On Loan at',
 
