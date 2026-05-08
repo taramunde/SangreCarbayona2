@@ -1140,16 +1140,18 @@ const App = {
     }
   },
 
-  renderFichaEntrenadorCareer: function (ent, filtro) {
+  renderFichaEntrenadorCareer: function (ent, filtroCompeticion) {
     const container = document.getElementById('tabCareer');
     if (!container) return;
 
-    const filtroActivo = filtro || 'all';
+    filtroCompeticion = filtroCompeticion || 'all';
 
-    // ── Recopilar historial de club por temporada ──────────────
-    const historialClub = [];
-    const competicionesClubSet = new Set();
+    const historial = [];
+    const competicionesSet = new Set();
+    let totalesClub = { pj: 0, v: 0, e: 0, d: 0, gf: 0, gc: 0 };
+    let totalesSeleccion = {};
 
+    // ── Historial club por temporada ───────────────────────────
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
       const datosTemp = CLUB_DATA.temporadas[temp.id];
       if (!datosTemp || !datosTemp.cuerpoTecnico) return;
@@ -1159,156 +1161,63 @@ const App = {
           String(m.id) === String(ent.id),
       );
       if (!miembro) return;
+
       const stats = miembro.estadisticas || {};
       const compNombre = datosTemp.competicion || '—';
 
-      // Añadir competiciones del desglose al set de filtros
       if (stats.desglose) {
-        Object.keys(stats.desglose).forEach((c) => competicionesClubSet.add(c));
-      } else {
-        competicionesClubSet.add(compNombre);
+        Object.keys(stats.desglose).forEach((c) => competicionesSet.add(c));
       }
+      competicionesSet.add(compNombre);
 
-      // Si hay filtro de competición de club, aplicar desglose
       let statsAMostrar = { ...stats };
       let mostrar = true;
 
-      if (filtroActivo !== 'all' && filtroActivo !== 'seleccion') {
-        if (stats.desglose && stats.desglose[filtroActivo]) {
-          statsAMostrar = stats.desglose[filtroActivo];
-        } else if (compNombre !== filtroActivo) {
+      if (
+        filtroCompeticion !== 'all' &&
+        !filtroCompeticion.startsWith('seleccion_')
+      ) {
+        if (stats.desglose && stats.desglose[filtroCompeticion]) {
+          statsAMostrar = stats.desglose[filtroCompeticion];
+        } else if (compNombre !== filtroCompeticion) {
           mostrar = false;
         }
+      } else if (filtroCompeticion.startsWith('seleccion_')) {
+        mostrar = false;
       }
 
       if (mostrar) {
-        historialClub.push({
+        historial.push({
           temporada: temp.nombre,
-          competicion: compNombre,
+          equipo: CLUB_DATA.club.nombreCorto,
+          logo: CLUB_DATA.club.logo || '',
+          esSeleccion: false,
+          competicionFiltro: compNombre,
           cargo: translateCargo
             ? translateCargo(miembro.cargo || ent.cargo) ||
               miembro.cargo ||
-              ent.cargo ||
-              '—'
-            : miembro.cargo || ent.cargo || '—',
-          pj: statsAMostrar.partidos || 0,
-          v: statsAMostrar.victorias || 0,
-          e: statsAMostrar.empates || 0,
-          d: statsAMostrar.derrotas || 0,
-          gf: statsAMostrar.golesFavor || 0,
-          gc: statsAMostrar.golesContra || 0,
+              ent.cargo
+            : miembro.cargo || ent.cargo || '',
+          stats: statsAMostrar,
+          statsGlobales: stats,
+          actual: temp.id === CLUB_DATA.temporadaActual,
         });
+        totalesClub.pj += statsAMostrar.partidos || 0;
+        totalesClub.v += statsAMostrar.victorias || 0;
+        totalesClub.e += statsAMostrar.empates || 0;
+        totalesClub.d += statsAMostrar.derrotas || 0;
+        totalesClub.gf += statsAMostrar.golesFavor || 0;
+        totalesClub.gc += statsAMostrar.golesContra || 0;
       }
     });
 
-    // ── Datos selección ────────────────────────────────────────
+    // ── Historial selección ────────────────────────────────────
     const tieneSeleccion =
       ent.seleccionComoEntrenador &&
       ent.seleccionComoEntrenador.datos &&
       ent.seleccionComoEntrenador.datos.length > 0;
 
-    const tieneClub = historialClub.length > 0 || competicionesClubSet.size > 0;
-
-    // ── Construir dropdown ─────────────────────────────────────
-    let dropdownHtml = `<div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:20px; gap:10px; flex-wrap:wrap;">
-      <label style="font-weight:600; color:#333;">${t('filtrar') || 'Filtrar'}:</label>
-      <select id="filterCareerEnt" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit; cursor:pointer;">
-        <option value="all" ${filtroActivo === 'all' ? 'selected' : ''}>${t('todas_competiciones') || 'Todas las competiciones'}</option>`;
-
-    if (tieneClub) {
-      dropdownHtml += `<optgroup label="${t('club') || 'Club'}">`;
-      Array.from(competicionesClubSet)
-        .sort()
-        .forEach((c) => {
-          dropdownHtml += `<option value="${c}" ${c === filtroActivo ? 'selected' : ''}>${translateCompeticion ? translateCompeticion(c) : c}</option>`;
-        });
-      dropdownHtml += `</optgroup>`;
-    }
-
     if (tieneSeleccion) {
-      const sel = ent.seleccionComoEntrenador;
-      dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'} (${sel.pais})">`;
-      sel.datos.forEach((cat) => {
-        const val = `seleccion_${cat.categoria}`;
-        dropdownHtml += `<option value="${val}" ${filtroActivo === val ? 'selected' : ''}>${cat.categoria} (${sel.pais})</option>`;
-      });
-      dropdownHtml += `</optgroup>`;
-    }
-
-    dropdownHtml += `</select></div>`;
-
-    // ── Tabla historial club ───────────────────────────────────
-    let html = dropdownHtml;
-
-    const esFiltroPorSeleccion = filtroActivo.startsWith('seleccion_');
-    const categoriaFiltrada = esFiltroPorSeleccion
-      ? filtroActivo.replace('seleccion_', '')
-      : null;
-    const mostrarClub = !esFiltroPorSeleccion;
-    const mostrarSeleccion = filtroActivo === 'all' || esFiltroPorSeleccion;
-
-    if (mostrarClub) {
-      if (historialClub.length) {
-        // Totales club
-        const totales = historialClub.reduce(
-          (acc, h) => ({
-            pj: acc.pj + h.pj,
-            v: acc.v + h.v,
-            e: acc.e + h.e,
-            d: acc.d + h.d,
-            gf: acc.gf + h.gf,
-            gc: acc.gc + h.gc,
-          }),
-          { pj: 0, v: 0, e: 0, d: 0, gf: 0, gc: 0 },
-        );
-        const pct =
-          totales.pj > 0 ? Math.round((totales.v / totales.pj) * 100) : 0;
-
-        html += `<div class="career-totals-card club-totals" style="margin-bottom:24px;">
-          <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right:8px;"></i>${t('total_club') || 'Total Club'}</h3>
-          <div class="totals-grid">
-            <div class="total-item"><span class="total-value">${totales.pj}</span><span class="total-label">${t('col_pj') || 'PJ'}</span></div>
-            <div class="total-item highlight" style="color:#2ecc71"><span class="total-value" style="color:#2ecc71">${totales.v}</span><span class="total-label">V</span></div>
-            <div class="total-item"><span class="total-value" style="color:#f39c12">${totales.e}</span><span class="total-label">E</span></div>
-            <div class="total-item"><span class="total-value" style="color:#e74c3c">${totales.d}</span><span class="total-label">D</span></div>
-            <div class="total-item"><span class="total-value">${pct}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>
-          </div>
-        </div>`;
-
-        html += `<div class="career-table-wrapper" style="margin-bottom:32px">
-          <h3 class="overview-title" style="padding:0 0 12px">${t('historial_club') || 'Historial en el club'}</h3>
-          <table class="career-table"><thead><tr>
-            <th>${t('temporada') || 'Temporada'}</th>
-            <th>${t('competicion_label') || 'Competición'}</th>
-            <th>${t('cargo') || 'Cargo'}</th>
-            <th>${t('col_pj') || 'PJ'}</th>
-            <th style="color:#2ecc71">V</th>
-            <th style="color:#f39c12">E</th>
-            <th style="color:#e74c3c">D</th>
-            <th>GF</th><th>GC</th>
-          </tr></thead><tbody>`;
-        historialClub.forEach((h) => {
-          html += `<tr>
-            <td style="font-weight:700">${h.temporada}</td>
-            <td>${h.competicion}</td>
-            <td>${h.cargo}</td>
-            <td>${h.pj}</td>
-            <td style="color:#2ecc71;font-weight:700">${h.v}</td>
-            <td style="color:#f39c12;font-weight:700">${h.e}</td>
-            <td style="color:#e74c3c;font-weight:700">${h.d}</td>
-            <td>${h.gf}</td><td>${h.gc}</td>
-          </tr>`;
-        });
-        html += `</tbody></table></div>`;
-      } else if (filtroActivo !== 'all') {
-        html += `<p style="color:#666; padding:20px; text-align:center">${t('no_partidos_competicion') || 'No hay datos en esta competición.'}</p>`;
-      } else {
-        html += `<p style="color:#666; padding:20px; text-align:center">${t('sin_historial') || 'No hay historial disponible.'}</p>`;
-      }
-    }
-
-    // ── Tabla selección como entrenador ───────────────────────
-    if (mostrarSeleccion && tieneSeleccion) {
       const sel = ent.seleccionComoEntrenador;
       const banderaRaw = sel.bandera || '';
       const bandera = banderaRaw.startsWith('http')
@@ -1316,66 +1225,263 @@ const App = {
         : banderaRaw.length === 2
           ? `https://flagcdn.com/16x12/${banderaRaw}.webp`
           : '';
+      const pais = translateCountry ? translateCountry(sel.pais) : sel.pais;
 
-      // Filtrar categorías según selección del dropdown
-      const datosFiltrados = categoriaFiltrada
-        ? sel.datos.filter((c) => c.categoria === categoriaFiltrada)
-        : sel.datos;
+      if (!totalesSeleccion[pais]) {
+        totalesSeleccion[pais] = {
+          pj: 0,
+          v: 0,
+          e: 0,
+          d: 0,
+          categorias: {},
+          bandera,
+        };
+      }
 
-      // Totales de las categorías visibles
-      const totSel = datosFiltrados.reduce(
-        (acc, c) => ({
-          pj: acc.pj + (c.partidos || 0),
-          v: acc.v + (c.victorias || 0),
-          e: acc.e + (c.empates || 0),
-          d: acc.d + (c.derrotas || 0),
-        }),
-        { pj: 0, v: 0, e: 0, d: 0 },
-      );
-      const pctSel =
-        totSel.pj > 0 ? Math.round((totSel.v / totSel.pj) * 100) : 0;
-      const tituloSeleccion = categoriaFiltrada
-        ? `${categoriaFiltrada} (${sel.pais})`
-        : `${t('seleccion_nacional') || 'Selección Nacional'} — ${sel.pais}`;
+      sel.datos.forEach((cat) => {
+        const compKey = `seleccion_${cat.categoria}`;
+        competicionesSet.add(compKey);
 
-      html += `<div class="career-totals-card" style="margin-bottom:24px; border-left:4px solid var(--secondary-color, #c9a227);">
-        <h3 class="card-title">${bandera ? `<img src="${bandera}" style="height:14px;margin-right:8px;vertical-align:middle">` : `<i class="fas fa-flag" style="margin-right:8px;"></i>`}${tituloSeleccion}</h3>
-        <div class="totals-grid">
-          <div class="total-item"><span class="total-value">${totSel.pj}</span><span class="total-label">${t('col_pj') || 'PJ'}</span></div>
-          <div class="total-item"><span class="total-value" style="color:#2ecc71">${totSel.v}</span><span class="total-label">V</span></div>
-          <div class="total-item"><span class="total-value" style="color:#f39c12">${totSel.e}</span><span class="total-label">E</span></div>
-          <div class="total-item"><span class="total-value" style="color:#e74c3c">${totSel.d}</span><span class="total-label">D</span></div>
-          <div class="total-item"><span class="total-value">${pctSel}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>
-        </div>
-      </div>`;
+        totalesSeleccion[pais].pj += cat.partidos || 0;
+        totalesSeleccion[pais].v += cat.victorias || 0;
+        totalesSeleccion[pais].e += cat.empates || 0;
+        totalesSeleccion[pais].d += cat.derrotas || 0;
+        totalesSeleccion[pais].categorias[cat.categoria] = {
+          pj: cat.partidos || 0,
+          v: cat.victorias || 0,
+          e: cat.empates || 0,
+          d: cat.derrotas || 0,
+          gf: cat.golesFavor || 0,
+          gc: cat.golesContra || 0,
+        };
 
-      html += `<div class="career-table-wrapper">
-        <h3 class="overview-title" style="padding:0 0 12px">${tituloSeleccion}</h3>
-        <table class="career-table"><thead><tr>
-          <th>${t('categoria') || 'Categoría'}</th>
-          <th>${t('col_pj') || 'PJ'}</th>
-          <th style="color:#2ecc71">V</th><th style="color:#f39c12">E</th><th style="color:#e74c3c">D</th>
-          <th>GF</th><th>GC</th>
-        </tr></thead><tbody>`;
-      datosFiltrados.forEach((cat) => {
-        html += `<tr>
-          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${cat.categoria} (${sel.pais})</span></td>
-          <td>${cat.partidos || 0}</td>
-          <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
-          <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
-          <td style="color:#e74c3c;font-weight:700">${cat.derrotas || 0}</td>
-          <td>${cat.golesFavor || 0}</td>
-          <td>${cat.golesContra || 0}</td>
-        </tr>`;
+        const mostrarEsta =
+          filtroCompeticion === 'all' || filtroCompeticion === compKey;
+        if (mostrarEsta) {
+          historial.push({
+            temporada: cat.categoria,
+            equipo: pais,
+            logo: bandera,
+            esSeleccion: true,
+            categoriaSeleccion: cat.categoria,
+            competicionFiltro: compKey,
+            cargo: translateCargo
+              ? translateCargo(ent.cargo) || ent.cargo
+              : ent.cargo,
+            stats: {
+              pj: cat.partidos || 0,
+              v: cat.victorias || 0,
+              e: cat.empates || 0,
+              d: cat.derrotas || 0,
+              gf: cat.golesFavor || 0,
+              gc: cat.golesContra || 0,
+            },
+            actual: false,
+          });
+        }
       });
-      html += `</tbody></table></div>`;
     }
 
-    container.innerHTML =
-      html ||
-      `<p style="color:#666; padding:20px; text-align:center">${t('sin_historial') || 'No hay historial disponible.'}</p>`;
+    // ── Dropdown ───────────────────────────────────────────────
+    const tieneClub =
+      historial.some((h) => !h.esSeleccion) || totalesClub.pj > 0;
+    let dropdownHtml = `<div class="filter-container" style="display:flex; justify-content:flex-end; margin-bottom:20px; align-items:center; gap:10px;">
+      <label style="font-weight:bold;">${t('filtrar') || 'Filtrar'}:</label>
+      <select id="filterCareerEnt" style="padding:8px 12px; border-radius:6px; border:1px solid #001a6e; background:#fff; color:#001a6e; font-family:inherit;">
+        <option value="all" ${filtroCompeticion === 'all' ? 'selected' : ''}>${t('todas_competiciones') || 'Todas las competiciones'}</option>`;
 
-    // ── Listener del dropdown ──────────────────────────────────
+    if (tieneClub) {
+      dropdownHtml += `<optgroup label="${t('club') || 'Club'}">`;
+      Array.from(competicionesSet)
+        .filter((c) => !c.startsWith('seleccion_'))
+        .sort()
+        .forEach((c) => {
+          dropdownHtml += `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${translateCompeticion ? translateCompeticion(c) : c}</option>`;
+        });
+      dropdownHtml += `</optgroup>`;
+    }
+
+    if (tieneSeleccion) {
+      const sel = ent.seleccionComoEntrenador;
+      const pais = translateCountry ? translateCountry(sel.pais) : sel.pais;
+      dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'} (${pais})">`;
+      sel.datos.forEach((cat) => {
+        const val = `seleccion_${cat.categoria}`;
+        dropdownHtml += `<option value="${val}" ${filtroCompeticion === val ? 'selected' : ''}>${cat.categoria} (${pais})</option>`;
+      });
+      dropdownHtml += `</optgroup>`;
+    }
+
+    dropdownHtml += `</select></div>`;
+
+    // ── Timeline HTML ──────────────────────────────────────────
+    let timelineHtml = '';
+    historial.forEach((h) => {
+      const badgeHtml = h.logo
+        ? `<img src="${h.logo}" alt="${h.equipo}" class="team-badge-img">`
+        : `<span class="team-badge-text">${(h.equipo || 'ENT').substring(0, 3).toUpperCase()}</span>`;
+
+      const pctV =
+        h.stats.pj > 0 ? Math.round(((h.stats.v || 0) / h.stats.pj) * 100) : 0;
+      const pctVColor =
+        pctV >= 50 ? '#2ecc71' : pctV >= 33 ? '#f39c12' : '#e74c3c';
+
+      let statsHtml = `<div class="timeline-stats">
+        <span><strong>${h.stats.pj || h.stats.partidos || 0}</strong> ${t('partidos') || 'PJ'}</span>
+        <span><strong style="color:#2ecc71">${h.stats.v || h.stats.victorias || 0}</strong> V</span>
+        <span><strong style="color:#f39c12">${h.stats.e || h.stats.empates || 0}</strong> E</span>
+        <span><strong style="color:#e74c3c">${h.stats.d || h.stats.derrotas || 0}</strong> D</span>
+        <span><strong style="color:${pctVColor}">${pctV}%</strong> ${t('victorias') || 'victorias'}</span>
+      </div>`;
+
+      // Desglose por competición si hay (solo club, vista "all")
+      if (
+        !h.esSeleccion &&
+        filtroCompeticion === 'all' &&
+        h.statsGlobales &&
+        h.statsGlobales.desglose
+      ) {
+        statsHtml += `<div class="timeline-breakdown-box">`;
+        for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+          statsHtml += `
+          <div class="breakdown-row">
+            <span class="breakdown-comp-name">${translateCompeticion ? translateCompeticion(comp) : comp}</span>
+            <div class="breakdown-data-chips">
+              <span class="chip"><b>${data.partidos || 0}</b> ${t('pj') || 'PJ'}</span>
+              <span class="chip" style="color:#2ecc71"><b>${data.victorias || 0}</b> V</span>
+              <span class="chip" style="color:#f39c12"><b>${data.empates || 0}</b> E</span>
+              <span class="chip" style="color:#e74c3c"><b>${data.derrotas || 0}</b> D</span>
+            </div>
+          </div>`;
+        }
+        statsHtml += `</div>`;
+      }
+
+      const clases = [
+        h.actual ? 'current' : '',
+        h.esSeleccion ? 'seleccion-nacional' : '',
+      ]
+        .filter(Boolean)
+        .join(' ');
+
+      timelineHtml += `
+      <div class="timeline-item ${clases}">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <span class="timeline-club">
+              <span class="team-badge">${badgeHtml}</span>
+              ${h.esSeleccion ? `<i class="fas fa-flag" style="margin-right:8px; color:var(--secondary-color);"></i>` : ''}
+              ${h.equipo}
+            </span>
+            <span class="timeline-years">${h.temporada}</span>
+          </div>
+          <div class="timeline-position">
+            <span class="pos-label"><i class="fas fa-clipboard-list"></i></span>
+            <span class="pos-name">${h.cargo}</span>
+          </div>
+          ${statsHtml}
+        </div>
+      </div>`;
+    });
+
+    // ── Sidebar totales ────────────────────────────────────────
+    let totalesHtml = '';
+
+    const mostrarTotalesClub =
+      (filtroCompeticion === 'all' ||
+        !filtroCompeticion.startsWith('seleccion_')) &&
+      totalesClub.pj > 0;
+
+    if (mostrarTotalesClub) {
+      const pctV =
+        totalesClub.pj > 0
+          ? Math.round((totalesClub.v / totalesClub.pj) * 100)
+          : 0;
+      totalesHtml += `
+      <div class="career-totals-card club-totals">
+        <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right:8px;"></i>${t('total_club') || 'Total Club'}</h3>
+        <div class="totals-grid">
+          <div class="total-item"><span class="total-value">${totalesClub.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
+          <div class="total-item highlight"><span class="total-value" style="color:#2ecc71">${totalesClub.v}</span><span class="total-label">V</span></div>
+          <div class="total-item"><span class="total-value" style="color:#f39c12">${totalesClub.e}</span><span class="total-label">E</span></div>
+          <div class="total-item red-card"><span class="total-value" style="color:#e74c3c">${totalesClub.d}</span><span class="total-label">D</span></div>
+          <div class="total-item"><span class="total-value" style="color:${pctV >= 50 ? '#2ecc71' : pctV >= 33 ? '#f39c12' : '#e74c3c'}">${pctV}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>
+        </div>
+      </div>`;
+    }
+
+    const mostrarTotalesSel =
+      filtroCompeticion === 'all' || filtroCompeticion.startsWith('seleccion_');
+
+    if (mostrarTotalesSel) {
+      Object.entries(totalesSeleccion).forEach(([pais, datos]) => {
+        if (datos.pj === 0) return;
+
+        // Si hay filtro de categoría específica, mostrar solo esa
+        let statsGrid = '';
+        if (filtroCompeticion.startsWith('seleccion_')) {
+          const catFiltro = filtroCompeticion.replace('seleccion_', '');
+          const cat = datos.categorias[catFiltro];
+          if (cat) {
+            const pct = cat.pj > 0 ? Math.round((cat.v / cat.pj) * 100) : 0;
+            statsGrid = `
+              <div class="total-item" style="grid-column:1/-1; text-align:center; padding:8px; background:rgba(255,215,0,0.1); border-radius:8px; margin-bottom:5px;">
+                <span style="font-weight:600; color:#001a6e;">${catFiltro} (${pais})</span>
+              </div>
+              <div class="total-item"><span class="total-value">${cat.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
+              <div class="total-item"><span class="total-value" style="color:#2ecc71">${cat.v}</span><span class="total-label">V</span></div>
+              <div class="total-item"><span class="total-value" style="color:#f39c12">${cat.e}</span><span class="total-label">E</span></div>
+              <div class="total-item"><span class="total-value" style="color:#e74c3c">${cat.d}</span><span class="total-label">D</span></div>
+              <div class="total-item"><span class="total-value" style="color:#2ecc71">${pct}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>`;
+          }
+        } else {
+          const pct = datos.pj > 0 ? Math.round((datos.v / datos.pj) * 100) : 0;
+          statsGrid = `
+            <div class="total-item" style="grid-column:1/-1; text-align:center; padding:8px; background:rgba(255,215,0,0.1); border-radius:8px; margin-bottom:5px;">
+              <span style="font-weight:600; color:#001a6e;">${pais}</span>
+            </div>
+            <div class="total-item"><span class="total-value">${datos.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
+            <div class="total-item"><span class="total-value" style="color:#2ecc71">${datos.v}</span><span class="total-label">V</span></div>
+            <div class="total-item"><span class="total-value" style="color:#f39c12">${datos.e}</span><span class="total-label">E</span></div>
+            <div class="total-item"><span class="total-value" style="color:#e74c3c">${datos.d}</span><span class="total-label">D</span></div>
+            <div class="total-item"><span class="total-value" style="color:${pct >= 50 ? '#2ecc71' : '#f39c12'}">${pct}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>`;
+        }
+
+        if (statsGrid) {
+          totalesHtml += `
+          <div class="career-totals-card selection-totals" style="border-top:4px solid #FFD700; margin-bottom:15px;">
+            <h3 class="card-title">${datos.bandera ? `<img src="${datos.bandera}" style="height:14px;margin-right:8px;vertical-align:middle">` : `<i class="fas fa-flag" style="margin-right:8px; color:#FFD700;"></i>`}${t('total_seleccion') || 'Total Selección'}</h3>
+            <div class="totals-grid">${statsGrid}</div>
+          </div>`;
+        }
+      });
+    }
+
+    // ── Aviso baja ─────────────────────────────────────────────
+    let mensajeBajaHtml = '';
+    if (ent.estado === 'baja') {
+      mensajeBajaHtml = `
+      <div class="baja-notice" style="background:rgba(231,76,60,0.1); border-left:4px solid #e74c3c; padding:15px 20px; margin-bottom:20px; border-radius:8px;">
+        <p style="margin:0; color:#c0392b; font-weight:600;">
+          <i class="fas fa-info-circle" style="margin-right:8px;"></i>
+          ${t('jugador_baja_notice') || 'Este entrenador finalizó su etapa en el club en la temporada indicada.'}
+        </p>
+      </div>`;
+    }
+
+    container.innerHTML = `${dropdownHtml}
+    ${mensajeBajaHtml}
+    <div class="career-grid">
+      <div class="career-timeline-card">
+        <h3 class="card-title">${t('historial') || 'Trayectoria'}</h3>
+        <div class="timeline">${timelineHtml || '<p>' + (t('no_datos') || 'No hay datos.') + '</p>'}</div>
+      </div>
+      <div class="career-sidebar">
+        ${totalesHtml}
+      </div>
+    </div>`;
+
     const sel2 = document.getElementById('filterCareerEnt');
     if (sel2) {
       sel2.addEventListener('change', (e) => {
