@@ -1024,24 +1024,24 @@ const App = {
       <div class="disciplinary-card">
         <h3 class="card-title">${t('estadisticas_temporada') || 'Estadísticas de temporada'}</h3>
         <div class="cards-display" style="grid-template-columns: repeat(4, 1fr);">
-          <div class="card-item" style="background:#f0fff4; border-color:#2ecc71">
-            <div class="card-icon" style="color:#2ecc71"><i class="fas fa-trophy"></i></div>
+          <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
+            <div class="card-icon" style="color:#001a6e"><i class="fas fa-trophy"></i></div>
             <div class="card-info">
-              <span class="card-count" style="color:#2ecc71">${v}</span>
+              <span class="card-count" style="color:#001a6e">${v}</span>
               <span class="card-label">V</span>
             </div>
           </div>
-          <div class="card-item" style="background:#fffbf0; border-color:#f39c12">
-            <div class="card-icon" style="color:#f39c12"><i class="fas fa-equals"></i></div>
+          <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
+            <div class="card-icon" style="color:#001a6e"><i class="fas fa-equals"></i></div>
             <div class="card-info">
-              <span class="card-count" style="color:#f39c12">${e2}</span>
+              <span class="card-count" style="color:#001a6e">${e2}</span>
               <span class="card-label">E</span>
             </div>
           </div>
-          <div class="card-item" style="background:#fff5f5; border-color:#e74c3c">
-            <div class="card-icon" style="color:#e74c3c"><i class="fas fa-times-circle"></i></div>
+          <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
+            <div class="card-icon" style="color:#001a6e"><i class="fas fa-times-circle"></i></div>
             <div class="card-info">
-              <span class="card-count" style="color:#e74c3c">${d}</span>
+              <span class="card-count" style="color:#001a6e">${d}</span>
               <span class="card-label">D</span>
             </div>
           </div>
@@ -1328,9 +1328,9 @@ const App = {
 
       let statsHtml = `<div class="timeline-stats">
         <span><strong>${h.stats.pj || h.stats.partidos || 0}</strong> ${t('partidos') || 'PJ'}</span>
-        <span><strong style="color:#2ecc71">${h.stats.v || h.stats.victorias || 0}</strong> V</span>
-        <span><strong style="color:#f39c12">${h.stats.e || h.stats.empates || 0}</strong> E</span>
-        <span><strong style="color:#e74c3c">${h.stats.d || h.stats.derrotas || 0}</strong> D</span>
+        <span><strong style="color:#001a6e">${h.stats.v || h.stats.victorias || 0}</strong> V</span>
+        <span><strong style="color:#001a6e">${h.stats.e || h.stats.empates || 0}</strong> E</span>
+        <span><strong style="color:#001a6e">${h.stats.d || h.stats.derrotas || 0}</strong> D</span>
         <span><strong style="color:${pctVColor}">${pctV}%</strong> ${t('victorias') || 'victorias'}</span>
       </div>`;
 
@@ -1348,9 +1348,9 @@ const App = {
             <span class="breakdown-comp-name">${translateCompeticion ? translateCompeticion(comp) : comp}</span>
             <div class="breakdown-data-chips">
               <span class="chip"><b>${data.partidos || 0}</b> ${t('pj') || 'PJ'}</span>
-              <span class="chip" style="color:#2ecc71"><b>${data.victorias || 0}</b> V</span>
-              <span class="chip" style="color:#f39c12"><b>${data.empates || 0}</b> E</span>
-              <span class="chip" style="color:#e74c3c"><b>${data.derrotas || 0}</b> D</span>
+              <span class="chip" style="color:#001a6e"><b>${data.victorias || 0}</b> V</span>
+              <span class="chip" style="color:#001a6e"><b>${data.empates || 0}</b> E</span>
+              <span class="chip" style="color:#001a6e"><b>${data.derrotas || 0}</b> D</span>
             </div>
           </div>`;
         }
@@ -1465,7 +1465,7 @@ const App = {
       <div class="baja-notice" style="background:rgba(231,76,60,0.1); border-left:4px solid #e74c3c; padding:15px 20px; margin-bottom:20px; border-radius:8px;">
         <p style="margin:0; color:#c0392b; font-weight:600;">
           <i class="fas fa-info-circle" style="margin-right:8px;"></i>
-          ${t('jugador_baja_notice') || 'Este entrenador finalizó su etapa en el club en la temporada indicada.'}
+          ${t('entrenador_baja_notice') || 'Este entrenador finalizó su etapa en el club en la temporada indicada.'}
         </p>
       </div>`;
     }
