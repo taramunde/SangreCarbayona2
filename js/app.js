@@ -1310,10 +1310,12 @@ const App = {
     // ── Tabla selección como entrenador ───────────────────────
     if (mostrarSeleccion && tieneSeleccion) {
       const sel = ent.seleccionComoEntrenador;
-      const bandera =
-        sel.bandera && /^[a-z]{2}$/.test(sel.bandera)
-          ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
-          : sel.bandera || '';
+      const banderaRaw = sel.bandera || '';
+      const bandera = banderaRaw.startsWith('http')
+        ? banderaRaw
+        : banderaRaw.length === 2
+          ? `https://flagcdn.com/16x12/${banderaRaw}.webp`
+          : '';
 
       // Filtrar categorías según selección del dropdown
       const datosFiltrados = categoriaFiltrada
@@ -1337,7 +1339,7 @@ const App = {
         : `${t('seleccion_nacional') || 'Selección Nacional'} — ${sel.pais}`;
 
       html += `<div class="career-totals-card" style="margin-bottom:24px; border-left:4px solid var(--secondary-color, #c9a227);">
-        <h3 class="card-title"><i class="fas fa-flag" style="margin-right:8px;"></i>${tituloSeleccion}</h3>
+        <h3 class="card-title">${bandera ? `<img src="${bandera}" style="height:14px;margin-right:8px;vertical-align:middle">` : `<i class="fas fa-flag" style="margin-right:8px;"></i>`}${tituloSeleccion}</h3>
         <div class="totals-grid">
           <div class="total-item"><span class="total-value">${totSel.pj}</span><span class="total-label">${t('col_pj') || 'PJ'}</span></div>
           <div class="total-item"><span class="total-value" style="color:#2ecc71">${totSel.v}</span><span class="total-label">V</span></div>
