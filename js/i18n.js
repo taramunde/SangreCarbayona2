@@ -183,6 +183,8 @@ const translations = {
     cuerpo_tecnico: 'Cuerpo Técnico',
     jugador_baja_notice:
       'Este jugador finalizó su etapa en el club en la temporada indicada.',
+    entrenador_baja_notice:
+      'Este entrenador finalizó su etapa en el club en la temporada indicada.',
     estado: 'Estado',
     contrato_hasta: 'Contrato hasta',
     goles_favor_partido: 'Goles a favor / partido',
@@ -512,6 +514,8 @@ const translations = {
     cuerpo_tecnico: 'Technical Staff',
     jugador_baja_notice:
       'This player ended his time at the club in the indicated season.',
+    entrenador_baja_notice:
+      'This coach ended his time at the club in the indicated season.',
     estado: 'Status',
     contrato_hasta: 'Contract until',
     goles_favor_partido: 'Goals scored / match',
