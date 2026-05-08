@@ -1028,28 +1028,28 @@ const App = {
             <div class="card-icon" style="color:#001a6e"><i class="fas fa-trophy"></i></div>
             <div class="card-info">
               <span class="card-count" style="color:#001a6e">${v}</span>
-              <span class="card-label">${t('abrev_v') || 'V'}</span>
+              <span class="card-label">V</span>
             </div>
           </div>
           <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
             <div class="card-icon" style="color:#001a6e"><i class="fas fa-equals"></i></div>
             <div class="card-info">
               <span class="card-count" style="color:#001a6e">${e2}</span>
-              <span class="card-label">${t('abrev_e') || 'E'}</span>
+              <span class="card-label">E</span>
             </div>
           </div>
           <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
             <div class="card-icon" style="color:#001a6e"><i class="fas fa-times-circle"></i></div>
             <div class="card-info">
               <span class="card-count" style="color:#001a6e">${d}</span>
-              <span class="card-label">${t('abrev_d') || 'D'}</span>
+              <span class="card-label">D</span>
             </div>
           </div>
           <div class="card-item" style="background:#f0f4ff; border-color:#001a6e">
             <div class="card-icon" style="color:#001a6e"><i class="fas fa-clipboard-list"></i></div>
             <div class="card-info">
               <span class="card-count" style="color:#001a6e">${pj}</span>
-              <span class="card-label">${t('pj') || 'PJ'}</span>
+              <span class="card-label">PJ</span>
             </div>
           </div>
         </div>
@@ -1307,11 +1307,7 @@ const App = {
       dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'} (${pais})">`;
       sel.datos.forEach((cat) => {
         const val = `seleccion_${cat.categoria}`;
-        const catLabel =
-          t('sel_' + cat.categoria.toLowerCase().replace(/[^a-z0-9]/g, '')) ||
-          t('sel_' + cat.categoria.toLowerCase().replace('-', '')) ||
-          cat.categoria;
-        dropdownHtml += `<option value="${val}" ${filtroCompeticion === val ? 'selected' : ''}>${catLabel} (${pais})</option>`;
+        dropdownHtml += `<option value="${val}" ${filtroCompeticion === val ? 'selected' : ''}>${cat.categoria} (${pais})</option>`;
       });
       dropdownHtml += `</optgroup>`;
     }
@@ -1332,9 +1328,9 @@ const App = {
 
       let statsHtml = `<div class="timeline-stats">
         <span><strong>${h.stats.pj || h.stats.partidos || 0}</strong> ${t('partidos') || 'PJ'}</span>
-        <span><strong style="color:#001a6e">${h.stats.v || h.stats.victorias || 0}</strong> ${t('abrev_v') || 'V'}</span>
-        <span><strong style="color:#001a6e">${h.stats.e || h.stats.empates || 0}</strong> ${t('abrev_e') || 'E'}</span>
-        <span><strong style="color:#001a6e">${h.stats.d || h.stats.derrotas || 0}</strong> ${t('abrev_d') || 'D'}</span>
+        <span><strong style="color:#001a6e">${h.stats.v || h.stats.victorias || 0}</strong> V</span>
+        <span><strong style="color:#001a6e">${h.stats.e || h.stats.empates || 0}</strong> E</span>
+        <span><strong style="color:#001a6e">${h.stats.d || h.stats.derrotas || 0}</strong> D</span>
         <span><strong style="color:${pctVColor}">${pctV}%</strong> ${t('victorias') || 'victorias'}</span>
       </div>`;
 
@@ -1352,9 +1348,9 @@ const App = {
             <span class="breakdown-comp-name">${translateCompeticion ? translateCompeticion(comp) : comp}</span>
             <div class="breakdown-data-chips">
               <span class="chip"><b>${data.partidos || 0}</b> ${t('pj') || 'PJ'}</span>
-              <span class="chip" style="color:#001a6e"><b>${data.victorias || 0}</b> ${t('abrev_v') || 'V'}</span>
-              <span class="chip" style="color:#001a6e"><b>${data.empates || 0}</b> ${t('abrev_e') || 'E'}</span>
-              <span class="chip" style="color:#001a6e"><b>${data.derrotas || 0}</b> ${t('abrev_d') || 'D'}</span>
+              <span class="chip" style="color:#001a6e"><b>${data.victorias || 0}</b> V</span>
+              <span class="chip" style="color:#001a6e"><b>${data.empates || 0}</b> E</span>
+              <span class="chip" style="color:#001a6e"><b>${data.derrotas || 0}</b> D</span>
             </div>
           </div>`;
         }
@@ -1407,9 +1403,9 @@ const App = {
         <h3 class="card-title"><i class="fas fa-shield-alt" style="margin-right:8px;"></i>${t('total_club') || 'Total Club'}</h3>
         <div class="totals-grid">
           <div class="total-item"><span class="total-value">${totalesClub.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
-          <div class="total-item highlight"><span class="total-value" style="color:#2ecc71">${totalesClub.v}</span><span class="total-label">${t('abrev_v') || 'V'}</span></div>
-          <div class="total-item"><span class="total-value" style="color:#f39c12">${totalesClub.e}</span><span class="total-label">${t('abrev_e') || 'E'}</span></div>
-          <div class="total-item red-card"><span class="total-value" style="color:#e74c3c">${totalesClub.d}</span><span class="total-label">${t('abrev_d') || 'D'}</span></div>
+          <div class="total-item highlight"><span class="total-value" style="color:#2ecc71">${totalesClub.v}</span><span class="total-label">V</span></div>
+          <div class="total-item"><span class="total-value" style="color:#f39c12">${totalesClub.e}</span><span class="total-label">E</span></div>
+          <div class="total-item red-card"><span class="total-value" style="color:#e74c3c">${totalesClub.d}</span><span class="total-label">D</span></div>
           <div class="total-item"><span class="total-value" style="color:${pctV >= 50 ? '#2ecc71' : pctV >= 33 ? '#f39c12' : '#e74c3c'}">${pctV}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>
         </div>
       </div>`;
@@ -1434,9 +1430,9 @@ const App = {
                 <span style="font-weight:600; color:#001a6e;">${catFiltro} (${pais})</span>
               </div>
               <div class="total-item"><span class="total-value">${cat.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
-              <div class="total-item"><span class="total-value" style="color:#2ecc71">${cat.v}</span><span class="total-label">${t('abrev_v') || 'V'}</span></div>
-              <div class="total-item"><span class="total-value" style="color:#f39c12">${cat.e}</span><span class="total-label">${t('abrev_e') || 'E'}</span></div>
-              <div class="total-item"><span class="total-value" style="color:#e74c3c">${cat.d}</span><span class="total-label">${t('abrev_d') || 'D'}</span></div>
+              <div class="total-item"><span class="total-value" style="color:#2ecc71">${cat.v}</span><span class="total-label">V</span></div>
+              <div class="total-item"><span class="total-value" style="color:#f39c12">${cat.e}</span><span class="total-label">E</span></div>
+              <div class="total-item"><span class="total-value" style="color:#e74c3c">${cat.d}</span><span class="total-label">D</span></div>
               <div class="total-item"><span class="total-value" style="color:#2ecc71">${pct}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>`;
           }
         } else {
@@ -1446,9 +1442,9 @@ const App = {
               <span style="font-weight:600; color:#001a6e;">${pais}</span>
             </div>
             <div class="total-item"><span class="total-value">${datos.pj}</span><span class="total-label">${t('partidos') || 'PJ'}</span></div>
-            <div class="total-item"><span class="total-value" style="color:#2ecc71">${datos.v}</span><span class="total-label">${t('abrev_v') || 'V'}</span></div>
-            <div class="total-item"><span class="total-value" style="color:#f39c12">${datos.e}</span><span class="total-label">${t('abrev_e') || 'E'}</span></div>
-            <div class="total-item"><span class="total-value" style="color:#e74c3c">${datos.d}</span><span class="total-label">${t('abrev_d') || 'D'}</span></div>
+            <div class="total-item"><span class="total-value" style="color:#2ecc71">${datos.v}</span><span class="total-label">V</span></div>
+            <div class="total-item"><span class="total-value" style="color:#f39c12">${datos.e}</span><span class="total-label">E</span></div>
+            <div class="total-item"><span class="total-value" style="color:#e74c3c">${datos.d}</span><span class="total-label">D</span></div>
             <div class="total-item"><span class="total-value" style="color:${pct >= 50 ? '#2ecc71' : '#f39c12'}">${pct}%</span><span class="total-label">${t('victorias') || 'victorias'}</span></div>`;
         }
 
@@ -2483,7 +2479,7 @@ const App = {
 
         totalesHtml += `
         <div class="career-totals-card selection-totals" style="border-top: 4px solid #FFD700; margin-bottom: 15px;">
-          <h3 class="card-title"><i class="fas fa-flag" style="margin-right: 8px; color: #FFD700;"></i>${t('total_seleccion') || 'Total Selección'}</h3>
+          <h3 class="card-title">${totalesPais.bandera ? `<img src="${totalesPais.bandera}" style="height:14px;margin-right:8px;vertical-align:middle">` : `<i class="fas fa-flag" style="margin-right:8px; color:#FFD700;"></i>`}${t('total_seleccion') || 'Total Selección'}</h3>
           <div class="totals-grid">
             ${statsHtml}
           </div>
