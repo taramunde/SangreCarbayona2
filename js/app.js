@@ -1226,9 +1226,13 @@ const App = {
     }
 
     if (tieneSeleccion) {
-      dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'}">
-        <option value="seleccion" ${filtroActivo === 'seleccion' ? 'selected' : ''}>${t('seleccion_nacional') || 'Selección Nacional'}</option>
-      </optgroup>`;
+      const sel = ent.seleccionComoEntrenador;
+      dropdownHtml += `<optgroup label="${t('seleccion_nacional') || 'Selección Nacional'} (${sel.pais})">`;
+      sel.datos.forEach((cat) => {
+        const val = `seleccion_${cat.categoria}`;
+        dropdownHtml += `<option value="${val}" ${filtroActivo === val ? 'selected' : ''}>${cat.categoria} (${sel.pais})</option>`;
+      });
+      dropdownHtml += `</optgroup>`;
     }
 
     dropdownHtml += `</select></div>`;
@@ -1236,9 +1240,12 @@ const App = {
     // ── Tabla historial club ───────────────────────────────────
     let html = dropdownHtml;
 
-    const mostrarClub = filtroActivo !== 'seleccion';
-    const mostrarSeleccion =
-      filtroActivo === 'all' || filtroActivo === 'seleccion';
+    const esFiltroPorSeleccion = filtroActivo.startsWith('seleccion_');
+    const categoriaFiltrada = esFiltroPorSeleccion
+      ? filtroActivo.replace('seleccion_', '')
+      : null;
+    const mostrarClub = !esFiltroPorSeleccion;
+    const mostrarSeleccion = filtroActivo === 'all' || esFiltroPorSeleccion;
 
     if (mostrarClub) {
       if (historialClub.length) {
@@ -1308,8 +1315,13 @@ const App = {
           ? `https://flagcdn.com/16x12/${sel.bandera}.webp`
           : sel.bandera || '';
 
-      // Totales selección
-      const totSel = sel.datos.reduce(
+      // Filtrar categorías según selección del dropdown
+      const datosFiltrados = categoriaFiltrada
+        ? sel.datos.filter((c) => c.categoria === categoriaFiltrada)
+        : sel.datos;
+
+      // Totales de las categorías visibles
+      const totSel = datosFiltrados.reduce(
         (acc, c) => ({
           pj: acc.pj + (c.partidos || 0),
           v: acc.v + (c.victorias || 0),
@@ -1320,9 +1332,12 @@ const App = {
       );
       const pctSel =
         totSel.pj > 0 ? Math.round((totSel.v / totSel.pj) * 100) : 0;
+      const tituloSeleccion = categoriaFiltrada
+        ? `${categoriaFiltrada} (${sel.pais})`
+        : `${t('seleccion_nacional') || 'Selección Nacional'} — ${sel.pais}`;
 
       html += `<div class="career-totals-card" style="margin-bottom:24px; border-left:4px solid var(--secondary-color, #c9a227);">
-        <h3 class="card-title"><i class="fas fa-flag" style="margin-right:8px;"></i>${t('seleccion_nacional') || 'Selección Nacional'} — ${sel.pais}</h3>
+        <h3 class="card-title"><i class="fas fa-flag" style="margin-right:8px;"></i>${tituloSeleccion}</h3>
         <div class="totals-grid">
           <div class="total-item"><span class="total-value">${totSel.pj}</span><span class="total-label">${t('col_pj') || 'PJ'}</span></div>
           <div class="total-item"><span class="total-value" style="color:#2ecc71">${totSel.v}</span><span class="total-label">V</span></div>
@@ -1333,16 +1348,16 @@ const App = {
       </div>`;
 
       html += `<div class="career-table-wrapper">
-        <h3 class="overview-title" style="padding:0 0 12px">${t('seleccion_nacional') || 'Selección nacional'}</h3>
+        <h3 class="overview-title" style="padding:0 0 12px">${tituloSeleccion}</h3>
         <table class="career-table"><thead><tr>
           <th>${t('categoria') || 'Categoría'}</th>
           <th>${t('col_pj') || 'PJ'}</th>
           <th style="color:#2ecc71">V</th><th style="color:#f39c12">E</th><th style="color:#e74c3c">D</th>
           <th>GF</th><th>GC</th>
         </tr></thead><tbody>`;
-      sel.datos.forEach((cat) => {
+      datosFiltrados.forEach((cat) => {
         html += `<tr>
-          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${sel.pais} — ${cat.categoria}</span></td>
+          <td><span class="career-club-name">${bandera ? `<img src="${bandera}" style="height:12px;margin-right:6px;vertical-align:middle">` : ''}${cat.categoria} (${sel.pais})</span></td>
           <td>${cat.partidos || 0}</td>
           <td style="color:#2ecc71;font-weight:700">${cat.victorias || 0}</td>
           <td style="color:#f39c12;font-weight:700">${cat.empates || 0}</td>
