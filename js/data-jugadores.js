@@ -1438,6 +1438,20 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1979-02-07',
     imagen: 'https://i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
   },
+
+  'jorge-guillermo-almada-alves': {
+    nombre: 'Jorge Guillermo',
+    apellidos: 'Almada Alves',
+    nombreCompleto: 'Jorge Guillermo Almada Alves',
+    apodo: 'Guillermo Almada',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Uruguaya'],
+    lugarNacimiento: 'Montevideo',
+    provinciaNacimiento: 'Montevideo',
+    fechaNacimiento: '1969-06-18',
+    imagen: 'https://i.postimg.cc/dDPbscw7/Almada-(entrenador)-PNG.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
