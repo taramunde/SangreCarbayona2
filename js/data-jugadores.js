@@ -1424,6 +1424,20 @@ CLUB_DATA.entrenadorMaestro = {
       ],
     },
   },
+
+  'luis-miguel-carrion-delgado': {
+    nombre: 'Luis Miguel',
+    apellidos: 'Carrión Delgado',
+    nombreCompleto: 'Luis Miguel Carrión Delgado',
+    apodo: 'Luis Carrión',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Barcelona',
+    provinciaNacimiento: 'Barcelona',
+    fechaNacimiento: '1979-02-07',
+    imagen: 'https://i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
