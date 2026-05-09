@@ -142,7 +142,6 @@ const App = {
     this.renderPatrocinadores();
     this.renderProximoPartido();
     this.renderSeasonSelector();
-    this.renderSubtituloTemporada();
     this.renderEstadisticasEquipo();
     this.renderPlantillaCompleta();
     this.renderCuerpoTecnico();
@@ -194,37 +193,10 @@ const App = {
     document.querySelectorAll('.season-tab').forEach((tab) => {
       tab.classList.toggle('active', tab.dataset.season === seasonId);
     });
-    this.renderSubtituloTemporada();
     this.renderEstadisticasEquipo();
     this.renderPlantillaCompleta();
     this.renderCuerpoTecnico();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  },
-
-  renderSubtituloTemporada: function () {
-    const subtitle = document.querySelector('.page-subtitle');
-    if (!subtitle) return;
-    const temporada = getTemporada(this.temporadaActiva);
-    if (!temporada) return;
-    const tempData = CLUB_DATA.temporadasDisponibles.find(
-      (t) => t.id === this.temporadaActiva,
-    );
-    const nombreTemp = tempData
-      ? tempData.nombre
-      : this.temporadaActiva.replace('-', '/');
-    const competicion = temporada.competicion || '';
-    const grupo =
-      temporada.grupo && temporada.grupo !== 'null'
-        ? ' - ' + temporada.grupo
-        : '';
-    subtitle.innerHTML =
-      '<span data-i18n="equipo_subtitulo">' +
-      (t('equipo_subtitulo') || 'Temporada') +
-      '</span> ' +
-      nombreTemp +
-      ' - ' +
-      competicion +
-      grupo;
   },
 
   renderCalendario: function () {
@@ -592,8 +564,12 @@ const App = {
     const ribbonHtml = jugador.fallecido
       ? '<div class="deceased-ribbon"></div>'
       : '';
+    const esTemporadaActual =
+      this.temporadaActiva === CLUB_DATA.temporadaActual;
     const playerUrl = jugador.codigo
-      ? `fichas/${jugador.codigo}.html`
+      ? esTemporadaActual
+        ? `fichas/${jugador.codigo}.html`
+        : `ficha-jugador.html?id=${jugador.codigo}&season=${this.temporadaActiva}`
       : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
 
     // DIFERENCIAR GOLES/ENCAJADOS PARA PORTEROS
