@@ -10217,7 +10217,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       nombre: 'Luis Miguel Carrión Delgado',
       cargo: 'Entrenador Principal',
       imagen:
-        'https: //i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
+        'https://i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
       esPrincipal: true,
       enClubDesde: '2025',
       contratoHasta: '2025',
