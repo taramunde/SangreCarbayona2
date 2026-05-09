@@ -1107,7 +1107,12 @@ const App = {
       const jorTexto =
         typeof partido.jornada === 'number'
           ? `${t('jornada_abrev') || 'J'}${partido.jornada}`
-          : partido.jornada;
+          : t(
+              `copa_ronda_${String(partido.jornada)
+                .toLowerCase()
+                .replace(/[\s-]+/g, '_')
+                .replace(/_+/g, '_')}`,
+            ) || partido.jornada;
       html += `<article class="match-detail-card">
         <div class="match-detail-header">
           <div class="match-date-badge ${resultClass}">
