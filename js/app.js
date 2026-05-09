@@ -1113,6 +1113,16 @@ const App = {
                 .replace(/[\s-]+/g, '_')
                 .replace(/_+/g, '_')}`,
             ) || partido.jornada;
+      const tienePenaltis1 =
+        partido.penaltisLocal !== undefined &&
+        partido.penaltisVisitante !== undefined;
+      const tieneProrroga1 = partido.minutos && partido.minutos > 90;
+      const aetBadge1 = tieneProrroga1
+        ? ` <span class="match-score-aet">${t('prorroga') || 'p.p.'}</span>`
+        : '';
+      const pensBadge1 = tienePenaltis1
+        ? ` <span class="match-score-pens">(${partido.penaltisLocal}-${partido.penaltisVisitante} pen.)</span>`
+        : '';
       html += `<article class="match-detail-card">
         <div class="match-detail-header">
           <div class="match-date-badge ${resultClass}">
@@ -1123,7 +1133,7 @@ const App = {
             <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
             <div class="match-teams-result">
               <span class="team-home">${partido.local}</span>
-              <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
+              <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}${aetBadge1}${pensBadge1}</span>
               <span class="team-away">${partido.visitante}</span>
             </div>
           </div>
@@ -1888,6 +1898,16 @@ const App = {
             playerStatsHtml = `<div class="match-player-chips">${chips.join('')}</div>`;
         }
 
+        const tienePenaltis2 =
+          partido.penaltisLocal !== undefined &&
+          partido.penaltisVisitante !== undefined;
+        const tieneProrroga2 = partido.minutos && partido.minutos > 90;
+        const aetBadge2 = tieneProrroga2
+          ? ` <span class="match-score-aet">${t('prorroga') || 'p.p.'}</span>`
+          : '';
+        const pensBadge2 = tienePenaltis2
+          ? ` <span class="match-score-pens">(${partido.penaltisLocal}-${partido.penaltisVisitante} pen.)</span>`
+          : '';
         html += `
                     <article class="match-detail-card">
                         <div class="match-detail-header">
@@ -1899,7 +1919,7 @@ const App = {
                                 <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
                                 <div class="match-teams-result">
                                     <span class="team-home">${partido.local}</span>
-                                    <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}</span>
+                                    <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}${aetBadge2}${pensBadge2}</span>
                                     <span class="team-away">${partido.visitante}</span>
                                 </div>
                                 ${playerStatsHtml}
@@ -1923,6 +1943,8 @@ const App = {
                 .chip-assist { background: #e8f4fd; border-color: #6bb8e8; color: #1a5a8a; }
                 .chip-yellow { background: #FFFFF0; border-color: #FFD700; color: #8a7000; }
                 .chip-red { background: #FFF5F5; border-color: #FF4136; color: #8a1010; }
+                .match-score-aet { font-size: 0.72em; font-weight: 700; color: #7a6200; background: #fff8dc; border: 1px solid #e6d000; border-radius: 4px; padding: 1px 5px; margin-left: 4px; vertical-align: middle; letter-spacing: 0.3px; }
+                .match-score-pens { font-size: 0.78em; font-weight: 700; color: #003da5; background: #e8eeff; border: 1px solid #99b0f0; border-radius: 4px; padding: 1px 6px; margin-left: 4px; vertical-align: middle; white-space: nowrap; }
             `;
       document.head.appendChild(s);
     }
