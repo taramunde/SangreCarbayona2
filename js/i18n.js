@@ -119,6 +119,13 @@ const translations = {
     copa_ronda_cuartos_de_final: 'Cuartos de Final',
     copa_ronda_semifinal: 'Semifinal',
     copa_ronda_final: 'Final',
+    comp_copa_ronda_fase_ascenso_semifinal_ida:
+      'Fase de Ascenso - Semifinal (Ida)',
+    comp_copa_ronda_fase_ascenso_semifinal_vuelta:
+      'Fase de Ascenso - Semifinal (Vuelta)',
+    comp_copa_ronda_fase_ascenso_final_ida: 'Fase de Ascenso - Final (Ida)',
+    comp_copa_ronda_fase_ascenso_final_vuelta:
+      'Fase de Ascenso - Final (Vuelta)',
 
     // ============================================
     // FICHA JUGADOR
@@ -453,6 +460,14 @@ const translations = {
     copa_ronda_cuartos_de_final: 'Quarter-final',
     copa_ronda_semifinal: 'Semi-final',
     copa_ronda_final: 'Final',
+    comp_copa_ronda_fase_ascenso_semifinal_ida:
+      'Promotion Play-offs - Semi-final (1st Leg)',
+    comp_copa_ronda_fase_ascenso_semifinal_vuelta:
+      'Promotion Play-offs - Semi-final (2nd Leg)',
+    comp_copa_ronda_fase_ascenso_final_ida:
+      'Promotion Play-offs - Final (1st Leg)',
+    comp_copa_ronda_fase_ascenso_final_vuelta:
+      'Promotion Play-offs - Final (2nd Leg)',
 
     // ============================================
     // PLAYER PROFILE
