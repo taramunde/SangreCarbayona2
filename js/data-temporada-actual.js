@@ -2065,8 +2065,9 @@ CLUB_DATA.temporadas['2025-26'] = {
       dorsal: 15,
       posicion: 'Central',
       enClubDesde: '2022',
-      contratoHasta: '2026',
-      estado: 'baja',
+      contratoHasta: '2027',
+      estado: 'cedido',
+      cedidoEn: 'Burgos C.F.',
       stats: {
         partidos: 3,
         goles: 0,
@@ -3796,6 +3797,26 @@ CLUB_DATA.temporadas['2025-26'] = {
       posicion: 'Central',
       enClubDesde: '2025',
       contratoHasta: '2029',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
+    {
+      id: 'jaime-vazquez-cuervo-arango',
+      codigo: 'jaime-vazquez-cuervo-arango',
+      dorsal: '-',
+      posicion: 'Central',
+      enClubDesde: '2023',
+      contratoHasta: '2027',
+      estado: 'cedido',
+      cedidoEn: 'R.C. Celta Fortuna',
       stats: {
         partidos: 0,
         goles: 0,

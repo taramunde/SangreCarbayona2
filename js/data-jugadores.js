@@ -536,22 +536,34 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/MGhpQNkp/Espinosa-PNG.webp',
   },
 
-  'raul-fernandez': {
-    nombre: 'Raúl',
-    apellidos: 'Fernández Soto',
-    nombreCompleto: 'Raúl Fernández',
-    posicion: 'Central',
+  'jaime-vazquez-cuervo-arango': {
+    nombre: 'Jaime',
+    apellidos: 'Vázquez Cuervo-Arango',
+    nombreCompleto: 'Jaime Vázquez Cuervo-Arango',
+    apodo: 'Jaime Vázquez',
+    posicion: 'Defensa',
     posicionCorta: 'DC',
     altura: 1.84,
-    peso: 79,
-    pie: 'Derecho',
-    nacionalidad: 'Española',
-    lugarNacimiento: 'Gijón, Asturias',
-    fechaNacimiento: '1993-02-14',
-    imagen: 'https://picsum.photos/seed/df3-22/400/500',
-    fallecido: true,
-    fechaFallecimiento: '2024-05-15',
-    redes: { instagram: '#', twitter: '#' },
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Avilés',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2006-02-01',
+    imagen: 'https://i.postimg.cc/hGB0VFpc/Jaime-Vazquez-PNG-Alineacion.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U18',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 98,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
   },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
