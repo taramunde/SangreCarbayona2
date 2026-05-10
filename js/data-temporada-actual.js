@@ -10137,6 +10137,8 @@ CLUB_DATA.temporadas['2025-26'] = {
       posicion: 'Mediocentro',
       enClubDesde: '2024',
       contratoHasta: '2027',
+      estado: 'cedido',
+      cedidoEn: 'Córdoba C.F.',
       stats: {
         partidos: 0,
         goles: 0,
