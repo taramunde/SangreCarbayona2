@@ -10133,7 +10133,7 @@ CLUB_DATA.temporadas['2025-26'] = {
     {
       id: 'alberto-del-moral-saelices',
       codigo: 'alberto-del-moral-saelices',
-      dorsal: NaN,
+      dorsal: '-',
       posicion: 'Mediocentro',
       enClubDesde: '2024',
       contratoHasta: '2027',
