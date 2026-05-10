@@ -10129,7 +10129,27 @@ CLUB_DATA.temporadas['2025-26'] = {
         },
       ],
     },
+
+    {
+      id: 'alberto-del-moral-saelices',
+      codigo: 'alberto-del-moral-saelices',
+      dorsal: NaN,
+      posicion: 'Mediocentro',
+      enClubDesde: '2024',
+      contratoHasta: '2027',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
   ],
+
+  // ENTRENADORES
 
   cuerpoTecnico: [
     {

@@ -1227,6 +1227,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'alberto-del-moral-saelices': {
+    nombre: 'Alberto',
+    apellidos: 'del Moral Saelices',
+    nombreCompleto: 'Alberto del Moral Saelices',
+    apodo: 'Alberto del Moral',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.85,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Villacañas',
+    provinciaNacimiento: 'Toledo',
+    fechaNacimiento: '2000-07-20',
+    imagen: 'https://i.postimg.cc/pTf8xkjC/Del-Moral-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
