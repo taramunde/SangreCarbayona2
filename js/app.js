@@ -595,7 +595,9 @@ const App = {
     const cedidoBadgeHtml =
       jugador.estado === 'cedido'
         ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${t('cedido') || 'Cedido'}</div>`
-        : '';
+        : jugador.estado === 'baja'
+          ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
+          : '';
     const esTemporadaActual =
       this.temporadaActiva === CLUB_DATA.temporadaActual;
     const playerUrl = jugador.codigo
@@ -784,7 +786,9 @@ const App = {
                               .join('')
                           : t('cedido') || 'Cedido'
                       }</span></div>`
-                    : ''
+                    : jugador.estado === 'baja'
+                      ? `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
+                      : ''
                 }
             </div>
             <div class="player-info-container">
@@ -1733,12 +1737,13 @@ const App = {
     // ============================================
     let estadoClubHtml = '';
 
-    // Si el jugador tiene estado "baja", mostrar como ex-jugador
+    // Si el jugador tiene estado "baja", mostrar según si es temporada actual (baja durante temporada) o histórica (ex jugador)
     if (jugador.estado === 'baja') {
+      const esBajaEnTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
       estadoClubHtml = `
-        <div class="info-row baja-row">
-          <span class="info-label"><i class="fas fa-sign-out-alt"></i> ${t('estado') || 'Estado'}</span>
-          <span class="info-value">${t('ex_jugador') || 'Ex jugador'}</span>
+        <div class="info-row baja-row baja-temp-row">
+          <span class="info-label"><i class="fas fa-door-open"></i> ${t('estado') || 'Estado'}</span>
+          <span class="info-value baja-temp-value">${esBajaEnTemporadaActual ? t('baja_temporada') || 'Baja durante temporada' : t('ex_jugador') || 'Ex jugador'}</span>
         </div>
         <div class="info-row">
           <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
@@ -2765,6 +2770,71 @@ if (!document.getElementById('cedidoStyles')) {
     }
   `;
   document.head.appendChild(s);
+}
+
+/* ===================================
+   ESTILOS PARA BAJAS DURANTE TEMPORADA
+   =================================== */
+if (!document.getElementById('bajaTempStyles')) {
+  const bt = document.createElement('style');
+  bt.id = 'bajaTempStyles';
+  bt.textContent = `
+    /* Badge en tarjeta de plantilla */
+    .baja-temp-card-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(180, 0, 0, 0.88);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(2px);
+      z-index: 3;
+      text-transform: uppercase;
+    }
+    .baja-temp-card-badge i { font-size: 0.65rem; }
+
+    /* Badge en hero de ficha */
+    .baja-temp-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(192, 0, 0, 0.92);
+      color: #fff;
+      font-size: 0.72em;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      margin-top: 10px;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* Fila de estado en info panel */
+    .baja-temp-row .info-value,
+    .baja-temp-value {
+      color: #c0392b;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .baja-temp-badge {
+        font-size: 0.68em;
+        padding: 5px 10px;
+      }
+    }
+  `;
+  document.head.appendChild(bt);
 }
 
 /* ===================================
