@@ -1739,7 +1739,13 @@ const App = {
 
     // Si el jugador tiene estado "baja", mostrar según si es temporada actual (baja durante temporada) o histórica (ex jugador)
     if (jugador.estado === 'baja') {
-      const esBajaEnTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
+      const urlParams = new URLSearchParams(window.location.search);
+      const currentSeasonId =
+        (window.PLAYER_DATA_STATIC && window.PLAYER_DATA_STATIC.season) ||
+        urlParams.get('season') ||
+        CLUB_DATA.temporadaActual;
+      const esBajaEnTemporadaActual =
+        currentSeasonId === CLUB_DATA.temporadaActual;
       estadoClubHtml = `
         <div class="info-row baja-row baja-temp-row">
           <span class="info-label"><i class="fas fa-door-open"></i> ${t('estado') || 'Estado'}</span>
