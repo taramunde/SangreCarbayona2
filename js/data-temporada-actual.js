@@ -3828,6 +3828,26 @@ CLUB_DATA.temporadas['2025-26'] = {
       partidos: [],
     },
 
+    {
+      id: 'chukwuma-eze',
+      codigo: 'chukwuma-eze',
+      dorsal: NaN,
+      posicion: 'Central',
+      enClubDesde: '2024',
+      contratoHasta: '2028',
+      estado: 'cedido',
+      cedidoEn: 'Real Avilés Industrial C.F.',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
     // CENTROCAMPISTAS
 
     {
