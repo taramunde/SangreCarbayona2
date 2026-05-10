@@ -213,6 +213,9 @@ const translations = {
     estadisticas_temporada: 'Estadísticas de temporada',
     cedido: 'Cedido',
     cedido_en: 'Cedido en',
+    baja_temporada: 'Baja durante temporada',
+    jugador_baja_temporada_notice:
+      'Este jugador causó baja durante la temporada indicada.',
 
     // ============================================
     // CALENDARIO
@@ -566,6 +569,9 @@ const translations = {
     estadisticas_temporada: 'Season statistics',
     cedido: 'On Loan',
     cedido_en: 'On Loan at',
+    baja_temporada: 'Left mid-season',
+    jugador_baja_temporada_notice:
+      'This player left the club during the indicated season.',
 
     // ============================================
     // CALENDAR
