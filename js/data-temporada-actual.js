@@ -3831,7 +3831,7 @@ CLUB_DATA.temporadas['2025-26'] = {
     {
       id: 'chukwuma-eze',
       codigo: 'chukwuma-eze',
-      dorsal: NaN,
+      dorsal: '-',
       posicion: 'Central',
       enClubDesde: '2024',
       contratoHasta: '2028',
