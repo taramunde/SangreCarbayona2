@@ -592,6 +592,10 @@ const App = {
     const ribbonHtml = jugador.fallecido
       ? '<div class="deceased-ribbon"></div>'
       : '';
+    const cedidoBadgeHtml =
+      jugador.estado === 'cedido'
+        ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${t('cedido') || 'Cedido'}</div>`
+        : '';
     const esTemporadaActual =
       this.temporadaActiva === CLUB_DATA.temporadaActual;
     const playerUrl = jugador.codigo
@@ -614,6 +618,7 @@ const App = {
           <span class="squad-number">${jugador.dorsal}</span>
           ${ribbonHtml}
           <div class="squad-overlay"><span class="view-profile">${t('ver_ficha')}</span></div>
+          ${cedidoBadgeHtml}
         </div>
         <div class="squad-info">
           <h4 class="squad-name">${jugador.apodo || jugador.nombre}</h4>
@@ -2677,6 +2682,33 @@ if (!document.getElementById('porteroStyles')) {
 /* ===================================
    ESTILOS PARA JUGADORES CEDIDOS
    =================================== */
+if (!document.getElementById('cedidoCardStyles')) {
+  const sc = document.createElement('style');
+  sc.id = 'cedidoCardStyles';
+  sc.textContent = `
+    .cedido-card-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0, 26, 110, 0.88);
+      color: #FFD700;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(2px);
+      z-index: 3;
+      text-transform: uppercase;
+    }
+    .cedido-card-badge i { font-size: 0.65rem; }
+  `;
+  document.head.appendChild(sc);
+}
+
 if (!document.getElementById('cedidoStyles')) {
   const s = document.createElement('style');
   s.id = 'cedidoStyles';
