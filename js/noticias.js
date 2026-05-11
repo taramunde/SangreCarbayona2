@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/03/betis-ovi/00031777829093136246760.htm',
-    titulo: 'El Betis se aprovecha de los fallos del Real Oviedo.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/10/digno-oviedo-evita-ante-getafe-descenso-matematico/00031778434275452249405.htm',
+    titulo: 'Un digno Oviedo evita ante el Getafe el descenso matemático.',
     descripcion:
-      'El Real Oviedo, más cerca que nunca del descenso matemático tras un encuentro en el que no empezó mal y acabó mordiendo el polvo (3-0) por los fallos propios. De nuevo, las acciones polémicas del VAR fueron en contra de los carbayones.',
-    imagen: 'https://i.postimg.cc/d3B2164W/J-34-LVA.webp',
-    fecha: '03 mayo 2026',
+      'El Real Oviedo, muy condicionado por dos rojas en las que intervino el VAR, sacó un punto (0-0) que permite a los carbayones seguir siendo equipo de Primera. El Tartiere empezó a homenajear a Santi Cazorla.',
+    imagen: 'https://i.postimg.cc/CMsp1rGy/J-35-LVA.jpg',
+    fecha: '10 mayo 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/05/03/oviedo-elige-pelear-goleada-betis-129803829.html',
+    url: 'https://www.lne.es/real-oviedo/2026/05/10/orgulloso-oviedo-evita-descenso-tartiere-130070510.html',
     titulo:
-      'El Oviedo elige no pelear: goleada ante un Betis que se aprovechó de los errores azules (3-0).',
+      'Un orgulloso Oviedo evita el descenso en el Tartiere: empate con dos menos ante el Getafe (0-0).',
     descripcion:
-      'Los azules, tibios en ataque y que solo hicieron 4 faltas en todo el partido, conceden atrás para olvidarse de la lucha por la salvación, solo pendiente ahora de certificar matemáticamente.',
-    imagen: 'https://i.postimg.cc/T19Vw0C4/J-34-LNE.jpg',
-    fecha: '03 mayo 2026',
+      'Los azules rascan un punto en una tarde en la que el VAR mandó expulsar a Javi y Sibo.',
+    imagen: 'https://i.postimg.cc/xj3VCpKs/J-35-LNE.webp',
+    fecha: '10 mayo 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/betis-hurga-herida-flojo-real-oviedo-20260503214712-nt.html',
-    titulo: 'El Betis hurga en la herida de un flojo Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/punto-coraje-prolongar-agonia-real-oviedo-20260510211128-nt.html',
+    titulo: 'Punto de coraje para prolongar la agonía del Real Oviedo.',
     descripcion:
-      'Hundido. El conjunto ovetense entró muy bien al encuentro, pero poco a poco se fue diluyendo y acabó goleado por un Betis superior. El árbitro no señaló un penalti sobre Thiago.',
-    imagen: 'https://i.postimg.cc/zvjCB70M/J-34-EC.webp',
-    fecha: '03 mayo 2026',
+      'El Oviedo suma un punto en un partido en el que jugó mucho tiempo con dos menos y aplaza el descenso matemático, al menos, hasta el lunes.',
+    imagen: 'https://i.postimg.cc/ZKYtyPcw/J-35-EC.jpg',
+    fecha: '10 mayo 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-betis-y-el-var-castigan-un-competitivo-oviedo',
-    titulo: 'La Crónica: El Betis y el VAR castigan a un competitivo Oviedo.',
+    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-resiste-al-var-y-al-getafe',
+    titulo: 'La Crónica: El Oviedo resiste al VAR y al Getafe.',
     descripcion:
-      'El conjunto azul compitió durante muchos tramos, pero la pegada verdiblanca y varias acciones polémicas marcaron el 3-0 final.',
-    imagen: 'https://i.postimg.cc/QCbQtm0z/J-34-KA.jpg',
-    fecha: '03 mayo 2026',
+      'Las expulsiones de Javi López y Sibo condicionaron a un conjunto azul que sostuvo el empate gracias al esfuerzo colectivo y a un gran Aarón Escandell.',
+    imagen: 'https://i.postimg.cc/RVC5n1dV/J-35-KA.jpg',
+    fecha: '10 mayo 2026',
   },
 ];
 
