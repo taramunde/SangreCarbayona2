@@ -1387,7 +1387,6 @@ const App = {
         <span><strong style="color:#001a6e">${h.stats.v || h.stats.victorias || 0}</strong> V</span>
         <span><strong style="color:#001a6e">${h.stats.e || h.stats.empates || 0}</strong> E</span>
         <span><strong style="color:#001a6e">${h.stats.d || h.stats.derrotas || 0}</strong> D</span>
-        <span><strong style="color:${pctVColor}">${pctV}%</strong> ${t('victorias') || 'victorias'}</span>
       </div>`;
 
       // Desglose por competición si hay (solo club, vista "all")
