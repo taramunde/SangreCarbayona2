@@ -77,10 +77,10 @@ CLUB_DATA.videos = [
   },
   {
     id: 11,
-    jornada: Copa del Rey,
+    jornada: 'Copa del Rey',
     titulo: 'Ourense C.F. Vs Real Oviedo',
     fecha: '2024-10-20',
-    videoId: 'WoJca9m2U',
+    videoId: 'v_WoJca9m2U',
   },
   {
     id: 12,
