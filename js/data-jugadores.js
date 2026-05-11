@@ -581,6 +581,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/KYsb7466/Eze-PNG-(1).webp',
   },
 
+  'alvaro-lemos-collazo': {
+    nombre: 'Álvaro',
+    apellidos: 'Lemos Collazo',
+    nombreCompleto: 'Álvaro Lemos Collazo',
+    apodo: 'Álvaro Lemos',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: 1.77,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Santiago de Compostela',
+    provinciaNacimiento: 'La Coruña',
+    fechaNacimiento: '1993-03-30',
+    imagen: 'https://i.postimg.cc/XYDdjpzZ/Alvaro-Lemos-PNG-(3).webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
