@@ -649,10 +649,6 @@ const App = {
       const fichaUrl = `ficha-jugador.html?tipo=entrenador&id=${entId}&season=${this.temporadaActiva}`;
 
       // Usamos el diseño idéntico al de renderJugadorCard (.squad-card)
-      const bajaBadgeHtml =
-        miembro.estado === 'baja'
-          ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
-          : '';
       html += `
       <article class="squad-card">
         <a href="${fichaUrl}" class="squad-link">
@@ -660,7 +656,6 @@ const App = {
             <img src="${miembro.imagen}" alt="${miembro.nombre}">
             <span class="squad-number" style="font-size: 1.2rem;">DT</span>
             <div class="squad-overlay"><span class="view-profile">${t('ver_ficha') || 'Ver ficha'}</span></div>
-            ${bajaBadgeHtml}
           </div>
           <div class="squad-info">
             <h4 class="squad-name">${miembro.nombre}</h4>
@@ -899,8 +894,8 @@ const App = {
         <div class="player-photo-wrapper">
           <img src="${ent.imagen || ''}" alt="${nombre}" class="player-main-photo">
           <div class="player-role-badge"><span>${translateCargo(ent.cargo) || t('entrenador')}</span></div>
-          ${ent.estado === 'baja' ? `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>` : ''}
         </div>
+        ${ent.estado === 'baja' ? `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>` : ''}
       </div>
       <div class="player-info-container">
         <div class="player-name-section">
