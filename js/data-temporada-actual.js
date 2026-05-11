@@ -8313,6 +8313,26 @@ CLUB_DATA.temporadas['2025-26'] = {
       ],
     },
 
+    {
+      id: 'alberto-del-moral-saelices',
+      codigo: 'alberto-del-moral-saelices',
+      dorsal: '-',
+      posicion: 'Mediocentro',
+      enClubDesde: '2024',
+      contratoHasta: '2027',
+      estado: 'cedido',
+      cedidoEn: 'Córdoba C.F.',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
     // DELANTEROS
 
     {
@@ -10481,16 +10501,15 @@ CLUB_DATA.temporadas['2025-26'] = {
         },
       ],
     },
-
     {
-      id: 'alberto-del-moral-saelices',
-      codigo: 'alberto-del-moral-saelices',
+      id: 'daniel-george-paraschiv',
+      codigo: 'daniel-george-paraschiv',
       dorsal: '-',
-      posicion: 'Mediocentro',
+      posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2027',
       estado: 'cedido',
-      cedidoEn: 'Córdoba C.F.',
+      cedidoEn: 'Cultural Leonesa, F.C. Rapid 1923',
       stats: {
         partidos: 0,
         goles: 0,

@@ -1426,6 +1426,36 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  'daniel-george-paraschiv': {
+    nombre: 'Daniel George',
+    apellidos: 'Paraschiv',
+    nombreCompleto: 'Daniel George Paraschiv',
+    apodo: 'Paraschiv',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.85,
+    nacionalidad: ['Rumana', 'Moldava'],
+    lugarNacimiento: 'Brașov',
+    provinciaNacimiento: 'Transilvania',
+    fechaNacimiento: '1999-04-24',
+    imagen: 'https://i.postimg.cc/vTn7N9LF/Paraschiv-PNG-(3).webp',
+    seleccion: {
+      pais: 'Rumanía',
+      bandera: 'https://flagcdn.com/16x12/ro.webp',
+      datos: [
+        {
+          categoria: 'Absoluta',
+          partidos: 1,
+          goles: 1,
+          asistencias: 1,
+          minutos: 20,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
