@@ -9,6 +9,7 @@ const dataFiles = [
   path.join(__dirname, '../js/data-club.js'),
   path.join(__dirname, '../js/data-jugadores.js'),
   path.join(__dirname, '../js/data-temporada-actual.js'),
+  path.join(__dirname, '../js/data-historico.js'),
   path.join(__dirname, '../js/data-utils.js'),
 ];
 const templatePath = path.join(__dirname, 'plantilla.html');
@@ -83,6 +84,15 @@ const mapaJugadores = {}; // codigo → { jugador, temporadaId }
         CLUB_DATA.jugadoresMaestro[jugadorTemp.codigo]) ||
       {};
     const jugador = { ...maestro, ...jugadorTemp };
+
+    // Sin nombreCompleto ni imagen no tiene sentido generar ficha
+    if (!jugador.nombreCompleto && !jugador.imagen) {
+      console.log(
+        `  ⚠ Omitido ${jugadorTemp.codigo} (${temporadaId}): sin datos en jugadoresMaestro`,
+      );
+      return;
+    }
+
     mapaJugadores[jugador.codigo] = { jugador, temporadaId };
   });
 });
