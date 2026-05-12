@@ -62,30 +62,27 @@ if (!fs.existsSync(outputDir)) {
   console.log('📁 Carpeta "fichas" creada.');
 }
 
-// 6. Construir mapa de jugadores: una sola ficha por "codigo",
-//    usando siempre los datos de la temporada más reciente.
-//
-//    temporadasDisponibles[0] es la más reciente (actual: true).
-//    Recorremos de MÁS ANTIGUA a MÁS RECIENTE para que la más
-//    reciente sobreescriba siempre a las anteriores.
+// 6. Recopilar todas las apariciones de cada jugador por temporada.
+//    - mapaJugadores:   codigo → { jugador, temporadaId }  (temporada más reciente → ficha sin sufijo)
+//    - fichasHistoricas: array de { jugador, temporadaId } para cada aparición (fichas con sufijo)
 
 const temporadasOrdenadas = CLUB_DATA.temporadasDisponibles.map((t) => t.id);
+const temporadaActualId = CLUB_DATA.temporadaActual;
 
-const mapaJugadores = {}; // codigo → { jugador, temporadaId }
+const mapaJugadores = {}; // ficha canónica sin sufijo
+const fichasHistoricas = []; // una entrada por jugador × temporada
 
 [...temporadasOrdenadas].reverse().forEach((temporadaId) => {
   const temporada = CLUB_DATA.temporadas[temporadaId];
   if (!temporada) return;
 
   temporada.jugadores.forEach((jugadorTemp) => {
-    // Fusionar con datos del maestro (imagen, nombreCompleto, etc.)
     const maestro =
       (CLUB_DATA.jugadoresMaestro &&
         CLUB_DATA.jugadoresMaestro[jugadorTemp.codigo]) ||
       {};
     const jugador = { ...maestro, ...jugadorTemp };
 
-    // Sin nombreCompleto ni imagen no tiene sentido generar ficha
     if (!jugador.nombreCompleto && !jugador.imagen) {
       console.log(
         `  ⚠ Omitido ${jugadorTemp.codigo} (${temporadaId}): sin datos en jugadoresMaestro`,
@@ -93,35 +90,54 @@ const mapaJugadores = {}; // codigo → { jugador, temporadaId }
       return;
     }
 
+    // La temporada más reciente gana la ficha canónica
     mapaJugadores[jugador.codigo] = { jugador, temporadaId };
+
+    // Registrar para ficha con sufijo de temporada
+    fichasHistoricas.push({ jugador, temporadaId });
   });
 });
 
-// 7. Generar una ficha por jugador
-let contador = 0;
-
-Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
-  const slug = jugador.codigo; // ej: "javi-martinez" (sin temporada)
-  const fileName = `${slug}.html`;
-  const filePath = path.join(outputDir, fileName);
+// Helper: rellena la plantilla con los datos de un jugador/temporada
+function generarHtmlFicha(jugador, temporadaId, slug) {
   const temporadaNombre = temporadaId.replace('-', '/');
-
   const nombreMostrar =
     jugador.nombreCompleto || jugador.nombre || jugador.codigo;
   const imagenMostrar = jugador.imagen || '';
-
-  let htmlContent = template
+  return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
     .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
     .replace(/\{\{ID\}\}/g, jugador.codigo)
     .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
-    .replace(/\{\{POSICION\}\}/g, jugador.posicion)
+    .replace(/\{\{POSICION\}\}/g, jugador.posicion || '')
     .replace(/\{\{SLUG\}\}/g, slug);
+}
 
-  fs.writeFileSync(filePath, htmlContent);
+// 7. Generar fichas de jugadores
+let contador = 0;
+
+// 7a. Ficha canónica sin sufijo (temporada más reciente del jugador)
+Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
+  const slug = jugador.codigo;
+  fs.writeFileSync(
+    path.join(outputDir, `${slug}.html`),
+    generarHtmlFicha(jugador, temporadaId, slug),
+  );
   contador++;
-  console.log(`  ✔ ${fileName}  (datos de ${temporadaId})`);
+  console.log(`  ✔ ${slug}.html  (datos de ${temporadaId})`);
+});
+
+// 7b. Ficha con sufijo de temporada para todas las apariciones
+//     ej: alvaro-lemos-collazo-2024-25.html
+fichasHistoricas.forEach(({ jugador, temporadaId }) => {
+  const slug = `${jugador.codigo}-${temporadaId}`;
+  fs.writeFileSync(
+    path.join(outputDir, `${slug}.html`),
+    generarHtmlFicha(jugador, temporadaId, slug),
+  );
+  contador++;
+  console.log(`  ✔ ${slug}.html`);
 });
 
 // ===================================
@@ -197,6 +213,9 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
 // 8. Borrar fichas antiguas que ya no tienen jugador/entrenador activo
 const slugsValidos = new Set([
   ...Object.keys(mapaJugadores),
+  ...fichasHistoricas.map(
+    ({ jugador, temporadaId }) => `${jugador.codigo}-${temporadaId}`,
+  ),
   ...Object.keys(mapaEntrenadores),
 ]);
 const archivosExistentes = fs.readdirSync(outputDir);

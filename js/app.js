@@ -755,12 +755,17 @@ const App = {
       edadMostrar = t('desconocida') || 'Desconocida';
     }
 
-    // Siempre compartir la URL de la ficha estática (tiene meta tags OG correctos para WhatsApp/Telegram)
+    // Siempre compartir la URL de la ficha estática (tiene meta tags OG correctos para WhatsApp/Telegram).
+    // Temporada actual → fichas/aaron-escandell-banacloche.html
+    // Temporada histórica → fichas/aaron-escandell-banacloche-2024-25.html
     const baseUrl = window.location.href
       .split('/fichas/')[0]
       .split('/ficha-jugador')[0];
+    const fichaSlug = esTemporadaActual
+      ? jugador.codigo
+      : `${jugador.codigo}-${seasonId}`;
     const pageUrl = jugador.codigo
-      ? `${baseUrl}/fichas/${jugador.codigo}.html`
+      ? `${baseUrl}/fichas/${fichaSlug}.html`
       : window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
