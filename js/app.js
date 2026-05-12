@@ -755,7 +755,13 @@ const App = {
       edadMostrar = t('desconocida') || 'Desconocida';
     }
 
-    const pageUrl = window.location.href;
+    // Siempre compartir la URL de la ficha estática (tiene meta tags OG correctos para WhatsApp/Telegram)
+    const baseUrl = window.location.href
+      .split('/fichas/')[0]
+      .split('/ficha-jugador')[0];
+    const pageUrl = jugador.codigo
+      ? `${baseUrl}/fichas/${jugador.codigo}.html`
+      : window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
