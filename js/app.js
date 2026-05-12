@@ -898,12 +898,7 @@ const App = {
     const d = stats.derrotas || 0;
     const pctV = pj > 0 ? Math.round((v / pj) * 100) : 0;
 
-    // Apuntar a la ficha estática (tiene og:image correcto para WhatsApp/Telegram/Twitter)
-    // igual que se hace con jugadores: /fichas/entrenador-veljko-paunovic.html
-    const baseUrl = window.location.href
-      .split('/fichas/')[0]
-      .split('/ficha-jugador')[0];
-    const pageUrl = `${baseUrl}/fichas/entrenador-${entrenadorId}.html`;
+    const pageUrl = window.location.href;
     const shareText = `${nombre} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
       <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1574,10 +1569,7 @@ const App = {
       metaImage.setAttribute('property', 'og:image');
       document.head.appendChild(metaImage);
     }
-    // encodeURI convierte paréntesis y otros caracteres reservados que confunden
-    // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
-    const imagen = jugador.imagen ? encodeURI(jugador.imagen) : '';
-    metaImage.setAttribute('content', imagen);
+    metaImage.setAttribute('content', jugador.imagen);
   },
 
   renderQuickStats: function (
@@ -2896,6 +2888,20 @@ function ajustarFotosJugadores() {
 }
 
 function aplicarAjuste(img) {
+  // Si es la foto principal de la ficha individual, el CSS ya gestiona
+  // el encuadre con height fija + object-fit:cover + object-position.
+  // Solo ajustamos el object-position aquí; nunca añadimos scale
+  // (que sacaría la imagen del contenedor con overflow:hidden).
+  if (img.classList.contains('player-main-photo')) {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    if (ratio > 1.3) {
+      img.style.objectPosition = 'center 25%';
+    } else {
+      img.style.objectPosition = 'center 15%';
+    }
+    return;
+  }
+
   const ratio = img.naturalWidth / img.naturalHeight;
 
   if (ratio < 0.6) {
