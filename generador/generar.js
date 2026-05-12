@@ -76,7 +76,13 @@ const mapaJugadores = {}; // codigo → { jugador, temporadaId }
   const temporada = CLUB_DATA.temporadas[temporadaId];
   if (!temporada) return;
 
-  temporada.jugadores.forEach((jugador) => {
+  temporada.jugadores.forEach((jugadorTemp) => {
+    // Fusionar con datos del maestro (imagen, nombreCompleto, etc.)
+    const maestro =
+      (CLUB_DATA.jugadoresMaestro &&
+        CLUB_DATA.jugadoresMaestro[jugadorTemp.codigo]) ||
+      {};
+    const jugador = { ...maestro, ...jugadorTemp };
     mapaJugadores[jugador.codigo] = { jugador, temporadaId };
   });
 });
@@ -90,9 +96,13 @@ Object.values(mapaJugadores).forEach(({ jugador, temporadaId }) => {
   const filePath = path.join(outputDir, fileName);
   const temporadaNombre = temporadaId.replace('-', '/');
 
+  const nombreMostrar =
+    jugador.nombreCompleto || jugador.nombre || jugador.codigo;
+  const imagenMostrar = jugador.imagen || '';
+
   let htmlContent = template
-    .replace(/\{\{NOMBRE\}\}/g, jugador.nombreCompleto)
-    .replace(/\{\{IMAGEN\}\}/g, jugador.imagen)
+    .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
+    .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
     .replace(/\{\{ID\}\}/g, jugador.codigo)
     .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
