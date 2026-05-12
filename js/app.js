@@ -898,7 +898,12 @@ const App = {
     const d = stats.derrotas || 0;
     const pctV = pj > 0 ? Math.round((v / pj) * 100) : 0;
 
-    const pageUrl = window.location.href;
+    // Apuntar a la ficha estática (tiene og:image correcto para WhatsApp/Telegram/Twitter)
+    // igual que se hace con jugadores: /fichas/entrenador-veljko-paunovic.html
+    const baseUrl = window.location.href
+      .split('/fichas/')[0]
+      .split('/ficha-jugador')[0];
+    const pageUrl = `${baseUrl}/fichas/entrenador-${entrenadorId}.html`;
     const shareText = `${nombre} - ${CLUB_DATA.club.nombreCorto}`;
     const shareLinks = `
       <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + pageUrl)}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1569,7 +1574,10 @@ const App = {
       metaImage.setAttribute('property', 'og:image');
       document.head.appendChild(metaImage);
     }
-    metaImage.setAttribute('content', jugador.imagen);
+    // encodeURI convierte paréntesis y otros caracteres reservados que confunden
+    // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
+    const imagen = jugador.imagen ? encodeURI(jugador.imagen) : '';
+    metaImage.setAttribute('content', imagen);
   },
 
   renderQuickStats: function (

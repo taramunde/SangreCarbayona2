@@ -103,7 +103,9 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
   const temporadaNombre = temporadaId.replace('-', '/');
   const nombreMostrar =
     jugador.nombreCompleto || jugador.nombre || jugador.codigo;
-  const imagenMostrar = jugador.imagen || '';
+  // encodeURI convierte paréntesis y otros caracteres reservados que confunden
+  // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
+  const imagenMostrar = jugador.imagen ? encodeURI(jugador.imagen) : '';
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
     .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
@@ -188,7 +190,10 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
       CLUB_DATA.entrenadorMaestro[String(entId)]) ||
     {};
   const nombre = maestro.nombreCompleto || miembro.nombre || '';
-  const imagen = maestro.imagen || miembro.imagen || '';
+  const imagenRaw = maestro.imagen || miembro.imagen || '';
+  // encodeURI convierte paréntesis y otros caracteres reservados que confunden
+  // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
+  const imagen = imagenRaw ? encodeURI(imagenRaw) : '';
 
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
