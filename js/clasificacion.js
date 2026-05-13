@@ -1540,14 +1540,14 @@
     {
       equipo1: 'Real Betis',
       equipo2: 'Elche C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Celta de Vigo',
       equipo2: 'Levante U.D.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'Getafe C.F.',
@@ -1570,8 +1570,8 @@
     {
       equipo1: 'C.A. Osasuna',
       equipo2: 'Atlético de Madrid',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: 'Valencia C.F.',
