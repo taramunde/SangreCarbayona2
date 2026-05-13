@@ -1257,6 +1257,45 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/pTf8xkjC/Del-Moral-PNG.webp',
   },
 
+  'francisco-sebastian-moyano-jimenez': {
+    nombre: 'Francisco Sebastián',
+    apellidos: 'Moyano Jiménez',
+    nombreCompleto: 'Francisco Sebastián Moyano Jiménez',
+    apodo: 'Sebas Moyano',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.73,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Villanueva del Duque',
+    provinciaNacimiento: 'Córdoba',
+    fechaNacimiento: '1997-03-23',
+    imagen: 'https://i.postimg.cc/tRB9sW94/Sebas-Moyano-PNG-Alineacion.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U18',
+          partidos: 1,
+          goles: 0,
+          asistencias: 0,
+          minutos: 74,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U17',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 81,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
