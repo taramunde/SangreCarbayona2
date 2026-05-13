@@ -25,6 +25,7 @@ const POSITION_GROUPS = {
       'Centrocampista',
       'Mediocentro',
       'Mediocentro Defensivo',
+      'Mediocentro Ofensivo',
       'Mediapunta',
       'Pivote',
     ],
