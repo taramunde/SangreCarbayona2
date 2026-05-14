@@ -1576,8 +1576,8 @@
     {
       equipo1: 'Valencia C.F.',
       equipo2: 'Rayo Vallecano',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'Villarreal C.F.',
