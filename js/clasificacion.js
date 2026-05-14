@@ -1558,8 +1558,8 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'Real Sociedad',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'R.C.D. Espanyol',
