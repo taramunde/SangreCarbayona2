@@ -1534,8 +1534,8 @@
     {
       equipo1: 'Deportivo Alavés',
       equipo2: 'F.C. Barcelona',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'Real Betis',
@@ -1552,8 +1552,8 @@
     {
       equipo1: 'Getafe C.F.',
       equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 1,
     },
     {
       equipo1: 'Girona F.C.',
@@ -1564,8 +1564,8 @@
     {
       equipo1: 'R.C.D. Espanyol',
       equipo2: 'Athletic Club',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'C.A. Osasuna',
@@ -1582,8 +1582,8 @@
     {
       equipo1: 'Villarreal C.F.',
       equipo2: 'Sevilla F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'Real Madrid',
