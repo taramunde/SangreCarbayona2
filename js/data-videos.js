@@ -257,4 +257,11 @@ CLUB_DATA.videos = [
     fecha: '2026-05-10',
     videoId: 'WXfe9-PCud4',
   },
+  {
+    id: 37,
+    jornada: 36,
+    titulo: 'Real Madrid Vs Real Oviedo',
+    fecha: '2026-05-14',
+    videoId: 'nWJCdYE9Oys',
+  },
 ];
