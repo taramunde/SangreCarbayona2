@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/10/digno-oviedo-evita-ante-getafe-descenso-matematico/00031778434275452249405.htm',
-    titulo: 'Un digno Oviedo evita ante el Getafe el descenso matemático.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/14/rm-ovi/00031778790904971560135.htm',
+    titulo:
+      'El Oviedo no es capaz de darse una alegría ante un Madrid en crisis.',
     descripcion:
-      'El Real Oviedo, muy condicionado por dos rojas en las que intervino el VAR, sacó un punto (0-0) que permite a los carbayones seguir siendo equipo de Primera. El Tartiere empezó a homenajear a Santi Cazorla.',
-    imagen: 'https://i.postimg.cc/CMsp1rGy/J-35-LVA.jpg',
-    fecha: '10 mayo 2026',
+      'Los azules tuvieron varias ocasiones claras para hacer daño, pero sucumbieron ante un Madrid que fue superior sin pisar el acelerador (2-0).',
+    imagen: 'https://i.postimg.cc/SNSn98z4/J-36-LVA.webp',
+    fecha: '14 mayo 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/05/10/orgulloso-oviedo-evita-descenso-tartiere-130070510.html',
+    url: 'https://www.lne.es/real-oviedo/2026/05/14/bronca-mbappe-ovacion-cazorla-derrota-130247321.html',
     titulo:
-      'Un orgulloso Oviedo evita el descenso en el Tartiere: empate con dos menos ante el Getafe (0-0).',
-    descripcion:
-      'Los azules rascan un punto en una tarde en la que el VAR mandó expulsar a Javi y Sibo.',
-    imagen: 'https://i.postimg.cc/xj3VCpKs/J-35-LNE.webp',
-    fecha: '10 mayo 2026',
+      'Entre la bronca a Mbappé y la ovación a Cazorla, otra derrota del Oviedo (2-0).',
+    descripcion: '',
+    imagen: 'https://i.postimg.cc/sDjMWSZs/J-36-LNE.jpg',
+    fecha: '14 mayo 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/punto-coraje-prolongar-agonia-real-oviedo-20260510211128-nt.html',
-    titulo: 'Punto de coraje para prolongar la agonía del Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-madrid-oviedo-crisis-cazorla-almada-partido-20260514235219-nt.html',
+    titulo: 'El Real Oviedo no puede con un Real Madrid en crisis.',
     descripcion:
-      'El Oviedo suma un punto en un partido en el que jugó mucho tiempo con dos menos y aplaza el descenso matemático, al menos, hasta el lunes.',
-    imagen: 'https://i.postimg.cc/ZKYtyPcw/J-35-EC.jpg',
-    fecha: '10 mayo 2026',
+      'Derrota azul El conjunto azul llegó descendido al Santiago Bernabéu y salió derrotado a pesar de que, por momentos, tuteó a los blancos.',
+    imagen: 'https://i.postimg.cc/BQSjFD1s/J-36-EC.webp',
+    fecha: '14 mayo 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-resiste-al-var-y-al-getafe',
-    titulo: 'La Crónica: El Oviedo resiste al VAR y al Getafe.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-madrid-cumple-el-tramite-ante-un-digno-oviedo',
+    titulo: 'La Crónica: El Madrid cumple el trámite ante un digno Oviedo.',
     descripcion:
-      'Las expulsiones de Javi López y Sibo condicionaron a un conjunto azul que sostuvo el empate gracias al esfuerzo colectivo y a un gran Aarón Escandell.',
-    imagen: 'https://i.postimg.cc/RVC5n1dV/J-35-KA.jpg',
-    fecha: '10 mayo 2026',
+      'Los azules plantaron cara a los de Arbeloa, tuvieron ocasiones claras para marcar y dejaron una imagen valiente en Chamartín, aunque terminaron castigados por los errores en las áreas.',
+    imagen: 'https://i.postimg.cc/DyvSGsb7/J-36-KA.jpg',
+    fecha: '14 mayo 2026',
   },
 ];
 
