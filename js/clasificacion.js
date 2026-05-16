@@ -1588,8 +1588,8 @@
     {
       equipo1: 'Real Madrid',
       equipo2: 'Real Oviedo',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     // Jornada 37
     {
