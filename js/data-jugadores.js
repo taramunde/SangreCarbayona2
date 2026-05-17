@@ -1510,6 +1510,21 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  'alexandre-zurawski': {
+    nombre: 'Alexandre',
+    apellidos: 'Zurawski',
+    nombreCompleto: 'Alexandre Zurawski',
+    apodo: 'Alemão',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.82,
+    nacionalidad: ['Brasileña', 'Polaca'],
+    lugarNacimiento: 'Campo Erê',
+    provinciaNacimiento: 'Santa Catarina',
+    fechaNacimiento: '1998-04-01',
+    imagen: 'https://i.postimg.cc/rmhzyWK7/Alemao-PNG-Alineacion.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
