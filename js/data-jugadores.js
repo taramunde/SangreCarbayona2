@@ -1591,7 +1591,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Montevideo',
     provinciaNacimiento: 'Montevideo',
     fechaNacimiento: '1969-06-18',
-    imagen: 'https://i.postimg.cc/dDPbscw7/Almada-(entrenador)-PNG.webp',
+    imagen: 'img/entrenadores/Guillermo_Almada.webp',
   },
 };
 
