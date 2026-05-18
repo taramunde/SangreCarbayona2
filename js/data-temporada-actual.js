@@ -11034,7 +11034,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       codigo: 'veljko-paunovic',
       nombre: 'Veljko Paunović',
       cargo: 'Entrenador Principal',
-      imagen: 'https://i.postimg.cc/9FK0fKhp/Paunovic-(3)-(entrenador).webp',
+      imagen: 'img/entrenadores/Paunovic.webp',
       esPrincipal: true,
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -11154,8 +11154,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       codigo: 'luis-miguel-carrion-delgado',
       nombre: 'Luis Miguel Carrión Delgado',
       cargo: 'Entrenador Principal',
-      imagen:
-        'https://i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
+      imagen: 'img/entrenadores/LuisCarrion.webp',
       esPrincipal: true,
       enClubDesde: '2025',
       contratoHasta: '2025',

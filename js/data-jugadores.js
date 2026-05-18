@@ -1543,7 +1543,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Strumica',
     provinciaNacimiento: 'Región del Sudeste',
     fechaNacimiento: '1977-08-21',
-    imagen: 'https://i.postimg.cc/9FK0fKhp/Paunovic-(3)-(entrenador).webp',
+    imagen: 'img/entrenadores/Paunovic.webp',
     seleccionComoEntrenador: {
       pais: 'Serbia',
       bandera: 'https://flagcdn.com/16x12/rs.webp',
@@ -1577,7 +1577,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Barcelona',
     provinciaNacimiento: 'Barcelona',
     fechaNacimiento: '1979-02-07',
-    imagen: 'https://i.postimg.cc/9fT7VVwZ/Luis-Carrion-(entrenador)-PNG.webp',
+    imagen: 'img/entrenadores/LuisCarrion.webp',
   },
 
   'jorge-guillermo-almada-alves': {
