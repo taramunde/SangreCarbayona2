@@ -264,4 +264,11 @@ CLUB_DATA.videos = [
     fecha: '2026-05-14',
     videoId: 'nWJCdYE9Oys',
   },
+  {
+    id: 38,
+    jornada: 37,
+    titulo: 'Real Oviedo Vs Deportivo Alavés',
+    fecha: '2026-05-17',
+    videoId: 'Mi6t96G-P1Q',
+  },
 ];
