@@ -2881,7 +2881,7 @@ function ajustarFotosJugadores() {
       };
       img.onerror = function () {
         this.src =
-          'https://via.placeholder.com/400x500/1a365d/ffffff?text=Jugador';
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500"%3E%3Crect width="400" height="500" fill="%231a365d"/%3E%3Ccircle cx="200" cy="180" r="70" fill="%23ffffff22"/%3E%3Crect x="100" y="280" width="200" height="160" rx="20" fill="%23ffffff22"/%3E%3C/svg%3E';
       };
     }
   });
