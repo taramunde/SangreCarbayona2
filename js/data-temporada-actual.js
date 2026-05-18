@@ -11030,7 +11030,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       codigo: 'jorge-guillermo-almada-alves',
       nombre: 'Jorge Guillermo Almada Alves',
       cargo: 'Entrenador Principal',
-      imagen: '/img/entrenadores/Guillermo_Almada.webp',
+      imagen: 'img/entrenadores/GuillermoAlmada.webp',
       esPrincipal: true,
       enClubDesde: '2025',
       contratoHasta: '2026',
