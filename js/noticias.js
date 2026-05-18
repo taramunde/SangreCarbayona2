@@ -46,40 +46,41 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/14/rm-ovi/00031778790904971560135.htm',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/17/tartiere-clama-continuidad-cazorla-alaves-salva/00031779040744849363977.htm',
     titulo:
-      'El Oviedo no es capaz de darse una alegría ante un Madrid en crisis.',
+      'El Tartiere clama por la continuidad de Cazorla y el Alavés se salva.',
     descripcion:
-      'Los azules tuvieron varias ocasiones claras para hacer daño, pero sucumbieron ante un Madrid que fue superior sin pisar el acelerador (2-0).',
-    imagen: 'https://i.postimg.cc/SNSn98z4/J-36-LVA.webp',
-    fecha: '14 mayo 2026',
+      'El Real Oviedo cayó por la mínima ante el Deportivo Alavés (0-1) en un partido marcado por los cánticos de todo el Tartiere pidiendo la continuidad de Santi Cazorla.',
+    imagen: 'https://i.postimg.cc/s2qdz9L7/J-37-LVA.jpg',
+    fecha: '17 mayo 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/05/14/bronca-mbappe-ovacion-cazorla-derrota-130247321.html',
+    url: 'https://www.lne.es/real-oviedo/2026/05/17/triste-colofon-temporada-olvido-derrota-130333595.html',
     titulo:
-      'Entre la bronca a Mbappé y la ovación a Cazorla, otra derrota del Oviedo (2-0).',
-    descripcion: '',
-    imagen: 'https://i.postimg.cc/sDjMWSZs/J-36-LNE.jpg',
-    fecha: '14 mayo 2026',
+      'Triste colofón a una temporada para el olvido: derrota del Oviedo ante el Alavés (0-1).',
+    descripcion:
+      'Con Cazorla como titular, como objeto de los cánticos de un entregado Tartiere, los de Almada sucumben ante la efectividad del Alavés.',
+    imagen: 'https://i.postimg.cc/tgwQbtc3/J-37-LNE.jpg',
+    fecha: '17 mayo 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-madrid-oviedo-crisis-cazorla-almada-partido-20260514235219-nt.html',
-    titulo: 'El Real Oviedo no puede con un Real Madrid en crisis.',
+    url: 'https://www.elcomercio.es/real-oviedo/tartiere-clama-cazorla-quede-real-oviedo-20260517215639-nt.html',
+    titulo: 'El Tartiere clama a Cazorla que se quede en el Real Oviedo.',
     descripcion:
-      'Derrota azul El conjunto azul llegó descendido al Santiago Bernabéu y salió derrotado a pesar de que, por momentos, tuteó a los blancos.',
-    imagen: 'https://i.postimg.cc/BQSjFD1s/J-36-EC.webp',
-    fecha: '14 mayo 2026',
+      'El Oviedo pierde en el último encuentro de la temporada en casa con el centrocampista los 90 minutos en el campo y la afición pidiendo su continuidad y la marcha de Almada.',
+    imagen: 'https://i.postimg.cc/tgwQbtcF/J-37-EC.jpg',
+    fecha: '17 mayo 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-madrid-cumple-el-tramite-ante-un-digno-oviedo',
-    titulo: 'La Crónica: El Madrid cumple el trámite ante un digno Oviedo.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-no-encuentra-ni-consuelo-en-el-tartiere',
+    titulo: 'La Crónica: El Oviedo no encuentra ni consuelo en el Tartiere.',
     descripcion:
-      'Los azules plantaron cara a los de Arbeloa, tuvieron ocasiones claras para marcar y dejaron una imagen valiente en Chamartín, aunque terminaron castigados por los errores en las áreas.',
-    imagen: 'https://i.postimg.cc/DyvSGsb7/J-36-KA.jpg',
-    fecha: '14 mayo 2026',
+      'Los azules volvieron a quedarse sin premio pese a empujar durante toda la segunda mitad y cerraron su último partido en casa con una nueva derrota ante un Alavés que consiguió la salvación.',
+    imagen: 'https://i.postimg.cc/rp3XTCHS/J-37-KA.jpg',
+    fecha: '17 mayo 2026',
   },
 ];
 
