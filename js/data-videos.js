@@ -129,7 +129,7 @@ CLUB_DATA.videos = [
     jornada: 17,
     titulo: 'Real Oviedo Vs Celta de Vigo',
     fecha: '2025-12-20',
-    videoId: 'dQw4w9WgXcQ',
+    videoId: 'gbAHcPyo5-I',
   },
   {
     id: 19,
