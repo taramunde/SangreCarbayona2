@@ -39,7 +39,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Cluj-Napoca',
     provinciaNacimiento: 'Cluj',
     fechaNacimiento: '1998-01-20',
-    imagen: 'https://i.postimg.cc/sgPM0mk4/Moldovan_PNG_(2).webp',
+    imagen: 'img/jugadores/Moldovan.webp',
     seleccion: {
       pais: 'Rumanía',
       bandera: 'https://flagcdn.com/16x12/ro.webp',
@@ -78,7 +78,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Badajoz',
     provinciaNacimiento: 'Badajoz',
     fechaNacimiento: '2002-04-29',
-    imagen: 'https://i.postimg.cc/XJqXqbps/Narváez_PNG.webp',
+    imagen: 'img/jugadores/Narvaez.webp',
   },
 
   'quentin-jean-pierre-guy-braat': {
