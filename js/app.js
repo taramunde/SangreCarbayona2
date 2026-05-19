@@ -33,6 +33,22 @@ function formatearFecha(fechaStr) {
 }
 
 /* ===================================
+   FUNCIÓN HELPER: RESOLVER RUTAS DE IMAGEN
+   Convierte rutas relativas (img/jugadores/Aaron.webp) en absolutas
+   para que funcionen correctamente tanto desde la raíz como desde
+   subcarpetas como /fichas/.
+   =================================== */
+
+function resolverRutaImagen(imagen) {
+  if (!imagen || imagen.startsWith('http')) return imagen || '';
+  const baseUrl = window.location.href
+    .split('/fichas/')[0]
+    .split('/ficha-jugador')[0]
+    .replace(/\/$/, '');
+  return `${baseUrl}/${imagen}`;
+}
+
+/* ===================================
    FUNCIONES AUXILIARES PARA PORTEROS
    =================================== */
 
@@ -784,7 +800,7 @@ const App = {
     container.innerHTML = `
             <div class="player-photo-container">
                 <div class="player-photo-wrapper">
-                    <img src="${jugador.imagen}" alt="${jugador.nombreCompleto}" class="player-main-photo">
+                    <img src="${resolverRutaImagen(jugador.imagen)}" alt="${jugador.nombreCompleto}" class="player-main-photo">
                     <div class="player-number-large">${jugador.dorsal}</div>
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
@@ -908,7 +924,7 @@ const App = {
     container.innerHTML = `
       <div class="player-photo-container">
         <div class="player-photo-wrapper">
-          <img src="${ent.imagen || ''}" alt="${nombre}" class="player-main-photo">
+          <img src="${resolverRutaImagen(ent.imagen)}" alt="${nombre}" class="player-main-photo">
           <div class="player-role-badge"><span>${translateCargo(ent.cargo) || t('entrenador')}</span></div>
         </div>
         ${ent.estado === 'baja' ? `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>` : ''}
@@ -1569,7 +1585,7 @@ const App = {
       metaImage.setAttribute('property', 'og:image');
       document.head.appendChild(metaImage);
     }
-    metaImage.setAttribute('content', jugador.imagen);
+    metaImage.setAttribute('content', resolverRutaImagen(jugador.imagen));
   },
 
   renderQuickStats: function (
