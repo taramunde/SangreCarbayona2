@@ -221,7 +221,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Chapela',
     provinciaNacimiento: 'Pontevedra',
     fechaNacimiento: '1995-03-26',
-    imagen: 'https://i.postimg.cc/V6ScxHbr/David-Costas-PNG.webp',
+    imagen: 'img/jugadores/DavidCostas.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
@@ -251,7 +251,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Huesca',
     provinciaNacimiento: 'Huesca',
     fechaNacimiento: '1994-04-01',
-    imagen: 'https://i.postimg.cc/Wb0spKY0/Dani-Calvo-PNG.webp',
+    imagen: 'img/jugadores/DaniCalvo.webp',
   },
 
   'oier-luengo-redondo': {
@@ -266,8 +266,9 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Amorebieta',
     provinciaNacimiento: 'Vizcaya',
     fechaNacimiento: '1997-11-11',
-    imagen: 'https://i.postimg.cc/YqQmcd1s/Luengo-PNG.webp',
+    imagen: 'img/jugadores/Luengo.webp',
   },
+
   'david-mota-veiga-teixeira-do-carmo': {
     nombre: 'David',
     apellidos: 'Mota Veiga Teixeira do Carmo',
