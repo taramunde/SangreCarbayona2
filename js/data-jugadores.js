@@ -24,7 +24,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Carcagente',
     provinciaNacimiento: 'Valencia',
     fechaNacimiento: '1995-09-27',
-    imagen: 'https://i.postimg.cc/hvxDQPg1/Aarón_PNG_(3).webp',
+    imagen: 'img/jugadores/Aaron.webp',
   },
 
   'horatiu-alexandru-moldovan': {
