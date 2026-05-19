@@ -173,7 +173,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Abuja',
     provinciaNacimiento: 'Abuja',
     fechaNacimiento: '2002-01-01',
-    imagen: 'https://i.postimg.cc/RCdpXtNX/Rahim.webp',
+    imagen: 'img/jugadores/Rahim.webp',
     seleccion: {
       pais: 'Níger',
       bandera: 'https://flagcdn.com/16x12/ne.webp',
