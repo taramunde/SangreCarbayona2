@@ -134,7 +134,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Bingerville',
     provinciaNacimiento: 'Abiyán',
     fechaNacimiento: '1994-04-12',
-    imagen: 'https://i.postimg.cc/qRHtqnX7/Bailly_PNG_(2).webp',
+    imagen: 'img/jugadores/Bailly.webp',
     seleccion: {
       pais: 'Costa de Marfil',
       bandera: 'https://flagcdn.com/16x12/ci.png',
