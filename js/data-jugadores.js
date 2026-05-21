@@ -579,7 +579,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Lagos',
     provinciaNacimiento: 'Lagos',
     fechaNacimiento: '2003-11-16',
-    imagen: 'https://i.postimg.cc/KYsb7466/Eze-PNG-(1).webp',
+    imagen: 'img/jugadores/Eze.webp',
   },
 
   'alvaro-lemos-collazo': {
