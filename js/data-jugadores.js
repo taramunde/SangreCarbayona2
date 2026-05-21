@@ -281,7 +281,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Aveiro',
     provinciaNacimiento: 'Aveiro',
     fechaNacimiento: '1999-07-19',
-    imagen: 'https://i.postimg.cc/ZqxmPdzn/Carmo-PNG-(2).webp',
+    imagen: 'img/jugadores/DavidCarmo.webp',
     seleccion: {
       pais: 'Angola',
       bandera: 'https://flagcdn.com/16x12/ao.webp',
@@ -346,7 +346,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'El Campello',
     provinciaNacimiento: 'Alicante',
     fechaNacimiento: '1995-01-24',
-    imagen: 'https://i.postimg.cc/y6ZTdXmF/Nacho-Vidal-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/NachoVidal.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
