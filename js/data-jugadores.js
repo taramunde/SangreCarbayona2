@@ -383,7 +383,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1995-01-30',
-    imagen: 'https://i.postimg.cc/yYdPX4cz/Lucas-PNG.webp',
+    imagen: 'img/jugadores/Lucas.webp',
   },
   'javier-lopez-carballo': {
     nombre: 'Javier',
@@ -397,7 +397,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Santa Cruz de Tenerife',
     provinciaNacimiento: 'Santa Cruz de Tenerife',
     fechaNacimiento: '2002-03-25',
-    imagen: 'https://i.postimg.cc/W4GZMX4Z/Javi-Lopez-PNG.webp',
+    imagen: 'img/jugadores/JaviLopez.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
@@ -462,7 +462,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Dakar',
     provinciaNacimiento: 'Dakar',
     fechaNacimiento: '2004-09-15',
-    imagen: 'https://i.postimg.cc/j2R8rDDW/Lamine-PNG.webp',
+    imagen: 'img/jugadores/Lamine.webp',
   },
 
   'omar-falah-ruiz': {
