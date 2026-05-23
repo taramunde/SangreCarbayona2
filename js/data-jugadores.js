@@ -477,7 +477,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Gijón',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2003-09-09',
-    imagen: 'https://i.postimg.cc/FsFQmRcX/Omar-Falah-PNG.webp',
+    imagen: 'img/jugadores/OmarFalah.webp',
   },
 
   'marco-esteban-fernandez': {
@@ -492,7 +492,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2006-03-01',
-    imagen: 'https://i.postimg.cc/PqJxqywh/Marco-Esteban-PNG.webp',
+    imagen: 'img/jugadores/MarcoEsteban.webp',
   },
   'adrian-lopes-marques': {
     nombre: 'Adrián',
