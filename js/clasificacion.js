@@ -12,83 +12,83 @@
   const equipos = [
     {
       nombre: 'Deportivo Alavés',
-      escudo: 'https://i.postimg.cc/XJ1JCghx/Alaves-KIMI.webp',
+      escudo: 'img/jugadores/Alaves.webp',
     },
     {
       nombre: 'Athletic Club',
-      escudo: 'https://i.postimg.cc/mDpDHSqw/Athletic-KIMI.webp',
+      escudo: 'img/jugadores/AthleticClub.webp',
     },
     {
       nombre: 'Atlético de Madrid',
-      escudo: 'https://i.postimg.cc/d1N1y9Xj/At-Madrid-KIMI.webp',
+      escudo: 'img/jugadores/AtleticodeMadrid.webp',
     },
     {
       nombre: 'F.C. Barcelona',
-      escudo: 'https://i.postimg.cc/50K0CmGs/FC-Barcelona-KIMI.webp',
+      escudo: 'img/jugadores/Barcelona.webp',
     },
     {
       nombre: 'Celta de Vigo',
-      escudo: 'https://i.postimg.cc/d1N1y9Xm/Celta-de-Vigo-KIMI.webp',
+      escudo: 'img/jugadores/CeltaVigo.webp',
     },
     {
       nombre: 'Elche C.F.',
-      escudo: 'https://i.postimg.cc/76t62Ncm/Elche-KIMI.webp',
+      escudo: 'img/jugadores/Elche.webp',
     },
     {
       nombre: 'R.C.D. Espanyol',
-      escudo: 'https://i.postimg.cc/tTvTxzfw/RCD-Espanyol-KIMI.webp',
+      escudo: 'img/jugadores/Espanyol.webp',
     },
     {
       nombre: 'Getafe C.F.',
-      escudo: 'https://i.postimg.cc/pTcTFB7G/Getafe-KIMI.webp',
+      escudo: 'img/jugadores/Getafe.webp',
     },
     {
       nombre: 'Girona F.C.',
-      escudo: 'https://i.postimg.cc/cHkHncjk/Girona-KIMI.webp',
+      escudo: 'img/jugadores/Girona.webp',
     },
     {
       nombre: 'Levante U.D.',
-      escudo: 'https://i.postimg.cc/tTvTxzfm/Levante-KIMI.webp',
+      escudo: 'img/jugadores/Levante.webp',
     },
     {
       nombre: 'R.C.D. Mallorca',
-      escudo: 'https://i.postimg.cc/G2g2yjN6/RCD-Mallorca-KIMI.webp',
+      escudo: 'img/jugadores/Mallorca.webp',
     },
     {
       nombre: 'C.A. Osasuna',
-      escudo: 'https://i.postimg.cc/C1r1q4tQ/Osasuna-KIMI.webp',
+      escudo: 'img/jugadores/Osasuna.webp',
     },
     {
       nombre: 'Rayo Vallecano',
-      escudo: 'https://i.postimg.cc/rmZmr9bH/Rayo-Vallecano-KIMI.webp',
+      escudo: 'img/jugadores/RayoVallecano.webp',
     },
     {
       nombre: 'Real Betis',
-      escudo: 'https://i.postimg.cc/3RfRvZ6P/Real-Betis-KIMI.webp',
+      escudo: 'img/jugadores/Betis.webp',
     },
     {
       nombre: 'Real Madrid',
-      escudo: 'https://i.postimg.cc/xCpCzPhr/Real-Madrid-KIMI.webp',
+      escudo: 'img/jugadores/Madrid.webp',
     },
     {
       nombre: 'Real Oviedo',
-      escudo: 'https://i.postimg.cc/zB2Bgk6Y/Real-Oviedo-KIMI.webp',
+      escudo: 'img/jugadores/Oviedo.webp',
     },
     {
       nombre: 'Real Sociedad',
-      escudo: 'https://i.postimg.cc/85X56b9Q/Real-Sociedad-KIMI.webp',
+      escudo: 'img/jugadores/RealSociedad.webp',
     },
     {
       nombre: 'Sevilla F.C.',
-      escudo: 'https://i.postimg.cc/LXQX1Vwp/Sevilla-KIMI.webp',
+      escudo: 'img/jugadores/Sevilla.webp',
     },
     {
       nombre: 'Valencia C.F.',
-      escudo: 'https://i.postimg.cc/k4Y4byzd/Valencia-KIMI.webp',
+      escudo: 'img/jugadores/Valencia.webp',
     },
     {
       nombre: 'Villarreal C.F.',
-      escudo: 'https://i.postimg.cc/B676KCk3/Villarreal-KIMI.webp',
+      escudo: 'img/jugadores/Villarreal.webp',
     },
   ];
 
