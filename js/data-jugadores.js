@@ -506,7 +506,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2005-12-13',
-    imagen: 'https://i.postimg.cc/vHtvs8y9/Adri-Lopes-PNG.webp',
+    imagen: 'img/jugadores/AdriLopes.webp',
   },
   'adrian-fernandez-garcia': {
     nombre: 'Adrián',
@@ -520,7 +520,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Cornellana',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2005-10-19',
-    imagen: 'https://i.postimg.cc/hGzJs8SW/Adri-Fernandez-PNG.webp',
+    imagen: 'img/jugadores/AdriFernandez.webp',
   },
   'diego-espinosa-garcia-de-muro': {
     nombre: 'Diego',
@@ -534,7 +534,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Santander',
     provinciaNacimiento: 'Cantabria',
     fechaNacimiento: '2004-07-02',
-    imagen: 'https://i.postimg.cc/MGhpQNkp/Espinosa-PNG.webp',
+    imagen: 'img/jugadores/Espinosa.webp',
   },
 
   'jaime-vazquez-cuervo-arango': {
@@ -549,7 +549,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Avilés',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2006-02-01',
-    imagen: 'https://i.postimg.cc/hGB0VFpc/Jaime-Vazquez-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/JaimeVazquez.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
