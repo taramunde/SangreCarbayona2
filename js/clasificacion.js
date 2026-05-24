@@ -12,83 +12,83 @@
   const equipos = [
     {
       nombre: 'Deportivo Alavés',
-      escudo: 'img/jugadores/Alaves.webp',
+      escudo: 'img/escudos/Alaves.webp',
     },
     {
       nombre: 'Athletic Club',
-      escudo: 'img/jugadores/AthleticClub.webp',
+      escudo: 'img/escudos/AthleticClub.webp',
     },
     {
       nombre: 'Atlético de Madrid',
-      escudo: 'img/jugadores/AtleticodeMadrid.webp',
+      escudo: 'img/escudos/AtleticodeMadrid.webp',
     },
     {
       nombre: 'F.C. Barcelona',
-      escudo: 'img/jugadores/Barcelona.webp',
+      escudo: 'img/escudos/Barcelona.webp',
     },
     {
       nombre: 'Celta de Vigo',
-      escudo: 'img/jugadores/CeltaVigo.webp',
+      escudo: 'img/escudos/CeltaVigo.webp',
     },
     {
       nombre: 'Elche C.F.',
-      escudo: 'img/jugadores/Elche.webp',
+      escudo: 'img/escudos/Elche.webp',
     },
     {
       nombre: 'R.C.D. Espanyol',
-      escudo: 'img/jugadores/Espanyol.webp',
+      escudo: 'img/escudos/Espanyol.webp',
     },
     {
       nombre: 'Getafe C.F.',
-      escudo: 'img/jugadores/Getafe.webp',
+      escudo: 'img/escudos/Getafe.webp',
     },
     {
       nombre: 'Girona F.C.',
-      escudo: 'img/jugadores/Girona.webp',
+      escudo: 'img/escudos/Girona.webp',
     },
     {
       nombre: 'Levante U.D.',
-      escudo: 'img/jugadores/Levante.webp',
+      escudo: 'img/escudos/Levante.webp',
     },
     {
       nombre: 'R.C.D. Mallorca',
-      escudo: 'img/jugadores/Mallorca.webp',
+      escudo: 'img/escudos/Mallorca.webp',
     },
     {
       nombre: 'C.A. Osasuna',
-      escudo: 'img/jugadores/Osasuna.webp',
+      escudo: 'img/escudos/Osasuna.webp',
     },
     {
       nombre: 'Rayo Vallecano',
-      escudo: 'img/jugadores/RayoVallecano.webp',
+      escudo: 'img/escudos/RayoVallecano.webp',
     },
     {
       nombre: 'Real Betis',
-      escudo: 'img/jugadores/Betis.webp',
+      escudo: 'img/escudos/Betis.webp',
     },
     {
       nombre: 'Real Madrid',
-      escudo: 'img/jugadores/Madrid.webp',
+      escudo: 'img/escudos/Madrid.webp',
     },
     {
       nombre: 'Real Oviedo',
-      escudo: 'img/jugadores/Oviedo.webp',
+      escudo: 'img/escudos/Oviedo.webp',
     },
     {
       nombre: 'Real Sociedad',
-      escudo: 'img/jugadores/RealSociedad.webp',
+      escudo: 'img/escudos/RealSociedad.webp',
     },
     {
       nombre: 'Sevilla F.C.',
-      escudo: 'img/jugadores/Sevilla.webp',
+      escudo: 'img/escudos/Sevilla.webp',
     },
     {
       nombre: 'Valencia C.F.',
-      escudo: 'img/jugadores/Valencia.webp',
+      escudo: 'img/escudos/Valencia.webp',
     },
     {
       nombre: 'Villarreal C.F.',
-      escudo: 'img/jugadores/Villarreal.webp',
+      escudo: 'img/escudos/Villarreal.webp',
     },
   ];
 
