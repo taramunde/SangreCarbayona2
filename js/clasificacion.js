@@ -103,9 +103,24 @@
       goles1: 2,
       goles2: 1,
     },
-    { equipo1: 'Athletic Club', equipo2: 'Sevilla F.C.', goles1: 3, goles2: 2 },
-    { equipo1: 'Celta de Vigo', equipo2: 'Getafe C.F.', goles1: 0, goles2: 2 },
-    { equipo1: 'Girona F.C.', equipo2: 'Rayo Vallecano', goles1: 1, goles2: 3 },
+    {
+      equipo1: 'Athletic Club',
+      equipo2: 'Sevilla F.C.',
+      goles1: 3,
+      goles2: 2,
+    },
+    {
+      equipo1: 'Celta de Vigo',
+      equipo2: 'Getafe C.F.',
+      goles1: 0,
+      goles2: 2,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Rayo Vallecano',
+      goles1: 1,
+      goles2: 3,
+    },
     {
       equipo1: 'R.C.D. Espanyol',
       equipo2: 'Atlético de Madrid',
@@ -118,8 +133,18 @@
       goles1: 0,
       goles2: 3,
     },
-    { equipo1: 'Elche C.F.', equipo2: 'Real Betis', goles1: 1, goles2: 1 },
-    { equipo1: 'Real Madrid', equipo2: 'C.A. Osasuna', goles1: 1, goles2: 0 },
+    {
+      equipo1: 'Elche C.F.',
+      equipo2: 'Real Betis',
+      goles1: 1,
+      goles2: 1,
+    },
+    {
+      equipo1: 'Real Madrid',
+      equipo2: 'C.A. Osasuna',
+      goles1: 1,
+      goles2: 0,
+    },
     {
       equipo1: 'Valencia C.F.',
       equipo2: 'Real Sociedad',
