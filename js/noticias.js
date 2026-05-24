@@ -46,41 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/17/tartiere-clama-continuidad-cazorla-alaves-salva/00031779040744849363977.htm',
-    titulo:
-      'El Tartiere clama por la continuidad de Cazorla y el Alavés se salva.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/23/dfrt/00031779566574106242132.htm',
+    titulo: 'El Real Oviedo, triste espectador en el descenso del Mallorca.',
     descripcion:
-      'El Real Oviedo cayó por la mínima ante el Deportivo Alavés (0-1) en un partido marcado por los cánticos de todo el Tartiere pidiendo la continuidad de Santi Cazorla.',
-    imagen: 'https://i.postimg.cc/s2qdz9L7/J-37-LVA.jpg',
-    fecha: '17 mayo 2026',
+      'Los azules juegan un partido nefasto en Son Moix y caen goleados (3-0) ante un equipo que también jugará en Segunda la próxima temporada.',
+    imagen: 'https://i.postimg.cc/x8SrtxsN/J-38-LVA.webp',
+    fecha: '23 mayo 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/05/17/triste-colofon-temporada-olvido-derrota-130333595.html',
+    url: 'https://www.lne.es/real-oviedo/2026/05/23/despedida-altura-oviedo-presenta-baldio-130580069.html',
     titulo:
-      'Triste colofón a una temporada para el olvido: derrota del Oviedo ante el Alavés (0-1).',
+      'Una despedida a la altura: el Oviedo no se presenta al intento baldío del Mallorca por salvarse (3-0).',
     descripcion:
-      'Con Cazorla como titular, como objeto de los cánticos de un entregado Tartiere, los de Almada sucumben ante la efectividad del Alavés.',
-    imagen: 'https://i.postimg.cc/tgwQbtc3/J-37-LNE.jpg',
-    fecha: '17 mayo 2026',
+      'Los azules, testigos del descenso bermellón al no darse la carambola que buscaban.',
+    imagen: 'https://i.postimg.cc/6qNsYjHv/J-38-LNE.jpg',
+    fecha: '23 mayo 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/tartiere-clama-cazorla-quede-real-oviedo-20260517215639-nt.html',
-    titulo: 'El Tartiere clama a Cazorla que se quede en el Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-terminar-temporada-20260524232944-nt.html',
+    titulo: 'El Real Oviedo, más de lo mismo para terminar la temporada.',
     descripcion:
-      'El Oviedo pierde en el último encuentro de la temporada en casa con el centrocampista los 90 minutos en el campo y la afición pidiendo su continuidad y la marcha de Almada.',
-    imagen: 'https://i.postimg.cc/tgwQbtcF/J-37-EC.jpg',
-    fecha: '17 mayo 2026',
+      'Tristeza La derrota ante el Mallorca fue el lógico y significativo epílogo a una nefasta campaña del Real Oviedo que se despide de Primera.',
+    imagen: 'https://i.postimg.cc/ZnhkV7fy/J-38-EC.webp',
+    fecha: '23 mayo 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-no-encuentra-ni-consuelo-en-el-tartiere',
-    titulo: 'La Crónica: El Oviedo no encuentra ni consuelo en el Tartiere.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-no-comparece-en-el-funeral-de-son-moix',
+    titulo: 'La Crónica: El Oviedo no comparece en el funeral de Son Moix.',
     descripcion:
-      'Los azules volvieron a quedarse sin premio pese a empujar durante toda la segunda mitad y cerraron su último partido en casa con una nueva derrota ante un Alavés que consiguió la salvación.',
-    imagen: 'https://i.postimg.cc/rp3XTCHS/J-37-KA.jpg',
-    fecha: '17 mayo 2026',
+      'El conjunto azul cerró la temporada con una derrota intrascendente ante un Mallorca que tampoco evitó el descenso en una noche fría, sin tensión competitiva y marcada por el final de ciclo.',
+    imagen: 'https://i.postimg.cc/qqdfjbmK/J-38-KA.jpg',
+    fecha: '23 mayo 2026',
   },
 ];
 

@@ -271,4 +271,11 @@ CLUB_DATA.videos = [
     fecha: '2026-05-17',
     videoId: 'Mi6t96G-P1Q',
   },
+  {
+    id: 39,
+    jornada: 38,
+    titulo: 'R.C.D. Mallorca Vs Real Oviedo',
+    fecha: '2026-05-23',
+    videoId: 'UW8OySuv_QY',
+  },
 ];
