@@ -70,6 +70,7 @@
   display: block;
   object-fit: cover; /* recorta en lugar de encoger */
   object-position: center 15%; /* encuadra la cara, no los pies */
+  filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
 }
 
 .player-number-large {

@@ -2904,6 +2904,9 @@ function ajustarFotosJugadores() {
 }
 
 function aplicarAjuste(img) {
+  // Filtro compensador del oscurecimiento visual por scale + sombras del contenedor
+  img.style.filter = 'brightness(1.08) contrast(0.95)';
+
   // Si es la foto principal de la ficha individual, el CSS ya gestiona
   // el encuadre con height fija + object-fit:cover + object-position.
   // Solo ajustamos el object-position aquí; nunca añadimos scale
