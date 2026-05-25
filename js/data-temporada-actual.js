@@ -7269,7 +7269,7 @@ CLUB_DATA.temporadas['2025-26'] = {
       codigo: 'borja-sanchez-laborde',
       dorsal: 16,
       posicion: 'Mediocentro',
-      enClubDesde: '2024',
+      enClubDesde: '2018',
       contratoHasta: '2026',
       estado: 'baja',
       stats: {
