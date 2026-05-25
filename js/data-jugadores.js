@@ -1308,7 +1308,7 @@ CLUB_DATA.jugadoresMaestro = {
       lugarNacimiento: 'Málaga',
       provinciaNacimiento: 'Málaga',
       fechaNacimiento: '1990-06-13',
-      imagen: 'https://i.postimg.cc/br8zc90Q/Portillo-PNG-(3).webp',
+      imagen: 'https://i.postimg.cc/jdKJbGRJ/Portillo-PNG.webp',
     },
   },
 
