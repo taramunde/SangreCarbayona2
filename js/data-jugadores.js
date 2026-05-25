@@ -611,7 +611,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Chiclana de la Frontera',
     provinciaNacimiento: 'Cádiz',
     fechaNacimiento: '1997-11-19',
-    imagen: 'https://i.postimg.cc/mDCkCD2g/Alberto-Reina-PNG.webp',
+    imagen: 'img/jugadores/AlbertoReina.webp',
   },
 
   'kwasi-sibo': {
@@ -626,7 +626,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Wa',
     provinciaNacimiento: 'Región del Alto Oeste',
     fechaNacimiento: '1998-06-24',
-    imagen: 'https://i.postimg.cc/JnV6P6m5/Kwasi-Sibu-PNG.webp',
+    imagen: 'img/jugadores/Sibo.webp',
     seleccion: {
       pais: 'Ghana',
       bandera: 'https://flagcdn.com/16x12/gh.webp',
@@ -656,7 +656,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Fonciello',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1984-12-13',
-    imagen: 'https://i.postimg.cc/4dZX91Km/Santi-Cazorla-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/SantiCazorla.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
