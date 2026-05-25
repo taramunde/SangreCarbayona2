@@ -695,7 +695,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Bagnolet',
     provinciaNacimiento: 'Isla de Francia',
     fechaNacimiento: '2002-02-08',
-    imagen: 'https://i.postimg.cc/Y2bykS8g/Hassan-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/Hassan.webp',
     seleccion: {
       pais: 'Egipto',
       bandera: 'https://flagcdn.com/16x12/eg.webp',
