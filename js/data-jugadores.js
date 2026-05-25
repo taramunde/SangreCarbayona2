@@ -760,7 +760,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Ucacha',
     provinciaNacimiento: 'Córdoba',
     fechaNacimiento: '1997-01-17',
-    imagen: 'https://i.postimg.cc/nc1VnBg2/Colombatto-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/Colombatto.webp',
     seleccion: {
       pais: 'Argentina',
       bandera: 'https://flagcdn.com/16x12/ar.webp',
