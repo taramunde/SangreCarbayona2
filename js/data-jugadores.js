@@ -1295,6 +1295,21 @@ CLUB_DATA.jugadoresMaestro = {
         },
       ],
     },
+
+    'francisco-portillo-soler': {
+      nombre: 'Francisco',
+      apellidos: 'Portillo Soler',
+      nombreCompleto: 'Francisco Portillo Soler',
+      apodo: 'Portillo',
+      posicion: 'Centrocampista',
+      posicionCorta: 'MCO',
+      altura: 1.69,
+      nacionalidad: ['Española'],
+      lugarNacimiento: 'Málaga',
+      provinciaNacimiento: 'Málaga',
+      fechaNacimiento: '1990-06-13',
+      imagen: 'https://i.postimg.cc/br8zc90Q/Portillo-PNG-(3).webp',
+    },
   },
 
   // ── DELANTEROS ────────────────────────────────────────────
