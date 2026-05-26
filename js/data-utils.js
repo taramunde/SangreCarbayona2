@@ -104,6 +104,7 @@ function calcularPosicionHistorica(datoMaestro, seasonId) {
   }
 
   // Extraer el año de inicio de la temporada (ej: "2025-26" → 2025)
+  if (!seasonId || typeof seasonId !== 'string') return datoMaestro;
   const añoTemporada = parseInt(seasonId.split('-')[0]);
 
   // Buscar si hay una posición histórica que corresponda a esta temporada
