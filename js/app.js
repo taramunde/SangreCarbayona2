@@ -3102,6 +3102,164 @@ App.renderPlantillaHome = function (filter) {
   setTimeout(ajustarFotosJugadores, 100);
 };
 
+/* ===================================
+   ESTILOS PARA ESTADÍSTICAS POR COMPETICIÓN
+   (pestañas Liga / Copa / Total en primer-equipo)
+   =================================== */
+if (!document.getElementById('compTabsStyles')) {
+  const cs = document.createElement('style');
+  cs.id = 'compTabsStyles';
+  cs.textContent = `
+    /* Contenedor general de las pestañas */
+    .comp-tabs-wrapper {
+      width: 100%;
+    }
+
+    /* Fila de botones de pestaña */
+    .comp-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    /* Botón individual de pestaña */
+    .comp-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-transform: uppercase;
+    }
+    .comp-tab i {
+      font-size: 0.9em;
+      color: var(--tab-accent, #fff);
+      transition: color 0.22s;
+    }
+    .comp-tab:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border-color: var(--tab-accent, rgba(255,255,255,0.3));
+    }
+    .comp-tab.active {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border-color: var(--tab-accent, #fff);
+      box-shadow: 0 0 14px rgba(255,255,255,0.08);
+    }
+    .comp-tab--total {
+      background: rgba(255, 204, 0, 0.1);
+    }
+    .comp-tab--total.active {
+      background: rgba(255, 204, 0, 0.18);
+      border-color: #ffcc00;
+      color: #ffcc00;
+    }
+    .comp-tab--total i {
+      color: #ffcc00;
+    }
+
+    /* Paneles de contenido: oculto por defecto, visible si .active */
+    .comp-panels {
+      width: 100%;
+    }
+    .comp-panel {
+      display: none;
+    }
+    .comp-panel.active {
+      display: block;
+    }
+
+    /* Grid de tarjetas de estadística (reutiliza .stat-card existente)
+       Aquí forzamos el grid para que funcione también dentro de comp-panel */
+    .comp-panel .team-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    /* Fila de checkboxes en el panel "Total" */
+    .total-checks-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      justify-content: center;
+      margin-bottom: 18px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+    }
+    .total-check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.83rem;
+      font-weight: 600;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .total-check-label:hover {
+      color: #fff;
+    }
+    .total-check {
+      display: none; /* ocultamos el checkbox nativo */
+    }
+    .total-check-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+    .total-check:not(:checked) + .total-check-dot {
+      opacity: 0.35;
+    }
+    .total-check:checked + .total-check-dot {
+      opacity: 1;
+      border-color: transparent;
+    }
+
+    /* Separador visual entre la badge de competición y las cards */
+    .comp-panel .comp-badge-header {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 12px;
+    }
+
+    /* Responsive: en móvil las pestañas se adaptan */
+    @media (max-width: 600px) {
+      .comp-tab {
+        padding: 7px 14px;
+        font-size: 0.78rem;
+      }
+      .comp-panel .team-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+    }
+  `;
+  document.head.appendChild(cs);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   App.init();
 });
