@@ -732,3 +732,60 @@
     text-overflow: ellipsis;
   }
 }
+
+/* ==========================================================================
+   ESTADÍSTICAS DEL EQUIPO (CUADRÍCULA Y TARJETAS)
+   ========================================================================== */
+
+.stats-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+  gap: 15px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Adaptación para Tablets */
+@media (min-width: 576px) {
+  .stats-team-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en tablet */
+  }
+}
+
+/* Adaptación para Pantallas Grandes (PC) */
+@media (min-width: 992px) {
+  .stats-team-grid {
+    grid-template-columns: repeat(8, 1fr); /* 8 columnas en línea en PC */
+  }
+}
+
+.stat-team-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.stat-team-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.stat-team-card-title {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.stat-team-card-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  line-height: 1.1;
+}

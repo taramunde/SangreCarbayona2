@@ -3276,7 +3276,6 @@ function cargarEstadisticasEquipoDinamicas(temporadaId) {
   const contenedor = document.getElementById('estadisticasEquipoContainer');
   if (!contenedor) return;
 
-  // Acceder de forma segura a los datos estructurados del club
   const temporadaData = CLUB_DATA.temporadas
     ? CLUB_DATA.temporadas[temporadaId]
     : null;
@@ -3290,60 +3289,58 @@ function cargarEstadisticasEquipoDinamicas(temporadaId) {
   const desglose = stats.desglose || {};
   const competiciones = Object.keys(desglose);
 
-  // 1. Crear los selectores/checkboxes dinámicamente leyendo las propiedades de tu 'desglose'
-  let filtrosHTML =
-    '<div class="total-checks-row" style="margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">';
+  // 1. Checkboxes limpios usando tus clases originales
+  let filtrosHTML = '<div class="total-checks-row">';
   competiciones.forEach((comp) => {
     filtrosHTML += `
-      <label class="total-check-label" style="cursor: pointer; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 7px 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; user-select: none;">
-        <input type="checkbox" class="total-check" value="${comp}" checked onchange="recalcularTotalesEstadisticas('${temporadaId}')" style="accent-color: var(--secondary-color); width: 15px; height: 15px;">
+      <label class="total-check-label">
+        <input type="checkbox" class="total-check" value="${comp}" checked onchange="recalcularTotalesEstadisticas('${temporadaId}')">
+        <span class="total-check-dot"></span>
         ${comp}
       </label>
     `;
   });
   filtrosHTML += '</div>';
 
-  // 2. Crear las tarjetas numéricas utilizando tus variables CSS globales (--secondary-color, --success, etc.)
+  // 2. Tarjetas usando las nuevas clases CSS
   let tarjetasHTML = `
-    <div class="stats-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; text-align: center;">
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">POSICIÓN</div>
-        <div id="stat-posicion" style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-color); margin-top: 5px;">${stats.posicion || '-'}º</div>
+    <div class="stats-team-grid">
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">POSICIÓN</div>
+        <div id="stat-posicion" class="stat-team-card-value" style="color: var(--secondary-color);">${stats.posicion || '-'}º</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">PARTIDOS</div>
-        <div id="stat-partidos" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">PARTIDOS</div>
+        <div id="stat-partidos" class="stat-team-card-value">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">VICTORIAS</div>
-        <div id="stat-victorias" style="font-size: 1.8rem; font-weight: 700; color: var(--success); margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">VICTORIAS</div>
+        <div id="stat-victorias" class="stat-team-card-value" style="color: var(--success);">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">EMPATES</div>
-        <div id="stat-empates" style="font-size: 1.8rem; font-weight: 700; color: var(--warning); margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">EMPATES</div>
+        <div id="stat-empates" class="stat-team-card-value" style="color: var(--warning);">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">DERROTAS</div>
-        <div id="stat-derrotas" style="font-size: 1.8rem; font-weight: 700; color: var(--danger); margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">DERROTAS</div>
+        <div id="stat-derrotas" class="stat-team-card-value" style="color: var(--danger);">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">GOLES F.</div>
-        <div id="stat-golesFavor" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">GOLES F.</div>
+        <div id="stat-golesFavor" class="stat-team-card-value">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">GOLES C.</div>
-        <div id="stat-golesContra" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">GOLES C.</div>
+        <div id="stat-golesContra" class="stat-team-card-value">0</div>
       </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">PUNTOS CALC.</div>
-        <div id="stat-puntos" style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-light); margin-top: 5px;">0</div>
+      <div class="stat-team-card">
+        <div class="stat-team-card-title">PUNTOS</div>
+        <div id="stat-puntos" class="stat-team-card-value" style="color: var(--secondary-light);">0</div>
       </div>
     </div>
   `;
 
   contenedor.innerHTML = filtrosHTML + tarjetasHTML;
-
-  // Realizar la primera sumatoria con todos los torneos activos por defecto
   recalcularTotalesEstadisticas(temporadaId);
 }
 
