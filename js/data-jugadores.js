@@ -772,7 +772,7 @@ CLUB_DATA.jugadoresMaestro = {
           asistencias: 0,
           minutos: 0,
           amarillas: 1,
-          rojas: 113,
+          rojas: 0,
         },
         {
           categoria: 'U23',
@@ -781,7 +781,7 @@ CLUB_DATA.jugadoresMaestro = {
           asistencias: 1,
           minutos: 0,
           amarillas: 2,
-          rojas: 674,
+          rojas: 0,
         },
         {
           categoria: 'U20',
@@ -790,7 +790,7 @@ CLUB_DATA.jugadoresMaestro = {
           asistencias: 2,
           minutos: 0,
           amarillas: 2,
-          rojas: 462,
+          rojas: 0,
         },
       ],
     },
