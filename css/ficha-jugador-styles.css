@@ -1497,3 +1497,9 @@
   color: #c0392b;
   font-weight: 600;
 }
+
+@media (max-width: 767px) {
+  .player-main-photo {
+    filter: brightness(1.15) contrast(0.92);
+  }
+}
