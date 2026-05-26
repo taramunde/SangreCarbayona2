@@ -546,14 +546,160 @@ const App = {
   renderEstadisticasEquipo: function () {
     const container = document.getElementById('teamStatsGrid');
     if (!container) return;
-    const stats = getTemporada(this.temporadaActiva).estadisticasEquipo;
+
+    const temporada = getTemporada(this.temporadaActiva);
+    const statsData = temporada.estadisticasEquipo;
+
+    // Detectar si hay desglose por competición
+    const tieneDesglose =
+      statsData &&
+      statsData.desglose &&
+      Object.keys(statsData.desglose).length > 0;
+
+    if (!tieneDesglose) {
+      // Compatibilidad con formato antiguo (objeto plano)
+      const s = statsData || {};
+      container.innerHTML = `
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${s.posicion != null ? s.posicion + 'º' : '—'}</div><div class="stat-label">${t('posicion')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${s.golesFavor ?? '—'}</div><div class="stat-label">${t('goles_favor')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">${s.golesContra ?? '—'}</div><div class="stat-label">${t('goles_contra')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${s.victorias ?? '—'}</div><div class="stat-label">${t('victorias')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${s.empates ?? '—'}</div><div class="stat-label">${t('empates')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${s.derrotas ?? '—'}</div><div class="stat-label">${t('derrotas')}</div></div>`;
+      return;
+    }
+
+    // ── Formato nuevo: desglose por competición ───────────────
+    const competiciones = Object.keys(statsData.desglose);
+
+    function getCompMeta(nombre) {
+      const n = nombre.toLowerCase();
+      if (n.includes('copa')) return { icon: 'fa-crown', color: '#c9a227' };
+      if (n.includes('champions')) return { icon: 'fa-star', color: '#4FC3F7' };
+      if (n.includes('europa'))
+        return { icon: 'fa-globe-europe', color: '#66BB6A' };
+      if (n.includes('conference'))
+        return { icon: 'fa-globe', color: '#26C6DA' };
+      return { icon: 'fa-shield-alt', color: '#5C9BF5' };
+    }
+
+    function calcularTotales(desglose, compsActivas) {
+      const tot = {
+        partidos: 0,
+        victorias: 0,
+        empates: 0,
+        derrotas: 0,
+        golesFavor: 0,
+        golesContra: 0,
+      };
+      compsActivas.forEach((nombre) => {
+        const s = desglose[nombre];
+        if (!s) return;
+        tot.partidos += s.partidos || 0;
+        tot.victorias += s.victorias || 0;
+        tot.empates += s.empates || 0;
+        tot.derrotas += s.derrotas || 0;
+        tot.golesFavor += s.golesFavor || 0;
+        tot.golesContra += s.golesContra || 0;
+      });
+      return tot;
+    }
+
+    function renderCards(s, posicion) {
+      const posCard =
+        posicion != null
+          ? `<div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${posicion}º</div><div class="stat-label">${t('posicion')}</div></div>`
+          : '';
+      return `
+        ${posCard}
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${s.golesFavor}</div><div class="stat-label">${t('goles_favor')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">${s.golesContra}</div><div class="stat-label">${t('goles_contra')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${s.victorias}</div><div class="stat-label">${t('victorias')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${s.empates}</div><div class="stat-label">${t('empates')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${s.derrotas}</div><div class="stat-label">${t('derrotas')}</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-number">${s.partidos}</div><div class="stat-label">${t('partidos') || 'Partidos'}</div></div>`;
+    }
+
+    const tabsHtml = competiciones
+      .map((nombre, i) => {
+        const meta = getCompMeta(nombre);
+        return `<button class="comp-tab ${i === 0 ? 'active' : ''}" data-comp="${nombre}" style="--tab-accent:${meta.color}">
+        <i class="fas ${meta.icon}"></i><span>${nombre}</span>
+      </button>`;
+      })
+      .join('');
+
+    const panelsHtml = competiciones
+      .map((nombre, i) => {
+        const s = statsData.desglose[nombre];
+        const posicion = i === 0 ? (statsData.posicion ?? null) : null;
+        return `<div class="comp-panel ${i === 0 ? 'active' : ''}" data-comp="${nombre}">
+        <div class="team-stats-grid">${renderCards(s, posicion)}</div>
+      </div>`;
+      })
+      .join('');
+
+    const checksHtml = competiciones
+      .map((nombre) => {
+        const meta = getCompMeta(nombre);
+        return `<label class="total-check-label">
+        <input type="checkbox" class="total-check" data-comp="${nombre}" checked>
+        <span class="total-check-dot" style="background:${meta.color}"></span>
+        <span>${nombre}</span>
+      </label>`;
+      })
+      .join('');
+
+    const allTots = calcularTotales(statsData.desglose, competiciones);
+    const totPanelHtml = `<div class="comp-panel" data-comp="__totales__">
+      <div class="total-checks-row">${checksHtml}</div>
+      <div class="team-stats-grid" id="totalesGrid">${renderCards(allTots, null)}</div>
+    </div>`;
+
     container.innerHTML = `
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${stats.posicion}º</div><div class="stat-label">${t('posicion')}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${stats.golesFavor}</div><div class="stat-label">${t('goles_favor')}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div><div class="stat-number">${stats.golesContra}</div><div class="stat-label">${t('goles_contra')}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${stats.victorias}</div><div class="stat-label">${t('victorias')}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${stats.empates}</div><div class="stat-label">${t('empates')}</div></div>
-            <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${stats.derrotas}</div><div class="stat-label">${t('derrotas')}</div></div>`;
+      <div class="comp-tabs-wrapper">
+        <div class="comp-tabs">
+          ${tabsHtml}
+          <button class="comp-tab comp-tab--total" data-comp="__totales__" style="--tab-accent:#ffcc00">
+            <i class="fas fa-plus-circle"></i><span>${t('total') || 'Total'}</span>
+          </button>
+        </div>
+        <div class="comp-panels">
+          ${panelsHtml}
+          ${totPanelHtml}
+        </div>
+      </div>`;
+
+    // Lógica de tabs
+    const wrapper = container.querySelector('.comp-tabs-wrapper');
+    wrapper.querySelectorAll('.comp-tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        wrapper
+          .querySelectorAll('.comp-tab')
+          .forEach((b) => b.classList.remove('active'));
+        wrapper
+          .querySelectorAll('.comp-panel')
+          .forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        wrapper
+          .querySelector(`.comp-panel[data-comp="${btn.dataset.comp}"]`)
+          .classList.add('active');
+      });
+    });
+
+    // Lógica de checkboxes en totales
+    wrapper.querySelectorAll('.total-check').forEach((chk) => {
+      chk.addEventListener('change', () => {
+        const activos = [
+          ...wrapper.querySelectorAll('.total-check:checked'),
+        ].map((c) => c.dataset.comp);
+        const tots = calcularTotales(statsData.desglose, activos);
+        wrapper.querySelector('#totalesGrid').innerHTML = renderCards(
+          tots,
+          null,
+        );
+      });
+    });
   },
 
   renderPlantillaCompleta: function () {

@@ -16,12 +16,24 @@ CLUB_DATA.temporadas['2025-26'] = {
 
   estadisticasEquipo: {
     posicion: 20,
-    partidosJugados: 35,
-    victorias: 6,
-    empates: 11,
-    derrotas: 18,
-    golesFavor: 26,
-    golesContra: 54,
+    desglose: {
+      'Primera División': {
+        partidos: 35,
+        victorias: 6,
+        empates: 11,
+        derrotas: 18,
+        golesFavor: 26,
+        golesContra: 54,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos: 2,
+        victorias: 1,
+        empates: 0,
+        derrotas: 1,
+        golesFavor: 3,
+        golesContra: 3,
+      },
+    },
   },
 
   jugadores: [

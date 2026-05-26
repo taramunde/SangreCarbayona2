@@ -20,12 +20,24 @@ CLUB_DATA.temporadas['2024-25'] = {
 
   estadisticasEquipo: {
     posicion: 3,
-    partidosJugados: 47,
-    victorias: 23,
-    empates: 13,
-    derrotas: 11,
-    golesFavor: 62,
-    golesContra: 49,
+    desglose: {
+      'Segunda División': {
+        partidos:    47,
+        victorias:   23,
+        empates:     13,
+        derrotas:    11,
+        golesFavor:  62,
+        golesContra: 49,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    1,
+        victorias:   0,
+        empates:     1,
+        derrotas:    0,
+        golesFavor:  0,
+        golesContra: 0,
+      },
+    },
   },
 
   jugadores: [
@@ -106,12 +118,16 @@ CLUB_DATA.temporadas['2022-23'] = {
 
   estadisticasEquipo: {
     posicion: 1,
-    partidosJugados: 34,
-    victorias: 22,
-    empates: 6,
-    derrotas: 6,
-    golesFavor: 62,
-    golesContra: 28,
+    desglose: {
+      'Segunda RFEF': {
+        partidos:    34,
+        victorias:   22,
+        empates:     6,
+        derrotas:    6,
+        golesFavor:  62,
+        golesContra: 28,
+      },
+    },
   },
 
   jugadores: [
