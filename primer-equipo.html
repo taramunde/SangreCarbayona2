@@ -17,7 +17,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Meta Tags para Compartir -->
     <meta property="og:title" content="Primer Equipo - Sangre Carbayona" />
     <meta
       property="og:description"
@@ -30,10 +29,8 @@
     <meta property="og:type" content="website" />
   </head>
   <body>
-    <!-- Header Principal -->
     <header class="main-header" id="header-placeholder"></header>
 
-    <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
       <div class="search-container">
         <form class="search-form">
@@ -50,7 +47,6 @@
       </div>
     </div>
 
-    <!-- Page Header -->
     <section class="page-header">
       <div class="page-header-bg">
         <img
@@ -71,23 +67,197 @@
       </div>
     </section>
 
-    <!-- Season Selector -->
     <div class="container">
-      <div id="seasonSelector" style="padding: 30px 0">
-        <!-- Contenido dinámico -->
-      </div>
+      <div id="seasonSelector" style="padding: 30px 0"></div>
     </div>
 
-    <!-- Team Stats Section -->
     <section class="team-stats-section">
       <div class="container">
         <div class="team-stats-grid" id="teamStatsGrid">
-          <!-- Contenido dinámico -->
+          <div class="total-checks-row" id="filtrosCompeticion"></div>
+
+          <div
+            class="stats-overview-panel"
+            style="width: 100%; margin-top: 15px"
+          >
+            <div
+              class="stats-grid"
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                gap: 15px;
+              "
+            >
+              <div class="stat-card" id="cardPosicion">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Posición</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-posicion"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                    color: var(--primary-color, #004b93);
+                  "
+                  >--</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Partidos</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-partidos"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                  "
+                  >0</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Victorias</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-victorias"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                    color: #2e7d32;
+                  "
+                  >0</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Empates</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-empates"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                    color: #f57c00;
+                  "
+                  >0</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Derrotas</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-derrotas"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                    color: #d32f2f;
+                  "
+                  >0</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Goles F.</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-golesFavor"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                  "
+                  >0</span
+                >
+              </div>
+
+              <div class="stat-card">
+                <span
+                  class="stat-label"
+                  style="
+                    display: block;
+                    font-size: 0.9rem;
+                    color: var(--text-muted, #888);
+                    font-family: 'Source Sans 3', sans-serif;
+                  "
+                  >Goles C.</span
+                >
+                <span
+                  class="stat-value"
+                  id="stat-golesContra"
+                  style="
+                    font-size: 2rem;
+                    font-weight: 700;
+                    font-family: 'Oswald', sans-serif;
+                  "
+                  >0</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Full Squad Section -->
     <section class="full-squad-section">
       <div class="container">
         <div class="section-header">
@@ -95,13 +265,10 @@
             Plantilla Completa
           </h2>
         </div>
-        <div id="plantillaCompleta">
-          <!-- Contenido dinámico -->
-        </div>
+        <div id="plantillaCompleta"></div>
       </div>
     </section>
 
-    <!-- Coaching Staff Section -->
     <section class="coaching-staff-section">
       <div class="container">
         <div class="section-header">
@@ -109,23 +276,19 @@
             Cuerpo Técnico
           </h2>
         </div>
-        <div class="coaching-grid" id="cuerpoTecnicoGrid">
-          <!-- Contenido dinámico -->
-        </div>
+        <div class="coaching-grid" id="cuerpoTecnicoGrid"></div>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
-    <!-- Scripts (Importante el orden: i18n primero) -->
     <script src="js/i18n.js?nocache=20251231v89"></script>
     <script src="js/data-club.js?nocache=20260426v2"></script>
     <script src="js/data-jugadores.js?nocache=20260426v53"></script>
     <script src="js/data-temporada-actual.js?nocache=20260526v1"></script>
     <script src="js/data-historico.js?nocache=20260526v1"></script>
     <script src="js/data-utils.js?nocache=20260526v3"></script>
-    <script src="js/app.js?nocache=20260526v152"></script>
+    <script src="js/app.js?nocache=20260526v153"></script>
     <script src="js/script.js?nocache=20251231v3"></script>
     <script src="js/main.js?nocache=20251231v7"></script>
   </body>

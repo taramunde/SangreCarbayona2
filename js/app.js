@@ -3263,4 +3263,141 @@ if (!document.getElementById('compTabsStyles')) {
 document.addEventListener('DOMContentLoaded', function () {
   App.init();
 });
+
+/* ==========================================================================
+   ESTADÍSTICAS DEL EQUIPO: FILTRADO Y SUMA POR COMPETICIONES (LIGA, COPA, ETC.)
+   ========================================================================== */
+
+/**
+ * Renderiza el bloque de filtros por competición y la rejilla de tarjetas estadísticas
+ * @param {string} temporadaId - Identificador de la temporada (ej: '2025-26')
+ */
+function cargarEstadisticasEquipoDinamicas(temporadaId) {
+  const contenedor = document.getElementById('estadisticasEquipoContainer');
+  if (!contenedor) return;
+
+  // Acceder de forma segura a los datos estructurados del club
+  const temporadaData = CLUB_DATA.temporadas
+    ? CLUB_DATA.temporadas[temporadaId]
+    : null;
+  if (!temporadaData || !temporadaData.estadisticasEquipo) {
+    contenedor.innerHTML =
+      '<p style="color: rgba(255,255,255,0.4); text-align: center;">No hay datos estadísticos registrados para esta temporada.</p>';
+    return;
+  }
+
+  const stats = temporadaData.estadisticasEquipo;
+  const desglose = stats.desglose || {};
+  const competiciones = Object.keys(desglose);
+
+  // 1. Crear los selectores/checkboxes dinámicamente leyendo las propiedades de tu 'desglose'
+  let filtrosHTML =
+    '<div class="total-checks-row" style="margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">';
+  competiciones.forEach((comp) => {
+    filtrosHTML += `
+      <label class="total-check-label" style="cursor: pointer; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 7px 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; user-select: none;">
+        <input type="checkbox" class="total-check" value="${comp}" checked onchange="recalcularTotalesEstadisticas('${temporadaId}')" style="accent-color: var(--secondary-color); width: 15px; height: 15px;">
+        ${comp}
+      </label>
+    `;
+  });
+  filtrosHTML += '</div>';
+
+  // 2. Crear las tarjetas numéricas utilizando tus variables CSS globales (--secondary-color, --success, etc.)
+  let tarjetasHTML = `
+    <div class="stats-grid-display" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; text-align: center;">
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">POSICIÓN</div>
+        <div id="stat-posicion" style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-color); margin-top: 5px;">${stats.posicion || '-'}º</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">PARTIDOS</div>
+        <div id="stat-partidos" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">VICTORIAS</div>
+        <div id="stat-victorias" style="font-size: 1.8rem; font-weight: 700; color: var(--success); margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">EMPATES</div>
+        <div id="stat-empates" style="font-size: 1.8rem; font-weight: 700; color: var(--warning); margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">DERROTAS</div>
+        <div id="stat-derrotas" style="font-size: 1.8rem; font-weight: 700; color: var(--danger); margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">GOLES F.</div>
+        <div id="stat-golesFavor" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">GOLES C.</div>
+        <div id="stat-golesContra" style="font-size: 1.8rem; font-weight: 700; margin-top: 5px;">0</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-size: 0.75rem; color: var(--gray-400); font-weight: 600; letter-spacing: 0.05em;">PUNTOS CALC.</div>
+        <div id="stat-puntos" style="font-size: 1.8rem; font-weight: 700; color: var(--secondary-light); margin-top: 5px;">0</div>
+      </div>
+    </div>
+  `;
+
+  contenedor.innerHTML = filtrosHTML + tarjetasHTML;
+
+  // Realizar la primera sumatoria con todos los torneos activos por defecto
+  recalcularTotalesEstadisticas(temporadaId);
+}
+
+/**
+ * Suma los números exclusivamente de las competiciones marcadas por el usuario
+ * @param {string} temporadaId
+ */
+function recalcularTotalesEstadisticas(temporadaId) {
+  const stats = CLUB_DATA.temporadas[temporadaId].estadisticasEquipo;
+  const desglose = stats.desglose || {};
+
+  // Inicialización de acumuladores
+  let totales = {
+    partidos: 0,
+    victorias: 0,
+    empates: 0,
+    derrotas: 0,
+    golesFavor: 0,
+    golesContra: 0,
+    puntos: 0,
+  };
+
+  // Recorrer los inputs de la interfaz para ver qué torneos se mantienen seleccionados
+  const checkboxes = document.querySelectorAll('.total-check');
+  checkboxes.forEach((cb) => {
+    if (cb.checked && desglose[cb.value]) {
+      const datosCompeticion = desglose[cb.value];
+      totales.partidos += datosCompeticion.partidos || 0;
+      totales.victorias += datosCompeticion.victorias || 0;
+      totales.empates += datosCompeticion.empates || 0;
+      totales.derrotas += datosCompeticion.derrotas || 0;
+      totales.golesFavor += datosCompeticion.golesFavor || 0;
+      totales.golesContra += datosCompeticion.golesContra || 0;
+
+      // Suma estándar matemática para los puntos de cualquier liga regular
+      totales.puntos +=
+        (datosCompeticion.victorias || 0) * 3 + (datosCompeticion.empates || 0);
+    }
+  });
+
+  // Pintar los resultados directamente actualizando los textos de la interfaz web
+  document.getElementById('stat-partidos').innerText = totales.partidos;
+  document.getElementById('stat-victorias').innerText = totales.victorias;
+  document.getElementById('stat-empates').innerText = totales.empates;
+  document.getElementById('stat-derrotas').innerText = totales.derrotas;
+  document.getElementById('stat-golesFavor').innerText = totales.golesFavor;
+  document.getElementById('stat-golesContra').innerText = totales.golesContra;
+  document.getElementById('stat-puntos').innerText = totales.puntos;
+}
+
+// Aseguramos la inicialización por defecto cuando termine de cargar la web por primera vez
+document.addEventListener('DOMContentLoaded', () => {
+  const tempDefecto = CLUB_DATA.temporadaActual || '2025-26';
+  cargarEstadisticasEquipoDinamicas(tempDefecto);
+});
+
 window.App = App;
