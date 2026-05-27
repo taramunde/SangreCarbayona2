@@ -2083,7 +2083,13 @@ const App = {
           typeof partido.jornada === 'number'
             ? `${t('jornada_abrev')}${partido.jornada}`
             : t(
-                `copa_ronda_${String(partido.jornada).toLowerCase().replace(/\s+/g, '_')}`,
+                `copa_ronda_${String(partido.jornada)
+                  .toLowerCase()
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/[().]/g, '')
+                  .replace(/[-\s]+/g, '_')
+                  .replace(/_+/g, '_')}`,
               ) || partido.jornada;
 
         let playerStatsHtml = '';
