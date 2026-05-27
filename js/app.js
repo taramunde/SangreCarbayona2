@@ -1331,7 +1331,9 @@ const App = {
       const jorTexto =
         typeof partido.jornada === 'number'
           ? `${t('jornada_abrev')}${partido.jornada}`
-          : t(`copa_ronda_${cleanJornada}`) || partido.jornada;
+          : t(`copa_ronda_${cleanJornada}`) ||
+            t(cleanJornada) ||
+            partido.jornada;
       const tienePenaltis1 =
         partido.penaltisLocal !== undefined &&
         partido.penaltisVisitante !== undefined;
