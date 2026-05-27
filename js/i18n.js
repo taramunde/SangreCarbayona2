@@ -120,18 +120,11 @@ const translations = {
     copa_ronda_semifinal: 'Semifinal',
     copa_ronda_final: 'Final',
     // Fase de ascenso (claves generadas por app.js línea 1846)
-    'copa_ronda_fase_ascenso_-_semifinal_ida': 'Fase Ascenso - Semifinal (Ida)',
-    'copa_ronda_fase_ascenso_-_semifinal_vuelta':
+    copa_ronda_fase_ascenso_semifinal_ida: 'Fase Ascenso - Semifinal (Ida)',
+    copa_ronda_fase_ascenso_semifinal_vuelta:
       'Fase Ascenso - Semifinal (Vuelta)',
-    'copa_ronda_fase_ascenso_-_final_ida': 'Fase Ascenso - Final (Ida)',
-    'copa_ronda_fase_ascenso_-_final_vuelta': 'Fase Ascenso - Final (Vuelta)',
-    // Alias sin guiones (para otros contextos)
-    comp_copa_ronda_fase_ascenso_semifinal_ida:
-      'Fase Ascenso - Semifinal (Ida)',
-    comp_copa_ronda_fase_ascenso_semifinal_vuelta:
-      'Fase Ascenso - Semifinal (Vuelta)',
-    comp_copa_ronda_fase_ascenso_final_ida: 'Fase Ascenso - Final (Ida)',
-    comp_copa_ronda_fase_ascenso_final_vuelta: 'Fase Ascenso - Final (Vuelta)',
+    copa_ronda_fase_ascenso_final_ida: 'Fase Ascenso - Final (Ida)',
+    copa_ronda_fase_ascenso_final_vuelta: 'Fase Ascenso - Final (Vuelta)',
 
     // ============================================
     // FICHA JUGADOR

@@ -1320,15 +1320,18 @@ const App = {
             ? 'draw'
             : 'loss';
       const compNombre = partido.competicion || temporada.competicion;
+      const cleanJornada = String(partido.jornada)
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[().]/g, '')
+        .replace(/[-\s]+/g, '_')
+        .replace(/_+/g, '_');
+
       const jorTexto =
         typeof partido.jornada === 'number'
-          ? `${t('jornada_abrev') || 'J'}${partido.jornada}`
-          : t(
-              `copa_ronda_${String(partido.jornada)
-                .toLowerCase()
-                .replace(/[\s-]+/g, '_')
-                .replace(/_+/g, '_')}`,
-            ) || partido.jornada;
+          ? `${t('jornada_abrev')}${partido.jornada}`
+          : t(`copa_ronda_${cleanJornada}`) || partido.jornada;
       const tienePenaltis1 =
         partido.penaltisLocal !== undefined &&
         partido.penaltisVisitante !== undefined;
