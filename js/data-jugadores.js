@@ -1541,6 +1541,21 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '1998-04-01',
     imagen: 'https://i.postimg.cc/rmhzyWK7/Alemao-PNG-Alineacion.webp',
   },
+
+  'francisco-fumaca-mascarenhas-costa-pessoa': {
+    nombre: 'Francisco',
+    apellidos: 'Fumaça Mascarenhas Costa Pessoa',
+    nombreCompleto: 'Francisco Fumaça Mascarenhas Costa Pessoa',
+    apodo: 'Masca',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.82,
+    nacionalidad: ['Portuguesa'],
+    lugarNacimiento: 'Cascaes',
+    provinciaNacimiento: 'Lisboa',
+    fechaNacimiento: '2000-05-15',
+    imagen: 'https://i.postimg.cc/MZCdbr6P/Masca-PNG-Alineacion.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
