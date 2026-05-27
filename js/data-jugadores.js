@@ -1312,6 +1312,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/jdKJbGRJ/Portillo-PNG.webp',
   },
 
+  'cesar-de-la-hoz-lopez': {
+    nombre: 'César',
+    apellidos: 'de La Hoz López',
+    nombreCompleto: 'César de La Hoz López',
+    apodo: 'De La Hoz',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCD',
+    altura: 1.79,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Orejo',
+    provinciaNacimiento: 'Cantabria',
+    fechaNacimiento: '1992-03-30',
+    imagen: 'https://i.postimg.cc/Z5nr38kY/De-La-Hoz-PNG-(3).webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
