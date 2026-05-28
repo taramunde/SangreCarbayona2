@@ -1327,6 +1327,36 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/Z5nr38kY/De-La-Hoz-PNG-(3).webp',
   },
 
+  'paulino-de-la-fuente-gomez': {
+    nombre: 'Paulino',
+    apellidos: 'de la Fuente Gómez',
+    nombreCompleto: 'Paulino de la Fuente Gómez',
+    apodo: 'Paulino',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.84,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Santander',
+    provinciaNacimiento: 'Cantabria',
+    fechaNacimiento: '1997-06-27',
+    imagen: 'https://i.postimg.cc/zBWRJ7sv/Paulino-Alineacion-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U16',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 75,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
