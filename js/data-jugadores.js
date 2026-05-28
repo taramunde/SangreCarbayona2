@@ -1601,6 +1601,54 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '2000-05-15',
     imagen: 'https://i.postimg.cc/MZCdbr6P/Masca-PNG-Alineacion.webp',
   },
+
+  'alejandro-millan-iranzo': {
+    nombre: 'Alejandro',
+    apellidos: 'Millán Iranzo',
+    nombreCompleto: 'Alejandro Millán Iranzo',
+    apodo: 'Álex Millán',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.82,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Zaragoza',
+    provinciaNacimiento: 'Zaragoza',
+    fechaNacimiento: '1999-11-07',
+    imagen: 'https://i.postimg.cc/6pm4JqHM/Alex-Millan-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U18',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 106,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U17',
+          partidos: 8,
+          goles: 0,
+          asistencias: 0,
+          minutos: 311,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U16',
+          partidos: 4,
+          goles: 1,
+          asistencias: 0,
+          minutos: 256,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
