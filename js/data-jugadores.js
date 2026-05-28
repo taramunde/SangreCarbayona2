@@ -597,6 +597,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/XYDdjpzZ/Alvaro-Lemos-PNG-(3).webp',
   },
 
+  'carlos-pomares-rayo': {
+    nombre: 'Carlos',
+    apellidos: 'Pomares Rayo',
+    nombreCompleto: 'Carlos Pomares Rayo',
+    apodo: 'Pomares',
+    posicion: 'Defensa',
+    posicionCorta: 'LI',
+    altura: 1.83,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Valencia',
+    provinciaNacimiento: 'Valencia',
+    fechaNacimiento: '1992-12-05',
+    imagen: 'https://i.postimg.cc/yN4Q1Q53/Pomares-PNG.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
