@@ -1357,6 +1357,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'jaime-seoane-valenciano': {
+    nombre: 'Jaime',
+    apellidos: 'Seoane Valenciano',
+    nombreCompleto: 'Jaime Seoane Valenciano',
+    apodo: 'Seoane',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.77,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1997-01-22',
+    imagen: 'https://i.postimg.cc/HLCvtvT4/Seoane-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
