@@ -1387,6 +1387,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/HLCvtvT4/Seoane-PNG.webp',
   },
 
+  'carlos-dotor-gonzalez': {
+    nombre: 'Carlos',
+    apellidos: 'Dotor González',
+    nombreCompleto: 'Carlos Dotor González',
+    apodo: 'Dotor',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.8,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2001-03-15',
+    imagen: 'https://i.postimg.cc/gcwFM5v3/Carlos-Dotor-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
