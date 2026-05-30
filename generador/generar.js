@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
+const SITE_BASE_URL = 'https://taramunde.github.io/SangreCarbayona2';
+
 console.log('🚀 Iniciando generador de fichas...');
 
 // 1. Rutas de los archivos de datos (en orden de carga)
@@ -105,7 +107,9 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     jugador.nombreCompleto || jugador.nombre || jugador.codigo;
   // encodeURI convierte paréntesis y otros caracteres reservados que confunden
   // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
-  const imagenMostrar = jugador.imagen ? encodeURI(jugador.imagen) : '';
+  const imagenMostrar = jugador.imagen
+    ? `${SITE_BASE_URL}/${encodeURI(jugador.imagen)}`
+    : '';
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
     .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
@@ -193,7 +197,7 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
   const imagenRaw = maestro.imagen || miembro.imagen || '';
   // encodeURI convierte paréntesis y otros caracteres reservados que confunden
   // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
-  const imagen = imagenRaw ? encodeURI(imagenRaw) : '';
+  const imagen = imagenRaw ? `${SITE_BASE_URL}/${encodeURI(imagenRaw)}` : '';
 
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
