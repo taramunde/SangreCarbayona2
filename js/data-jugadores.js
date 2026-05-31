@@ -1694,6 +1694,21 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  'santiago-miguelez-sanchez': {
+    nombre: 'Santiago',
+    apellidos: 'Miguélez Sánchez',
+    nombreCompleto: 'Santiago Miguélez Sánchez',
+    apodo: 'Santi Miguélez',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.87,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Gijón',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2002-04-05',
+    imagen: 'https://i.postimg.cc/0Q0PdXFL/Santi-Miguelez-PNG.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
