@@ -1403,6 +1403,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/gcwFM5v3/Carlos-Dotor-PNG.webp',
   },
 
+  'ruben-valdera-martinez': {
+    nombre: 'Rubén',
+    apellidos: 'Valdera Martínez',
+    nombreCompleto: 'Rubén Valdera Martínez',
+    apodo: 'Valdera',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.85,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Bollullos Par del Condado',
+    provinciaNacimiento: 'Huelva',
+    fechaNacimiento: '2003-02-25',
+    imagen: 'https://i.postimg.cc/V6J7fxgw/Valdera-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
