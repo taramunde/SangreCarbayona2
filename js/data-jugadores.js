@@ -1418,6 +1418,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/V6J7fxgw/Valdera-PNG.webp',
   },
 
+  'guillermo-castrillejo-manso': {
+    nombre: 'Guillermo',
+    apellidos: 'Castrillejo Manso',
+    nombreCompleto: 'Guillermo Castrillejo Manso',
+    apodo: 'Castri',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.78,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Villahán',
+    provinciaNacimiento: 'Palencia',
+    fechaNacimiento: '2002-10-01',
+    imagen: 'https://i.postimg.cc/Y0FPt53V/Castri-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
