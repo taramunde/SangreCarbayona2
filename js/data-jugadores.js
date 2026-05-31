@@ -494,6 +494,7 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '2006-03-01',
     imagen: 'img/jugadores/MarcoEsteban.webp',
   },
+
   'adrian-lopes-marques': {
     nombre: 'Adrián',
     apellidos: 'Lopes Marqués',
