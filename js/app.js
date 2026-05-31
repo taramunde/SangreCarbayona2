@@ -2024,48 +2024,143 @@ const App = {
             </div>`;
   },
 
-  renderFichaMatches: function (jugador, seasonId, filtroCompeticion = 'all') {
+  renderFichaMatches: function (
+    jugador,
+    seasonId,
+    filtroTemporada = 'all',
+    filtroCompeticion = 'all',
+  ) {
     const container = document.getElementById('tabMatches');
     if (!container) return;
 
-    const temporada = getTemporada(seasonId);
+    // ── Recopilar partidos de TODAS las temporadas para este jugador ──────────
+    const codigoJugador = jugador.codigo || jugador.id;
+    const todasLasTemporadas = CLUB_DATA.temporadasDisponibles || [];
 
-    // FIX: Solo usar fallback de temporada si partidos es null/undefined
-    // Si es array vacío [], significa que el jugador no ha jugado partidos (no hay fallback)
-    const tienePartidosDefinidos =
-      jugador.partidos !== null && jugador.partidos !== undefined;
-    const listaPartidos = tienePartidosDefinidos
-      ? jugador.partidos
-      : temporada.partidosJugados || [];
+    // Construir lista global de partidos con etiqueta de temporada
+    let todosPartidos = [];
+    let tienePartidosIndividuales = false;
 
-    // El jugador tiene array de partidos explícito (incluso si está vacío)
-    const tienePartidosIndividuales = tienePartidosDefinidos;
+    todasLasTemporadas.forEach((tempMeta) => {
+      const tempId = tempMeta.id;
+      // Acceder directamente a CLUB_DATA.temporadas para evitar el fallback
+      // silencioso de getTemporada() que devuelve la temporada actual si no
+      // encuentra la pedida — eso mezclaría datos erróneos.
+      const tempData = CLUB_DATA.temporadas[tempId];
+      if (!tempData) return;
 
-    if (listaPartidos.length === 0) {
+      // Buscar al jugador en esta temporada
+      const jugEnTemp = (tempData.jugadores || []).find(
+        (j) => (j.codigo || j.id) === codigoJugador,
+      );
+      if (!jugEnTemp) return;
+
+      const partidos = jugEnTemp.partidos;
+      if (!partidos || partidos.length === 0) return;
+
+      tienePartidosIndividuales = true;
+      partidos.forEach((p) => {
+        todosPartidos.push({
+          ...p,
+          _temporadaId: tempId,
+          _competicionDefault: tempData.competicion || '',
+        });
+      });
+    });
+
+    // Si no encontramos partidos en ninguna temporada, intentar con el jugador actual
+    if (todosPartidos.length === 0) {
+      const temporada = getTemporada(seasonId);
+      const tienePartidosDefinidos =
+        jugador.partidos !== null && jugador.partidos !== undefined;
+      const listaFallback = tienePartidosDefinidos
+        ? jugador.partidos
+        : temporada.partidosJugados || [];
+      tienePartidosIndividuales = tienePartidosDefinidos;
+      listaFallback.forEach((p) => {
+        todosPartidos.push({
+          ...p,
+          _temporadaId: seasonId,
+          _competicionDefault: temporada.competicion || '',
+        });
+      });
+    }
+
+    if (todosPartidos.length === 0) {
       container.innerHTML = `<p style="text-align:center; color:#666; padding: 20px;">${t('no_datos_partidos') || 'No hay datos de partidos para este jugador.'}</p>`;
       return;
     }
 
-    const competiciones = [
+    // Ordenar todos los partidos por fecha descendente (más reciente primero)
+    todosPartidos.sort((a, b) => {
+      if (!a.fecha) return 1;
+      if (!b.fecha) return -1;
+      return b.fecha.localeCompare(a.fecha);
+    });
+
+    // ── Construir opciones de filtros ──────────────────────────────────────────
+    // Temporadas presentes en los partidos (en orden descendente)
+    const temporadasPresentes = [
+      'all',
+      ...todasLasTemporadas
+        .map((t) => t.id)
+        .filter((id) => todosPartidos.some((p) => p._temporadaId === id)),
+    ];
+
+    // Aplicar filtro de temporada
+    const partidosPorTemporada =
+      filtroTemporada === 'all'
+        ? todosPartidos
+        : todosPartidos.filter((p) => p._temporadaId === filtroTemporada);
+
+    // Competiciones disponibles en la selección de temporada
+    const competicionesPresentes = [
       'all',
       ...new Set(
-        listaPartidos.map((p) => p.competicion || temporada.competicion),
+        partidosPorTemporada.map((p) => p.competicion || p._competicionDefault),
       ),
     ];
+
+    // Aplicar filtro de competición
     const partidosFiltrados =
       filtroCompeticion === 'all'
-        ? listaPartidos
-        : listaPartidos.filter(
+        ? partidosPorTemporada
+        : partidosPorTemporada.filter(
             (p) =>
-              (p.competicion || temporada.competicion) === filtroCompeticion,
+              (p.competicion || p._competicionDefault) === filtroCompeticion,
           );
 
+    // ── HTML de filtros ────────────────────────────────────────────────────────
+    const selectStyle = `padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;`;
+
+    const optsTemporada = temporadasPresentes
+      .map((id) => {
+        const label =
+          id === 'all'
+            ? t('todas_temporadas') || 'Todas las temporadas'
+            : id.replace('-', '/');
+        return `<option value="${id}" ${id === filtroTemporada ? 'selected' : ''}>${label}</option>`;
+      })
+      .join('');
+
+    const optsComp = competicionesPresentes
+      .map((c) => {
+        const label =
+          c === 'all'
+            ? t('todas_competiciones') || 'Todas las competiciones'
+            : translateCompeticion
+              ? translateCompeticion(c)
+              : c;
+        return `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${label}</option>`;
+      })
+      .join('');
+
     let html = `
-            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 12px; flex-wrap: wrap;">
+                <label for="filterMatchesSeason" style="font-weight: 600; color: #333;">${t('temporada') || 'Temporada'}:</label>
+                <select id="filterMatchesSeason" style="${selectStyle}">${optsTemporada}</select>
                 <label for="filterMatches" style="font-weight: 600; color: #333;">${t('competicion_label') || 'Competición'}:</label>
-                <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
-                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? t('todas_competiciones') || 'Todas las competiciones' : c}</option>`).join('')}
-                </select>
+                <select id="filterMatches" style="${selectStyle}">${optsComp}</select>
             </div>
             <div class="matches-list">`;
 
@@ -2080,7 +2175,7 @@ const App = {
             : partido.resultado === 'E'
               ? 'draw'
               : 'loss';
-        const compNombre = partido.competicion || temporada.competicion;
+        const compNombre = partido.competicion || partido._competicionDefault;
         const jorTexto =
           typeof partido.jornada === 'number'
             ? `${t('jornada_abrev')}${partido.jornada}`
@@ -2094,6 +2189,12 @@ const App = {
                   .replace(/_+/g, '_')}`,
               ) || partido.jornada;
 
+        // Etiqueta de temporada (solo si se muestran varias)
+        const tempLabel =
+          filtroTemporada === 'all'
+            ? `<span style="font-size:0.72em; font-weight:700; color:#fff; background:#001a6e; border-radius:4px; padding:1px 6px; margin-left:6px;">${partido._temporadaId.replace('-', '/')}</span>`
+            : '';
+
         let playerStatsHtml = '';
         if (tienePartidosIndividuales) {
           const chips = [];
@@ -2101,7 +2202,6 @@ const App = {
             chips.push(
               `<span class="match-chip"><i class="fas fa-clock"></i> ${partido.minutos}'</span>`,
             );
-          // Para porteros, mostrar goles encajados en rojo si es > 0
           if (partido.goles > 0) {
             const esPorteroPos = esPortero(jugador);
             const goalChipClass = esPorteroPos ? 'chip-conceded' : 'chip-goal';
@@ -2149,7 +2249,7 @@ const App = {
                                 <span class="match-month">${fecha.mesCorto}</span>
                             </div>
                             <div class="match-competition-info">
-                                <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
+                                <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}${tempLabel}</span>
                                 <div class="match-teams-result">
                                     <span class="team-home">${partido.local}</span>
                                     <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}${aetBadge2}${pensBadge2}</span>
@@ -2182,10 +2282,21 @@ const App = {
       document.head.appendChild(s);
     }
 
+    // Evento: cambio de temporada → resetea competición a 'all'
+    const filterSeason = document.getElementById('filterMatchesSeason');
+    if (filterSeason) {
+      filterSeason.addEventListener('change', (e) => {
+        this.renderFichaMatches(jugador, seasonId, e.target.value, 'all');
+      });
+    }
+
+    // Evento: cambio de competición → mantiene temporada activa
     const filterSelect = document.getElementById('filterMatches');
     if (filterSelect) {
       filterSelect.addEventListener('change', (e) => {
-        this.renderFichaMatches(jugador, seasonId, e.target.value);
+        const tempActiva =
+          document.getElementById('filterMatchesSeason')?.value || 'all';
+        this.renderFichaMatches(jugador, seasonId, tempActiva, e.target.value);
       });
     }
   },
