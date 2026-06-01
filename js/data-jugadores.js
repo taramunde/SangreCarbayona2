@@ -613,6 +613,45 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/yN4Q1Q53/Pomares-PNG.webp',
   },
 
+  'charbel-anthuan-wehbe-gonzalez': {
+    nombre: 'Charbel Anthuan',
+    apellidos: 'Wehbe González',
+    nombreCompleto: 'Charbel Anthuan Wehbe González',
+    apodo: 'Charbel',
+    posicion: 'Defensa',
+    posicionCorta: 'DC',
+    altura: 1.83,
+    nacionalidad: ['Dominicana'],
+    lugarNacimiento: 'Santo Domingo',
+    provinciaNacimiento: 'Santo Domingo',
+    fechaNacimiento: '2004-05-08',
+    imagen: 'https://i.postimg.cc/KjdChGhC/Charbel-PNG.webp',
+    seleccion: {
+      pais: 'República Dominicana',
+      bandera: 'https://flagcdn.com/16x12/do.webp',
+      datos: [
+        {
+          categoria: 'Absoluta',
+          partidos: 5,
+          goles: 0,
+          asistencias: 0,
+          minutos: 206,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U20',
+          partidos: 4,
+          goles: 0,
+          asistencias: 0,
+          minutos: 353,
+          amarillas: 1,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
