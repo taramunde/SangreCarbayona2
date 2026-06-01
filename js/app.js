@@ -49,6 +49,21 @@ function resolverRutaImagen(imagen) {
 }
 
 /* ===================================
+   HELPER: NORMALIZAR ESTADOS DEL JUGADOR
+   Compatibilidad entre formato antiguo (estado + cedidoEn)
+   y nuevo formato (estados: [{tipo, club}])
+   =================================== */
+function normalizarEstados(jugador) {
+  if (jugador.estados && Array.isArray(jugador.estados)) {
+    return jugador.estados;
+  }
+  if (jugador.estado) {
+    return [{ tipo: jugador.estado, club: jugador.cedidoEn || null }];
+  }
+  return [];
+}
+
+/* ===================================
    FUNCIONES AUXILIARES PARA PORTEROS
    =================================== */
 
@@ -754,12 +769,19 @@ const App = {
     const ribbonHtml = jugador.fallecido
       ? '<div class="deceased-ribbon"></div>'
       : '';
-    const cedidoBadgeHtml =
-      jugador.estado === 'cedido'
-        ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${t('cedido') || 'Cedido'}</div>`
-        : jugador.estado === 'baja'
-          ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
-          : '';
+    const _estados = normalizarEstados(jugador);
+    const _tieneCedidoCard = _estados.some((e) => e.tipo === 'cedido');
+    const _tieneBajaCard = _estados.some((e) => e.tipo === 'baja');
+    const _clubCedidoCard =
+      (_estados.find((e) => e.tipo === 'cedido') || {}).club || null;
+    const cedidoBadgeHtml = [
+      _tieneCedidoCard
+        ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${_clubCedidoCard ? _clubCedidoCard : t('cedido') || 'Cedido'}</div>`
+        : '',
+      _tieneBajaCard
+        ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
+        : '',
+    ].join('');
     const esTemporadaActual =
       this.temporadaActiva === CLUB_DATA.temporadaActual;
     const playerUrl = jugador.codigo
@@ -951,23 +973,28 @@ const App = {
                     <div class="player-role-badge"><span>${getCategoriaJugador(jugador)}</span></div>
                     ${haFallecido ? '<div class="deceased-ribbon"></div>' : ''}
                 </div>
-                ${
-                  jugador.estado === 'cedido'
-                    ? `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i><span class="cedido-clubs">${
-                        jugador.cedidoEn
-                          ? jugador.cedidoEn
-                              .split(',')
-                              .map(
-                                (c) =>
-                                  `<span class="cedido-club">${c.trim()}</span>`,
-                              )
-                              .join('')
-                          : t('cedido') || 'Cedido'
-                      }</span></div>`
-                    : jugador.estado === 'baja'
-                      ? `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
-                      : ''
-                }
+                ${(() => {
+                  const _est = normalizarEstados(jugador);
+                  const _cedido = _est.find((e) => e.tipo === 'cedido');
+                  const _baja = _est.find((e) => e.tipo === 'baja');
+                  let _html = '';
+                  if (_cedido) {
+                    const _clubs = _cedido.club
+                      ? _cedido.club
+                          .split(',')
+                          .map(
+                            (c) =>
+                              `<span class="cedido-club">${c.trim()}</span>`,
+                          )
+                          .join('')
+                      : t('cedido') || 'Cedido';
+                    _html += `<div class="cedido-badge"><i class="fas fa-exchange-alt"></i><span class="cedido-clubs">${_clubs}</span></div>`;
+                  }
+                  if (_baja) {
+                    _html += `<div class="baja-temp-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`;
+                  }
+                  return _html;
+                })()}
             </div>
             <div class="player-info-container">
                 <div class="player-name-section">
@@ -1919,9 +1946,7 @@ const App = {
     // NUEVO: GENERAR FILAS DE ESTADO EN EL CLUB
     // ============================================
     let estadoClubHtml = '';
-
-    // Si el jugador tiene estado "baja", mostrar según si es temporada actual (baja durante temporada) o histórica (ex jugador)
-    if (jugador.estado === 'baja') {
+    {
       const urlParams = new URLSearchParams(window.location.search);
       const currentSeasonId =
         (window.PLAYER_DATA_STATIC && window.PLAYER_DATA_STATIC.season) ||
@@ -1929,57 +1954,45 @@ const App = {
         CLUB_DATA.temporadaActual;
       const esBajaEnTemporadaActual =
         currentSeasonId === CLUB_DATA.temporadaActual;
-      estadoClubHtml = `
-        <div class="info-row baja-row baja-temp-row">
-          <span class="info-label"><i class="fas fa-door-open"></i> ${t('estado') || 'Estado'}</span>
-          <span class="info-value baja-temp-value">${esBajaEnTemporadaActual ? t('baja_temporada') || 'Baja durante temporada' : t('ex_jugador') || 'Ex jugador'}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
-          <span class="info-value">${jugador.enClubDesde}</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-times"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
-          <span class="info-value">${jugador.contratoHasta}</span>
-        </div>
-      `;
-    } else if (jugador.estado === 'cedido') {
-      estadoClubHtml = `
-        <div class="info-row cedido-row">
-          <span class="info-label"><i class="fas fa-exchange-alt"></i> ${t('estado') || 'Estado'}</span>
-          <span class="info-value cedido-value">${t('cedido') || 'Cedido'}</span>
-        </div>
-        ${
-          jugador.cedidoEn
-            ? jugador.cedidoEn
-                .split(',')
-                .map(
-                  (club, i) => `
-        <div class="info-row">
-          <span class="info-label">${i === 0 ? `<i class="fas fa-shield-alt"></i> ${t('cedido_en') || 'Cedido en'}` : ''}</span>
-          <span class="info-value">${club.trim()}</span>
-        </div>`,
-                )
-                .join('')
-            : ''
-        }
-        <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
-          <span class="info-value">${jugador.enClubDesde}</span>
-        </div>
-        ${
-          jugador.contratoHasta
-            ? `
-        <div class="info-row">
-          <span class="info-label"><i class="far fa-calendar-alt"></i> ${t('contrato_hasta') || 'Contrato hasta'}</span>
-          <span class="info-value">${jugador.contratoHasta}</span>
-        </div>`
-            : ''
-        }
-      `;
-    } else {
-      // Jugador activo - mostrar normal
-      estadoClubHtml = `
+
+      const _estados = normalizarEstados(jugador);
+      const _cedido = _estados.find((e) => e.tipo === 'cedido');
+      const _baja = _estados.find((e) => e.tipo === 'baja');
+
+      if (_cedido) {
+        estadoClubHtml += `
+          <div class="info-row cedido-row">
+            <span class="info-label"><i class="fas fa-exchange-alt"></i> ${t('estado') || 'Estado'}</span>
+            <span class="info-value cedido-value">${t('cedido') || 'Cedido'}</span>
+          </div>
+          ${
+            _cedido.club
+              ? _cedido.club
+                  .split(',')
+                  .map(
+                    (club, i) => `
+          <div class="info-row">
+            <span class="info-label">${i === 0 ? `<i class="fas fa-shield-alt"></i> ${t('cedido_en') || 'Cedido en'}` : ''}</span>
+            <span class="info-value">${club.trim()}</span>
+          </div>`,
+                  )
+                  .join('')
+              : ''
+          }
+        `;
+      }
+
+      if (_baja) {
+        estadoClubHtml += `
+          <div class="info-row baja-row baja-temp-row">
+            <span class="info-label"><i class="fas fa-door-open"></i> ${t('estado') || 'Estado'}</span>
+            <span class="info-value baja-temp-value">${esBajaEnTemporadaActual ? t('baja_temporada') || 'Baja durante temporada' : t('ex_jugador') || 'Ex jugador'}</span>
+          </div>
+        `;
+      }
+
+      // Siempre mostrar fechas de contrato
+      estadoClubHtml += `
         <div class="info-row">
           <span class="info-label"><i class="far fa-calendar-check"></i> ${t('en_club_desde') || 'En club desde'}</span>
           <span class="info-value">${jugador.enClubDesde}</span>
