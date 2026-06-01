@@ -774,14 +774,13 @@ const App = {
     const _tieneBajaCard = _estados.some((e) => e.tipo === 'baja');
     const _clubCedidoCard =
       (_estados.find((e) => e.tipo === 'cedido') || {}).club || null;
-    const cedidoBadgeHtml = [
-      _tieneCedidoCard
-        ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${_clubCedidoCard ? _clubCedidoCard : t('cedido') || 'Cedido'}</div>`
-        : '',
-      _tieneBajaCard
-        ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>`
-        : '',
-    ].join('');
+    const cedidoBadgeHtml =
+      _tieneCedidoCard || _tieneBajaCard
+        ? `<div class="estado-badges-stack">
+          ${_tieneCedidoCard ? `<div class="cedido-card-badge"><i class="fas fa-exchange-alt"></i> ${_clubCedidoCard ? _clubCedidoCard : t('cedido') || 'Cedido'}</div>` : ''}
+          ${_tieneBajaCard ? `<div class="baja-temp-card-badge"><i class="fas fa-door-open"></i> ${t('baja_temporada') || 'Baja durante temporada'}</div>` : ''}
+        </div>`
+        : '';
     const esTemporadaActual =
       this.temporadaActiva === CLUB_DATA.temporadaActual;
     const playerUrl = jugador.codigo
@@ -3321,6 +3320,25 @@ if (!document.getElementById('bajaTempStyles')) {
       margin-top: 10px;
       text-align: center;
       max-width: 100%;
+    }
+
+    /* Stack de badges cuando hay cedido + baja a la vez */
+    .estado-badges-stack {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      z-index: 3;
+    }
+    .estado-badges-stack .cedido-card-badge,
+    .estado-badges-stack .baja-temp-card-badge {
+      position: static;
+      width: auto;
+      margin: 0;
     }
 
     /* Fila de estado en info panel */
