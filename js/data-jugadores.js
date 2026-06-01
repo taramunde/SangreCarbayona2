@@ -1472,6 +1472,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/Y0FPt53V/Castri-PNG.webp',
   },
 
+  'pelayo-gonzalez-rey': {
+    nombre: 'Pelayo',
+    apellidos: 'González Rey',
+    nombreCompleto: 'Pelayo González Rey',
+    apodo: 'Yayo',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.75,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2004-07-30',
+    imagen: 'https://i.postimg.cc/d3P8M3Vb/Yayo-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
