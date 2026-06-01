@@ -2024,7 +2024,12 @@ const App = {
             </div>`;
   },
 
-  renderFichaMatches: function (jugador, seasonId, filtroCompeticion = 'all') {
+  renderFichaMatches: function (
+    jugador,
+    seasonId,
+    filtroCompeticion = 'all',
+    filtroTipoPartido = 'all',
+  ) {
     const container = document.getElementById('tabMatches');
     if (!container) return;
 
@@ -2052,7 +2057,13 @@ const App = {
         listaPartidos.map((p) => p.competicion || temporada.competicion),
       ),
     ];
-    const partidosFiltrados =
+
+    // Detectar nombre del club para saber si es local/visitante
+    const nombreClub =
+      CLUB_DATA.club.nombre || CLUB_DATA.club.nombreCorto || '';
+
+    // Aplicar filtro de competición
+    const porCompeticion =
       filtroCompeticion === 'all'
         ? listaPartidos
         : listaPartidos.filter(
@@ -2060,12 +2071,118 @@ const App = {
               (p.competicion || temporada.competicion) === filtroCompeticion,
           );
 
+    // Aplicar filtro de tipo (resultado / condición)
+    const partidosFiltrados =
+      filtroTipoPartido === 'all'
+        ? porCompeticion
+        : porCompeticion.filter((p) => {
+            switch (filtroTipoPartido) {
+              case 'victoria':
+                return p.resultado === 'V';
+              case 'empate':
+                return p.resultado === 'E';
+              case 'derrota':
+                return p.resultado === 'D';
+              case 'local':
+                return p.local === nombreClub || p.condicion === 'local';
+              case 'visitante':
+                return (
+                  p.visitante === nombreClub || p.condicion === 'visitante'
+                );
+              default:
+                return true;
+            }
+          });
+
+    // Recuento para badge en cada pill
+    const contarPor = (tipo) => {
+      if (tipo === 'all') return porCompeticion.length;
+      return porCompeticion.filter((p) => {
+        switch (tipo) {
+          case 'victoria':
+            return p.resultado === 'V';
+          case 'empate':
+            return p.resultado === 'E';
+          case 'derrota':
+            return p.resultado === 'D';
+          case 'local':
+            return p.local === nombreClub || p.condicion === 'local';
+          case 'visitante':
+            return p.visitante === nombreClub || p.condicion === 'visitante';
+          default:
+            return true;
+        }
+      }).length;
+    };
+
+    // Detectar si hay datos de local/visitante en los partidos
+    const hayCondicion = listaPartidos.some(
+      (p) =>
+        p.local === nombreClub || p.visitante === nombreClub || p.condicion,
+    );
+
+    const tipoPills = [
+      {
+        key: 'all',
+        label: t('todos') || 'Todos',
+        icon: 'fa-list',
+        color: '#001a6e',
+      },
+      {
+        key: 'victoria',
+        label: t('victorias') || 'Victorias',
+        icon: 'fa-check-circle',
+        color: '#27ae60',
+      },
+      {
+        key: 'empate',
+        label: t('empates') || 'Empates',
+        icon: 'fa-minus-circle',
+        color: '#f39c12',
+      },
+      {
+        key: 'derrota',
+        label: t('derrotas') || 'Derrotas',
+        icon: 'fa-times-circle',
+        color: '#e74c3c',
+      },
+      ...(hayCondicion
+        ? [
+            {
+              key: 'local',
+              label: t('local') || 'Local',
+              icon: 'fa-home',
+              color: '#2980b9',
+            },
+            {
+              key: 'visitante',
+              label: t('visitante') || 'Visitante',
+              icon: 'fa-plane',
+              color: '#8e44ad',
+            },
+          ]
+        : []),
+    ];
+
+    const pillsHtml = tipoPills
+      .map(({ key, label, icon, color }) => {
+        const count = contarPor(key);
+        const isActive = key === filtroTipoPartido;
+        return `<button class="match-tipo-pill ${isActive ? 'active' : ''}" data-tipo="${key}" style="--pill-color:${color}">
+        <i class="fas ${icon}"></i> ${label}${key !== 'all' ? ` <span class="pill-count">${count}</span>` : ''}
+      </button>`;
+      })
+      .join('');
+
     let html = `
-            <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-                <label for="filterMatches" style="font-weight: 600; color: #333;">${t('competicion_label') || 'Competición'}:</label>
-                <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
-                    ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? t('todas_competiciones') || 'Todas las competiciones' : c}</option>`).join('')}
-                </select>
+            <div class="matches-filter-bar">
+                <div class="matches-comp-row">
+                    <label for="filterMatches" style="font-weight: 600; color: #333;">${t('competicion_label') || 'Competición'}:</label>
+                    <select id="filterMatches" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #ccd6ff; background: #f0f4ff; color: #001a6e; font-family: 'Source Sans 3', sans-serif; font-weight: 600; cursor: pointer; outline: none;">
+                        ${competiciones.map((c) => `<option value="${c}" ${c === filtroCompeticion ? 'selected' : ''}>${c === 'all' ? t('todas_competiciones') || 'Todas las competiciones' : c}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="matches-tipo-pills">${pillsHtml}</div>
             </div>
             <div class="matches-list">`;
 
@@ -2182,12 +2299,63 @@ const App = {
       document.head.appendChild(s);
     }
 
+    // Inyectar estilos de pills si no existen
+    if (!document.getElementById('matchTipoPillStyles')) {
+      const ps = document.createElement('style');
+      ps.id = 'matchTipoPillStyles';
+      ps.textContent = `
+        .matches-filter-bar { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; }
+        .matches-comp-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+        .matches-tipo-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+        .match-tipo-pill {
+          display:inline-flex; align-items:center; gap:6px;
+          padding:7px 16px; border:2px solid transparent; border-radius:30px;
+          background:rgba(0,26,110,0.06); color:rgba(0,0,0,0.55);
+          font-size:0.82rem; font-weight:600; letter-spacing:0.02em;
+          cursor:pointer; transition:all 0.2s ease; font-family:inherit;
+        }
+        .match-tipo-pill i { color:var(--pill-color,#001a6e); font-size:0.88em; }
+        .match-tipo-pill:hover { background:rgba(0,26,110,0.12); color:#000; border-color:var(--pill-color,#001a6e); }
+        .match-tipo-pill.active {
+          background:rgba(0,0,0,0.06); color:var(--pill-color,#001a6e);
+          border-color:var(--pill-color,#001a6e); box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+        .pill-count {
+          display:inline-flex; align-items:center; justify-content:center;
+          min-width:20px; height:18px; padding:0 5px; border-radius:10px;
+          background:rgba(0,0,0,0.08); font-size:0.78em; font-weight:700;
+        }
+        .match-tipo-pill.active .pill-count { background:rgba(0,0,0,0.1); }
+        @media (max-width:600px) {
+          .match-tipo-pill { padding:6px 12px; font-size:0.76rem; }
+          .matches-comp-row { justify-content:flex-start; }
+        }
+      `;
+      document.head.appendChild(ps);
+    }
+
     const filterSelect = document.getElementById('filterMatches');
     if (filterSelect) {
       filterSelect.addEventListener('change', (e) => {
-        this.renderFichaMatches(jugador, seasonId, e.target.value);
+        const tipoActivo =
+          container.querySelector('.match-tipo-pill.active')?.dataset.tipo ||
+          'all';
+        this.renderFichaMatches(jugador, seasonId, e.target.value, tipoActivo);
       });
     }
+
+    container.querySelectorAll('.match-tipo-pill').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const compActiva =
+          document.getElementById('filterMatches')?.value || 'all';
+        this.renderFichaMatches(
+          jugador,
+          seasonId,
+          compActiva,
+          btn.dataset.tipo,
+        );
+      });
+    });
   },
 
   renderFichaCareerHistory: function (
