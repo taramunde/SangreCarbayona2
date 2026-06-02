@@ -1874,7 +1874,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1978-05-12',
-    imagen: 'https://i.postimg.cc/fLnY0kQ8/Javi-Calleja-(entrenador)-PNG.webp',
+    imagen: 'img/entrenadores/JaviCalleja.webp',
   },
 };
 
