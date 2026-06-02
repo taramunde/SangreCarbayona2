@@ -1308,36 +1308,193 @@ const App = {
       </div>`;
   },
 
-  renderFichaEntrenadorMatches: function (ent, seasonId) {
+  renderFichaEntrenadorMatches: function (
+    ent,
+    seasonId,
+    filtroTemporada = 'all',
+    filtroCompeticion = 'all',
+    filtroTipo = 'all',
+  ) {
     const container = document.getElementById('tabMatches');
     if (!container) return;
 
-    const temporada = getTemporada(seasonId);
-    // Usar partidos del miembro del cuerpo técnico si los tiene, o los del equipo
-    const listaPartidos =
-      ent.partidos && ent.partidos.length
-        ? ent.partidos
-        : temporada.partidosJugados || [];
+    const nombreClub =
+      CLUB_DATA.club.nombre || CLUB_DATA.club.nombreCorto || '';
 
-    if (!listaPartidos.length) {
+    // ── 1. AGREGAR PARTIDOS DE TODAS LAS TEMPORADAS ──────────────
+    const todosLosPartidos = [];
+    const temporadasConPartidos = [];
+
+    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      const datosTemp = CLUB_DATA.temporadas[temp.id];
+      if (!datosTemp) return;
+
+      // Buscar al entrenador en esta temporada
+      const miembro = datosTemp.cuerpoTecnico
+        ? datosTemp.cuerpoTecnico.find(
+            (m) =>
+              m.codigo === (ent.codigo || ent.id) ||
+              String(m.id) === String(ent.id),
+          )
+        : null;
+
+      // Partidos propios del miembro, o los del equipo si no tiene individuales
+      const listaBase =
+        miembro && miembro.partidos && miembro.partidos.length
+          ? miembro.partidos
+          : datosTemp.partidosJugados || [];
+
+      if (!listaBase.length) return;
+
+      const partidos = listaBase.map((p) => ({
+        ...p,
+        _temporadaId: temp.id,
+        _temporadaNombre: temp.nombre,
+        // Asegurar campo competicion
+        competicion: p.competicion || datosTemp.competicion || '',
+      }));
+
+      temporadasConPartidos.push({ id: temp.id, nombre: temp.nombre });
+      todosLosPartidos.push(...partidos);
+    });
+
+    // Ordenar de más reciente a más antiguo
+    todosLosPartidos.sort((a, b) => {
+      if (!a.fecha || !b.fecha) return 0;
+      return new Date(b.fecha) - new Date(a.fecha);
+    });
+
+    if (!todosLosPartidos.length) {
       container.innerHTML = `<p style="text-align:center; color:#666; padding:20px;">${t('no_datos_partidos') || 'No hay datos de partidos.'}</p>`;
       return;
     }
 
-    const competiciones = [
-      'all',
-      ...new Set(
-        listaPartidos.map((p) => p.competicion || temporada.competicion),
-      ),
-    ];
-    let html = `<div style="display:flex; justify-content:flex-end; align-items:center; margin-bottom:20px; gap:10px; flex-wrap:wrap;">
-      <label style="font-weight:600; color:#333;">${t('competicion_label') || 'Competición'}:</label>
-      <select id="filterMatchesCoach" style="padding:8px 12px; border-radius:6px; border:1px solid #ccd6ff; background:#f0f4ff; color:#001a6e; font-weight:600; cursor:pointer; outline:none;">
-        ${competiciones.map((c) => `<option value="${c}">${c === 'all' ? t('todas_competiciones') || 'Todas' : c}</option>`).join('')}
-      </select>
-    </div><div class="matches-list" id="coachMatchList">`;
+    // ── 2. CONSTRUIR LISTAS DE OPCIONES ──────────────────────────
+    const partidosPorTemp =
+      filtroTemporada === 'all'
+        ? todosLosPartidos
+        : todosLosPartidos.filter((p) => p._temporadaId === filtroTemporada);
 
-    listaPartidos.forEach((partido) => {
+    const competicionesSet = new Set(
+      partidosPorTemp.map((p) => p.competicion).filter(Boolean),
+    );
+    const competicionesOpts = Array.from(competicionesSet).sort();
+
+    const compValida =
+      filtroCompeticion === 'all' || competicionesSet.has(filtroCompeticion);
+    const compEfectiva = compValida ? filtroCompeticion : 'all';
+
+    // ── 3. APLICAR FILTROS ────────────────────────────────────────
+    const porCompeticion =
+      compEfectiva === 'all'
+        ? partidosPorTemp
+        : partidosPorTemp.filter((p) => p.competicion === compEfectiva);
+
+    const aplicarTipo = (lista, tipo) => {
+      if (tipo === 'all') return lista;
+      return lista.filter((p) => {
+        switch (tipo) {
+          case 'victoria':
+            return p.resultado === 'V';
+          case 'empate':
+            return p.resultado === 'E';
+          case 'derrota':
+            return p.resultado === 'D';
+          case 'local':
+            return p.local === nombreClub || p.condicion === 'local';
+          case 'visitante':
+            return p.visitante === nombreClub || p.condicion === 'visitante';
+          default:
+            return true;
+        }
+      });
+    };
+
+    const partidosFiltrados = aplicarTipo(porCompeticion, filtroTipo);
+
+    // ── 4. PILLS DE TIPO ──────────────────────────────────────────
+    const hayCondicion = partidosPorTemp.some(
+      (p) =>
+        p.local === nombreClub || p.visitante === nombreClub || p.condicion,
+    );
+
+    const tipoPills = [
+      {
+        key: 'all',
+        label: t('todos') || 'Todos',
+        icon: 'fa-list',
+        color: '#001a6e',
+      },
+      {
+        key: 'victoria',
+        label: t('victorias') || 'Victorias',
+        icon: 'fa-check-circle',
+        color: '#27ae60',
+      },
+      {
+        key: 'empate',
+        label: t('empates') || 'Empates',
+        icon: 'fa-minus-circle',
+        color: '#f39c12',
+      },
+      {
+        key: 'derrota',
+        label: t('derrotas') || 'Derrotas',
+        icon: 'fa-times-circle',
+        color: '#e74c3c',
+      },
+      ...(hayCondicion
+        ? [
+            {
+              key: 'local',
+              label: t('local') || 'Local',
+              icon: 'fa-home',
+              color: '#2980b9',
+            },
+            {
+              key: 'visitante',
+              label: t('visitante') || 'Visitante',
+              icon: 'fa-plane',
+              color: '#8e44ad',
+            },
+          ]
+        : []),
+    ];
+
+    const pillsHtml = tipoPills
+      .map(({ key, label, icon, color }) => {
+        const count =
+          key === 'all'
+            ? porCompeticion.length
+            : aplicarTipo(porCompeticion, key).length;
+        const isActive = key === filtroTipo;
+        return `<button class="match-tipo-pill ${isActive ? 'active' : ''}" data-tipo="${key}" style="--pill-color:${color}">
+          <i class="fas ${icon}"></i> ${label}${key !== 'all' ? ` <span class="pill-count">${count}</span>` : ''}
+        </button>`;
+      })
+      .join('');
+
+    // ── 5. SELECTORES HTML ────────────────────────────────────────
+    const selectStyle = `padding:8px 12px; border-radius:6px; border:1px solid #ccd6ff; background:#f0f4ff; color:#001a6e; font-family:'Source Sans 3',sans-serif; font-weight:600; cursor:pointer; outline:none;`;
+
+    const tempOptsHtml = [
+      `<option value="all" ${filtroTemporada === 'all' ? 'selected' : ''}>${t('todas_temporadas') || 'Todas las temporadas'}</option>`,
+      ...temporadasConPartidos.map(
+        (t2) =>
+          `<option value="${t2.id}" ${filtroTemporada === t2.id ? 'selected' : ''}>${t2.nombre}</option>`,
+      ),
+    ].join('');
+
+    const compOptsHtml = [
+      `<option value="all" ${compEfectiva === 'all' ? 'selected' : ''}>${t('todas_competiciones') || 'Todas las competiciones'}</option>`,
+      ...competicionesOpts.map(
+        (c) =>
+          `<option value="${c}" ${compEfectiva === c ? 'selected' : ''}>${translateCompeticion(c)}</option>`,
+      ),
+    ].join('');
+
+    // ── 6. RENDERIZAR CARDS ───────────────────────────────────────
+    const renderCard = (partido) => {
       const fecha = formatearFecha(partido.fecha);
       const resultClass =
         partido.resultado === 'V'
@@ -1345,7 +1502,7 @@ const App = {
           : partido.resultado === 'E'
             ? 'draw'
             : 'loss';
-      const compNombre = partido.competicion || temporada.competicion;
+      const compNombre = partido.competicion || '';
       const cleanJornada = String(partido.jornada)
         .toLowerCase()
         .normalize('NFD')
@@ -1353,57 +1510,127 @@ const App = {
         .replace(/[().]/g, '')
         .replace(/[-\s]+/g, '_')
         .replace(/_+/g, '_');
-
       const jorTexto =
         typeof partido.jornada === 'number'
           ? `${t('jornada_abrev')}${partido.jornada}`
           : t(`copa_ronda_${cleanJornada}`) ||
             t(cleanJornada) ||
             partido.jornada;
-      const tienePenaltis1 =
+      const tienePenaltis =
         partido.penaltisLocal !== undefined &&
         partido.penaltisVisitante !== undefined;
-      const tieneProrroga1 = partido.minutos && partido.minutos > 90;
-      const aetBadge1 = tieneProrroga1
+      const tieneProrroga = partido.minutos && partido.minutos > 90;
+      const aetBadge = tieneProrroga
         ? ` <span class="match-score-aet">${t('prorroga') || 'p.p.'}</span>`
         : '';
-      const pensBadge1 = tienePenaltis1
+      const pensBadge = tienePenaltis
         ? ` <span class="match-score-pens">(${partido.penaltisLocal}-${partido.penaltisVisitante} pen.)</span>`
         : '';
-      html += `<article class="match-detail-card">
+      const tempBadge =
+        filtroTemporada === 'all'
+          ? `<span class="match-season-tag">${partido._temporadaNombre}</span>`
+          : '';
+
+      return `<article class="match-detail-card">
         <div class="match-detail-header">
           <div class="match-date-badge ${resultClass}">
             <span class="match-day">${fecha.dia}</span>
             <span class="match-month">${fecha.mesCorto}</span>
           </div>
           <div class="match-competition-info">
-            <span class="competition-name">${translateCompeticion(compNombre)} · ${jorTexto}</span>
+            <span class="competition-name">
+              ${translateCompeticion(compNombre)} · ${jorTexto}
+              ${tempBadge}
+            </span>
             <div class="match-teams-result">
               <span class="team-home">${partido.local}</span>
-              <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}${aetBadge1}${pensBadge1}</span>
+              <span class="match-score">${partido.golesLocal} - ${partido.golesVisitante}${aetBadge}${pensBadge}</span>
               <span class="team-away">${partido.visitante}</span>
             </div>
           </div>
         </div>
       </article>`;
-    });
+    };
+
+    // ── 7. MONTAR HTML ────────────────────────────────────────────
+    let html = `
+      <div class="matches-filter-bar">
+        <div class="matches-comp-row">
+          ${
+            temporadasConPartidos.length > 1
+              ? `<label style="font-weight:600;color:#333;">${t('temporada') || 'Temporada'}:</label>
+               <select id="filterMatchesCoachSeason" style="${selectStyle}">${tempOptsHtml}</select>`
+              : ''
+          }
+          <label style="font-weight:600;color:#333;">${t('competicion_label') || 'Competición'}:</label>
+          <select id="filterMatchesCoach" style="${selectStyle}">${compOptsHtml}</select>
+        </div>
+        <div class="matches-tipo-pills">${pillsHtml}</div>
+      </div>
+      <div class="matches-list">`;
+
+    if (partidosFiltrados.length === 0) {
+      html += `<p style="text-align:center;color:#666;padding:20px;width:100%;">${t('no_partidos_competicion') || 'No hay partidos en esta combinación de filtros.'}</p>`;
+    } else {
+      partidosFiltrados.forEach((p) => {
+        html += renderCard(p);
+      });
+    }
     html += '</div>';
     container.innerHTML = html;
 
-    // Filtro
-    const filterSelect = document.getElementById('filterMatchesCoach');
-    if (filterSelect) {
-      filterSelect.addEventListener('change', (e) => {
-        const filtro = e.target.value;
-        const cards = container.querySelectorAll('.match-detail-card');
-        cards.forEach((card) => {
-          const comp =
-            card.querySelector('.competition-name')?.textContent || '';
-          card.style.display =
-            filtro === 'all' || comp.includes(filtro) ? '' : 'none';
-        });
+    // ── 8. LISTENERS ──────────────────────────────────────────────
+    const seasonSel = document.getElementById('filterMatchesCoachSeason');
+    if (seasonSel) {
+      seasonSel.addEventListener('change', (e) => {
+        const compActiva =
+          document.getElementById('filterMatchesCoach')?.value || 'all';
+        const tipoActivo =
+          container.querySelector('.match-tipo-pill.active')?.dataset.tipo ||
+          'all';
+        this.renderFichaEntrenadorMatches(
+          ent,
+          seasonId,
+          e.target.value,
+          compActiva,
+          tipoActivo,
+        );
       });
     }
+
+    const compSel = document.getElementById('filterMatchesCoach');
+    if (compSel) {
+      compSel.addEventListener('change', (e) => {
+        const tempActiva =
+          document.getElementById('filterMatchesCoachSeason')?.value || 'all';
+        const tipoActivo =
+          container.querySelector('.match-tipo-pill.active')?.dataset.tipo ||
+          'all';
+        this.renderFichaEntrenadorMatches(
+          ent,
+          seasonId,
+          tempActiva,
+          e.target.value,
+          tipoActivo,
+        );
+      });
+    }
+
+    container.querySelectorAll('.match-tipo-pill').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tempActiva =
+          document.getElementById('filterMatchesCoachSeason')?.value || 'all';
+        const compActiva =
+          document.getElementById('filterMatchesCoach')?.value || 'all';
+        this.renderFichaEntrenadorMatches(
+          ent,
+          seasonId,
+          tempActiva,
+          compActiva,
+          btn.dataset.tipo,
+        );
+      });
+    });
   },
 
   renderFichaEntrenadorCareer: function (ent, filtroCompeticion) {
