@@ -1862,6 +1862,20 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1969-06-18',
     imagen: 'img/entrenadores/GuillermoAlmada.webp',
   },
+
+  'javier-calleja-revilla': {
+    nombre: 'Javier',
+    apellidos: 'Calleja Revilla',
+    nombreCompleto: 'Javier Calleja Revilla',
+    apodo: 'Javi Calleja',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1978-05-12',
+    imagen: 'https://i.postimg.cc/fLnY0kQ8/Javi-Calleja-(entrenador)-PNG.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
