@@ -94,46 +94,14 @@ CLUB_DATA.temporadas['2024-25'] = {
 
    ],
 
-  cuerpoTecnico: [
-    {
-      id: 1,
-      nombre: 'Carlos Mendoza',
-      cargo: 'Entrenador Principal',
-      imagen: 'https://picsum.photos/seed/coach1-23/400/450',
-      descripcion: 'Temporada de consolidación.',
-      esPrincipal: true,
-      estadisticas: {
-        partidos: 38,
-        victorias: 18,
-        empates: 10,
-        derrotas: 10,
-      },
-    },
-  ],
+  // ENTRENADORES
 
-  partidosJugados: [
-    {
-      id: 101,
-      jornada: 38,
-      fecha: '2024-05-19',
-      local: 'Real Oviedo',
-      visitante: 'Cultural Soria',
-      golesLocal: 3,
-      golesVisitante: 1,
-      resultado: 'V',
-    },
-    {
-      id: 102,
-      jornada: 37,
-      fecha: '2024-05-12',
-      local: 'Racing Ferrol',
-      visitante: 'Real Oviedo',
-      golesLocal: 2,
-      golesVisitante: 2,
-      resultado: 'E',
-    },
-  ],
-};
+  cuerpoTecnico: [
+    { id: "javier-calleja-revilla", codigo: "javier-calleja-revilla", nombre: "Javier Calleja Revilla", cargo: "Entrenador Principal", imagen: "https: //i.postimg.cc/fLnY0kQ8/Javi-Calleja-(entrenador)-PNG.webp", esPrincipal: true, enClubDesde: "2024", contratoHasta: "2025", estado: "baja", estadisticas: { partidos: 33, victorias: 14, empates: 10, derrotas: 9, golesFavor: 42, golesContra: 37, desglose: { "Segunda División": { partidos: 32, victorias: 14, empates: 9, derrotas: 9, golesFavor: 42, golesContra: 37 }, "Copa del Rey": { partidos: 1, victorias: 0, empates: 1, derrotas: 0, golesFavor: 0, golesContra: 0 }, }, }, partidos: [ { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2024-08-17", local: "R.C. Deportivo de La Coruña", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 1, resultado: "V" }, { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2024-08-25", local: "C.D. Castellón", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E" }, { id: 3, jornada: 3, competicion: "Segunda División", fecha: "2024-08-30", local: "Real Oviedo", visitante: "Racing de Santander", golesLocal: 1, golesVisitante: 3, resultado: "D" }, { id: 4, jornada: 4, competicion: "Segunda División", fecha: "2024-09-07", local: "Real Sporting de Gijón", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 1, resultado: "D" }, { id: 5, jornada: 5, competicion: "Segunda División", fecha: "2024-09-15", local: "Real Oviedo", visitante: "F.C. Cartagena", golesLocal: 1, golesVisitante: 0, resultado: "V" }, { id: 6, jornada: 6, competicion: "Segunda División", fecha: "2024-09-21", local: "C.D. Eldense", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E" }, { id: 7, jornada: 7, competicion: "Segunda División", fecha: "2024-09-29", local: "Real Oviedo", visitante: "S.D. Eibar", golesLocal: 1, golesVisitante: 0, resultado: "V" }, { id: 8, jornada: 8, competicion: "Segunda División", fecha: "2024-10-06", local: "Levante U.D.", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E" }, { id: 9, jornada: 9, competicion: "Segunda División", fecha: "2024-10-13", local: "Real Oviedo", visitante: "U.D. Almería", golesLocal: 3, golesVisitante: 2, resultado: "V" }, { id: 10, jornada: 10, competicion: "Segunda División", fecha: "2024-10-19", local: "Málaga C.F.", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E" }, { id: 11, jornada: 11, competicion: "Segunda División", fecha: "2024-10-22", local: "Real Oviedo", visitante: "C.D. Mirandés", golesLocal: 4, golesVisitante: 1, resultado: "V" }, { id: 12, jornada: 12, competicion: "Segunda División", fecha: "2024-10-26", local: "Cádiz C.F.", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 0, resultado: "D" }, { id: 13, jornada: "Primera Ronda", competicion: "Copa del Rey", fecha: "2024-10-31", local: "Real Ávila", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E", penaltisLocal: 3, penaltisVisitante: 0 }, { id: 14, jornada: 13, competicion: "Segunda División", fecha: "2024-11-03", local: "Real Oviedo", visitante: "Burgos C.F.", golesLocal: 3, golesVisitante: 1, resultado: "V" }, { id: 15, jornada: 14, competicion: "Segunda División", fecha: "2024-11-10", local: "Albacete Balompié", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 2, resultado: "E" }, { id: 16, jornada: 15, competicion: "Segunda División", fecha: "2024-11-17", local: "Real Oviedo", visitante: "C.D. Tenerife", golesLocal: 3, golesVisitante: 1, resultado: "V" }, { id: 17, jornada: 16, competicion: "Segunda División", fecha: "2024-11-24", local: "Elche C.F.", visitante: "Real Oviedo", golesLocal: 4, golesVisitante: 0, resultado: "D" }, { id: 18, jornada: 17, competicion: "Segunda División", fecha: "2024-11-29", local: "Real Oviedo", visitante: "S.D. Huesca", golesLocal: 0, golesVisitante: 3, resultado: "D" }, { id: 19, jornada: 18, competicion: "Segunda División", fecha: "2024-12-08", local: "Racing de Ferrol", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 5, resultado: "V" }, { id: 20, jornada: 19, competicion: "Segunda División", fecha: "2024-12-14", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 2, golesVisitante: 0, resultado: "V" }, { id: 21, jornada: 20, competicion: "Segunda División", fecha: "2024-12-17", local: "Real Zaragoza", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 3, resultado: "V" }, { id: 22, jornada: 21, competicion: "Segunda División", fecha: "2024-12-21", local: "Real Oviedo", visitante: "Córdoba C.F.", golesLocal: 2, golesVisitante: 3, resultado: "D" }, { id: 23, jornada: 22, competicion: "Segunda División", fecha: "2025-01-11", local: "Real Oviedo", visitante: "Real Sporting de Gijón", golesLocal: 1, golesVisitante: 1, resultado: "E" }, { id: 24, jornada: 23, competicion: "Segunda División", fecha: "2025-01-17", local: "F.C. Cartagena", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 1, resultado: "V" }, { id: 25, jornada: 24, competicion: "Segunda División", fecha: "2025-01-26", local: "Real Oviedo", visitante: "C.D. Castellón", golesLocal: 1, golesVisitante: 0, resultado: "V" }, { id: 26, jornada: 25, competicion: "Segunda División", fecha: "2025-02-01", local: "U.D. Almería", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E" }, { id: 27, jornada: 26, competicion: "Segunda División", fecha: "2025-02-10", local: "Real Oviedo", visitante: "C.D. Eldense", golesLocal: 0, golesVisitante: 0, resultado: "E" }, { id: 28, jornada: 27, competicion: "Segunda División", fecha: "2025-02-16", local: "Real Oviedo", visitante: "Albacete Balompié", golesLocal: 1, golesVisitante: 0, resultado: "V" }, { id: 29, jornada: 28, competicion: "Segunda División", fecha: "2025-02-22", local: "Burgos C.F.", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 2, resultado: "V" }, { id: 30, jornada: 29, competicion: "Segunda División", fecha: "2025-03-02", local: "Real Oviedo", visitante: "R.C. Deportivo de La Coruña", golesLocal: 1, golesVisitante: 2, resultado: "D" }, { id: 31, jornada: 30, competicion: "Segunda División", fecha: "2025-03-08", local: "C.D. Mirandés", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 0, resultado: "D" }, { id: 32, jornada: 31, competicion: "Segunda División", fecha: "2025-03-14", local: "Real Oviedo", visitante: "Elche C.F.", golesLocal: 1, golesVisitante: 1, resultado: "E" }, { id: 33, jornada: 32, competicion: "Segunda División", fecha: "2025-03-22", local: "Granada C.F.", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 0, resultado: "D" }, ], }, 
+
+   ],
+
+  };
 
 // ===================================
 // TEMPORADA 2022/23
