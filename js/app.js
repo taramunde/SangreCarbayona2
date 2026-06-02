@@ -2588,59 +2588,6 @@ const App = {
     html += '</div>';
     container.innerHTML = html;
 
-    // ── 8. ESTILOS ────────────────────────────────────────────────
-    if (!document.getElementById('matchChipsStyles')) {
-      const s = document.createElement('style');
-      s.id = 'matchChipsStyles';
-      s.textContent = `
-        .match-player-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
-        .match-chip { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:20px; font-size:0.75em; font-weight:600; background:#f0f4ff; border:1px solid #ccd6ff; color:#001a6e; }
-        .chip-goal { background:#e6f9ed; border-color:#6dcc8a; color:#1a7a3c; }
-        .chip-conceded { background:#ffe6e6; border-color:#e74c3c; color:#c0392b; }
-        .chip-assist { background:#e8f4fd; border-color:#6bb8e8; color:#1a5a8a; }
-        .chip-yellow { background:#FFFFF0; border-color:#FFD700; color:#8a7000; }
-        .chip-red { background:#FFF5F5; border-color:#FF4136; color:#8a1010; }
-        .match-score-aet { font-size:0.72em; font-weight:700; color:#7a6200; background:#fff8dc; border:1px solid #e6d000; border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle; letter-spacing:0.3px; }
-        .match-score-pens { font-size:0.78em; font-weight:700; color:#003da5; background:#e8eeff; border:1px solid #99b0f0; border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle; white-space:nowrap; }
-        .match-season-tag { display:inline-block; font-size:0.72em; font-weight:700; background:rgba(0,26,110,0.08); color:#001a6e; border-radius:4px; padding:1px 6px; margin-left:6px; vertical-align:middle; letter-spacing:0.04em; }
-      `;
-      document.head.appendChild(s);
-    }
-
-    if (!document.getElementById('matchTipoPillStyles')) {
-      const ps = document.createElement('style');
-      ps.id = 'matchTipoPillStyles';
-      ps.textContent = `
-        .matches-filter-bar { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; }
-        .matches-comp-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
-        .matches-tipo-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
-        .match-tipo-pill {
-          display:inline-flex; align-items:center; gap:6px;
-          padding:7px 16px; border:2px solid transparent; border-radius:30px;
-          background:rgba(0,26,110,0.06); color:rgba(0,0,0,0.55);
-          font-size:0.82rem; font-weight:600; letter-spacing:0.02em;
-          cursor:pointer; transition:all 0.2s ease; font-family:inherit;
-        }
-        .match-tipo-pill i { color:var(--pill-color,#001a6e); font-size:0.88em; }
-        .match-tipo-pill:hover { background:rgba(0,26,110,0.12); color:#000; border-color:var(--pill-color,#001a6e); }
-        .match-tipo-pill.active {
-          background:rgba(0,0,0,0.06); color:var(--pill-color,#001a6e);
-          border-color:var(--pill-color,#001a6e); box-shadow:0 2px 8px rgba(0,0,0,0.1);
-        }
-        .pill-count {
-          display:inline-flex; align-items:center; justify-content:center;
-          min-width:20px; height:18px; padding:0 5px; border-radius:10px;
-          background:rgba(0,0,0,0.08); font-size:0.78em; font-weight:700;
-        }
-        .match-tipo-pill.active .pill-count { background:rgba(0,0,0,0.1); }
-        @media (max-width:600px) {
-          .match-tipo-pill { padding:6px 12px; font-size:0.76rem; }
-          .matches-comp-row { justify-content:flex-start; }
-        }
-      `;
-      document.head.appendChild(ps);
-    }
-
     // ── 9. LISTENERS ──────────────────────────────────────────────
     const seasonSel = document.getElementById('filterMatchesSeason');
     if (seasonSel) {
