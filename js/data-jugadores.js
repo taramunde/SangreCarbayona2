@@ -120,6 +120,36 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'leonardo-roman-riquelme': {
+    nombre: 'Leonardo',
+    apellidos: 'Román Riquelme',
+    nombreCompleto: 'Leonardo Román Riquelme',
+    apodo: 'Leo Román',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.89,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Ibiza',
+    provinciaNacimiento: 'Islas Baleares',
+    fechaNacimiento: '2000-07-06',
+    imagen: 'https://i.postimg.cc/mDmMpjF5/Leo-Roman-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U21',
+          partidos: 2,
+          goles: 1,
+          asistencias: 0,
+          minutos: 117,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {

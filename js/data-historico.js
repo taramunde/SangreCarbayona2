@@ -105,27 +105,37 @@ CLUB_DATA.temporadas['2024-25'] = {
   };
 
 // ===================================
-// TEMPORADA 2022/23
+// TEMPORADA 2023/24
 // ===================================
-CLUB_DATA.temporadas['2022-23'] = {
-  competicion: 'Segunda RFEF',
-  grupo: 'Grupo I',
+CLUB_DATA.temporadas['2023-24'] = {
+  competicion: 'Segunda División',
+  grupo: 'null',
 
   estadisticasEquipo: {
-    posicion: 1,
+    posicion: 3,
     desglose: {
-      'Segunda RFEF': {
-        partidos:    34,
-        victorias:   22,
-        empates:     6,
-        derrotas:    6,
-        golesFavor:  62,
-        golesContra: 28,
+      'Segunda División': {
+        partidos:    46,
+        victorias:   19,
+        empates:     14,
+        derrotas:    13,
+        golesFavor:  58,
+        golesContra: 41,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  3,
+        golesContra: 3,
       },
     },
   },
 
   jugadores: [
+
+    // PORTEROS
     {
       id: 'miguel-angel-torres',
       codigo: 'miguel-angel-torres',
