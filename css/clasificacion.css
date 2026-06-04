@@ -121,8 +121,8 @@
 }
 
 table {
-  width: max-content; /* La tabla solo mide lo que miden sus celdas */
-  min-width: 100%; /* Se estira al 100% solo si el contenedor es más pequeño */
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
   font-size: 0.88em;
 }
@@ -150,12 +150,12 @@ td:nth-child(1) {
   width: 45px;
 }
 
-/* Columna club: Espacio controlado */
+/* Columna club */
 td:nth-child(2) {
   text-align: left;
   font-weight: 600;
   padding-left: 15px;
-  padding-right: 40px; /* DISTANCIA ENTRE NOMBRE Y PUNTOS */
+  padding-right: 40px;
   white-space: nowrap;
 }
 
@@ -179,14 +179,13 @@ td:nth-child(2) span {
   vertical-align: middle;
 }
 
-/* Columnas numéricas: Todas con ancho fijo igual */
+/* Columnas numéricas */
 th:nth-child(n + 3),
 td:nth-child(n + 3) {
   width: 50px;
   min-width: 50px;
 }
 
-/* Eliminamos el width auto que hacía que DG creciera */
 th:last-child,
 td:last-child {
   width: 50px;
@@ -204,19 +203,17 @@ tr.row-oviedo td:first-child {
   border-left: 4px solid #ffcc00;
 }
 
-/* Zonas y colores */
-.pos-champions {
+/* ===== ZONAS DE SEGUNDA DIVISIÓN ===== */
+.pos-ascenso-directo {
   border-left: 4px solid #2ecc71;
 }
-.pos-europa {
-  border-left: 4px solid #20b2aa;
-}
-.pos-conference {
-  border-left: 4px solid #3498db;
+.pos-playoff {
+  border-left: 4px solid #f39c12;
 }
 .pos-descenso {
   border-left: 4px solid #e74c3c;
 }
+
 .dg-positiva {
   color: #1a8f3c;
   font-weight: 700;
@@ -259,16 +256,12 @@ td.pts-col {
   .clasi-card {
     padding: 18px 14px;
   }
-
-  /* En móvil forzamos un ancho mínimo para que aparezca el scroll */
   .table-responsive table {
     min-width: 600px;
   }
-
   td:nth-child(2) {
-    padding-right: 20px; /* Menos espacio en móvil */
+    padding-right: 20px;
   }
-
   .escudo-tabla {
     width: 22px;
     height: 22px;
@@ -290,14 +283,11 @@ td.pts-col {
   flex-shrink: 0;
 }
 
-.dot.champions {
+.dot.ascenso-directo {
   background-color: #2ecc71;
 }
-.dot.europa {
-  background-color: #20b2aa;
-}
-.dot.conference {
-  background-color: #3498db;
+.dot.playoff {
+  background-color: #f39c12;
 }
 .dot.descenso {
   background-color: #e74c3c;
@@ -308,19 +298,18 @@ td.pts-col {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch; /* Scroll nativo en móviles */
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 15px;
 }
 
 .chart-container {
   position: relative;
-  /* Altura fija ideal para que nunca se vea aplastada */
   height: 400px;
   width: 100%;
 }
 
 @media (max-width: 768px) {
   .chart-container {
-    height: 350px; /* Un poco más pequeña en móviles */
+    height: 350px;
   }
 }

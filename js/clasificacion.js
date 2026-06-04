@@ -8,1743 +8,115 @@
   // Si el partido no se ha jugado aún: goles1: null, goles2: null
   // =====================================================
 
-  // --- EQUIPOS ---
+  // --- EQUIPOS (Ahora 22 equipos para Segunda División) ---
   const equipos = [
-    {
-      nombre: 'Deportivo Alavés',
-      escudo: 'img/escudos/Alaves.webp',
-    },
-    {
-      nombre: 'Athletic Club',
-      escudo: 'img/escudos/AthleticClub.webp',
-    },
+    { nombre: 'Deportivo Alavés', escudo: 'img/escudos/Alaves.webp' },
+    { nombre: 'Athletic Club', escudo: 'img/escudos/AthleticClub.webp' },
     {
       nombre: 'Atlético de Madrid',
       escudo: 'img/escudos/AtleticodeMadrid.webp',
     },
-    {
-      nombre: 'F.C. Barcelona',
-      escudo: 'img/escudos/Barcelona.webp',
-    },
-    {
-      nombre: 'Celta de Vigo',
-      escudo: 'img/escudos/CeltaVigo.webp',
-    },
-    {
-      nombre: 'Elche C.F.',
-      escudo: 'img/escudos/Elche.webp',
-    },
-    {
-      nombre: 'R.C.D. Espanyol',
-      escudo: 'img/escudos/Espanyol.webp',
-    },
-    {
-      nombre: 'Getafe C.F.',
-      escudo: 'img/escudos/Getafe.webp',
-    },
-    {
-      nombre: 'Girona F.C.',
-      escudo: 'img/escudos/Girona.webp',
-    },
-    {
-      nombre: 'Levante U.D.',
-      escudo: 'img/escudos/Levante.webp',
-    },
-    {
-      nombre: 'R.C.D. Mallorca',
-      escudo: 'img/escudos/Mallorca.webp',
-    },
-    {
-      nombre: 'C.A. Osasuna',
-      escudo: 'img/escudos/Osasuna.webp',
-    },
-    {
-      nombre: 'Rayo Vallecano',
-      escudo: 'img/escudos/RayoVallecano.webp',
-    },
-    {
-      nombre: 'Real Betis',
-      escudo: 'img/escudos/Betis.webp',
-    },
-    {
-      nombre: 'Real Madrid',
-      escudo: 'img/escudos/Madrid.webp',
-    },
-    {
-      nombre: 'Real Oviedo',
-      escudo: 'img/escudos/Oviedo.webp',
-    },
-    {
-      nombre: 'Real Sociedad',
-      escudo: 'img/escudos/RealSociedad.webp',
-    },
-    {
-      nombre: 'Sevilla F.C.',
-      escudo: 'img/escudos/Sevilla.webp',
-    },
-    {
-      nombre: 'Valencia C.F.',
-      escudo: 'img/escudos/Valencia.webp',
-    },
-    {
-      nombre: 'Villarreal C.F.',
-      escudo: 'img/escudos/Villarreal.webp',
-    },
+    { nombre: 'F.C. Barcelona', escudo: 'img/escudos/Barcelona.webp' },
+    { nombre: 'Celta de Vigo', escudo: 'img/escudos/CeltaVigo.webp' },
+    { nombre: 'Elche C.F.', escudo: 'img/escudos/Elche.webp' },
+    { nombre: 'R.C.D. Espanyol', escudo: 'img/escudos/Espanyol.webp' },
+    { nombre: 'Getafe C.F.', escudo: 'img/escudos/Getafe.webp' },
+    { nombre: 'Girona F.C.', escudo: 'img/escudos/Girona.webp' },
+    { nombre: 'Levante U.D.', escudo: 'img/escudos/Levante.webp' },
+    { nombre: 'R.C.D. Mallorca', escudo: 'img/escudos/Mallorca.webp' },
+    { nombre: 'C.A. Osasuna', escudo: 'img/escudos/Osasuna.webp' },
+    { nombre: 'Rayo Vallecano', escudo: 'img/escudos/RayoVallecano.webp' },
+    { nombre: 'Real Betis', escudo: 'img/escudos/Betis.webp' },
+    { nombre: 'Real Madrid', escudo: 'img/escudos/Madrid.webp' },
+    { nombre: 'Real Oviedo', escudo: 'img/escudos/Oviedo.webp' },
+    { nombre: 'Real Sociedad', escudo: 'img/escudos/RealSociedad.webp' },
+    { nombre: 'Sevilla F.C.', escudo: 'img/escudos/Sevilla.webp' },
+    { nombre: 'Valencia C.F.', escudo: 'img/escudos/Valencia.webp' },
+    { nombre: 'Villarreal C.F.', escudo: 'img/escudos/Villarreal.webp' },
+    // AÑADIDOS PARA LLEGAR A 22 (Ejemplos, cámbialos por los reales)
+    { nombre: 'Sporting de Gijón', escudo: 'img/escudos/Sporting.webp' },
+    { nombre: 'Real Zaragoza', escudo: 'img/escudos/Zaragoza.webp' },
   ];
 
   // --- PARTIDOS ---
-  // Añade aquí los resultados jornada a jornada.
-  // null = partido no jugado aún.
+  // HE VACIADO EL HISTORIAL DE LA TEMPORADA PASADA.
+  // Al pasar a 11 partidos por jornada, el código viejo se rompería.
+  // Aquí tienes la estructura base de la Jornada 1 lista para rellenar.
   const enfrentamientos = [
-    // Jornada 1
+    // Jornada 1 (11 partidos en Segunda División)
     {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Levante U.D.',
-      goles1: 2,
-      goles2: 1,
+      equipo1: 'Real Oviedo',
+      equipo2: 'Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Zaragoza',
+      equipo2: 'Deportivo Alavés',
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Athletic Club',
+      equipo2: 'Villarreal C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Atlético de Madrid',
+      equipo2: 'Valencia C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Barcelona',
       equipo2: 'Sevilla F.C.',
-      goles1: 3,
-      goles2: 2,
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Celta de Vigo',
-      equipo2: 'Getafe C.F.',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 3,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Atlético de Madrid',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'F.C. Barcelona',
-      goles1: 0,
-      goles2: 3,
+      equipo2: 'Real Sociedad',
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Elche C.F.',
+      equipo2: 'Real Madrid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Espanyol',
       equipo2: 'Real Betis',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Real Oviedo',
-      goles1: 2,
-      goles2: 0,
-    },
-    // Jornada 2
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Elche C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Valencia C.F.', goles1: 1, goles2: 0 },
-    { equipo1: 'Real Oviedo', equipo2: 'Real Madrid', goles1: 0, goles2: 3 },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'F.C. Barcelona',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Celta de Vigo',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 2,
-      goles2: 2,
-    },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Getafe C.F.', goles1: 1, goles2: 2 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Girona F.C.',
-      goles1: 5,
-      goles2: 0,
-    },
-    // Jornada 3
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Levante U.D.', goles1: 2, goles2: 0 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'Sevilla F.C.', goles1: 0, goles2: 2 },
-    { equipo1: 'Real Oviedo', equipo2: 'Real Sociedad', goles1: 1, goles2: 0 },
-    { equipo1: 'Real Betis', equipo2: 'Athletic Club', goles1: 1, goles2: 2 },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'F.C. Barcelona',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Valencia C.F.', equipo2: 'Getafe C.F.', goles1: 3, goles2: 0 },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 1,
-    },
-    // Jornada 4
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Villarreal C.F.',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Valencia C.F.',
-      goles1: 6,
-      goles2: 0,
-    },
-    { equipo1: 'Celta de Vigo', equipo2: 'Girona F.C.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'Getafe C.F.', equipo2: 'Real Oviedo', goles1: 2, goles2: 0 },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Rayo Vallecano',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Deportivo Alavés',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Real Betis', goles1: 2, goles2: 2 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Elche C.F.', goles1: 2, goles2: 2 },
-    { equipo1: 'Real Sociedad', equipo2: 'Real Madrid', goles1: 1, goles2: 2 },
-    // Jornada 5
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Sevilla F.C.',
-      goles1: 1,
-      goles2: 2,
-    },
-    { equipo1: 'F.C. Barcelona', equipo2: 'Getafe C.F.', goles1: 3, goles2: 0 },
-    { equipo1: 'Real Betis', equipo2: 'Real Sociedad', goles1: 3, goles2: 1 },
-    { equipo1: 'Elche C.F.', equipo2: 'Real Oviedo', goles1: 1, goles2: 0 },
-    { equipo1: 'Girona F.C.', equipo2: 'Levante U.D.', goles1: 0, goles2: 4 },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Athletic Club',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Celta de Vigo',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'C.A. Osasuna',
-      goles1: 2,
-      goles2: 1,
-    },
-    // Jornada 6
-    { equipo1: 'Athletic Club', equipo2: 'Girona F.C.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Rayo Vallecano',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Valencia C.F.',
-      goles1: 2,
-      goles2: 2,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Real Madrid', goles1: 1, goles2: 4 },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 2,
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Getafe C.F.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Real Oviedo', equipo2: 'F.C. Barcelona', goles1: 1, goles2: 3 },
-    { equipo1: 'Celta de Vigo', equipo2: 'Real Betis', goles1: 1, goles2: 1 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Elche C.F.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 1,
-      goles2: 0,
-    },
-    // Jornada 7
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Real Madrid',
-      goles1: 5,
-      goles2: 2,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Real Sociedad',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'Real Betis', equipo2: 'C.A. Osasuna', goles1: 2, goles2: 0 },
-    { equipo1: 'Getafe C.F.', equipo2: 'Levante U.D.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Sevilla F.C.',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Athletic Club',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Celta de Vigo', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 0,
-      goles2: 0,
-    },
-    { equipo1: 'Valencia C.F.', equipo2: 'Real Oviedo', goles1: 1, goles2: 2 },
-    // Jornada 8
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Elche C.F.',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'Valencia C.F.', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Villarreal C.F.',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'F.C. Barcelona',
-      goles1: 4,
-      goles2: 1,
-    },
-    { equipo1: 'R.C.D. Espanyol', equipo2: 'Real Betis', goles1: 1, goles2: 2 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Getafe C.F.', goles1: 2, goles2: 1 },
-    { equipo1: 'Real Oviedo', equipo2: 'Levante U.D.', goles1: 0, goles2: 2 },
-    {
-      equipo1: 'Real Sociedad',
       equipo2: 'Rayo Vallecano',
-      goles1: 0,
-      goles2: 1,
-    },
-    // Jornada 9
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Valencia C.F.',
-      goles1: 0,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'F.C. Barcelona', equipo2: 'Girona F.C.', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Getafe C.F.', equipo2: 'Real Madrid', goles1: 0, goles2: 1 },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 0,
-      goles2: 3,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Athletic Club', goles1: 0, goles2: 0 },
-    { equipo1: 'Villarreal C.F.', equipo2: 'Real Betis', goles1: 2, goles2: 2 },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 1,
-      goles2: 3,
-    },
-    // Jornada 10
-    { equipo1: 'Athletic Club', equipo2: 'Getafe C.F.', goles1: 0, goles2: 1 },
-    { equipo1: 'Girona F.C.', equipo2: 'Real Oviedo', goles1: 3, goles2: 3 },
-    { equipo1: 'Real Sociedad', equipo2: 'Sevilla F.C.', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Villarreal C.F.',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Real Madrid', equipo2: 'F.C. Barcelona', goles1: 2, goles2: 1 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Celta de Vigo', goles1: 2, goles2: 3 },
-    { equipo1: 'R.C.D. Espanyol', equipo2: 'Elche C.F.', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Levante U.D.',
-      goles1: 1,
-      goles2: 1,
-    },
-    // Jornada 11
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Sevilla F.C.',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'F.C. Barcelona', equipo2: 'Elche C.F.', goles1: 3, goles2: 1 },
-    { equipo1: 'Real Betis', equipo2: 'R.C.D. Mallorca', goles1: 3, goles2: 0 },
-    { equipo1: 'Getafe C.F.', equipo2: 'Girona F.C.', goles1: 2, goles2: 1 },
-    { equipo1: 'Real Madrid', equipo2: 'Valencia C.F.', goles1: 4, goles2: 0 },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Athletic Club',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Celta de Vigo', goles1: 1, goles2: 2 },
-    { equipo1: 'Real Oviedo', equipo2: 'C.A. Osasuna', goles1: 0, goles2: 0 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 4,
-      goles2: 0,
-    },
-    // Jornada 12
-    { equipo1: 'Athletic Club', equipo2: 'Real Oviedo', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Levante U.D.',
-      goles1: 3,
-      goles2: 1,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Real Sociedad', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Villarreal C.F.',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Rayo Vallecano', equipo2: 'Real Madrid', goles1: 0, goles2: 0 },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'F.C. Barcelona',
-      goles1: 2,
-      goles2: 4,
-    },
-    { equipo1: 'Valencia C.F.', equipo2: 'Real Betis', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Getafe C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Sevilla F.C.', equipo2: 'C.A. Osasuna', goles1: 1, goles2: 0 },
-    // Jornada 13
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Celta de Vigo',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Girona F.C.', goles1: 1, goles2: 1 },
-    { equipo1: 'Elche C.F.', equipo2: 'Real Madrid', goles1: 2, goles2: 2 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Sevilla F.C.',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Real Sociedad', goles1: 1, goles2: 3 },
-    { equipo1: 'Real Oviedo', equipo2: 'Rayo Vallecano', goles1: 0, goles2: 0 },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Athletic Club',
-      goles1: 4,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Valencia C.F.', equipo2: 'Levante U.D.', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 1,
-    },
-    // Jornada 14
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Real Oviedo',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'Real Madrid', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'C.A. Osasuna',
-      goles1: 2,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Valencia C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Villarreal C.F.',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 1,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Athletic Club', goles1: 0, goles2: 2 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Real Betis', goles1: 0, goles2: 2 },
-    { equipo1: 'Getafe C.F.', equipo2: 'Elche C.F.', goles1: 1, goles2: 0 },
-    // Jornada 15
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Girona F.C.', goles1: 3, goles2: 0 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Real Betis', equipo2: 'F.C. Barcelona', goles1: 3, goles2: 5 },
-    { equipo1: 'Real Madrid', equipo2: 'Celta de Vigo', goles1: 0, goles2: 2 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Getafe C.F.',
-      goles1: 2,
-      goles2: 0,
-    },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Levante U.D.', goles1: 2, goles2: 0 },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 0,
-      goles2: 0,
-    },
-    { equipo1: 'Valencia C.F.', equipo2: 'Sevilla F.C.', goles1: 1, goles2: 1 },
-    // Jornada 16
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Real Madrid',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Valencia C.F.',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'C.A. Osasuna',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Villarreal C.F.',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Athletic Club',
-      goles1: 2,
-      goles2: 0,
-    },
-    { equipo1: 'Rayo Vallecano', equipo2: 'Real Betis', goles1: 0, goles2: 0 },
-    { equipo1: 'R.C.D. Mallorca', equipo2: 'Elche C.F.', goles1: 3, goles2: 1 },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Real Sociedad', equipo2: 'Girona F.C.', goles1: 1, goles2: 2 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Real Oviedo', goles1: 4, goles2: 0 },
-    // Jornada 17
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 1,
-      goles2: 2,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Getafe C.F.', goles1: 4, goles2: 0 },
-    { equipo1: 'Elche C.F.', equipo2: 'Rayo Vallecano', goles1: 4, goles2: 0 },
-    { equipo1: 'Levante U.D.', equipo2: 'Real Sociedad', goles1: 1, goles2: 1 },
-    { equipo1: 'Real Madrid', equipo2: 'Sevilla F.C.', goles1: 2, goles2: 0 },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 0,
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Girona F.C.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'F.C. Barcelona',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Real Oviedo', equipo2: 'Celta de Vigo', goles1: 0, goles2: 0 },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 1,
-      goles2: 1,
-    },
-    // Jornada 18
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Real Oviedo',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Valencia C.F.',
-      goles1: 4,
-      goles2: 1,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Villarreal C.F.', goles1: 1, goles2: 3 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Athletic Club', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'F.C. Barcelona',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Real Madrid', equipo2: 'Real Betis', goles1: 5, goles2: 1 },
-    { equipo1: 'Rayo Vallecano', equipo2: 'Getafe C.F.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Girona F.C.',
-      goles1: 1,
-      goles2: 2,
-    },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Levante U.D.', goles1: 0, goles2: 3 },
-    // Jornada 19
-    { equipo1: 'Athletic Club', equipo2: 'Real Madrid', goles1: 0, goles2: 3 },
-    { equipo1: 'Getafe C.F.', equipo2: 'Real Sociedad', goles1: 1, goles2: 2 },
-    { equipo1: 'Girona F.C.', equipo2: 'C.A. Osasuna', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Atlético de Madrid',
-      goles1: 3,
-      goles2: 1,
-    },
-    { equipo1: 'Real Oviedo', equipo2: 'Real Betis', goles1: 1, goles2: 1 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Celta de Vigo', goles1: 0, goles2: 1 },
-    { equipo1: 'Valencia C.F.', equipo2: 'Elche C.F.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 1,
-    },
-    // Jornada 20
-    { equipo1: 'Real Betis', equipo2: 'Villarreal C.F.', goles1: 2, goles2: 0 },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Rayo Vallecano',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'Sevilla F.C.', goles1: 2, goles2: 2 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Girona F.C.',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Getafe C.F.', equipo2: 'Valencia C.F.', goles1: 0, goles2: 1 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Real Oviedo', goles1: 3, goles2: 2 },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Athletic Club',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'F.C. Barcelona',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'Real Madrid', equipo2: 'Levante U.D.', goles1: 2, goles2: 0 },
-    // Jornada 21
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Real Betis',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'F.C. Barcelona', equipo2: 'Real Oviedo', goles1: 3, goles2: 0 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Athletic Club', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Celta de Vigo',
-      goles1: 3,
-      goles2: 1,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Elche C.F.', goles1: 3, goles2: 2 },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'Getafe C.F.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Rayo Vallecano',
       equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Real Madrid',
-      goles1: 0,
-      goles2: 2,
-    },
-    // Jornada 22
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Valencia C.F.', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Sevilla F.C.',
-      goles1: 4,
-      goles2: 1,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Villarreal C.F.',
-      goles1: 2,
-      goles2: 2,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 2,
+      goles1: null,
+      goles2: null,
     },
     {
       equipo1: 'Levante U.D.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 0,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'F.C. Barcelona', goles1: 1, goles2: 3 },
-    { equipo1: 'Getafe C.F.', equipo2: 'Celta de Vigo', goles1: 0, goles2: 0 },
-    { equipo1: 'Real Oviedo', equipo2: 'Girona F.C.', goles1: 1, goles2: 0 },
-    { equipo1: 'Real Madrid', equipo2: 'Rayo Vallecano', goles1: 2, goles2: 1 },
-    // Jornada 23
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Getafe C.F.',
-      goles1: 0,
-      goles2: 2,
-    },
-    { equipo1: 'Athletic Club', equipo2: 'Levante U.D.', goles1: 4, goles2: 2 },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Real Betis',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
       equipo2: 'R.C.D. Mallorca',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'Celta de Vigo', equipo2: 'C.A. Osasuna', goles1: 1, goles2: 2 },
-    { equipo1: 'Real Sociedad', equipo2: 'Elche C.F.', goles1: 3, goles2: 1 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 4,
-      goles2: 1,
-    },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Girona F.C.', goles1: 1, goles2: 1 },
-    { equipo1: 'Valencia C.F.', equipo2: 'Real Madrid', goles1: 0, goles2: 2 },
-    { equipo1: 'Rayo Vallecano', equipo2: 'Real Oviedo', goles1: 3, goles2: 0 },
-    // Jornada 24
-    { equipo1: 'Elche C.F.', equipo2: 'C.A. Osasuna', goles1: 0, goles2: 0 },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'Villarreal C.F.',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Valencia C.F.', goles1: 0, goles2: 2 },
-    { equipo1: 'Real Madrid', equipo2: 'Real Sociedad', goles1: 4, goles2: 1 },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Real Oviedo', equipo2: 'Athletic Club', goles1: 1, goles2: 2 },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Atlético de Madrid',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'F.C. Barcelona', goles1: 2, goles2: 1 },
-    { equipo1: 'R.C.D. Mallorca', equipo2: 'Real Betis', goles1: 1, goles2: 2 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Celta de Vigo',
-      goles1: 2,
-      goles2: 2,
-    },
-    // Jornada 25
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Girona F.C.',
-      goles1: 2,
-      goles2: 2,
-    },
-    { equipo1: 'Athletic Club', equipo2: 'Elche C.F.', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 4,
-      goles2: 2,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Levante U.D.',
-      goles1: 3,
-      goles2: 0,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Rayo Vallecano', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 0,
-    },
-    { equipo1: 'Getafe C.F.', equipo2: 'Sevilla F.C.', goles1: 0, goles2: 1 },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Real Madrid', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Valencia C.F.',
-      goles1: 2,
-      goles2: 1,
-    },
-    { equipo1: 'Real Sociedad', equipo2: 'Real Oviedo', goles1: 3, goles2: 3 },
-    // Jornada 26
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Villarreal C.F.',
-      goles1: 4,
-      goles2: 1,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Sevilla F.C.', goles1: 2, goles2: 2 },
-    { equipo1: 'Elche C.F.', equipo2: 'R.C.D. Espanyol', goles1: 2, goles2: 2 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Real Sociedad',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Athletic Club',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 1,
-    },
-    { equipo1: 'Girona F.C.', equipo2: 'Celta de Vigo', goles1: 1, goles2: 2 },
-    { equipo1: 'Real Madrid', equipo2: 'Getafe C.F.', goles1: 0, goles2: 1 },
-    { equipo1: 'Valencia C.F.', equipo2: 'C.A. Osasuna', goles1: 1, goles2: 0 },
-    // Jornada 27
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'F.C. Barcelona',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Real Sociedad',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'Celta de Vigo', equipo2: 'Real Madrid', goles1: 1, goles2: 2 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Real Oviedo',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'Getafe C.F.', equipo2: 'Real Betis', goles1: 2, goles2: 0 },
-    { equipo1: 'Villarreal C.F.', equipo2: 'Elche C.F.', goles1: 2, goles2: 1 },
-    { equipo1: 'Levante U.D.', equipo2: 'Girona F.C.', goles1: 1, goles2: 1 },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 1,
-    },
-    // Jornada 28
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Getafe C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Sevilla F.C.',
-      goles1: 5,
-      goles2: 2,
-    },
-    { equipo1: 'Real Betis', equipo2: 'Celta de Vigo', goles1: 1, goles2: 1 },
-    { equipo1: 'Real Oviedo', equipo2: 'Valencia C.F.', goles1: 1, goles2: 0 },
-    { equipo1: 'Girona F.C.', equipo2: 'Athletic Club', goles1: 3, goles2: 0 },
-    { equipo1: 'Real Madrid', equipo2: 'Elche C.F.', goles1: 4, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Levante U.D.',
-      goles1: 1,
-      goles2: 1,
-    },
-    { equipo1: 'Real Sociedad', equipo2: 'C.A. Osasuna', goles1: 3, goles2: 1 },
-    // Jornada 29
-    { equipo1: 'Athletic Club', equipo2: 'Real Betis', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 0,
-    },
-    { equipo1: 'Elche C.F.', equipo2: 'R.C.D. Mallorca', goles1: 2, goles2: 1 },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Getafe C.F.',
-      goles1: 1,
-      goles2: 2,
-    },
-    { equipo1: 'Levante U.D.', equipo2: 'Real Oviedo', goles1: 4, goles2: 2 },
-    { equipo1: 'Sevilla F.C.', equipo2: 'Valencia C.F.', goles1: 0, goles2: 2 },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 4,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Atlético de Madrid',
-      goles1: 3,
-      goles2: 2,
-    },
-    { equipo1: 'C.A. Osasuna', equipo2: 'Girona F.C.', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Real Sociedad',
-      goles1: 3,
-      goles2: 1,
-    },
-    // Jornada 30
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'C.A. Osasuna',
-      goles1: 2,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'F.C. Barcelona',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 0,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Real Madrid',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Sevilla F.C.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'Athletic Club',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Celta de Vigo',
-      goles1: 2,
-      goles2: 3,
-    },
-    { equipo1: 'Rayo Vallecano', equipo2: 'Elche C.F.', goles1: 1, goles2: 0 },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Levante U.D.',
-      goles1: 2,
-      goles2: 0,
-    },
-    // Jornadas 31
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 4,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Real Oviedo',
-      goles1: 0,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Elche C.F.',
-      equipo2: 'Valencia C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Rayo Vallecano',
-      goles1: 3,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Deportivo Alavés',
-      goles1: 3,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Real Betis',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Getafe C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Girona F.C.',
-      goles1: 1,
-      goles2: 1,
-    },
-
-    // Jornada 33
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Celta de Vigo',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'Sevilla F.C.',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Valencia C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Deportivo Alavés',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Elche C.F.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Real Betis',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Getafe C.F.',
-      goles1: 0,
-      goles2: 1,
-    },
-
-    // Jornada 32
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Real Madrid',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Levante U.D.',
-      goles1: 0,
-      goles2: 0,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Sevilla F.C.',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Real Sociedad',
-      goles1: 3,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Athletic Club',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'F.C. Barcelona',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Celta de Vigo',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Elche C.F.',
-      goles1: 1,
-      goles2: 2,
-      jornada: 32,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Girona F.C.',
-      goles1: 2,
-      goles2: 1,
-    },
-
-    // Jornada 34
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Athletic Club',
-      goles1: 2,
-      goles2: 4,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Real Oviedo',
-      goles1: 3,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Elche C.F.',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Real Madrid',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 0,
-      goles2: 2,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'F.C. Barcelona',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Levante U.D.',
-      goles1: 5,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 0,
-    },
-    // Jornada 35
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Valencia C.F.',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Celta de Vigo',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Real Madrid',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'C.A. Osasuna',
-      goles1: 3,
-      goles2: 2,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Villarreal C.F.',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Elche C.F.',
-      equipo2: 'Deportivo Alavés',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Real Betis',
-      goles1: 2,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Getafe C.F.',
-      goles1: 0,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Girona F.C.',
-      goles1: 1,
-      goles2: 1,
-    },
-    // Jornada 36
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'F.C. Barcelona',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Elche C.F.',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Levante U.D.',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Athletic Club',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'Atlético de Madrid',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Sevilla F.C.',
-      goles1: 2,
-      goles2: 3,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Real Oviedo',
-      goles1: 2,
-      goles2: 0,
-    },
-    // Jornada 37
-    {
-      equipo1: 'Athletic Club',
-      equipo2: 'Celta de Vigo',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Atlético de Madrid',
-      equipo2: 'Girona F.C.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'F.C. Barcelona',
-      equipo2: 'Real Betis',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Elche C.F.',
-      equipo2: 'Getafe C.F.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Levante U.D.',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Rayo Vallecano',
-      equipo2: 'Villarreal C.F.',
-      goles1: 2,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Sociedad',
-      equipo2: 'Valencia C.F.',
-      goles1: 3,
-      goles2: 4,
-    },
-    {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Deportivo Alavés',
-      goles1: 0,
-      goles2: 1,
-    },
-    {
-      equipo1: 'C.A. Osasuna',
-      equipo2: 'R.C.D. Espanyol',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Sevilla F.C.',
-      equipo2: 'Real Madrid',
-      goles1: 0,
-      goles2: 1,
-    },
-    // Jornada 38
-    {
-      equipo1: 'Deportivo Alavés',
-      equipo2: 'Rayo Vallecano',
-      goles1: 1,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Real Betis',
-      equipo2: 'Levante U.D.',
-      goles1: 2,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Celta de Vigo',
-      equipo2: 'Sevilla F.C.',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Espanyol',
-      equipo2: 'Real Sociedad',
-      goles1: 1,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Getafe C.F.',
-      equipo2: 'C.A. Osasuna',
-      goles1: 1,
-      goles2: 0,
-    },
-    {
-      equipo1: 'R.C.D. Mallorca',
-      equipo2: 'Real Oviedo',
-      goles1: 3,
-      goles2: 0,
-    },
-    {
-      equipo1: 'Real Madrid',
-      equipo2: 'Athletic Club',
-      goles1: 4,
-      goles2: 2,
-    },
-    {
-      equipo1: 'Villarreal C.F.',
-      equipo2: 'Atlético de Madrid',
-      goles1: 5,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Valencia C.F.',
-      equipo2: 'F.C. Barcelona',
-      goles1: 3,
-      goles2: 1,
-    },
-    {
-      equipo1: 'Girona F.C.',
-      equipo2: 'Elche C.F.',
-      goles1: 1,
-      goles2: 1,
+      goles1: null,
+      goles2: null,
     },
   ];
 
   // =====================================================
-  // LÓGICA — No hace falta tocar nada de aquí abajo
+  // LÓGICA
   // =====================================================
 
-  const EQUIPOS_POR_JORNADA = 10; // Partidos por jornada (Liga = 10)
+  const EQUIPOS_POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos (antes eran 10)
 
   function resetearEquipos() {
     equipos.forEach((eq) => {
@@ -1818,10 +190,10 @@
 
     equipos.forEach((eq) => {
       let claseZona = '';
-      if (eq.posicion <= 4) claseZona = 'pos-champions';
-      else if (eq.posicion === 5) claseZona = 'pos-europa';
-      else if (eq.posicion === 6) claseZona = 'pos-conference';
-      else if (eq.posicion >= 18) claseZona = 'pos-descenso';
+      // MODIFICADO: Puestos de Segunda División
+      if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
+      else if (eq.posicion <= 6) claseZona = 'pos-playoff';
+      else if (eq.posicion >= 19) claseZona = 'pos-descenso';
 
       const esOviedo = eq.nombre === 'Real Oviedo';
 
@@ -1860,11 +232,12 @@
     const jornada = getJornadaActual();
     const badge = document.getElementById('jornadaBadge');
     if (badge) {
-      badge.removeAttribute('data-i18n'); // evita que i18n lo sobreescriba
+      badge.removeAttribute('data-i18n');
+      // Actualizado texto a la nueva temporada
       badge.textContent =
         jornada > 0
-          ? `${t('jornada')} ${jornada} · LaLiga 2025/26`
-          : 'LaLiga 2025/26';
+          ? `${t('jornada')} ${jornada} · LaLiga Hypermotion 26/27`
+          : 'LaLiga Hypermotion 26/27';
     }
   }
 
@@ -1916,12 +289,8 @@
       posiciones.push(calcularPosicionJornada(j));
     }
 
-    // --- LA MAGIA PARA EL SCROLL HORIZONTAL ---
-    // Le damos 45px por cada jornada (con un mínimo de 600px).
-    // Si hay muchas jornadas, el contenedor crecerá y aparecerá el scroll lateral.
     canvas.parentElement.style.minWidth =
       Math.max(posiciones.length * 45, 600) + 'px';
-    // ------------------------------------------
 
     const mejor = Math.min(...posiciones);
     const peor = Math.max(...posiciones);
@@ -1946,8 +315,15 @@
             borderColor: '#0033cc',
             backgroundColor: 'rgba(0, 51, 204, 0.08)',
             borderWidth: 3,
+            // MODIFICADO: Colores de los puntos adaptados a Segunda
             pointBackgroundColor: posiciones.map((p) =>
-              p <= 3 ? '#2ecc71' : p >= 18 ? '#e74c3c' : '#ffcc00',
+              p <= 2
+                ? '#2ecc71'
+                : p <= 6
+                  ? '#f39c12'
+                  : p >= 19
+                    ? '#e74c3c'
+                    : '#0033cc',
             ),
             pointBorderColor: '#001a6e',
             pointBorderWidth: 2,
@@ -1964,7 +340,7 @@
           y: {
             reverse: true,
             min: 1,
-            max: 20,
+            max: 22, // MODIFICADO: Max posiciones a 22
             grid: { color: '#eef0f8' },
             ticks: { stepSize: 1, color: '#666' },
           },
@@ -1989,22 +365,22 @@
     });
   }
 
-  // --- TABLA HOME (top 5 + Oviedo si está fuera) ---
+  // --- TABLA HOME (Top 6 + Oviedo si está fuera) ---
   function renderizarTablaHome() {
     const tbody = document.getElementById('homeCuerpoTabla');
-    if (!tbody) return; // Solo se ejecuta si estamos en index.html
+    if (!tbody) return;
 
     tbody.innerHTML = '';
 
-    const top5 = equipos.slice(0, 5);
+    // MODIFICADO: Ahora obtenemos el top 6 en lugar del top 5, por el playoff.
+    const top6 = equipos.slice(0, 6);
     const oviedo = equipos.find((eq) => eq.nombre === 'Real Oviedo');
-    const oviedoEn5 = top5.some((eq) => eq.nombre === 'Real Oviedo');
+    const oviedoEn6 = top6.some((eq) => eq.nombre === 'Real Oviedo');
 
-    const filas = oviedoEn5 ? top5 : [...top5, null, oviedo]; // null = separador
+    const filas = oviedoEn6 ? top6 : [...top6, null, oviedo];
 
     filas.forEach((eq) => {
       if (eq === null) {
-        // Fila separadora punteada
         const trSep = document.createElement('tr');
         trSep.classList.add('row-oviedo-separator');
         trSep.innerHTML = `<td colspan="8"></td>`;
@@ -2013,10 +389,10 @@
       }
 
       let claseZona = '';
-      if (eq.posicion <= 4) claseZona = 'pos-champions';
-      else if (eq.posicion === 5) claseZona = 'pos-europa';
-      else if (eq.posicion === 6) claseZona = 'pos-conference';
-      else if (eq.posicion >= 18) claseZona = 'pos-descenso';
+      // MODIFICADO: Zonas adaptadas a Segunda
+      if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
+      else if (eq.posicion <= 6) claseZona = 'pos-playoff';
+      else if (eq.posicion >= 19) claseZona = 'pos-descenso';
 
       const esOviedo = eq.nombre === 'Real Oviedo';
 
@@ -2048,25 +424,23 @@
       tbody.appendChild(tr);
     });
 
-    // Actualizar badge jornada en home
     const badge = document.getElementById('homeJornadaBadge');
     if (badge) {
       const j = getJornadaActual();
       badge.textContent =
-        j > 0 ? `Jornada ${j} · LaLiga 2025/26` : 'LaLiga 2025/26';
+        j > 0
+          ? `Jornada ${j} · LaLiga Hypermotion 26/27`
+          : 'LaLiga Hypermotion 26/27';
     }
   }
 
   // --- INIT ---
-  // clasificacion.js siempre se ejecuta después de app.js (orden en el HTML)
-  // así que el DOM ya está listo — ejecutamos directamente.
   calcularEstadisticas(enfrentamientos);
   renderizarTabla();
   actualizarJornadaBadge();
   initChart();
   renderizarTablaHome();
 
-  // AÑADE ESTAS DOS LÍNEAS PARA COMPARTIR LOS DATOS CON CALENDARIO.JS
   window.equipos = equipos;
   window.enfrentamientos = enfrentamientos;
   window.actualizarJornadaBadge = actualizarJornadaBadge;

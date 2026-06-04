@@ -53,12 +53,16 @@ const translations = {
     plantilla: 'Plantilla',
     patrocinadores: 'Patrocinadores',
     proximo_partido: 'Próximo Partido',
-    laliga_temporada: 'LaLiga 2025/26',
+    laliga_temporada: 'LaLiga Hypermotion 2026/27',
+    ascenso_directo: 'Ascenso Directo',
+    playoff_ascenso: 'Playoff de Ascenso',
+    descenso: 'Descenso a 1ª RFEF',
     champions: 'Champions',
     europa: 'Europa',
     conference: 'Conference',
     descenso: 'Descenso',
-    temporada_actual: 'Temporada 2025/26 - Primera Div.',
+    temporada_actual: 'Temporada 2026/27 - Segunda Div.',
+    laliga_hypermotion: 'LaLiga Hypermotion',
 
     // ============================================
     // HERO MATCH (NUEVOS)
@@ -231,13 +235,15 @@ const translations = {
     calendario_en_casa: 'En casa',
     calendario_fuera: 'Fuera',
     laliga_ea_sports: 'LaLiga EA Sports',
+    calendario_subtitulo:
+      'Todos los partidos del Real Oviedo · Segunda División',
 
     // ============================================
     // CLASIFICACIÓN
     // ============================================
     clasificacion_titulo: 'Clasificación',
     clasificacion_subtitulo:
-      'Seguimiento jornada a jornada · Real Oviedo en Primera División',
+      'Seguimiento jornada a jornada · Real Oviedo en Segunda División',
     tabla_clasificacion: 'Tabla de Clasificación',
     champions_league: 'Champions League',
     europa_league: 'Europa League',
@@ -405,12 +411,12 @@ const translations = {
     patrocinadores: 'Sponsors',
     proximo_partido: 'Next Match',
     proximo_partido: 'Next Match',
-    laliga_temporada: 'LaLiga 2025/26',
-    champions: 'Champions',
-    europa: 'Europe',
-    conference: 'Conference',
-    descenso: 'Relegation',
-    temporada_actual: '2025/26 Season - First Division',
+    laliga_temporada: 'LaLiga Hypermotion 2026/27',
+    ascenso_directo: 'Direct Promotion',
+    playoff_ascenso: 'Promotion Playoff',
+    descenso: 'Relegation to 1ª RFEF',
+    temporada_actual: '2026/27 Season - Second Div.',
+    laliga_hypermotion: 'LaLiga Hypermotion',
 
     // ============================================
     // HERO MATCH (NEW)
@@ -582,6 +588,7 @@ const translations = {
     calendario_en_casa: 'Home',
     calendario_fuera: 'Away',
     laliga_ea_sports: 'LaLiga EA Sports',
+    calendario_subtitulo: 'All Real Oviedo matches · Second Division',
 
     // ============================================
     // STANDINGS

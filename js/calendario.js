@@ -7,19 +7,19 @@
 
 (function () {
   // ── Constantes ──────────────────────────────────────
-  const OVIEDO = "Real Oviedo";
-  const POR_JORNADA = 10;
+  const OVIEDO = 'Real Oviedo';
+  const POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos por jornada
 
   // ── Utilidades ──────────────────────────────────────
   function getEscudo(nombre) {
-    if (typeof equipos === "undefined") return "";
+    if (typeof equipos === 'undefined') return '';
     const eq = equipos.find((e) => e.nombre === nombre);
-    return eq ? eq.escudo : "";
+    return eq ? eq.escudo : '';
   }
 
   // ── Datos de partidos del Oviedo ─────────────────────
   function getPartidosOviedo() {
-    if (typeof enfrentamientos === "undefined") return [];
+    if (typeof enfrentamientos === 'undefined') return [];
 
     return enfrentamientos
       .map((p, idx) => ({
@@ -61,13 +61,13 @@
 
   // ── Estado visual del partido ────────────────────────
   function getEstado(p) {
-    if (!p.jugado) return "pendiente";
+    if (!p.jugado) return 'pendiente';
     const esLocal = p.equipo1 === OVIEDO;
     const golesO = esLocal ? p.goles1 : p.goles2;
     const golesR = esLocal ? p.goles2 : p.goles1;
-    if (golesO > golesR) return "victoria";
-    else if (golesO < golesR) return "derrota";
-    else return "empate";
+    if (golesO > golesR) return 'victoria';
+    else if (golesO < golesR) return 'derrota';
+    else return 'empate';
   }
 
   // ── Próximo partido del Oviedo ───────────────────────
@@ -85,7 +85,7 @@
   //   RENDERIZADO — calendario.html
   // =====================================================
   function renderCalendario() {
-    const container = document.getElementById("jornadasContainer");
+    const container = document.getElementById('jornadasContainer');
     if (!container) return; // no estamos en calendario.html
 
     const partidos = getPartidosOviedo();
@@ -108,21 +108,21 @@
       jornadas[p.jornada].push(p);
     });
 
-    container.innerHTML = "";
+    container.innerHTML = '';
 
     Object.keys(jornadas)
       .sort((a, b) => a - b)
       .forEach((numJornada) => {
         const ps = jornadas[numJornada];
 
-        const block = document.createElement("div");
-        block.className = "cal-jornada-block";
+        const block = document.createElement('div');
+        block.className = 'cal-jornada-block';
         block.dataset.jornada = numJornada;
 
         // Cabecera jornada — usa t() para traducir "Jornada"
         block.innerHTML = `
                     <div class="cal-jornada-header">
-                        <span class="cal-jornada-num">${t("jornada")} ${numJornada}</span>
+                        <span class="cal-jornada-num">${t('jornada')} ${numJornada}</span>
                         <span class="cal-jornada-line"></span>
                     </div>
                 `;
@@ -143,15 +143,15 @@
             const golesDer = p.goles2;
 
             const badgeClass = {
-              victoria: "badge-victoria",
-              empate: "badge-empate",
-              derrota: "badge-derrota",
+              victoria: 'badge-victoria',
+              empate: 'badge-empate',
+              derrota: 'badge-derrota',
             }[estado];
             // Usar t() para traducir Victoria / Empate / Derrota
             const badgeText = {
-              victoria: t("victoria"),
-              empate: t("empate"),
-              derrota: t("derrota"),
+              victoria: t('victoria'),
+              empate: t('empate'),
+              derrota: t('derrota'),
             }[estado];
             centroHTML = `
                             <div class="cal-resultado">
@@ -163,7 +163,7 @@
             // Usar t() para traducir Casa / Fuera
             centroHTML = `
                             <div class="cal-vs">VS</div>
-                            <span class="cal-localidad">${esLocal ? t("en_casa") : t("fuera")}</span>
+                            <span class="cal-localidad">${esLocal ? t('en_casa') : t('fuera')}</span>
                         `;
           }
 
@@ -173,25 +173,25 @@
           const escudoIzq = esLocal ? escudoO : escudoR;
           const escudoDer = esLocal ? escudoR : escudoO;
 
-          const card = document.createElement("div");
-          card.className = `cal-match-card estado-${estado}${esProximo ? " proximo-partido" : ""}`;
+          const card = document.createElement('div');
+          card.className = `cal-match-card estado-${estado}${esProximo ? ' proximo-partido' : ''}`;
 
           // Datos para filtros
           card.dataset.estado = estado;
-          card.dataset.localidad = esLocal ? "local" : "visitante";
+          card.dataset.localidad = esLocal ? 'local' : 'visitante';
 
           card.innerHTML = `
-                        ${esProximo ? `<div class="cal-proximo-badge">${t("proximo_partido")}</div>` : ""}
+                        ${esProximo ? `<div class="cal-proximo-badge">${t('proximo_partido')}</div>` : ''}
                         <div class="cal-team local">
                             <img src="${escudoIzq}" alt="${equipoIzq}" class="cal-team-escudo">
-                            <span class="cal-team-nombre${equipoIzq === OVIEDO ? " es-oviedo" : ""}">${equipoIzq}</span>
+                            <span class="cal-team-nombre${equipoIzq === OVIEDO ? ' es-oviedo' : ''}">${equipoIzq}</span>
                         </div>
                         <div class="cal-match-center">
                             ${centroHTML}
                         </div>
                         <div class="cal-team visitante">
                             <img src="${escudoDer}" alt="${equipoDer}" class="cal-team-escudo">
-                            <span class="cal-team-nombre${equipoDer === OVIEDO ? " es-oviedo" : ""}">${equipoDer}</span>
+                            <span class="cal-team-nombre${equipoDer === OVIEDO ? ' es-oviedo' : ''}">${equipoDer}</span>
                         </div>
                     `;
 
@@ -202,9 +202,9 @@
       });
 
     // Mensaje vacío (usado por filtros)
-    const emptyMsg = document.createElement("div");
-    emptyMsg.id = "calEmpty";
-    emptyMsg.className = "cal-empty";
+    const emptyMsg = document.createElement('div');
+    emptyMsg.id = 'calEmpty';
+    emptyMsg.className = 'cal-empty';
     emptyMsg.innerHTML =
       '<i class="fas fa-search"></i>No hay partidos con ese filtro.';
     container.appendChild(emptyMsg);
@@ -212,9 +212,9 @@
     // Scroll automático al próximo partido
     if (proximo) {
       setTimeout(() => {
-        const card = container.querySelector(".proximo-partido");
+        const card = container.querySelector('.proximo-partido');
         if (card) {
-          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 300);
     }
@@ -229,23 +229,23 @@
       const el = document.getElementById(id);
       if (el) el.textContent = val;
     };
-    set("statJugados", stats.jugados);
-    set("statGanados", stats.ganados);
-    set("statEmpates", stats.empates);
-    set("statDerrotas", stats.derrotas);
-    set("statGoles", `${stats.gf}:${stats.gc}`);
-    set("statPendientes", stats.pendientes);
+    set('statJugados', stats.jugados);
+    set('statGanados', stats.ganados);
+    set('statEmpates', stats.empates);
+    set('statDerrotas', stats.derrotas);
+    set('statGoles', `${stats.gf}:${stats.gc}`);
+    set('statPendientes', stats.pendientes);
   }
 
   // ── Filtros ──────────────────────────────────────────
   function iniciarFiltros() {
-    const btns = document.querySelectorAll(".cal-filter-btn");
-    const empty = document.getElementById("calEmpty");
+    const btns = document.querySelectorAll('.cal-filter-btn');
+    const empty = document.getElementById('calEmpty');
 
     btns.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        btns.forEach((b) => b.classList.remove("active"));
-        this.classList.add("active");
+      btn.addEventListener('click', function () {
+        btns.forEach((b) => b.classList.remove('active'));
+        this.classList.add('active');
 
         const filtro = this.dataset.filter;
         aplicarFiltro(filtro, empty);
@@ -254,8 +254,8 @@
   }
 
   function aplicarFiltro(filtro, emptyMsg) {
-    const cards = document.querySelectorAll(".cal-match-card");
-    const bloques = document.querySelectorAll(".cal-jornada-block");
+    const cards = document.querySelectorAll('.cal-match-card');
+    const bloques = document.querySelectorAll('.cal-jornada-block');
     let visible = 0;
 
     cards.forEach((card) => {
@@ -264,54 +264,54 @@
 
       let mostrar = false;
       switch (filtro) {
-        case "todos":
+        case 'todos':
           mostrar = true;
           break;
-        case "jugados":
-          mostrar = estado !== "pendiente";
+        case 'jugados':
+          mostrar = estado !== 'pendiente';
           break;
-        case "pendientes":
-          mostrar = estado === "pendiente";
+        case 'pendientes':
+          mostrar = estado === 'pendiente';
           break;
-        case "local":
-          mostrar = localidad === "local";
+        case 'local':
+          mostrar = localidad === 'local';
           break;
-        case "visitante":
-          mostrar = localidad === "visitante";
+        case 'visitante':
+          mostrar = localidad === 'visitante';
           break;
       }
 
-      card.classList.toggle("oculto", !mostrar);
+      card.classList.toggle('oculto', !mostrar);
       if (mostrar) visible++;
     });
 
     bloques.forEach((bloque) => {
       const tieneVisibles =
-        bloque.querySelectorAll(".cal-match-card:not(.oculto)").length > 0;
-      bloque.classList.toggle("hidden", !tieneVisibles);
+        bloque.querySelectorAll('.cal-match-card:not(.oculto)').length > 0;
+      bloque.classList.toggle('hidden', !tieneVisibles);
     });
 
-    if (emptyMsg) emptyMsg.classList.toggle("visible", visible === 0);
+    if (emptyMsg) emptyMsg.classList.toggle('visible', visible === 0);
 
     const todosLosPartidos = getPartidosOviedo();
     let partidosFiltrados = [];
 
     switch (filtro) {
-      case "todos":
+      case 'todos':
         partidosFiltrados = todosLosPartidos;
         break;
-      case "jugados":
+      case 'jugados':
         partidosFiltrados = todosLosPartidos.filter((p) => p.jugado);
         break;
-      case "pendientes":
+      case 'pendientes':
         partidosFiltrados = todosLosPartidos.filter((p) => !p.jugado);
         break;
-      case "local":
+      case 'local':
         partidosFiltrados = todosLosPartidos.filter(
           (p) => p.equipo1 === OVIEDO,
         );
         break;
-      case "visitante":
+      case 'visitante':
         partidosFiltrados = todosLosPartidos.filter(
           (p) => p.equipo2 === OVIEDO,
         );
@@ -326,13 +326,13 @@
   //   RENDERIZADO — index.html (widget próximo partido)
   // =====================================================
   function renderWidgetHome() {
-    const lista = document.getElementById("calendarioList");
+    const lista = document.getElementById('calendarioList');
     if (!lista) return; // no estamos en index.html
 
     const partidos = getPartidosOviedo();
     const proximo = getProximoPartido(partidos);
 
-    lista.innerHTML = "";
+    lista.innerHTML = '';
 
     if (proximo) {
       const esLocal = proximo.equipo1 === OVIEDO;
@@ -344,27 +344,25 @@
       const escudoIzq = esLocal ? escudoO : escudoR;
       const escudoDer = esLocal ? escudoR : escudoO;
 
-      const elProximo = document.createElement("div");
-      elProximo.className = "match-item home-match-next";
+      const elProximo = document.createElement('div');
+      elProximo.className = 'match-item home-match-next';
       elProximo.innerHTML = `
                 <div class="home-match-teams">
-                    <div class="home-team${equipoIzq === OVIEDO ? " oviedo" : ""}">
+                    <div class="home-team${equipoIzq === OVIEDO ? ' oviedo' : ''}">
                         <img src="${escudoIzq}" alt="${equipoIzq}" class="home-escudo-md">
                         <span class="home-team-nombre">${equipoIzq}</span>
                     </div>
                     <div class="home-match-center">
                         <div class="home-score-vs">VS</div>
-                        <!-- Usar t() para traducir Casa / Fuera -->
-                        <span class="home-localidad-badge">${esLocal ? t("en_casa") : t("fuera")}</span>
+                        <span class="home-localidad-badge">${esLocal ? t('en_casa') : t('fuera')}</span>
                     </div>
-                    <div class="home-team right${equipoDer === OVIEDO ? " oviedo" : ""}">
+                    <div class="home-team right${equipoDer === OVIEDO ? ' oviedo' : ''}">
                         <img src="${escudoDer}" alt="${equipoDer}" class="home-escudo-md">
                         <span class="home-team-nombre">${equipoDer}</span>
                     </div>
                 </div>
                 <div class="home-match-footer">
-                    <!-- Usar t() para traducir Jornada -->
-                    <span class="home-match-label"><i class="fas fa-calendar-alt"></i> ${t("jornada")} ${proximo.jornada}</span>
+                    <span class="home-match-label"><i class="fas fa-calendar-alt"></i> ${t('jornada')} ${proximo.jornada}</span>
                 </div>
             `;
       lista.appendChild(elProximo);
@@ -373,8 +371,8 @@
         '<p style="text-align:center;color:#888;font-size:0.9em;padding:10px;">No hay próximos partidos.</p>';
     }
 
-    const verTodo = document.querySelector(".upcoming-matches .view-all");
-    if (verTodo) verTodo.href = "calendario.html";
+    const verTodo = document.querySelector('.upcoming-matches .view-all');
+    if (verTodo) verTodo.href = 'calendario.html';
   }
 
   // =====================================================
@@ -382,8 +380,8 @@
   // =====================================================
   renderCalendario();
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", renderWidgetHome);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderWidgetHome);
   } else {
     renderWidgetHome();
   }
@@ -395,7 +393,7 @@
   window.renderWidgetHome = renderWidgetHome;
 
   // ── Estilos inline para el widget home ──────────────
-  const homeStyles = document.createElement("style");
+  const homeStyles = document.createElement('style');
   homeStyles.textContent = `
         .home-match-result,
         .home-match-next {
