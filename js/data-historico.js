@@ -143,7 +143,9 @@ CLUB_DATA.temporadas['2023-24'] = {
     
     // DEFENSAS
     { "id": "mario-hernandez-fernandez", "codigo": "mario-hernandez-fernandez", "dorsal": 2, "posicion": "Lateral Derecho", "enClubDesde": "2023", "contratoHasta": "2024", "stats": { "partidos": 4, "goles": 0, "asistencias": 0, "minutos": 206, "amarillas": 1, "rojas": 0, "desglose": { "Segunda División": { "partidos": 4, "goles": 0, "asistencias": 0, "minutos": 206, "amarillas": 1, "rojas": 0 } } }, "partidos": [ { "id": 1, "jornada": 1, "competicion": "Segunda División", "fecha": "2023-08-14", "local": "C.D. Tenerife", "visitante": "Real Oviedo", "golesLocal": 1, "golesVisitante": 0, "resultado": "D", "minutos": 45, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false }, { "id": 2, "jornada": 2, "competicion": "Segunda División", "fecha": "2023-08-20", "local": "Real Oviedo", "visitante": "Racing de Ferrol", "golesLocal": 1, "golesVisitante": 1, "resultado": "E", "minutos": 90, "goles": 0, "asistencias": 0, "amarilla": true, "roja": false }, { "id": 3, "jornada": 3, "competicion": "Segunda División", "fecha": "2023-08-26", "local": "Burgos C.F.", "visitante": "Real Oviedo", "golesLocal": 1, "golesVisitante": 0, "resultado": "D", "minutos": 63, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false }, { "id": 4, "jornada": 5, "competicion": "Segunda División", "fecha": "2023-09-09", "local": "Real Oviedo", "visitante": "Real Sporting de Gijón", "golesLocal": 0, "golesVisitante": 0, "resultado": "E", "minutos": 8, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false } ] }, 
-  
+    { id: "rodrigo-tarin-higon", codigo: "rodrigo-tarin-higon", dorsal: 3, posicion: "Central", enClubDesde: "2022", contratoHasta: "2024", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0, }, partidos: [ ], }, 
+    
+
   ],
 
   cuerpoTecnico: [

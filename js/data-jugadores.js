@@ -727,6 +727,63 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/LsWsgPtP/Mario-Hernandez-PNG.webp',
   },
 
+  'rodrigo-tarin-higon': {
+    nombre: 'Rodrigo',
+    apellidos: 'Tarín Higón',
+    nombreCompleto: 'Rodrigo Tarín Higón',
+    apodo: 'Rodri Tarín',
+    posicion: 'Defensa',
+    posicionCorta: 'DC',
+    altura: 1.83,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Chiva',
+    provinciaNacimiento: 'Valencia',
+    fechaNacimiento: '1996-07-05',
+    imagen: 'https://i.postimg.cc/SQvGQ1YQ/Rodri-Tarin-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U19',
+          partidos: 4,
+          goles: 0,
+          asistencias: 0,
+          minutos: 242,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U18',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 180,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U17',
+          partidos: 8,
+          goles: 0,
+          asistencias: 0,
+          minutos: 385,
+          amarillas: 1,
+          rojas: 1,
+        },
+        {
+          categoria: 'U16',
+          partidos: 6,
+          goles: 0,
+          asistencias: 0,
+          minutos: 352,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
