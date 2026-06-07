@@ -165,6 +165,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/yxJJQHKD/Marco-PNG.webp',
   },
 
+  'victor-chigozie-egboh': {
+    nombre: 'Victor',
+    apellidos: 'Chigozie Egboh',
+    nombreCompleto: 'Victor Chigozie Egboh',
+    apodo: 'Victor Egboh',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.85,
+    nacionalidad: ['Nigeriana'],
+    lugarNacimiento: 'Lagos',
+    provinciaNacimiento: 'Lagos',
+    fechaNacimiento: '2002-10-14',
+    imagen: 'https://i.postimg.cc/tRh7g2TQ/Victor-Egboh-PNG.webp',
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
