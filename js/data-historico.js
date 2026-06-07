@@ -140,23 +140,10 @@ CLUB_DATA.temporadas['2023-24'] = {
     { "id": "quentin-jean-pierre-guy-braat", "codigo": "quentin-jean-pierre-guy-braat", "dorsal": 1, "enClubDesde": "2022", "contratoHasta": "2025", "stats": { "partidos": 2, "goles": 3, "asistencias": 0, "minutos": 210, "amarillas": 0, "rojas": 0, "desglose": { "Copa del Rey (Felipe VI)": { "partidos": 2, "goles": 3, "asistencias": 0, "minutos": 210, "amarillas": 0, "rojas": 0 } } }, "partidos": [ { "id": 1, "jornada": "Primera Ronda", "competicion": "Copa del Rey (Felipe VI)", "fecha": "2023-11-01", "local": "C.E. Manresa", "visitante": "Real Oviedo", "golesLocal": 1, "golesVisitante": 2, "resultado": "V", "minutos": 120, "goles": 1, "asistencias": 0, "amarilla": false, "roja": false }, { "id": 2, "jornada": "Segunda Ronda", "competicion": "Copa del Rey (Felipe VI)", "fecha": "2023-12-05", "local": "C.D. Castellón", "visitante": "Real Oviedo", "golesLocal": 2, "golesVisitante": 1, "resultado": "D", "minutos": 90, "goles": 2, "asistencias": 0, "amarilla": false, "roja": false } ] }, 
     { id: "marco-suarez-coronas-lastra", codigo: "marco-suarez-coronas-lastra", dorsal: "-", posicion: "Portero", enClubDesde: "2016", contratoHasta: "2024", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0, }, partidos: [ ], }, 
     { id: "victor-chigozie-egboh", codigo: "victor-chigozie-egboh", dorsal: "-", posicion: "Portero", enClubDesde: "2021", contratoHasta: "2025", stats: { partidos: 0, goles: 0, asistencias: 0, minutos: 0, amarillas: 0, rojas: 0, }, partidos: [ ], }, 
-
-    {
-      id: 'javi-martinez',
-      codigo: 'javi-martinez',
-      dorsal: 9,
-      enClubDesde: '2022',
-      contratoHasta: '2025',
-      logros: ['Ascenso a Primera RFEF'],
-      stats: {
-        partidos: 32,
-        goles: 18,
-        asistencias: 5,
-        minutos: 2750,
-        amarillas: 4,
-        rojas: 0,
-      },
-    },
+    
+    // DEFENSAS
+    { "id": "mario-hernandez-fernandez", "codigo": "mario-hernandez-fernandez", "dorsal": 2, "posicion": "Lateral Derecho", "enClubDesde": "2023", "contratoHasta": "2024", "stats": { "partidos": 4, "goles": 0, "asistencias": 0, "minutos": 206, "amarillas": 1, "rojas": 0, "desglose": { "Segunda División": { "partidos": 4, "goles": 0, "asistencias": 0, "minutos": 206, "amarillas": 1, "rojas": 0 } } }, "partidos": [ { "id": 1, "jornada": 1, "competicion": "Segunda División", "fecha": "2023-08-14", "local": "C.D. Tenerife", "visitante": "Real Oviedo", "golesLocal": 1, "golesVisitante": 0, "resultado": "D", "minutos": 45, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false }, { "id": 2, "jornada": 2, "competicion": "Segunda División", "fecha": "2023-08-20", "local": "Real Oviedo", "visitante": "Racing de Ferrol", "golesLocal": 1, "golesVisitante": 1, "resultado": "E", "minutos": 90, "goles": 0, "asistencias": 0, "amarilla": true, "roja": false }, { "id": 3, "jornada": 3, "competicion": "Segunda División", "fecha": "2023-08-26", "local": "Burgos C.F.", "visitante": "Real Oviedo", "golesLocal": 1, "golesVisitante": 0, "resultado": "D", "minutos": 63, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false }, { "id": 4, "jornada": 5, "competicion": "Segunda División", "fecha": "2023-09-09", "local": "Real Oviedo", "visitante": "Real Sporting de Gijón", "golesLocal": 0, "golesVisitante": 0, "resultado": "E", "minutos": 8, "goles": 0, "asistencias": 0, "amarilla": false, "roja": false } ] }, 
+  
   ],
 
   cuerpoTecnico: [

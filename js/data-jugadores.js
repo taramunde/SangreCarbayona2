@@ -712,6 +712,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'mario-hernandez-fernandez': {
+    nombre: 'Mario',
+    apellidos: 'Hernández Fernández',
+    nombreCompleto: 'Mario Hernández Fernández',
+    apodo: 'Mario Hernández',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: 1.77,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1999-01-25',
+    imagen: 'https://i.postimg.cc/LsWsgPtP/Mario-Hernandez-PNG.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
