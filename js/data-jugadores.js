@@ -150,6 +150,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'marco-suarez-coronas-lastra': {
+    nombre: 'Marco',
+    apellidos: 'Suárez Coronas Lastra',
+    nombreCompleto: 'Marco Suárez Coronas Lastra',
+    apodo: 'Marco',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.87,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Piedras Blancas',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2004-02-26',
+    imagen: 'https://i.postimg.cc/yxJJQHKD/Marco-PNG.webp',
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
