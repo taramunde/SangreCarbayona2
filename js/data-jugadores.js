@@ -1634,6 +1634,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/ydshDwst/Luismi-(casco)-PNG.webp',
   },
 
+  'jaime-suarez-juesas': {
+    nombre: 'Jaime',
+    apellidos: 'Suárez Juesas',
+    nombreCompleto: 'Jaime Suárez Juesas',
+    apodo: 'Jimmy',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.7,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1996-12-31',
+    imagen: 'https://i.postimg.cc/GtVF2640/Jimmy-PNG-Alineacion.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
