@@ -1619,6 +1619,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/d3P8M3Vb/Yayo-PNG.webp',
   },
 
+  'luis-miguel-sanchez-benitez': {
+    nombre: 'Luis Miguel',
+    apellidos: 'Sánchez Benítez',
+    nombreCompleto: 'Luis Miguel Sánchez Benítez',
+    apodo: 'Luismi',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.8,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Puerto Serrano',
+    provinciaNacimiento: 'Cádiz',
+    fechaNacimiento: '1992-05-05',
+    imagen: 'https://i.postimg.cc/ydshDwst/Luismi-(casco)-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
