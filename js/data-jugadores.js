@@ -1664,6 +1664,45 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/Cxg0tNNJ/Viti-Alineacion-PNG.webp',
   },
 
+  'javier-mier-martinez': {
+    nombre: 'Javier',
+    apellidos: 'Mier Martínez',
+    nombreCompleto: 'Javier Mier Martínez',
+    apodo: 'Javi Mier',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.76,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1999-02-04',
+    imagen: 'https://i.ibb.co/pyCRpwW/Javi-Mier-PNG.png',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U17',
+          partidos: 3,
+          goles: 0,
+          asistencias: 0,
+          minutos: 109,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U16',
+          partidos: 5,
+          goles: 0,
+          asistencias: 0,
+          minutos: 207,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
