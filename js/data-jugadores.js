@@ -1649,6 +1649,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/GtVF2640/Jimmy-PNG-Alineacion.webp',
   },
 
+  'victor-alvarez-rozada': {
+    nombre: 'Víctor',
+    apellidos: 'Álvarez Rozada',
+    nombreCompleto: 'Víctor Álvarez Rozada',
+    apodo: 'Viti',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.7,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Pola de Laviana',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1997-09-16',
+    imagen: 'https://i.postimg.cc/Cxg0tNNJ/Viti-Alineacion-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
