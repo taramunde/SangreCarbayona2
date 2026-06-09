@@ -2010,6 +2010,54 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '2002-04-05',
     imagen: 'https://i.postimg.cc/0Q0PdXFL/Santi-Miguelez-PNG.webp',
   },
+
+  'borja-gonzalez-tomas': {
+    nombre: 'Borja',
+    apellidos: 'González Tomás',
+    nombreCompleto: 'Borja González Tomás',
+    apodo: 'Borja Bastón',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.86,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1992-08-25',
+    imagen: 'https://i.postimg.cc/3rfTZGWf/Borja-Baston-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U19',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 106,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U17',
+          partidos: 15,
+          goles: 8,
+          asistencias: 1,
+          minutos: 1088,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U16',
+          partidos: 3,
+          goles: 6,
+          asistencias: 0,
+          minutos: 207,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
