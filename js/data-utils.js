@@ -28,6 +28,8 @@ const POSITION_GROUPS = {
       'Mediocentro Ofensivo',
       'Mediapunta',
       'Pivote',
+      'Interior Derecho',
+      'Interior Izquierdo',
     ],
     icon: 'fa-sync-alt',
   },
