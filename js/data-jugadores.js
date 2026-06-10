@@ -1703,6 +1703,36 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'victor-camarasa-ferrando': {
+    nombre: 'Víctor',
+    apellidos: 'Camarasa Ferrando',
+    nombreCompleto: 'Víctor Camarasa Ferrando',
+    apodo: 'Camarasa',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.83,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Meliana',
+    provinciaNacimiento: 'Valencia',
+    fechaNacimiento: '1994-05-28',
+    imagen: 'https://i.postimg.cc/zfq09L69/Camarasa-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U21',
+          partidos: 4,
+          goles: 0,
+          asistencias: 0,
+          minutos: 194,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
