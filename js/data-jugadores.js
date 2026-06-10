@@ -2404,6 +2404,21 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1978-05-12',
     imagen: 'img/entrenadores/JaviCalleja.webp',
   },
+
+  'alvaro-cervera-diaz': {
+    nombre: 'Álvaro',
+    apellidos: 'Cervera Díaz',
+    nombreCompleto: 'Álvaro Cervera Díaz',
+    apodo: 'Álvaro Cervera',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española', 'Ecuatoguineana'],
+    lugarNacimiento: 'Santa Isabel',
+    provinciaNacimiento: 'Fernando Poo',
+    fechaNacimiento: '1965-09-20',
+    imagen:
+      'https://i.postimg.cc/dQZzYx5v/Alvaro-Cervera-(entrenador)-PNG.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
