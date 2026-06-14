@@ -31,32 +31,103 @@
     return href.replace(/\/[^/]*\.html$/, '').replace(/\/$/, '');
   }
 
-  /** URL de la ficha de un jugador (temporada actual, página estática) */
-  function urlJugador(codigo) {
-    return `${getBaseUrl()}/fichas/${codigo}.html`;
+  /** URL de la ficha de un jugador según temporada */
+  function urlJugador(codigo, seasonId) {
+    const base = getBaseUrl();
+    const temporadaActual =
+      (window.CLUB_DATA && CLUB_DATA.temporadaActual) || '2025-26';
+    if (!seasonId || seasonId === temporadaActual) {
+      return `${base}/fichas/${codigo}.html`;
+    }
+    return `${base}/fichas/${codigo}-${seasonId}.html`;
   }
 
-  /** URL de la ficha de un entrenador */
-  function urlEntrenador(codigo) {
+  /** URL de la ficha de un entrenador según temporada */
+  function urlEntrenador(codigo, seasonId) {
+    const base = getBaseUrl();
     const temporada =
-      (window.CLUB_DATA && CLUB_DATA.temporadaActual) || '2025-26';
-    return `${getBaseUrl()}/ficha-jugador.html?tipo=entrenador&id=${codigo}&season=${temporada}`;
+      seasonId || (window.CLUB_DATA && CLUB_DATA.temporadaActual) || '2025-26';
+    return `${base}/ficha-jugador.html?tipo=entrenador&id=${codigo}&season=${temporada}`;
+  }
+
+  // ── MAPA DE TEMPORADAS ─────────────────────────────────────
+
+  /**
+   * Escanea CLUB_DATA.temporadas y devuelve un mapa:
+   *   { codigo: [ { id, nombre, actual }, ... ] }
+   * ordenado de más reciente a más antigua.
+   */
+  function construirMapaTemporadas() {
+    const mapa = {}; // codigo → [{ id, nombre, actual }]
+
+    if (!window.CLUB_DATA || !CLUB_DATA.temporadas) return mapa;
+
+    // Construir lookup de nombre de temporada a partir de temporadasDisponibles
+    const dispLookup = {};
+    (CLUB_DATA.temporadasDisponibles || []).forEach((t) => {
+      dispLookup[t.id] = { nombre: t.nombre, actual: !!t.actual };
+    });
+
+    // Ordenar las temporadas de más reciente a más antigua
+    const seasonIds = Object.keys(CLUB_DATA.temporadas).sort().reverse();
+
+    seasonIds.forEach((seasonId) => {
+      const temporada = CLUB_DATA.temporadas[seasonId];
+      if (!temporada) return;
+
+      const meta = dispLookup[seasonId] || {
+        nombre: seasonId.replace('-', '/'),
+        actual: seasonId === CLUB_DATA.temporadaActual,
+      };
+
+      // Jugadores
+      (temporada.jugadores || []).forEach((j) => {
+        const cod = j.codigo || j.id;
+        if (!cod) return;
+        if (!mapa[cod]) mapa[cod] = [];
+        // Evitar duplicados (p.ej. si aparece dos veces en la misma temporada)
+        if (!mapa[cod].find((x) => x.id === seasonId)) {
+          mapa[cod].push({
+            id: seasonId,
+            nombre: meta.nombre,
+            actual: meta.actual,
+          });
+        }
+      });
+
+      // Cuerpo técnico
+      (temporada.cuerpoTecnico || []).forEach((c) => {
+        const cod = c.codigo || c.id;
+        if (!cod) return;
+        if (!mapa[cod]) mapa[cod] = [];
+        if (!mapa[cod].find((x) => x.id === seasonId)) {
+          mapa[cod].push({
+            id: seasonId,
+            nombre: meta.nombre,
+            actual: meta.actual,
+          });
+        }
+      });
+    });
+
+    return mapa;
   }
 
   // ── CONSTRUIR ÍNDICE ───────────────────────────────────────
 
-  /**
-   * Devuelve un array plano con TODOS los jugadores y entrenadores
-   * disponibles en CLUB_DATA, listos para buscar.
-   */
   function construirIndice() {
     const indice = [];
-
     if (!window.CLUB_DATA) return indice;
 
-    // Jugadores
+    const mapaTemporadas = construirMapaTemporadas();
+
+    // ── Jugadores ──
     const maestro = CLUB_DATA.jugadoresMaestro || {};
     Object.entries(maestro).forEach(([codigo, datos]) => {
+      const temporadas = mapaTemporadas[codigo] || [];
+      // URL por defecto: temporada más reciente en la que aparece (o actual)
+      const seasonPorDefecto = temporadas.length > 0 ? temporadas[0].id : null;
+
       indice.push({
         tipo: 'jugador',
         codigo,
@@ -67,8 +138,8 @@
         posicion: datos.posicion || '',
         posicionCorta: datos.posicionCorta || '',
         imagen: datos.imagen || '',
-        url: urlJugador(codigo),
-        // tokens normalizados para búsqueda rápida
+        temporadas,
+        url: urlJugador(codigo, seasonPorDefecto),
         _tokens: normalizar(
           [datos.apodo, datos.nombre, datos.apellidos, datos.nombreCompleto]
             .filter(Boolean)
@@ -77,9 +148,12 @@
       });
     });
 
-    // Entrenadores
+    // ── Entrenadores ──
     const entMaestro = CLUB_DATA.entrenadorMaestro || {};
     Object.entries(entMaestro).forEach(([codigo, datos]) => {
+      const temporadas = mapaTemporadas[codigo] || [];
+      const seasonPorDefecto = temporadas.length > 0 ? temporadas[0].id : null;
+
       indice.push({
         tipo: 'entrenador',
         codigo,
@@ -90,7 +164,8 @@
         posicion: datos.cargo || '',
         posicionCorta: datos.cargoCorto || 'ENT',
         imagen: datos.imagen || '',
-        url: urlEntrenador(codigo),
+        temporadas,
+        url: urlEntrenador(codigo, seasonPorDefecto),
         _tokens: normalizar(
           [datos.apodo, datos.nombre, datos.apellidos, datos.nombreCompleto]
             .filter(Boolean)
@@ -104,10 +179,6 @@
 
   // ── LÓGICA DE BÚSQUEDA ─────────────────────────────────────
 
-  /**
-   * Filtra el índice con la query del usuario.
-   * Prioridad: coincidencia exacta de apodo > empieza por > contiene.
-   */
   function buscar(query, indice) {
     if (!query || query.trim().length < 2) return [];
 
@@ -120,23 +191,17 @@
         const tokens = item._tokens;
         let score = 0;
 
-        // Apodo exacto → máxima prioridad
         if (apodoNorm === q) score += 100;
-        // Apodo empieza por la query
         else if (apodoNorm.startsWith(q)) score += 60;
-        // Apodo contiene la query
         else if (apodoNorm.includes(q)) score += 40;
 
-        // Todas las palabras de la query aparecen en los tokens
         const todasPalabras = palabras.every((p) => tokens.includes(p));
         if (todasPalabras) score += 20;
         else {
-          // Al menos alguna palabra coincide
           const algunaPalabra = palabras.some((p) => tokens.includes(p));
           if (algunaPalabra) score += 5;
         }
 
-        // Tokens empiezan por alguna de las palabras
         const algunaEmpieza = palabras.some(
           (p) => tokens.startsWith(p) || tokens.includes(' ' + p),
         );
@@ -168,7 +233,7 @@
         box-shadow: 0 8px 40px rgba(0,0,0,0.25);
         overflow: hidden;
         z-index: 9999;
-        max-height: 420px;
+        max-height: 480px;
         overflow-y: auto;
         display: none;
       }
@@ -197,7 +262,7 @@
       /* ── Item de resultado ── */
       .busq-item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 12px;
         padding: 10px 16px;
         cursor: pointer;
@@ -226,6 +291,7 @@
         flex-shrink: 0;
         background: #e8edf4;
         border: 2px solid #e0e8f0;
+        margin-top: 2px;
       }
 
       .busq-foto-fallback {
@@ -239,6 +305,7 @@
         justify-content: center;
         color: #c9a227;
         font-size: 1.1rem;
+        margin-top: 2px;
       }
 
       /* ── Textos ── */
@@ -262,6 +329,50 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-bottom: 6px;
+      }
+
+      /* ── Pills de temporada ── */
+      .busq-temporadas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 5px;
+      }
+
+      .busq-temporada-pill {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        background: #eef2f8;
+        color: #4a6080;
+        border: 1px solid #d0daea;
+        line-height: 1.4;
+        white-space: nowrap;
+      }
+
+      .busq-temporada-pill:hover {
+        background: #1a365d;
+        color: #fff;
+        border-color: #1a365d;
+        transform: translateY(-1px);
+      }
+
+      .busq-temporada-pill.pill-actual {
+        background: #1a365d;
+        color: #c9a227;
+        border-color: #1a365d;
+      }
+
+      .busq-temporada-pill.pill-actual:hover {
+        background: #c9a227;
+        color: #1a365d;
+        border-color: #c9a227;
       }
 
       /* ── Badge posición / cargo ── */
@@ -275,6 +386,7 @@
         border-radius: 8px;
         text-transform: uppercase;
         letter-spacing: 0.04em;
+        margin-top: 4px;
       }
 
       .busq-badge.entrenador {
@@ -316,7 +428,6 @@
 
   // ── RENDERIZADO ────────────────────────────────────────────
 
-  /** Resalta la parte del texto que coincide con la query */
   function resaltar(texto, query) {
     if (!query || !texto) return texto || '';
     const q = query.trim();
@@ -332,15 +443,16 @@
 
   /** Construye el HTML de un item de resultado */
   function renderItem(resultado, query) {
-    const a = document.createElement('a');
-    a.className = 'busq-item';
-    a.href = resultado.url;
-    a.setAttribute('data-codigo', resultado.codigo);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'busq-item';
+    wrapper.setAttribute('data-codigo', resultado.codigo);
+    wrapper.setAttribute('tabindex', '-1');
 
     // Foto
     let fotoHtml;
     if (resultado.imagen) {
-      fotoHtml = `<img class="busq-foto" src="${resultado.imagen}" alt="${resultado.apodo}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      fotoHtml = `<img class="busq-foto" src="${resultado.imagen}" alt="${resultado.apodo}"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                   <div class="busq-foto-fallback" style="display:none"><i class="fas fa-user"></i></div>`;
     } else {
       fotoHtml = `<div class="busq-foto-fallback"><i class="fas fa-user"></i></div>`;
@@ -358,16 +470,54 @@
         ? `<div class="busq-nombre-completo">${resaltar(resultado.nombreCompleto, query)}</div>`
         : '';
 
-    a.innerHTML = `
+    // Pills de temporada (solo si hay más de una)
+    let temporadasHtml = '';
+    if (resultado.temporadas && resultado.temporadas.length > 1) {
+      const pills = resultado.temporadas
+        .map((t) => {
+          const pillClass = t.actual
+            ? 'busq-temporada-pill pill-actual'
+            : 'busq-temporada-pill';
+          const url =
+            resultado.tipo === 'jugador'
+              ? urlJugador(resultado.codigo, t.id)
+              : urlEntrenador(resultado.codigo, t.id);
+          return `<a class="${pillClass}"
+                     href="${url}"
+                     data-url="${url}"
+                     title="Ver ficha ${t.nombre}">${t.nombre}</a>`;
+        })
+        .join('');
+      temporadasHtml = `<div class="busq-temporadas">${pills}</div>`;
+    }
+
+    wrapper.innerHTML = `
       ${fotoHtml}
       <div class="busq-textos">
         <div class="busq-apodo">${resaltar(resultado.apodo, query)}</div>
         ${nombreExtra}
+        ${temporadasHtml}
       </div>
       ${badgeTexto ? `<span class="${badgeClass}">${badgeTexto}</span>` : ''}
     `;
 
-    return a;
+    // Clic en el wrapper → ir a la URL por defecto (temporada más reciente)
+    wrapper.addEventListener('click', function (e) {
+      // Si el clic viene de un pill, dejar que el pill navegue solo
+      if (e.target.closest('.busq-temporada-pill')) return;
+      window.location.href = resultado.url;
+    });
+
+    // Los pills navegan solos (son <a>), pero hay que detener la propagación
+    // para que no active el handler del wrapper también
+    wrapper.querySelectorAll('.busq-temporada-pill').forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.location.href = pill.getAttribute('data-url');
+      });
+    });
+
+    return wrapper;
   }
 
   /** Muestra los resultados en el dropdown */
@@ -384,13 +534,11 @@
       return;
     }
 
-    // Separar jugadores y entrenadores
     const jugadores = resultados.filter((r) => r.tipo === 'jugador');
     const entrenadores = resultados.filter((r) => r.tipo === 'entrenador');
 
     if (jugadores.length > 0) {
       if (entrenadores.length > 0) {
-        // Solo añadir cabecera si hay los dos tipos
         const h = document.createElement('div');
         h.className = 'busq-header';
         h.textContent = 'Jugadores';
@@ -458,16 +606,12 @@
     const formEl = overlay.querySelector('.search-form');
     if (!inputEl || !formEl) return;
 
-    // Crear contenedor de resultados y añadirlo al formulario
+    // Crear contenedor de resultados
     const resultadosEl = document.createElement('div');
     resultadosEl.id = 'busquedaResultados';
     formEl.appendChild(resultadosEl);
 
-    // Construir índice (una sola vez)
     let indice = [];
-
-    // El índice se construye cuando se abre el overlay por primera vez
-    // para asegurarse de que CLUB_DATA esté completamente cargado
     let indiceListo = false;
 
     function asegurarIndice() {
@@ -477,18 +621,19 @@
       }
     }
 
-    // Observar apertura del overlay
+    // Reconstruir índice si se abre el overlay (por si acaso los datos
+    // tardaron en cargarse la primera vez)
     const observer = new MutationObserver(() => {
       if (overlay.classList.contains('active')) {
+        indiceListo = false; // forzar reconstrucción
         asegurarIndice();
-        // Limpiar resultados al abrir
         ocultarResultados(resultadosEl);
         inputEl.value = '';
       }
     });
     observer.observe(overlay, { attributes: true, attributeFilter: ['class'] });
 
-    // ── Evento: escritura en el input ──
+    // ── Escritura en el input ──
     let debounceTimer;
     inputEl.addEventListener('input', function () {
       clearTimeout(debounceTimer);
@@ -506,7 +651,7 @@
       }, 120);
     });
 
-    // ── Evento: teclado (flechas + Enter + Escape) ──
+    // ── Teclado: flechas, Enter, Escape ──
     inputEl.addEventListener('keydown', function (e) {
       const visible = resultadosEl.classList.contains('visible');
 
@@ -520,41 +665,45 @@
         const focused = resultadosEl.querySelector('.busq-item.focused');
         if (focused) {
           e.preventDefault();
-          window.location.href = focused.href;
+          // Obtener URL del resultado enfocado
+          const codigo = focused.getAttribute('data-codigo');
+          const resultado = indice.find((x) => x.codigo === codigo);
+          if (resultado) {
+            window.location.href = resultado.url;
+          }
           return;
         }
 
-        // Sin foco explícito: si solo hay un resultado, navegar directamente
         if (visible) {
           const items = resultadosEl.querySelectorAll('.busq-item');
           if (items.length === 1) {
             e.preventDefault();
-            window.location.href = items[0].href;
+            const codigo = items[0].getAttribute('data-codigo');
+            const resultado = indice.find((x) => x.codigo === codigo);
+            if (resultado) window.location.href = resultado.url;
             return;
           }
-          // Si hay más de uno, dejar que el primero tome el foco (no hacer submit)
           if (items.length > 1) {
             e.preventDefault();
             moverFoco(resultadosEl, 1);
             return;
           }
         }
-
-        // Si no hay resultados, dejar que el form haga búsqueda web normal
+        // Sin resultados → búsqueda web normal
       } else if (e.key === 'Escape') {
         ocultarResultados(resultadosEl);
         inputEl.blur();
       }
     });
 
-    // ── Cerrar dropdown al hacer clic fuera ──
+    // ── Cerrar al hacer clic fuera ──
     document.addEventListener('click', function (e) {
       if (!overlay.contains(e.target)) {
         ocultarResultados(resultadosEl);
       }
     });
 
-    // ── Cerrar dropdown al cerrar el overlay ──
+    // ── Cerrar overlay ──
     const closeBtn = document.getElementById('closeSearch');
     if (closeBtn) {
       closeBtn.addEventListener('click', () => {
@@ -563,7 +712,6 @@
     }
   }
 
-  // Esperar a que el DOM esté listo
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
