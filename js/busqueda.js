@@ -512,6 +512,7 @@
     // para que no active el handler del wrapper también
     wrapper.querySelectorAll('.busq-temporada-pill').forEach((pill) => {
       pill.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         window.location.href = pill.getAttribute('data-url');
       });
