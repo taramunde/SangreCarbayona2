@@ -614,18 +614,40 @@
     let indice = [];
     let indiceListo = false;
 
+    function datosListos() {
+      return (
+        window.CLUB_DATA &&
+        CLUB_DATA.temporadas &&
+        Object.keys(CLUB_DATA.temporadas).length > 0
+      );
+    }
+
     function asegurarIndice() {
-      if (!indiceListo) {
+      // Solo construir si los datos de todas las temporadas ya están disponibles
+      if (!indiceListo && datosListos()) {
         indice = construirIndice();
         indiceListo = true;
       }
     }
 
-    // Reconstruir índice si se abre el overlay (por si acaso los datos
-    // tardaron en cargarse la primera vez)
+    // Preconstruir el índice en cuanto los datos estén disponibles,
+    // sin esperar a que el usuario abra la lupa. Reintenta cada 150ms
+    // (máx. ~3s) para cubrir páginas donde data-historico.js carga tarde.
+    let intentos = 0;
+    function intentarPreconstruir() {
+      if (indiceListo) return;
+      asegurarIndice();
+      if (!indiceListo && intentos++ < 20) {
+        setTimeout(intentarPreconstruir, 150);
+      }
+    }
+    intentarPreconstruir();
+
+    // Reconstruir índice si se abre el overlay para que siempre refleje
+    // los datos más recientes (especialmente útil en SPA o carga tardía)
     const observer = new MutationObserver(() => {
       if (overlay.classList.contains('active')) {
-        indiceListo = false; // forzar reconstrucción
+        indiceListo = false; // forzar reconstrucción con datos frescos
         asegurarIndice();
         ocultarResultados(resultadosEl);
         inputEl.value = '';
