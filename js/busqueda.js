@@ -50,6 +50,19 @@
     return `${base}/ficha-jugador.html?tipo=entrenador&id=${codigo}&season=${temporada}`;
   }
 
+  /** Convierte una ruta de imagen relativa a la raíz (ej. "img/jugadores/x.webp")
+   *  en una URL absoluta válida desde cualquier página, incluidas /fichas/ */
+  function urlImagen(rutaImagen) {
+    if (!rutaImagen) return '';
+    // Ya es absoluta (http/https/data/protocol-relative)
+    if (/^(https?:)?\/\//.test(rutaImagen) || rutaImagen.startsWith('data:')) {
+      return rutaImagen;
+    }
+    const base = getBaseUrl();
+    const ruta = rutaImagen.replace(/^\.?\//, '');
+    return `${base}/${ruta}`;
+  }
+
   // ── MAPA DE TEMPORADAS ─────────────────────────────────────
 
   /**
@@ -137,9 +150,7 @@
         nombreCompleto: datos.nombreCompleto || '',
         posicion: datos.posicion || '',
         posicionCorta: datos.posicionCorta || '',
-        imagen: datos.imagen || '',
-        temporadas,
-        url: urlJugador(codigo, seasonPorDefecto),
+        imagen: urlImagen(datos.imagen),
         _tokens: normalizar(
           [datos.apodo, datos.nombre, datos.apellidos, datos.nombreCompleto]
             .filter(Boolean)
@@ -163,7 +174,7 @@
         nombreCompleto: datos.nombreCompleto || '',
         posicion: datos.cargo || '',
         posicionCorta: datos.cargoCorto || 'ENT',
-        imagen: datos.imagen || '',
+        imagen: urlImagen(datos.imagen),
         temporadas,
         url: urlEntrenador(codigo, seasonPorDefecto),
         _tokens: normalizar(
