@@ -8,9 +8,7 @@
 
 /* global CLUB_DATA */
 
-if (!CLUB_DATA.temporadas) {
-  CLUB_DATA.temporadas = {};
-}
+CLUB_DATA.temporadas = {};
 
 CLUB_DATA.temporadas['2025-26'] = {
   competicion: 'Primera División',
