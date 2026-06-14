@@ -31,7 +31,7 @@
     { nombre: 'Real Oviedo', escudo: 'img/escudos/Oviedo.webp' },
     { nombre: 'Real Sociedad', escudo: 'img/escudos/RealSociedad.webp' },
     { nombre: 'Real Valladolid', escudo: 'img/escudos/Valladolid.webp' },
-    { nombre: 'Valencia C.F.', escudo: 'img/escudos/Valencia.webp' },
+    { nombre: 'C.D. Castellón', escudo: 'img/escudos/Castellon.webp' },
     { nombre: 'Villarreal C.F.', escudo: 'img/escudos/Villarreal.webp' },
     { nombre: 'Sporting de Gijón', escudo: 'img/escudos/Sporting.webp' },
     { nombre: 'Real Zaragoza', escudo: 'img/escudos/Zaragoza.webp' },
@@ -63,7 +63,7 @@
     },
     {
       equipo1: 'Atlético de Madrid',
-      equipo2: 'Valencia C.F.',
+      equipo2: 'C.D. Castellón',
       goles1: 1,
       goles2: 0,
     },
