@@ -87,6 +87,23 @@
     <!-- Header (Rutas con ../) -->
     <header class="main-header" id="header-placeholder"></header>
 
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
     <!-- Player Hero -->
     <section class="player-hero">
       <div class="player-hero-bg"><div class="bg-pattern"></div></div>
@@ -134,6 +151,7 @@
     <script src="../js/i18n.js?nocache=20251231v38"></script>
     <script src="../js/data-club.js?nocache=20260426v1"></script>
     <script src="../js/data-jugadores.js?nocache=20260426v1"></script>
+    <script src="../js/busqueda.js?nocache=20260614v3"></script>
     <script src="../js/data-temporada-actual.js?nocache=20260426v1"></script>
     <script src="../js/data-historico.js?nocache=20260509v1"></script>
     <script src="../js/data-utils.js?nocache=20260426v1"></script>
