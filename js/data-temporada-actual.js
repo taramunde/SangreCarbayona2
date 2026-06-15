@@ -590,14 +590,14 @@ CLUB_DATA.temporadas['2026-27'] = {
 
   cuerpoTecnico: [
     {
-      id: 'jorge-guillermo-almada-alves',
-      codigo: 'jorge-guillermo-almada-alves',
-      nombre: 'Jorge Guillermo Almada Alves',
+      id: 'julian-calero-fernandez',
+      codigo: 'julian-calero-fernandez',
+      nombre: 'Julián Calero Fernández',
       cargo: 'Entrenador Principal',
-      imagen: 'img/entrenadores/GuillermoAlmada.webp',
+      imagen: 'https://i.postimg.cc/nrdNyDFW/Julian-Calero.webp',
       esPrincipal: true,
-      enClubDesde: '2025',
-      contratoHasta: '2026',
+      enClubDesde: '2026',
+      contratoHasta: '2027',
       estadisticas: {
         partidos: 0,
         victorias: 0,

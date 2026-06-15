@@ -2419,6 +2419,20 @@ CLUB_DATA.entrenadorMaestro = {
     imagen:
       'https://i.postimg.cc/dQZzYx5v/Alvaro-Cervera-(entrenador)-PNG.webp',
   },
+
+  'julian-calero-fernandez': {
+    nombre: 'Julián',
+    apellidos: 'Calero Fernández',
+    nombreCompleto: 'Julián Calero Fernández',
+    apodo: 'Julián Calero',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Parla',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1970-10-26',
+    imagen: 'https://i.postimg.cc/nrdNyDFW/Julian-Calero.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
