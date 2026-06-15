@@ -547,6 +547,24 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'enzo-perez-miranda',
+      codigo: 'enzo-perez-miranda',
+      dorsal: NaN,
+      posicion: 'Mediocentro Ofensivo',
+      enClubDesde: '2025',
+      contratoHasta: '2027',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
     // DELANTEROS
 
     {

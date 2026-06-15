@@ -1907,6 +1907,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'enzo-perez-miranda': {
+    nombre: 'Enzo',
+    apellidos: 'Pérez Miranda',
+    nombreCompleto: 'Enzo Pérez Miranda',
+    apodo: 'Enzo Pérez',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.81,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2008-11-05',
+    imagen: 'https://i.postimg.cc/kGLLY78g/Enzo-Perez.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
