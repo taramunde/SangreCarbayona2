@@ -23,11 +23,12 @@ const CLUB_DATA = {
   },
 
   // Temporada actual (por defecto)
-  temporadaActual: '2025-26',
+  temporadaActual: '2026-27',
 
   // Lista de temporadas disponibles
   temporadasDisponibles: [
-    { id: '2025-26', nombre: '2025/26', actual: true },
+    { id: '2026-27', nombre: '2026/27', actual: true },
+    { id: '2025-26', nombre: '2025/26', actual: false },
     { id: '2024-25', nombre: '2024/25', actual: false },
     { id: '2023-24', nombre: '2023/24', actual: false },
     { id: '2022-23', nombre: '2022/23', actual: false },
