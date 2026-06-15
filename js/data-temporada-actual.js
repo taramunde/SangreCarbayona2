@@ -532,7 +532,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'youness-lachhab',
       codigo: 'youness-lachhab',
-      dorsal: NaN,
+      dorsal: '-',
       posicion: 'Mediocentro',
       enClubDesde: '2026',
       contratoHasta: '2028',
