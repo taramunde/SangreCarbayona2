@@ -550,7 +550,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'enzo-perez-miranda',
       codigo: 'enzo-perez-miranda',
-      dorsal: NaN,
+      dorsal: '-',
       posicion: 'Mediocentro Ofensivo',
       enClubDesde: '2025',
       contratoHasta: '2027',
