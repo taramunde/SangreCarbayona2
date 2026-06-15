@@ -529,6 +529,24 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'youness-lachhab',
+      codigo: 'youness-lachhab',
+      dorsal: NaN,
+      posicion: 'Mediocentro',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
     // DELANTEROS
 
     {
@@ -574,6 +592,42 @@ CLUB_DATA.temporadas['2026-27'] = {
       posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2027',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
+    {
+      id: 'jacobo-gonzalez-rodriganez',
+      codigo: 'jacobo-gonzalez-rodriganez',
+      dorsal: '-',
+      posicion: 'Extremo Izquierdo',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
+    {
+      id: 'pablo-saenz-ezquerra',
+      codigo: 'pablo-saenz-ezquerra',
+      dorsal: '-',
+      posicion: 'Extremo Derecho',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
       stats: {
         partidos: 0,
         goles: 0,

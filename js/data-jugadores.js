@@ -1877,6 +1877,36 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/PJF1FJYn/Mangel-PNG.webp',
   },
 
+  'youness-lachhab': {
+    nombre: 'Youness',
+    apellidos: 'Lachhab',
+    nombreCompleto: 'Youness Lachhab',
+    apodo: 'Youness',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.96,
+    nacionalidad: ['Española', 'Marroquí'],
+    lugarNacimiento: 'El Palmar',
+    provinciaNacimiento: 'Murcia',
+    fechaNacimiento: '1999-04-23',
+    imagen: 'https://i.postimg.cc/gJcrz9d0/Youness-PNG.webp',
+    seleccion: {
+      pais: 'Marruecos',
+      bandera: 'ma',
+      datos: [
+        {
+          categoria: 'U20',
+          partidos: 1,
+          goles: 0,
+          asistencias: 0,
+          minutos: 40,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -2321,6 +2351,36 @@ CLUB_DATA.jugadoresMaestro = {
         },
       ],
     },
+  },
+
+  'jacobo-gonzalez-rodriganez': {
+    nombre: 'Jacobo',
+    apellidos: 'González Rodrigáñez',
+    nombreCompleto: 'Jacobo González Rodrigáñez',
+    apodo: 'Jacobo',
+    posicion: 'Delantero',
+    posicionCorta: 'EI',
+    altura: 1.79,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1997-03-25',
+    imagen: 'https://i.postimg.cc/cCtRgxX8/Jacobo-PNG.webp',
+  },
+
+  'pablo-saenz-ezquerra': {
+    nombre: 'Pablo',
+    apellidos: 'Sáenz Ezquerra',
+    nombreCompleto: 'Pablo Sáenz Ezquerra',
+    apodo: 'Pablo Sáenz',
+    posicion: 'Delantero',
+    posicionCorta: 'ED',
+    altura: 1.75,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'San Adrián',
+    provinciaNacimiento: 'Navarra',
+    fechaNacimiento: '2001-05-22',
+    imagen: 'https://i.postimg.cc/RVTKD8Jc/Pablo-Saenz-PNG.webp',
   },
 }; // fin jugadoresMaestro
 
