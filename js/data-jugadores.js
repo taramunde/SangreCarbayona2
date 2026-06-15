@@ -829,6 +829,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/2SMp47tC/Osky-PNG.webp',
   },
 
+  'miguel-juan-llambrich': {
+    nombre: 'Miguel',
+    apellidos: 'Juan Llambrich',
+    nombreCompleto: 'Miguel Juan Llambrich',
+    apodo: 'Miguelón',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: 1.7,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Benidorm',
+    provinciaNacimiento: 'Alicante',
+    fechaNacimiento: '1996-01-18',
+    imagen: 'https://i.postimg.cc/Wzwj8qkX/Miguelon-PNG.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -1922,6 +1937,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/kGLLY78g/Enzo-Perez.webp',
   },
 
+  'marco-sangalli-fuentes': {
+    nombre: 'Marco',
+    apellidos: 'Sangalli Fuentes',
+    nombreCompleto: 'Marco Sangalli Fuentes',
+    apodo: 'Sangalli',
+    posicion: 'Centrocampista',
+    posicionCorta: 'ED',
+    altura: 1.79,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'San Sebastián',
+    provinciaNacimiento: 'Guipúzcoa',
+    fechaNacimiento: '1992-02-07',
+    imagen: 'https://i.postimg.cc/854YcdQd/Sangalli-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -2396,6 +2426,36 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Navarra',
     fechaNacimiento: '2001-05-22',
     imagen: 'https://i.postimg.cc/RVTKD8Jc/Pablo-Saenz-PNG.webp',
+  },
+
+  'manuel-javier-vallejo-galvan': {
+    nombre: 'Manuel Javier',
+    apellidos: 'Vallejo Galván',
+    nombreCompleto: 'Manuel Javier Vallejo Galván',
+    apodo: 'Manu Vallejo',
+    posicion: 'Delantero',
+    posicionCorta: 'MCO',
+    altura: 1.67,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Chiclana de la Frontera',
+    provinciaNacimiento: 'Cádiz',
+    fechaNacimiento: '1997-02-14',
+    imagen: 'https://i.postimg.cc/858qYdLN/Manu-Vallejo-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U21',
+          partidos: 3,
+          goles: 0,
+          asistencias: 0,
+          minutos: 30,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
   },
 }; // fin jugadoresMaestro
 
