@@ -48,11 +48,11 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2024',
       contratoHasta: '2027',
       stats: {
-        partidos: 36,
-        goles: 56,
-        asistencias: 1,
-        minutos: 3240,
-        amarillas: 3,
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
         rojas: 0,
         desglose: {
           'Segunda División': {
