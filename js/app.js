@@ -153,6 +153,118 @@ function translateNationalitySingle(nationality) {
 }
 
 /* ===================================
+   FUNCIONES DE CÁLCULO DE DESGLOSE
+   =================================== */
+
+function calcularDesgloseJugador(partidos) {
+  const desglose = {};
+  let totales = {
+    partidos: 0,
+    goles: 0,
+    asistencias: 0,
+    minutos: 0,
+    amarillas: 0,
+    rojas: 0,
+  };
+
+  partidos.forEach((p) => {
+    const comp = p.competicion || 'Sin competición';
+    if (!desglose[comp]) {
+      desglose[comp] = {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      };
+    }
+    desglose[comp].partidos += 1;
+    desglose[comp].goles += p.goles || 0;
+    desglose[comp].asistencias += p.asistencias || 0;
+    desglose[comp].minutos += p.minutos || 0;
+    desglose[comp].amarillas += p.amarilla ? 1 : 0;
+    desglose[comp].rojas += p.roja ? 1 : 0;
+
+    totales.partidos += 1;
+    totales.goles += p.goles || 0;
+    totales.asistencias += p.asistencias || 0;
+    totales.minutos += p.minutos || 0;
+    totales.amarillas += p.amarilla ? 1 : 0;
+    totales.rojas += p.roja ? 1 : 0;
+  });
+
+  return { desglose, totales };
+}
+
+function obtenerPartidosUnicosDeTemporada(seasonId) {
+  const temporada = getTemporada(seasonId);
+  if (!temporada) return [];
+
+  const mapaPartidos = new Map();
+  temporada.jugadores.forEach((j) => {
+    (j.partidos || []).forEach((p) => {
+      if (!mapaPartidos.has(p.id)) {
+        mapaPartidos.set(p.id, p);
+      }
+    });
+  });
+  return Array.from(mapaPartidos.values());
+}
+
+function calcularDesgloseEquipo(partidos) {
+  const desglose = {};
+  let totales = {
+    partidos: 0,
+    victorias: 0,
+    empates: 0,
+    derrotas: 0,
+    golesFavor: 0,
+    golesContra: 0,
+  };
+
+  partidos.forEach((p) => {
+    const comp = p.competicion || 'Sin competición';
+    if (!desglose[comp]) {
+      desglose[comp] = {
+        partidos: 0,
+        victorias: 0,
+        empates: 0,
+        derrotas: 0,
+        golesFavor: 0,
+        golesContra: 0,
+      };
+    }
+    desglose[comp].partidos += 1;
+    desglose[comp].golesFavor += p.golesLocal || 0;
+    desglose[comp].golesContra += p.golesVisitante || 0;
+    if (p.resultado === 'V') desglose[comp].victorias += 1;
+    else if (p.resultado === 'E') desglose[comp].empates += 1;
+    else if (p.resultado === 'D') desglose[comp].derrotas += 1;
+
+    totales.partidos += 1;
+    totales.golesFavor += p.golesLocal || 0;
+    totales.golesContra += p.golesVisitante || 0;
+    if (p.resultado === 'V') totales.victorias += 1;
+    else if (p.resultado === 'E') totales.empates += 1;
+    else if (p.resultado === 'D') totales.derrotas += 1;
+  });
+
+  return { desglose, totales };
+}
+
+function translateCompeticion(comp) {
+  const map = {
+    'Segunda División': 'Segunda División',
+    'Playoffs Ascenso': 'Playoffs Ascenso',
+    'Copa del Rey (Felipe VI)': 'Copa del Rey',
+    'Primera División': 'Primera División',
+    'Copa del Rey': 'Copa del Rey',
+  };
+  return map[comp] || comp;
+}
+
+/* ===================================
    APLICACIÓN - RENDERIZADO DINÁMICO
    =================================== */
 
@@ -563,17 +675,15 @@ const App = {
     if (!container) return;
 
     const temporada = getTemporada(this.temporadaActiva);
-    const statsData = temporada.estadisticasEquipo;
+    const partidosUnicos = obtenerPartidosUnicosDeTemporada(
+      this.temporadaActiva,
+    );
+    const { desglose, totales } = calcularDesgloseEquipo(partidosUnicos);
+    const competiciones = Object.keys(desglose);
 
-    // Detectar si hay desglose por competición
-    const tieneDesglose =
-      statsData &&
-      statsData.desglose &&
-      Object.keys(statsData.desglose).length > 0;
-
-    if (!tieneDesglose) {
-      // Compatibilidad con formato antiguo (objeto plano)
-      const s = statsData || {};
+    // Si no hay partidos, intentar usar estadisticasEquipo fijo (fallback)
+    if (competiciones.length === 0) {
+      const s = temporada.estadisticasEquipo || {};
       container.innerHTML = `
         <div class="stat-card"><div class="stat-icon"><i class="fas fa-trophy"></i></div><div class="stat-number">${s.posicion != null ? s.posicion + 'º' : '—'}</div><div class="stat-label">${t('posicion')}</div></div>
         <div class="stat-card"><div class="stat-icon"><i class="fas fa-futbol"></i></div><div class="stat-number">${s.golesFavor ?? '—'}</div><div class="stat-label">${t('goles_favor')}</div></div>
@@ -584,40 +694,18 @@ const App = {
       return;
     }
 
-    // ── Formato nuevo: desglose por competición ───────────────
-    const competiciones = Object.keys(statsData.desglose);
-
+    // Función para obtener ícono y color de competición
     function getCompMeta(nombre) {
       const n = nombre.toLowerCase();
       if (n.includes('copa')) return { icon: 'fa-crown', color: '#c9a227' };
       if (n.includes('champions')) return { icon: 'fa-star', color: '#4FC3F7' };
       if (n.includes('europa'))
         return { icon: 'fa-globe-europe', color: '#66BB6A' };
+      if (n.includes('playoffs'))
+        return { icon: 'fa-trophy', color: '#FF6B6B' };
       if (n.includes('conference'))
         return { icon: 'fa-globe', color: '#26C6DA' };
       return { icon: 'fa-shield-alt', color: '#5C9BF5' };
-    }
-
-    function calcularTotales(desglose, compsActivas) {
-      const tot = {
-        partidos: 0,
-        victorias: 0,
-        empates: 0,
-        derrotas: 0,
-        golesFavor: 0,
-        golesContra: 0,
-      };
-      compsActivas.forEach((nombre) => {
-        const s = desglose[nombre];
-        if (!s) return;
-        tot.partidos += s.partidos || 0;
-        tot.victorias += s.victorias || 0;
-        tot.empates += s.empates || 0;
-        tot.derrotas += s.derrotas || 0;
-        tot.golesFavor += s.golesFavor || 0;
-        tot.golesContra += s.golesContra || 0;
-      });
-      return tot;
     }
 
     function renderCards(s, posicion) {
@@ -632,22 +720,28 @@ const App = {
         <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-number">${s.victorias}</div><div class="stat-label">${t('victorias')}</div></div>
         <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number">${s.empates}</div><div class="stat-label">${t('empates')}</div></div>
         <div class="stat-card"><div class="stat-icon"><i class="fas fa-times-circle"></i></div><div class="stat-number">${s.derrotas}</div><div class="stat-label">${t('derrotas')}</div></div>
-        <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-number">${s.partidos}</div><div class="stat-label">${t('partidos') || 'Partidos'}</div></div>`;
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-number">${s.partidos}</div><div class="stat-label">${t('partidos') || 'Partidos'}</div></div>
+      `;
     }
 
     const tabsHtml = competiciones
       .map((nombre, i) => {
         const meta = getCompMeta(nombre);
         return `<button class="comp-tab ${i === 0 ? 'active' : ''}" data-comp="${nombre}" style="--tab-accent:${meta.color}">
-        <i class="fas ${meta.icon}"></i><span>${nombre}</span>
+        <i class="fas ${meta.icon}"></i><span>${translateCompeticion(nombre)}</span>
       </button>`;
       })
       .join('');
 
     const panelsHtml = competiciones
       .map((nombre, i) => {
-        const s = statsData.desglose[nombre];
-        const posicion = i === 0 ? (statsData.posicion ?? null) : null;
+        const s = desglose[nombre];
+        const posicion =
+          i === 0
+            ? temporada.estadisticasEquipo
+              ? temporada.estadisticasEquipo.posicion
+              : null
+            : null;
         return `<div class="comp-panel ${i === 0 ? 'active' : ''}" data-comp="${nombre}">
         <div class="team-stats-grid">${renderCards(s, posicion)}</div>
       </div>`;
@@ -660,12 +754,32 @@ const App = {
         return `<label class="total-check-label">
         <input type="checkbox" class="total-check" data-comp="${nombre}" checked>
         <span class="total-check-dot" style="background:${meta.color}"></span>
-        <span>${nombre}</span>
+        <span>${translateCompeticion(nombre)}</span>
       </label>`;
       })
       .join('');
 
-    const allTots = calcularTotales(statsData.desglose, competiciones);
+    // Calcular totales sumando todas las competiciones
+    const allTots = Object.values(desglose).reduce(
+      (acc, s) => {
+        acc.partidos += s.partidos || 0;
+        acc.victorias += s.victorias || 0;
+        acc.empates += s.empates || 0;
+        acc.derrotas += s.derrotas || 0;
+        acc.golesFavor += s.golesFavor || 0;
+        acc.golesContra += s.golesContra || 0;
+        return acc;
+      },
+      {
+        partidos: 0,
+        victorias: 0,
+        empates: 0,
+        derrotas: 0,
+        golesFavor: 0,
+        golesContra: 0,
+      },
+    );
+
     const totPanelHtml = `<div class="comp-panel" data-comp="__totales__">
       <div class="total-checks-row">${checksHtml}</div>
       <div class="team-stats-grid" id="totalesGrid">${renderCards(allTots, null)}</div>
@@ -708,7 +822,27 @@ const App = {
         const activos = [
           ...wrapper.querySelectorAll('.total-check:checked'),
         ].map((c) => c.dataset.comp);
-        const tots = calcularTotales(statsData.desglose, activos);
+        const tots = activos.reduce(
+          (acc, comp) => {
+            const s = desglose[comp];
+            if (!s) return acc;
+            acc.partidos += s.partidos || 0;
+            acc.victorias += s.victorias || 0;
+            acc.empates += s.empates || 0;
+            acc.derrotas += s.derrotas || 0;
+            acc.golesFavor += s.golesFavor || 0;
+            acc.golesContra += s.golesContra || 0;
+            return acc;
+          },
+          {
+            partidos: 0,
+            victorias: 0,
+            empates: 0,
+            derrotas: 0,
+            golesFavor: 0,
+            golesContra: 0,
+          },
+        );
         wrapper.querySelector('#totalesGrid').innerHTML = renderCards(
           tots,
           null,
@@ -904,6 +1038,14 @@ const App = {
         '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>';
       return;
     }
+
+    // Calcular desglose a partir de los partidos del jugador
+    if (jugador.partidos) {
+      const { desglose, totales } = calcularDesgloseJugador(jugador.partidos);
+      jugador._desgloseCalculado = desglose;
+      jugador._totalesCalculados = totales;
+    }
+
     document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
     this.updateMetaTags(jugador);
     const breadcrumb = document.querySelector('.breadcrumb .current');
@@ -960,8 +1102,10 @@ const App = {
     const esPorteroPos = esPortero(jugador);
     const golesLabel = esPorteroPos ? t('goles_encajados') : t('goles');
     const golesValue = esPorteroPos
-      ? `<span style="color:#e74c3c;font-weight:700">${jugador.stats.goles || 0}</span>`
-      : jugador.stats.goles || 0;
+      ? `<span style="color:#e74c3c;font-weight:700">${jugador._totalesCalculados ? jugador._totalesCalculados.goles : 0}</span>`
+      : jugador._totalesCalculados
+        ? jugador._totalesCalculados.goles
+        : 0;
     const iconoGoles = esPorteroPos ? 'fa-shield-alt' : 'fa-futbol';
 
     container.innerHTML = `
@@ -1005,10 +1149,10 @@ const App = {
                 <div class="player-season-stats">
                     <h3 class="stats-title">${t('temporada')} ${seasonId.replace('-', '/')}</h3>
                     <div class="season-stats-grid">
-                        <div class="season-stat ${esPorteroPos ? 'portero-stat' : ''}"><div class="season-stat-icon"><i class="fas ${iconoGoles}"></i></div><div class="season-stat-content"><span class="season-stat-value">${golesValue}</span><span class="season-stat-label">${golesLabel}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.asistencias || 0}</span><span class="season-stat-label">${t('asistencias')}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-running"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.partidos}</span><span class="season-stat-label">${t('partidos')}</span></div></div>
-                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${jugador.stats.minutos.toLocaleString()}</span><span class="season-stat-label">${t('minutos')}</span></div></div>
+                        <div class="season-stat ${esPorteroPos ? 'portero-stat' : ''}"><div class="season-stat-icon"><i class="fas ${iconoGoles}"></i></div><div class="season-stat-content"><span class="season-stat-value">${(jugador._totalesCalculados && jugador._totalesCalculados.goles) || 0}</span><span class="season-stat-label">${golesLabel}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-hands-helping"></i></div><div class="season-stat-content"><span class="season-stat-value">${(jugador._totalesCalculados && jugador._totalesCalculados.asistencias) || 0}</span><span class="season-stat-label">${t('asistencias')}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-running"></i></div><div class="season-stat-content"><span class="season-stat-value">${(jugador._totalesCalculados && jugador._totalesCalculados.partidos) || 0}</span><span class="season-stat-label">${t('partidos')}</span></div></div>
+                        <div class="season-stat"><div class="season-stat-icon"><i class="fas fa-clock"></i></div><div class="season-stat-content"><span class="season-stat-value">${(jugador._totalesCalculados && jugador._totalesCalculados.minutos.toLocaleString()) || 0}</span><span class="season-stat-label">${t('minutos')}</span></div></div>
                     </div>
                 </div>
             </div>`;
@@ -2026,27 +2170,44 @@ const App = {
     // DIFERENCIAR CÁLCULOS PARA PORTEROS
     const esPorteroPos = esPortero(jugador);
     const golesPorPartido = esPorteroPos
-      ? jugador.stats.partidos > 0
-        ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
+      ? jugador._totalesCalculados && jugador._totalesCalculados.partidos > 0
+        ? (
+            jugador._totalesCalculados.goles /
+            jugador._totalesCalculados.partidos
+          ).toFixed(2)
         : '0.00'
-      : jugador.stats.partidos > 0
-        ? (jugador.stats.goles / jugador.stats.partidos).toFixed(2)
+      : jugador._totalesCalculados && jugador._totalesCalculados.partidos > 0
+        ? (
+            jugador._totalesCalculados.goles /
+            jugador._totalesCalculados.partidos
+          ).toFixed(2)
         : '0.00';
 
     const minutosPorPartido =
-      jugador.stats.partidos > 0
-        ? Math.round(jugador.stats.minutos / jugador.stats.partidos)
+      jugador._totalesCalculados && jugador._totalesCalculados.partidos > 0
+        ? Math.round(
+            jugador._totalesCalculados.minutos /
+              jugador._totalesCalculados.partidos,
+          )
         : 0;
 
     const golesPorcentaje =
-      jugador.stats.partidos > 0
-        ? Math.min((jugador.stats.goles / jugador.stats.partidos) * 100, 100)
+      jugador._totalesCalculados && jugador._totalesCalculados.partidos > 0
+        ? Math.min(
+            (jugador._totalesCalculados.goles /
+              jugador._totalesCalculados.partidos) *
+              100,
+            100,
+          )
         : 0;
 
     const minutosPorcentaje =
-      jugador.stats.partidos > 0
+      jugador._totalesCalculados && jugador._totalesCalculados.partidos > 0
         ? Math.min(
-            (jugador.stats.minutos / jugador.stats.partidos / 90) * 100,
+            (jugador._totalesCalculados.minutos /
+              jugador._totalesCalculados.partidos /
+              90) *
+              100,
             100,
           )
         : 0;
@@ -2899,13 +3060,25 @@ const App = {
           ...jugadorEnTemporada,
         });
 
-        if (jugadorEnTemporada.stats.desglose) {
-          Object.keys(jugadorEnTemporada.stats.desglose).forEach((c) =>
-            competicionesSet.add(c),
-          );
+        // Calcular desglose a partir de partidos individuales si existen
+        let desgloseTemp = {};
+        if (jugadorEnTemporada.partidos && jugadorEnTemporada.partidos.length) {
+          const calc = calcularDesgloseJugador(jugadorEnTemporada.partidos);
+          desgloseTemp = calc.desglose;
+        } else if (
+          jugadorEnTemporada.stats &&
+          jugadorEnTemporada.stats.desglose
+        ) {
+          // Fallback a stats.desglose si no hay partidos individuales
+          desgloseTemp = jugadorEnTemporada.stats.desglose;
         }
 
-        competicionesSet.add(compNombre);
+        // Añadir todas las competiciones al set
+        Object.keys(desgloseTemp).forEach((c) => competicionesSet.add(c));
+        // También añadir la competición principal de la temporada
+        if (compNombre && !competicionesSet.has(compNombre)) {
+          competicionesSet.add(compNombre);
+        }
 
         let statsAMostrar = { ...jugadorEnTemporada.stats };
         let mostrarEstaTemporada = true;
@@ -2916,12 +3089,16 @@ const App = {
           if (esFiltroSeleccion) {
             mostrarEstaTemporada = false;
           } else {
-            if (
-              jugadorEnTemporada.stats.desglose &&
-              jugadorEnTemporada.stats.desglose[filtroCompeticion]
-            ) {
-              statsAMostrar =
-                jugadorEnTemporada.stats.desglose[filtroCompeticion];
+            // Si hay desglose calculado y existe la competición filtrada, usar esa
+            if (desgloseTemp && desgloseTemp[filtroCompeticion]) {
+              statsAMostrar = desgloseTemp[filtroCompeticion];
+              // Ajustar para que coincida con el formato esperado
+              statsAMostrar.partidos = statsAMostrar.partidos || 0;
+              statsAMostrar.goles = statsAMostrar.goles || 0;
+              statsAMostrar.asistencias = statsAMostrar.asistencias || 0;
+              statsAMostrar.amarillas = statsAMostrar.amarillas || 0;
+              statsAMostrar.rojas = statsAMostrar.rojas || 0;
+              statsAMostrar.minutos = statsAMostrar.minutos || 0;
             } else if (compNombre !== filtroCompeticion) {
               mostrarEstaTemporada = false;
             }
@@ -2937,6 +3114,7 @@ const App = {
             competicionFiltro: compNombre,
             stats: statsAMostrar,
             statsGlobales: jugadorEnTemporada.stats,
+            desgloseTemp: desgloseTemp, // Guardar desglose para mostrarlo
             dorsal: jugadorEnTemporada.dorsal,
             posicion:
               datosMaestro.posicion ||
@@ -2992,14 +3170,15 @@ const App = {
       <span><strong>${h.stats.asistencias}</strong> ${t('asistencias')}</span>
     </div>`;
 
+      // Mostrar desglose por competición si existe y estamos en "all"
       if (
         !h.esSeleccion &&
         filtroCompeticion === 'all' &&
-        h.statsGlobales &&
-        h.statsGlobales.desglose
+        h.desgloseTemp &&
+        Object.keys(h.desgloseTemp).length
       ) {
         statsHtml += `<div class="timeline-breakdown-box">`;
-        for (const [comp, data] of Object.entries(h.statsGlobales.desglose)) {
+        for (const [comp, data] of Object.entries(h.desgloseTemp)) {
           const concedeStyle = h.esPortero ? 'style="color:#e74c3c"' : '';
           const goalLabel = h.esPortero ? t('goles_encajados_abrev') : 'G';
           const compTraducida = translateCompeticion(comp);
@@ -3009,6 +3188,7 @@ const App = {
             <div class="breakdown-data-chips">
               <span class="chip"><b>${data.partidos}</b> ${t('pj')}</span>
               <span class="chip" ${concedeStyle}><b>${data.goles}</b> ${goalLabel}</span>
+              <span class="chip"><b>${data.asistencias}</b> A</span>
               <span class="chip chip-yellow"><b>${data.amarillas || 0}</b> <i class="fas fa-square"></i></span>
               ${data.rojas > 0 ? `<span class="chip chip-red"><b>${data.rojas}</b> <i class="fas fa-square"></i></span>` : ''}
             </div>
