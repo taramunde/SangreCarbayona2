@@ -138,6 +138,15 @@ CLUB_DATA.jugadoresMaestro = {
       bandera: 'https://flagcdn.com/16x12/es.webp',
       datos: [
         {
+          categoria: 'Absoluta',
+          partidos: 1,
+          goles: 0,
+          asistencias: 0,
+          minutos: 17,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
           categoria: 'U21',
           partidos: 2,
           goles: 1,
