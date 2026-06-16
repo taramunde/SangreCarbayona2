@@ -2404,6 +2404,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/9FZGBm0K/Nnoshiri-PNG.webp',
   },
 
+  'aisar-ahmed-ahmed': {
+    nombre: ' Aisar',
+    apellidos: 'Ahmed Ahmed',
+    nombreCompleto: 'Aisar Ahmed Ahmed',
+    apodo: 'Aisar Ahmed',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.72,
+    nacionalidad: ['Española', 'Marroquí'],
+    lugarNacimiento: 'Ceuta',
+    provinciaNacimiento: 'Ceuta',
+    fechaNacimiento: '2001-07-02',
+    imagen: 'https://i.postimg.cc/xCKyWsn9/Aisar-Ahmed-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
