@@ -156,21 +156,16 @@ function translateNationalitySingle(nationality) {
    HELPER: AUTOCÁLCULO DE ESTADÍSTICAS
    =================================== */
 function autoCalcularStatsJugador(jugador) {
-  // 1. Aseguramos SIEMPRE que "stats" exista para que la web no falle si un jugador tiene 0 partidos
-  if (!jugador.stats) {
-    jugador.stats = {
-      partidos: 0,
-      goles: 0,
-      asistencias: 0,
-      minutos: 0,
-      amarillas: 0,
-      rojas: 0,
-      desglose: {},
-    };
-  }
-  if (!jugador.stats.desglose) {
-    jugador.stats.desglose = {};
-  }
+  // 1. SIEMPRE reseteamos a cero para evitar que se sumen varias veces si abrimos la página varias veces
+  jugador.stats = {
+    partidos: 0,
+    goles: 0,
+    asistencias: 0,
+    minutos: 0,
+    amarillas: 0,
+    rojas: 0,
+    desglose: {},
+  };
 
   // 2. Solo si tiene partidos en la lista, hacemos la suma real
   if (jugador.partidos && jugador.partidos.length > 0) {
@@ -196,27 +191,32 @@ function autoCalcularStatsJugador(jugador) {
 
       // Sumamos al desglose
       jugador.stats.desglose[comp].partidos++;
-      if (partido.goles)
+
+      if (partido.goles !== undefined && partido.goles !== null) {
         jugador.stats.desglose[comp].goles += parseInt(partido.goles) || 0;
-      if (partido.asistencias)
+        totalGoles += parseInt(partido.goles) || 0;
+      }
+      if (partido.asistencias !== undefined && partido.asistencias !== null) {
         jugador.stats.desglose[comp].asistencias +=
           parseInt(partido.asistencias) || 0;
-      if (partido.minutos)
-        jugador.stats.desglose[comp].minutos += parseInt(partido.minutos) || 0;
-      if (partido.amarilla) jugador.stats.desglose[comp].amarillas += 1;
-      if (partido.roja) jugador.stats.desglose[comp].rojas += 1;
-
-      // Sumamos al total general
-      totalPJ++;
-      if (partido.goles) totalGoles += parseInt(partido.goles) || 0;
-      if (partido.asistencias)
         totalAsistencias += parseInt(partido.asistencias) || 0;
-      if (partido.minutos) totalMinutos += parseInt(partido.minutos) || 0;
-      if (partido.amarilla) totalAmarillas += 1;
-      if (partido.roja) totalRojas += 1;
+      }
+      if (partido.minutos !== undefined && partido.minutos !== null) {
+        jugador.stats.desglose[comp].minutos += parseInt(partido.minutos) || 0;
+        totalMinutos += parseInt(partido.minutos) || 0;
+      }
+      if (partido.amarilla === true) {
+        jugador.stats.desglose[comp].amarillas += 1;
+        totalAmarillas += 1;
+      }
+      if (partido.roja === true) {
+        jugador.stats.desglose[comp].rojas += 1;
+        totalRojas += 1;
+      }
+      totalPJ++;
     });
 
-    // Sobrescribir totales en la ficha para que sean exactos
+    // Sobrescribir totales
     jugador.stats.partidos = totalPJ;
     jugador.stats.goles = totalGoles;
     jugador.stats.asistencias = totalAsistencias;
@@ -2978,7 +2978,7 @@ const App = {
         );
 
         if (!jugadorEnTemporada) return;
-
+        autoCalcularStatsJugador(jugadorEnTemporada);
         const datosMaestro =
           CLUB_DATA.jugadoresMaestro[jugadorEnTemporada.codigo] || {};
         const compNombre =
