@@ -153,8 +153,78 @@ function translateNationalitySingle(nationality) {
 }
 
 /* ===================================
-   APLICACIÓN - RENDERIZADO DINÁMICO
+   HELPER: AUTOCÁLCULO DE ESTADÍSTICAS
    =================================== */
+function autoCalcularStatsJugador(jugador) {
+  // 1. Aseguramos SIEMPRE que "stats" exista para que la web no falle si un jugador tiene 0 partidos
+  if (!jugador.stats) {
+    jugador.stats = {
+      partidos: 0,
+      goles: 0,
+      asistencias: 0,
+      minutos: 0,
+      amarillas: 0,
+      rojas: 0,
+      desglose: {},
+    };
+  }
+  if (!jugador.stats.desglose) {
+    jugador.stats.desglose = {};
+  }
+
+  // 2. Solo si tiene partidos en la lista, hacemos la suma real
+  if (jugador.partidos && jugador.partidos.length > 0) {
+    let totalPJ = 0,
+      totalGoles = 0,
+      totalAsistencias = 0,
+      totalMinutos = 0,
+      totalAmarillas = 0,
+      totalRojas = 0;
+
+    jugador.partidos.forEach((partido) => {
+      const comp = partido.competicion || 'Otros';
+      if (!jugador.stats.desglose[comp]) {
+        jugador.stats.desglose[comp] = {
+          partidos: 0,
+          goles: 0,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        };
+      }
+
+      // Sumamos al desglose
+      jugador.stats.desglose[comp].partidos++;
+      if (partido.goles)
+        jugador.stats.desglose[comp].goles += parseInt(partido.goles) || 0;
+      if (partido.asistencias)
+        jugador.stats.desglose[comp].asistencias +=
+          parseInt(partido.asistencias) || 0;
+      if (partido.minutos)
+        jugador.stats.desglose[comp].minutos += parseInt(partido.minutos) || 0;
+      if (partido.amarilla) jugador.stats.desglose[comp].amarillas += 1;
+      if (partido.roja) jugador.stats.desglose[comp].rojas += 1;
+
+      // Sumamos al total general
+      totalPJ++;
+      if (partido.goles) totalGoles += parseInt(partido.goles) || 0;
+      if (partido.asistencias)
+        totalAsistencias += parseInt(partido.asistencias) || 0;
+      if (partido.minutos) totalMinutos += parseInt(partido.minutos) || 0;
+      if (partido.amarilla) totalAmarillas += 1;
+      if (partido.roja) totalRojas += 1;
+    });
+
+    // Sobrescribir totales en la ficha para que sean exactos
+    jugador.stats.partidos = totalPJ;
+    jugador.stats.goles = totalGoles;
+    jugador.stats.asistencias = totalAsistencias;
+    jugador.stats.minutos = totalMinutos;
+    jugador.stats.amarillas = totalAmarillas;
+    jugador.stats.rojas = totalRojas;
+  }
+}
 
 const App = {
   temporadaActiva: null,
@@ -588,13 +658,26 @@ const App = {
     const competiciones = Object.keys(statsData.desglose);
 
     function getCompMeta(nombre) {
-      const n = nombre.toLowerCase();
+      const n = (nombre || '').toLowerCase();
       if (n.includes('copa')) return { icon: 'fa-crown', color: '#c9a227' };
       if (n.includes('champions')) return { icon: 'fa-star', color: '#4FC3F7' };
       if (n.includes('europa'))
         return { icon: 'fa-globe-europe', color: '#66BB6A' };
       if (n.includes('conference'))
         return { icon: 'fa-globe', color: '#26C6DA' };
+
+      // NUEVOS ICONOS PARA FASES ESPECIALES
+      if (
+        n.includes('ascenso') ||
+        n.includes('play-off') ||
+        n.includes('promoción')
+      ) {
+        return { icon: 'fa-level-up-alt', color: '#e67e22' }; // Naranja con flecha arriba
+      }
+      if (n.includes('descenso')) {
+        return { icon: 'fa-level-down-alt', color: '#e74c3c' }; // Rojo con flecha abajo
+      }
+
       return { icon: 'fa-shield-alt', color: '#5C9BF5' };
     }
 
@@ -750,6 +833,8 @@ const App = {
   },
 
   renderJugadorCard: function (jugador) {
+    // LLAMADA AL AUTOCÁLCULO:
+    autoCalcularStatsJugador(jugador);
     // Calcular edad si no existe pero hay fecha de nacimiento
     let edadMostrar = jugador.edad;
     if (!edadMostrar && jugador.fechaNacimiento) {
@@ -904,6 +989,10 @@ const App = {
         '<p style="text-align:center; padding:40px;">Jugador no encontrado</p>';
       return;
     }
+
+    // LLAMADA AL AUTOCÁLCULO:
+    autoCalcularStatsJugador(jugador);
+
     document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
     this.updateMetaTags(jugador);
     const breadcrumb = document.querySelector('.breadcrumb .current');
