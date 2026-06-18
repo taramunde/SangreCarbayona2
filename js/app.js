@@ -176,9 +176,6 @@ function autoCalcularStatsJugador(jugador) {
       totalAmarillas = 0,
       totalRojas = 0;
 
-    // Detectamos si es portero una sola vez
-    const esPor = esPortero(jugador);
-
     jugador.partidos.forEach((partido) => {
       const comp = partido.competicion || 'Otros';
       if (!jugador.stats.desglose[comp]) {
@@ -192,25 +189,14 @@ function autoCalcularStatsJugador(jugador) {
         };
       }
 
-      // Sumamos al desglose de partidos
+      // Sumamos al desglose
       jugador.stats.desglose[comp].partidos++;
 
-      // --- NUEVA LÓGICA DE GOLES INTELIGENTE ---
-      let golesPartido = 0;
-      if (esPor) {
-        // Si es portero, los "goles" son los que marcó el rival (goles encajados)
-        const esLocal = (partido.local || '').toLowerCase().includes('oviedo');
-        golesPartido = esLocal
-          ? parseInt(partido.golesVisitante) || 0
-          : parseInt(partido.golesLocal) || 0;
-      } else {
-        // Si es jugador de campo, los goles son los que metió él
-        golesPartido = parseInt(partido.goles) || 0;
+      // Aquí está la corrección: leemos directamente partido.goles para todos
+      if (partido.goles !== undefined && partido.goles !== null) {
+        jugador.stats.desglose[comp].goles += parseInt(partido.goles) || 0;
+        totalGoles += parseInt(partido.goles) || 0;
       }
-
-      jugador.stats.desglose[comp].goles += golesPartido;
-      totalGoles += golesPartido;
-      // -----------------------------------------
 
       if (partido.asistencias !== undefined && partido.asistencias !== null) {
         jugador.stats.desglose[comp].asistencias +=
@@ -232,7 +218,7 @@ function autoCalcularStatsJugador(jugador) {
       totalPJ++;
     });
 
-    // Sobrescribir totales
+    // Sobrescribir totales en la ficha
     jugador.stats.partidos = totalPJ;
     jugador.stats.goles = totalGoles;
     jugador.stats.asistencias = totalAsistencias;
