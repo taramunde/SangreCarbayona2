@@ -271,6 +271,24 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'aisar-ahmed-ahmed',
+      codigo: 'aisar-ahmed-ahmed',
+      dorsal: '-',
+      posicion: 'Lateral Derecho',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
     // CENTROCAMPISTAS
 
     {
@@ -554,24 +572,6 @@ CLUB_DATA.temporadas['2026-27'] = {
       posicion: 'Mediocentro Ofensivo',
       enClubDesde: '2025',
       contratoHasta: '2027',
-      stats: {
-        partidos: 0,
-        goles: 0,
-        asistencias: 0,
-        minutos: 0,
-        amarillas: 0,
-        rojas: 0,
-      },
-      partidos: [],
-    },
-
-    {
-      id: 'aisar-ahmed-ahmed',
-      codigo: 'aisar-ahmed-ahmed',
-      dorsal: '-',
-      posicion: 'Mediocentro Ofensivo',
-      enClubDesde: '2026',
-      contratoHasta: '2028',
       stats: {
         partidos: 0,
         goles: 0,
