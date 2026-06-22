@@ -231,6 +231,11 @@ function autoCalcularStatsJugador(jugador) {
 const App = {
   temporadaActiva: null,
 
+  _getHeaderImgPosition: function (seasonId) {
+    const temp = CLUB_DATA.temporadasDisponibles.find((t) => t.id === seasonId);
+    return temp && temp.fotoPosition ? temp.fotoPosition : 'center 20%';
+  },
+
   init: function () {
     // Leer temporada de la URL si existe (para URLs compartidas como ?season=2024-25)
     const _urlParams = new URLSearchParams(window.location.search);
@@ -247,6 +252,9 @@ const App = {
     if (_headerImg) {
       _headerImg.src = `img/temporadas/${this.temporadaActiva}.webp`;
       _headerImg.alt = `Temporada ${this.temporadaActiva}`;
+      _headerImg.style.objectPosition = this._getHeaderImgPosition(
+        this.temporadaActiva,
+      );
     }
 
     // Detectar qué filtro está activo en el HTML al cargar   ← esta línea ya existía
@@ -324,9 +332,10 @@ const App = {
     // Actualizar imagen de cabecera al cambiar de temporada
     const headerImg = document.getElementById('pageHeaderImg');
     if (headerImg) {
-      headerImg.style.display = ''; // por si onerror la había ocultado antes
+      headerImg.style.display = '';
       headerImg.src = `img/temporadas/${seasonId}.webp`;
       headerImg.alt = `Temporada ${seasonId}`;
+      headerImg.style.objectPosition = this._getHeaderImgPosition(seasonId);
     }
 
     document.querySelectorAll('.season-tab').forEach((tab) => {
