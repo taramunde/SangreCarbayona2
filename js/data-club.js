@@ -30,7 +30,7 @@ const CLUB_DATA = {
     {
       id: '2026-27',
       nombre: '2026/27',
-      fotoPosition: 'center 15%',
+      fotoPosition: 'center 25%',
       actual: true,
     },
     {
@@ -42,7 +42,7 @@ const CLUB_DATA = {
     {
       id: '2024-25',
       nombre: '2024/25',
-      fotoPosition: 'top center',
+      fotoPosition: 'center 25%',
       actual: false,
     },
     { id: '2023-24', nombre: '2023/24', actual: false },
