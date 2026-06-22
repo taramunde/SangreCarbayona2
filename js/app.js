@@ -232,23 +232,15 @@ const App = {
   temporadaActiva: null,
 
   init: function () {
-    // NUEVO: Detectar qué temporada mostrar basándose en el nombre del archivo
-    const pathName = window.location.pathname;
-    this.temporadaActiva = CLUB_DATA.temporadaActual; // Por defecto (2026-27)
-
-    // Si la URL termina en un año (ej: primer-equipo-2023-24.html), lo detecta
-    const match = pathName.match(/primer-equipo-(\d{4}-\d{2})/);
-    if (match) {
-      this.temporadaActiva = match[1];
-    }
+    this.temporadaActiva = CLUB_DATA.temporadaActual;
 
     // Detectar qué filtro está activo en el HTML al cargar
     const activeTab = document.querySelector('.position-tabs .tab-btn.active');
     const initialFilter = activeTab ? activeTab.dataset.position : 'all';
 
-    // -- Deja aquí abajo todas tus llamadas this.render... que tenías --
+    // Funciones de renderizado
     this.renderCalendario();
-    this.renderPlantillaHome(initialFilter);
+    this.renderPlantillaHome(initialFilter); // ← Usar el filtro del botón activo
     this.renderNoticias();
     this.renderPatrocinadores();
     this.renderProximoPartido();
@@ -261,6 +253,7 @@ const App = {
     this.renderJuegos();
     this.renderVideos();
 
+    // Listeners de eventos
     this.setupHomeFilters();
   },
 
@@ -282,28 +275,33 @@ const App = {
   renderSeasonSelector: function () {
     const container = document.getElementById('seasonSelector');
     if (!container) return;
-
-    let html = '';
-    const seasons = Object.keys(CLUB_DATA.historico).sort((a, b) =>
-      b.localeCompare(a),
-    );
-    const allSeasons = [CLUB_DATA.temporadaActual, ...seasons];
-
-    allSeasons.forEach((season) => {
-      const isActive = season === this.temporadaActiva ? 'active' : '';
-      const label = season.replace('-', '/');
-
-      // Decidimos hacia dónde apunta el enlace
-      let archivoDestino =
-        season === CLUB_DATA.temporadaActual
-          ? 'primer-equipo.html'
-          : `equipos/primer-equipo-${season}.html`;
-
-      // Creamos un enlace (<a>) en lugar de un botón
-      html += `<a href="${archivoDestino}" class="season-tab ${isActive}" style="display:inline-block; text-decoration:none;">${label}</a>`;
+    let html = '<div class="season-tabs">';
+    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      const activeClass = temp.id === this.temporadaActiva ? 'active' : '';
+      const currentBadge = temp.actual
+        ? '<span class="current-badge">' + t('current_badge') + '</span>'
+        : '';
+      html += `<button class="season-tab ${activeClass}" data-season="${temp.id}">${temp.nombre} ${currentBadge}</button>`;
     });
-
+    html += '</div>';
     container.innerHTML = html;
+    container.querySelectorAll('.season-tab').forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        this.changeSeason(e.currentTarget.dataset.season);
+      });
+    });
+  },
+
+  changeSeason: function (seasonId) {
+    this.temporadaActiva = seasonId;
+    document.querySelectorAll('.season-tab').forEach((tab) => {
+      tab.classList.toggle('active', tab.dataset.season === seasonId);
+    });
+    this.renderSubtituloTemporada();
+    this.renderEstadisticasEquipo();
+    this.renderPlantillaCompleta();
+    this.renderCuerpoTecnico();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 
   renderSubtituloTemporada: function () {
