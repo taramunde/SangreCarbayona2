@@ -232,22 +232,23 @@ const App = {
   temporadaActiva: null,
 
   init: function () {
-    // 1. LEER LA URL: Comprobamos si nos pasan una temporada por el enlace
-    const urlParams = new URLSearchParams(window.location.search);
-    const temporadaEnUrl = urlParams.get('temporada');
+    // NUEVO: Detectar qué temporada mostrar basándose en el nombre del archivo
+    const pathName = window.location.pathname;
+    this.temporadaActiva = CLUB_DATA.temporadaActual; // Por defecto (2026-27)
 
-    // 2. ASIGNAR TEMPORADA: Si hay URL usamos esa, si no, la actual por defecto
-    this.temporadaActiva = temporadaEnUrl
-      ? temporadaEnUrl
-      : CLUB_DATA.temporadaActual;
+    // Si la URL termina en un año (ej: primer-equipo-2023-24.html), lo detecta
+    const match = pathName.match(/primer-equipo-(\d{4}-\d{2})/);
+    if (match) {
+      this.temporadaActiva = match[1];
+    }
 
     // Detectar qué filtro está activo en el HTML al cargar
     const activeTab = document.querySelector('.position-tabs .tab-btn.active');
     const initialFilter = activeTab ? activeTab.dataset.position : 'all';
 
-    // Funciones de renderizado
+    // -- Deja aquí abajo todas tus llamadas this.render... que tenías --
     this.renderCalendario();
-    this.renderPlantillaHome(initialFilter); // ← Usar el filtro del botón activo
+    this.renderPlantillaHome(initialFilter);
     this.renderNoticias();
     this.renderPatrocinadores();
     this.renderProximoPartido();
@@ -259,9 +260,7 @@ const App = {
     this.renderFichaJugador();
     this.renderJuegos();
     this.renderVideos();
-    this.updateShareLinks(this.temporadaActiva);
 
-    // Listeners de eventos
     this.setupHomeFilters();
   },
 
@@ -281,55 +280,33 @@ const App = {
   },
 
   renderSeasonSelector: function () {
-    updateShareLinks: function (seasonId) {
-    // 1. Construimos la URL exacta
-    const baseUrl = window.location.origin + window.location.pathname;
-    const pageUrl = encodeURIComponent(`${baseUrl}?temporada=${seasonId}`);
-    const shareText = encodeURIComponent(`Plantilla del Real Oviedo - Temporada ${seasonId} 💙`);
-
-    // 2. Buscamos los botones
-    const btnWa = document.getElementById('share-whatsapp');
-    const btnTw = document.getElementById('share-twitter');
-    const btnTg = document.getElementById('share-telegram');
-    const btnFb = document.getElementById('share-facebook');
-
-    // 3. Asignamos los enlaces mágicos
-    if (btnWa) btnWa.href = `https://api.whatsapp.com/send?text=${shareText} ${pageUrl}`;
-    if (btnTw) btnTw.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
-    if (btnTg) btnTg.href = `https://t.me/share/url?url=${pageUrl}&text=${shareText}`;
-    if (btnFb) btnFb.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-
-    // 4. Intentamos actualizar la imagen meta (OG Image)
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
-      // Cargará la imagen que subiste, ej: site.com/img/alineaciones/2023-24.jpg
-      ogImage.content = `${window.location.origin}/img/alineaciones/${seasonId}.jpg`;
-    }
-  },
     const container = document.getElementById('seasonSelector');
     if (!container) return;
-    let html = '<div class="season-tabs">';
-    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-      const activeClass = temp.id === this.temporadaActiva ? 'active' : '';
-      const currentBadge = temp.actual
-        ? '<span class="current-badge">' + t('current_badge') + '</span>'
-        : '';
-      html += `<button class="season-tab ${activeClass}" data-season="${temp.id}">${temp.nombre} ${currentBadge}</button>`;
+
+    let html = '';
+    const seasons = Object.keys(CLUB_DATA.historico).sort((a, b) =>
+      b.localeCompare(a),
+    );
+    const allSeasons = [CLUB_DATA.temporadaActual, ...seasons];
+
+    allSeasons.forEach((season) => {
+      const isActive = season === this.temporadaActiva ? 'active' : '';
+      const label = season.replace('-', '/');
+
+      // Decidimos hacia dónde apunta el enlace
+      let archivoDestino =
+        season === CLUB_DATA.temporadaActual
+          ? 'primer-equipo.html'
+          : `equipos/primer-equipo-${season}.html`;
+
+      // Creamos un enlace (<a>) en lugar de un botón
+      html += `<a href="${archivoDestino}" class="season-tab ${isActive}" style="display:inline-block; text-decoration:none;">${label}</a>`;
     });
-    html += '</div>';
+
     container.innerHTML = html;
-    container.querySelectorAll('.season-tab').forEach((tab) => {
-      tab.addEventListener('click', (e) => {
-        this.changeSeason(e.currentTarget.dataset.season);
-      });
-    });
   },
 
-  changeSeason: function (seasonId) {
-    this.temporadaActiva = seasonId;
-    this.updateShareLinks(seasonId);
-
-    // NUEVO: Actualizamos la URL en la barra del navegador sin recargar la página
+   // NUEVO: Actualizamos la URL en la barra del navegador sin recargar la página
     window.history.pushState(null, '', '?temporada=' + seasonId);
 
     document.querySelectorAll('.season-tab').forEach((tab) => {
