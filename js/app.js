@@ -232,9 +232,24 @@ const App = {
   temporadaActiva: null,
 
   init: function () {
-    this.temporadaActiva = CLUB_DATA.temporadaActual;
+    // Leer temporada de la URL si existe (para URLs compartidas como ?season=2024-25)
+    const _urlParams = new URLSearchParams(window.location.search);
+    const _seasonFromUrl = _urlParams.get('season');
+    const _seasonValida =
+      _seasonFromUrl &&
+      CLUB_DATA.temporadasDisponibles.some((t) => t.id === _seasonFromUrl);
+    this.temporadaActiva = _seasonValida
+      ? _seasonFromUrl
+      : CLUB_DATA.temporadaActual;
 
-    // Detectar qué filtro está activo en el HTML al cargar
+    // Imagen de cabecera: apuntar a la temporada que toca desde el primer momento
+    const _headerImg = document.getElementById('pageHeaderImg');
+    if (_headerImg) {
+      _headerImg.src = `img/temporadas/${this.temporadaActiva}.webp`;
+      _headerImg.alt = `Temporada ${this.temporadaActiva}`;
+    }
+
+    // Detectar qué filtro está activo en el HTML al cargar   ← esta línea ya existía
     const activeTab = document.querySelector('.position-tabs .tab-btn.active');
     const initialFilter = activeTab ? activeTab.dataset.position : 'all';
 
@@ -294,7 +309,28 @@ const App = {
 
   changeSeason: function (seasonId) {
     this.temporadaActiva = seasonId;
+
+    // Actualizar URL para que se pueda compartir
+    if (document.getElementById('seasonSelector')) {
+      const url = new URL(window.location);
+      if (seasonId === CLUB_DATA.temporadaActual) {
+        url.searchParams.delete('season'); // temporada actual → URL limpia
+      } else {
+        url.searchParams.set('season', seasonId);
+      }
+      history.pushState({ season: seasonId }, '', url);
+    }
+
+    // Actualizar imagen de cabecera al cambiar de temporada
+    const headerImg = document.getElementById('pageHeaderImg');
+    if (headerImg) {
+      headerImg.style.display = ''; // por si onerror la había ocultado antes
+      headerImg.src = `img/temporadas/${seasonId}.webp`;
+      headerImg.alt = `Temporada ${seasonId}`;
+    }
+
     document.querySelectorAll('.season-tab').forEach((tab) => {
+      // ← esta línea ya existía
       tab.classList.toggle('active', tab.dataset.season === seasonId);
     });
     this.renderSubtituloTemporada();
