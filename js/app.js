@@ -306,19 +306,6 @@ const App = {
     container.innerHTML = html;
   },
 
-   // NUEVO: Actualizamos la URL en la barra del navegador sin recargar la página
-    window.history.pushState(null, '', '?temporada=' + seasonId);
-
-    document.querySelectorAll('.season-tab').forEach((tab) => {
-      tab.classList.toggle('active', tab.dataset.season === seasonId);
-    });
-    this.renderSubtituloTemporada();
-    this.renderEstadisticasEquipo();
-    this.renderPlantillaCompleta();
-    this.renderCuerpoTecnico();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  },
-
   renderSubtituloTemporada: function () {
     const subtitle = document.querySelector('.page-subtitle');
     if (!subtitle) return;
