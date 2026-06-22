@@ -259,6 +259,7 @@ const App = {
     this.renderFichaJugador();
     this.renderJuegos();
     this.renderVideos();
+    this.updateShareLinks(this.temporadaActiva);
 
     // Listeners de eventos
     this.setupHomeFilters();
@@ -280,6 +281,31 @@ const App = {
   },
 
   renderSeasonSelector: function () {
+    updateShareLinks: function (seasonId) {
+    // 1. Construimos la URL exacta
+    const baseUrl = window.location.origin + window.location.pathname;
+    const pageUrl = encodeURIComponent(`${baseUrl}?temporada=${seasonId}`);
+    const shareText = encodeURIComponent(`Plantilla del Real Oviedo - Temporada ${seasonId} 💙`);
+
+    // 2. Buscamos los botones
+    const btnWa = document.getElementById('share-whatsapp');
+    const btnTw = document.getElementById('share-twitter');
+    const btnTg = document.getElementById('share-telegram');
+    const btnFb = document.getElementById('share-facebook');
+
+    // 3. Asignamos los enlaces mágicos
+    if (btnWa) btnWa.href = `https://api.whatsapp.com/send?text=${shareText} ${pageUrl}`;
+    if (btnTw) btnTw.href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${shareText}`;
+    if (btnTg) btnTg.href = `https://t.me/share/url?url=${pageUrl}&text=${shareText}`;
+    if (btnFb) btnFb.href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+    // 4. Intentamos actualizar la imagen meta (OG Image)
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) {
+      // Cargará la imagen que subiste, ej: site.com/img/alineaciones/2023-24.jpg
+      ogImage.content = `${window.location.origin}/img/alineaciones/${seasonId}.jpg`;
+    }
+  },
     const container = document.getElementById('seasonSelector');
     if (!container) return;
     let html = '<div class="season-tabs">';
@@ -301,6 +327,7 @@ const App = {
 
   changeSeason: function (seasonId) {
     this.temporadaActiva = seasonId;
+    this.updateShareLinks(seasonId);
 
     // NUEVO: Actualizamos la URL en la barra del navegador sin recargar la página
     window.history.pushState(null, '', '?temporada=' + seasonId);
