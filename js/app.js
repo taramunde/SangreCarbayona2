@@ -232,7 +232,14 @@ const App = {
   temporadaActiva: null,
 
   init: function () {
-    this.temporadaActiva = CLUB_DATA.temporadaActual;
+    // 1. LEER LA URL: Comprobamos si nos pasan una temporada por el enlace
+    const urlParams = new URLSearchParams(window.location.search);
+    const temporadaEnUrl = urlParams.get('temporada');
+
+    // 2. ASIGNAR TEMPORADA: Si hay URL usamos esa, si no, la actual por defecto
+    this.temporadaActiva = temporadaEnUrl
+      ? temporadaEnUrl
+      : CLUB_DATA.temporadaActual;
 
     // Detectar qué filtro está activo en el HTML al cargar
     const activeTab = document.querySelector('.position-tabs .tab-btn.active');
@@ -294,6 +301,10 @@ const App = {
 
   changeSeason: function (seasonId) {
     this.temporadaActiva = seasonId;
+
+    // NUEVO: Actualizamos la URL en la barra del navegador sin recargar la página
+    window.history.pushState(null, '', '?temporada=' + seasonId);
+
     document.querySelectorAll('.season-tab').forEach((tab) => {
       tab.classList.toggle('active', tab.dataset.season === seasonId);
     });
