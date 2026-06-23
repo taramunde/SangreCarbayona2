@@ -107,8 +107,19 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     jugador.nombreCompleto || jugador.nombre || jugador.codigo;
   // encodeURI convierte paréntesis y otros caracteres reservados que confunden
   // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
+  const codificarImagenUrl = (url) => {
+    if (!url) return '';
+    let urlLimpia = url.replace(/^\/+/, '');
+    return encodeURI(urlLimpia)
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29')
+      .replace(/'/g, '%27');
+  };
+
   const imagenMostrar = jugador.imagen
-    ? `${SITE_BASE_URL}/${encodeURI(jugador.imagen)}`
+    ? jugador.imagen.startsWith('http')
+      ? codificarImagenUrl(jugador.imagen)
+      : `${SITE_BASE_URL}/${codificarImagenUrl(jugador.imagen)}`
     : '';
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
@@ -197,7 +208,19 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
   const imagenRaw = maestro.imagen || miembro.imagen || '';
   // encodeURI convierte paréntesis y otros caracteres reservados que confunden
   // a los crawlers de WhatsApp / Telegram / Twitter al leer og:image
-  const imagen = imagenRaw ? `${SITE_BASE_URL}/${encodeURI(imagenRaw)}` : '';
+  const codificarImagenUrlEnt = (url) => {
+    if (!url) return '';
+    let urlLimpia = url.replace(/^\/+/, '');
+    return encodeURI(urlLimpia)
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29')
+      .replace(/'/g, '%27');
+  };
+  const imagen = imagenRaw
+    ? imagenRaw.startsWith('http')
+      ? codificarImagenUrlEnt(imagenRaw)
+      : `${SITE_BASE_URL}/${codificarImagenUrlEnt(imagenRaw)}`
+    : '';
 
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
