@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Derbis Asturianos | Sangre Carbayona</title>
     <link rel="stylesheet" href="css/styles.css?nocache=20260426v5" />
-    <link rel="stylesheet" href="css/derbis.css?nocache=20260426v5" />
+    <link rel="stylesheet" href="css/derbis.css?nocache=20260426v6" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,25 +44,47 @@
       </div>
     </section>
 
-    <section class="match-details">
+    <section class="derbis-listing-section">
       <div class="container">
-        <div class="derbi-table-container">
-          <table class="derbi-table">
+        <!-- Cabecera de sección -->
+        <div class="section-header">
+          <h2 class="section-title">Historial de partidos</h2>
+        </div>
+
+        <!-- Resumen estadístico -->
+        <div class="derbis-stats-bar" id="derbisStatsBar"></div>
+
+        <!-- Tabla -->
+        <div class="derbis-table-scroll">
+          <table class="derbis-historial-table">
             <thead>
               <tr>
                 <th>Temporada</th>
                 <th>Competición</th>
-                <th>Jornada</th>
+                <th>J.</th>
                 <th>Fecha</th>
                 <th>Local</th>
                 <th>Resultado</th>
                 <th>Visitante</th>
-                <th>Estadio</th>
+                <th class="hide-mobile">Estadio</th>
                 <th></th>
               </tr>
             </thead>
             <tbody id="derbisTbody"></tbody>
           </table>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="derbis-leyenda">
+          <div class="leyenda-item">
+            <span class="dot dot-oviedo"></span><span>Victoria Oviedo</span>
+          </div>
+          <div class="leyenda-item">
+            <span class="dot dot-empate"></span><span>Empate</span>
+          </div>
+          <div class="leyenda-item">
+            <span class="dot dot-rival"></span><span>Victoria rival</span>
+          </div>
         </div>
       </div>
     </section>

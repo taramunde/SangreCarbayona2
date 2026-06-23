@@ -281,3 +281,215 @@
     gap: 10px;
   }
 }
+
+/* ===================================
+   LISTADO DE DERBIS - MEJORAS VISUALES
+   Alineado con el sistema de diseño de styles.css
+   =================================== */
+
+/* Sección principal — mismo padding que news/standings/squad */
+.derbis-listing-section {
+  padding: 70px 0;
+  background: var(--gray-50);
+}
+
+/* ---- Resumen estadístico ---- */
+.derbis-stats-bar {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+.derbis-stat-card {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 18px 28px;
+  text-align: center;
+  min-width: 110px;
+  border-top: 3px solid var(--gray-200);
+  transition: var(--transition);
+}
+.derbis-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.derbis-stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.derbis-stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  margin-top: 5px;
+}
+.stat-total {
+  color: var(--gray-800);
+}
+.stat-wins {
+  color: var(--primary-color);
+}
+.derbis-stat-card:has(.stat-wins) {
+  border-top-color: var(--primary-color);
+}
+.stat-draws {
+  color: var(--gray-400);
+}
+.derbis-stat-card:has(.stat-draws) {
+  border-top-color: var(--gray-400);
+}
+.stat-losses {
+  color: var(--danger);
+}
+.derbis-stat-card:has(.stat-losses) {
+  border-top-color: var(--danger);
+}
+
+/* ---- Tabla — mismo look que homeTablaClasificacion ---- */
+.derbis-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  border: 1px solid #eef0f8;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.derbis-historial-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87em;
+}
+.derbis-historial-table thead th {
+  background: #001a6e;
+  color: var(--white);
+  padding: 10px 12px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.84em;
+  white-space: nowrap;
+}
+.derbis-historial-table thead th:first-child {
+  border-radius: 9px 0 0 0;
+}
+.derbis-historial-table thead th:last-child {
+  border-radius: 0 9px 0 0;
+}
+.derbis-historial-table tbody td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid #f0f2fa;
+  vertical-align: middle;
+}
+.derbis-historial-table tbody tr:nth-child(even) td {
+  background: #fafbff;
+}
+.derbis-historial-table tbody tr:hover td {
+  background: var(--gray-100);
+}
+
+/* Indicador de color por resultado (borde izquierdo) */
+.derbis-historial-table tbody tr.win-oviedo td:first-child {
+  border-left: 4px solid var(--primary-color);
+}
+.derbis-historial-table tbody tr.draw td:first-child {
+  border-left: 4px solid var(--gray-400);
+}
+.derbis-historial-table tbody tr.win-sporting td:first-child {
+  border-left: 4px solid var(--danger);
+}
+
+/* Escudo mini + nombre del equipo */
+.derbi-team-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+.derbi-escudo-mini {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Marcador + badge V/E/D */
+.derbi-resultado-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.resultado-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.badge-v {
+  background: var(--primary-color);
+}
+.badge-e {
+  background: var(--gray-400);
+}
+.badge-d {
+  background: var(--danger);
+}
+
+/* ---- Leyenda — patrón de home-clasi-leyenda ---- */
+.derbis-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 12px 4px 0;
+  border-top: 1px solid #eef0f8;
+  margin-top: 8px;
+  font-size: 0.78em;
+}
+.derbis-leyenda .leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #555;
+}
+/* Extiende los .dot de styles.css con los colores de los derbis */
+.dot.dot-oviedo {
+  background: var(--primary-color);
+}
+.dot.dot-empate {
+  background: var(--gray-400);
+}
+.dot.dot-rival {
+  background: var(--danger);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+  .derbis-stats-bar {
+    gap: 10px;
+  }
+  .derbis-stat-card {
+    padding: 14px 16px;
+    min-width: 80px;
+  }
+  .derbis-stat-number {
+    font-size: 1.7rem;
+  }
+}

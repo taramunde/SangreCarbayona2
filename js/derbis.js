@@ -24,6 +24,40 @@ document.addEventListener('DOMContentLoaded', function () {
    ---------------------------------- */
 function cargarListaDerbis() {
   if (!window.DERBIS_DATA) return;
+
+  // --- Estadísticas resumen ---
+  let victorias = 0,
+    empates = 0,
+    derrotas = 0;
+  window.DERBIS_DATA.forEach(function (p) {
+    if (p.ganador === 'oviedo') victorias++;
+    else if (p.ganador === 'empate') empates++;
+    else derrotas++;
+  });
+
+  const statsBar = document.getElementById('derbisStatsBar');
+  if (statsBar) {
+    statsBar.innerHTML = `
+      <div class="derbis-stat-card">
+        <div class="derbis-stat-number stat-total">${window.DERBIS_DATA.length}</div>
+        <div class="derbis-stat-label">Partidos</div>
+      </div>
+      <div class="derbis-stat-card">
+        <div class="derbis-stat-number stat-wins">${victorias}</div>
+        <div class="derbis-stat-label">Victorias Oviedo</div>
+      </div>
+      <div class="derbis-stat-card">
+        <div class="derbis-stat-number stat-draws">${empates}</div>
+        <div class="derbis-stat-label">Empates</div>
+      </div>
+      <div class="derbis-stat-card">
+        <div class="derbis-stat-number stat-losses">${derrotas}</div>
+        <div class="derbis-stat-label">Victorias rival</div>
+      </div>
+    `;
+  }
+
+  // --- Filas de la tabla ---
   const tbody = document.getElementById('derbisTbody');
 
   window.DERBIS_DATA.forEach(function (partido) {
@@ -34,6 +68,20 @@ function cargarListaDerbis() {
           ? 'draw'
           : 'win-sporting';
 
+    const badgeClass =
+      partido.ganador === 'oviedo'
+        ? 'badge-v'
+        : partido.ganador === 'empate'
+          ? 'badge-e'
+          : 'badge-d';
+
+    const badgeText =
+      partido.ganador === 'oviedo'
+        ? 'V'
+        : partido.ganador === 'empate'
+          ? 'E'
+          : 'D';
+
     const fila = document.createElement('tr');
     fila.className = rowClass;
     fila.innerHTML = `
@@ -41,10 +89,25 @@ function cargarListaDerbis() {
       <td>${partido.competicion}</td>
       <td>J${partido.jornada}</td>
       <td>${partido.fecha}</td>
-      <td>${partido.local.nombre}</td>
-      <td><span class="score">${partido.resultado}</span></td>
-      <td>${partido.visitante.nombre}</td>
-      <td>${partido.estadio}</td>
+      <td>
+        <div class="derbi-team-cell">
+          <img src="${partido.local.escudo}" alt="${partido.local.nombre}" class="derbi-escudo-mini">
+          <span>${partido.local.nombre}</span>
+        </div>
+      </td>
+      <td>
+        <div class="derbi-resultado-cell">
+          <span class="score">${partido.resultado}</span>
+          <span class="resultado-badge ${badgeClass}">${badgeText}</span>
+        </div>
+      </td>
+      <td>
+        <div class="derbi-team-cell">
+          <img src="${partido.visitante.escudo}" alt="${partido.visitante.nombre}" class="derbi-escudo-mini">
+          <span>${partido.visitante.nombre}</span>
+        </div>
+      </td>
+      <td class="hide-mobile">${partido.estadio}</td>
       <td><a href="derbi.html?id=${partido.id}" class="match-link">Ver ficha <i class="fas fa-arrow-right"></i></a></td>
     `;
     tbody.appendChild(fila);
@@ -55,13 +118,11 @@ function cargarListaDerbis() {
    FICHA DE UN PARTIDO INDIVIDUAL
    ---------------------------------- */
 function cargarPartidoDinamico() {
-  // Obtener el ID de la URL (?id=1944-j12)
   const urlParams = new URLSearchParams(window.location.search);
   const partidoId = urlParams.get('id');
 
   if (!partidoId || !window.DERBIS_DATA) return;
 
-  // Buscar el partido en nuestra "base de datos"
   const partido = window.DERBIS_DATA.find((p) => p.id === partidoId);
 
   if (!partido) {
@@ -70,7 +131,6 @@ function cargarPartidoDinamico() {
     return;
   }
 
-  // Rellenar las cabeceras
   document.getElementById('bc-jornada').innerText =
     `Jornada ${partido.jornada} (${partido.temporada.split('/')[0]})`;
   document.getElementById('titulo-partido').innerText =
@@ -78,10 +138,8 @@ function cargarPartidoDinamico() {
   document.getElementById('subtitulo-partido').innerText =
     `${partido.competicion} · Jornada ${partido.jornada} · ${partido.temporada}`;
 
-  // Rellenar el marcador
   document.getElementById('escudo-local').src = partido.local.escudo;
   document.getElementById('nombre-local').innerText = partido.local.nombre;
-
   document.getElementById('escudo-visitante').src = partido.visitante.escudo;
   document.getElementById('nombre-visitante').innerText =
     partido.visitante.nombre;
@@ -92,7 +150,6 @@ function cargarPartidoDinamico() {
   document.getElementById('estadio-partido').innerHTML =
     `<i class="fas fa-map-marker-alt"></i> ${partido.estadio}`;
 
-  // Rellenar alineaciones
   renderizarAlineacion('alineacion-local', partido.local, 'Alineación Local');
   renderizarAlineacion(
     'alineacion-visitante',
@@ -100,7 +157,6 @@ function cargarPartidoDinamico() {
     'Alineación Visitante',
   );
 
-  // Mostrar el contenedor (estaba oculto mientras cargaba)
   document.getElementById('match-container').style.display = 'block';
 }
 
@@ -108,7 +164,6 @@ function renderizarAlineacion(contenedorId, equipo, titulo) {
   const contenedor = document.getElementById(contenedorId);
   let html = `<div class="lineup-header header-${equipo.cssClass}">${titulo}</div>`;
 
-  // Jugadores
   equipo.alineacion.forEach((jugador) => {
     let eventosHtml = '';
     if (jugador.eventos && jugador.eventos.length > 0) {
@@ -116,7 +171,6 @@ function renderizarAlineacion(contenedorId, equipo, titulo) {
         eventosHtml += `<span>${ev.minuto}</span> <img src="${ev.icono}" class="event-icon" alt="${ev.tipo}">`;
       });
     }
-
     html += `
       <div class="player-row">
         <img src="${jugador.foto}" alt="${jugador.nombre}" class="player-photo">
@@ -127,7 +181,6 @@ function renderizarAlineacion(contenedorId, equipo, titulo) {
     `;
   });
 
-  // Entrenador
   html += `
     <div class="player-row coaches-row">
       <img src="${equipo.entrenador.foto}" alt="${equipo.entrenador.nombre}" class="player-photo" style="border-radius: 50%;">
