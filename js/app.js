@@ -3480,7 +3480,8 @@ if (!document.getElementById('porteroStyles')) {
       font-weight: 600;
     }
     .quick-stat.conceded .quick-stat-value {
-      color: #e74c3c !important;
+      color: #e74c3c !imp
+      ortant;
       font-weight: 700;
     }
     .quick-stat.conceded .quick-stat-label {
