@@ -10,31 +10,28 @@
 
   // --- EQUIPOS (Ahora 22 equipos para Segunda División) ---
   const equipos = [
-    { nombre: 'Deportivo Alavés', escudo: 'img/escudos/Alaves.webp' },
-    { nombre: 'Athletic Club', escudo: 'img/escudos/AthleticClub.webp' },
-    {
-      nombre: 'Atlético de Madrid',
-      escudo: 'img/escudos/AtleticodeMadrid.webp',
-    },
     { nombre: 'Albacete Balompié', escudo: 'img/escudos/Albacete.webp' },
+    { nombre: 'U.D. Almería', escudo: 'img/escudos/Almeria.webp' },
     { nombre: 'F.C. Andorra', escudo: 'img/escudos/Andorra.webp' },
     { nombre: 'Burgos C.F.', escudo: 'img/escudos/Burgos.webp' },
     { nombre: 'Cádiz C.F.', escudo: 'img/escudos/Cadiz.webp' },
+    { nombre: 'C.D. Castellón', escudo: 'img/escudos/Castellon.webp' },
+    { nombre: 'R.C. Celta Fortuna', escudo: 'img/escudos/CeltaVigo.webp' },
     { nombre: 'A.D. Ceuta C.F.', escudo: 'img/escudos/Ceuta.webp' },
     { nombre: 'Córdoba C.F.', escudo: 'img/escudos/Cordoba.webp' },
     { nombre: 'S.D. Eibar', escudo: 'img/escudos/Eibar.webp' },
-    { nombre: 'R.C.D. Mallorca', escudo: 'img/escudos/Mallorca.webp' },
-    { nombre: 'Granada C.F.', escudo: 'img/escudos/Granada.webp' },
+    { nombre: 'C.D. Eldense', escudo: 'img/escudos/Eldense.webp' },
     { nombre: 'Girona F.C.', escudo: 'img/escudos/Girona.webp' },
+    { nombre: 'Granada C.F.', escudo: 'img/escudos/Granada.webp' },
+    { nombre: 'U.D. Las Palmas', escudo: 'img/escudos/LasPalmas.webp' },
     { nombre: 'C.D. Leganés', escudo: 'img/escudos/Leganes.webp' },
-    { nombre: 'Real Sporting de Gijón', escudo: 'img/escudos/Sporting.webp' },
+    { nombre: 'R.C.D. Mallorca', escudo: 'img/escudos/Mallorca.webp' },
     { nombre: 'Real Oviedo', escudo: 'img/escudos/Oviedo.webp' },
-    { nombre: 'Real Sociedad', escudo: 'img/escudos/RealSociedad.webp' },
+    { nombre: 'Real Sociedad B', escudo: 'img/escudos/RealSociedad.webp' },
+    { nombre: 'C.E. Sabadell', escudo: 'img/escudos/Sabadell.webp' },
+    { nombre: 'Real Sporting de Gijón', escudo: 'img/escudos/Sporting.webp' },
+    { nombre: 'C.D. Tenerife', escudo: 'img/escudos/Tenerife.webp' },
     { nombre: 'Real Valladolid', escudo: 'img/escudos/Valladolid.webp' },
-    { nombre: 'C.D. Castellón', escudo: 'img/escudos/Castellon.webp' },
-    { nombre: 'Villarreal C.F.', escudo: 'img/escudos/Villarreal.webp' },
-    { nombre: 'Sporting de Gijón', escudo: 'img/escudos/Sporting.webp' },
-    { nombre: 'Real Zaragoza', escudo: 'img/escudos/Zaragoza.webp' },
   ];
 
   // --- PARTIDOS ---
