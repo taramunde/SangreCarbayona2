@@ -969,7 +969,11 @@ const App = {
     temporada.cuerpoTecnico.forEach((miembro) => {
       const entId = miembro.codigo || miembro.id;
       const stats = miembro.estadisticas;
-      const fichaUrl = `ficha-jugador.html?tipo=entrenador&id=${entId}&season=${this.temporadaActiva}`;
+      const esTemporadaActual =
+        this.temporadaActiva === CLUB_DATA.temporadaActual;
+      const fichaUrl = esTemporadaActual
+        ? `fichas/entrenador-${entId}.html`
+        : `ficha-jugador.html?tipo=entrenador&id=${entId}&season=${this.temporadaActiva}`;
 
       // Usamos el diseño idéntico al de renderJugadorCard (.squad-card)
       const bajaBadgeHtml =
@@ -1231,13 +1235,21 @@ const App = {
     const d = stats.derrotas || 0;
     const pctV = pj > 0 ? Math.round((v / pj) * 100) : 0;
 
-    const pageUrl = window.location.href;
-    const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
+    const esTemporadaActual = seasonId === CLUB_DATA.temporadaActual;
+    const baseUrl = window.location.href
+      .split('/fichas/')[0]
+      .split('/ficha-jugador')[0]
+      .replace(/\/$/, '');
+    const pageUrl = esTemporadaActual
+      ? `${baseUrl}/fichas/entrenador-${entrenadorId}.html`
+      : window.location.href;
+
+    const shareText = `Ficha de ${nombre} - ${CLUB_DATA.club.nombreCorto}`;
     const whatsappText = encodeURIComponent(shareText + '\n\n' + pageUrl);
     const shareLinks = `
-            <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+      <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
 
     container.innerHTML = `
       <div class="player-photo-container">
