@@ -1,0 +1,283 @@
+/* ===================================
+   DERBIS ASTURIANOS - ESTILOS
+   =================================== */
+
+/* 1. Menú Principal (derbis.html) */
+.derbis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 40px 0;
+}
+.derbi-card {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  text-align: center;
+  border-bottom: 4px solid var(--primary-color);
+}
+.derbi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+.derbi-card-header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 100%
+  );
+  color: var(--white);
+  padding: 20px;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.derbi-card-body {
+  padding: 20px;
+}
+.derbi-card-body p {
+  color: var(--gray-600);
+  margin-bottom: 20px;
+}
+.btn-derbi {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--secondary-color);
+  color: var(--white);
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn-derbi:hover {
+  background: var(--secondary-light);
+  color: var(--gray-900);
+}
+
+/* 2. Tabla de Partidos (derbis-primera.html) */
+.derbi-table-container {
+  margin: 40px 0;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+.derbi-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  min-width: 600px;
+}
+.derbi-table th {
+  background: var(--primary-dark);
+  color: var(--white);
+  padding: 15px;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+.derbi-table td {
+  padding: 15px;
+  border-bottom: 1px solid var(--gray-200);
+  vertical-align: middle;
+}
+.derbi-table tr:hover {
+  background: var(--gray-50);
+}
+.win-oviedo {
+  border-left: 5px solid var(--primary-color);
+  background: rgba(26, 54, 93, 0.03);
+}
+.win-sporting {
+  border-left: 5px solid var(--danger);
+  background: rgba(239, 68, 68, 0.03);
+}
+.draw {
+  border-left: 5px solid var(--gray-400);
+}
+.score {
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: var(--gray-100);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.match-link {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.match-link:hover {
+  text-decoration: underline;
+  color: var(--secondary-color);
+}
+
+/* 3. Ficha del Partido (derbi-1944.html) */
+.match-hero {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  padding: 40px 20px;
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.match-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  text-align: center;
+}
+.match-team img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+.match-team h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.team-oviedo {
+  color: var(--primary-color);
+}
+.team-sporting {
+  color: var(--danger);
+}
+.match-center {
+  text-align: center;
+  padding: 0 40px;
+  border-left: 1px solid var(--gray-200);
+  border-right: 1px solid var(--gray-200);
+}
+.match-center .score {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: 5px;
+  margin: 10px 0;
+}
+.match-center .meta {
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.match-center .stadium {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* Alineaciones */
+.lineups-section {
+  margin-bottom: 60px;
+}
+.lineups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.lineup-column {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.lineup-header {
+  padding: 15px;
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--white);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+.header-oviedo {
+  background: var(--primary-color);
+}
+.header-sporting {
+  background: var(--danger);
+}
+.player-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  transition: var(--transition-fast);
+}
+.player-row:hover {
+  background: var(--gray-50);
+}
+.player-row:nth-child(even) {
+  background: #fafbff;
+}
+.player-photo {
+  width: 50px;
+  height: 60px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.player-row:hover .player-photo {
+  transform: scale(1.2);
+}
+.player-flag {
+  width: 25px;
+  height: 18px;
+  object-fit: cover;
+  margin: 0 15px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.player-name {
+  flex-grow: 1;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+.player-events {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gray-600);
+}
+.event-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Entrenadores */
+.coaches-row {
+  background: var(--gray-100);
+  border-top: 2px solid var(--gray-300);
+}
+.coach-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lineups-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .match-center {
+    border: none;
+    padding: 20px 0;
+  }
+  .match-hero {
+    padding: 30px 10px;
+    gap: 10px;
+  }
+}
