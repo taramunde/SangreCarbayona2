@@ -8,12 +8,52 @@ document.addEventListener('DOMContentLoaded', function () {
     cargarComunes();
   }
 
-  // 2. Si estamos en la página de un partido individual (derbi.html)
+  // 2. Página de listado (derbis.html)
+  if (document.getElementById('derbisTbody')) {
+    cargarListaDerbis();
+  }
+
+  // 3. Página de detalle (derbi.html)
   if (document.getElementById('match-container')) {
     cargarPartidoDinamico();
   }
 });
 
+/* ----------------------------------
+   LISTADO DE TODOS LOS DERBIS
+   ---------------------------------- */
+function cargarListaDerbis() {
+  if (!window.DERBIS_DATA) return;
+  const tbody = document.getElementById('derbisTbody');
+
+  window.DERBIS_DATA.forEach(function (partido) {
+    const rowClass =
+      partido.ganador === 'oviedo'
+        ? 'win-oviedo'
+        : partido.ganador === 'empate'
+          ? 'draw'
+          : 'win-sporting';
+
+    const fila = document.createElement('tr');
+    fila.className = rowClass;
+    fila.innerHTML = `
+      <td>${partido.temporada}</td>
+      <td>${partido.competicion}</td>
+      <td>J${partido.jornada}</td>
+      <td>${partido.fecha}</td>
+      <td>${partido.local.nombre}</td>
+      <td><span class="score">${partido.resultado}</span></td>
+      <td>${partido.visitante.nombre}</td>
+      <td>${partido.estadio}</td>
+      <td><a href="derbi.html?id=${partido.id}" class="match-link">Ver ficha <i class="fas fa-arrow-right"></i></a></td>
+    `;
+    tbody.appendChild(fila);
+  });
+}
+
+/* ----------------------------------
+   FICHA DE UN PARTIDO INDIVIDUAL
+   ---------------------------------- */
 function cargarPartidoDinamico() {
   // Obtener el ID de la URL (?id=1944-j12)
   const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +70,7 @@ function cargarPartidoDinamico() {
     return;
   }
 
-  // 3. Rellenar las cabeceras
+  // Rellenar las cabeceras
   document.getElementById('bc-jornada').innerText =
     `Jornada ${partido.jornada} (${partido.temporada.split('/')[0]})`;
   document.getElementById('titulo-partido').innerText =
@@ -38,7 +78,7 @@ function cargarPartidoDinamico() {
   document.getElementById('subtitulo-partido').innerText =
     `${partido.competicion} · Jornada ${partido.jornada} · ${partido.temporada}`;
 
-  // 4. Rellenar el marcador
+  // Rellenar el marcador
   document.getElementById('escudo-local').src = partido.local.escudo;
   document.getElementById('nombre-local').innerText = partido.local.nombre;
 
@@ -52,7 +92,7 @@ function cargarPartidoDinamico() {
   document.getElementById('estadio-partido').innerHTML =
     `<i class="fas fa-map-marker-alt"></i> ${partido.estadio}`;
 
-  // 5. Rellenar alineaciones (Llamamos a una función auxiliar)
+  // Rellenar alineaciones
   renderizarAlineacion('alineacion-local', partido.local, 'Alineación Local');
   renderizarAlineacion(
     'alineacion-visitante',
@@ -78,26 +118,26 @@ function renderizarAlineacion(contenedorId, equipo, titulo) {
     }
 
     html += `
-            <div class="player-row">
-                <img src="${jugador.foto}" alt="${jugador.nombre}" class="player-photo">
-                <img src="${jugador.bandera}" alt="Bandera" class="player-flag">
-                <span class="player-name">${jugador.nombre}</span>
-                <div class="player-events">${eventosHtml}</div>
-            </div>
-        `;
+      <div class="player-row">
+        <img src="${jugador.foto}" alt="${jugador.nombre}" class="player-photo">
+        <img src="${jugador.bandera}" alt="Bandera" class="player-flag">
+        <span class="player-name">${jugador.nombre}</span>
+        <div class="player-events">${eventosHtml}</div>
+      </div>
+    `;
   });
 
   // Entrenador
   html += `
-        <div class="player-row coaches-row">
-            <img src="${equipo.entrenador.foto}" alt="${equipo.entrenador.nombre}" class="player-photo" style="border-radius: 50%;">
-            <img src="${equipo.entrenador.bandera}" alt="Bandera" class="player-flag">
-            <div class="player-name">
-                <span class="coach-label">Entrenador</span>
-                ${equipo.entrenador.nombre}
-            </div>
-        </div>
-    `;
+    <div class="player-row coaches-row">
+      <img src="${equipo.entrenador.foto}" alt="${equipo.entrenador.nombre}" class="player-photo" style="border-radius: 50%;">
+      <img src="${equipo.entrenador.bandera}" alt="Bandera" class="player-flag">
+      <div class="player-name">
+        <span class="coach-label">Entrenador</span>
+        ${equipo.entrenador.nombre}
+      </div>
+    </div>
+  `;
 
   contenedor.innerHTML = html;
 }
