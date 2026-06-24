@@ -968,6 +968,10 @@ const App = {
     let html = '';
     temporada.cuerpoTecnico.forEach((miembro) => {
       const entId = miembro.codigo || miembro.id;
+      const maestro =
+        (CLUB_DATA.entrenadorMaestro && CLUB_DATA.entrenadorMaestro[entId]) ||
+        {};
+      const displayName = maestro.apodo || miembro.apodo || miembro.nombre;
       const stats = miembro.estadisticas;
       const esTemporadaActual =
         this.temporadaActiva === CLUB_DATA.temporadaActual;
@@ -990,7 +994,7 @@ const App = {
             ${bajaBadgeHtml}
           </div>
           <div class="squad-info">
-            <h4 class="squad-name">${miembro.nombre}</h4>
+            <h4 class="squad-name">${displayName}</h4>
             <span class="squad-position">${translateCargo(miembro.cargo)}</span>
             <div class="squad-meta">
               <span><i class="fas fa-clipboard"></i> ${t('cuerpo_tecnico') || 'Cuerpo Técnico'}</span>
