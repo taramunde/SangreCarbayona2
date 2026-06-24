@@ -3115,6 +3115,20 @@ CLUB_DATA.entrenadorMaestro = {
       'https://i.postimg.cc/dQZzYx5v/Alvaro-Cervera-(entrenador)-PNG.webp',
   },
 
+  'juan-antonio-perez-alonso': {
+    nombre: 'Juan Antonio',
+    apellidos: 'Pérez Alonso',
+    nombreCompleto: 'Juan Antonio Pérez Alonso',
+    apodo: 'Bolo',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Bilbao',
+    provinciaNacimiento: 'Vizcaya',
+    fechaNacimiento: '1974-03-05',
+    imagen: 'https://i.postimg.cc/L6M0M6qB/Bolo-(entrenador)-PNG.webp',
+  },
+
   'julian-calero-fernandez': {
     nombre: 'Julián',
     apellidos: 'Calero Fernández',
