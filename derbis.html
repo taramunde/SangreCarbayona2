@@ -19,7 +19,21 @@
   </head>
   <body>
     <header class="main-header" id="header-placeholder"></header>
-
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
     <section class="page-header">
       <div class="page-header-bg">
         <img
@@ -86,6 +100,9 @@
 
     <footer class="main-footer" id="footer-placeholder"></footer>
 
+    <script src="js/data-club.js?nocache=20260426v6"></script>
+    <script src="js/data-jugadores.js?nocache=20260426v104"></script>
+    <script src="js/busqueda.js?nocache=20260614v4"></script>
     <script src="js/i18n.js?nocache=20260426v5"></script>
     <script src="js/main.js?nocache=20260426v5"></script>
     <script src="js/data-derbis.js?nocache=20260426v5"></script>
