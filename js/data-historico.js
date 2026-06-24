@@ -416,6 +416,62 @@ CLUB_DATA.temporadas['2022-23'] = {
 };
 
 // ===================================
+// TEMPORADA 2021/22
+// ===================================
+CLUB_DATA.temporadas['2021-22'] = {
+  competicion: 'Segunda División',
+  grupo: 'null',
+
+  estadisticasEquipo: {
+    posicion: 8,
+    desglose: {
+      'Segunda División': {
+        partidos:    42,
+        victorias:   16,
+        empates:     11,
+        derrotas:    15,
+        golesFavor:  34,
+        golesContra: 35,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    3,
+        victorias:   2,
+        empates:     0,
+        derrotas:    2,
+        golesFavor:  4,
+        golesContra: 4,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    { id: "joan-femenias-del-salto", codigo: "joan-femenias-del-salto", dorsal: 1, posicion: "Portero", enClubDesde: "2020", contratoHasta: "2022", stats: {}, partidos: [ { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2021-08-15", local: "Real Oviedo", visitante: "C.D. Lugo", golesLocal: 2, golesVisitante: 2, resultado: "E", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2021-08-20", local: "U.D. Almería", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 1, resultado: "D", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, { id: 3, jornada: 3, competicion: "Segunda División", fecha: "2021-08-28", local: "Real Oviedo", visitante: "C.D. Tenerife", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 4, jornada: 4, competicion: "Segunda División", fecha: "2021-09-06", local: "S.D. Huesca", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 2, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 5, jornada: 5, competicion: "Segunda División", fecha: "2021-09-12", local: "Real Oviedo", visitante: "F.C. Cartagena", golesLocal: 2, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 6, jornada: 6, competicion: "Segunda División", fecha: "2021-09-18", local: "U.D. Ibiza", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 7, jornada: 7, competicion: "Segunda División", fecha: "2021-09-26", local: "Real Oviedo", visitante: "Girona F.C.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 8, jornada: 8, competicion: "Segunda División", fecha: "2021-10-02", local: "Real Zaragoza", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 9, jornada: 9, competicion: "Segunda División", fecha: "2021-10-09", local: "Real Oviedo", visitante: "Real Sporting de Gijón", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 10, jornada: 10, competicion: "Segunda División", fecha: "2021-10-17", local: "Real Sociedad B", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 11, jornada: 11, competicion: "Segunda División", fecha: "2021-10-21", local: "Real Oviedo", visitante: "Burgos C.F.", golesLocal: 1, golesVisitante: 3, resultado: "D", minutos: 90, goles: 3, asistencias: 0, amarilla: false, roja: false }, { id: 12, jornada: 12, competicion: "Segunda División", fecha: "2021-10-24", local: "S.D. Ponferradina", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 2, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 13, jornada: 13, competicion: "Segunda División", fecha: "2021-10-31", local: "Real Oviedo", visitante: "Málaga C.F.", golesLocal: 2, golesVisitante: 1, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 14, jornada: 14, competicion: "Segunda División", fecha: "2021-11-03", local: "S.D. Eibar", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 0, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 15, jornada: 15, competicion: "Segunda División", fecha: "2021-11-06", local: "Real Oviedo", visitante: "U.D. Las Palmas", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 16, jornada: 16, competicion: "Segunda División", fecha: "2021-11-14", local: "C.D. Leganés", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 17, jornada: 17, competicion: "Segunda División", fecha: "2021-11-20", local: "Real Oviedo", visitante: "S.D. Amorebieta", golesLocal: 2, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 18, jornada: 18, competicion: "Segunda División", fecha: "2021-11-26", local: "C.D. Mirandés", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 19, jornada: 19, competicion: "Segunda División", fecha: "2021-12-05", local: "Real Oviedo", visitante: "A.D. Alcorcón", golesLocal: 3, golesVisitante: 1, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 20, jornada: 20, competicion: "Segunda División", fecha: "2021-12-12", local: "Real Valladolid", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 1, resultado: "D", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, { id: 21, jornada: 21, competicion: "Segunda División", fecha: "2021-12-19", local: "C.F. Fuenlabrada", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 22, jornada: 22, competicion: "Segunda División", fecha: "2021-12-31", local: "Real Oviedo", visitante: "S.D. Ponferradina", golesLocal: 2, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 23, jornada: 23, competicion: "Segunda División", fecha: "2022-01-10", local: "Real Oviedo", visitante: "S.D. Eibar", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 24, jornada: 24, competicion: "Segunda División", fecha: "2022-01-21", local: "C.D. Tenerife", visitante: "Real Oviedo", golesLocal: 4, golesVisitante: 0, resultado: "D", minutos: 90, goles: 4, asistencias: 0, amarilla: false, roja: false }, { id: 25, jornada: 25, competicion: "Segunda División", fecha: "2022-01-29", local: "Real Oviedo", visitante: "U.D. Almería", golesLocal: 2, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 26, jornada: 26, competicion: "Segunda División", fecha: "2022-02-06", local: "S.D. Amorebieta", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 27, jornada: 27, competicion: "Segunda División", fecha: "2022-02-13", local: "Real Oviedo", visitante: "S.D. Huesca", golesLocal: 3, golesVisitante: 3, resultado: "E", minutos: 90, goles: 3, asistencias: 0, amarilla: false, roja: false }, { id: 28, jornada: 28, competicion: "Segunda División", fecha: "2022-02-20", local: "Burgos C.F.", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 1, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 29, jornada: 29, competicion: "Segunda División", fecha: "2022-02-26", local: "Real Oviedo", visitante: "Real Sociedad B", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 30, jornada: 30, competicion: "Segunda División", fecha: "2022-03-06", local: "Girona F.C.", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 1, resultado: "D", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, { id: 31, jornada: 31, competicion: "Segunda División", fecha: "2022-03-13", local: "Real Oviedo", visitante: "Real Valladolid", golesLocal: 3, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 32, jornada: 32, competicion: "Segunda División", fecha: "2022-03-19", local: "C.D. Lugo", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 33, jornada: 33, competicion: "Segunda División", fecha: "2022-03-26", local: "Real Oviedo", visitante: "C.F. Fuenlabrada", golesLocal: 3, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 34, jornada: 34, competicion: "Segunda División", fecha: "2022-04-03", local: "F.C. Cartagena", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 2, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 35, jornada: 35, competicion: "Segunda División", fecha: "2022-04-10", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 1, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 36, jornada: 36, competicion: "Segunda División", fecha: "2022-04-16", local: "Real Sporting de Gijón", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 1, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 37, jornada: 37, competicion: "Segunda División", fecha: "2022-04-24", local: "A.D. Alcorcón", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 2, resultado: "V", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false }, { id: 38, jornada: 38, competicion: "Segunda División", fecha: "2022-04-30", local: "Real Oviedo", visitante: "C.D. Mirandés", golesLocal: 3, golesVisitante: 0, resultado: "V", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 39, jornada: 39, competicion: "Segunda División", fecha: "2022-05-07", local: "Málaga C.F.", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false }, { id: 40, jornada: 40, competicion: "Segunda División", fecha: "2022-05-16", local: "Real Oviedo", visitante: "Real Zaragoza", golesLocal: 3, golesVisitante: 3, resultado: "E", minutos: 90, goles: 3, asistencias: 0, amarilla: false, roja: false }, { id: 41, jornada: 41, competicion: "Segunda División", fecha: "2022-05-21", local: "U.D. Las Palmas", visitante: "Real Oviedo", golesLocal: 2, golesVisitante: 1, resultado: "D", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, { id: 42, jornada: 42, competicion: "Segunda División", fecha: "2022-05-29", local: "Real Oviedo", visitante: "U.D. Ibiza", golesLocal: 3, golesVisitante: 2, resultado: "V", minutos: 90, goles: 2, asistencias: 0, amarilla: false, roja: false }, ] },     
+
+    // DEFENSAS
+    
+
+
+
+    // CENTROCAMPISTAS
+    
+
+   // DELANTEROS
+    
+
+
+
+  ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+  ],
+};
+
+// ===================================
 // PRIMERA DIVISIÓN - HISTÓRICO
 // ===================================
 CLUB_DATA.primeraDivisionHistorico = {
