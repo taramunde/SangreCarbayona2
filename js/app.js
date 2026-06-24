@@ -236,6 +236,74 @@ function autoCalcularStatsJugador(jugador) {
   }
 }
 
+/* ===================================
+   HELPER: AUTOCÁLCULO DE ESTADÍSTICAS ENTRENADOR
+   Calcula partidos/victorias/empates/derrotas desde
+   el array partidos[] cuando estadisticas está vacío.
+   =================================== */
+function autoCalcularStatsEntrenador(ent) {
+  // Si ya tiene estadisticas con datos reales, las respetamos
+  if (
+    ent.estadisticas &&
+    typeof ent.estadisticas.partidos === 'number' &&
+    ent.estadisticas.partidos > 0
+  ) {
+    return;
+  }
+
+  // Inicializar siempre para evitar undefined
+  ent.estadisticas = {
+    partidos: 0,
+    victorias: 0,
+    empates: 0,
+    derrotas: 0,
+    golesFavor: 0,
+    golesContra: 0,
+    desglose: {},
+  };
+
+  if (!ent.partidos || ent.partidos.length === 0) return;
+
+  ent.partidos.forEach((p) => {
+    const comp = p.competicion || 'Otros';
+    if (!ent.estadisticas.desglose[comp]) {
+      ent.estadisticas.desglose[comp] = {
+        partidos: 0,
+        victorias: 0,
+        empates: 0,
+        derrotas: 0,
+        golesFavor: 0,
+        golesContra: 0,
+      };
+    }
+    const d = ent.estadisticas.desglose[comp];
+    d.partidos++;
+    ent.estadisticas.partidos++;
+
+    if (p.resultado === 'V') {
+      d.victorias++;
+      ent.estadisticas.victorias++;
+    } else if (p.resultado === 'E') {
+      d.empates++;
+      ent.estadisticas.empates++;
+    } else if (p.resultado === 'D') {
+      d.derrotas++;
+      ent.estadisticas.derrotas++;
+    }
+
+    // Calcular goles favor/contra según si el equipo jugó como local o visitante
+    const esLocal =
+      p.local === 'Real Oviedo' ||
+      (CLUB_DATA && p.local === CLUB_DATA.club.nombre);
+    const gf = esLocal ? p.golesLocal || 0 : p.golesVisitante || 0;
+    const gc = esLocal ? p.golesVisitante || 0 : p.golesLocal || 0;
+    d.golesFavor += gf;
+    d.golesContra += gc;
+    ent.estadisticas.golesFavor += gf;
+    ent.estadisticas.golesContra += gc;
+  });
+}
+
 const App = {
   temporadaActiva: null,
 
@@ -972,6 +1040,8 @@ const App = {
         (CLUB_DATA.entrenadorMaestro && CLUB_DATA.entrenadorMaestro[entId]) ||
         {};
       const displayName = maestro.apodo || miembro.apodo || miembro.nombre;
+      // Calcular estadísticas desde partidos[] si estadisticas está vacío
+      autoCalcularStatsEntrenador(miembro);
       const stats = miembro.estadisticas;
       const esTemporadaActual =
         this.temporadaActiva === CLUB_DATA.temporadaActual;
@@ -1232,6 +1302,7 @@ const App = {
       edadMostrar = edad;
     }
 
+    autoCalcularStatsEntrenador(ent);
     const stats = ent.estadisticas || {};
     const pj = stats.partidos || 0;
     const v = stats.victorias || 0;
