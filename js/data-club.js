@@ -57,6 +57,12 @@ const CLUB_DATA = {
       fotoPosition: 'center 25%',
       actual: false,
     },
+    {
+      id: '2021-22',
+      nombre: '2021/22',
+      fotoPosition: 'center 25%',
+      actual: false,
+    },
   ],
 };
 
