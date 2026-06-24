@@ -491,3 +491,83 @@
     font-size: 1.7rem;
   }
 }
+/* ===================================
+   FIX: page-header igual que videos.html
+   =================================== */
+
+/* Asegura que el contenedor sea relativo y tenga altura mínima */
+.page-header {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+/* La imagen de fondo ocupa todo el bloque */
+.page-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.page-header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay oscuro semitransparente (igual que videos) */
+.page-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 26, 110, 0.55);
+}
+
+/* El contenido va encima */
+.page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Breadcrumb blanco */
+.page-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.page-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.page-header .breadcrumb .current {
+  color: var(--secondary-color, #fdb913);
+  font-weight: 600;
+}
+
+.page-header .breadcrumb span {
+  margin: 0 6px;
+}
+
+/* Título grande en blanco */
+.page-header .page-title {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+/* Subtítulo */
+.page-header .page-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+}
