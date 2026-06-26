@@ -2297,7 +2297,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombreCompleto: 'Marco Sangalli Fuentes',
     apodo: 'Sangalli',
     posicion: 'Centrocampista',
-    posicionCorta: 'ED',
+    posicionCorta: 'MC',
     altura: 1.79,
     nacionalidad: ['Española'],
     lugarNacimiento: 'San Sebastián',
