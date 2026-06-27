@@ -426,8 +426,6 @@ CLUB_DATA.temporadas['2026-27'] = {
       posicion: 'Mediapunta',
       enClubDesde: '2020',
       contratoHasta: '2028',
-      estado: 'cedido',
-      cedidoEn: 'C.D. Mirandés, A.E.K. Larnaca',
       stats: {
         partidos: 0,
         goles: 0,
