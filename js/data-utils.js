@@ -30,6 +30,8 @@ const POSITION_GROUPS = {
       'Pivote',
       'Interior Derecho',
       'Interior Izquierdo',
+      'Medio Derecho',
+      'Medio Izquierdo',
     ],
     icon: 'fa-sync-alt',
   },
