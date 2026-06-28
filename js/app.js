@@ -1276,6 +1276,13 @@ const App = {
       {};
     const ent = miembro ? { ...maestro, ...miembro } : maestro;
 
+    // FIX: si no está en el cuerpoTecnico de esa temporada, cortar igual que jugadores
+    if (!miembro) {
+      container.innerHTML =
+        '<p style="text-align:center; padding:40px;">Entrenador no encontrado</p>';
+      return;
+    }
+
     if (!ent || (!ent.nombre && !ent.nombreCompleto)) {
       container.innerHTML =
         '<p style="text-align:center; padding:40px;">Entrenador no encontrado</p>';
