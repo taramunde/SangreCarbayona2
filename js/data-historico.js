@@ -484,7 +484,7 @@ CLUB_DATA.temporadas['2021-22'] = {
     { id: "miguel-angel-prendes-perez", codigo: "miguel-angel-prendes-perez", dorsal: 37, posicion: "Pivote", enClubDesde: "2021", contratoHasta: "2021", stats: {}, partidos: [ { id: 1, jornada: 23, competicion: "Segunda División", fecha: "2022-01-10", local: "Real Oviedo", visitante: "S.D. Eibar", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 22, goles: 0, asistencias: 0, amarilla: false, roja: false }, ] }, 
     { id: "david-iglesias-calero", codigo: "david-iglesias-calero", dorsal: "-", posicion: "Medio Derecho", enClubDesde: "2020", contratoHasta: "2022", estado: "baja", stats: {}, partidos: [ ] }, 
     { id: "guillermo-bernabeu-nortes", codigo: "guillermo-bernabeu-nortes", dorsal: "-", posicion: "Mediocentro", enClubDesde: "2020", contratoHasta: "2021", estado: "baja", stats: {}, partidos: [ ] }, 
-    { id: "ricardo-rodriguez-gil-carcedo", codigo: "ricardo-rodriguez-gil-carcedo", dorsal: 0, posicion: "Mediocentro", enClubDesde: "2019", contratoHasta: "2022", estado: "cedido", cedidoEn: "Burgos C.F., Albacete Balompié", stats: {}, partidos: [ ] }, 
+    { id: "ricardo-rodriguez-gil-carcedo", codigo: "ricardo-rodriguez-gil-carcedo", dorsal: "-", posicion: "Mediocentro", enClubDesde: "2019", contratoHasta: "2022", estado: "cedido", cedidoEn: "Burgos C.F., Albacete Balompié", stats: {}, partidos: [ ] }, 
 
     
    // DELANTEROS
