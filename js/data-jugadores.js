@@ -2710,6 +2710,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/8PzSR5ZP/Riki-PNG.webp',
   },
 
+  'david-iglesias-calero': {
+    nombre: 'David',
+    apellidos: 'Iglesias Calero',
+    nombreCompleto: 'David Iglesias Calero',
+    apodo: 'David Iglesias',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MD',
+    altura: 1.76,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Sama de Langreo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2000-04-13',
+    imagen: 'https://i.postimg.cc/prBDQkXr/David-Iglesias-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -3352,21 +3367,6 @@ CLUB_DATA.jugadoresMaestro = {
         },
       ],
     },
-  },
-
-  'david-iglesias-calero': {
-    nombre: 'David',
-    apellidos: 'Iglesias Calero',
-    nombreCompleto: 'David Iglesias Calero',
-    apodo: 'David Iglesias',
-    posicion: 'Delantero',
-    posicionCorta: 'ED',
-    altura: 1.76,
-    nacionalidad: ['Española'],
-    lugarNacimiento: 'Sama de Langreo',
-    provinciaNacimiento: 'Asturias',
-    fechaNacimiento: '2000-04-13',
-    imagen: 'https://i.postimg.cc/prBDQkXr/David-Iglesias-PNG.webp',
   },
 
   'vanderson-silva-teles': {
