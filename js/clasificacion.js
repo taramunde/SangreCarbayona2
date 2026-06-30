@@ -41,71 +41,73 @@
   const enfrentamientos = [
     // Jornada 1 (11 partidos en Segunda División)
     {
-      equipo1: 'Real Oviedo',
-      equipo2: 'Real Sporting de Gijón',
-      goles1: null,
-      goles2: null,
-    },
-    {
-      equipo1: 'Real Valladolid',
-      equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
-    },
-    {
-      equipo1: 'Real Sociedad B',
-      equipo2: 'R.C. Celta Fortuna',
-      goles1: null,
-      goles2: null,
-    },
-    {
-      equipo1: 'U.D. Las Palmas',
-      equipo2: 'U.D. Almería',
-      goles1: null,
-      goles2: null,
-    },
-    {
-      equipo1: 'S.D. Eibar',
-      equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
-    },
-    {
-      equipo1: 'Granada C.F.',
-      equipo2: 'Girona F.C.',
+      equipo1: 'U.D. Almería',
+      equipo2: 'C.D. Eldense',
       goles1: null,
       goles2: null,
     },
     {
       equipo1: 'F.C. Andorra',
+      equipo2: 'A.D. Ceuta F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
       equipo2: 'Córdoba C.F.',
       goles1: null,
       goles2: null,
     },
     {
       equipo1: 'Cádiz C.F.',
-      equipo2: 'C.E. Sabadell',
+      equipo2: 'R.C. Celta Fortuna',
       goles1: null,
       goles2: null,
     },
     {
-      equipo1: 'C.D. Tenerife',
+      equipo1: 'S.D. Eibar',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
       equipo2: 'C.D. Leganés',
       goles1: null,
       goles2: null,
     },
     {
-      equipo1: 'C.D. Eldense',
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
       equipo2: 'C.D. Castellón',
       goles1: null,
       goles2: null,
     },
     {
-      equipo1: 'Burgos C.F.',
-      equipo2: 'Albacete Balompié',
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'C.E. Sabadell',
       goles1: null,
       goles2: null,
     },
+
+    // Jornada 2
   ];
 
   // =====================================================
