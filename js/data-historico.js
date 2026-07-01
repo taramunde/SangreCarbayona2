@@ -581,7 +581,7 @@ CLUB_DATA.temporadas['2020-21'] = {
    { id: "ton-ripoll-i-solera", codigo: "ton-ripoll-i-solera", dorsal: 27, posicion: "Extremo Izquierdo", enClubDesde: "2020", contratoHasta: "2021", estado: "baja", stats: {}, partidos: [ ] }, 
    { id: "javier-cueto-suarez", codigo: "javier-cueto-suarez", dorsal: 29, posicion: "Delantero Centro", enClubDesde: "2016", contratoHasta: "2023", stats: {}, partidos: [ { id: 1, jornada: 2, competicion: "Segunda División", fecha: "2020-09-19", local: "C.D. Mirandés", visitante: "Real Oviedo", golesLocal: 1, golesVisitante: 1, resultado: "E", minutos: 11, goles: 0, asistencias: 0, amarilla: false, roja: false }, ] }, 
    { id: "vanderson-silva-teles", codigo: "vanderson-silva-teles", dorsal: "-", posicion: "Extremo Derecho", enClubDesde: "2019", contratoHasta: "2021", stats: {}, partidos: [ ] }, 
-   { id: "gassan-ahadme-yahyai", codigo: "gassan-ahadme-yahyai", dorsal: 0, posicion: "Delantero Centro", enClubDesde: "2020", contratoHasta: "2021", stats: {}, partidos: [ ] }, 
+   { id: "gassan-ahadme-yahyai", codigo: "gassan-ahadme-yahyai", dorsal: "-", posicion: "Delantero Centro", enClubDesde: "2020", contratoHasta: "2021", stats: {}, partidos: [ ] }, 
 
 
   ],
