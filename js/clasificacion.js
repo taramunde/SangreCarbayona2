@@ -35,11 +35,10 @@
   ];
 
   // --- PARTIDOS ---
-  // HE VACIADO EL HISTORIAL DE LA TEMPORADA PASADA.
-  // Al pasar a 11 partidos por jornada, el código viejo se rompería.
-  // Aquí tienes la estructura base de la Jornada 1 lista para rellenar.
+  // Calendario completo Temporada 2026/2027 - LaLiga Hypermotion
+  // 42 jornadas x 11 partidos (22 equipos)
   const enfrentamientos = [
-    // Jornada 1 (11 partidos en Segunda División)
+    // Jornada 1 (16/08/2026)
     {
       equipo1: 'U.D. Almería',
       equipo2: 'C.D. Eldense',
@@ -48,7 +47,7 @@
     },
     {
       equipo1: 'F.C. Andorra',
-      equipo2: 'A.D. Ceuta F.C.',
+      equipo2: 'A.D. Ceuta C.F.',
       goles1: null,
       goles2: null,
     },
@@ -107,14 +106,2800 @@
       goles2: null,
     },
 
-    // Jornada 2
+    // Jornada 2 (23/08/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 3 (30/08/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 4 (06/09/2026)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 5 (13/09/2026)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 6 (20/09/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 7 (27/09/2026)
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 8 (04/10/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 9 (11/10/2026)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 10 (18/10/2026)
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 11 (25/10/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 12 (01/11/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 13 (08/11/2026)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 14 (15/11/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 15 (22/11/2026)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 16 (29/11/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 17 (06/12/2026)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 18 (13/12/2026)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 19 (20/12/2026)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 20 (03/01/2027)
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 21 (10/01/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 22 (17/01/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 23 (24/01/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 24 (31/01/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 25 (07/02/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 26 (14/02/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 27 (21/02/2027)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 28 (28/02/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 29 (07/03/2027)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 30 (14/03/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 31 (21/03/2027)
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 32 (28/03/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 33 (04/04/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 34 (11/04/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 35 (18/04/2027)
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 36 (25/04/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 37 (02/05/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 38 (09/05/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 39 (16/05/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 40 (23/05/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 41 (30/05/2027)
+    {
+      equipo1: 'F.C. Andorra',
+      equipo2: 'Granada C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Burgos C.F.',
+      equipo2: 'S.D. Eibar',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Cádiz C.F.',
+      equipo2: 'C.D. Tenerife',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Castellón',
+      equipo2: 'Real Oviedo',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C. Celta Fortuna',
+      equipo2: 'C.D. Leganés',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Eldense',
+      equipo2: 'Real Valladolid',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Girona F.C.',
+      equipo2: 'A.D. Ceuta C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Las Palmas',
+      equipo2: 'Córdoba C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'R.C.D. Mallorca',
+      equipo2: 'Albacete Balompié',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sociedad B',
+      equipo2: 'C.E. Sabadell',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Sporting de Gijón',
+      equipo2: 'U.D. Almería',
+      goles1: null,
+      goles2: null,
+    },
+
+    // Jornada 42 (06/06/2027)
+    {
+      equipo1: 'Albacete Balompié',
+      equipo2: 'Cádiz C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'U.D. Almería',
+      equipo2: 'R.C.D. Mallorca',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'A.D. Ceuta C.F.',
+      equipo2: 'Burgos C.F.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Córdoba C.F.',
+      equipo2: 'Real Sporting de Gijón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'S.D. Eibar',
+      equipo2: 'Girona F.C.',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Granada C.F.',
+      equipo2: 'C.D. Eldense',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Leganés',
+      equipo2: 'Real Sociedad B',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Oviedo',
+      equipo2: 'F.C. Andorra',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.E. Sabadell',
+      equipo2: 'C.D. Castellón',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'C.D. Tenerife',
+      equipo2: 'R.C. Celta Fortuna',
+      goles1: null,
+      goles2: null,
+    },
+    {
+      equipo1: 'Real Valladolid',
+      equipo2: 'U.D. Las Palmas',
+      goles1: null,
+      goles2: null,
+    },
   ];
 
   // =====================================================
   // LÓGICA
   // =====================================================
 
-  const EQUIPOS_POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos (antes eran 10)
+  const EQUIPOS_POR_JORNADA = 11; // 22 equipos = 11 partidos
 
   function resetearEquipos() {
     equipos.forEach((eq) => {
@@ -188,7 +2973,7 @@
 
     equipos.forEach((eq) => {
       let claseZona = '';
-      // MODIFICADO: Puestos de Segunda División
+      // Puestos de Segunda División
       if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
       else if (eq.posicion <= 6) claseZona = 'pos-playoff';
       else if (eq.posicion >= 19) claseZona = 'pos-descenso';
@@ -231,7 +3016,6 @@
     const badge = document.getElementById('jornadaBadge');
     if (badge) {
       badge.removeAttribute('data-i18n');
-      // Actualizado texto a la nueva temporada
       badge.textContent =
         jornada > 0
           ? `${t('jornada')} ${jornada} · LaLiga Hypermotion 26/27`
@@ -313,7 +3097,6 @@
             borderColor: '#0033cc',
             backgroundColor: 'rgba(0, 51, 204, 0.08)',
             borderWidth: 3,
-            // MODIFICADO: Colores de los puntos adaptados a Segunda
             pointBackgroundColor: posiciones.map((p) =>
               p <= 2
                 ? '#2ecc71'
@@ -338,7 +3121,7 @@
           y: {
             reverse: true,
             min: 1,
-            max: 22, // MODIFICADO: Max posiciones a 22
+            max: 22,
             grid: { color: '#eef0f8' },
             ticks: { stepSize: 1, color: '#666' },
           },
@@ -370,7 +3153,6 @@
 
     tbody.innerHTML = '';
 
-    // MODIFICADO: Ahora obtenemos el top 6 en lugar del top 5, por el playoff.
     const top6 = equipos.slice(0, 6);
     const oviedo = equipos.find((eq) => eq.nombre === 'Real Oviedo');
     const oviedoEn6 = top6.some((eq) => eq.nombre === 'Real Oviedo');
@@ -387,7 +3169,6 @@
       }
 
       let claseZona = '';
-      // MODIFICADO: Zonas adaptadas a Segunda
       if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
       else if (eq.posicion <= 6) claseZona = 'pos-playoff';
       else if (eq.posicion >= 19) claseZona = 'pos-descenso';
