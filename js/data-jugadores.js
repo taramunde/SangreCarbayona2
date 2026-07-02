@@ -1339,6 +1339,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/zfG7pyyp/Ugarte-PNG.webp',
   },
 
+  'samuel-rodriguez-de-la-riva': {
+    nombre: 'Samuel',
+    apellidos: 'Rodríguez de la Riva',
+    nombreCompleto: 'Samuel Rodríguez de la Riva',
+    apodo: 'Samu Rodríguez',
+    posicion: 'Defensa',
+    posicionCorta: 'LI',
+    altura: 1.82,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2004-12-08',
+    imagen: 'https://i.postimg.cc/ydyg73fF/Samu-Rodriguez-PNG.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {

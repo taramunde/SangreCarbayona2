@@ -98,6 +98,24 @@ CLUB_DATA.temporadas['2026-27'] = {
     // DEFENSAS
 
     {
+      id: 'samuel-rodriguez-de-la-riva',
+      codigo: 'samuel-rodriguez-de-la-riva',
+      dorsal: '-',
+      posicion: 'Lateral Izquierdo',
+      enClubDesde: '2026',
+      contratoHasta: '2029',
+      stats: {
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      partidos: [],
+    },
+
+    {
       id: 'abdel-rahim-alhassane-bonkano',
       codigo: 'abdel-rahim-alhassane-bonkano',
       dorsal: 3,
