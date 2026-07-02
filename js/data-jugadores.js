@@ -3912,10 +3912,10 @@ CLUB_DATA.entrenadorMaestro = {
       datos: [
         {
           categoria: 'Absoluta',
-          partidos: 4,
+          partidos: 6,
           victorias: 2,
           empates: 0,
-          derrotas: 2,
+          derrotas: 4,
         },
         {
           categoria: 'Sub-20',
