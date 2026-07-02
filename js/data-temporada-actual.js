@@ -292,34 +292,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     // CENTROCAMPISTAS
 
     {
-      id: 'santiago-cazorla-gonzalez',
-      codigo: 'santiago-cazorla-gonzalez',
-      dorsal: 8,
-      posicion: 'Mediocentro',
-      enClubDesde: '2023',
-      contratoHasta: '2026',
-      stats: {
-        partidos: 0,
-        goles: 0,
-        asistencias: 0,
-        minutos: 0,
-        amarillas: 0,
-        rojas: 0,
-        desglose: {
-          'Segunda División': {
-            partidos: 0,
-            goles: 0,
-            asistencias: 0,
-            minutos: 0,
-            amarillas: 0,
-            rojas: 0,
-          },
-        },
-      },
-      partidos: [],
-    },
-
-    {
       id: 'haissem-hassan',
       codigo: 'haissem-hassan',
       dorsal: 10,
@@ -442,24 +414,6 @@ CLUB_DATA.temporadas['2026-27'] = {
       codigo: 'jose-luis-pereda-lopez',
       dorsal: 31,
       posicion: 'Mediocentro',
-      enClubDesde: '2024',
-      contratoHasta: '2026',
-      stats: {
-        partidos: 0,
-        goles: 0,
-        asistencias: 0,
-        minutos: 0,
-        amarillas: 0,
-        rojas: 0,
-      },
-      partidos: [],
-    },
-
-    {
-      id: 'diego-tejon-naves',
-      codigo: 'diego-tejon-naves',
-      dorsal: '-',
-      posicion: 'Mediapunta',
       enClubDesde: '2024',
       contratoHasta: '2026',
       stats: {
