@@ -111,7 +111,7 @@
                 class="home-clasi-jornada-badge"
                 id="homeJornadaBadge"
                 data-i18n="laliga_temporada"
-                >LaLiga 2025/26</span
+                >LaLiga</span
               >
             </div>
             <div class="home-clasi-table-scroll">
@@ -180,7 +180,8 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">
-            <span data-i18n="plantilla">Plantilla</span> 2025/26
+            <span data-i18n="plantilla">Plantilla</span>
+            <span id="plantillaSeasonLabel"></span>
           </h2>
           <a href="primer-equipo.html" class="view-all"
             ><span data-i18n="ver_plantilla">Ver plantilla completa</span>
@@ -267,6 +268,21 @@
     <script src="js/data-jugadores.js?nocache=20260426v117"></script>
     <script src="js/busqueda.js?nocache=20260614v4"></script>
     <script src="js/data-temporada-actual.js?nocache=20260426v95"></script>
+    <script>
+      // Rellena los textos de "temporada" del home a partir de CLUB_DATA.temporadaActualId,
+      // para no tener que tocar el HTML cada vez que cambia la temporada.
+      (function () {
+        var id = window.CLUB_DATA && CLUB_DATA.temporadaActualId; // p.ej. "2026-27"
+        if (!id) return;
+        var label = id.replace('-', '/'); // "2026-27" -> "2026/27"
+
+        var badge = document.getElementById('homeJornadaBadge');
+        if (badge) badge.textContent = 'LaLiga ' + label;
+
+        var plantillaLabel = document.getElementById('plantillaSeasonLabel');
+        if (plantillaLabel) plantillaLabel.textContent = label;
+      })();
+    </script>
     <script src="js/data-historico.js?nocache=20260526v159"></script>
     <script src="js/data-utils.js?nocache=20260426v6"></script>
     <script src="js/clasificacion.js?nocache=20260601v11"></script>

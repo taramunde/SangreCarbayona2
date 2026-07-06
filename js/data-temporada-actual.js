@@ -12,6 +12,10 @@ if (!CLUB_DATA.temporadas) {
   CLUB_DATA.temporadas = {}; // ← solo crea el objeto si no existe ya
 }
 
+// ← Fuente única de verdad: cambia SOLO este valor cada temporada nueva.
+// El resto del sitio (badges, títulos, etc.) lo lee de aquí automáticamente.
+CLUB_DATA.temporadaActualId = '2026-27';
+
 CLUB_DATA.temporadas['2026-27'] = {
   competicion: 'Segunda División',
   grupo: 'null',
