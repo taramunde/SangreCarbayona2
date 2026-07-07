@@ -432,24 +432,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'jose-luis-pereda-lopez',
-      codigo: 'jose-luis-pereda-lopez',
-      dorsal: 31,
-      posicion: 'Mediocentro',
-      enClubDesde: '2024',
-      contratoHasta: '2026',
-      stats: {
-        partidos: 0,
-        goles: 0,
-        asistencias: 0,
-        minutos: 0,
-        amarillas: 0,
-        rojas: 0,
-      },
-      partidos: [],
-    },
-
-    {
       id: 'diego-menendez-secades',
       codigo: 'diego-menendez-secades',
       dorsal: 32,

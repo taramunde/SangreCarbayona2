@@ -315,6 +315,54 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'mate-sauri': {
+    nombre: 'Mate',
+    apellidos: 'Sauri',
+    nombreCompleto: 'Mate Sauri',
+    apodo: 'Mate Sauri',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.9,
+    nacionalidad: ['Georgiana'],
+    lugarNacimiento: 'Tiflis',
+    provinciaNacimiento: 'Tiflis',
+    fechaNacimiento: '2006-06-06',
+    imagen: 'https://i.postimg.cc/3RDyDFm1/Mate-Sauri-PNG.webp',
+    seleccion: {
+      pais: 'Georgia',
+      bandera: 'https://flagcdn.com/16x12/ge.webp',
+      datos: [
+        {
+          categoria: 'U19',
+          partidos: 10,
+          goles: 14,
+          asistencias: 0,
+          minutos: 900,
+          amarillas: 3,
+          rojas: 0,
+        },
+        {
+          categoria: 'U18',
+          partidos: 3,
+          goles: 7,
+          asistencias: 0,
+          minutos: 270,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U17',
+          partidos: 1,
+          goles: 0,
+          asistencias: 0,
+          minutos: 90,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
@@ -3022,6 +3070,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/yYwGr8VH/Borja-Valle-PNG.webp',
   },
 
+  'guillermo-berzal-rueda': {
+    nombre: 'Guillermo',
+    apellidos: 'Berzal Rueda',
+    nombreCompleto: 'Guillermo Berzal Rueda',
+    apodo: 'Guille Berzal',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.75,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2005-01-11',
+    imagen: 'https://i.postimg.cc/0QTLrs1S/Guille-Berzal-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -3919,6 +3982,36 @@ CLUB_DATA.jugadoresMaestro = {
         },
       ],
     },
+  },
+
+  'joaquin-delgado-romero': {
+    nombre: 'Joaquín',
+    apellidos: 'Delgado Romero',
+    nombreCompleto: 'Joaquín Delgado Romero',
+    apodo: 'Joaquín Delgado',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.87,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Utrera',
+    provinciaNacimiento: 'Sevilla',
+    fechaNacimiento: '2002-03-26',
+    imagen: 'https://i.postimg.cc/vHf64LfS/Joaquin-Delgado-PNG.webp',
+  },
+
+  'jaime-coballes-fernandez': {
+    nombre: 'Jaime',
+    apellidos: 'Coballes Fernández',
+    nombreCompleto: 'Jaime Coballes Fernández',
+    apodo: 'Jaime Coballes',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.83,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2006-01-17',
+    imagen: 'https://i.postimg.cc/fkntHJnY/Jaime-Coballes.webp',
   },
 }; // fin jugadoresMaestro
 
