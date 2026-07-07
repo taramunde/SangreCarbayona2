@@ -1489,11 +1489,11 @@ CLUB_DATA.jugadoresMaestro = {
       datos: [
         {
           categoria: 'Absoluta',
-          partidos: 4,
+          partidos: 6,
           goles: 0,
-          asistencias: 0,
-          minutos: 164,
-          amarillas: 0,
+          asistencias: 1,
+          minutos: 260,
+          amarillas: 2,
           rojas: 0,
         },
       ],
