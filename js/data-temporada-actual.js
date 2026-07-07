@@ -649,9 +649,20 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'jaime-coballes-fernandez',
       codigo: 'jaime-coballes-fernandez',
-      dorsal: 0,
+      dorsal: '-',
       posicion: 'Delantero Centro',
       enClubDesde: '2016',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
+
+    {
+      id: 'victor-garcia-mingo',
+      codigo: 'victor-garcia-mingo',
+      dorsal: '-',
+      posicion: 'Delantero Centro',
+      enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
       partidos: [],

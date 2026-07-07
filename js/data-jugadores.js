@@ -4013,6 +4013,21 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '2006-01-17',
     imagen: 'https://i.postimg.cc/fkntHJnY/Jaime-Coballes.webp',
   },
+
+  'victor-garcia-mingo': {
+    nombre: 'Víctor',
+    apellidos: 'García Mingo',
+    nombreCompleto: 'Víctor García Mingo',
+    apodo: 'Víctor Mingo',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.88,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2003-07-25',
+    imagen: 'https://i.postimg.cc/JhyFSVxf/Victor-Mingo-PNG.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
