@@ -99,6 +99,17 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'mate-sauri',
+      codigo: 'mate-sauri',
+      dorsal: '-',
+      posicion: 'Portero',
+      enClubDesde: '2025',
+      contratoHasta: '2026',
+      stats: {},
+      partidos: [],
+    },
+
     // DEFENSAS
 
     {
@@ -521,6 +532,17 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'guillermo-berzal-rueda',
+      codigo: 'guillermo-berzal-rueda',
+      dorsal: '-',
+      posicion: 'Mediapunta',
+      enClubDesde: '2025',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
+
     // DELANTEROS
 
     {
@@ -610,6 +632,28 @@ CLUB_DATA.temporadas['2026-27'] = {
         amarillas: 0,
         rojas: 0,
       },
+      partidos: [],
+    },
+
+    {
+      id: 'joaquin-delgado-romero',
+      codigo: 'joaquin-delgado-romero',
+      dorsal: '-',
+      posicion: 'Delantero Centro',
+      enClubDesde: '2024',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
+
+    {
+      id: 'jaime-coballes-fernandez',
+      codigo: 'jaime-coballes-fernandez',
+      dorsal: 0,
+      posicion: 'Delantero Centro',
+      enClubDesde: '2016',
+      contratoHasta: '2028',
+      stats: {},
       partidos: [],
     },
   ],
