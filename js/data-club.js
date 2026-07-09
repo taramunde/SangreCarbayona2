@@ -69,6 +69,12 @@ const CLUB_DATA = {
       fotoPosition: 'center 25%',
       actual: false,
     },
+    {
+      id: '2019-20',
+      nombre: '2019/20',
+      fotoPosition: 'center 25%',
+      actual: false,
+    },
   ],
 };
 
