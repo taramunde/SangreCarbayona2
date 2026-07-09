@@ -1564,6 +1564,36 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/V6wjT2h4/Javi-Fernandez-PNG.webp',
   },
 
+  'jose-antonio-martinez-alvarez': {
+    nombre: 'José Antonio',
+    apellidos: 'Martínez Álvarez',
+    nombreCompleto: 'José Antonio Martínez Álvarez',
+    apodo: 'Josín',
+    posicion: 'Defensa',
+    posicionCorta: 'DC',
+    altura: 1.81,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1997-07-29',
+    imagen: 'https://i.postimg.cc/Px6P4cnC/Josin-PNG.webp',
+  },
+
+  'jeronimo-rodriguez-guemes': {
+    nombre: 'Jerónimo',
+    apellidos: 'Rodríguez Güemes',
+    nombreCompleto: 'Jerónimo Rodríguez Güemes',
+    apodo: 'Jero',
+    posicion: 'Defensa',
+    posicionCorta: 'LI',
+    altura: 1.8,
+    nacionalidad: ['Mejicana'],
+    lugarNacimiento: 'Ciudad de Méjico',
+    provinciaNacimiento: 'Ciudad de Méjico',
+    fechaNacimiento: '1999-03-25',
+    imagen: 'https://i.postimg.cc/g2680YFN/Jero-PNG.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -3325,6 +3355,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/zvgLdvGM/Lolo-Gonzalez-PNG-Alineacion.webp',
   },
 
+  'roberto-manuel-sierra-gimenez': {
+    nombre: 'Roberto Manuel',
+    apellidos: 'Sierra Giménez',
+    nombreCompleto: 'Roberto Manuel Sierra Giménez',
+    apodo: 'Rober Sierra',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCD',
+    altura: 1.81,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Valencia',
+    provinciaNacimiento: 'Valencia',
+    fechaNacimiento: '1996-05-21',
+    imagen: 'https://i.postimg.cc/jqXTnNQF/Rober-Sierra-PNG.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -4391,6 +4436,45 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  'steven-nicanor-prieto-morales': {
+    nombre: 'Steven Nicanor',
+    apellidos: 'Prieto Morales',
+    nombreCompleto: 'Steven Nicanor Prieto Morales',
+    apodo: 'Steven',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.81,
+    nacionalidad: ['Española', 'Colombiana'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1997-07-30',
+    imagen: 'https://i.postimg.cc/g2h9HB6N/Steven-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U17',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 72,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U16',
+          partidos: 3,
+          goles: 2,
+          asistencias: 0,
+          minutos: 169,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
@@ -4529,6 +4613,34 @@ CLUB_DATA.entrenadorMaestro = {
     provinciaNacimiento: 'Navarra',
     fechaNacimiento: '1966-10-01',
     imagen: 'https://i.postimg.cc/2SdYfK83/Ziganda-(entrenador)-PNG.webp',
+  },
+
+  'sergio-horacio-egea-rueda': {
+    nombre: 'Sergio Horacio',
+    apellidos: 'Egea Rueda',
+    nombreCompleto: 'Sergio Horacio Egea Rueda',
+    apodo: 'Sergio Egea',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Argentina', 'Española'],
+    lugarNacimiento: 'Necochea',
+    provinciaNacimiento: 'Buenos Aires',
+    fechaNacimiento: '1957-09-21',
+    imagen: 'https://i.postimg.cc/CxbhxKJh/Sergio-Egea-(entrenador)-PNG.webp',
+  },
+
+  'javier-fernandez-rozada-alvarez': {
+    nombre: 'Javier',
+    apellidos: 'Fernández-Rozada Álvarez',
+    nombreCompleto: 'Javier Fernández-Rozada Álvarez',
+    apodo: 'Javi Rozada',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1982-07-03',
+    imagen: 'https://i.postimg.cc/Bv1x6Hk8/Javi-Rozada-(entrenador)-PNG.webp',
   },
 };
 
