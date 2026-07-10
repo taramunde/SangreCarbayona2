@@ -2639,7 +2639,7 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'img/jugadores/Youness.webp',
     seleccion: {
       pais: 'Marruecos',
-      bandera: 'ma',
+      bandera: 'https://flagcdn.com/16x12/ma.webp',
       datos: [
         {
           categoria: 'U20',
