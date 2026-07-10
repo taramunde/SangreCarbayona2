@@ -1546,7 +1546,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '2004-12-08',
-    imagen: 'https://i.postimg.cc/ydyg73fF/Samu-Rodriguez-PNG.webp',
+    imagen: 'img/jugadores/SamuRodriguez.webp',
   },
 
   'javier-fernandez-hernandez': {
