@@ -2636,7 +2636,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'El Palmar',
     provinciaNacimiento: 'Murcia',
     fechaNacimiento: '1999-04-23',
-    imagen: 'https://i.postimg.cc/gJcrz9d0/Youness-PNG.webp',
+    imagen: 'img/jugadores/Youness.webp',
     seleccion: {
       pais: 'Marruecos',
       bandera: 'ma',
