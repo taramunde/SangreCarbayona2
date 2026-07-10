@@ -543,6 +543,17 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+      id: 'aritz-aldasoro-sarriegi',
+      codigo: 'aritz-aldasoro-sarriegi',
+      dorsal: 0,
+      posicion: 'Mediocentro',
+      enClubDesde: '2026',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
+
     // DELANTEROS
 
     {

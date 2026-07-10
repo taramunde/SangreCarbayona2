@@ -3370,6 +3370,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/jqXTnNQF/Rober-Sierra-PNG.webp',
   },
 
+  'aritz-aldasoro-sarriegi': {
+    nombre: 'Aritz',
+    apellidos: 'Aldasoro Sarriegi',
+    nombreCompleto: 'Aritz Aldasoro Sarriegi',
+    apodo: 'Aldasoro',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MC',
+    altura: 1.76,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Beasáin',
+    provinciaNacimiento: 'Guipúzcoa',
+    fechaNacimiento: '1999-06-05',
+    imagen: 'img/jugadores/Aldasoro.webp',
+  },
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
