@@ -4491,7 +4491,7 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
-  'alexandru-mihai-isfan-mihai-isfan': {
+  'alexandru-mihai-isfan': {
     nombre: 'Alexandru Mihai Ișfan',
     apellidos: 'Mihai Ișfan',
     nombreCompleto: 'Alexandru Mihai Ișfan Mihai Ișfan',
