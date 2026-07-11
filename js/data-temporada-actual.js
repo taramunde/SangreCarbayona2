@@ -681,7 +681,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'alexandru-mihai-isfan',
       codigo: 'alexandru-mihai-isfan',
-      dorsal: 0,
+      dorsal: '-',
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2028',
