@@ -4490,6 +4490,36 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  'alexandru-mihai-isfan-mihai-isfan': {
+    nombre: 'Alexandru Mihai Ișfan',
+    apellidos: 'Mihai Ișfan',
+    nombreCompleto: 'Alexandru Mihai Ișfan Mihai Ișfan',
+    apodo: 'Ișfan',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.87,
+    nacionalidad: ['Rumana'],
+    lugarNacimiento: 'Mioveni',
+    provinciaNacimiento: 'Muntenia',
+    fechaNacimiento: '2000-01-31',
+    imagen: 'https://i.postimg.cc/SRGT1NRw/Alexandru-Isfan.webp',
+    seleccion: {
+      pais: 'Rumanía',
+      bandera: 'https://flagcdn.com/16x12/ro.webp',
+      datos: [
+        {
+          categoria: 'U21',
+          partidos: 7,
+          goles: 0,
+          asistencias: 1,
+          minutos: 462,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
