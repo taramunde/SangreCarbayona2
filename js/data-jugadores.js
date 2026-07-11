@@ -4494,7 +4494,7 @@ CLUB_DATA.jugadoresMaestro = {
   'alexandru-mihai-isfan': {
     nombre: 'Alexandru Mihai Ișfan',
     apellidos: 'Mihai Ișfan',
-    nombreCompleto: 'Alexandru Mihai Ișfan Mihai Ișfan',
+    nombreCompleto: 'Alexandru Mihai Ișfan',
     apodo: 'Ișfan',
     posicion: 'Delantero',
     posicionCorta: 'DL',
@@ -4503,7 +4503,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Mioveni',
     provinciaNacimiento: 'Muntenia',
     fechaNacimiento: '2000-01-31',
-    imagen: 'https://i.postimg.cc/SRGT1NRw/Alexandru-Isfan.webp',
+    imagen: 'img/jugadores/Isfan.webp',
     seleccion: {
       pais: 'Rumanía',
       bandera: 'https://flagcdn.com/16x12/ro.webp',
