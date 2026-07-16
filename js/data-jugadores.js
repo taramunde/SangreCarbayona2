@@ -1594,6 +1594,51 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/g2680YFN/Jero-PNG.webp',
   },
 
+  "oswaldo-alanis-pantoja": {
+  nombre: "Oswaldo",
+  apellidos: "Alanís Pantoja",
+  nombreCompleto: "Oswaldo Alanís Pantoja",
+  apodo: "Alanís",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.83,
+  nacionalidad: ["Mejicana"],
+  lugarNacimiento: "Morelia",
+  provinciaNacimiento: "Michoacán de Ocampo",
+  fechaNacimiento: "1989-03-18",
+  imagen: "https://i.postimg.cc/g2MqxMn2/Alanis-PNG.webp",
+  seleccion: {
+    pais: "Méjico",
+    bandera: "https://flagcdn.com/16x12/mx.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 23,
+        goles: 2,
+        asistencias: 0,
+        minutos: 1372,
+        amarillas: 4,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"juan-daniel-forlin": {
+  nombre: "Juan Daniel",
+  apellidos: "Forlín",
+  nombreCompleto: "Juan Daniel Forlín",
+  apodo: "Forlín",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.8,
+  nacionalidad: ["Argentina", "Española"],
+  lugarNacimiento: "Reconquista",
+  provinciaNacimiento: "Santa Fe",
+  fechaNacimiento: "1988-01-10",
+  imagen: "https://i.postimg.cc/W3ZH6Rkn/Forlin-PNG.webp",
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -4687,6 +4732,19 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1982-07-03',
     imagen: 'https://i.postimg.cc/Bv1x6Hk8/Javi-Rozada-(entrenador)-PNG.webp',
   },
+  "juan-antonio-albacete-anquela": {
+  nombre: "Juan Antonio",
+  apellidos: "Albacete Anquela",
+  nombreCompleto: "Juan Antonio Albacete Anquela",
+  apodo: "Anquela",
+  cargo: "Entrenador Principal",
+  cargoCorto: "ENT",
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Linares",
+  provinciaNacimiento: "Jaén",
+  fechaNacimiento: "1957-09-11",
+  imagen: "https://i.postimg.cc/NFXVkKKL/Anquela-(entrenador)-PNG.webp",
+},
 };
 
 window.CLUB_DATA = CLUB_DATA;
