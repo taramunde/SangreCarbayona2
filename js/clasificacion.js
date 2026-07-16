@@ -3012,17 +3012,17 @@
   }
 
   function actualizarJornadaBadge() {
-  const jornada = getJornadaActual();
-  const badge = document.getElementById('jornadaBadge');
-  if (badge) {
-    badge.removeAttribute('data-i18n');
-    const label = CLUB_DATA.temporadaActual.replace('-', '/');
-    badge.textContent =
-      jornada > 0
-        ? `${t('jornada')} ${jornada} · ${CLUB_DATA.competicionActual} ${label}`
-        : `${CLUB_DATA.competicionActual} ${label}`;
+    const jornada = getJornadaActual();
+    const badge = document.getElementById('jornadaBadge');
+    if (badge) {
+      badge.removeAttribute('data-i18n');
+      const label = CLUB_DATA.temporadaActual.replace('-', '/');
+      badge.textContent =
+        jornada > 0
+          ? `${t('jornada')} ${jornada} · ${CLUB_DATA.competicionActual} ${label}`
+          : `${CLUB_DATA.competicionActual} ${label}`;
+    }
   }
-}
 
   // --- GRÁFICA ---
   function calcularPosicionJornada(jornadaLimite) {
@@ -3205,15 +3205,16 @@
     });
 
     const badge = document.getElementById('homeJornadaBadge');
-if (badge) {
-  badge.removeAttribute('data-i18n'); // ← esta faltaba
-  const j = getJornadaActual();
-  const label = CLUB_DATA.temporadaActual.replace('-', '/');
-  badge.textContent =
-    j > 0
-      ? `Jornada ${j} · ${CLUB_DATA.competicionActual} ${label}`
-      : `${CLUB_DATA.competicionActual} ${label}`;
-}
+    if (badge) {
+      badge.removeAttribute('data-i18n'); // ← esta faltaba
+      const j = getJornadaActual();
+      const label = CLUB_DATA.temporadaActual.replace('-', '/');
+      badge.textContent =
+        j > 0
+          ? `Jornada ${j} · ${CLUB_DATA.competicionActual} ${label}`
+          : `${CLUB_DATA.competicionActual} ${label}`;
+    }
+  }
 
   // --- INIT ---
   calcularEstadisticas(enfrentamientos);
