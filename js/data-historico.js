@@ -689,6 +689,64 @@ CLUB_DATA.temporadas['2019-20'] = {
 };
 
 // ===================================
+// TEMPORADA 2018/2019
+// ===================================
+CLUB_DATA.temporadas['2018-19'] = {
+  competicion: 'Segunda División',
+  grupo: 'null',
+
+  estadisticasEquipo: {
+    posicion: 8,
+    desglose: {
+      'Segunda División': {
+        partidos:    42,
+        victorias:   17,
+        empates:     12,
+        derrotas:    13,
+        golesFavor:  48,
+        golesContra: 48,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    1,
+        victorias:   0,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  0,
+        golesContra: 1,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+
+    // DEFENSAS
+    
+
+
+    // CENTROCAMPISTAS
+    
+    
+
+
+    // DELANTEROS
+   
+
+
+  ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+
+    
+ ],
+};
+
+// ===================================
 // PRIMERA DIVISIÓN - HISTÓRICO
 // ===================================
 CLUB_DATA.primeraDivisionHistorico = {
