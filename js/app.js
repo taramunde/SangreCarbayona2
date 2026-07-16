@@ -622,7 +622,7 @@ const App = {
       html += `
         <div class="hero-block">
             <div class="hero-label-row">
-                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> LaLiga EA Sports</span>
+                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> ${CLUB_DATA.competicionActual}</span>
                 <span class="hero-jornada-badge">${fechaStr}</span>
             </div>
             <div class="hero-scoreboard">

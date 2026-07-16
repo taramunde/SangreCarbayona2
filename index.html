@@ -272,12 +272,17 @@
       // Rellena los textos de "temporada" del home a partir de CLUB_DATA.temporadaActualId,
       // para no tener que tocar el HTML cada vez que cambia la temporada.
       (function () {
-        var id = window.CLUB_DATA && CLUB_DATA.temporadaActualId; // p.ej. "2026-27"
+        var id = window.CLUB_DATA && CLUB_DATA.temporadaActual; // p.ej. "2026-27"
         if (!id) return;
         var label = id.replace('-', '/'); // "2026-27" -> "2026/27"
+        var competicion =
+          (window.CLUB_DATA && CLUB_DATA.competicionActual) || 'LaLiga';
 
         var badge = document.getElementById('homeJornadaBadge');
-        if (badge) badge.textContent = 'LaLiga ' + label;
+        if (badge) {
+          badge.removeAttribute('data-i18n'); // evita que i18n.js lo pise después
+          badge.textContent = competicion + ' ' + label;
+        }
 
         var plantillaLabel = document.getElementById('plantillaSeasonLabel');
         if (plantillaLabel) plantillaLabel.textContent = label;
@@ -285,7 +290,7 @@
     </script>
     <script src="js/data-historico.js?nocache=20260526v176"></script>
     <script src="js/data-utils.js?nocache=20260426v6"></script>
-    <script src="js/clasificacion.js?nocache=20260601v11"></script>
+    <script src="js/clasificacion.js?nocache=20260601v12"></script>
     <script src="js/noticias.js?nocache=20260330v2"></script>
     <script src="js/app.js?nocache=20251231v183"></script>
     <script src="js/script.js?nocache=20251231v3"></script>

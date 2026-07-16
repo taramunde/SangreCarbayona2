@@ -22,6 +22,9 @@ const CLUB_DATA = {
     email: 'info@realoviedo.es',
   },
 
+  // Nombre de la competición actual (cambiar aquí si el equipo asciende/desciende)
+  competicionActual: 'LaLiga Hypermotion',
+
   // Temporada actual (por defecto)
   temporadaActual: '2026-27',
 
