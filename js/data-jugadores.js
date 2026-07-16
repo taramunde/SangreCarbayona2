@@ -1637,6 +1637,30 @@ CLUB_DATA.jugadoresMaestro = {
   provinciaNacimiento: "Santa Fe",
   fechaNacimiento: "1988-01-10",
   imagen: "https://i.postimg.cc/W3ZH6Rkn/Forlin-PNG.webp",
+  seleccion: {
+    pais: "Argentina",
+    bandera: "https://flagcdn.com/16x12/ar.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U20",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
 },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
