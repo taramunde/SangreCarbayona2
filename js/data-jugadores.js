@@ -1703,7 +1703,7 @@ CLUB_DATA.jugadoresMaestro = {
     posicion: 'Centrocampista',
     posicionCorta: 'MC',
     altura: 1.83,
-    nacionalidad: ['Ghanés'],
+    nacionalidad: ['Ghanesa'],
     lugarNacimiento: 'Wa',
     provinciaNacimiento: 'Región del Alto Oeste',
     fechaNacimiento: '1998-06-24',
