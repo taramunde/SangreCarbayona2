@@ -1663,6 +1663,21 @@ CLUB_DATA.jugadoresMaestro = {
   },
 },
 
+"carlos-martinez-diez": {
+  nombre: "Carlos",
+  apellidos: "Martínez Díez",
+  nombreCompleto: "Carlos Martínez Díez",
+  apodo: "Carlos Martínez",
+  posicion: "Defensa",
+  posicionCorta: "LD",
+  altura: 1.88,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Lodosa",
+  provinciaNacimiento: "Navarra",
+  fechaNacimiento: "1986-04-09",
+  imagen: "https://i.postimg.cc/sgSsXLnp/Carlos-Martinez-PNG.webp",
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -3454,6 +3469,117 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'img/jugadores/Aldasoro.webp',
   },
 
+  "aaron-niguez-esclapez": {
+  nombre: "Aarón",
+  apellidos: "Ñíguez Esclapez",
+  nombreCompleto: "Aarón Ñíguez Esclapez",
+  apodo: "Aarón Ñíguez",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.7,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Elche",
+  provinciaNacimiento: "Alicante",
+  fechaNacimiento: "1989-04-26",
+  imagen: "https://i.postimg.cc/524zJw9q/Aaron-Niguez-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U21",
+        partidos: 4,
+        goles: 1,
+        asistencias: 0,
+        minutos: 198,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U20",
+        partidos: 11,
+        goles: 7,
+        asistencias: 0,
+        minutos: 694,
+        amarillas: 2,
+        rojas: 0,
+      },
+      {
+        categoria: "U19",
+        partidos: 23,
+        goles: 8,
+        asistencias: 0,
+        minutos: 1563,
+        amarillas: 3,
+        rojas: 0,
+      },
+      {
+        categoria: "U17",
+        partidos: 10,
+        goles: 6,
+        asistencias: 0,
+        minutos: 665,
+        amarillas: 2,
+        rojas: 0,
+      },
+      {
+        categoria: "U16",
+        partidos: 4,
+        goles: 3,
+        asistencias: 0,
+        minutos: 210,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"ramon-folch-frigola": {
+  nombre: "Ramón",
+  apellidos: "Folch Frigola",
+  nombreCompleto: "Ramón Folch Frigola",
+  apodo: "Ramón Folch",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.83,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Reus",
+  provinciaNacimiento: "Tarragona",
+  fechaNacimiento: "1989-10-04",
+  imagen: "https://i.postimg.cc/nzKJkQ8M/Ramon-Folch-PNG.webp",
+},
+
+"richard-boateng-welbeck": {
+  nombre: "Richard Boateng",
+  apellidos: "Welbeck",
+  nombreCompleto: "Richard Boateng Welbeck",
+  apodo: "Richard Boateng",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.8,
+  nacionalidad: ["Ghanesa", "Española"],
+  lugarNacimiento: "Accra",
+  provinciaNacimiento: "Gran Accra",
+  fechaNacimiento: "1992-07-10",
+  imagen: "https://i.postimg.cc/J01Wd4mx/Richard-Boateng-PNG.webp",
+  seleccion: {
+    pais: "Ghana",
+    bandera: "https://flagcdn.com/16x12/gh.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 5,
+        goles: 0,
+        asistencias: 0,
+        minutos: 265,
+        amarillas: 0,
+        rojas: 1,
+      }
+    ],
+  },
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -4589,6 +4715,45 @@ CLUB_DATA.jugadoresMaestro = {
       ],
     },
   },
+
+  "jose-verdu-nicolas": {
+  nombre: "José",
+  apellidos: "Verdú Nicolás",
+  nombreCompleto: "José Verdú Nicolás",
+  apodo: "Toché",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.86,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Santomera",
+  provinciaNacimiento: "Murcia",
+  fechaNacimiento: "1983-01-01",
+  imagen: "https://i.postimg.cc/wMrPhhqC/Toche-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U20",
+        partidos: 4,
+        goles: 2,
+        asistencias: 0,
+        minutos: 200,
+        amarillas: 1,
+        rojas: 0,
+      },
+      {
+        categoria: "U16",
+        partidos: 5,
+        goles: 3,
+        asistencias: 0,
+        minutos: 381,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
