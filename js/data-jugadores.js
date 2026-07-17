@@ -525,6 +525,22 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  "gorka-giralt-amotxategi": {
+  nombre: "Gorka",
+  apellidos: "Giralt Amotxategi",
+  nombreCompleto: "Gorka Giralt Amotxategi",
+  apodo: "Gorka Giralt",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.9,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "San Sebastián",
+  provinciaNacimiento: "Guipúzcoa",
+  fechaNacimiento: "1995-09-18",
+  imagen: "https://i.postimg.cc/7Y6X4GHz/Gorka-Giralt-PNG.webp",
+},
+
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
@@ -1676,6 +1692,51 @@ CLUB_DATA.jugadoresMaestro = {
   provinciaNacimiento: "Navarra",
   fechaNacimiento: "1986-04-09",
   imagen: "https://i.postimg.cc/sgSsXLnp/Carlos-Martinez-PNG.webp",
+},
+
+"alejandro-prendes-reina": {
+  nombre: "Alejandro",
+  apellidos: "Prendes Reina",
+  nombreCompleto: "Alejandro Prendes Reina",
+  apodo: "Prendes",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.88,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Avilés",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1997-04-12",
+  imagen: "https://i.postimg.cc/nL4dCKbR/Prendes-PNG.webp",
+},
+
+"javier-hernandez-carrera": {
+  nombre: "Javier",
+  apellidos: "Hernández Carrera",
+  nombreCompleto: "Javier Hernández Carrera",
+  apodo: "Javi Hernández",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.8,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Jerez de la Frontera",
+  provinciaNacimiento: "Cádiz",
+  fechaNacimiento: "1998-05-02",
+  imagen: "https://i.postimg.cc/0jWDzjyH/Javi-Hernandez-PNG.webp",
+},
+
+"ruben-lobato-cabal": {
+  nombre: "Rubén",
+  apellidos: "Lobato Cabal",
+  nombreCompleto: "Rubén Lobato Cabal",
+  apodo: "Lobato",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.8,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Madrid",
+  provinciaNacimiento: "Madrid",
+  fechaNacimiento: "1994-03-09",
+  imagen: "https://i.postimg.cc/zB3JJG4f/Lobato-PNG.webp",
 },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
@@ -3575,6 +3636,36 @@ CLUB_DATA.jugadoresMaestro = {
         minutos: 265,
         amarillas: 0,
         rojas: 1,
+      }
+    ],
+  },
+},
+
+"javier-munoz-jimenez": {
+  nombre: "Javier",
+  apellidos: "Muñoz Jiménez",
+  nombreCompleto: "Javier Muñoz Jiménez",
+  apodo: "Javi Muñoz",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.77,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Parla",
+  provinciaNacimiento: "Madrid",
+  fechaNacimiento: "1995-02-28",
+  imagen: "https://i.postimg.cc/gjvPgXfn/Javi-Munoz-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U19",
+        partidos: 1,
+        goles: 0,
+        asistencias: 0,
+        minutos: 44,
+        amarillas: 0,
+        rojas: 0,
       }
     ],
   },
