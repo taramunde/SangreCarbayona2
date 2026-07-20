@@ -58,7 +58,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'miguel-de-jesus-narvaez-lopez',
       codigo: 'miguel-de-jesus-narvaez-lopez',
-      dorsal: 26,
+      dorsal: 1,
       enClubDesde: '2024',
       contratoHasta: '2027',
       stats: {},
@@ -81,7 +81,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'samuel-rodriguez-de-la-riva',
       codigo: 'samuel-rodriguez-de-la-riva',
-      dorsal: '-',
+      dorsal: 15,
       posicion: 'Lateral Izquierdo',
       enClubDesde: '2026',
       contratoHasta: '2029',
@@ -136,7 +136,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'ignacio-vidal-miralles',
       codigo: 'ignacio-vidal-miralles',
-      dorsal: 5,
+      dorsal: 22,
       posicion: 'Lateral Derecho',
       enClubDesde: '2025',
       contratoHasta: '2027',
@@ -158,7 +158,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'aisar-ahmed-ahmed',
       codigo: 'aisar-ahmed-ahmed',
-      dorsal: '-',
+      dorsal: 2,
       posicion: 'Lateral Derecho',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -166,7 +166,55 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+  id: "marco-esteban-fernandez",
+  codigo: "marco-esteban-fernandez",
+  dorsal: 30,
+  posicion: "Central",
+  enClubDesde: "2023",
+  contratoHasta: "2028",
+  stats: {},
+  partidos: [
+  ]
+},
+
+{
+  id: "chukwuma-eze",
+  codigo: "chukwuma-eze",
+  dorsal: 25,
+  posicion: "Central",
+  enClubDesde: "2024",
+  contratoHasta: "2028",
+  stats: {},
+  partidos: [
+  ]
+},
+
+{
+  id: "diego-espinosa-garcia-de-muro",
+  codigo: "diego-espinosa-garcia-de-muro",
+  dorsal: "-",
+  posicion: "Central",
+  enClubDesde: "2025",
+  contratoHasta: "2029",
+  stats: {},
+  partidos: [
+  ]
+},
+
     // CENTROCAMPISTAS
+    
+    {
+  id: "alberto-reina-campos",
+  codigo: "alberto-reina-campos",
+  dorsal: 6,
+  posicion: "Mediocentro",
+  enClubDesde: "2025",
+  contratoHasta: "2027",
+  stats: {},
+  partidos: [
+  ]
+},
 
     {
       id: 'haissem-hassan',
@@ -182,7 +230,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'brandon-jose-domingues',
       codigo: 'brandon-jose-domingues',
-      dorsal: 17,
+      dorsal: "-",
       posicion: 'Mediocentro',
       enClubDesde: '2025',
       contratoHasta: '2028',
@@ -204,7 +252,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'alejandro-suarez-cardero',
       codigo: 'alejandro-suarez-cardero',
-      dorsal: 27,
+      dorsal: 11,
       posicion: 'Mediapunta',
       enClubDesde: '2020',
       contratoHasta: '2028',
@@ -215,7 +263,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'diego-menendez-secades',
       codigo: 'diego-menendez-secades',
-      dorsal: 32,
+      dorsal: 28,
       posicion: 'Mediocentro',
       enClubDesde: '2023',
       contratoHasta: '2027',
@@ -226,7 +274,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'pablo-menendez-agudin',
       codigo: 'pablo-menendez-agudin',
-      dorsal: 27,
+      dorsal: "-",
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2029',
@@ -237,7 +285,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'youness-lachhab',
       codigo: 'youness-lachhab',
-      dorsal: '-',
+      dorsal: 5,
       posicion: 'Mediocentro',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -248,7 +296,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'enzo-perez-miranda',
       codigo: 'enzo-perez-miranda',
-      dorsal: '-',
+      dorsal: 32,
       posicion: 'Mediocentro Ofensivo',
       enClubDesde: '2025',
       contratoHasta: '2027',
@@ -259,7 +307,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'guillermo-berzal-rueda',
       codigo: 'guillermo-berzal-rueda',
-      dorsal: '-',
+      dorsal: 33,
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2027',
@@ -270,7 +318,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'aritz-aldasoro-sarriegi',
       codigo: 'aritz-aldasoro-sarriegi',
-      dorsal: '-',
+      dorsal: 16,
       posicion: 'Mediocentro',
       enClubDesde: '2026',
       contratoHasta: '2027',
@@ -294,7 +342,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'daniel-george-paraschiv',
       codigo: 'daniel-george-paraschiv',
-      dorsal: '-',
+      dorsal: 14,
       posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2027',
@@ -305,7 +353,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'jacobo-gonzalez-rodriganez',
       codigo: 'jacobo-gonzalez-rodriganez',
-      dorsal: '-',
+      dorsal: 23,
       posicion: 'Extremo Izquierdo',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -316,7 +364,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'pablo-saenz-ezquerra',
       codigo: 'pablo-saenz-ezquerra',
-      dorsal: '-',
+      dorsal: 20,
       posicion: 'Extremo Derecho',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -327,7 +375,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'joaquin-delgado-romero',
       codigo: 'joaquin-delgado-romero',
-      dorsal: '-',
+      dorsal: 19,
       posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2028',
@@ -360,7 +408,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'alexandru-mihai-isfan',
       codigo: 'alexandru-mihai-isfan',
-      dorsal: '-',
+      dorsal: 24,
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2028',
