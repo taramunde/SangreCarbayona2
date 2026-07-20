@@ -1349,7 +1349,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Ceuta',
     provinciaNacimiento: 'Ceuta',
     fechaNacimiento: '2001-07-02',
-    imagen: 'https://i.postimg.cc/xCKyWsn9/Aisar-Ahmed-PNG.webp',
+    imagen: 'img/jugadores/Aisar.webp',
   },
 
   'simone-damiano-grippo': {
