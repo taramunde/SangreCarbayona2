@@ -4845,6 +4845,21 @@ CLUB_DATA.jugadoresMaestro = {
     ],
   },
 },
+
+"christopher-ramos-de-la-flor": {
+  nombre: "Christopher",
+  apellidos: "Ramos de la Flor",
+  nombreCompleto: "Christopher Ramos de la Flor",
+  apodo: "Chris Ramos",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.9,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Cádiz",
+  provinciaNacimiento: "Cádiz",
+  fechaNacimiento: "1997-01-18",
+  imagen: "img/jugadores/ChrisRamos.webp",
+},
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
