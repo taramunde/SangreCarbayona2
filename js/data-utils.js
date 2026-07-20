@@ -16,7 +16,14 @@ const POSITION_GROUPS = {
   },
   defender: {
     key: 'defensas',
-    positions: ['Defensa', 'Central', 'Lateral Derecho', 'Lateral Izquierdo'],
+    positions: [
+      'Defensa', 
+      'Carrilero Derecho', 
+      'Carrilero Izquierdo', 
+      'Central', 
+      'Lateral Derecho', 
+      'Lateral Izquierdo', 
+      'Líbero'],
     icon: 'fa-shield-alt',
   },
   midfielder: {
@@ -24,10 +31,11 @@ const POSITION_GROUPS = {
     positions: [
       'Centrocampista',
       'Mediocentro',
+      'Medio Volante',
       'Mediocentro Defensivo',
+      'Pivote',
       'Mediocentro Ofensivo',
       'Mediapunta',
-      'Pivote',
       'Interior Derecho',
       'Interior Izquierdo',
       'Medio Derecho',
@@ -40,8 +48,13 @@ const POSITION_GROUPS = {
     positions: [
       'Delantero',
       'Delantero Centro',
+      'Ariete',
+      'Segundo Delantero',
+      'Falso 9',
       'Extremo Derecho',
       'Extremo Izquierdo',
+      'Ala Derecha',
+      'Ala Izquierda',
     ],
     icon: 'fa-bullseye',
   },
