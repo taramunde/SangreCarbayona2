@@ -540,6 +540,20 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.postimg.cc/7Y6X4GHz/Gorka-Giralt-PNG.webp",
 },
 
+"juan-carlos-sanchez-martinez": {
+  nombre: "Juan Carlos",
+  apellidos: "Sánchez Martínez",
+  nombreCompleto: "Juan Carlos Sánchez Martínez",
+  apodo: "Juan Carlos",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.82,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Calviá",
+  provinciaNacimiento: "Islas Baleares",
+  fechaNacimiento: "1987-07-27",
+  imagen: "https://i.postimg.cc/d1sr9pDC/Juan-Carlos-PNG.webp",
+},
 
   // ── DEFENSAS ──────────────────────────────────────────────
 
@@ -1737,6 +1751,69 @@ CLUB_DATA.jugadoresMaestro = {
   provinciaNacimiento: "Madrid",
   fechaNacimiento: "1994-03-09",
   imagen: "https://i.postimg.cc/zB3JJG4f/Lobato-PNG.webp",
+},
+
+"francisco-miguel-varela-martin": {
+  nombre: "Francisco Miguel",
+  apellidos: "Varela Martín",
+  nombreCompleto: "Francisco Miguel Varela Martín",
+  apodo: "Varela",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.74,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Atarfe",
+  provinciaNacimiento: "Granada",
+  fechaNacimiento: "1994-10-26",
+  imagen: "https://i.postimg.cc/ryrJhXp6/Varela-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U21",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U20",
+        partidos: 4,
+        goles: 0,
+        asistencias: 0,
+        minutos: 289,
+        amarillas: 1,
+        rojas: 1,
+      },
+      {
+        categoria: "U19",
+        partidos: 6,
+        goles: 0,
+        asistencias: 0,
+        minutos: 369,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"hector-verdes-ortega": {
+  nombre: "Héctor",
+  apellidos: "Verdés Ortega",
+  nombreCompleto: "Héctor Verdés Ortega",
+  apodo: "Verdés",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Villar del Arzobispo",
+  provinciaNacimiento: "Valencia",
+  fechaNacimiento: "1984-06-24",
+  imagen: "https://i.postimg.cc/CLp4XPZR/Verdes-PNG.webp",
 },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
@@ -3671,6 +3748,126 @@ CLUB_DATA.jugadoresMaestro = {
   },
 },
 
+"matej-pucko": {
+  nombre: "Matej",
+  apellidos: "Pučko",
+  nombreCompleto: "Matej Pučko",
+  apodo: "Pučko",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.75,
+  nacionalidad: ["Eslovena"],
+  lugarNacimiento: "Murska Sobota",
+  provinciaNacimiento: "Pomurska",
+  fechaNacimiento: "1993-10-06",
+  imagen: "https://i.postimg.cc/Gm9bC2DS/Pucko-PNG.webp",
+  seleccion: {
+    pais: "Eslovenia",
+    bandera: "https://flagcdn.com/16x12/si.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 2,
+        goles: 0,
+        asistencias: 0,
+        minutos: 135,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U21",
+        partidos: 13,
+        goles: 2,
+        asistencias: 1,
+        minutos: 632,
+        amarillas: 1,
+        rojas: 0,
+      },
+      {
+        categoria: "U19",
+        partidos: 5,
+        goles: 1,
+        asistencias: 0,
+        minutos: 446,
+        amarillas: 2,
+        rojas: 0,
+      },
+      {
+        categoria: "U17",
+        partidos: 1,
+        goles: 0,
+        asistencias: 0,
+        minutos: 90,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"jorge-ortiz-mendoza": {
+  nombre: "Jorge",
+  apellidos: "Ortiz Mendoza",
+  nombreCompleto: "Jorge Ortiz Mendoza",
+  apodo: "Jorge Ortiz",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.73,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Villacañas",
+  provinciaNacimiento: "Toledo",
+  fechaNacimiento: "1992-04-25",
+  imagen: "https://i.postimg.cc/Pr4gNjhs/Jorge-Ortiz-PNG.webp",
+},
+
+"yaw-yeboah": {
+  nombre: "Yaw",
+  apellidos: "Yeboah",
+  nombreCompleto: "Yaw Yeboah",
+  apodo: "Yeboah",
+  posicion: "Centrocampista",
+  posicionCorta: "MCD",
+  altura: 1.75,
+  nacionalidad: ["Ghanesa"],
+  lugarNacimiento: "Accra",
+  provinciaNacimiento: "Gran Accra",
+  fechaNacimiento: "1997-03-28",
+  imagen: "https://i.postimg.cc/K8mJkkfJ/Yeboah-PNG.webp",
+  seleccion: {
+    pais: "Ghana",
+    bandera: "https://flagcdn.com/16x12/gh.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 4,
+        goles: 0,
+        asistencias: 0,
+        minutos: 200,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U23",
+        partidos: 5,
+        goles: 2,
+        asistencias: 0,
+        minutos: 366,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U20",
+        partidos: 10,
+        goles: 5,
+        asistencias: 0,
+        minutos: 814,
+        amarillas: 2,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -4860,6 +5057,22 @@ CLUB_DATA.jugadoresMaestro = {
   fechaNacimiento: "1997-01-18",
   imagen: "img/jugadores/ChrisRamos.webp",
 },
+
+"miguel-linares-colera": {
+  nombre: "Miguel",
+  apellidos: "Linares Cólera",
+  nombreCompleto: "Miguel Linares Cólera",
+  apodo: "Linares",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.81,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Fuentes de Ebro",
+  provinciaNacimiento: "Zaragoza",
+  fechaNacimiento: "1982-09-30",
+  imagen: "https://i.postimg.cc/Z5smwyf5/Linares-PNG.webp",
+},
+
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
