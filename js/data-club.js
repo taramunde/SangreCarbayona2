@@ -84,6 +84,12 @@ const CLUB_DATA = {
       fotoPosition: 'center 10%',
       actual: false,
     },
+    {
+      id: '2017-18',
+      nombre: '2017/18',
+      fotoPosition: 'center 25%',
+      actual: false,
+    },
   ],
 };
 
