@@ -426,6 +426,19 @@ CLUB_DATA.temporadas['2026-27'] = {
   stats: {},
   partidos: []
 },
+
+  {
+  id: "daniel-villahermosa-martinez",
+  codigo: "daniel-villahermosa-martinez",
+  dorsal: "-",
+  posicion: "Mediocentro",
+  enClubDesde: "2026",
+  contratoHasta: "2027",
+  stats: {},
+  partidos: [
+  ]
+},  
+
   ],
 
   // ENTRENADORES
