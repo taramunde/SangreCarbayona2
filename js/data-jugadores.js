@@ -2216,7 +2216,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Grenoble',
     provinciaNacimiento: 'Auvernia-Ródano-Alpes',
     fechaNacimiento: '2000-06-06',
-    imagen: 'https://i.postimg.cc/rpTPMZ0Z/Brandon-Domingues-PNG.webp',
+    imagen: 'img/jugadores/BrandonDomingues.webp',
   },
 
   'josip-brekalo': {
