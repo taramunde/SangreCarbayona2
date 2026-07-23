@@ -90,17 +90,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'abdel-rahim-alhassane-bonkano',
-      codigo: 'abdel-rahim-alhassane-bonkano',
-      dorsal: 3,
-      posicion: 'Lateral Izquierdo',
-      enClubDesde: '2024',
-      contratoHasta: '2028',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'david-costas-cordal',
       codigo: 'david-costas-cordal',
       dorsal: 4,
