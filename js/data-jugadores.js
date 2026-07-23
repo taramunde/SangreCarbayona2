@@ -4162,6 +4162,22 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.postimg.cc/J0yLZYQc/Guille-PNG.webp",
 },
 
+"daniel-villahermosa-martinez": {
+  nombre: "Daniel",
+  apellidos: "Villahermosa Martínez",
+  nombreCompleto: "Daniel Villahermosa Martínez",
+  apodo: "Dani Villahermosa",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.72,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Barcelona",
+  provinciaNacimiento: "Barcelona",
+  fechaNacimiento: "2001-01-02",
+  imagen: "img/jugadores/DaniVillahermosa.webp",
+},
+
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
