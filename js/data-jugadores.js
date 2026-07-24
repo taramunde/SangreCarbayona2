@@ -1568,7 +1568,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombre: 'Samuel',
     apellidos: 'Rodríguez de la Riva',
     nombreCompleto: 'Samuel Rodríguez de la Riva',
-    apodo: 'Samu',
+    apodo: 'Samu Rodríguez',
     posicion: 'Defensa',
     posicionCorta: 'LI',
     altura: 1.82,
@@ -1934,6 +1934,21 @@ CLUB_DATA.jugadoresMaestro = {
   provinciaNacimiento: "Asturias",
   fechaNacimiento: "1995-10-04",
   imagen: "https://i.postimg.cc/FKBMVgn9/Emilio-Morilla-PNG.webp",
+},
+
+"juan-cruz-alvaro-armada": {
+  nombre: "Juan Cruz",
+  apellidos: "Álvaro Armada",
+  nombreCompleto: "Juan Cruz Álvaro Armada",
+  apodo: "Juan Cruz",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.82,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Madrid",
+  provinciaNacimiento: "Madrid",
+  fechaNacimiento: "1992-07-28",
+  imagen: "img/jugadores/JuanCruz.webp",
 },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────

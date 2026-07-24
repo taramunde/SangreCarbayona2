@@ -90,6 +90,18 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
+  id: "juan-cruz-alvaro-armada",
+  codigo: "juan-cruz-alvaro-armada",
+  dorsal: "-",
+  posicion: "Lateral Izquierdo",
+  enClubDesde: "2026",
+  contratoHasta: "2028",
+  stats: {},
+  partidos: [
+  ]
+},
+
+    {
       id: 'david-costas-cordal',
       codigo: 'david-costas-cordal',
       dorsal: 4,
