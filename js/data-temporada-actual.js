@@ -300,7 +300,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       dorsal: 32,
       posicion: 'Mediocentro Ofensivo',
       enClubDesde: '2025',
-      contratoHasta: '2027',
+      contratoHasta: '2029',
       stats: {},
       partidos: [],
     },
@@ -326,6 +326,18 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [],
     },
+
+    {
+  id: "daniel-villahermosa-martinez",
+  codigo: "daniel-villahermosa-martinez",
+  dorsal: "-",
+  posicion: "Mediocentro",
+  enClubDesde: "2026",
+  contratoHasta: "2027",
+  stats: {},
+  partidos: [
+  ]
+},  
 
     // DELANTEROS
 
@@ -429,16 +441,16 @@ CLUB_DATA.temporadas['2026-27'] = {
 },
 
   {
-  id: "daniel-villahermosa-martinez",
-  codigo: "daniel-villahermosa-martinez",
+  id: "carlos-fernandez-luna",
+  codigo: "carlos-fernandez-luna",
   dorsal: "-",
-  posicion: "Mediocentro",
+  posicion: "Delantero Centro",
   enClubDesde: "2026",
   contratoHasta: "2027",
   stats: {},
   partidos: [
   ]
-},  
+},
 
   ],
 

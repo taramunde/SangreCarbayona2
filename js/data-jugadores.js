@@ -5515,6 +5515,54 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.postimg.cc/G2S5vkzk/Carlos-Cano-PNG.webp",
 },
 
+"carlos-fernandez-luna": {
+  nombre: "Carlos",
+  apellidos: "Fernández Luna",
+  nombreCompleto: "Carlos Fernández Luna",
+  apodo: "Carlos Fernández",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.85,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Castilleja de Guzmán",
+  provinciaNacimiento: "Sevilla",
+  fechaNacimiento: "1996-05-22",
+  imagen: "img/jugadores/CarlosFernandez.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U21",
+        partidos: 3,
+        goles: 0,
+        asistencias: 1,
+        minutos: 26,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U19",
+        partidos: 24,
+        goles: 2,
+        asistencias: 0,
+        minutos: 919,
+        amarillas: 2,
+        rojas: 0,
+      },
+      {
+        categoria: "U16",
+        partidos: 1,
+        goles: 0,
+        asistencias: 0,
+        minutos: 45,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
 
 }; // fin jugadoresMaestro
 
