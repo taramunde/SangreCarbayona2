@@ -4660,7 +4660,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1997-03-25',
-    imagen: 'https://i.postimg.cc/cCtRgxX8/Jacobo-PNG.webp',
+    imagen: 'img/jugadores/Jacobo2026.webp',
   },
 
   'pablo-saenz-ezquerra': {
