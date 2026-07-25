@@ -446,7 +446,7 @@ CLUB_DATA.temporadas['2026-27'] = {
   dorsal: "-",
   posicion: "Delantero Centro",
   enClubDesde: "2026",
-  contratoHasta: "2027",
+  contratoHasta: "2028",
   stats: {},
   partidos: [
   ]
