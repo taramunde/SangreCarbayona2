@@ -1,0 +1,185 @@
+/* css/puzzle-carbayon.css
+   Estilos del "Puzzle Carbayón". Todo va anidado bajo .puzzle-carbayon para
+   no tocar body/header/etc. del resto del sitio (esos ya los pone styles.css).
+   Colores: se usan las variables reales del sitio (--primary-color,
+   --secondary-color, --font-heading, --font-body definidas en css/styles.css)
+   en vez de una paleta azul/dorada propia, para que no desentone. */
+
+.puzzle-carbayon{
+  --pc-borde:#e7d9b9;
+  --pc-madera:#f6efe0;
+  --pc-texto:#3b3428;
+  font-family: var(--font-body);
+  color: var(--pc-texto);
+  background: var(--pc-madera);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--pc-borde);
+}
+.puzzle-carbayon *{box-sizing:border-box}
+
+.puzzle-carbayon .controls{
+  background:#fffaf0;
+  border-bottom:1px solid var(--pc-borde);
+  padding:10px 12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+.puzzle-carbayon .controls select, .puzzle-carbayon .controls button{
+  height:36px;
+  border-radius:999px;
+  border:1px solid var(--pc-borde);
+  padding:0 14px;
+  font-size:13px;
+  font-weight:600;
+  font-family: var(--font-body);
+  background:white;
+  cursor:pointer;
+}
+.puzzle-carbayon .controls button.primary{
+  background:var(--primary-color);
+  color:white;
+  border-color:var(--primary-color);
+}
+.puzzle-carbayon .pill{
+  background:#fff8e7;
+  border:1px solid var(--pc-borde);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+.puzzle-carbayon #boardWrap{
+  padding:18px 12px 8px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(180deg,#fbf6e9 0%,#f3e9d0 100%);
+}
+.puzzle-carbayon #board{
+  position:relative;
+  background:#efe5cc;
+  border-radius:6px;
+  box-shadow: inset 0 0 0 1px var(--pc-borde), 0 12px 32px rgba(0,0,0,.08);
+  overflow:hidden;
+}
+.puzzle-carbayon #trayWrap{
+  background:#FFF8E7;
+  border-top:1px solid var(--pc-borde);
+  box-shadow: inset 0 12px 18px rgba(0,0,0,.05);
+  position:relative;
+}
+.puzzle-carbayon #trayHeader{
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  border-bottom:1px solid rgba(231,217,185,.9);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:#9a8a6f;
+  gap:8px;
+}
+.puzzle-carbayon .tray-nav{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+.puzzle-carbayon .tray-nav button{
+  width:32px;
+  height:28px;
+  border-radius:8px;
+  border:1px solid var(--pc-borde);
+  background:white;
+  cursor:pointer;
+  font-weight:800;
+  display:grid;
+  place-items:center;
+}
+.puzzle-carbayon .tray-nav button:hover{
+  background:var(--primary-color);
+  color:white;
+  border-color:var(--primary-color);
+}
+.puzzle-carbayon #tray{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:14px 16px 18px;
+  height:158px;
+  align-items:center;
+  scroll-behavior:smooth;
+  cursor:grab;
+  scrollbar-width:thin;
+  scrollbar-color: var(--primary-color) #f3e9d0;
+}
+.puzzle-carbayon #tray.dragging{cursor:grabbing; user-select:none}
+.puzzle-carbayon #tray::-webkit-scrollbar{height:14px}
+.puzzle-carbayon #tray::-webkit-scrollbar-track{
+  background:#f3e9d0;
+  border-radius:999px;
+  border:1px solid #e7d9b9;
+}
+.puzzle-carbayon #tray::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, var(--primary-color), var(--primary-dark));
+  border-radius:999px;
+  border:2px solid #f3e9d0;
+}
+.puzzle-carbayon #tray::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
+.puzzle-carbayon .piece{
+  flex-shrink:0;
+  position:relative;
+  cursor:grab;
+  touch-action:none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.18));
+  transition: transform .12s, filter .12s;
+}
+.puzzle-carbayon .piece:active{cursor:grabbing; transform:scale(1.04)}
+.puzzle-carbayon .piece.placed{cursor:default; filter: drop-shadow(0 1px 2px rgba(0,0,0,.12));}
+.puzzle-carbayon .piece.loose-on-board{filter: drop-shadow(0 3px 6px rgba(0,0,0,.25));}
+.puzzle-carbayon .piece svg{overflow:visible; display:block; width:100%; height:100%}
+.puzzle-carbayon .preview-overlay{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  opacity:0; transition:opacity .2s;
+}
+.puzzle-carbayon .preview-overlay.on{opacity:1}
+.puzzle-carbayon .preview-overlay img{width:100%;height:100%;object-fit:cover;opacity:.28}
+
+/* El modal de victoria y el canvas de confeti van fixed a toda la pantalla,
+   así que quedan fuera de .puzzle-carbayon en el HTML, pero mantenemos
+   las mismas reglas aquí (selector por id, no dependen del anidado). */
+#puzzleWinModal{
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center;
+  background:rgba(26,54,93,.55);
+  backdrop-filter: blur(6px);
+  padding:16px;
+}
+#puzzleWinModal.hidden{display:none}
+#puzzleWinModal .modal{
+  width:100%; max-width:420px;
+  background:#fffdf7;
+  border-radius:20px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 24px 64px rgba(0,0,0,.28), 0 0 0 1px #e7d9b9;
+  font-family: var(--font-body);
+}
+#puzzleWinModal .modal h2{
+  font-family: var(--font-heading);
+  font-size:30px; margin:8px 0; color:var(--primary-color); line-height:.95;
+}
+#puzzleWinModal .modal img{width:100%; height:168px; object-fit:cover; border-radius:12px; border:1px solid #e7d9b9; margin-top:12px}
+#puzzleWinModal .modal .actions{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:16px}
+#puzzleConfetti{position:fixed; inset:0; pointer-events:none; z-index:9998; width:100%; height:100%}
+
+@media(max-width:640px){
+  .puzzle-carbayon #tray{height:140px}
+  .puzzle-carbayon .tray-nav button{width:28px;height:26px}
+}

@@ -1,6 +1,15 @@
 function cargarComunes() {
+  // Antes solo se comprobaba "/fichas/". Lo generalizamos: cualquier página
+  // que viva dentro de una subcarpeta (fichas/, Juegos/, la que sea) necesita
+  // anteponer "../" para encontrar header.html, footer.html y los enlaces
+  // de navegación relativos a la raíz del sitio.
+  const segmentos = window.location.pathname.split("/").filter(Boolean);
+  const esSubcarpeta = segmentos.length > 1; // más de un tramo -> hay carpeta de por medio
+  const rutaBase = esSubcarpeta ? "../" : "";
+
+  // Se mantiene por compatibilidad, ya que algún sitio del código podría
+  // seguir comprobando específicamente si estamos en /fichas/.
   const esFicha = window.location.pathname.includes("/fichas/");
-  const rutaBase = esFicha ? "../" : "";
 
   // Cargar el Header
   fetch(rutaBase + "header.html")
@@ -13,8 +22,8 @@ function cargarComunes() {
         // --- ACTIVAMOS TODO LO DEL HEADER AQUÍ ---
         inicializarFuncionesHeader();
 
-        if (esFicha) {
-          ajustarRutasEnlacesFichas();
+        if (esSubcarpeta) {
+          ajustarRutasEnlaces("#header-placeholder a");
         }
 
         // Aplicar el idioma guardado al header recién inyectado
@@ -32,6 +41,13 @@ function cargarComunes() {
       const footerPlaceholder = document.getElementById("footer-placeholder");
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = data;
+
+        // Igual que con el header: si estamos en una subcarpeta, los enlaces
+        // del footer ("primer-equipo.html", "calendario.html"...) también
+        // necesitan el "../" delante o apuntarían dentro de la subcarpeta.
+        if (esSubcarpeta) {
+          ajustarRutasEnlaces("#footer-placeholder a");
+        }
 
         // Traducir el footer recién inyectado
         if (typeof setLanguage === "function") {
@@ -132,9 +148,12 @@ function inicializarFuncionesHeader() {
   });
 }
 
-function ajustarRutasEnlacesFichas() {
-  const navLinks = document.querySelectorAll("#header-placeholder a");
-  navLinks.forEach((link) => {
+// Antes se llamaba ajustarRutasEnlacesFichas() y solo tocaba el header.
+// Ahora recibe el selector (header o footer) para poder arreglar ambos
+// desde cualquier subcarpeta, no solo /fichas/.
+function ajustarRutasEnlaces(selector) {
+  const enlaces = document.querySelectorAll(selector);
+  enlaces.forEach((link) => {
     const href = link.getAttribute("href");
     if (href && href !== "#" && !href.startsWith("http")) {
       if (!href.startsWith("../")) {

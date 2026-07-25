@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="puzzle_titulo">Puzzle Carbayón | Sangre Carbayona</title>
+    <meta
+      name="description"
+      content="Recompón el escudo, el Tartiere y a los héroes carbayones pieza a pieza. Puzzle oficial de Sangre Carbayona."
+    />
+
+    <!-- CSS Principales (mismo patrón que juegos.html) -->
+    <link rel="stylesheet" href="../css/styles.css?nocache=20251231v6" />
+    <link rel="stylesheet" href="../css/equipo-styles.css?nocache=20251231v9" />
+    <link rel="stylesheet" href="../css/puzzle-carbayon.css?nocache=20260726v1" />
+
+    <!-- Fonts e Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Meta Tags para Compartir -->
+    <meta property="og:title" content="Puzzle Carbayón | Sangre Carbayona" />
+    <meta
+      property="og:description"
+      content="Recompón el escudo, el Tartiere y a los héroes carbayones pieza a pieza. ¡Demuestra que eres Carbayón!"
+    />
+    <meta
+      property="og:image"
+      content="https://picsum.photos/seed/oviedo-puzzle-card/1200/630"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <!-- Header Principal (inyectado por main.js, igual que en index.html/juegos.html) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay (igual que en el resto de páginas) -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="page-header-bg">
+        <img
+          src="https://picsum.photos/seed/stadium-puzzle/1920/400"
+          alt="Estadio"
+        />
+      </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+          <a href="../juegos.html" data-i18n="nav_juegos">Juegos</a><span>/</span>
+          <span class="current">Puzzle Carbayón</span>
+        </div>
+        <h1 class="page-title">Puzzle Carbayón</h1>
+        <p class="page-subtitle">Recompón la imagen pieza a pieza</p>
+      </div>
+    </section>
+
+    <!-- CONTENIDO DEL PUZZLE -->
+    <section class="full-squad-section" style="padding: 60px 0">
+      <div class="container">
+        <div class="puzzle-carbayon">
+          <div class="controls">
+            <select id="diffSelect">
+              <option value="easy">Fácil - 12 piezas</option>
+              <option value="medium">Medio - 35 piezas</option>
+              <option value="hard">Difícil - 80 piezas</option>
+              <option value="legend">Leyenda - 140 piezas</option>
+            </select>
+            <select id="levelSelect"></select>
+            <button id="previewBtn">👁️ Preview (mantén)</button>
+            <button id="restartBtn">↻ Reiniciar</button>
+            <span class="pill">⏱️ <span id="time">00:00</span></span>
+            <span class="pill">📊 <span id="progress">0%</span></span>
+            <span class="pill" id="diffLabel"></span>
+            <span class="pill" id="placedCount"></span>
+            <span style="font-size: 11px; opacity: 0.6" id="levelTitle"></span>
+          </div>
+
+          <div id="boardWrap">
+            <div id="board">
+              <div id="previewOverlay" class="preview-overlay">
+                <img id="previewImg" src="" alt="preview" />
+              </div>
+            </div>
+          </div>
+
+          <div id="trayWrap">
+            <div id="trayHeader">
+              <span
+                >BANDEJA • ARRASTRA FONDO PARA MOVER •
+                <span id="trayCount">0 piezas</span></span
+              >
+              <div class="tray-nav">
+                <button id="trayLeft" title="Izquierda">◀</button>
+                <button id="trayRight" title="Derecha">▶</button>
+              </div>
+            </div>
+            <div id="tray"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+      <div class="cookie-content">
+        <p>
+          Utilizamos cookies para mejorar tu experiencia.
+          <a href="#">Más información</a>
+        </p>
+        <div class="cookie-buttons">
+          <button class="btn-cookie reject" id="rejectCookies">Rechazar</button>
+          <button class="btn-cookie accept" id="acceptCookies">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de victoria y canvas de confeti: fuera del contenedor del juego,
+         a pantalla completa (mismo criterio que winModal en el resto de la web) -->
+    <div id="puzzleWinModal" class="hidden">
+      <div class="modal">
+        <div
+          style="
+            width: 48px;
+            height: 48px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            margin: 0 auto;
+            font-size: 22px;
+          "
+        >
+          🏆
+        </div>
+        <h2>¡PUZZLE COMPLETADO!</h2>
+        <p id="winStats" style="font-size: 13px; line-height: 1.5; color: #6b5e4a"></p>
+        <img id="winThumb" src="" alt="completado" />
+        <div class="actions">
+          <button
+            id="nextBtn"
+            class="primary"
+            style="
+              height: 44px;
+              border-radius: 999px;
+              background: var(--primary-color);
+              color: white;
+              border: 1px solid var(--primary-color);
+              font-weight: 700;
+            "
+          >
+            Siguiente Nivel →
+          </button>
+          <button
+            id="closeWinBtn"
+            style="
+              height: 44px;
+              border-radius: 999px;
+              background: #fff8e7;
+              border: 1px solid #e8dcc2;
+              font-weight: 700;
+            "
+          >
+            Menú
+          </button>
+        </div>
+      </div>
+    </div>
+    <canvas id="puzzleConfetti"></canvas>
+
+    <!-- Scripts (mismo orden que juegos.html: i18n primero, main.js al final) -->
+    <script src="../js/i18n.js?nocache=20251231v33"></script>
+    <script src="../js/data-club.js?nocache=20260726v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20260426v149"></script>
+    <script src="../js/busqueda.js?nocache=20260614v4"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20260426v30"></script>
+    <script src="../js/data-historico.js?nocache=20260426v192"></script>
+    <script src="../js/data-utils.js?nocache=20260426v4"></script>
+    <script src="../js/app.js?nocache=20251231v174"></script>
+    <script src="../js/script.js?nocache=20251231v6"></script>
+    <script src="../js/main.js?nocache=20251231v9"></script>
+
+    <!-- Lógica del propio Puzzle Carbayón -->
+    <script type="module">
+      import { init } from '../js/puzzle/game.js';
+      init();
+    </script>
+  </body>
+</html>
