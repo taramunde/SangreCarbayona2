@@ -1,6 +1,9 @@
 function cargarComunes() {
-  const esFicha = window.location.pathname.includes('/fichas/');
-  const rutaBase = esFicha ? '../' : '';
+  // Detecta si estamos en una subcarpeta (fichas o juegos) para ajustar las rutas
+  const esSubcarpeta =
+    window.location.pathname.includes('/fichas/') ||
+    window.location.pathname.includes('/juegos/');
+  const rutaBase = esSubcarpeta ? '../' : '';
 
   // Cargar el Header
   fetch(rutaBase + 'header.html')
@@ -13,7 +16,7 @@ function cargarComunes() {
         // --- ACTIVAMOS TODO LO DEL HEADER AQUÍ ---
         inicializarFuncionesHeader();
 
-        if (esFicha) {
+        if (esSubcarpeta) {
           ajustarRutasEnlacesFichas();
         }
 
