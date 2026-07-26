@@ -91,27 +91,6 @@ const CLUB_DATA = {
       actual: false,
     },
   ],
-
-  // Juegos disponibles en la sección "Multimedia > Juegos".
-  // renderJuegos() (en app.js) los pinta en #juegosGrid con la clase .juego-card.
-  juegos: [
-    {
-      titulo: 'Puzzle Carbayón',
-      descripcion:
-        'Recompón el escudo, el Tartiere y a los héroes carbayones pieza a pieza. Cuatro niveles de dificultad.',
-      imagen: 'https://picsum.photos/seed/oviedo-puzzle-card/600/400',
-      enlace: 'Juegos/puzzle-carbayon.html',
-      esEspecial: true,
-    },
-    {
-      titulo: 'Quiz Carbayón',
-      descripcion:
-        '¿Cuánto sabes del Real Oviedo? Pon a prueba tus conocimientos sobre la historia del club.',
-      imagen: 'https://i.postimg.cc/3J1wMxw4/Quiz.webp',
-      enlace: 'Juegos/quiz.html',
-      esEspecial: false,
-    },
-  ],
 };
 
 window.CLUB_DATA = CLUB_DATA;
