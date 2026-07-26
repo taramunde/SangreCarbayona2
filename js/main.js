@@ -1,12 +1,12 @@
 function cargarComunes() {
-  const esFicha = window.location.pathname.includes("/fichas/");
-  const rutaBase = esFicha ? "../" : "";
+  const esFicha = window.location.pathname.includes('/fichas/');
+  const rutaBase = esFicha ? '../' : '';
 
   // Cargar el Header
-  fetch(rutaBase + "header.html")
+  fetch(rutaBase + 'header.html')
     .then((response) => response.text())
     .then((data) => {
-      const headerPlaceholder = document.getElementById("header-placeholder");
+      const headerPlaceholder = document.getElementById('header-placeholder');
       if (headerPlaceholder) {
         headerPlaceholder.innerHTML = data;
 
@@ -19,23 +19,23 @@ function cargarComunes() {
 
         // Aplicar el idioma guardado al header recién inyectado
         // (el fetch es asíncrono y llega después de que setLanguage ya se ejecutó)
-        if (typeof setLanguage === "function") {
-          setLanguage(localStorage.getItem("lang") || "es");
+        if (typeof setLanguage === 'function') {
+          setLanguage(localStorage.getItem('lang') || 'es');
         }
       }
     });
 
   // Cargar el Footer
-  fetch(rutaBase + "footer.html")
+  fetch(rutaBase + 'footer.html')
     .then((response) => response.text())
     .then((data) => {
-      const footerPlaceholder = document.getElementById("footer-placeholder");
+      const footerPlaceholder = document.getElementById('footer-placeholder');
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = data;
 
         // Traducir el footer recién inyectado
-        if (typeof setLanguage === "function") {
-          setLanguage(localStorage.getItem("lang") || "es");
+        if (typeof setLanguage === 'function') {
+          setLanguage(localStorage.getItem('lang') || 'es');
         }
       }
     });
@@ -43,105 +43,105 @@ function cargarComunes() {
 
 function inicializarFuncionesHeader() {
   // 1. ELEMENTOS DEL MENÚ MÓVIL
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mainNav = document.getElementById("mainNav");
-  const closeMobileNav = document.getElementById("closeMobileNav");
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mainNav = document.getElementById('mainNav');
+  const closeMobileNav = document.getElementById('closeMobileNav');
 
   if (mobileMenuBtn && mainNav) {
-    mobileMenuBtn.addEventListener("click", (e) => {
+    mobileMenuBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      mobileMenuBtn.classList.add("active");
-      mainNav.classList.add("active");
-      document.body.style.overflow = "hidden";
+      mobileMenuBtn.classList.add('active');
+      mainNav.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   }
 
   if (closeMobileNav && mainNav && mobileMenuBtn) {
-    closeMobileNav.addEventListener("click", (e) => {
+    closeMobileNav.addEventListener('click', (e) => {
       e.preventDefault();
-      mainNav.classList.remove("active");
-      mobileMenuBtn.classList.remove("active");
-      document.body.style.overflow = "";
+      mainNav.classList.remove('active');
+      mobileMenuBtn.classList.remove('active');
+      document.body.style.overflow = '';
     });
   }
 
   // 2. ELEMENTOS DEL BUSCADOR (LUPA)
-  const searchBtn = document.getElementById("searchBtn");
-  const searchOverlay = document.getElementById("searchOverlay");
-  const closeSearch = document.getElementById("closeSearch");
+  const searchBtn = document.getElementById('searchBtn');
+  const searchOverlay = document.getElementById('searchOverlay');
+  const closeSearch = document.getElementById('closeSearch');
 
   if (searchBtn && searchOverlay) {
-    searchBtn.addEventListener("click", (e) => {
+    searchBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      searchOverlay.classList.add("active");
-      document.body.style.overflow = "hidden";
+      searchOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
       setTimeout(() => {
-        const input = searchOverlay.querySelector("input");
+        const input = searchOverlay.querySelector('input');
         if (input) input.focus();
       }, 300);
     });
   }
 
   if (closeSearch && searchOverlay) {
-    closeSearch.addEventListener("click", (e) => {
+    closeSearch.addEventListener('click', (e) => {
       e.preventDefault();
-      searchOverlay.classList.remove("active");
-      document.body.style.overflow = "";
+      searchOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     });
   }
 
   // Cerrar buscador con tecla Escape
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener('keydown', (e) => {
     if (
-      e.key === "Escape" &&
+      e.key === 'Escape' &&
       searchOverlay &&
-      searchOverlay.classList.contains("active")
+      searchOverlay.classList.contains('active')
     ) {
-      searchOverlay.classList.remove("active");
-      document.body.style.overflow = "";
+      searchOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
 
   // 3. SUBMENÚS Y CIERRE AUTOMÁTICO
   const navItemsWithSubmenu = document.querySelectorAll(
-    ".nav-item.has-submenu",
+    '.nav-item.has-submenu',
   );
   navItemsWithSubmenu.forEach((item) => {
-    const link = item.querySelector("a");
+    const link = item.querySelector('a');
     if (link) {
-      link.addEventListener("click", function (e) {
+      link.addEventListener('click', function (e) {
         if (window.innerWidth <= 1024) {
           e.preventDefault();
-          item.classList.toggle("open");
+          item.classList.toggle('open');
         }
       });
     }
   });
 
   const simpleNavLinks = document.querySelectorAll(
-    ".nav-item:not(.has-submenu) a, .submenu a",
+    '.nav-item:not(.has-submenu) a, .submenu a',
   );
   simpleNavLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener('click', () => {
       if (window.innerWidth <= 1024 && mainNav && mobileMenuBtn) {
-        mainNav.classList.remove("active");
-        mobileMenuBtn.classList.remove("active");
-        document.body.style.overflow = "";
+        mainNav.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
       }
     });
   });
 }
 
 function ajustarRutasEnlacesFichas() {
-  const navLinks = document.querySelectorAll("#header-placeholder a");
+  const navLinks = document.querySelectorAll('#header-placeholder a');
   navLinks.forEach((link) => {
-    const href = link.getAttribute("href");
-    if (href && href !== "#" && !href.startsWith("http")) {
-      if (!href.startsWith("../")) {
-        link.setAttribute("href", "../" + href);
+    const href = link.getAttribute('href');
+    if (href && href !== '#' && !href.startsWith('http')) {
+      if (!href.startsWith('../')) {
+        link.setAttribute('href', '../' + href);
       }
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarComunes);
+document.addEventListener('DOMContentLoaded', cargarComunes);
