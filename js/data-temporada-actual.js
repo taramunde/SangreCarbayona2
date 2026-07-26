@@ -90,16 +90,15 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-  id: "juan-cruz-alvaro-armada",
-  codigo: "juan-cruz-alvaro-armada",
-  dorsal: "-",
-  posicion: "Lateral Izquierdo",
-  enClubDesde: "2026",
-  contratoHasta: "2028",
-  stats: {},
-  partidos: [
-  ]
-},
+      id: 'juan-cruz-alvaro-armada',
+      codigo: 'juan-cruz-alvaro-armada',
+      dorsal: '-',
+      posicion: 'Lateral Izquierdo',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
 
     {
       id: 'david-costas-cordal',
@@ -168,54 +167,50 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-  id: "marco-esteban-fernandez",
-  codigo: "marco-esteban-fernandez",
-  dorsal: 30,
-  posicion: "Central",
-  enClubDesde: "2023",
-  contratoHasta: "2028",
-  stats: {},
-  partidos: [
-  ]
-},
+      id: 'marco-esteban-fernandez',
+      codigo: 'marco-esteban-fernandez',
+      dorsal: 30,
+      posicion: 'Central',
+      enClubDesde: '2023',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
 
-{
-  id: "chukwuma-eze",
-  codigo: "chukwuma-eze",
-  dorsal: 25,
-  posicion: "Central",
-  enClubDesde: "2024",
-  contratoHasta: "2028",
-  stats: {},
-  partidos: [
-  ]
-},
+    {
+      id: 'chukwuma-eze',
+      codigo: 'chukwuma-eze',
+      dorsal: 25,
+      posicion: 'Central',
+      enClubDesde: '2024',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
 
-{
-  id: "diego-espinosa-garcia-de-muro",
-  codigo: "diego-espinosa-garcia-de-muro",
-  dorsal: "-",
-  posicion: "Central",
-  enClubDesde: "2025",
-  contratoHasta: "2029",
-  stats: {},
-  partidos: [
-  ]
-},
+    {
+      id: 'diego-espinosa-garcia-de-muro',
+      codigo: 'diego-espinosa-garcia-de-muro',
+      dorsal: '-',
+      posicion: 'Central',
+      enClubDesde: '2025',
+      contratoHasta: '2029',
+      stats: {},
+      partidos: [],
+    },
 
     // CENTROCAMPISTAS
-    
+
     {
-  id: "alberto-reina-campos",
-  codigo: "alberto-reina-campos",
-  dorsal: 6,
-  posicion: "Mediocentro",
-  enClubDesde: "2025",
-  contratoHasta: "2027",
-  stats: {},
-  partidos: [
-  ]
-},
+      id: 'alberto-reina-campos',
+      codigo: 'alberto-reina-campos',
+      dorsal: 6,
+      posicion: 'Mediocentro',
+      enClubDesde: '2025',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
 
     {
       id: 'haissem-hassan',
@@ -231,7 +226,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'brandon-jose-domingues',
       codigo: 'brandon-jose-domingues',
-      dorsal: "-",
+      dorsal: '-',
       posicion: 'Mediocentro',
       enClubDesde: '2025',
       contratoHasta: '2028',
@@ -275,7 +270,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'pablo-menendez-agudin',
       codigo: 'pablo-menendez-agudin',
-      dorsal: "-",
+      dorsal: '-',
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2029',
@@ -328,16 +323,15 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-  id: "daniel-villahermosa-martinez",
-  codigo: "daniel-villahermosa-martinez",
-  dorsal: "-",
-  posicion: "Mediocentro",
-  enClubDesde: "2026",
-  contratoHasta: "2027",
-  stats: {},
-  partidos: [
-  ]
-},  
+      id: 'daniel-villahermosa-martinez',
+      codigo: 'daniel-villahermosa-martinez',
+      dorsal: '-',
+      posicion: 'Mediocentro',
+      enClubDesde: '2026',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
 
     // DELANTEROS
 
@@ -430,28 +424,26 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-  id: "christopher-ramos-de-la-flor",
-  codigo: "christopher-ramos-de-la-flor",
-  dorsal: "-",
-  posicion: "Delantero Centro",
-  enClubDesde: "2026",
-  contratoHasta: "2027",
-  stats: {},
-  partidos: []
-},
+      id: 'christopher-ramos-de-la-flor',
+      codigo: 'christopher-ramos-de-la-flor',
+      dorsal: '-',
+      posicion: 'Delantero Centro',
+      enClubDesde: '2026',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
 
-  {
-  id: "carlos-fernandez-luna",
-  codigo: "carlos-fernandez-luna",
-  dorsal: "-",
-  posicion: "Delantero Centro",
-  enClubDesde: "2026",
-  contratoHasta: "2028",
-  stats: {},
-  partidos: [
-  ]
-},
-
+    {
+      id: 'carlos-fernandez-luna',
+      codigo: 'carlos-fernandez-luna',
+      dorsal: '-',
+      posicion: 'Delantero Centro',
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
   ],
 
   // ENTRENADORES
@@ -515,32 +507,5 @@ CLUB_DATA.proximoPartido = {
   visitanteSiglas: 'UDR',
   estadio: 'Carlos Tartiere',
 };
-
-CLUB_DATA.juegos = [
-  {
-    id: 'quiz',
-    titulo: 'Quiz Carbayón',
-    descripcion: '¿Cuánto sabes de la historia del club?',
-    imagen: 'https://i.postimg.cc/3J1wMxw4/Quiz.webp',
-    enlace: 'juegos/quiz.html',
-    esEspecial: true,
-  },
-  {
-    id: 'memoria',
-    titulo: 'Juego de Memoria',
-    descripcion: 'Encuentra las parejas de escudos y jugadores.',
-    imagen: 'https://picsum.photos/seed/memory-game/400/300',
-    enlace: '#',
-    esEspecial: false,
-  },
-  {
-    id: 'penaltis',
-    titulo: 'Lanzamiento de Penaltis',
-    descripcion: 'Elige la esquina y marca el gol decisivo.',
-    imagen: 'https://picsum.photos/seed/penalty-game/400/300',
-    enlace: '#',
-    esEspecial: false,
-  },
-];
 
 window.CLUB_DATA = CLUB_DATA;
