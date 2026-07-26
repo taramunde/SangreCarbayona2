@@ -80,7 +80,9 @@
         min-height: 500px;
         margin: 0 auto;
         box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.05);
+        touch-action: none; /* NUEVO: Bloquea el scroll de pantalla al tocar el tablero */
       }
+
       #board {
         position: relative;
         margin: 0 auto;
@@ -90,6 +92,9 @@
         cursor: grab;
         filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
         transition: transform 0.1s;
+        touch-action: none; /* NUEVO: Evita que la pantalla se mueva al arrastrar */
+        user-select: none; /* NUEVO: Evita que se seleccione como texto sin querer */
+        -webkit-user-select: none; /* Para Safari en iPhone */
       }
       .piece:active {
         cursor: grabbing;
