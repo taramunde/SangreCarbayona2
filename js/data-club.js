@@ -91,6 +91,30 @@ const CLUB_DATA = {
       actual: false,
     },
   ],
+
+  // ===================================
+  // JUEGOS DISPONIBLES EN LA WEB
+  // ===================================
+  juegos: [
+    {
+      titulo: 'Quiz Carbayón',
+      descripcion:
+        'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
+      imagen:
+        'https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp',
+      enlace: 'juegos/quiz.html',
+      esEspecial: false,
+    },
+    {
+      titulo: 'Puzzle Carbayón',
+      descripcion:
+        'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
+      imagen:
+        'https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp',
+      enlace: 'juegos/puzzlecarbayon.html',
+      esEspecial: true,
+    },
+  ],
 };
 
 window.CLUB_DATA = CLUB_DATA;
