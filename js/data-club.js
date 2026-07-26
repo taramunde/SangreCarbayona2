@@ -100,8 +100,7 @@ const CLUB_DATA = {
       titulo: 'Quiz Carbayón',
       descripcion:
         'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
-      imagen:
-        'https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp',
+      imagen: 'img/varios/QuizRealOviedo.webp',
       enlace: 'juegos/quiz.html',
       esEspecial: false,
     },
