@@ -38,10 +38,21 @@ function formatTime(s) {
   return `${m}:${sec}`;
 }
 
+// -----------------------------------------------------------------
+// EL ARREGLO: FÓRMULA DE ENTEROS PUROS PARA EVITAR GRIETAS VISUALES
+// -----------------------------------------------------------------
 function measureBoard() {
+  const diff = DIFFICULTIES[state.diffKey] || DIFFICULTIES.medium;
   const maxW = Math.min(boardWrap.clientWidth - 24, 900);
-  state.boardW = maxW;
-  state.boardH = Math.round(maxW * 0.66);
+
+  // Calculamos el ancho y alto ideal forzando a que sean sin decimales
+  const pieceW = Math.floor(maxW / diff.cols);
+  const pieceH = Math.floor((maxW * 0.66) / diff.rows);
+
+  // El tablero se reajusta para ser un múltiplo EXACTO de las piezas
+  state.boardW = pieceW * diff.cols;
+  state.boardH = pieceH * diff.rows;
+
   board.style.width = state.boardW + 'px';
   board.style.height = state.boardH + 'px';
 }
@@ -64,11 +75,14 @@ function generateTabs(rows, cols) {
 
 function currentGeom() {
   const diff = DIFFICULTIES[state.diffKey];
+  // Como el board ya está reajustado en measureBoard, pw y ph salen ENTEROS:
   const pw = state.boardW / diff.cols;
   const ph = state.boardH / diff.rows;
-  const tabSize = Math.min(pw, ph) * 0.42;
+  // El saliente de la pieza también lo forzamos a entero:
+  const tabSize = Math.floor(Math.min(pw, ph) * 0.42);
   return { diff, pw, ph, tabSize };
 }
+// -----------------------------------------------------------------
 
 function buildLevel() {
   clearInterval(timer);
@@ -76,11 +90,12 @@ function buildLevel() {
   state.won = false;
   timeEl.textContent = formatTime(0);
   const level = LEVELS[state.levelIdx];
+
+  measureBoard(); // Llamamos al cálculo antes de construir
+
   const diff = DIFFICULTIES[state.diffKey];
   const rows = diff.rows,
     cols = diff.cols;
-
-  measureBoard();
   const { hTabs, vTabs } = generateTabs(rows, cols);
 
   state.pieces = [];
