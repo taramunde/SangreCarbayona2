@@ -108,8 +108,7 @@ const CLUB_DATA = {
       titulo: 'Puzzle Carbayón',
       descripcion:
         'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
-      imagen:
-        'https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp',
+      imagen: 'img/varios/PuzzleRealOviedo.webp',
       enlace: 'juegos/puzzlecarbayon.html',
       esEspecial: true,
     },
