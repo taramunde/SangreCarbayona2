@@ -3501,8 +3501,21 @@ const App = {
     if (!container || !CLUB_DATA.juegos) return;
     let html = '';
     CLUB_DATA.juegos.forEach((juego) => {
-      const specialClass = juego.esEspecial ? 'especial' : '';
-      html += `<a href="${juego.enlace}" class="juego-card ${specialClass}"><img src="${juego.imagen}" alt="${juego.titulo}"><h3>${juego.titulo}</h3><p>${juego.descripcion}</p></a>`;
+      // Tu CSS usa la clase 'highlight-game' para los juegos destacados
+      const specialClass = juego.esEspecial ? 'highlight-game' : '';
+
+      // Construimos el HTML usando exactamente las clases de tu juegos.css
+      html += `
+        <a href="${juego.enlace}" class="game-card ${specialClass}">
+          <div class="game-image">
+            <img src="${juego.imagen}" alt="${juego.titulo}">
+          </div>
+          <div class="game-info">
+            <h3>${juego.titulo}</h3>
+            <p>${juego.descripcion}</p>
+            <span class="play-btn">Jugar</span>
+          </div>
+        </a>`;
     });
     container.innerHTML = html;
   },
