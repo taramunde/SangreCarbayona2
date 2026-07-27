@@ -1,6 +1,6 @@
-import { LEVELS, DIFFICULTIES } from './config.js';
-import { makePiecePath, createPieceSVG } from './jigsaw.js';
-import { launchConfetti } from './confetti.js?nocache=3';
+import { LEVELS, DIFFICULTIES } from './config.js?nocache=10';
+import { makePiecePath, createPieceSVG } from './jigsaw.js?nocache=10';
+import { launchConfetti } from './confetti.js?nocache=10';
 
 const $ = (s) => document.querySelector(s);
 
@@ -105,7 +105,6 @@ function buildLevel() {
       if (c === 0) tabs.left = 0;
       if (c === cols - 1) tabs.right = 0;
 
-      // NUEVO: Asignamos a cada pieza su propio grupo inicial
       state.pieces.push({
         id: `${r}-${c}`,
         r,
@@ -147,7 +146,7 @@ function render() {
     wrapper.className =
       'piece' + (p.location === 'placed' ? ' placed' : ' loose-on-board');
     wrapper.style.position = 'absolute';
-    wrapper.dataset.id = p.id; // Clave para ocultar grupos enteros
+    wrapper.dataset.id = p.id;
 
     let left, top;
     if (p.location === 'placed') {
@@ -179,7 +178,6 @@ function render() {
     });
     wrapper.appendChild(svg);
 
-    // Si está colocada, NO se le asigna pointerdown, por lo que queda bloqueada
     if (p.location !== 'placed') {
       wrapper.addEventListener('pointerdown', (e) =>
         onPointerDown(e, p, { fromTray: false }),
@@ -236,9 +234,7 @@ function onPointerDown(e, p, { fromTray }) {
   const level = LEVELS[state.levelIdx];
   const { diff, pw, ph, tabSize } = currentGeom();
 
-  // NUEVO: Cogemos todas las piezas que pertenecen al mismo grupo que la que has tocado
   const groupPieces = state.pieces.filter((x) => x.group === p.group);
-
   const rect = e.currentTarget.getBoundingClientRect();
   const scaleAtGrab = fromTray ? TRAY_SCALE : 1;
   const offX = (e.clientX - rect.left) / scaleAtGrab;
@@ -248,17 +244,14 @@ function onPointerDown(e, p, { fromTray }) {
   dragGhost.style.position = 'fixed';
   dragGhost.style.zIndex = 100;
   dragGhost.style.pointerEvents = 'none';
-  dragGhost.style.transform = 'scale(1.05) rotate(1deg)'; // Efecto al levantar
+  dragGhost.style.transform = 'scale(1.05) rotate(1deg)';
 
-  // Construimos el fantasma sumando TODAS las piezas del grupo
   groupPieces.forEach((gp) => {
-    // Ocultamos las originales
     const el = $(`[data-id="${gp.id}"]`);
     if (el) el.style.visibility = 'hidden';
 
     const svgWrap = document.createElement('div');
     svgWrap.style.position = 'absolute';
-    // Las separamos basándonos en su posición lógica respecto a la pieza base que tocaste
     svgWrap.style.left = (gp.c - p.c) * pw + 'px';
     svgWrap.style.top = (gp.r - p.r) * ph + 'px';
     svgWrap.style.width = pw + tabSize * 2 + 'px';
@@ -305,7 +298,6 @@ function onPointerDown(e, p, { fromTray }) {
     const distToBoard = Math.hypot(relLeft - targetLeft, relTop - targetTop);
     const snapTolerance = Math.min(pw, ph) * 0.35;
 
-    // 1. ¿El grupo encaja en su posición final del tablero?
     if (distToBoard < snapTolerance) {
       groupPieces.forEach((gp) => (gp.location = 'placed'));
     } else {
@@ -317,51 +309,75 @@ function onPointerDown(e, p, { fromTray }) {
         ghostTop < boardRect.bottom + margin;
 
       if (overBoard) {
-        // Actualizamos las coordenadas de todo el grupo
         groupPieces.forEach((gp) => {
           gp.location = 'board';
           gp.x = relLeft + (gp.c - p.c) * pw;
           gp.y = relTop + (gp.r - p.r) * ph;
         });
 
-        // 2. NUEVO: ¿El grupo choca con otras piezas sueltas para unirse a ellas?
         let merged = false;
         for (let gp of groupPieces) {
+          // Ahora podemos pegarnos incluso a las piezas que ya están ancladas al tablero
           const others = state.pieces.filter(
-            (x) => x.group !== gp.group && x.location === 'board',
+            (x) =>
+              x.group !== gp.group &&
+              (x.location === 'board' || x.location === 'placed'),
           );
+
           for (let other of others) {
-            // Comprobamos si lógicamente son piezas vecinas (arriba, abajo, izq, der)
             const isAdjacent =
               Math.abs(other.r - gp.r) + Math.abs(other.c - gp.c) === 1;
             if (isAdjacent) {
               const expectedX = gp.x + (other.c - gp.c) * pw;
               const expectedY = gp.y + (other.r - gp.r) * ph;
+
+              const actualOtherX =
+                other.location === 'placed' ? other.c * pw - tabSize : other.x;
+              const actualOtherY =
+                other.location === 'placed' ? other.r * ph - tabSize : other.y;
+
               const distToOther = Math.hypot(
-                other.x - expectedX,
-                other.y - expectedY,
+                actualOtherX - expectedX,
+                actualOtherY - expectedY,
               );
 
               if (distToOther < snapTolerance) {
-                // FUSIONAMOS LOS GRUPOS
                 const oldGroup = other.group;
                 const newGroup = gp.group;
-                state.pieces
-                  .filter((x) => x.group === oldGroup)
-                  .forEach((x) => {
-                    x.group = newGroup;
-                    // Las alineamos perfectamente para que enganchen sin dejar fisuras
-                    x.x = gp.x + (x.c - gp.c) * pw;
-                    x.y = gp.y + (x.r - gp.r) * ph;
-                  });
+
+                // Si la otra pieza ya está anclada, anclamos todo nuestro grupo al tablero
+                if (other.location === 'placed') {
+                  state.pieces
+                    .filter((x) => x.group === newGroup || x.group === oldGroup)
+                    .forEach((x) => {
+                      x.group = newGroup;
+                      x.location = 'placed';
+                    });
+                } else {
+                  // Si ambas flotan, las juntamos
+                  state.pieces
+                    .filter((x) => x.group === oldGroup)
+                    .forEach((x) => {
+                      x.group = newGroup;
+                      x.x = gp.x + (x.c - gp.c) * pw;
+                      x.y = gp.y + (x.r - gp.r) * ph;
+                    });
+
+                  // COMPROBACIÓN DE VICTORIA AUTOMÁTICA FLOTANTE
+                  const totalInGroup = state.pieces.filter(
+                    (x) => x.group === newGroup,
+                  ).length;
+                  if (totalInGroup === state.pieces.length) {
+                    state.pieces.forEach((x) => (x.location = 'placed'));
+                  }
+                }
                 merged = true;
               }
             }
           }
-          if (merged) break; // Si se ha fusionado, salimos para no hacer dobles uniones caóticas
+          if (merged) break;
         }
       } else {
-        // Si lo sacas del tablero, todo el grupo vuelve a la bandeja
         groupPieces.forEach((gp) => (gp.location = 'tray'));
       }
     }
