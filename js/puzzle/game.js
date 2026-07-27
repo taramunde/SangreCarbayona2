@@ -1,6 +1,6 @@
 import { LEVELS, DIFFICULTIES } from './config.js';
 import { makePiecePath, createPieceSVG } from './jigsaw.js';
-import { launchConfetti } from './confetti.js';
+import { launchConfetti } from './confetti.js?nocache=3';
 
 const $ = (s) => document.querySelector(s);
 
