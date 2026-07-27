@@ -38,23 +38,14 @@ function formatTime(s) {
   return `${m}:${sec}`;
 }
 
-// -----------------------------------------------------------------
-// EL ARREGLO: FÓRMULA DE ENTEROS PUROS PARA EVITAR GRIETAS VISUALES
-// -----------------------------------------------------------------
 function measureBoard() {
   const diff = DIFFICULTIES[state.diffKey] || DIFFICULTIES.medium;
-
-  // 1. Definimos un ancho ideal: ej. máximo unos 110 píxeles de ancho por cada pieza
   const anchoIdeal = diff.cols * 110;
-
-  // 2. El ancho máximo será el menor entre: la pantalla actual, 900px, o el anchoIdeal
   const maxW = Math.min(boardWrap.clientWidth - 24, 900, anchoIdeal);
 
-  // 3. Calculamos las piezas forzando a que sean sin decimales para evitar grietas
   const pieceW = Math.floor(maxW / diff.cols);
   const pieceH = Math.floor((maxW * 0.66) / diff.rows);
 
-  // 4. El tablero se reajusta para ser un múltiplo EXACTO de las piezas
   state.boardW = pieceW * diff.cols;
   state.boardH = pieceH * diff.rows;
 
@@ -80,14 +71,11 @@ function generateTabs(rows, cols) {
 
 function currentGeom() {
   const diff = DIFFICULTIES[state.diffKey];
-  // Como el board ya está reajustado en measureBoard, pw y ph salen ENTEROS:
   const pw = state.boardW / diff.cols;
   const ph = state.boardH / diff.rows;
-  // El saliente de la pieza también lo forzamos a entero:
   const tabSize = Math.floor(Math.min(pw, ph) * 0.42);
   return { diff, pw, ph, tabSize };
 }
-// -----------------------------------------------------------------
 
 function buildLevel() {
   clearInterval(timer);
@@ -96,7 +84,7 @@ function buildLevel() {
   timeEl.textContent = formatTime(0);
   const level = LEVELS[state.levelIdx];
 
-  measureBoard(); // Llamamos al cálculo antes de construir
+  measureBoard();
 
   const diff = DIFFICULTIES[state.diffKey];
   const rows = diff.rows,
@@ -112,12 +100,12 @@ function buildLevel() {
         left: vTabs[r][c],
         right: vTabs[r][c + 1],
       };
-      // Bordes rectos para los límites del tablero
       if (r === 0) tabs.top = 0;
       if (r === rows - 1) tabs.bottom = 0;
       if (c === 0) tabs.left = 0;
       if (c === cols - 1) tabs.right = 0;
 
+      // NUEVO: Asignamos a cada pieza su propio grupo inicial
       state.pieces.push({
         id: `${r}-${c}`,
         r,
@@ -126,11 +114,10 @@ function buildLevel() {
         location: 'tray',
         x: 0,
         y: 0,
+        group: `${r}-${c}`,
       });
     }
   }
-
-  // ¡HEMOS ELIMINADO EL BUCLE QUE INVERTÍA LAS PIEZAS Y LAS ROMPÍA!
 
   state.pieces.sort(() => Math.random() - 0.5);
   render();
@@ -160,6 +147,7 @@ function render() {
     wrapper.className =
       'piece' + (p.location === 'placed' ? ' placed' : ' loose-on-board');
     wrapper.style.position = 'absolute';
+    wrapper.dataset.id = p.id; // Clave para ocultar grupos enteros
 
     let left, top;
     if (p.location === 'placed') {
@@ -191,6 +179,7 @@ function render() {
     });
     wrapper.appendChild(svg);
 
+    // Si está colocada, NO se le asigna pointerdown, por lo que queda bloqueada
     if (p.location !== 'placed') {
       wrapper.addEventListener('pointerdown', (e) =>
         onPointerDown(e, p, { fromTray: false }),
@@ -247,39 +236,53 @@ function onPointerDown(e, p, { fromTray }) {
   const level = LEVELS[state.levelIdx];
   const { diff, pw, ph, tabSize } = currentGeom();
 
+  // NUEVO: Cogemos todas las piezas que pertenecen al mismo grupo que la que has tocado
+  const groupPieces = state.pieces.filter((x) => x.group === p.group);
+
   const rect = e.currentTarget.getBoundingClientRect();
   const scaleAtGrab = fromTray ? TRAY_SCALE : 1;
   const offX = (e.clientX - rect.left) / scaleAtGrab;
   const offY = (e.clientY - rect.top) / scaleAtGrab;
 
   const dragGhost = document.createElement('div');
-  dragGhost.className = 'piece';
   dragGhost.style.position = 'fixed';
-  dragGhost.style.left = e.clientX - offX + 'px';
-  dragGhost.style.top = e.clientY - offY + 'px';
-  dragGhost.style.width = pw + tabSize * 2 + 'px';
-  dragGhost.style.height = ph + tabSize * 2 + 'px';
   dragGhost.style.zIndex = 100;
   dragGhost.style.pointerEvents = 'none';
-  const { svg } = createPieceSVG({
-    id: p.id + '-drag',
-    r: p.r,
-    c: p.c,
-    tabs: p.tabs,
-    w: pw,
-    h: ph,
-    tabSize,
-    boardW: state.boardW,
-    boardH: state.boardH,
-    imgSrc: level.img,
-    scale: 1,
-    isTray: false,
-  });
-  svg.style.transform = 'scale(1.08) rotate(1deg)';
-  dragGhost.appendChild(svg);
-  document.body.appendChild(dragGhost);
+  dragGhost.style.transform = 'scale(1.05) rotate(1deg)'; // Efecto al levantar
 
-  if (!fromTray) e.currentTarget.style.visibility = 'hidden';
+  // Construimos el fantasma sumando TODAS las piezas del grupo
+  groupPieces.forEach((gp) => {
+    // Ocultamos las originales
+    const el = $(`[data-id="${gp.id}"]`);
+    if (el) el.style.visibility = 'hidden';
+
+    const svgWrap = document.createElement('div');
+    svgWrap.style.position = 'absolute';
+    // Las separamos basándonos en su posición lógica respecto a la pieza base que tocaste
+    svgWrap.style.left = (gp.c - p.c) * pw + 'px';
+    svgWrap.style.top = (gp.r - p.r) * ph + 'px';
+    svgWrap.style.width = pw + tabSize * 2 + 'px';
+    svgWrap.style.height = ph + tabSize * 2 + 'px';
+
+    const { svg } = createPieceSVG({
+      id: gp.id + '-drag',
+      r: gp.r,
+      c: gp.c,
+      tabs: gp.tabs,
+      w: pw,
+      h: ph,
+      tabSize,
+      boardW: state.boardW,
+      boardH: state.boardH,
+      imgSrc: level.img,
+      scale: 1,
+      isTray: false,
+    });
+    svgWrap.appendChild(svg);
+    dragGhost.appendChild(svgWrap);
+  });
+
+  document.body.appendChild(dragGhost);
 
   const move = (ev) => {
     dragGhost.style.left = ev.clientX - offX + 'px';
@@ -299,14 +302,12 @@ function onPointerDown(e, p, { fromTray }) {
 
     const targetLeft = pw * p.c - tabSize;
     const targetTop = ph * p.r - tabSize;
-    const dist = Math.hypot(relLeft - targetLeft, relTop - targetTop);
+    const distToBoard = Math.hypot(relLeft - targetLeft, relTop - targetTop);
     const snapTolerance = Math.min(pw, ph) * 0.35;
 
-    const piece = state.pieces.find((x) => x.id === p.id);
-    if (!piece) return;
-
-    if (dist < snapTolerance) {
-      piece.location = 'placed';
+    // 1. ¿El grupo encaja en su posición final del tablero?
+    if (distToBoard < snapTolerance) {
+      groupPieces.forEach((gp) => (gp.location = 'placed'));
     } else {
       const margin = tabSize * 2;
       const overBoard =
@@ -314,20 +315,61 @@ function onPointerDown(e, p, { fromTray }) {
         ghostLeft < boardRect.right + margin &&
         ghostTop + (ph + tabSize * 2) > boardRect.top - margin &&
         ghostTop < boardRect.bottom + margin;
+
       if (overBoard) {
-        piece.location = 'board';
-        const maxLeft = state.boardW - pw * 0.15;
-        const minLeft = -pw * 0.85;
-        const maxTop = state.boardH - ph * 0.15;
-        const minTop = -ph * 0.85;
-        piece.x = Math.min(Math.max(relLeft, minLeft), maxLeft);
-        piece.y = Math.min(Math.max(relTop, minTop), maxTop);
+        // Actualizamos las coordenadas de todo el grupo
+        groupPieces.forEach((gp) => {
+          gp.location = 'board';
+          gp.x = relLeft + (gp.c - p.c) * pw;
+          gp.y = relTop + (gp.r - p.r) * ph;
+        });
+
+        // 2. NUEVO: ¿El grupo choca con otras piezas sueltas para unirse a ellas?
+        let merged = false;
+        for (let gp of groupPieces) {
+          const others = state.pieces.filter(
+            (x) => x.group !== gp.group && x.location === 'board',
+          );
+          for (let other of others) {
+            // Comprobamos si lógicamente son piezas vecinas (arriba, abajo, izq, der)
+            const isAdjacent =
+              Math.abs(other.r - gp.r) + Math.abs(other.c - gp.c) === 1;
+            if (isAdjacent) {
+              const expectedX = gp.x + (other.c - gp.c) * pw;
+              const expectedY = gp.y + (other.r - gp.r) * ph;
+              const distToOther = Math.hypot(
+                other.x - expectedX,
+                other.y - expectedY,
+              );
+
+              if (distToOther < snapTolerance) {
+                // FUSIONAMOS LOS GRUPOS
+                const oldGroup = other.group;
+                const newGroup = gp.group;
+                state.pieces
+                  .filter((x) => x.group === oldGroup)
+                  .forEach((x) => {
+                    x.group = newGroup;
+                    // Las alineamos perfectamente para que enganchen sin dejar fisuras
+                    x.x = gp.x + (x.c - gp.c) * pw;
+                    x.y = gp.y + (x.r - gp.r) * ph;
+                  });
+                merged = true;
+              }
+            }
+          }
+          if (merged) break; // Si se ha fusionado, salimos para no hacer dobles uniones caóticas
+        }
       } else {
-        piece.location = 'tray';
+        // Si lo sacas del tablero, todo el grupo vuelve a la bandeja
+        groupPieces.forEach((gp) => (gp.location = 'tray'));
       }
     }
     render();
   };
+
+  dragGhost.style.left = e.clientX - offX + 'px';
+  dragGhost.style.top = e.clientY - offY + 'px';
   document.addEventListener('pointermove', move);
   document.addEventListener('pointerup', up);
 }
