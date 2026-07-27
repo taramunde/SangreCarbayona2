@@ -43,13 +43,18 @@ function formatTime(s) {
 // -----------------------------------------------------------------
 function measureBoard() {
   const diff = DIFFICULTIES[state.diffKey] || DIFFICULTIES.medium;
-  const maxW = Math.min(boardWrap.clientWidth - 24, 900);
 
-  // Calculamos el ancho y alto ideal forzando a que sean sin decimales
+  // 1. Definimos un ancho ideal: ej. máximo unos 110 píxeles de ancho por cada pieza
+  const anchoIdeal = diff.cols * 110;
+
+  // 2. El ancho máximo será el menor entre: la pantalla actual, 900px, o el anchoIdeal
+  const maxW = Math.min(boardWrap.clientWidth - 24, 900, anchoIdeal);
+
+  // 3. Calculamos las piezas forzando a que sean sin decimales para evitar grietas
   const pieceW = Math.floor(maxW / diff.cols);
   const pieceH = Math.floor((maxW * 0.66) / diff.rows);
 
-  // El tablero se reajusta para ser un múltiplo EXACTO de las piezas
+  // 4. El tablero se reajusta para ser un múltiplo EXACTO de las piezas
   state.boardW = pieceW * diff.cols;
   state.boardH = pieceH * diff.rows;
 
