@@ -4,9 +4,9 @@
 export const LEVELS = [
   {
     id: 1,
-    title: 'Nivel 1 - Carlos Tartiere',
-    img: 'https://picsum.photos/seed/oviedo1/900/600',
-    thumb: 'https://picsum.photos/seed/oviedo1/200/130',
+    title: 'Nivel 1 - Leyendas del Oviedismo',
+    img: 'img/jugadores/SantiCazorla.webp',
+    thumb: 'img/jugadores/SantiCazorla.webp',
   },
   {
     id: 2,
