@@ -5,8 +5,8 @@ export const LEVELS = [
   {
     id: 1,
     title: 'Nivel 1 - Leyendas del Oviedismo',
-    img: 'img/jugadores/SantiCazorla.webp',
-    thumb: 'img/jugadores/SantiCazorla.webp',
+    img: '../img/jugadores/SantiCazorla.webp',
+    thumb: '../img/jugadores/SantiCazorla.webp',
   },
   {
     id: 2,

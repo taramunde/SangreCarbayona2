@@ -1,4 +1,4 @@
-import { LEVELS, DIFFICULTIES } from './config.js?nocache=11';
+import { LEVELS, DIFFICULTIES } from './config.js?nocache=12';
 import { makePiecePath, createPieceSVG } from './jigsaw.js?nocache=10';
 import { launchConfetti } from './confetti.js?nocache=10';
 
