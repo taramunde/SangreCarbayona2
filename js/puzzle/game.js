@@ -411,14 +411,8 @@ export function init() {
     localStorage.setItem('carb_level', state.levelIdx);
     buildLevel();
   });
-  $('#previewBtn').addEventListener('pointerdown', () =>
-    previewOverlay.classList.add('on'),
-  );
-  $('#previewBtn').addEventListener('pointerup', () =>
-    previewOverlay.classList.remove('on'),
-  );
-  $('#previewBtn').addEventListener('pointerleave', () =>
-    previewOverlay.classList.remove('on'),
+  $('#previewBtn').addEventListener('click', () =>
+    previewOverlay.classList.toggle('on'),
   );
   $('#restartBtn').addEventListener('click', () => buildLevel());
   $('#nextBtn').addEventListener('click', () => {
