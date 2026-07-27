@@ -112,10 +112,12 @@ function buildLevel() {
         left: vTabs[r][c],
         right: vTabs[r][c + 1],
       };
+      // Bordes rectos para los límites del tablero
       if (r === 0) tabs.top = 0;
       if (r === rows - 1) tabs.bottom = 0;
       if (c === 0) tabs.left = 0;
       if (c === cols - 1) tabs.right = 0;
+
       state.pieces.push({
         id: `${r}-${c}`,
         r,
@@ -127,19 +129,9 @@ function buildLevel() {
       });
     }
   }
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const idx = r * cols + c;
-      if (r > 0) {
-        const up = state.pieces[(r - 1) * cols + c];
-        state.pieces[idx].tabs.top = -up.tabs.bottom;
-      }
-      if (c > 0) {
-        const left = state.pieces[r * cols + (c - 1)];
-        state.pieces[idx].tabs.left = -left.tabs.right;
-      }
-    }
-  }
+
+  // ¡HEMOS ELIMINADO EL BUCLE QUE INVERTÍA LAS PIEZAS Y LAS ROMPÍA!
+
   state.pieces.sort(() => Math.random() - 0.5);
   render();
   startTimer();
