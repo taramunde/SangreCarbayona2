@@ -555,6 +555,45 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.postimg.cc/d1sr9pDC/Juan-Carlos-PNG.webp",
 },
 
+"esteban-andres-suarez": {
+  nombre: "Esteban",
+  apellidos: "Andrés Suárez",
+  nombreCompleto: "Esteban Andrés Suárez",
+  apodo: "Esteban",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.79,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Avilés",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1975-06-27",
+  imagen: "https://i.postimg.cc/fT22S725/Esteban-PNG.webp",
+  seleccion: {
+    pais: "Española",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U21",
+        partidos: 1,
+        goles: 0,
+        asistencias: 0,
+        minutos: 44,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
@@ -4192,6 +4231,20 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "img/jugadores/DaniVillahermosa.webp",
 },
 
+"jonathan-vila-pereira": {
+  nombre: "Jonathan",
+  apellidos: "Vila Pereira",
+  nombreCompleto: "Jonathan Vila Pereira",
+  apodo: "Jonathan Vila",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.86,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Porriño",
+  provinciaNacimiento: "Pontevedra",
+  fechaNacimiento: "1986-03-06",
+  imagen: "https://i.postimg.cc/cJ2yZBWv/Jonathan-Vila-PNG.webp",
+},
 
   // ── DELANTEROS ────────────────────────────────────────────
 
