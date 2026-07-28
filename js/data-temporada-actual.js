@@ -273,7 +273,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       dorsal: '-',
       posicion: 'Mediapunta',
       enClubDesde: '2025',
-      contratoHasta: '2029',
+      contratoHasta: '2026',
       stats: {},
       partidos: [],
     },
