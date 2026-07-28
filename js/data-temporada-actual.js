@@ -50,7 +50,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       codigo: 'aaron-escandell-banacloche',
       dorsal: 13,
       enClubDesde: '2024',
-      contratoHasta: '2027',
+      contratoHasta: '2029',
       stats: {},
       partidos: [],
     },
