@@ -355,6 +355,8 @@ const translations = {
     pos_mediocentro_ofensivo: 'Mediocentro Ofensivo',
     pos_medio_derecho: 'Medio Derecho',
     pos_medio_izquierdo: 'Medio Izquierdo',
+    pos_interior_derecho: 'Interior Derecho',
+    pos_interior_izquierdo: 'Interior Izquierdo',
 
     // ============================================
     // CARGOS CUERPO TÉCNICO
@@ -712,6 +714,8 @@ const translations = {
     pos_mediocentro_ofensivo: 'Offensive Midfielder',
     pos_medio_derecho: 'Right Half-back',
     pos_medio_izquierdo: 'Left Half-back',
+    pos_interior_derecho: 'Right Inside Forward',
+    pos_interior_izquierdo: 'Left Inside Forward',
 
     // ============================================
     // COACHING STAFF ROLES
