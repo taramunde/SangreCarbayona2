@@ -1,0 +1,44 @@
+name: Actualizar nocache automáticamente
+
+# Se dispara solo cuando subes cambios en archivos .js o .css
+# (así no se activa por cualquier commit, ni entra en bucle con sus propios
+# commits, que solo tocan archivos .html)
+on:
+  push:
+    branches:
+      - main   # cambia esto si tu rama principal se llama "master" u otra
+    paths:
+      - '**/*.js'
+      - '**/*.css'
+
+permissions:
+  contents: write   # necesario para que la Action pueda hacer push
+
+jobs:
+  actualizar-nocache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar el script de nocache
+        run: node actualizar-nocache.js
+
+      - name: Hacer commit y push si hubo cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios de nocache que subir."
+          else
+            git commit -m "Actualizar nocache automáticamente [skip ci]"
+            git push
+          fi
