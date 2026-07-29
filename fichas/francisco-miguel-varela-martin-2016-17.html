@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francisco Miguel Varela Martín | Real Oviedo</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta property="og:title" content="Francisco Miguel Varela Martín - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Francisco Miguel Varela Martín. Temporada 2016/17."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/ryrJhXp6/Varela-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Francisco Miguel Varela Martín - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/francisco-miguel-varela-martin-2016-17.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Francisco Miguel Varela Martín - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Francisco Miguel Varela Martín. Temporada 2016/17."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/ryrJhXp6/Varela-PNG.webp" />
+
+    <link rel="preconnect" href="https://i.postimg.cc/ryrJhXp6/Varela-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'francisco-miguel-varela-martin',
+        season: '2016-17',
+        nombre: 'Francisco Miguel Varela Martín',
+        imagen: 'https://i.postimg.cc/ryrJhXp6/Varela-PNG.webp',
+        posicion: 'Lateral Izquierdo',
+        codigo: 'francisco-miguel-varela-martin-2016-17',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >1ª Equip.</a
+          ><span>/</span>
+          <span class="current">Francisco Miguel Varela Martín</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20251231v38"></script>
+    <script src="../js/data-club.js?nocache=20260426v1"></script>
+    <script src="../js/data-jugadores.js?nocache=20260426v1"></script>
+    <script src="../js/busqueda.js?nocache=20260614v4"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20260426v1"></script>
+    <script src="../js/data-historico.js?nocache=20260509v1"></script>
+    <script src="../js/data-utils.js?nocache=20260426v1"></script>
+    <script src="../js/app.js?nocache=20251231v49"></script>
+    <script src="../js/script.js?nocache=20251231v37"></script>
+    <script src="../js/main.js?nocache=20260406v3"></script>
+  </body>
+</html>
