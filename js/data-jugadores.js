@@ -93,7 +93,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Fontainebleau',
     provinciaNacimiento: 'Isla de Francia',
     fechaNacimiento: '1997-07-06',
-    imagen: 'https://i.postimg.cc/wxsLQXj0/Quentin-Braat-PNG.webp',
+    imagen: 'https://i.ibb.co/39VfQHbm/Quentin-Braat-PNG-Alineaci-n.webp',
     seleccion: {
       pais: 'Francia',
       bandera: 'https://flagcdn.com/16x12/fr.webp',
@@ -132,7 +132,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Ibiza',
     provinciaNacimiento: 'Islas Baleares',
     fechaNacimiento: '2000-07-06',
-    imagen: 'https://i.postimg.cc/mDmMpjF5/Leo-Roman-PNG.webp',
+    imagen: 'https://i.ibb.co/LXXjH0dR/Leo-Rom-n-Alineaci-n-PNG.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
