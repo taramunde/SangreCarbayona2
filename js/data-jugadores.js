@@ -6636,7 +6636,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Necochea',
     provinciaNacimiento: 'Buenos Aires',
     fechaNacimiento: '1957-09-21',
-    imagen: 'https://i.postimg.cc/CxbhxKJh/Sergio-Egea-(entrenador)-PNG.webp',
+    imagen: 'https://i.ibb.co/jvQfrQvz/Sergio-Egea-entrenador-PNG.webp',
   },
 
   'javier-fernandez-rozada-alvarez': {
