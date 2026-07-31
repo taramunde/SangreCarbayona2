@@ -973,7 +973,64 @@ CLUB_DATA.temporadas['2016-17'] = {
 ],
 };
 
+// ===================================
+// TEMPORADA 2015/2016
+// ===================================
+CLUB_DATA.temporadas['2015-16'] = {
+  competicion: 'Segunda División',
+  grupo: 'null',
 
+  estadisticasEquipo: {
+    posicion: 9,
+    desglose: {
+      'Segunda División': {
+        partidos:    42,
+        victorias:   16,
+        empates:     11,
+        derrotas:    15,
+        golesFavor:  52,
+        golesContra: 51,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  4,
+        golesContra: 4,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+
+
+
+    // DEFENSAS
+    
+
+
+    // CENTROCAMPISTAS
+    
+
+
+
+    // DELANTEROS
+   
+   
+
+ ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+
+],
+};
 
 // ===================================
 // PRIMERA DIVISIÓN - HISTÓRICO
