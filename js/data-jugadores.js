@@ -6695,6 +6695,21 @@ CLUB_DATA.entrenadorMaestro = {
   },
 },
 
+"david-generelo-miranda": {
+  nombre: "David",
+  apellidos: "Generelo Miranda",
+  nombreCompleto: "David Generelo Miranda",
+  apodo: "David Generelo",
+  cargo: "Entrenador Principal",
+  cargoCorto: "ENT",
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Badajoz",
+  provinciaNacimiento: "Badajoz",
+  fechaNacimiento: "1982-08-11",
+  imagen: "https://i.ibb.co/cK0fqHc4/Generelo-entrenador-PNG.webp",
+},
+
+
 };
 
 window.CLUB_DATA = CLUB_DATA;
