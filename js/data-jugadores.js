@@ -2834,7 +2834,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2005-04-27',
-    imagen: 'https://i.postimg.cc/c44YyRL7/Diego-Menendez-(Dieguito)-PNG.webp',
+    imagen: 'img/jugadores/Dieguito.webp',
   },
 
   'pablo-menendez-agudin': {
