@@ -145,17 +145,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'mouhamed-lamine-gueye',
-      codigo: 'mouhamed-lamine-gueye',
-      dorsal: 28,
-      posicion: 'Lateral Derecho',
-      enClubDesde: '2023',
-      contratoHasta: '2027',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'aisar-ahmed-ahmed',
       codigo: 'aisar-ahmed-ahmed',
       dorsal: 2,
