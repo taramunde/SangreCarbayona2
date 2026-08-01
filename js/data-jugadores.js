@@ -3338,7 +3338,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2008-11-05',
-    imagen: 'https://i.postimg.cc/kGLLY78g/Enzo-Perez.webp',
+    imagen: 'img/jugadores/EnzoPerez.webp',
   },
 
   'marco-sangalli-fuentes': {
