@@ -6455,6 +6455,21 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/Swjh1C9B/Kon-PNG.webp",
 },
 
+"david-gonzalez-gomez": {
+  nombre: "David",
+  apellidos: "González Gómez",
+  nombreCompleto: "David González Gómez",
+  apodo: "David González",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.83,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1993-08-02",
+  imagen: "https://i.ibb.co/PfCW0sz/David-Gonz-lez-PNG.webp",
+},
+
 "ivan-da-conceicao-gomez": {
   nombre: "Iván",
   apellidos: "Da Conceiçao Gómez",
