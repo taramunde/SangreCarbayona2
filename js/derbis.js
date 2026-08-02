@@ -108,7 +108,7 @@ function cargarListaDerbis() {
         </div>
       </td>
       <td class="hide-mobile">${partido.estadio}</td>
-      <td><a href="fichas/derbi-${partido.id}.html" class="match-link">Ver ficha <i class="fas fa-arrow-right"></i></a></td>
+      <td><a href="derbi.html?id=${partido.id}" class="match-link">Ver ficha <i class="fas fa-arrow-right"></i></a></td>
     `;
     tbody.appendChild(fila);
   });
@@ -119,11 +119,7 @@ function cargarListaDerbis() {
    ---------------------------------- */
 function cargarPartidoDinamico() {
   const urlParams = new URLSearchParams(window.location.search);
-  // En derbi.html (dinámico) el id viene por la URL. En las fichas
-  // estáticas generadas por generar-derbis.js no hay query string,
-  // así que se usa window.DERBI_ID_STATIC como respaldo (mismo patrón
-  // que window.PLAYER_DATA_STATIC en las fichas de jugador).
-  const partidoId = urlParams.get('id') || window.DERBI_ID_STATIC;
+  const partidoId = urlParams.get('id');
 
   if (!partidoId || !window.DERBIS_DATA) return;
 
