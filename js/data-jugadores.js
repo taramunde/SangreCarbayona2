@@ -5474,7 +5474,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'San Adrián',
     provinciaNacimiento: 'Navarra',
     fechaNacimiento: '2001-05-22',
-    imagen: 'https://i.postimg.cc/RVTKD8Jc/Pablo-Saenz-PNG.webp',
+    imagen: 'img/jugadores/PabloSaenz.webp',
   },
 
   'manuel-javier-vallejo-galvan': {
@@ -5903,7 +5903,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Utrera',
     provinciaNacimiento: 'Sevilla',
     fechaNacimiento: '2002-03-26',
-    imagen: 'https://i.postimg.cc/vHf64LfS/Joaquin-Delgado-PNG.webp',
+    imagen: 'img/jugadores/JoaquinDelgado.webp',
   },
 
   'jaime-coballes-fernandez': {
@@ -5933,7 +5933,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '2003-07-25',
-    imagen: 'https://i.postimg.cc/JhyFSVxf/Victor-Mingo-PNG.webp',
+    imagen: 'img/jugadores/VictorMingo.webp',
   },
 
   'jose-luis-moreno-barroso': {

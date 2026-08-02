@@ -92,7 +92,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'juan-cruz-alvaro-armada',
       codigo: 'juan-cruz-alvaro-armada',
-      dorsal: '-',
+      dorsal: 3,
       posicion: 'Lateral Izquierdo',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -259,7 +259,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'pablo-menendez-agudin',
       codigo: 'pablo-menendez-agudin',
-      dorsal: '-',
+      dorsal: 27,
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -314,7 +314,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'daniel-villahermosa-martinez',
       codigo: 'daniel-villahermosa-martinez',
-      dorsal: '-',
+      dorsal: 14,
       posicion: 'Mediocentro',
       enClubDesde: '2026',
       contratoHasta: '2027',
@@ -393,7 +393,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'victor-garcia-mingo',
       codigo: 'victor-garcia-mingo',
-      dorsal: '-',
+      dorsal: 18,
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -415,7 +415,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'christopher-ramos-de-la-flor',
       codigo: 'christopher-ramos-de-la-flor',
-      dorsal: '-',
+      dorsal: 9,
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2027',
@@ -426,7 +426,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'carlos-fernandez-luna',
       codigo: 'carlos-fernandez-luna',
-      dorsal: '-',
+      dorsal: 17,
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2028',
