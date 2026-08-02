@@ -121,6 +121,12 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
       ? codificarImagenUrl(jugador.imagen)
       : `${SITE_BASE_URL}/${codificarImagenUrl(jugador.imagen)}`
     : '';
+  // La ficha canónica de un jugador es siempre la que no lleva sufijo
+  // de temporada (la de su temporada más reciente). Tanto si "slug"
+  // es esa ficha canónica como si es una variante histórica
+  // (jugador-2024-25.html), el canonical apunta al mismo sitio.
+  const canonicalUrl = `${SITE_BASE_URL}/fichas/${jugador.codigo}.html`;
+
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
     .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
@@ -128,7 +134,8 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
     .replace(/\{\{POSICION\}\}/g, jugador.posicion || '')
-    .replace(/\{\{SLUG\}\}/g, slug);
+    .replace(/\{\{SLUG\}\}/g, slug)
+    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrl);
 }
 
 // 7. Generar fichas de jugadores
@@ -222,6 +229,10 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
       : `${SITE_BASE_URL}/${codificarImagenUrlEnt(imagenRaw)}`
     : '';
 
+  // Un entrenador no tiene variantes históricas con sufijo, así que
+  // su ficha siempre es canónica a sí misma.
+  const canonicalUrlEnt = `${SITE_BASE_URL}/fichas/${slug}.html`;
+
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
     .replace(/\{\{IMAGEN\}\}/g, imagen)
@@ -229,7 +240,8 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
     .replace(/\{\{TEMPORADA_ID\}\}/g, temporadaId)
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
     .replace(/\{\{POSICION\}\}/g, miembro.cargo || 'Entrenador')
-    .replace(/\{\{SLUG\}\}/g, slug);
+    .replace(/\{\{SLUG\}\}/g, slug)
+    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrlEnt);
 
   // Inyectar tipo=entrenador en el PLAYER_DATA_STATIC
   htmlContent = htmlContent.replace(
