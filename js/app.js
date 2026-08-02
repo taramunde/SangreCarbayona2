@@ -372,23 +372,15 @@ const App = {
   },
 
   renderSeasonSelector: function () {
-    const container = document.getElementById('seasonSelector');
-    if (!container) return;
-    let html = '<div class="season-tabs">';
-    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
-      const activeClass = temp.id === this.temporadaActiva ? 'active' : '';
-      const currentBadge = temp.actual
-        ? '<span class="current-badge">' + t('current_badge') + '</span>'
-        : '';
-      html += `<button class="season-tab ${activeClass}" data-season="${temp.id}">${temp.nombre} ${currentBadge}</button>`;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    container.querySelectorAll('.season-tab').forEach((tab) => {
-      tab.addEventListener('click', (e) => {
-        this.changeSeason(e.currentTarget.dataset.season);
-      });
-    });
+    if (typeof SeasonSelector === 'undefined') return;
+    if (!document.getElementById('seasonSelector')) return;
+    SeasonSelector.init(
+      'seasonSelector',
+      CLUB_DATA.temporadasDisponibles,
+      CLUB_DATA.temporadaActual,
+      this.temporadaActiva,
+      (seasonId) => this.changeSeason(seasonId),
+    );
   },
 
   changeSeason: function (seasonId) {
@@ -414,10 +406,9 @@ const App = {
       headerImg.style.objectPosition = this._getHeaderImgPosition(seasonId);
     }
 
-    document.querySelectorAll('.season-tab').forEach((tab) => {
-      // ← esta línea ya existía
-      tab.classList.toggle('active', tab.dataset.season === seasonId);
-    });
+    if (typeof SeasonSelector !== 'undefined') {
+      SeasonSelector.setActive(seasonId);
+    }
     this.renderSubtituloTemporada();
     this.renderEstadisticasEquipo();
     this.renderPlantillaCompleta();
