@@ -1072,6 +1072,81 @@ CLUB_DATA.temporadas['2015-16'] = {
 ],
 };
 
+
+// ===================================
+// TEMPORADA 2014/2015
+// ===================================
+CLUB_DATA.temporadas['2014-15'] = {
+  competicion: 'Segunda División B',
+  grupo: 'Grupo: 1',
+
+  estadisticasEquipo: {
+    posicion: 1,
+    desglose: {
+      'Segunda División B': {
+        partidos:    38,
+        victorias:   24,
+        empates:     8,
+        derrotas:    6,
+        golesFavor:  77,
+        golesContra: 31,
+      },
+      'Fase de Ascenso': {
+        partidos:    4,
+        victorias:   2,
+        empates:     1,
+        derrotas:    1,
+        golesFavor:  6,
+        golesContra: 3,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    4,
+        victorias:   2,
+        empates:     1,
+        derrotas:    1,
+        golesFavor:  5,
+        golesContra: 2,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+    
+
+
+
+    // DEFENSAS
+    
+
+
+
+    // CENTROCAMPISTAS
+    
+
+
+    // DELANTEROS
+   
+   
+   
+
+ ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+
+
+],
+};
+
+
+
+
+
 // ===================================
 // PRIMERA DIVISIÓN - HISTÓRICO
 // ===================================

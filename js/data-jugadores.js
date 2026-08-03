@@ -2326,6 +2326,66 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/zV72h6qF/Sinchi-PNG.webp",
 },
 
+"angel-saiz-rodriguez": {
+  nombre: "Ángel",
+  apellidos: "Saiz Rodríguez",
+  nombreCompleto: "Ángel Saiz Rodríguez",
+  apodo: "Ángel",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.89,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Avilés",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1994-06-10",
+  imagen: "https://i.ibb.co/7NTTwnLK/ngel-Saiz-PNG.webp",
+},
+
+"pablo-castiello-montes": {
+  nombre: "Pablo",
+  apellidos: "Castiello Montes",
+  nombreCompleto: "Pablo Castiello Montes",
+  apodo: "Castiello",
+  posicion: "Defensa",
+  posicionCorta: "LD",
+  altura: 1.82,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Gijón",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1995-04-04",
+  imagen: "https://i.ibb.co/dwnS9WcT/Castiello-PNG.webp",
+},
+
+"oscar-ruiz-fernandez": {
+  nombre: "Óscar",
+  apellidos: "Ruiz Fernández",
+  nombreCompleto: "Óscar Ruiz Fernández",
+  apodo: "Óscar",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 0,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Gijón",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1993-05-28",
+  imagen: "https://i.ibb.co/MkzqFCSJ/scar-PNG.webp",
+},
+
+"daniel-garcia-pelaez": {
+  nombre: "Daniel",
+  apellidos: "García Peláez",
+  nombreCompleto: "Daniel García Peláez",
+  apodo: "Colo",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.88,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Sotrondio",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1994-03-22",
+  imagen: "https://i.ibb.co/4w1xdYkf/Colo-PNG.webp",
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -5052,6 +5112,51 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/WNX46BWV/Capelete-PNG.webp",
 },
 
+"josep-sene-escudero": {
+  nombre: "Josep",
+  apellidos: "Señé Escudero",
+  nombreCompleto: "Josep Señé Escudero",
+  apodo: "Josep Señé",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "San Cugat del Vallés",
+  provinciaNacimiento: "Barcelona",
+  fechaNacimiento: "1991-12-10",
+  imagen: "https://i.ibb.co/KpMxBRg6/Josep-Se-PNG.webp",
+},
+
+"eneko-fernandez-de-garayalde-jimenez": {
+  nombre: "Eneko",
+  apellidos: "Fernández de Garayalde Jiménez",
+  nombreCompleto: "Eneko Fernández de Garayalde Jiménez",
+  apodo: "Eneko",
+  posicion: "Centrocampista",
+  posicionCorta: "MCD",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Zaragoza",
+  provinciaNacimiento: "Zaragoza",
+  fechaNacimiento: "1984-05-26",
+  imagen: "https://i.ibb.co/nNTM46QJ/Eneko-PNG.webp",
+},
+
+"sergio-santolaya-rojas": {
+  nombre: "Sergio",
+  apellidos: "Santolaya Rojas",
+  nombreCompleto: "Sergio Santolaya Rojas",
+  apodo: "Rojas",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.72,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Logroño",
+  provinciaNacimiento: "La Rioja",
+  fechaNacimiento: "1994-04-13",
+  imagen: "https://i.ibb.co/NgNyYTnQ/Rojas-PNG.webp",
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -6597,6 +6702,66 @@ CLUB_DATA.jugadoresMaestro = {
       }
     ],
   },
+},
+
+"sergio-garcia-de-la-iglesia": {
+  nombre: "Sergio",
+  apellidos: "García de La Iglesia",
+  nombreCompleto: "Sergio García de La Iglesia",
+  apodo: "Sergio García",
+  posicion: "Delantero",
+  posicionCorta: "ED",
+  altura: 1.72,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Zamora",
+  provinciaNacimiento: "Zamora",
+  fechaNacimiento: "1989-08-08",
+  imagen: "https://i.ibb.co/pvWKJGqY/Sergio-Garc-a-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U19",
+        partidos: 11,
+        goles: 1,
+        asistencias: 0,
+        minutos: 302,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"dionisio-emanuel-villalba-rojano": {
+  nombre: "Dionisio Emanuel",
+  apellidos: "Villalba Rojano",
+  nombreCompleto: "Dionisio Emanuel Villalba Rojano",
+  apodo: "Dioni",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Málaga",
+  provinciaNacimiento: "Málaga",
+  fechaNacimiento: "1989-12-21",
+  imagen: "https://i.ibb.co/j9wtJyWK/Dioni-PNG.webp",
+},
+
+"juan-steven-ospina": {
+  nombre: "Juan Steven",
+  apellidos: "Ospina",
+  nombreCompleto: "Juan Steven Ospina",
+  apodo: "Juan Steven",
+  posicion: "Delantero",
+  posicionCorta: "EI",
+  altura: 1.72,
+  nacionalidad: ["Colombiana"],
+  lugarNacimiento: "Sevilla",
+  provinciaNacimiento: "Valle del Cauca",
+  fechaNacimiento: "1996-05-10",
+  imagen: "https://i.ibb.co/VYcWsdkf/Juan-Steven-PNG.webp",
 },
 
 }; // fin jugadoresMaestro
