@@ -129,30 +129,55 @@ function cargarPartidoDinamico() {
 
   const partido = window.DERBIS_DATA.find((p) => p.id === partidoId);
 
+  // Helpers defensivos: en la ficha estática no todos los elementos
+  // existen (algunos ya vienen rellenos por generar-derbis.js en el
+  // propio HTML), así que comprobamos antes de tocarlos en vez de
+  // asumir que siempre están presentes.
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = value;
+  };
+  const setHtml = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = value;
+  };
+  const setSrc = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.src = value;
+  };
+
   if (!partido) {
-    document.getElementById('titulo-partido').innerText =
-      'Partido no encontrado';
+    setText('titulo-partido', 'Partido no encontrado');
     return;
   }
 
-  document.getElementById('bc-jornada').innerText =
-    `Jornada ${partido.jornada} (${partido.temporada.split('/')[0]})`;
-  document.getElementById('titulo-partido').innerText =
-    `${partido.local.nombre} vs ${partido.visitante.nombre}`;
-  document.getElementById('subtitulo-partido').innerText =
-    `${partido.competicion} · Jornada ${partido.jornada} · ${partido.temporada}`;
+  setText(
+    'bc-jornada',
+    `Jornada ${partido.jornada} (${partido.temporada.split('/')[0]})`,
+  );
+  setText(
+    'titulo-partido',
+    `${partido.local.nombre} vs ${partido.visitante.nombre}`,
+  );
+  setText(
+    'subtitulo-partido',
+    `${partido.competicion} · Jornada ${partido.jornada} · ${partido.temporada}`,
+  );
 
-  document.getElementById('escudo-local').src = partido.local.escudo;
-  document.getElementById('nombre-local').innerText = partido.local.nombre;
-  document.getElementById('escudo-visitante').src = partido.visitante.escudo;
-  document.getElementById('nombre-visitante').innerText =
-    partido.visitante.nombre;
+  setSrc('escudo-local', partido.local.escudo);
+  setText('nombre-local', partido.local.nombre);
+  setSrc('escudo-visitante', partido.visitante.escudo);
+  setText('nombre-visitante', partido.visitante.nombre);
 
-  document.getElementById('fecha-partido').innerHTML =
-    `<i class="far fa-calendar-alt"></i> ${partido.fecha}`;
-  document.getElementById('resultado-partido').innerText = partido.resultado;
-  document.getElementById('estadio-partido').innerHTML =
-    `<i class="fas fa-map-marker-alt"></i> ${partido.estadio}`;
+  setHtml(
+    'fecha-partido',
+    `<i class="far fa-calendar-alt"></i> ${partido.fecha}`,
+  );
+  setText('resultado-partido', partido.resultado);
+  setHtml(
+    'estadio-partido',
+    `<i class="fas fa-map-marker-alt"></i> ${partido.estadio}`,
+  );
 
   renderizarAlineacion('alineacion-local', partido.local, 'Alineación Local');
   renderizarAlineacion(
@@ -161,7 +186,8 @@ function cargarPartidoDinamico() {
     'Alineación Visitante',
   );
 
-  document.getElementById('match-container').style.display = 'block';
+  const matchContainer = document.getElementById('match-container');
+  if (matchContainer) matchContainer.style.display = 'block';
 }
 
 function renderizarAlineacion(contenedorId, equipo, titulo) {
