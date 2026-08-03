@@ -2266,6 +2266,66 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/SDkLsSn2/Kike-Torrent-PNG.webp",
 },
 
+"sergio-jimenez-sanchez": {
+  nombre: "Sergio",
+  apellidos: "Jiménez Sánchez",
+  nombreCompleto: "Sergio Jiménez Sánchez",
+  apodo: "Sergio Sánchez",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.9,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Albacete",
+  provinciaNacimiento: "Albacete",
+  fechaNacimiento: "1987-08-22",
+  imagen: "https://i.ibb.co/nqG2vRbd/Sergio-S-nchez-PNG.webp",
+},
+
+"manuel-redondo-garcia": {
+  nombre: "Manuel",
+  apellidos: "Redondo García",
+  nombreCompleto: "Manuel Redondo García",
+  apodo: "Redondo",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.81,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Sevilla",
+  provinciaNacimiento: "Sevilla",
+  fechaNacimiento: "1985-01-11",
+  imagen: "https://i.ibb.co/1GKttCJR/Redondo-PNG.webp",
+},
+
+"charlie-dean-ianson": {
+  nombre: "Charlie Dean",
+  apellidos: "I'Anson",
+  nombreCompleto: "Charlie Dean I'Anson",
+  apodo: "Charlie",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.82,
+  nacionalidad: ["Británica", "Española"],
+  lugarNacimiento: "Luton",
+  provinciaNacimiento: "Inglaterra",
+  fechaNacimiento: "1993-07-01",
+  imagen: "https://i.ibb.co/Y71LvjpN/Charlie-PNG.webp",
+},
+
+"adrian-jimena-vior": {
+  nombre: "Adrián",
+  apellidos: "Jimena Vior",
+  nombreCompleto: "Adrián Jimena Vior",
+  apodo: "Sinchi",
+  posicion: "Defensa",
+  posicionCorta: "LD",
+  altura: "-",
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1994-05-18",
+  imagen: "https://i.ibb.co/zV72h6qF/Sinchi-PNG.webp",
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
