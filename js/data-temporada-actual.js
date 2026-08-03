@@ -433,6 +433,19 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [],
     },
+
+    {
+  id: "estanislau-pedrola-fortuny",
+  codigo: "estanislau-pedrola-fortuny",
+  dorsal: "-",
+  posicion: "Extremo Izquierdo",
+  enClubDesde: "2026",
+  contratoHasta: "2029",
+  stats: {},
+  partidos: [
+  ]
+},
+
   ],
 
   // ENTRENADORES

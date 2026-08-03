@@ -6560,6 +6560,45 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/xKjbCSPT/Allyson-PNG.webp",
 },
 
+"estanislau-pedrola-fortuny": {
+  nombre: "Estanislau",
+  apellidos: "Pedrola Fortuny",
+  nombreCompleto: "Estanislau Pedrola Fortuny",
+  apodo: "Estanis Pedrola",
+  posicion: "Delantero",
+  posicionCorta: "EI",
+  altura: 1.88,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Cambrils",
+  provinciaNacimiento: "Tarragona",
+  fechaNacimiento: "2003-08-24",
+  imagen: "img/jugadores/EstanisPedrola.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U21",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      },
+      {
+        categoria: "U19",
+        partidos: 0,
+        goles: 0,
+        asistencias: 0,
+        minutos: 0,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
