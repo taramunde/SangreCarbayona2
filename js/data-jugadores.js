@@ -4634,15 +4634,6 @@ CLUB_DATA.jugadoresMaestro = {
   apodo: "Jonathan Vila",
   posicion: "Centrocampista",
   posicionCorta: "MC",
-  altura: 1.86,
-      posiciones: [
-      {
-        desde: 2014,
-        hasta: 2015,
-        posicion: 'Defensa',
-        posicionCorta: 'DC',
-      },
-    ],
   nacionalidad: ["Española"],
   lugarNacimiento: "Porriño",
   provinciaNacimiento: "Pontevedra",
