@@ -1166,9 +1166,9 @@ const App = {
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
     const whatsappText = encodeURIComponent(shareText + '\n\n' + pageUrl);
     const shareLinks = `
-            <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+            <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" rel="noopener noreferrer" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
@@ -1320,9 +1320,9 @@ const App = {
     const shareText = `Ficha de ${nombre} - ${CLUB_DATA.club.nombreCorto}`;
     const whatsappText = encodeURIComponent(shareText + '\n\n' + pageUrl);
     const shareLinks = `
-      <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-      <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+      <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" rel="noopener noreferrer" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
 
     container.innerHTML = `
       <div class="player-photo-container">
@@ -3520,7 +3520,7 @@ const App = {
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + '\n\n' + videoUrl)}" target="_blank" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
+      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + '\n\n' + videoUrl)}" target="_blank" rel="noopener noreferrer" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
     });
     container.innerHTML = html;
   },

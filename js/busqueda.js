@@ -439,6 +439,12 @@
 
   // ── RENDERIZADO ────────────────────────────────────────────
 
+  function escaparHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto == null ? '' : String(texto);
+    return div.innerHTML;
+  }
+
   function resaltar(texto, query) {
     if (!query || !texto) return texto || '';
     const q = query.trim();
@@ -539,7 +545,7 @@
       contenedor.innerHTML = `
         <div class="busq-vacio">
           <i class="fas fa-search"></i>
-          Sin resultados para "<strong>${query}</strong>"
+          Sin resultados para "<strong>${escaparHtml(query)}</strong>"
         </div>`;
       contenedor.classList.add('visible');
       return;
