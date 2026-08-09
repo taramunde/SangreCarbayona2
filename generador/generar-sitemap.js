@@ -23,8 +23,44 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const crypto = require('crypto');
 
 const SITE_BASE_URL = 'https://taramunde.github.io/SangreCarbayona2';
+
+// Cache que recuerda, por URL, el hash del contenido que la generó la
+// última vez y la fecha (lastmod) que se le puso entonces. Así, si el
+// contenido de una ficha no ha cambiado desde la última ejecución, el
+// sitemap conserva su lastmod antiguo en vez de poner "hoy" siempre —
+// un lastmod que miente (todo "cambió hoy") acaba haciendo que Google
+// deje de confiar en la etiqueta.
+const CACHE_PATH = path.join(__dirname, '.sitemap-cache.json');
+
+function cargarCache() {
+  if (!fs.existsSync(CACHE_PATH)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function guardarCache(cache) {
+  fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n', 'utf8');
+}
+
+function hashDe(obj) {
+  return crypto.createHash('sha1').update(JSON.stringify(obj)).digest('hex');
+}
+
+// Devuelve el lastmod a usar para `loc`: reutiliza el guardado en caché
+// si el contenido no ha cambiado, o `hoy` si es nuevo o cambió.
+function lastmodParaContenido(loc, contenido, cache, hoy) {
+  const hash = hashDe(contenido);
+  const previo = cache[loc];
+  const lastmod = previo && previo.hash === hash ? previo.lastmod : hoy;
+  cache[loc] = { hash, lastmod };
+  return lastmod;
+}
 
 // Páginas estáticas indexables del sitio. Actualizar esta lista a mano
 // si se añade o se quita alguna página pública.
@@ -124,7 +160,7 @@ function calcularFichasCanonicas(CLUB_DATA) {
         {};
       const jugador = { ...maestro, ...jugadorTemp };
       if (!jugador.nombreCompleto && !jugador.imagen) return;
-      mapaJugadores[jugador.codigo] = true;
+      mapaJugadores[jugador.codigo] = jugador;
     });
 
     (temporada.cuerpoTecnico || []).forEach((miembro) => {
@@ -138,11 +174,15 @@ function calcularFichasCanonicas(CLUB_DATA) {
           .replace(/-+/g, '-')
           .replace(/^-|-$/g, '');
       }
-      mapaEntrenadores[`entrenador-${entId}`] = true;
+      const maestroEnt =
+        (CLUB_DATA.entrenadorMaestro &&
+          CLUB_DATA.entrenadorMaestro[String(entId)]) ||
+        {};
+      mapaEntrenadores[`entrenador-${entId}`] = { ...maestroEnt, ...miembro };
     });
   });
 
-  return { slugsJugadores: Object.keys(mapaJugadores), slugsEntrenadores: Object.keys(mapaEntrenadores) };
+  return { mapaJugadores, mapaEntrenadores };
 }
 
 function bloqueUrl(loc, changefreq, priority, hoy) {
@@ -158,24 +198,35 @@ function bloqueUrl(loc, changefreq, priority, hoy) {
 
 function generarSitemap() {
   const { CLUB_DATA, DERBIS_DATA } = cargarClubData();
-  const { slugsJugadores, slugsEntrenadores } = calcularFichasCanonicas(CLUB_DATA);
+  const { mapaJugadores, mapaEntrenadores } = calcularFichasCanonicas(CLUB_DATA);
   const hoy = new Date().toISOString().split('T')[0];
+  const cache = cargarCache();
   const urls = [];
 
+  // Las páginas fijas (noticias, calendario...) cambian de contenido a
+  // menudo por su propia naturaleza, así que siempre llevan la fecha de
+  // hoy: aquí sí es representativo, a diferencia de una ficha antigua.
   PAGINAS_ESTATICAS.forEach((p) => {
     urls.push(bloqueUrl(p.loc, p.changefreq, p.priority, hoy));
+    cache[`${SITE_BASE_URL}${p.loc}`] = { hash: null, lastmod: hoy };
   });
 
-  slugsJugadores.forEach((slug) => {
-    urls.push(bloqueUrl(`/fichas/${slug}.html`, 'weekly', '0.6', hoy));
+  Object.entries(mapaJugadores).forEach(([slug, jugador]) => {
+    const loc = `/fichas/${slug}.html`;
+    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, jugador, cache, hoy);
+    urls.push(bloqueUrl(loc, 'weekly', '0.6', lastmod));
   });
 
-  slugsEntrenadores.forEach((slug) => {
-    urls.push(bloqueUrl(`/fichas/${slug}.html`, 'weekly', '0.5', hoy));
+  Object.entries(mapaEntrenadores).forEach(([slug, miembro]) => {
+    const loc = `/fichas/${slug}.html`;
+    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, miembro, cache, hoy);
+    urls.push(bloqueUrl(loc, 'weekly', '0.5', lastmod));
   });
 
   DERBIS_DATA.forEach((partido) => {
-    urls.push(bloqueUrl(`/fichas/derbi-${partido.id}.html`, 'yearly', '0.5', hoy));
+    const loc = `/fichas/derbi-${partido.id}.html`;
+    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, partido, cache, hoy);
+    urls.push(bloqueUrl(loc, 'yearly', '0.5', lastmod));
   });
 
   const xml =
@@ -186,9 +237,10 @@ function generarSitemap() {
 
   const outputPath = path.join(__dirname, '..', 'sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
+  guardarCache(cache);
   console.log(
     `✅ sitemap.xml regenerado con ${urls.length} URLs ` +
-      `(${PAGINAS_ESTATICAS.length} páginas fijas, ${slugsJugadores.length} jugadores, ${slugsEntrenadores.length} entrenadores, ${DERBIS_DATA.length} derbis).`,
+      `(${PAGINAS_ESTATICAS.length} páginas fijas, ${Object.keys(mapaJugadores).length} jugadores, ${Object.keys(mapaEntrenadores).length} entrenadores, ${DERBIS_DATA.length} derbis).`,
   );
 }
 

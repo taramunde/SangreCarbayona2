@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Oviedo 2 - 1 Real Gijón | Derbi Asturiano</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/derbis.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- ============================================================
+         META OPEN GRAPH — con el resultado real del partido, para que
+         WhatsApp/Telegram/Twitter muestren la ficha correcta al
+         compartir un derbi concreto (antes mostraban el genérico
+         "Detalle del Derbi" de derbi.html).
+         ============================================================ -->
+    <meta
+      name="description"
+      content="1ª División · Jornada 12 · Temporada 1944/45. Estadio de Buenavista."
+    />
+    <meta
+      property="og:title"
+      content="Real Oviedo 2 - 1 Real Gijón - Derbi Asturiano"
+    />
+    <meta
+      property="og:description"
+      content="1ª División · Jornada 12 · Temporada 1944/45. Estadio de Buenavista."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/T2VtkXHR/Real-Oviedo-1942-44.png" />
+    <meta property="og:url" content="https://taramunde.github.io/SangreCarbayona2/fichas/derbi-1944-j12.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Real Oviedo 2 - 1 Real Gijón - Derbi Asturiano"
+    />
+    <meta
+      name="twitter:description"
+      content="1ª División · Jornada 12 · Temporada 1944/45."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/T2VtkXHR/Real-Oviedo-1942-44.png" />
+
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/derbi-1944-j12.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": "Real Oviedo vs Real Gijón",
+        "url": "https://taramunde.github.io/SangreCarbayona2/fichas/derbi-1944-j12.html",
+        "startDate": "1944-12-10",
+        "location": {
+          "@type": "Place",
+          "name": "Estadio de Buenavista"
+        },
+        "homeTeam": {
+          "@type": "SportsTeam",
+          "name": "Real Oviedo"
+        },
+        "awayTeam": {
+          "@type": "SportsTeam",
+          "name": "Real Gijón"
+        }
+      }
+    </script>
+
+    <!-- Id del partido para que derbis.js lo renderice sin depender
+         de un parámetro ?id= en la URL (esta página no lo tiene) -->
+    <script>
+      window.DERBI_ID_STATIC = '1944-j12';
+    </script>
+  </head>
+  <body>
+    <header class="main-header" id="header-placeholder"></header>
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <section class="page-header">
+      <div
+        class="page-header-bg"
+        style="
+          background: linear-gradient(
+            135deg,
+            #003da5 0%,
+            #002070 60%,
+            #1a1a2e 100%
+          );
+        "
+      ></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span>
+          <a href="../derbis.html" data-i18n="nav_derbis"
+            >Derbis Asturianos</a
+          ><span>/</span>
+          <span class="current">Jornada 12 (1944)</span>
+        </div>
+        <h1 class="page-title">Real Oviedo vs Real Gijón</h1>
+        <p class="page-subtitle">
+          1ª División · Jornada 12 · 1944/45
+        </p>
+      </div>
+    </section>
+
+    <section class="match-details" id="match-container">
+      <div class="container">
+        <div class="match-hero">
+          <div class="match-team team-local">
+            <img id="escudo-local" src="https://i.postimg.cc/T2VtkXHR/Real-Oviedo-1942-44.png" alt="Real Oviedo" />
+            <h2 id="nombre-local">Real Oviedo</h2>
+          </div>
+          <div class="match-center">
+            <div class="meta" id="fecha-partido">
+              <i class="far fa-calendar-alt"></i> 10 de Diciembre de 1944
+            </div>
+            <div class="score" id="resultado-partido">2 - 1</div>
+            <div class="stadium" id="estadio-partido">
+              <i class="fas fa-map-marker-alt"></i> Estadio de Buenavista
+            </div>
+          </div>
+          <div class="match-team team-visitante">
+            <img
+              id="escudo-visitante"
+              src="https://i.postimg.cc/YSvX8GTV/Real-Gij-n-1946-PNG.png"
+              alt="Real Gijón"
+            />
+            <h2 id="nombre-visitante">Real Gijón</h2>
+          </div>
+        </div>
+
+        <!-- Las alineaciones detalladas las sigue rellenando derbis.js
+             en tiempo de carga (mismo patrón que las fichas de
+             jugador, que también dependen de JS para el detalle
+             completo); lo de arriba ya es suficiente contenido
+             estático para compartir y para que Google indexe el
+             resultado del partido sin depender de JS. -->
+        <div class="lineups-section">
+          <div class="lineups-grid">
+            <div class="lineup-column" id="alineacion-local"></div>
+            <div class="lineup-column" id="alineacion-visitante"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <script src="../js/data-club.js?nocache=20260809v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20260809v2"></script>
+    <script src="../js/busqueda.js?nocache=20260809v2"></script>
+    <script src="../js/i18n.js?nocache=20260809v2"></script>
+    <script src="../js/seo.js?nocache=20260809v2"></script>
+    <script src="../js/main.js?nocache=20260809v2"></script>
+    <script src="../js/data-derbis.js?nocache=20260809v2"></script>
+    <script src="../js/derbis.js?nocache=20260809v2"></script>
+  </body>
+</html>
