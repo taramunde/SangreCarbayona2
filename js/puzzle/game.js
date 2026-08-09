@@ -122,6 +122,7 @@ function buildLevel() {
   render();
   startTimer();
   previewImg.src = level.img;
+  previewImg.alt = `Vista previa: ${level.title}`;
   $('#levelTitle').textContent = level.title;
   $('#diffLabel').textContent = `${diff.label} · ${diff.count} piezas`;
 }
@@ -396,7 +397,9 @@ function onWin() {
   const level = LEVELS[state.levelIdx];
   const diff = DIFFICULTIES[state.diffKey];
   winStats.innerHTML = `${level.title} • ${diff.label} (${diff.count})<br><span class="pill">TIEMPO ${formatTime(seconds)}</span>`;
-  $('#winThumb').src = level.img;
+  const winThumb = $('#winThumb');
+  winThumb.src = level.img;
+  winThumb.alt = `Rompecabezas completado: ${level.title}`;
   winModal.classList.remove('hidden');
 }
 
