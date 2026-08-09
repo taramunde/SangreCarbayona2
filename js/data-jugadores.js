@@ -2969,7 +2969,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Avilés',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2007-11-08',
-    imagen: 'https://i.postimg.cc/R08HJS5Y/Agudin-PNG.webp',
+    imagen: 'img/jugadores/Agudin.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
