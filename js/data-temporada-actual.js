@@ -263,6 +263,8 @@ CLUB_DATA.temporadas['2026-27'] = {
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2026',
+      estado: "cedido",
+      cedidoEn: "U.E. Sant Andreu",
       stats: {},
       partidos: [],
     },
