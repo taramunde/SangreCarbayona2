@@ -2966,28 +2966,37 @@
     return Math.ceil(jugados / EQUIPOS_POR_JORNADA);
   }
 
+  // Zona de la clasificación (ascenso/playoff/descenso) y estilo de la
+  // diferencia de goles para un equipo. Usado tanto por la tabla completa
+  // como por la tabla resumida del home, que muestran las mismas reglas.
+  function calcularZonaYDG(eq) {
+    let claseZona = '';
+    // Puestos de Segunda División
+    if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
+    else if (eq.posicion <= 6) claseZona = 'pos-playoff';
+    else if (eq.posicion >= 19) claseZona = 'pos-descenso';
+
+    const esOviedo = eq.nombre === 'Real Oviedo';
+
+    let claseDG = '',
+      signoDG = '';
+    if (eq.dg > 0) {
+      claseDG = 'dg-positiva';
+      signoDG = '+';
+    } else if (eq.dg < 0) {
+      claseDG = 'dg-negativa';
+    }
+
+    return { claseZona, esOviedo, claseDG, signoDG };
+  }
+
   function renderizarTabla() {
     const tbody = document.getElementById('cuerpoTabla');
     if (!tbody) return; // Solo en clasificacion.html
     tbody.innerHTML = '';
 
     equipos.forEach((eq) => {
-      let claseZona = '';
-      // Puestos de Segunda División
-      if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
-      else if (eq.posicion <= 6) claseZona = 'pos-playoff';
-      else if (eq.posicion >= 19) claseZona = 'pos-descenso';
-
-      const esOviedo = eq.nombre === 'Real Oviedo';
-
-      let claseDG = '',
-        signoDG = '';
-      if (eq.dg > 0) {
-        claseDG = 'dg-positiva';
-        signoDG = '+';
-      } else if (eq.dg < 0) {
-        claseDG = 'dg-negativa';
-      }
+      const { claseZona, esOviedo, claseDG, signoDG } = calcularZonaYDG(eq);
 
       const tr = document.createElement('tr');
       if (esOviedo) tr.classList.add('row-oviedo');
@@ -3169,21 +3178,7 @@
         return;
       }
 
-      let claseZona = '';
-      if (eq.posicion <= 2) claseZona = 'pos-ascenso-directo';
-      else if (eq.posicion <= 6) claseZona = 'pos-playoff';
-      else if (eq.posicion >= 19) claseZona = 'pos-descenso';
-
-      const esOviedo = eq.nombre === 'Real Oviedo';
-
-      let claseDG = '',
-        signoDG = '';
-      if (eq.dg > 0) {
-        claseDG = 'dg-positiva';
-        signoDG = '+';
-      } else if (eq.dg < 0) {
-        claseDG = 'dg-negativa';
-      }
+      const { claseZona, esOviedo, claseDG, signoDG } = calcularZonaYDG(eq);
 
       const tr = document.createElement('tr');
       if (esOviedo) tr.classList.add('row-oviedo');

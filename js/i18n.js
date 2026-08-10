@@ -61,7 +61,6 @@ const translations = {
     laliga_temporada: 'LaLiga Hypermotion 2026/27',
     ascenso_directo: 'Ascenso Directo',
     playoff_ascenso: 'Playoff de Ascenso',
-    descenso: 'Descenso a 1ª RFEF',
     champions: 'Champions',
     europa: 'Europa',
     conference: 'Conference',
@@ -169,7 +168,6 @@ const translations = {
     jornada: 'Jornada',
     encajados: 'Encajados',
     portero_stat: 'Rendimiento Defensivo',
-    goles_encajados_partido: 'Goles Encajados/Partido',
     provincia: 'Provincia',
     nacionalidad_adicional: 'Nacionalidad',
     pj: 'PJ',
@@ -229,8 +227,6 @@ const translations = {
     // CALENDARIO
     // ============================================
     calendario_titulo: 'Calendario',
-    calendario_subtitulo:
-      'Todos los partidos del Real Oviedo · Primera División',
     calendario_jugados: 'Jugados',
     calendario_victorias: 'Victorias',
     calendario_empates: 'Empates',
@@ -360,7 +356,6 @@ const translations = {
     pos_medio_derecho: 'Medio Derecho',
     pos_medio_izquierdo: 'Medio Izquierdo',
     pos_interior_derecho: 'Interior Derecho',
-    pos_interior_izquierdo: 'Interior Izquierdo',
 
     // ============================================
     // CARGOS CUERPO TÉCNICO
@@ -427,7 +422,6 @@ const translations = {
     calendario: 'Calendar',
     plantilla: 'Squad',
     patrocinadores: 'Sponsors',
-    proximo_partido: 'Next Match',
     proximo_partido: 'Next Match',
     laliga_temporada: 'LaLiga Hypermotion 2026/27',
     ascenso_directo: 'Direct Promotion',
@@ -536,7 +530,6 @@ const translations = {
     jornada: 'Matchday',
     encajados: 'Conceded',
     portero_stat: 'Defensive Performance',
-    goles_encajados_partido: 'Goals Conceded/Match',
     provincia: 'Province',
     nacionalidad_adicional: 'Nationality',
     pj: 'MP',
@@ -596,7 +589,6 @@ const translations = {
     // CALENDAR
     // ============================================
     calendario_titulo: 'Calendar',
-    calendario_subtitulo: 'All Real Oviedo matches · First Division',
     calendario_jugados: 'Played',
     calendario_victorias: 'Wins',
     calendario_empates: 'Draws',
@@ -723,7 +715,6 @@ const translations = {
     pos_medio_derecho: 'Right Half-back',
     pos_medio_izquierdo: 'Left Half-back',
     pos_interior_derecho: 'Right Inside Forward',
-    pos_interior_izquierdo: 'Left Inside Forward',
 
     // ============================================
     // COACHING STAFF ROLES

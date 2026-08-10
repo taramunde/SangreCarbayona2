@@ -10,6 +10,12 @@
   const OVIEDO = 'Real Oviedo';
   const POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos por jornada
 
+  // Los botones de filtro son fijos en el HTML (no se recrean al volver a
+  // renderizar el calendario, p.ej. al cambiar de idioma), así que el
+  // listener solo debe engancharse una vez o se acumulan y un solo clic
+  // acaba disparando el filtro varias veces.
+  let filtrosListenerActivo = false;
+
   // ── Utilidades ──────────────────────────────────────
   function getEscudo(nombre) {
     if (typeof equipos === 'undefined') return '';
@@ -239,17 +245,21 @@
 
   // ── Filtros ──────────────────────────────────────────
   function iniciarFiltros() {
-    const btns = document.querySelectorAll('.cal-filter-btn');
-    const empty = document.getElementById('calEmpty');
+    const contenedor = document.querySelector('.cal-filters');
+    if (!contenedor || filtrosListenerActivo) return;
+    filtrosListenerActivo = true;
 
-    btns.forEach((btn) => {
-      btn.addEventListener('click', function () {
-        btns.forEach((b) => b.classList.remove('active'));
-        this.classList.add('active');
+    contenedor.addEventListener('click', (e) => {
+      const btn = e.target.closest('.cal-filter-btn');
+      if (!btn) return;
 
-        const filtro = this.dataset.filter;
-        aplicarFiltro(filtro, empty);
-      });
+      contenedor
+        .querySelectorAll('.cal-filter-btn')
+        .forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filtro = btn.dataset.filter;
+      aplicarFiltro(filtro, document.getElementById('calEmpty'));
     });
   }
 
