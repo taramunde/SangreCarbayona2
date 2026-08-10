@@ -623,6 +623,12 @@
     const formEl = overlay.querySelector('.search-form');
     if (!inputEl || !formEl) return;
 
+    // Sin esto, pulsar Intro (o el botón de la lupa) envía el formulario
+    // de verdad: como no tiene action, el navegador recarga la página
+    // actual y se pierden los resultados en vivo que ya se muestran
+    // mientras se escribe.
+    formEl.addEventListener('submit', (e) => e.preventDefault());
+
     // Crear contenedor de resultados
     const resultadosEl = document.createElement('div');
     resultadosEl.id = 'busquedaResultados';
