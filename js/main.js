@@ -40,8 +40,23 @@ function cargarComunes() {
         if (typeof setLanguage === 'function') {
           setLanguage(localStorage.getItem('lang') || 'es');
         }
+
+        actualizarAnosFooter();
       }
     });
+}
+
+// Muestra "2017-2026" (o solo "2017" si algún año coincidiera) usando
+// CLUB_DATA.webDesde y el año actual del navegador de quien visita la
+// web, para no tener que actualizar el footer a mano cada enero.
+function actualizarAnosFooter() {
+  const el = document.getElementById('footerYears');
+  if (!el) return;
+
+  const inicio = (window.CLUB_DATA && CLUB_DATA.webDesde) || 2017;
+  const actual = new Date().getFullYear();
+
+  el.textContent = actual > inicio ? `${inicio}-${actual}` : `${inicio}`;
 }
 
 function inicializarFuncionesHeader() {

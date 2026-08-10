@@ -7,6 +7,11 @@
    =================================== */
 
 const CLUB_DATA = {
+  // Año de lanzamiento de ESTA web (no confundir con club.fundacion, que es
+  // el año de fundación del Real Oviedo). Se usa en el footer para mostrar
+  // "2017-{año actual}" automáticamente, sin tener que tocarlo cada año.
+  webDesde: 2017,
+
   // Información del club
   club: {
     nombre: 'Real Oviedo',
