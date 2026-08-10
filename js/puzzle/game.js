@@ -310,10 +310,19 @@ function onPointerDown(e, p, { fromTray }) {
         ghostTop < boardRect.bottom + margin;
 
       if (overBoard) {
+        // Se puede soltar una pieza bastante más allá del borde del tablero
+        // (por el margen de tolerancia de arriba) que lo que #boardWrap
+        // deja ver (tiene overflow:hidden). Sin este límite, una pieza
+        // "aceptada" como válida podía acabar dibujada fuera del recuadro
+        // visible: seguía contando como pieza suelta pendiente, pero no
+        // había forma de verla ni de volver a cogerla.
+        const clampX = (valor) => Math.max(0, Math.min(valor, state.boardW - pw));
+        const clampY = (valor) => Math.max(0, Math.min(valor, state.boardH - ph));
+
         groupPieces.forEach((gp) => {
           gp.location = 'board';
-          gp.x = relLeft + (gp.c - p.c) * pw;
-          gp.y = relTop + (gp.r - p.r) * ph;
+          gp.x = clampX(relLeft + (gp.c - p.c) * pw);
+          gp.y = clampY(relTop + (gp.r - p.r) * ph);
         });
 
         let merged = false;
@@ -360,8 +369,8 @@ function onPointerDown(e, p, { fromTray }) {
                     .filter((x) => x.group === oldGroup)
                     .forEach((x) => {
                       x.group = newGroup;
-                      x.x = gp.x + (x.c - gp.c) * pw;
-                      x.y = gp.y + (x.r - gp.r) * ph;
+                      x.x = clampX(gp.x + (x.c - gp.c) * pw);
+                      x.y = clampY(gp.y + (x.r - gp.r) * ph);
                     });
 
                   // COMPROBACIÓN DE VICTORIA AUTOMÁTICA FLOTANTE
