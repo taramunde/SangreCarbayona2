@@ -5036,11 +5036,11 @@ CLUB_DATA.jugadoresMaestro = {
   },
 },
 
-"cristian-rivera-hernandez": {
-  nombre: "Cristian",
+"christian-rivera-hernandez": {
+  nombre: "Christian",
   apellidos: "Rivera Hernández",
-  nombreCompleto: "Cristian Rivera Hernández",
-  apodo: "Cristian Rivera",
+  nombreCompleto: "Christian Rivera Hernández",
+  apodo: "Christian Rivera",
   posicion: "Centrocampista",
   posicionCorta: "MC",
   altura: 1.91,
