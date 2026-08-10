@@ -65,8 +65,8 @@ export const LEVELS = [
   {
     id: 11,
     title: 'Nivel 11 - Buenavista',
-    img: 'https://picsum.photos/seed/oviedo11/900/600',
-    thumb: 'https://picsum.photos/seed/oviedo11/200/130',
+    img: '../img/varios/EstadioBuenavista.webp',
+    thumb: '../img/varios/EstadioBuenavista.webp',
   },
   {
     id: 12,
