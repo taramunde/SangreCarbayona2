@@ -1,47 +1,47 @@
 {
   "https://taramunde.github.io/SangreCarbayona2/": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/noticias.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/primer-equipo.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/clasificacion.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/calendario.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/primera-division.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/derbis.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/juegos.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/videos.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/juegos/quiz.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/juegos/puzzlecarbayon.html": {
     "hash": null,
-    "lastmod": "2026-08-09"
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/fichas/esteban-andres-suarez.html": {
     "hash": "6605eb7c067050c5a01589b907dc0af7f4cfc23b",
@@ -84,8 +84,8 @@
     "lastmod": "2026-08-09"
   },
   "https://taramunde.github.io/SangreCarbayona2/fichas/angel-saiz-rodriguez.html": {
-    "hash": "e4427c1756c1e683b7f84fd0e5c2c3e5120498d8",
-    "lastmod": "2026-08-09"
+    "hash": "365e920683ad02a517da1153cadbc52fb9a2ae57",
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/fichas/diego-johannesson-pando.html": {
     "hash": "31494e6188499b2ce7e6b0732ba4794981b17c21",
@@ -1008,8 +1008,8 @@
     "lastmod": "2026-08-09"
   },
   "https://taramunde.github.io/SangreCarbayona2/fichas/pablo-menendez-agudin.html": {
-    "hash": "102c57d9e60fe8f8991bc196ecd20044c53b2c9b",
-    "lastmod": "2026-08-09"
+    "hash": "6be062e3415d33ff79f78484cf20617bb9a952f9",
+    "lastmod": "2026-08-10"
   },
   "https://taramunde.github.io/SangreCarbayona2/fichas/alex-fores-mendoza.html": {
     "hash": "379fe78dd5d46f74f517c2ea09b0ff9a090da30b",
@@ -1154,5 +1154,25 @@
   "https://taramunde.github.io/SangreCarbayona2/fichas/derbi-1944-j12.html": {
     "hash": "0d76fdc5c4f6bf901525d62c1ce3f1704fb5f661",
     "lastmod": "2026-08-09"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/fichas/sergio-santolaya-rojas.html": {
+    "hash": "c5d61aacfd8ce9fd0c8b7700cead2daaa13471e5",
+    "lastmod": "2026-08-10"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/fichas/christian-rivera-hernandez.html": {
+    "hash": "579fc9db9d9eb5a939efbf9b13ead104270c105c",
+    "lastmod": "2026-08-10"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/fichas/sergio-garcia-de-la-iglesia.html": {
+    "hash": "1f6c0fe8c9284c7289fd43e51af1b711bfb7b133",
+    "lastmod": "2026-08-10"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/fichas/dionisio-emanuel-villalba-rojano.html": {
+    "hash": "c96d2b8a1e82257678d134c75e6626371c27c3fd",
+    "lastmod": "2026-08-10"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/fichas/juan-steven-ospina.html": {
+    "hash": "611f5fde267eadac0068ee647ad6785679b2ac37",
+    "lastmod": "2026-08-10"
   }
 }
