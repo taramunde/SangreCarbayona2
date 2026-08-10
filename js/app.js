@@ -2,6 +2,23 @@
    FUNCIONES DE UTILIDAD (FECHAS)
    =================================== */
 
+/**
+ * Genera los botones de compartir (WhatsApp/Telegram/Twitter) reutilizados
+ * en fichas de jugador, de entrenador y en las tarjetas de vídeo.
+ */
+function generarEnlacesCompartir(url, texto, claseBase, orden) {
+  const urlCodificada = encodeURIComponent(url);
+  const textoCodificado = encodeURIComponent(texto);
+  const enlaces = {
+    whatsapp: `<a href="https://api.whatsapp.com/send?text=${encodeURIComponent(texto + '\n\n' + url)}" target="_blank" rel="noopener noreferrer" class="${claseBase} whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>`,
+    telegram: `<a href="https://t.me/share/url?url=${urlCodificada}&text=${textoCodificado}" target="_blank" rel="noopener noreferrer" class="${claseBase} telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>`,
+    twitter: `<a href="https://twitter.com/intent/tweet?url=${urlCodificada}&text=${textoCodificado}" target="_blank" rel="noopener noreferrer" class="${claseBase} twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`,
+  };
+  return (orden || ['whatsapp', 'telegram', 'twitter'])
+    .map((clave) => enlaces[clave])
+    .join('');
+}
+
 function formatearFecha(fechaStr) {
   let fecha;
   if (fechaStr.includes('T')) {
@@ -1164,11 +1181,7 @@ const App = {
       ? `${baseUrl}/fichas/${fichaSlug}.html`
       : window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
-    const whatsappText = encodeURIComponent(shareText + '\n\n' + pageUrl);
-    const shareLinks = `
-            <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" rel="noopener noreferrer" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+    const shareLinks = generarEnlacesCompartir(pageUrl, shareText, 'player-social');
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
@@ -1318,11 +1331,7 @@ const App = {
       : window.location.href;
 
     const shareText = `Ficha de ${nombre} - ${CLUB_DATA.club.nombreCorto}`;
-    const whatsappText = encodeURIComponent(shareText + '\n\n' + pageUrl);
-    const shareLinks = `
-      <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" rel="noopener noreferrer" class="player-social whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-      <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="player-social twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+    const shareLinks = generarEnlacesCompartir(pageUrl, shareText, 'player-social');
 
     container.innerHTML = `
       <div class="player-photo-container">
@@ -3520,7 +3529,12 @@ const App = {
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions"><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + '\n\n' + videoUrl)}" target="_blank" rel="noopener noreferrer" class="video-action-btn whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="video-action-btn twitter" title="Twitter"><i class="fab fa-twitter"></i></a><a href="https://t.me/share/url?url=${encodeURIComponent(videoUrl)}&text=${encodeURIComponent(shareText)}" target="_blank" rel="noopener noreferrer" class="video-action-btn telegram" title="Telegram"><i class="fab fa-telegram-plane"></i></a></div></div>`;
+      const shareLinks = generarEnlacesCompartir(videoUrl, shareText, 'video-action-btn', [
+        'whatsapp',
+        'twitter',
+        'telegram',
+      ]);
+      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions">${shareLinks}</div></div>`;
     });
     container.innerHTML = html;
   },

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Web de aficionados del Real Oviedo Sangre Carbayona",
   "scripts": {
-    "generar": "node Generador/generar.js",
-    "subir": "node Generador/generar.js && git add . && git commit -m \"Actualización automática\" && git push origin main",
-    "forzar": "node Generador/generar.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force"
+    "generar": "node generador/generar.js",
+    "subir": "node generador/generar.js && git add . && git commit -m \"Actualización automática\" && git push origin main",
+    "forzar": "node generador/generar.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force"
   },
   "author": "Taramunde",
   "license": "ISC",

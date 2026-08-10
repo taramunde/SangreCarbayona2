@@ -267,6 +267,10 @@ let borrados = 0;
 
 archivosExistentes.forEach((archivo) => {
   if (!archivo.endsWith('.html')) return;
+  // Las fichas de derbi (derbi-*.html) las gestiona en exclusiva
+  // generar-derbis.js: este script no sabe nada de ellas, así que no
+  // debe borrarlas por no reconocerlas.
+  if (archivo.startsWith('derbi-')) return;
   const nombreSinExtension = archivo.replace('.html', '');
   if (!slugsValidos.has(nombreSinExtension)) {
     fs.unlinkSync(path.join(outputDir, archivo));
