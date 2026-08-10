@@ -1,5 +1,5 @@
 /* ===================================
-   CD VILLAFERREIRA - JAVASCRIPT
+   SANGRE CARBAYONA - JAVASCRIPT
    =================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
