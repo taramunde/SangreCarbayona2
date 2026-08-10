@@ -256,7 +256,7 @@ img {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .search-btn {
@@ -1193,15 +1193,6 @@ img {
   ) !important;
   border: none;
 }
-#homeTablaClasificacion .pos-champions {
-  border-left: 4px solid #2ecc71;
-}
-#homeTablaClasificacion .pos-europa {
-  border-left: 4px solid #20b2aa;
-}
-#homeTablaClasificacion .pos-conference {
-  border-left: 4px solid #3498db;
-}
 #homeTablaClasificacion .pos-descenso {
   border-left: 4px solid #e74c3c;
 }
@@ -1832,12 +1823,6 @@ img {
 /* ===================================
    SELECTOR DE IDIOMA
    =================================== */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
 .lang-switcher {
   display: flex;
   gap: 5px;
