@@ -6,5 +6,7 @@
    =================================== */
 
 import oviedo01 from './grids/oviedo-01.js';
+import oviedo02 from './grids/oviedo-02.js';
+import oviedo03 from './grids/oviedo-03.js';
 
-export const PUZZLES = [oviedo01];
+export const PUZZLES = [oviedo01, oviedo02, oviedo03];
