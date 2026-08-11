@@ -141,6 +141,16 @@ const CLUB_DATA = {
       enlace: 'juegos/puzzlecarbayon.html',
       esEspecial: true,
     },
+    {
+      titulo: 'Autodefinido Carbayón',
+      descripcion:
+        'Pon a prueba lo que sabes del Real Oviedo con este crucigrama autodefinido.',
+      // TODO: falta una imagen propia (como QuizRealOviedo.webp o
+      // PuzzleRealOviedo.webp); de momento usa el escudo genérico.
+      imagen: 'https://i.postimg.cc/8PjPkJHc/Real-Oviedo-Joya.png',
+      enlace: 'juegos/autodefinido.html',
+      esEspecial: false,
+    },
   ],
 };
 

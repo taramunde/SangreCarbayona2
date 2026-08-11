@@ -78,6 +78,7 @@ const PAGINAS_ESTATICAS = [
   { loc: '/videos.html', changefreq: 'weekly', priority: '0.5' },
   { loc: '/juegos/quiz.html', changefreq: 'monthly', priority: '0.4' },
   { loc: '/juegos/puzzlecarbayon.html', changefreq: 'monthly', priority: '0.4' },
+  { loc: '/juegos/autodefinido.html', changefreq: 'monthly', priority: '0.4' },
   // Nota: ficha-jugador.html y derbi.html NO se incluyen a propósito:
   // ambas llevan noindex,nofollow porque son plantillas dinámicas sin
   // versión estática (las fichas de jugador sí tienen su versión

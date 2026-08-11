@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autodefinido Carbayón | Sangre Carbayona</title>
+
+    <!-- Rutas relativas subiendo un nivel con ../ -->
+    <link rel="stylesheet" href="../css/styles.css?nocache=20260811v7" />
+    <link
+      rel="stylesheet"
+      href="../css/equipo-styles.css?nocache=20260811v7"
+    />
+    <link rel="stylesheet" href="../css/autodefinido.css?nocache=20260811v7" />
+
+    <!-- Fuentes y FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <meta
+      name="description"
+      content="Pon a prueba lo que sabes del Real Oviedo con el autodefinido Carbayón: un crucigrama con las pistas dentro de la propia rejilla."
+    />
+    <meta property="og:title" content="Autodefinido Carbayón | Sangre Carbayona" />
+    <meta
+      property="og:description"
+      content="Pon a prueba lo que sabes del Real Oviedo con el autodefinido Carbayón."
+    />
+    <meta
+      property="og:image"
+      content="https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <!-- Header Principal Dinámico -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <section class="page-header">
+      <div class="page-header-bg">
+        <img
+          src="https://picsum.photos/seed/stadium-games/1920/400"
+          alt="Fondo"
+        />
+      </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html">Inicio</a><span>/</span>
+          <a href="../juegos.html">Juegos</a><span>/</span>
+          <span class="current">Autodefinido Carbayón</span>
+        </div>
+        <h1 class="page-title">Autodefinido Carbayón</h1>
+      </div>
+    </section>
+
+    <!-- ZONA DEL JUEGO -->
+    <section class="puzzle-section">
+      <div class="puzzle-container">
+        <div class="cg-dashboard">
+          <div>
+            <h2 id="cgTitle" style="margin: 0; color: var(--primary-color)">
+              Cargando...
+            </h2>
+          </div>
+          <div class="cg-controls">
+            <select id="cgPuzzleSelect"></select>
+            <button id="cgCheckBtn">
+              <i class="fas fa-check"></i> Comprobar
+            </button>
+            <button id="cgHintBtn"><i class="fas fa-lightbulb"></i> Pista</button>
+            <button id="cgRestartBtn">
+              <i class="fas fa-redo"></i> Reiniciar
+            </button>
+          </div>
+          <div class="cg-stats">
+            <span
+              ><i class="fas fa-clock"></i> <span id="cgTime">00:00</span></span
+            >
+            <span
+              ><i class="fas fa-chart-line"></i>
+              <span id="cgProgress">0%</span></span
+            >
+            <span
+              ><i class="fas fa-lightbulb"></i>
+              <span id="cgHints">0</span></span
+            >
+          </div>
+        </div>
+
+        <div id="cgClueBar">Toca una casilla para empezar</div>
+
+        <div id="cgBoardWrap">
+          <div id="cgBoard"></div>
+          <input
+            id="cgHiddenInput"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="characters"
+            maxlength="1"
+            aria-label="Escribir letra"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de Victoria -->
+    <div id="cgWinModal" class="cg-modal-overlay hidden">
+      <div class="cg-modal-content">
+        <h2>¡Felicidades Carbayón!</h2>
+        <p>Has completado el autodefinido con éxito.</p>
+        <div id="cgWinStats"></div>
+        <button id="cgCloseWinBtn">Cerrar</button>
+      </div>
+    </div>
+    <canvas id="cgConfetti"></canvas>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts con ../ y nocache -->
+    <script src="../js/i18n.js?nocache=20260811v7"></script>
+    <script src="../js/seo.js?nocache=20260811v7"></script>
+    <script src="../js/data-club.js?nocache=20260811v7"></script>
+    <script src="../js/data-jugadores.js?nocache=20260811v7"></script>
+    <script src="../js/busqueda.js?nocache=20260811v7"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20260811v7"></script>
+    <script src="../js/data-historico.js?nocache=20260811v7"></script>
+    <script src="../js/data-utils.js?nocache=20260811v7"></script>
+    <script src="../js/app.js?nocache=20260811v7"></script>
+    <script src="../js/script.js?nocache=20260811v7"></script>
+    <script src="../js/main.js?nocache=20260811v7"></script>
+
+    <!-- Motor del autodefinido -->
+    <script src="../js/autodefinido/runs.js?nocache=20260811v7"></script>
+    <script type="module">
+      import { init } from '../js/autodefinido/game.js?nocache=20260811v7';
+      init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+/* ===================================
+   AUTODEFINIDO CARBAYÓN - ESTILOS
+   =================================== */
+
+.cg-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.cg-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cg-controls select,
+.cg-controls button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  font-weight: 600;
+  background: var(--primary-color, #001a6e);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cg-controls button:hover {
+  opacity: 0.9;
+}
+
+.cg-stats {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+  color: #555;
+}
+
+#cgClueBar {
+  background: var(--primary-color, #001a6e);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  min-height: 1.4em;
+  text-align: center;
+}
+
+#cgBoardWrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#cgBoard {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--cg-cols), 1fr);
+  grid-template-rows: repeat(var(--cg-rows), 1fr);
+  aspect-ratio: var(--cg-cols) / var(--cg-rows);
+  width: min(100%, 560px);
+  border: 2px solid var(--primary-color, #001a6e);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cg-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #d5dae8;
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-weight: 700;
+  font-size: clamp(0.9rem, 4vw, 1.4rem);
+  color: var(--primary-color, #001a6e);
+  user-select: none;
+}
+
+.cg-cell--letter {
+  background: #fff;
+  cursor: pointer;
+}
+
+.cg-cell--letter:hover {
+  background: #f0f4ff;
+}
+
+.cg-cell--blocked {
+  background: transparent;
+  border-color: transparent;
+}
+
+.cg-cell--selected {
+  background: #ffe9a8 !important;
+  box-shadow: inset 0 0 0 2px #fdb913;
+  z-index: 2;
+}
+
+.cg-cell--activa {
+  background: #eaf0ff;
+}
+
+.cg-cell--correcta {
+  color: #128c3e;
+}
+
+.cg-cell--incorrecta {
+  color: #c0392b;
+}
+
+.cg-cell--incorrecta-flash {
+  animation: cgShake 0.35s ease;
+  background: #fde3e1 !important;
+}
+
+@keyframes cgShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+.cg-cell--pista::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fdb913;
+}
+
+/* Celdas de pista (autodefinido: la pista va dentro de la propia rejilla) */
+.cg-cell--clue {
+  background: var(--primary-color, #001a6e);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.cg-clue {
+  position: absolute;
+  font-family: var(--font-body, 'Source Sans 3', sans-serif);
+  font-weight: 400;
+  color: #fff;
+  font-size: clamp(0.34rem, 1.4vw, 0.52rem);
+  line-height: 1.02;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  padding: 2px 3px;
+}
+
+/* Pista de la palabra horizontal: triángulo superior derecho */
+.cg-clue--across {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: right;
+}
+
+/* Pista de la palabra vertical: triángulo inferior izquierdo */
+.cg-clue--down {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: left;
+  align-items: flex-end;
+}
+
+.cg-cell--doble-pista .cg-clue--across {
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.cg-cell--doble-pista .cg-clue--down {
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+  display: flex;
+}
+
+.cg-cell--doble-pista::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent calc(50% - 1px),
+    rgba(255, 255, 255, 0.5) calc(50% - 1px),
+    rgba(255, 255, 255, 0.5) calc(50% + 1px),
+    transparent calc(50% + 1px)
+  );
+  pointer-events: none;
+}
+
+#cgHiddenInput {
+  position: absolute;
+  opacity: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  /* Al menos 16px para que iOS Safari no fuerce zoom al enfocar el campo */
+  font-size: 16px;
+  caret-color: transparent;
+  background: transparent;
+}
+
+/* Modal de victoria (mismo patrón que puzzle.css/calendario.css: cada
+   juego define su propio modal, no hay uno compartido en el sitio) */
+.cg-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.cg-modal-overlay.hidden {
+  display: none;
+}
+
+.cg-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 90vw;
+  width: 360px;
+}
+
+.cg-modal-content h2 {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  color: var(--primary-color, #001a6e);
+  margin-bottom: 10px;
+}
+
+#cgWinStats {
+  font-weight: 600;
+  color: #555;
+  margin: 15px 0 20px;
+}
+
+@media (max-width: 600px) {
+  .cg-dashboard {
+    padding: 15px;
+  }
+  .cg-stats {
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+}
