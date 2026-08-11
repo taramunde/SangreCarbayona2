@@ -123,6 +123,17 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
+  id: "carlos-dominguez-caceres",
+  codigo: "carlos-dominguez-caceres",
+  dorsal: "-",
+  posicion: "Central",
+  enClubDesde: "2026",
+  contratoHasta: "2027",
+  stats: {},
+  partidos: []
+},
+
+    {
       id: 'oier-luengo-redondo',
       codigo: 'oier-luengo-redondo',
       dorsal: 15,

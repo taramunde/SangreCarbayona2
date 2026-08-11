@@ -2386,6 +2386,22 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/4w1xdYkf/Colo-PNG.webp",
 },
 
+"carlos-dominguez-caceres": {
+  nombre: "Carlos",
+  apellidos: "Domínguez Cáceres",
+  nombreCompleto: "Carlos Domínguez Cáceres",
+  apodo: "Carlos Domínguez",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.87,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Vigo",
+  provinciaNacimiento: "Pontevedra",
+  fechaNacimiento: "2001-02-11",
+  imagen: "img/jugadores/CarlosDominguez.webp",
+},
+
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
