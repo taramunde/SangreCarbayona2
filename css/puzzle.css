@@ -63,14 +63,14 @@
   background-color: rgba(253, 185, 19, 0.08);
   box-shadow: inset 0 0 20px rgba(253, 185, 19, 0.15);
   border-radius: 4px;
-  touch-action: none; /* Bloquea el scroll de pantalla solo dentro del propio tablero, no en el gris que lo rodea */
+  touch-action: pinch-zoom; /* Bloquea el scroll/arrastre táctil normal (para no interferir al mover piezas), pero permite pellizcar para hacer zoom */
 }
 
 .piece {
   cursor: grab;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
   transition: transform 0.1s;
-  touch-action: none; /* NUEVO: Evita que la pantalla se mueva al arrastrar */
+  touch-action: pinch-zoom; /* Evita que la pantalla se mueva al arrastrar, pero permite hacer zoom con dos dedos */
   user-select: none; /* NUEVO: Evita que se seleccione como texto sin querer */
   -webkit-user-select: none; /* Para Safari en iPhone */
 }
@@ -103,7 +103,7 @@
   min-height: 140px;
   align-items: center;
   scroll-behavior: smooth;
-  touch-action: none;
+  touch-action: pinch-zoom;
 }
 #tray::-webkit-scrollbar {
   height: 8px;
