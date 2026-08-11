@@ -4100,7 +4100,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '2005-01-11',
-    imagen: 'https://i.postimg.cc/0QTLrs1S/Guille-Berzal-PNG.webp',
+    imagen: 'img/jugadores/GuilleBerzal.webp',
   },
 
   'julian-omar-ramos-suarez': {
