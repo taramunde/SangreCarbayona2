@@ -5,14 +5,14 @@ export const LEVELS = [
   {
     id: 1,
     title: 'Nivel 1 - Leyendas del Oviedismo',
-    img: '../img/jugadores/SantiCazorla.webp',
-    thumb: '../img/jugadores/SantiCazorla.webp',
+    img: '../img/jugadores/Langara.webp',
+    thumb: '../img/jugadores/Langara.webp',
   },
   {
     id: 2,
     title: 'Nivel 2 - Santi Cazorla',
-    img: 'https://picsum.photos/seed/oviedo2/900/600',
-    thumb: 'https://picsum.photos/seed/oviedo2/200/130',
+    img: '../img/jugadores/SantiCazorla.webp',
+    thumb: '../img/jugadores/SantiCazorla.webp',
   },
   {
     id: 3,
