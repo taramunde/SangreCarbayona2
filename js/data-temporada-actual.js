@@ -68,7 +68,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'mate-sauri',
       codigo: 'mate-sauri',
-      dorsal: '-',
+      dorsal: 26,
       posicion: 'Portero',
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -132,17 +132,6 @@ CLUB_DATA.temporadas['2026-27'] = {
   stats: {},
   partidos: []
 },
-
-    {
-      id: 'oier-luengo-redondo',
-      codigo: 'oier-luengo-redondo',
-      dorsal: 15,
-      posicion: 'Central',
-      enClubDesde: '2022',
-      contratoHasta: '2027',
-      stats: {},
-      partidos: [],
-    },
 
     {
       id: 'ignacio-vidal-miralles',
@@ -248,10 +237,12 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'alejandro-suarez-cardero',
       codigo: 'alejandro-suarez-cardero',
-      dorsal: 11,
+      dorsal: "-",
       posicion: 'Mediapunta',
       enClubDesde: '2020',
       contratoHasta: '2028',
+      estado: "cedido",
+      cedidoEn: "Cultural y Deportiva Leonesa",
       stats: {},
       partidos: [],
     },
@@ -270,7 +261,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'pablo-menendez-agudin',
       codigo: 'pablo-menendez-agudin',
-      dorsal: 27,
+      dorsal: "-",
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -351,7 +342,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'daniel-george-paraschiv',
       codigo: 'daniel-george-paraschiv',
-      dorsal: 14,
+      dorsal: "-",
       posicion: 'Delantero Centro',
       enClubDesde: '2024',
       contratoHasta: '2027',
@@ -450,7 +441,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
   id: "estanislau-pedrola-fortuny",
   codigo: "estanislau-pedrola-fortuny",
-  dorsal: "-",
+  dorsal: 8,
   posicion: "Extremo Izquierdo",
   enClubDesde: "2026",
   contratoHasta: "2029",

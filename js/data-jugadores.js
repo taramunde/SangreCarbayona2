@@ -6693,7 +6693,7 @@ CLUB_DATA.jugadoresMaestro = {
   nombre: "Estanislau",
   apellidos: "Pedrola Fortuny",
   nombreCompleto: "Estanislau Pedrola Fortuny",
-  apodo: "Estanis Pedrola",
+  apodo: "Estanis",
   posicion: "Delantero",
   posicionCorta: "EI",
   altura: 1.88,
