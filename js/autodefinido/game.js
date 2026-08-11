@@ -160,6 +160,9 @@ function render() {
           div.appendChild(spanD);
         }
         if (cell.across && cell.down) div.classList.add('cg-cell--doble-pista');
+        // Tooltip nativo: en PC no hay zoom táctil, así que al pasar el
+        // ratón por encima se puede leer la pista completa igualmente.
+        div.title = [cell.across, cell.down].filter(Boolean).join(' / ');
         div.addEventListener('click', () => onClueClick(r, c, cell));
       }
 

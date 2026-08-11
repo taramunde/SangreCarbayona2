@@ -75,6 +75,20 @@
   overflow: hidden;
 }
 
+/* En pantallas grandes hay sitio de sobra: agrandar el tablero para que
+   el texto de las pistas dentro de las celdas se lea mejor sin zoom
+   (en el móvil se puede hacer zoom con los dedos; en PC no). */
+@media (min-width: 900px) {
+  #cgBoard {
+    width: min(100%, 760px);
+  }
+}
+@media (min-width: 1200px) {
+  #cgBoard {
+    width: min(100%, 880px);
+  }
+}
+
 .cg-cell {
   position: relative;
   display: flex;
@@ -171,6 +185,22 @@
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   padding: 2px 3px;
+}
+
+/* El tope del clamp() de arriba está pensado para móvil (donde además
+   se puede hacer zoom con los dedos). En PC no hay zoom táctil, así
+   que aquí el tablero es más grande (ver #cgBoard) y el texto también
+   puede crecer más para leerse sin entornar los ojos. */
+@media (min-width: 900px) {
+  .cg-clue {
+    font-size: clamp(0.6rem, 0.95vw, 0.72rem);
+    line-height: 1.15;
+  }
+}
+@media (min-width: 1200px) {
+  .cg-clue {
+    font-size: clamp(0.68rem, 0.85vw, 0.8rem);
+  }
 }
 
 /* Pista de la palabra horizontal: triángulo superior derecho */
