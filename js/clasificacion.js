@@ -96,8 +96,8 @@
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'C.D. Castellón',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'Real Sporting de Gijón',
