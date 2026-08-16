@@ -46,22 +46,22 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/05/23/dfrt/00031779566574106242132.htm',
-    titulo: 'El Real Oviedo, triste espectador en el descenso del Mallorca.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/15/real-oviedo-agota-bateria-ante-granada/00031786809435376526546.htm',
+    titulo: 'Al Real Oviedo se le agota la batería ante el Granada.',
     descripcion:
-      'Los azules juegan un partido nefasto en Son Moix y caen goleados (3-0) ante un equipo que también jugará en Segunda la próxima temporada.',
-    imagen: 'https://i.postimg.cc/x8SrtxsN/J-38-LVA.webp',
-    fecha: '23 mayo 2026',
+      'Los azules dieron una gran imagen en el primer tiempo y pudieron marcar, pero tras el descanso la energía disminuyó y el Granada se encontró más cómodo (0-0). El juvenil Enzo Pérez, debutante juvenil en el Real Oviedo.',
+    imagen: 'img/varios/J1-LVA.webp',
+    fecha: '15 agosto 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/05/23/despedida-altura-oviedo-presenta-baldio-130580069.html',
+    url: 'https://www.lne.es/real-oviedo/2026/08/15/perdona-paga-oviedo-inicial-curso-133392639.html',
     titulo:
-      'Una despedida a la altura: el Oviedo no se presenta al intento baldío del Mallorca por salvarse (3-0).',
+      'Quien perdona, lo paga: el Oviedo inicia el curso con empate de sabor amargo (0-0).',
     descripcion:
-      'Los azules, testigos del descenso bermellón al no darse la carambola que buscaban.',
-    imagen: 'https://i.postimg.cc/6qNsYjHv/J-38-LNE.jpg',
-    fecha: '23 mayo 2026',
+      'Los azules fueron mucho mejores en una primera mitad con muchas llegadas, pero se desinflaron tras el descanso.',
+    imagen: 'img/varios/J1-LNE.webp',
+    fecha: '15 agosto 2026',
   },
   {
     medio: 'elcomercio',
@@ -70,7 +70,7 @@ const NOTICIAS_DATA = [
     descripcion:
       'Tristeza La derrota ante el Mallorca fue el lógico y significativo epílogo a una nefasta campaña del Real Oviedo que se despide de Primera.',
     imagen: 'https://i.postimg.cc/ZnhkV7fy/J-38-EC.webp',
-    fecha: '23 mayo 2026',
+    fecha: '15 agosto 2026',
   },
   {
     medio: 'killerasturias',
@@ -79,7 +79,7 @@ const NOTICIAS_DATA = [
     descripcion:
       'El conjunto azul cerró la temporada con una derrota intrascendente ante un Mallorca que tampoco evitó el descenso en una noche fría, sin tensión competitiva y marcada por el final de ciclo.',
     imagen: 'https://i.postimg.cc/qqdfjbmK/J-38-KA.jpg',
-    fecha: '23 mayo 2026',
+    fecha: '15 agosto 2026',
   },
 ];
 
