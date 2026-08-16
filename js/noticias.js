@@ -65,20 +65,20 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-terminar-temporada-20260524232944-nt.html',
-    titulo: 'El Real Oviedo, más de lo mismo para terminar la temporada.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-granada-resultado-segunda-division-goles-20260815164543-di.html',
+    titulo: 'Mejores sensaciones que resultado para el Real Oviedo.',
     descripcion:
-      'Tristeza La derrota ante el Mallorca fue el lógico y significativo epílogo a una nefasta campaña del Real Oviedo que se despide de Primera.',
-    imagen: 'https://i.postimg.cc/ZnhkV7fy/J-38-EC.webp',
+      'Los azules empataron sin goles ante el Granada en un partido en el que dominaron, pero no fueron capaces de concretar las pocas ocasiones que tuvieron.',
+    imagen: 'img/varios/J1-EC.webp',
     fecha: '15 agosto 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-no-comparece-en-el-funeral-de-son-moix',
-    titulo: 'La Crónica: El Oviedo no comparece en el funeral de Son Moix.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-empuja-pero-no-encuentra-el-premio',
+    titulo: 'La Crónica: El Oviedo empuja, pero no encuentra el premio.',
     descripcion:
-      'El conjunto azul cerró la temporada con una derrota intrascendente ante un Mallorca que tampoco evitó el descenso en una noche fría, sin tensión competitiva y marcada por el final de ciclo.',
-    imagen: 'https://i.postimg.cc/qqdfjbmK/J-38-KA.jpg',
+      'Los azules llevaron el peso del encuentro durante buena parte del partido, pero les faltó acierto ante un Granada sólido y bien replegado.',
+    imagen: 'img/varios/J1-LVA.webp',
     fecha: '15 agosto 2026',
   },
 ];
