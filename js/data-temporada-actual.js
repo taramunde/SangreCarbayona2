@@ -20,26 +20,13 @@ CLUB_DATA.temporadas['2026-27'] = {
   competicion: 'Segunda División',
   grupo: 'null',
 
+  // "desglose" (partidos/victorias/empates/derrotas/goles) YA NO se pone
+  // aquí a mano: app.js lo calcula solo a partir de los partidos[] de
+  // cada jugador (ver autoCalcularStatsEquipo en js/app.js). Lo único
+  // que sigue siendo manual es "posicion" — no se puede calcular solo
+  // con los resultados del Oviedo, hace falta la tabla completa.
   estadisticasEquipo: {
-    posicion: 0,
-    desglose: {
-      'Segunda División': {
-        partidos: 0,
-        victorias: 0,
-        empates: 0,
-        derrotas: 0,
-        golesFavor: 0,
-        golesContra: 0,
-      },
-      'Copa del Rey (Felipe VI)': {
-        partidos: 0,
-        victorias: 0,
-        empates: 0,
-        derrotas: 0,
-        golesFavor: 0,
-        golesContra: 0,
-      },
-    },
+    posicion: 12,
   },
 
   jugadores: [
@@ -490,24 +477,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       esPrincipal: true,
       enClubDesde: '2026',
       contratoHasta: '2027',
-      estadisticas: {
-        partidos: 0,
-        victorias: 0,
-        empates: 0,
-        derrotas: 0,
-        golesFavor: 0,
-        golesContra: 0,
-        desglose: {
-          'Segunda División': {
-            partidos: 0,
-            victorias: 0,
-            empates: 0,
-            derrotas: 0,
-            golesFavor: 0,
-            golesContra: 0,
-          },
-        },
-      },
+      // "estadisticas" se calcula solo a partir de partidos[] de abajo
+      // (autoCalcularStatsEntrenador en js/app.js) — no hace falta
+      // rellenarlo ni mantenerlo a mano.
+      estadisticas: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E" },
 

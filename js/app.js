@@ -255,19 +255,13 @@ function autoCalcularStatsJugador(jugador) {
 
 /* ===================================
    HELPER: AUTOCÁLCULO DE ESTADÍSTICAS ENTRENADOR
-   Calcula partidos/victorias/empates/derrotas desde
-   el array partidos[] cuando estadisticas está vacío.
+   Calcula partidos/victorias/empates/derrotas desde el array
+   partidos[] SIEMPRE (igual que autoCalcularStatsJugador) — antes solo
+   calculaba si "estadisticas" estaba vacío, y si alguna vez se ponía
+   un valor a mano se quedaba congelado para siempre y dejaba de
+   reflejar partidos nuevos.
    =================================== */
 function autoCalcularStatsEntrenador(ent) {
-  // Si ya tiene estadisticas con datos reales, las respetamos
-  if (
-    ent.estadisticas &&
-    typeof ent.estadisticas.partidos === 'number' &&
-    ent.estadisticas.partidos > 0
-  ) {
-    return;
-  }
-
   // Inicializar siempre para evitar undefined
   ent.estadisticas = {
     partidos: 0,
@@ -319,6 +313,65 @@ function autoCalcularStatsEntrenador(ent) {
     ent.estadisticas.golesFavor += gf;
     ent.estadisticas.golesContra += gc;
   });
+}
+
+/* ===================================
+   HELPER: AUTOCÁLCULO DE ESTADÍSTICAS DEL EQUIPO
+   Calcula el desglose de partidos/victorias/empates/derrotas/goles
+   por competición para toda la temporada, a partir de los partidos[]
+   ya cargados en cada jugador — así no hace falta mantener un
+   "estadisticasEquipo.desglose" a mano y sincronizado aparte: en
+   cuanto se añade el resultado de un partido a los jugadores que lo
+   jugaron, este cálculo ya lo refleja solo.
+
+   Cada partido real aparece repetido en varios jugadores (todos los
+   que lo jugaron), así que se cuenta una sola vez por competición +
+   jornada + fecha.
+
+   La "posicion" en la tabla NO se calcula aquí (haría falta conocer
+   los resultados de los demás equipos, no solo los del Oviedo) — esa
+   se sigue poniendo a mano en estadisticasEquipo.posicion.
+   =================================== */
+function autoCalcularStatsEquipo(temporada) {
+  const desglose = {};
+  const vistos = new Set();
+
+  (temporada.jugadores || []).forEach((jugador) => {
+    (jugador.partidos || []).forEach((p) => {
+      const clave = `${p.competicion}|${p.jornada}|${p.fecha}`;
+      if (vistos.has(clave)) return;
+      vistos.add(clave);
+
+      const comp = p.competicion || 'Otros';
+      if (!desglose[comp]) {
+        desglose[comp] = {
+          partidos: 0,
+          victorias: 0,
+          empates: 0,
+          derrotas: 0,
+          golesFavor: 0,
+          golesContra: 0,
+        };
+      }
+      const d = desglose[comp];
+      d.partidos++;
+
+      const esLocal =
+        p.local === 'Real Oviedo' ||
+        (CLUB_DATA && p.local === CLUB_DATA.club.nombre);
+      const gf = esLocal ? p.golesLocal || 0 : p.golesVisitante || 0;
+      const gc = esLocal ? p.golesVisitante || 0 : p.golesLocal || 0;
+      d.golesFavor += gf;
+      d.golesContra += gc;
+
+      if (p.resultado === 'V') d.victorias++;
+      else if (p.resultado === 'E') d.empates++;
+      else if (p.resultado === 'D') d.derrotas++;
+    });
+  });
+
+  if (!temporada.estadisticasEquipo) temporada.estadisticasEquipo = {};
+  temporada.estadisticasEquipo.desglose = desglose;
 }
 
 const App = {
@@ -764,6 +817,7 @@ const App = {
     if (!container) return;
 
     const temporada = getTemporada(this.temporadaActiva);
+    autoCalcularStatsEquipo(temporada);
     const statsData = temporada.estadisticasEquipo;
 
     // Detectar si hay desglose por competición
