@@ -489,31 +489,6 @@ CLUB_DATA.temporadas['2026-27'] = {
   ],
 };
 
-CLUB_DATA.calendario = [
-  {
-    id: 1,
-    jornada: 24,
-    fecha: '2025-01-26',
-    hora: '18:00',
-    local: 'Real Oviedo',
-    visitante: 'UD Rosaleda',
-    estadio: 'Carlos Tartiere',
-    esProximo: true,
-  },
-];
-
 CLUB_DATA.patrocinadores = [{ id: 1, nombre: 'Grupo Norte' }];
-
-CLUB_DATA.proximoPartido = {
-  jornada: 24,
-  competicion: 'Primera RFEF',
-  fecha: '2025-01-26',
-  hora: '18:00',
-  local: 'Real Oviedo',
-  localSiglas: 'OVI',
-  visitante: 'UD Rosaleda',
-  visitanteSiglas: 'UDR',
-  estadio: 'Carlos Tartiere',
-};
 
 window.CLUB_DATA = CLUB_DATA;

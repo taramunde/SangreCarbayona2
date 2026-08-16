@@ -408,7 +408,6 @@ const App = {
     const initialFilter = activeTab ? activeTab.dataset.position : 'all';
 
     // Funciones de renderizado
-    this.renderCalendario();
     this.renderPlantillaHome(initialFilter); // ← Usar el filtro del botón activo
     this.renderNoticias();
     this.renderPatrocinadores();
@@ -510,17 +509,6 @@ const App = {
       ' — ' +
       competicion +
       grupo;
-  },
-
-  renderCalendario: function () {
-    const container = document.getElementById('calendarioList');
-    if (!container) return;
-    let html = '';
-    CLUB_DATA.calendario.forEach((partido) => {
-      const fecha = formatearFecha(partido.fecha);
-      html += `<div class="match-item ${partido.esProximo ? 'next' : ''}"><div class="match-date-box"><span class="day">${fecha.dia}</span><span class="month">${fecha.mesCorto}</span></div><div class="match-detail"><div class="teams"><span class="home-team">${partido.local}</span><span class="vs">-</span><span class="away-team">${partido.visitante}</span></div><div class="match-meta"><span><i class="far fa-clock"></i> ${partido.hora}</span><span><i class="fas fa-map-marker-alt"></i> ${partido.estadio}</span></div></div></div>`;
-    });
-    container.innerHTML = html;
   },
 
   renderPlantillaHome: function (filter = 'all') {
