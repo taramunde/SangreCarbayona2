@@ -78,8 +78,8 @@
     {
       equipo1: 'U.D. Las Palmas',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'R.C.D. Mallorca',
