@@ -52,7 +52,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2024',
       contratoHasta: '2029',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -86,7 +89,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2029',
       stats: {},
-      partidos: [],
+      partidos: [
+            { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 62, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -97,7 +103,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 29, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -108,7 +117,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2021',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+      ],
+         
     },
 
     {
@@ -119,7 +131,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2021',
       contratoHasta: '2027',
       stats: {},
-      partidos: [],
+      partidos: [
+          { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -141,7 +156,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2025',
       contratoHasta: '2027',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 63, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -152,7 +170,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 28, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -198,7 +219,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2025',
       contratoHasta: '2027',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -268,7 +292,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 81, goles: 0, asistencias: 0, amarilla: true, roja: false },
+
+      ],
     },
 
     {
@@ -279,7 +306,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2025',
       contratoHasta: '2029',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 10, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -312,7 +342,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2027',
       stats: {},
-      partidos: [],
+      partidos: [
+         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     // DELANTEROS
@@ -336,7 +369,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 80, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -347,7 +383,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 69, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -380,7 +419,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 10, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        
+      ],
     },
 
     {
@@ -391,7 +433,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 21, goles: 0, asistencias: 0, amarilla: true, roja: false },
+
+      ],
     },
 
     {
@@ -402,7 +447,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2027',
       stats: {},
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -460,7 +508,10 @@ CLUB_DATA.temporadas['2026-27'] = {
           },
         },
       },
-      partidos: [],
+      partidos: [
+        { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E" },
+
+      ],
     },
   ],
 };
