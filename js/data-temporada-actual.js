@@ -329,17 +329,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'daniel-george-paraschiv',
-      codigo: 'daniel-george-paraschiv',
-      dorsal: "-",
-      posicion: 'Delantero Centro',
-      enClubDesde: '2024',
-      contratoHasta: '2027',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'jacobo-gonzalez-rodriganez',
       codigo: 'jacobo-gonzalez-rodriganez',
       dorsal: 11,
