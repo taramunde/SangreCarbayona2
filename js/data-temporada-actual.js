@@ -125,7 +125,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
   id: "carlos-dominguez-caceres",
   codigo: "carlos-dominguez-caceres",
-  dorsal: "-",
+  dorsal: 23,
   posicion: "Central",
   enClubDesde: "2026",
   contratoHasta: "2027",
@@ -169,7 +169,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'chukwuma-eze',
       codigo: 'chukwuma-eze',
-      dorsal: 25,
+      dorsal: "-",
       posicion: 'Central',
       enClubDesde: '2024',
       contratoHasta: '2028',
@@ -193,7 +193,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'alberto-reina-campos',
       codigo: 'alberto-reina-campos',
-      dorsal: 6,
+      dorsal: 10,
       posicion: 'Mediocentro',
       enClubDesde: '2025',
       contratoHasta: '2027',
@@ -202,20 +202,9 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'haissem-hassan',
-      codigo: 'haissem-hassan',
-      dorsal: 10,
-      posicion: 'Mediocentro',
-      enClubDesde: '2024',
-      contratoHasta: '2027',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'brandon-jose-domingues',
       codigo: 'brandon-jose-domingues',
-      dorsal: '-',
+      dorsal: 25,
       posicion: 'Mediocentro',
       enClubDesde: '2025',
       contratoHasta: '2028',
@@ -318,7 +307,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'daniel-villahermosa-martinez',
       codigo: 'daniel-villahermosa-martinez',
-      dorsal: 14,
+      dorsal: 6,
       posicion: 'Mediocentro',
       enClubDesde: '2026',
       contratoHasta: '2027',
@@ -353,7 +342,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'jacobo-gonzalez-rodriganez',
       codigo: 'jacobo-gonzalez-rodriganez',
-      dorsal: 23,
+      dorsal: 11,
       posicion: 'Extremo Izquierdo',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -430,7 +419,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'carlos-fernandez-luna',
       codigo: 'carlos-fernandez-luna',
-      dorsal: 17,
+      dorsal: 14,
       posicion: 'Delantero Centro',
       enClubDesde: '2026',
       contratoHasta: '2028',
@@ -441,7 +430,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
   id: "estanislau-pedrola-fortuny",
   codigo: "estanislau-pedrola-fortuny",
-  dorsal: 8,
+  dorsal: 17,
   posicion: "Extremo Izquierdo",
   enClubDesde: "2026",
   contratoHasta: "2029",
