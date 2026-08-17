@@ -180,7 +180,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       dorsal: "-",
       posicion: 'Central',
       enClubDesde: '2024',
-      contratoHasta: '2028',
+      contratoHasta: '2029',
       estado: "cedido",
       cedidoEn: "Villarreal C.F. B",
       stats: {},
