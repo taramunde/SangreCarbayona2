@@ -42,8 +42,8 @@
     {
       equipo1: 'U.D. Almería',
       equipo2: 'C.D. Eldense',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'F.C. Andorra',
