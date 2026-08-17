@@ -30,8 +30,13 @@ const SeasonSelector = {
   _onSelect: null,
   _isOpen: false,
   _globalListenersBound: false,
+  _badgeText: null,
 
-  init: function (containerId, seasons, currentId, activeId, onSelect) {
+  // badgeText es opcional: texto del badge junto al botón fijo (p.ej.
+  // "Actual" cuando es la temporada en curso, o "Última" cuando solo
+  // significa "la temporada más reciente registrada"). Si no se pasa,
+  // se usa la traducción de 'current_badge' como hasta ahora.
+  init: function (containerId, seasons, currentId, activeId, onSelect, badgeText) {
     this._container = document.getElementById(containerId);
     if (!this._container) return;
 
@@ -39,6 +44,7 @@ const SeasonSelector = {
     this._currentId = currentId;
     this._activeId = activeId;
     this._onSelect = onSelect;
+    this._badgeText = badgeText || null;
 
     if (!this._globalListenersBound) {
       document.addEventListener('click', (e) =>
@@ -75,7 +81,10 @@ const SeasonSelector = {
       .sort((a, b) => (a.id < b.id ? 1 : -1));
 
     const currentLabel = current ? current.nombre : this._currentId;
-    const badgeText = (typeof t === 'function' && t('current_badge')) || 'Actual';
+    const badgeText =
+      this._badgeText ||
+      (typeof t === 'function' && t('current_badge')) ||
+      'Actual';
     const moreText =
       (typeof t === 'function' && t('mas_temporadas')) || 'Más temporadas';
     const pickerTitle =

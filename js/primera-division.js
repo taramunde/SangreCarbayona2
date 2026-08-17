@@ -173,12 +173,15 @@ document.addEventListener('DOMContentLoaded', function () {
         id: tempId,
         nombre: CLUB_DATA.primeraDivisionHistorico[tempId].nombre || tempId,
       }));
+      const ultimaBadgeText =
+        (typeof t === 'function' && t('ultima_badge')) || 'Última';
       SeasonSelector.init(
         'temporadaSelector',
         seasonsParaSelector,
         temporadaActualId,
         temporadaActualId,
         cambiarTemporada,
+        ultimaBadgeText,
       );
     }
 
