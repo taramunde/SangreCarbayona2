@@ -17,7 +17,7 @@
     { nombre: 'Cádiz C.F.', escudo: 'img/escudos/Cadiz.webp' },
     { nombre: 'C.D. Castellón', escudo: 'img/escudos/Castellon.webp' },
     { nombre: 'R.C. Celta Fortuna', escudo: 'img/escudos/CeltaVigo.webp' },
-    { nombre: 'A.D. Ceuta C.F.', escudo: 'img/escudos/Ceuta.webp' },
+    { nombre: 'A.D. Ceuta F.C.', escudo: 'img/escudos/Ceuta.webp' },
     { nombre: 'Córdoba C.F.', escudo: 'img/escudos/Cordoba.webp' },
     { nombre: 'S.D. Eibar', escudo: 'img/escudos/Eibar.webp' },
     { nombre: 'C.D. Eldense', escudo: 'img/escudos/Eldense.webp' },
@@ -47,7 +47,7 @@
     },
     {
       equipo1: 'F.C. Andorra',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: 5,
       goles2: 1,
     },
@@ -126,7 +126,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'U.D. Las Palmas',
       goles1: null,
       goles2: null,
@@ -225,7 +225,7 @@
     },
     {
       equipo1: 'R.C.D. Mallorca',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -256,7 +256,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'R.C. Celta Fortuna',
       goles1: null,
       goles2: null,
@@ -319,7 +319,7 @@
     },
     {
       equipo1: 'Burgos C.F.',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -410,7 +410,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Valladolid',
       goles1: null,
       goles2: null,
@@ -460,7 +460,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Sociedad B',
       goles1: null,
       goles2: null,
@@ -535,7 +535,7 @@
     },
     {
       equipo1: 'C.D. Castellón',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -614,7 +614,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'C.E. Sabadell',
       goles1: null,
       goles2: null,
@@ -664,7 +664,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Oviedo',
       goles1: null,
       goles2: null,
@@ -739,7 +739,7 @@
     },
     {
       equipo1: 'Cádiz C.F.',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -806,7 +806,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Sporting de Gijón',
       goles1: null,
       goles2: null,
@@ -881,7 +881,7 @@
     },
     {
       equipo1: 'Córdoba C.F.',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -979,7 +979,7 @@
     },
     {
       equipo1: 'C.D. Tenerife',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1016,7 +1016,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'U.D. Almería',
       goles1: null,
       goles2: null,
@@ -1091,7 +1091,7 @@
     },
     {
       equipo1: 'Granada C.F.',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1152,7 +1152,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Albacete Balompié',
       goles1: null,
       goles2: null,
@@ -1233,7 +1233,7 @@
     },
     {
       equipo1: 'C.D. Leganés',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1300,7 +1300,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'S.D. Eibar',
       goles1: null,
       goles2: null,
@@ -1351,7 +1351,7 @@
     },
     {
       equipo1: 'C.D. Eldense',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1424,7 +1424,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Girona F.C.',
       goles1: null,
       goles2: null,
@@ -1529,7 +1529,7 @@
     },
     {
       equipo1: 'Real Valladolid',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1585,7 +1585,7 @@
     },
     {
       equipo1: 'C.E. Sabadell',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1616,7 +1616,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'C.D. Tenerife',
       goles1: null,
       goles2: null,
@@ -1727,7 +1727,7 @@
     },
     {
       equipo1: 'Real Sporting de Gijón',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1764,7 +1764,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'R.C.D. Mallorca',
       goles1: null,
       goles2: null,
@@ -1809,7 +1809,7 @@
     // Jornada 27 (21/02/2027)
     {
       equipo1: 'U.D. Almería',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -1894,7 +1894,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'C.D. Leganés',
       goles1: null,
       goles2: null,
@@ -1993,7 +1993,7 @@
     },
     {
       equipo1: 'Real Sociedad B',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2030,7 +2030,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'F.C. Andorra',
       goles1: null,
       goles2: null,
@@ -2105,7 +2105,7 @@
     },
     {
       equipo1: 'S.D. Eibar',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2166,7 +2166,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Granada C.F.',
       goles1: null,
       goles2: null,
@@ -2253,7 +2253,7 @@
     },
     {
       equipo1: 'U.D. Las Palmas',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2285,7 +2285,7 @@
     // Jornada 34 (11/04/2027)
     {
       equipo1: 'Albacete Balompié',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2364,7 +2364,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'C.D. Castellón',
       goles1: null,
       goles2: null,
@@ -2450,7 +2450,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'C.D. Eldense',
       goles1: null,
       goles2: null,
@@ -2501,7 +2501,7 @@
     },
     {
       equipo1: 'R.C. Celta Fortuna',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2580,7 +2580,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Cádiz C.F.',
       goles1: null,
       goles2: null,
@@ -2673,7 +2673,7 @@
     },
     {
       equipo1: 'Real Oviedo',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2710,7 +2710,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Córdoba C.F.',
       goles1: null,
       goles2: null,
@@ -2797,7 +2797,7 @@
     },
     {
       equipo1: 'Girona F.C.',
-      equipo2: 'A.D. Ceuta C.F.',
+      equipo2: 'A.D. Ceuta F.C.',
       goles1: null,
       goles2: null,
     },
@@ -2840,7 +2840,7 @@
       goles2: null,
     },
     {
-      equipo1: 'A.D. Ceuta C.F.',
+      equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Burgos C.F.',
       goles1: null,
       goles2: null,
