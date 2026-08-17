@@ -102,11 +102,11 @@
   position: relative;
 }
 
-.game-card.highlight-game::after {
-  content: '★ Destacado';
+.game-card.highlight-game .game-badge {
   position: absolute;
   top: 15px;
   right: 15px;
+  z-index: 2;
   background: #fdb913;
   color: #002a5c;
   padding: 5px 10px;

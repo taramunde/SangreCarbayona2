@@ -310,6 +310,17 @@ const translations = {
     juegos_titulo: 'Juegos',
     juegos_subtitulo: 'Zona de Juegos y Entretenimiento',
     juegos_disponibles: 'Juegos Disponibles',
+    jugar: 'Jugar',
+    destacado: 'Destacado',
+    juego_quiz_titulo: 'Quiz Carbayón',
+    juego_quiz_desc:
+      'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
+    juego_puzzle_titulo: 'Puzzle Carbayón',
+    juego_puzzle_desc:
+      'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
+    juego_autodefinido_titulo: 'Autodefinido Carbayón',
+    juego_autodefinido_desc:
+      'Pon a prueba lo que sabes del Real Oviedo con este crucigrama autodefinido.',
 
     // ============================================
     // VÍDEOS
@@ -673,6 +684,16 @@ const translations = {
     juegos_titulo: 'Games',
     juegos_subtitulo: 'Games and Entertainment Zone',
     juegos_disponibles: 'Available Games',
+    jugar: 'Play',
+    destacado: 'Featured',
+    juego_quiz_titulo: 'Quiz Carbayón',
+    juego_quiz_desc: "Test your knowledge of Real Oviedo's history.",
+    juego_puzzle_titulo: 'Puzzle Carbayón',
+    juego_puzzle_desc:
+      'Complete the jigsaw puzzles with historic Real Oviedo images.',
+    juego_autodefinido_titulo: 'Autodefinido Carbayón',
+    juego_autodefinido_desc:
+      'Put your Real Oviedo knowledge to the test with this crossword.',
 
     // ============================================
     // VIDEOS

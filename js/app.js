@@ -3545,17 +3545,24 @@ const App = {
     CLUB_DATA.juegos.forEach((juego) => {
       // Tu CSS usa la clase 'highlight-game' para los juegos destacados
       const specialClass = juego.esEspecial ? 'highlight-game' : '';
+      const titulo = (juego.id && t('juego_' + juego.id + '_titulo')) || juego.titulo;
+      const descripcion =
+        (juego.id && t('juego_' + juego.id + '_desc')) || juego.descripcion;
+      const badge = juego.esEspecial
+        ? `<span class="game-badge">★ ${t('destacado') || 'Destacado'}</span>`
+        : '';
 
       // Construimos el HTML usando exactamente las clases de tu juegos.css
       html += `
         <a href="${juego.enlace}" class="game-card ${specialClass}">
+          ${badge}
           <div class="game-image">
-            <img src="${juego.imagen}" alt="${juego.titulo}">
+            <img src="${juego.imagen}" alt="${titulo}">
           </div>
           <div class="game-info">
-            <h3>${juego.titulo}</h3>
-            <p>${juego.descripcion}</p>
-            <span class="play-btn">Jugar</span>
+            <h3>${titulo}</h3>
+            <p>${descripcion}</p>
+            <span class="play-btn">${t('jugar') || 'Jugar'}</span>
           </div>
         </a>`;
     });

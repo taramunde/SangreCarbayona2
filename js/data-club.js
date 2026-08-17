@@ -126,6 +126,7 @@ const CLUB_DATA = {
   // ===================================
   juegos: [
     {
+      id: 'quiz',
       titulo: 'Quiz Carbayón',
       descripcion:
         'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
@@ -134,6 +135,7 @@ const CLUB_DATA = {
       esEspecial: false,
     },
     {
+      id: 'puzzle',
       titulo: 'Puzzle Carbayón',
       descripcion:
         'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
@@ -142,6 +144,7 @@ const CLUB_DATA = {
       esEspecial: true,
     },
     {
+      id: 'autodefinido',
       titulo: 'Autodefinido Carbayón',
       descripcion:
         'Pon a prueba lo que sabes del Real Oviedo con este crucigrama autodefinido.',
