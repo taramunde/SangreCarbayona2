@@ -102,8 +102,8 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'C.E. Sabadell',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
 
     // Jornada 2 (23/08/2026)
