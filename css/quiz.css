@@ -1,5 +1,10 @@
 /* css/quiz.css - Adaptado a la Nueva Web */
 
+.quiz-page-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 #quiz-app {
     width: 100%;
     max-width: 800px;
