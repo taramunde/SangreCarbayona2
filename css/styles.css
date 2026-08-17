@@ -1871,3 +1871,53 @@ img {
     transform: rotate(180deg);
   }
 }
+
+/* ===================================
+   COMPARTIR PÁGINA (genérico, reutilizable en cualquier página)
+   =================================== */
+.page-share {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.page-share p {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #002a5c;
+}
+
+.page-share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.page-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.3rem;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
+}
+
+.page-share-btn:hover {
+  transform: scale(1.15);
+  opacity: 0.9;
+}
+
+.page-share-btn.whatsapp {
+  background: #25d366;
+}
+.page-share-btn.telegram {
+  background: #0088cc;
+}
+.page-share-btn.twitter {
+  background: #1da1f2;
+}
