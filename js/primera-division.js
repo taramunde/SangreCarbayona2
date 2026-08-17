@@ -35,6 +35,103 @@ document.addEventListener('DOMContentLoaded', function () {
   let datosTemporada = null;
   let todosLosRivales = new Set();
 
+  // Escudos ya disponibles en img/escudos (se irán añadiendo más con el tiempo)
+  const ESCUDOS_DISPONIBLES = [
+    'Alaves', 'Albacete', 'Almeria', 'Andorra', 'AthleticClub',
+    'AtleticodeMadrid', 'Barcelona', 'Betis', 'Burgos', 'Cadiz',
+    'Castellon', 'CeltaVigo', 'Ceuta', 'Cordoba', 'DeportivoACoruna',
+    'Eibar', 'Elche', 'Eldense', 'Espanyol', 'Getafe', 'Girona',
+    'Granada', 'LasPalmas', 'Leganes', 'Levante', 'Madrid', 'Mallorca',
+    'Osasuna', 'Oviedo', 'RayoVallecano', 'RealSociedad', 'Sabadell',
+    'Sevilla', 'Sporting', 'Tenerife', 'Valencia', 'Valladolid', 'Villarreal',
+  ];
+
+  // Nombres de equipo habituales que no coinciden literalmente con el fichero
+  const ESCUDOS_ALIAS = {
+    'real madrid': 'Madrid',
+    'fc barcelona': 'Barcelona',
+    'atletico de madrid': 'AtleticodeMadrid',
+    'club atletico de madrid': 'AtleticodeMadrid',
+    'athletic club': 'AthleticClub',
+    'athletic bilbao': 'AthleticClub',
+    'athletic club de bilbao': 'AthleticClub',
+    'sevilla fc': 'Sevilla',
+    'valencia cf': 'Valencia',
+    'real betis': 'Betis',
+    'real betis balompie': 'Betis',
+    'rcd espanyol': 'Espanyol',
+    'espanyol de barcelona': 'Espanyol',
+    'villarreal cf': 'Villarreal',
+    'ca osasuna': 'Osasuna',
+    'club atletico osasuna': 'Osasuna',
+    'deportivo alaves': 'Alaves',
+    'rayo vallecano': 'RayoVallecano',
+    'real sociedad': 'RealSociedad',
+    'real sociedad de futbol': 'RealSociedad',
+    'getafe cf': 'Getafe',
+    'ud las palmas': 'LasPalmas',
+    'las palmas': 'LasPalmas',
+    'cadiz cf': 'Cadiz',
+    'real valladolid': 'Valladolid',
+    'real valladolid cf': 'Valladolid',
+    'sd eibar': 'Eibar',
+    'rc celta de vigo': 'CeltaVigo',
+    'celta de vigo': 'CeltaVigo',
+    'real oviedo': 'Oviedo',
+    'girona fc': 'Girona',
+    'granada cf': 'Granada',
+    'elche cf': 'Elche',
+    'levante ud': 'Levante',
+    'rcd mallorca': 'Mallorca',
+    'real sporting de gijon': 'Sporting',
+    'sporting de gijon': 'Sporting',
+    'cd tenerife': 'Tenerife',
+    'burgos cf': 'Burgos',
+    'cordoba cf': 'Cordoba',
+    'albacete balompie': 'Albacete',
+    'ud almeria': 'Almeria',
+    'fc andorra': 'Andorra',
+    'cd castellon': 'Castellon',
+    'ad ceuta fc': 'Ceuta',
+    'cd eldense': 'Eldense',
+    'ce sabadell': 'Sabadell',
+    'rc deportivo': 'DeportivoACoruna',
+    'deportivo de la coruna': 'DeportivoACoruna',
+    'cd leganes': 'Leganes',
+  };
+
+  function normalizarNombreEquipo(nombre) {
+    return (nombre || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '') // quitar acentos
+      .replace(/[.,]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function getEscudoEquipo(nombre) {
+    const normalizado = normalizarNombreEquipo(nombre);
+    if (!normalizado) return null;
+
+    if (ESCUDOS_ALIAS[normalizado]) {
+      return `img/escudos/${ESCUDOS_ALIAS[normalizado]}.webp`;
+    }
+
+    // Si no hay alias exacto, buscar un escudo cuyo nombre de fichero
+    // esté contenido en el nombre del equipo (o al revés)
+    const compacto = normalizado.replace(/\s+/g, '');
+    const coincidencia = ESCUDOS_DISPONIBLES.find((archivo) => {
+      const archivoNormalizado = archivo.toLowerCase();
+      return (
+        compacto.includes(archivoNormalizado) ||
+        archivoNormalizado.includes(compacto)
+      );
+    });
+
+    return coincidencia ? `img/escudos/${coincidencia}.webp` : null;
+  }
+
   // DEBUG temporal
   console.log('soloOviedo:', document.getElementById('soloOviedo'));
   console.log('filtroRival:', document.getElementById('filtroRival'));
@@ -67,38 +164,39 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Renderizar tabs de temporadas
-    renderTemporadaTabs(temporadas);
+    // La temporada "actual" es siempre la más reciente disponible en los datos
+    const temporadaActualId = temporadas[0];
 
-    // Cargar primera temporada por defecto
-    cambiarTemporada(temporadas[0]);
+    // Selector de temporadas: botón fijo con la más reciente + desplegable con el resto
+    if (typeof SeasonSelector !== 'undefined') {
+      const seasonsParaSelector = temporadas.map((tempId) => ({
+        id: tempId,
+        nombre: CLUB_DATA.primeraDivisionHistorico[tempId].nombre || tempId,
+      }));
+      SeasonSelector.init(
+        'temporadaSelector',
+        seasonsParaSelector,
+        temporadaActualId,
+        temporadaActualId,
+        cambiarTemporada,
+      );
+    }
+
+    // Cargar la temporada actual por defecto
+    cambiarTemporada(temporadaActualId);
 
     // Event listeners
     setupEventListeners();
-  }
-
-  function renderTemporadaTabs(temporadas) {
-    let html = '';
-    temporadas.forEach((tempId, index) => {
-      const temp = CLUB_DATA.primeraDivisionHistorico[tempId];
-      html += `
-                <button class="temporada-tab ${index === 0 ? 'active' : ''}" 
-                        data-temporada="${tempId}">
-                    ${temp.nombre || tempId}
-                </button>
-            `;
-    });
-    temporadaSelector.innerHTML = html;
   }
 
   function cambiarTemporada(temporadaId) {
     temporadaActiva = temporadaId;
     datosTemporada = CLUB_DATA.primeraDivisionHistorico[temporadaId];
 
-    // Actualizar tabs visuales
-    document.querySelectorAll('.temporada-tab').forEach((tab) => {
-      tab.classList.toggle('active', tab.dataset.temporada === temporadaId);
-    });
+    // Sincronizar el estado visual del selector de temporadas
+    if (typeof SeasonSelector !== 'undefined') {
+      SeasonSelector.setActive(temporadaId);
+    }
 
     // Extraer rivales únicos para el filtro
     extraerRivales();
@@ -243,8 +341,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const escudoFallback =
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23e8e8e8' stroke='%23ccc' stroke-width='2'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-size='22' fill='%23999'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E";
-    const escudoLocal = partido.escudoLocal || escudoFallback;
-    const escudoVisitante = partido.escudoVisitante || escudoFallback;
+    const escudoLocal =
+      partido.escudoLocal || getEscudoEquipo(partido.local) || escudoFallback;
+    const escudoVisitante =
+      partido.escudoVisitante ||
+      getEscudoEquipo(partido.visitante) ||
+      escudoFallback;
 
     // Renderizar goleadores
     let goleadoresHtml = '';
@@ -321,14 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function setupEventListeners() {
-    // Cambio de temporada
-    // Usamos closest() para que funcione aunque el clic sea en el texto interior del botón
-    temporadaSelector.addEventListener('click', function (e) {
-      const tab = e.target.closest('.temporada-tab');
-      if (tab) {
-        cambiarTemporada(tab.dataset.temporada);
-      }
-    });
+    // El cambio de temporada lo gestiona SeasonSelector (ver cambiarTemporada)
 
     // Filtros
     soloOviedo.addEventListener('change', aplicarFiltros);

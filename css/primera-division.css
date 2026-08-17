@@ -19,34 +19,6 @@
     padding-bottom: 20px;
 }
 
-.temporada-tab {
-    padding: 12px 30px;
-    background: var(--white);
-    border: 2px solid var(--gray-200);
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--gray-600);
-    cursor: pointer;
-    transition: var(--transition);
-    font-family: var(--font-heading);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.temporada-tab:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.temporada-tab.active {
-    background: var(--primary-color);
-    border-color: var(--primary-color);
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(0, 26, 110, 0.3);
-}
-
 /* Panel de Filtros */
 .filtros-panel {
     background: var(--white);
@@ -369,11 +341,11 @@
 }
 
 .goles-local {
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .goles-visitante {
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .gol-info {
@@ -458,11 +430,6 @@
     
     .goles-local, .goles-visitante {
         justify-content: center;
-    }
-    
-    .temporada-tab {
-        padding: 10px 20px;
-        font-size: 0.85rem;
     }
 }
 
