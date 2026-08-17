@@ -306,6 +306,8 @@ CLUB_DATA.temporadas['2026-27'] = {
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2027',
+      estado: "cedido",
+      cedidoEn: "C.D. Lugo",
       stats: {},
       partidos: [],
     },
