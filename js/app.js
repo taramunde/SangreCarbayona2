@@ -370,6 +370,12 @@ function autoCalcularStatsEquipo(temporada) {
     });
   });
 
+  // Si todavía no hay jugadores/partidos cargados para esta temporada
+  // (p.ej. una temporada recién añadida a la que le faltan las fichas),
+  // no hay nada que autocalcular: no pisar el desglose metido a mano en
+  // estadisticasEquipo.desglose con uno vacío.
+  if (Object.keys(desglose).length === 0) return;
+
   if (!temporada.estadisticasEquipo) temporada.estadisticasEquipo = {};
   temporada.estadisticasEquipo.desglose = desglose;
 }
