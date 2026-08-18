@@ -20,6 +20,9 @@ function generarEnlacesCompartir(url, texto, claseBase, orden) {
 }
 
 function formatearFecha(fechaStr) {
+  if (!fechaStr) {
+    return { dia: '', mes: '', mesCorto: '', año: '', completa: '' };
+  }
   let fecha;
   if (fechaStr.includes('T')) {
     fecha = new Date(fechaStr);
