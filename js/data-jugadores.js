@@ -537,7 +537,7 @@ CLUB_DATA.jugadoresMaestro = {
   lugarNacimiento: "San Sebastián",
   provinciaNacimiento: "Guipúzcoa",
   fechaNacimiento: "1995-09-18",
-  imagen: "https://i.postimg.cc/7Y6X4GHz/Gorka-Giralt-PNG.webp",
+  imagen: "img/jugadores/GorkaGiralt.webp",
 },
 
 "juan-carlos-sanchez-martinez": {
