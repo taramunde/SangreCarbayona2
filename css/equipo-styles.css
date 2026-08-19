@@ -60,7 +60,7 @@
 
 .page-title {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: clamp(1.7rem, 1rem + 4vw, 3.5rem);
   font-weight: 700;
   color: var(--white);
   text-transform: uppercase;
@@ -479,9 +479,7 @@
 }
 
 @media (max-width: 768px) {
-  .page-title {
-    font-size: 2.5rem;
-  }
+  /* El tamaño de .page-title ya se adapta solo vía clamp() en la regla base */
 
   .team-stats-grid {
     grid-template-columns: repeat(2, 1fr);
