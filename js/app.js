@@ -817,6 +817,23 @@ const App = {
     autoCalcularStatsEquipo(temporada);
     const statsData = temporada.estadisticasEquipo;
 
+    // Si estamos viendo la temporada actual y clasificacion.js está cargado
+    // (window.equipos, con la tabla ya calculada a partir de los resultados
+    // reales de todos los equipos), usamos esa posición en vez de la puesta
+    // a mano — así no hay que recordar actualizarla en dos sitios distintos.
+    if (
+      this.temporadaActiva === CLUB_DATA.temporadaActual &&
+      Array.isArray(window.equipos) &&
+      statsData
+    ) {
+      const oviedoEnTabla = window.equipos.find(
+        (eq) => eq.nombre === CLUB_DATA.club.nombre,
+      );
+      if (oviedoEnTabla && oviedoEnTabla.posicion) {
+        statsData.posicion = oviedoEnTabla.posicion;
+      }
+    }
+
     // Detectar si hay desglose por competición
     const tieneDesglose =
       statsData &&

@@ -22,12 +22,10 @@ CLUB_DATA.temporadas['2026-27'] = {
 
   // "desglose" (partidos/victorias/empates/derrotas/goles) YA NO se pone
   // aquí a mano: app.js lo calcula solo a partir de los partidos[] de
-  // cada jugador (ver autoCalcularStatsEquipo en js/app.js). Lo único
-  // que sigue siendo manual es "posicion" — no se puede calcular solo
-  // con los resultados del Oviedo, hace falta la tabla completa.
-  estadisticasEquipo: {
-    posicion: 12,
-  },
+  // cada jugador (ver autoCalcularStatsEquipo en js/app.js). "posicion"
+  // tampoco: para la temporada actual, app.js la coge en vivo de la
+  // clasificación calculada en js/clasificacion.js (ver renderEstadisticasEquipo).
+  estadisticasEquipo: {},
 
   jugadores: [
     // PORTEROS
