@@ -1259,4 +1259,73 @@ CLUB_DATA.temporadas['2013-14'] = {
 ],
 };
 
+// ===================================
+// TEMPORADA 2012/2013
+// ===================================
+CLUB_DATA.temporadas['2012-13'] = {
+  competicion: 'Segunda División B',
+  grupo: 'Grupo: 1',
+
+  estadisticasEquipo: {
+    posicion: 3,
+    desglose: {
+      'Segunda División B': {
+        partidos:    38,
+        victorias:   18,
+        empates:     12,
+        derrotas:    8,
+        golesFavor:  53,
+        golesContra: 33,
+      },
+      'Fase de Ascenso': {
+        partidos:    4,
+        victorias:   1,
+        empates:     0,
+        derrotas:    3,
+        golesFavor:  3,
+        golesContra: 5,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  4,
+        golesContra: 5,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+    
+
+    // DEFENSAS
+    
+
+    
+    
+    // CENTROCAMPISTAS
+    
+    
+
+    
+    // DELANTEROS
+    
+
+
+
+ ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+
+    
+],
+};
+
 window.CLUB_DATA = CLUB_DATA;
