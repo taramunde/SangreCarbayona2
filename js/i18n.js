@@ -129,15 +129,19 @@ const translations = {
     todas_temporadas: 'Todas las temporadas',
     copa_ronda_primera_ronda: 'Primera Ronda',
     copa_ronda_segunda_ronda: 'Segunda Ronda',
+    copa_ronda_tercera_ronda: 'Tercera Ronda',
+    copa_ronda_dieciseisavos_de_final: 'Dieciseisavos de Final',
+    copa_ronda_dieciseisavos_de_final_ida: 'Dieciseisavos de Final (Ida)',
+    copa_ronda_dieciseisavos_de_final_vuelta:
+      'Dieciseisavos de Final (Vuelta)',
     copa_ronda_cuartos_de_final: 'Cuartos de Final',
     copa_ronda_semifinal: 'Semifinal',
     copa_ronda_final: 'Final',
     // Fase de ascenso — la normalización de app.js antepone "copa_ronda_" a la jornada
-    copa_ronda_fase_ascenso_semifinal_ida: 'Fase Ascenso - Semifinal (Ida)',
-    copa_ronda_fase_ascenso_semifinal_vuelta:
-      'Fase Ascenso - Semifinal (Vuelta)',
-    copa_ronda_fase_ascenso_final_ida: 'Fase Ascenso - Final (Ida)',
-    copa_ronda_fase_ascenso_final_vuelta: 'Fase Ascenso - Final (Vuelta)',
+    copa_ronda_semifinal_ida: 'Semifinal (Ida)',
+    copa_ronda_semifinal_vuelta: 'Semifinal (Vuelta)',
+    copa_ronda_final_ida: 'Final (Ida)',
+    copa_ronda_final_vuelta: 'Final (Vuelta)',
 
     // ============================================
     // FICHA JUGADOR
@@ -507,15 +511,18 @@ const translations = {
     competicion_label: 'Competition',
     copa_ronda_primera_ronda: 'Round of 32',
     copa_ronda_segunda_ronda: 'Round of 16',
+    copa_ronda_tercera_ronda: 'Round of 8',
+    copa_ronda_dieciseisavos_de_final: 'Round of 32',
+    copa_ronda_dieciseisavos_de_final_ida: 'Round of 32 (1st Leg)',
+    copa_ronda_dieciseisavos_de_final_vuelta: 'Round of 32 (2nd Leg)',
     copa_ronda_cuartos_de_final: 'Quarter-final',
     copa_ronda_semifinal: 'Semi-final',
     copa_ronda_final: 'Final',
     // Promotion play-offs — app.js normalisation prepends "copa_ronda_" to the jornada string
-    copa_ronda_fase_ascenso_semifinal_ida: 'Play-offs - Semi-final (1st Leg)',
-    copa_ronda_fase_ascenso_semifinal_vuelta:
-      'Play-offs - Semi-final (2nd Leg)',
-    copa_ronda_fase_ascenso_final_ida: 'Play-offs - Final (1st Leg)',
-    copa_ronda_fase_ascenso_final_vuelta: 'Play-offs - Final (2nd Leg)',
+    copa_ronda_semifinal_ida: 'Semi-final (1st Leg)',
+    copa_ronda_semifinal_vuelta: 'Semi-final (2nd Leg)',
+    copa_ronda_final_ida: 'Final (1st Leg)',
+    copa_ronda_final_vuelta: 'Final (2nd Leg)',
 
     // ============================================
     // PLAYER PROFILE
