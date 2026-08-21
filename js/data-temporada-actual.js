@@ -378,17 +378,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'joaquin-delgado-romero',
-      codigo: 'joaquin-delgado-romero',
-      dorsal: 19,
-      posicion: 'Delantero Centro',
-      enClubDesde: '2024',
-      contratoHasta: '2028',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'jaime-coballes-fernandez',
       codigo: 'jaime-coballes-fernandez',
       dorsal: '-',

@@ -6668,21 +6668,6 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
-  'joaquin-delgado-romero': {
-    nombre: 'Joaquín',
-    apellidos: 'Delgado Romero',
-    nombreCompleto: 'Joaquín Delgado Romero',
-    apodo: 'Joaquín Delgado',
-    posicion: 'Delantero',
-    posicionCorta: 'DL',
-    altura: 1.87,
-    nacionalidad: ['Española'],
-    lugarNacimiento: 'Utrera',
-    provinciaNacimiento: 'Sevilla',
-    fechaNacimiento: '2002-03-26',
-    imagen: 'img/jugadores/JoaquinDelgado.webp',
-  },
-
   'jaime-coballes-fernandez': {
     nombre: 'Jaime',
     apellidos: 'Coballes Fernández',
