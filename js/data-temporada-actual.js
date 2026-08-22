@@ -39,6 +39,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 1, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -76,6 +77,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
             { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 62, goles: 0, asistencias: 0, amarilla: false, roja: false },
+            { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 33, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -90,6 +92,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 29, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 57, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -104,6 +107,8 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
       ],
          
     },
@@ -118,6 +123,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
           { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+          { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -143,6 +149,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 63, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 57, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -157,6 +164,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 28, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 33, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -208,6 +216,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: true, roja: false },
 
       ],
     },
@@ -281,6 +290,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 81, goles: 0, asistencias: 0, amarilla: true, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 57, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -332,6 +342,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
          { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+         { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -359,6 +370,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 80, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -373,6 +385,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
          { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 69, goles: 0, asistencias: 0, amarilla: false, roja: false },
+         { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 79, goles: 0, asistencias: 0, amarilla: false, roja: false },
 
       ],
     },
@@ -398,7 +411,8 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 10, goles: 0, asistencias: 0, amarilla: false, roja: false },
-        
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 11, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
       ],
     },
 
@@ -412,6 +426,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 21, goles: 0, asistencias: 0, amarilla: true, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 33, goles: 0, asistencias: 0, amarilla: true, roja: false },
 
       ],
     },
@@ -426,6 +441,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E", minutos: 90, goles: 0, asistencias: 0, amarilla: false, roja: false },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 79, goles: 0, asistencias: 0, amarilla: true, roja: false },
 
       ],
     },
@@ -438,7 +454,10 @@ CLUB_DATA.temporadas['2026-27'] = {
       enClubDesde: '2026',
       contratoHasta: '2028',
       stats: {},
-      partidos: [],
+      partidos: [
+            { id: 1, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D", minutos: 11, goles: 0, asistencias: 0, amarilla: false, roja: false },
+
+      ],
     },
 
     {
@@ -473,6 +492,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       estadisticas: {},
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E" },
+        { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D" },
 
       ],
     },
