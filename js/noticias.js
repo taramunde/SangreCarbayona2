@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/15/real-oviedo-agota-bateria-ante-granada/00031786809435376526546.htm',
-    titulo: 'Al Real Oviedo se le agota la batería ante el Granada.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/22/oviedo-lega/00031787408693824126334.htm',
+    titulo: 'Un Real Oviedo sin respuesta ante el Leganés.',
     descripcion:
-      'Los azules dieron una gran imagen en el primer tiempo y pudieron marcar, pero tras el descanso la energía disminuyó y el Granada se encontró más cómodo (0-0). El juvenil Enzo Pérez, debutante juvenil en el Real Oviedo.',
-    imagen: 'img/varios/J1-LVA.webp',
-    fecha: '15 agosto 2026',
+      'Los azules caen por la mínima (0-1) ante un equipo que jugó con uno menos desde el minuto 20 de partido. En la recta final se pudo empatar, pero no hubo acierto.',
+    imagen: 'img/varios/J2LVA.webp',
+    fecha: '22 agosto 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/08/15/perdona-paga-oviedo-inicial-curso-133392639.html',
+    url: 'https://www.lne.es/real-oviedo/2026/08/22/primer-bofeton-segunda-derrota-mal-133569815.html',
     titulo:
-      'Quien perdona, lo paga: el Oviedo inicia el curso con empate de sabor amargo (0-0).',
+      'El primer bofetón de Segunda: derrota de un mal Oviedo ante un Leganés con uno menos (0-1).',
     descripcion:
-      'Los azules fueron mucho mejores en una primera mitad con muchas llegadas, pero se desinflaron tras el descanso.',
-    imagen: 'img/varios/J1-LNE.webp',
-    fecha: '15 agosto 2026',
+      'Los azules se vieron superados por el rival en el inicio y trataron de reaccionar tras la roja visitante a los 22 minutos.',
+    imagen: 'img/varios/J2LNE.webp',
+    fecha: '22 agosto 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-granada-resultado-segunda-division-goles-20260815164543-di.html',
-    titulo: 'Mejores sensaciones que resultado para el Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/poco-futbol-gol-condenan-real-oviedo-20260823193650-nt.html',
+    titulo: 'Poco fútbol y nada de gol condenan al Real Oviedo.',
     descripcion:
-      'Los azules empataron sin goles ante el Granada en un partido en el que dominaron, pero no fueron capaces de concretar las pocas ocasiones que tuvieron.',
-    imagen: 'img/varios/J1-EC.webp',
-    fecha: '15 agosto 2026',
+      'El equipo azul perdió ante el Leganés un partido en el que jugó mucho tiempo con uno más, pero en el que pagó el mal inicio y la falta alarmante de acierto ante la meta rival.',
+    imagen: 'img/varios/J2EC.webp',
+    fecha: '22 agosto 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-empuja-pero-no-encuentra-el-premio',
-    titulo: 'La Crónica: El Oviedo empuja, pero no encuentra el premio.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-ni-contra-diez',
+    titulo: 'La Crónica: El Oviedo, ni contra diez.',
     descripcion:
-      'Los azules llevaron el peso del encuentro durante buena parte del partido, pero les faltó acierto ante un Granada sólido y bien replegado.',
-    imagen: 'img/varios/J1-LVA.webp',
-    fecha: '15 agosto 2026',
+      'El equipo azul cae ante el Leganés (0-1) después de jugar más de 70 minutos en superioridad y suma un solo punto de seis en el Tartiere.',
+    imagen: 'img/varios/J2KA.webp',
+    fecha: '22 agosto 2026',
   },
 ];
 

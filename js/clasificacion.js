@@ -110,8 +110,8 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'Real Sociedad B',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Castellón',
@@ -128,14 +128,14 @@
     {
       equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'U.D. Las Palmas',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'Córdoba C.F.',
       equipo2: 'Girona F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'S.D. Eibar',
@@ -146,8 +146,8 @@
     {
       equipo1: 'C.D. Eldense',
       equipo2: 'Cádiz C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 2,
     },
     {
       equipo1: 'Granada C.F.',
@@ -158,8 +158,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.D. Leganés',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'Real Sporting de Gijón',

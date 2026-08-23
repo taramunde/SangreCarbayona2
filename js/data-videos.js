@@ -12,5 +12,11 @@ CLUB_DATA.videos = [
     fecha: '2026-08-15',
     videoId: 'X0InaMBpbs0',
   },
-  
+  {
+    id: 2,
+    jornada: 2,
+    titulo: 'Real Oviedo Vs C.D. Leganés',
+    fecha: '2026-08-22',
+    videoId: 'aJLeW8rKERU',
+  },
 ];
