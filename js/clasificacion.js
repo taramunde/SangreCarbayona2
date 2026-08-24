@@ -116,8 +116,8 @@
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'C.E. Sabadell',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'R.C. Celta Fortuna',
@@ -140,8 +140,8 @@
     {
       equipo1: 'S.D. Eibar',
       equipo2: 'Real Valladolid',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Eldense',
@@ -164,14 +164,14 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'Burgos C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'U.D. Almería',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
 
     // Jornada 3 (30/08/2026)
