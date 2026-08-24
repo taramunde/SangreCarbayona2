@@ -122,8 +122,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'F.C. Andorra',
-      goles1: null,
-      goles2: null,
+      goles1: 4,
+      goles2: 2,
     },
     {
       equipo1: 'A.D. Ceuta F.C.',
@@ -152,8 +152,8 @@
     {
       equipo1: 'Granada C.F.',
       equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'Real Oviedo',
