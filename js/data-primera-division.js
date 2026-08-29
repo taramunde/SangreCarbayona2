@@ -31,7 +31,7 @@ CLUB_DATA.primeraDivisionHistorico = {
             goleadores: [
               { jugador: 'De Frutos', minuto: "18'", equipo: 'visitante' },
               { jugador: 'Álvaro García', minuto: "20'", equipo: 'visitante' },
-              { jugador: 'Isi', minuto: "45'", equipo: 'visitante' },
+              { jugador: 'Isi', minuto: "45'", equipo: 'visitante', tipo: 'penalti' },
               { jugador: 'Joel Roca', minuto: "57'", equipo: 'local' },
             ],
           },
@@ -149,9 +149,7 @@ CLUB_DATA.primeraDivisionHistorico = {
             golesLocal: 1,
             golesVisitante: 0,
             estado: 'finalizado',
-            goleadores: [
-              { jugador: 'Lo Celso', minuto: "16'", equipo: 'local' },
-            ],
+            goleadores: [{ jugador: 'Lo Celso', minuto: "16'", equipo: 'local' }],
           },
           {
             local: 'R.C.D. Mallorca',

@@ -3,5 +3,13 @@
   "tabWidth": 2,
   "semi": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "overrides": [
+    {
+      "files": "js/data-*.js",
+      "options": {
+        "printWidth": 120
+      }
+    }
+  ]
 }
