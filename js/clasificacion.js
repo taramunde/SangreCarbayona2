@@ -238,8 +238,8 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'Real Sporting de Gijón',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
 
     // Jornada 4 (06/09/2026)
