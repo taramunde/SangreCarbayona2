@@ -367,6 +367,41 @@
     font-size: 0.7rem;
 }
 
+/* Penalti */
+.gol-info.gol-penalti {
+    border-color: var(--warning);
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.gol-info.gol-penalti i {
+    color: var(--warning);
+}
+
+/* Gol en propia puerta */
+.gol-info.gol-propia {
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.gol-info.gol-propia i {
+    color: var(--danger);
+}
+
+.gol-tipo {
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.gol-penalti .gol-tipo {
+    color: var(--warning);
+}
+
+.gol-propia .gol-tipo {
+    color: var(--danger);
+}
+
 /* No resultados */
 .no-resultados {
     text-align: center;

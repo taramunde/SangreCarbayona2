@@ -183,10 +183,10 @@ CLUB_DATA.primeraDivisionHistorico = {
             estado: 'finalizado',
             goleadores: [
               { jugador: 'Iván Romero', minuto: "15'", equipo: 'local' },
-              { jugador: 'Morales', minuto: "45'", equipo: 'local' },
+              { jugador: 'Morales', minuto: "45'", equipo: 'local', tipo: 'penalti' },
               { jugador: 'Pedri', minuto: "49'", equipo: 'visitante' },
               { jugador: 'Ferran Torres', minuto: "52'", equipo: 'visitante' },
-              { jugador: 'Elguezábal', minuto: "90'", equipo: 'visitante' },
+              { jugador: 'Elguezábal', minuto: "90'", equipo: 'visitante', tipo: 'propia' },
             ],
           },
         ],

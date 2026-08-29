@@ -337,6 +337,29 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
   }
 
+  // Icono, texto y clase CSS según el tipo de gol (normal, penalti o propia puerta)
+  function renderGolInfo(g) {
+    let icono = 'fa-futbol';
+    let claseTipo = '';
+    let etiqueta = '';
+
+    if (g.tipo === 'penalti') {
+      icono = 'fa-bullseye';
+      claseTipo = 'gol-penalti';
+      etiqueta = '<span class="gol-tipo">(pen.)</span>';
+    } else if (g.tipo === 'propia') {
+      icono = 'fa-rotate-left';
+      claseTipo = 'gol-propia';
+      etiqueta = '<span class="gol-tipo">(p.p.)</span>';
+    }
+
+    return `
+        <span class="gol-info ${claseTipo}">
+            <i class="fas ${icono}"></i> ${g.jugador} ${g.minuto} ${etiqueta}
+        </span>
+    `;
+  }
+
   function renderPartido(partido) {
     const esOviedo =
       partido.local === 'Real Oviedo' || partido.visitante === 'Real Oviedo';
@@ -362,15 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (golesL.length > 0) {
         goleadoresHtml += `
                     <div class="goles-local">
-                        ${golesL
-                          .map(
-                            (g) => `
-                            <span class="gol-info">
-                                <i class="fas fa-futbol"></i> ${g.jugador} ${g.minuto}
-                            </span>
-                        `,
-                          )
-                          .join('')}
+                        ${golesL.map(renderGolInfo).join('')}
                     </div>
                 `;
       }
@@ -378,15 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (golesV.length > 0) {
         goleadoresHtml += `
                     <div class="goles-visitante">
-                        ${golesV
-                          .map(
-                            (g) => `
-                            <span class="gol-info">
-                                <i class="fas fa-futbol"></i> ${g.jugador} ${g.minuto}
-                            </span>
-                        `,
-                          )
-                          .join('')}
+                        ${golesV.map(renderGolInfo).join('')}
                     </div>
                 `;
       }
