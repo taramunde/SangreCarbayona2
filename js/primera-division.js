@@ -37,13 +37,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Escudos ya disponibles en img/escudos (se irán añadiendo más con el tiempo)
   const ESCUDOS_DISPONIBLES = [
-    'Alaves', 'Albacete', 'Almeria', 'Andorra', 'AthleticClub',
-    'AtleticodeMadrid', 'Barcelona', 'Betis', 'Burgos', 'Cadiz',
-    'Castellon', 'CeltaVigo', 'Ceuta', 'Cordoba', 'DeportivoACoruna',
-    'Eibar', 'Elche', 'Eldense', 'Espanyol', 'Getafe', 'Girona',
-    'Granada', 'LasPalmas', 'Leganes', 'Levante', 'Madrid', 'Mallorca',
-    'Osasuna', 'Oviedo', 'RayoVallecano', 'RealSociedad', 'Sabadell',
-    'Sevilla', 'Sporting', 'Tenerife', 'Valencia', 'Valladolid', 'Villarreal',
+    'Alaves',
+    'Albacete',
+    'Almeria',
+    'Andorra',
+    'AthleticClub',
+    'AtleticodeMadrid',
+    'Barcelona',
+    'Betis',
+    'Burgos',
+    'Cadiz',
+    'Castellon',
+    'CeltaVigo',
+    'Ceuta',
+    'Cordoba',
+    'DeportivoACoruna',
+    'Eibar',
+    'Elche',
+    'Eldense',
+    'Espanyol',
+    'Getafe',
+    'Girona',
+    'Granada',
+    'LasPalmas',
+    'Leganes',
+    'Levante',
+    'Madrid',
+    'Mallorca',
+    'Osasuna',
+    'Oviedo',
+    'RayoVallecano',
+    'RealSociedad',
+    'Sabadell',
+    'Sevilla',
+    'Sporting',
+    'Tenerife',
+    'Valencia',
+    'Valladolid',
+    'Villarreal',
   ];
 
   // Nombres de equipo habituales que no coinciden literalmente con el fichero
@@ -384,16 +415,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (golesL.length > 0) {
         goleadoresHtml += `
-                    <div class="goles-local">
-                        ${golesL.map(renderGolInfo).join('')}
+                    <div class="goles-equipo">
+                        <span class="goles-equipo-nombre">${partido.local}</span>
+                        <div class="goles-local">
+                            ${golesL.map(renderGolInfo).join('')}
+                        </div>
                     </div>
                 `;
       }
 
       if (golesV.length > 0) {
         goleadoresHtml += `
-                    <div class="goles-visitante">
-                        ${golesV.map(renderGolInfo).join('')}
+                    <div class="goles-equipo">
+                        <span class="goles-equipo-nombre">${partido.visitante}</span>
+                        <div class="goles-visitante">
+                            ${golesV.map(renderGolInfo).join('')}
+                        </div>
                     </div>
                 `;
       }
