@@ -46,22 +46,22 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/22/oviedo-lega/00031787408693824126334.htm',
-    titulo: 'Un Real Oviedo sin respuesta ante el Leganés.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/29/pablo-saenz-escandell-dan-respiro-real-oviedo/00031788026346847505679.htm',
+    titulo: 'Pablo Sáenz y Escandell dan un respiro al Real Oviedo.',
     descripcion:
-      'Los azules caen por la mínima (0-1) ante un equipo que jugó con uno menos desde el minuto 20 de partido. En la recta final se pudo empatar, pero no hubo acierto.',
-    imagen: 'img/varios/J2LVA.webp',
-    fecha: '22 agosto 2026',
+      'Un Oviedo gris suma su primer triunfo del curso ante un Albacete (0-1) que tampoco estuvo fino, pero Escandell tuvo que aparecer. Calero cambio el dibujo táctico y Reina no jugó ni un minuto.',
+    imagen: 'img/varios/J3LVA.webp',
+    fecha: '29 agosto 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/08/22/primer-bofeton-segunda-derrota-mal-133569815.html',
+    url: 'https://www.lne.es/real-oviedo/2026/08/29/oviedo-pone-coraza-triunfa-victoria-133766872.html',
     titulo:
-      'El primer bofetón de Segunda: derrota de un mal Oviedo ante un Leganés con uno menos (0-1).',
+      'El Oviedo se pone coraza y triunfa: victoria efectiva en Albacete (0-1).',
     descripcion:
-      'Los azules se vieron superados por el rival en el inicio y trataron de reaccionar tras la roja visitante a los 22 minutos.',
-    imagen: 'img/varios/J2LNE.webp',
-    fecha: '22 agosto 2026',
+      'Calero pone en liza la versión más práctica y conquista el primer triunfo del curso',
+    imagen: 'img/varios/J3LNE.webp',
+    fecha: '29 agosto 2026',
   },
   {
     medio: 'elcomercio',
