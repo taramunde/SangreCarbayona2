@@ -514,7 +514,8 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [
         { id: 1, jornada: 1, competicion: "Segunda División", fecha: "2026-08-15", local: "Real Oviedo", visitante: "Granada C.F.", golesLocal: 0, golesVisitante: 0, resultado: "E" },
         { id: 2, jornada: 2, competicion: "Segunda División", fecha: "2026-08-22", local: "Real Oviedo", visitante: "C.D. Leganés", golesLocal: 0, golesVisitante: 1, resultado: "D" },
-
+        { id: 3, jornada: 3, competicion: "Segunda División", fecha: "2026-08-29", local: "Albacete Balompié", visitante: "Real Oviedo", golesLocal: 0, golesVisitante: 1, resultado: "V" },
+        
       ],
     },
   ],
