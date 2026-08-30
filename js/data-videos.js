@@ -19,4 +19,11 @@ CLUB_DATA.videos = [
     fecha: '2026-08-22',
     videoId: 'aJLeW8rKERU',
   },
+  {
+    id: 3,
+    jornada: 3,
+    titulo: 'Albacete Balompié Vs Real Oviedo',
+    fecha: '2026-08-19',
+    videoId: 'swKo6ScIK_M',
+  },
 ];
