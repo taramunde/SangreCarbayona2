@@ -65,21 +65,21 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/poco-futbol-gol-condenan-real-oviedo-20260823193650-nt.html',
-    titulo: 'Poco fútbol y nada de gol condenan al Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/albacete-real-oviedo-resultado-goles-partido-futbol-20260829214954-nt.html',
+    titulo: 'El Real Oviedo echa el candado a los tres puntos.',
     descripcion:
-      'El equipo azul perdió ante el Leganés un partido en el que jugó mucho tiempo con uno más, pero en el que pagó el mal inicio y la falta alarmante de acierto ante la meta rival.',
-    imagen: 'img/varios/J2EC.webp',
-    fecha: '22 agosto 2026',
+      'El dispositivo defensivo de Julián Calero logra cambiar la dinámica y ganar el primer partido de la temporada en Albacete.',
+    imagen: 'img/varios/J3EC.webp',
+    fecha: '29 agosto 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-ni-contra-diez',
-    titulo: 'La Crónica: El Oviedo, ni contra diez.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-pablo-saenz-abre-la-puerta-de-la-victoria-al-oviedo',
+    titulo: 'La Crónica: Pablo Sáenz abre la puerta de la victoria al Oviedo.',
     descripcion:
-      'El equipo azul cae ante el Leganés (0-1) después de jugar más de 70 minutos en superioridad y suma un solo punto de seis en el Tartiere.',
-    imagen: 'img/varios/J2KA.webp',
-    fecha: '22 agosto 2026',
+      'Un gol del extremo antes del descanso y una intervención decisiva de Aarón en el tramo final permitieron al cuadro carbayón superar al Albacete y celebrar su primer triunfo del curso.',
+    imagen: 'img/varios/J3KA.webp',
+    fecha: '29 agosto 2026',
   },
 ];
 
