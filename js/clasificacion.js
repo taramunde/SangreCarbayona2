@@ -178,8 +178,8 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'Real Oviedo',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'F.C. Andorra',
@@ -214,14 +214,14 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'U.D. Las Palmas',
-      goles1: null,
-      goles2: null,
+      goles1: 5,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Leganés',
       equipo2: 'C.D. Eldense',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'R.C.D. Mallorca',
@@ -232,8 +232,8 @@
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'U.D. Almería',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Tenerife',
