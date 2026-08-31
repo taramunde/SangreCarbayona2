@@ -184,8 +184,8 @@
     {
       equipo1: 'F.C. Andorra',
       equipo2: 'S.D. Eibar',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'Burgos C.F.',
@@ -196,8 +196,8 @@
     {
       equipo1: 'Cádiz C.F.',
       equipo2: 'Real Valladolid',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'R.C. Celta Fortuna',
@@ -208,8 +208,8 @@
     {
       equipo1: 'Córdoba C.F.',
       equipo2: 'Granada C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 3,
     },
     {
       equipo1: 'Girona F.C.',
@@ -226,8 +226,8 @@
     {
       equipo1: 'R.C.D. Mallorca',
       equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'C.E. Sabadell',
