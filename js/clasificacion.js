@@ -190,8 +190,8 @@
     {
       equipo1: 'Burgos C.F.',
       equipo2: 'Real Sociedad B',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 2,
     },
     {
       equipo1: 'Cádiz C.F.',
@@ -202,8 +202,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'C.D. Castellón',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: 'Córdoba C.F.',
