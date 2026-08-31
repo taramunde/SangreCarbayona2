@@ -212,6 +212,18 @@ CLUB_DATA.temporadas['2026-27'] = {
       partidos: [],
     },
 
+    {
+  id: "david-jimenez-corredor",
+  codigo: "david-jimenez-corredor",
+  dorsal: "-",
+  posicion: "Lateral Derecho",
+  enClubDesde: "2026",
+  contratoHasta: "2029",
+  stats: {},
+  partidos: [
+  ]
+},
+
     // CENTROCAMPISTAS
 
     {

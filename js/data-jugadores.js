@@ -2836,6 +2836,36 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/QvGH2h9Y/Joaqu-n-Pe-a-PNG.webp",
 },
 
+"david-jimenez-corredor": {
+  nombre: "David",
+  apellidos: "Jiménez Corredor",
+  nombreCompleto: "David Jiménez Corredor",
+  apodo: "David Jiménez",
+  posicion: "Defensa",
+  posicionCorta: "LD",
+  altura: 1.7,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Madrid",
+  provinciaNacimiento: "Madrid",
+  fechaNacimiento: "2004-03-14",
+  imagen: "img/jugadores/DavidJimenez.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U19",
+        partidos: 5,
+        goles: 0,
+        asistencias: 0,
+        minutos: 261,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
