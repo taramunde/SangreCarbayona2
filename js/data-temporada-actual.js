@@ -376,6 +376,18 @@ CLUB_DATA.temporadas['2026-27'] = {
       ],
     },
 
+    {
+  id: "mikel-goti-lopez",
+  codigo: "mikel-goti-lopez",
+  dorsal: "-",
+  posicion: "Mediapunta",
+  enClubDesde: "2026",
+  contratoHasta: "2027",
+  stats: {},
+  partidos: [
+  ]
+},
+
     // DELANTEROS
 
     {

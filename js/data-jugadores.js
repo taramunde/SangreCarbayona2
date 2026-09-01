@@ -6070,6 +6070,21 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/rGrDnQR7/Pablo-Espina-PNG.webp",
 },
 
+"mikel-goti-lopez": {
+  nombre: "Mikel",
+  apellidos: "Goti López",
+  nombreCompleto: "Mikel Goti López",
+  apodo: "Goti",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.85,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Górliz",
+  provinciaNacimiento: "Vizcaya",
+  fechaNacimiento: "2002-05-23",
+  imagen: "img/jugadores/Goti.webp",
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
