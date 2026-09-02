@@ -491,6 +491,11 @@
 .card-item.red .card-icon {
   color: #ef4444;
 }
+.card-item.yellow-red .card-icon .card-icon-split {
+  width: 20px;
+  height: 26px;
+  border-radius: 2px;
+}
 
 .card-icon {
   font-size: 2rem;

@@ -192,6 +192,7 @@ function autoCalcularStatsJugador(jugador) {
     minutos: 0,
     amarillas: 0,
     rojas: 0,
+    dobleAmarillas: 0,
     desglose: {},
   };
 
@@ -202,7 +203,8 @@ function autoCalcularStatsJugador(jugador) {
       totalAsistencias = 0,
       totalMinutos = 0,
       totalAmarillas = 0,
-      totalRojas = 0;
+      totalRojas = 0,
+      totalDobleAmarillas = 0;
 
     jugador.partidos.forEach((partido) => {
       const comp = partido.competicion || 'Otros';
@@ -214,6 +216,7 @@ function autoCalcularStatsJugador(jugador) {
           minutos: 0,
           amarillas: 0,
           rojas: 0,
+          dobleAmarillas: 0,
         };
       }
 
@@ -236,11 +239,18 @@ function autoCalcularStatsJugador(jugador) {
         totalMinutos += parseInt(partido.minutos) || 0;
       }
       // amarilla:true + roja:true en el mismo partido = expulsión por doble
-      // amarilla (segunda amarilla) por defecto: cuenta como amarilla, no
-      // como roja, para no inflar el número de expulsiones por roja directa.
+      // amarilla (segunda amarilla) por defecto: sigue sumando a "amarillas"
+      // (fue una amarilla) y ADEMÁS a su propio contador "dobleAmarillas",
+      // pero no a "rojas" (no fue una roja directa, para no inflar ese número).
       // Caso raro pero real: amarilla y roja del mismo partido pero SIN
       // relación entre sí (amarilla por una acción, roja directa por otra
-      // aparte) — se marca con rojaDirecta:true y entonces sí cuentan las dos.
+      // aparte) — se marca con rojaDirecta:true y entonces sí cuentan como
+      // amarilla + roja normales, no como doble amarilla.
+      const esDobleAmarilla =
+        partido.amarilla === true &&
+        partido.roja === true &&
+        partido.rojaDirecta !== true;
+
       if (partido.amarilla === true) {
         jugador.stats.desglose[comp].amarillas += 1;
         totalAmarillas += 1;
@@ -252,6 +262,10 @@ function autoCalcularStatsJugador(jugador) {
         jugador.stats.desglose[comp].rojas += 1;
         totalRojas += 1;
       }
+      if (esDobleAmarilla) {
+        jugador.stats.desglose[comp].dobleAmarillas += 1;
+        totalDobleAmarillas += 1;
+      }
       totalPJ++;
     });
 
@@ -262,6 +276,7 @@ function autoCalcularStatsJugador(jugador) {
     jugador.stats.minutos = totalMinutos;
     jugador.stats.amarillas = totalAmarillas;
     jugador.stats.rojas = totalRojas;
+    jugador.stats.dobleAmarillas = totalDobleAmarillas;
   }
 }
 
@@ -2572,9 +2587,10 @@ const App = {
                 </div>
                 <div class="disciplinary-card">
                     <h3 class="card-title">${t('disciplina') || 'Disciplina'}</h3>
-                    <div class="cards-display">
+                    <div class="cards-display"${jugador.stats.dobleAmarillas > 0 ? ' style="grid-template-columns: repeat(3, 1fr);"' : ''}>
                         <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas') || 'Amarillas'}</span></div></div>
                         <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas') || 'Rojas'}</span></div></div>
+                        ${jugador.stats.dobleAmarillas > 0 ? `<div class="card-item yellow-red"><div class="card-icon"><span class="card-icon-split"></span></div><div class="card-info"><span class="card-count">${jugador.stats.dobleAmarillas}</span><span class="card-label">${t('doble_amarilla') || 'Doble Amarilla'}</span></div></div>` : ''}
                     </div>
                 </div>
             </div>`;
