@@ -1632,6 +1632,18 @@
   border-color: #ff4136;
   color: #8a1010;
 }
+.chip-yellow-red {
+  background: linear-gradient(90deg, #fffff0 50%, #fff5f5 50%);
+  border-color: #ff8c00;
+}
+.card-icon-split {
+  display: inline-block;
+  width: 9px;
+  height: 12px;
+  border-radius: 1px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffd700 50%, #ff4136 50%, #ff4136 100%);
+  flex-shrink: 0;
+}
 
 /* ===================================
    BADGES DE RESULTADO ESPECIAL

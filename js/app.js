@@ -235,11 +235,20 @@ function autoCalcularStatsJugador(jugador) {
         jugador.stats.desglose[comp].minutos += parseInt(partido.minutos) || 0;
         totalMinutos += parseInt(partido.minutos) || 0;
       }
+      // amarilla:true + roja:true en el mismo partido = expulsión por doble
+      // amarilla (segunda amarilla) por defecto: cuenta como amarilla, no
+      // como roja, para no inflar el número de expulsiones por roja directa.
+      // Caso raro pero real: amarilla y roja del mismo partido pero SIN
+      // relación entre sí (amarilla por una acción, roja directa por otra
+      // aparte) — se marca con rojaDirecta:true y entonces sí cuentan las dos.
       if (partido.amarilla === true) {
         jugador.stats.desglose[comp].amarillas += 1;
         totalAmarillas += 1;
       }
-      if (partido.roja === true) {
+      if (
+        partido.roja === true &&
+        (partido.amarilla !== true || partido.rojaDirecta === true)
+      ) {
         jugador.stats.desglose[comp].rojas += 1;
         totalRojas += 1;
       }
@@ -2815,14 +2824,27 @@ const App = {
         chips.push(
           `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + ' ' + t('asistencias') : t('asistencia')}</span>`,
         );
-      if (partido.amarilla)
+      // Doble amarilla (expulsión por segunda amarilla) se muestra con un
+      // icono mitad amarillo / mitad rojo, distinto de una roja directa.
+      // Caso raro: amarilla y roja directa SIN relación entre sí en el mismo
+      // partido (rojaDirecta:true) — ahí se muestran los dos iconos sueltos,
+      // como si fueran de dos partidos distintos.
+      if (partido.amarilla && partido.roja && !partido.rojaDirecta) {
         chips.push(
-          `<span class="match-chip chip-yellow"><i class="fas fa-square"></i></span>`,
+          `<span class="match-chip chip-yellow-red"><span class="card-icon-split"></span></span>`,
         );
-      if (partido.roja)
-        chips.push(
-          `<span class="match-chip chip-red"><i class="fas fa-square"></i></span>`,
-        );
+      } else {
+        if (partido.amarilla) {
+          chips.push(
+            `<span class="match-chip chip-yellow"><i class="fas fa-square"></i></span>`,
+          );
+        }
+        if (partido.roja) {
+          chips.push(
+            `<span class="match-chip chip-red"><i class="fas fa-square"></i></span>`,
+          );
+        }
+      }
       const playerStatsHtml =
         chips.length > 0
           ? `<div class="match-player-chips">${chips.join('')}</div>`
