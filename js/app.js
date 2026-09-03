@@ -1226,7 +1226,7 @@ const App = {
     // LLAMADA AL AUTOCÁLCULO:
     autoCalcularStatsJugador(jugador);
 
-    document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto}`;
+    document.title = `${jugador.nombreCompleto} | ${CLUB_DATA.club.nombreCorto} - Sangre Carbayona`;
     this.updateMetaTags(jugador);
     const breadcrumb = document.querySelector('.breadcrumb .current');
     if (breadcrumb) breadcrumb.textContent = jugador.nombreCompleto;
@@ -1386,7 +1386,7 @@ const App = {
     }
 
     const nombre = ent.nombreCompleto || ent.nombre || '';
-    document.title = `${nombre} | ${CLUB_DATA.club.nombreCorto}`;
+    document.title = `${nombre} | ${CLUB_DATA.club.nombreCorto} - Sangre Carbayona`;
     this.updateMetaTags(ent);
     const breadcrumb = document.querySelector('.breadcrumb .current');
     if (breadcrumb) breadcrumb.textContent = nombre;

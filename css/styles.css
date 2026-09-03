@@ -59,6 +59,23 @@ body {
   overflow-x: hidden;
 }
 
+/* Oculta visualmente un elemento sin quitarlo del HTML servido: sigue
+   siendo legible por lectores de pantalla y buscadores. Se usa, por
+   ejemplo, para el <h1> real de las fichas de jugador (app.js sustituye
+   todo el bloque de foto/nombre por su cuenta, así que el título real
+   para SEO no puede vivir ahí como texto visible normal). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 a {
   text-decoration: none;
   color: inherit;

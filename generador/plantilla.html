@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{NOMBRE}} | Real Oviedo</title>
+    <title>{{NOMBRE}} | Real Oviedo - Sangre Carbayona</title>
 
     <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
     <link rel="stylesheet" href="../css/styles.css" />
@@ -114,6 +114,16 @@
     </script>
   </head>
   <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      {{NOMBRE}} — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
     <!-- Header (Rutas con ../) -->
     <header class="main-header" id="header-placeholder"></header>
 
