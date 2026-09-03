@@ -253,17 +253,6 @@ CLUB_DATA.temporadas['2026-27'] = {
     },
 
     {
-      id: 'luka-ilic',
-      codigo: 'luka-ilic',
-      dorsal: 21,
-      posicion: 'Mediocentro',
-      enClubDesde: '2025',
-      contratoHasta: '2028',
-      stats: {},
-      partidos: [],
-    },
-
-    {
       id: 'alejandro-suarez-cardero',
       codigo: 'alejandro-suarez-cardero',
       dorsal: "-",
