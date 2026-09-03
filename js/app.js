@@ -2840,12 +2840,17 @@ const App = {
         chips.push(
           `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + ' ' + t('asistencias') : t('asistencia')}</span>`,
         );
-      // Doble amarilla (expulsión por segunda amarilla) se muestra con un
-      // icono mitad amarillo / mitad rojo, distinto de una roja directa.
+      // Doble amarilla (expulsión por segunda amarilla): se ven las dos
+      // tarjetas en orden, la primera amarilla normal y luego el icono
+      // mitad amarillo/mitad rojo de la expulsión — así queda claro que
+      // fueron dos avisos en ese partido, no una roja directa.
       // Caso raro: amarilla y roja directa SIN relación entre sí en el mismo
       // partido (rojaDirecta:true) — ahí se muestran los dos iconos sueltos,
       // como si fueran de dos partidos distintos.
       if (partido.amarilla && partido.roja && !partido.rojaDirecta) {
+        chips.push(
+          `<span class="match-chip chip-yellow"><i class="fas fa-square"></i></span>`,
+        );
         chips.push(
           `<span class="match-chip chip-yellow-red"><span class="card-icon-split"></span></span>`,
         );
