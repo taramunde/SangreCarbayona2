@@ -476,6 +476,14 @@
   gap: 20px;
 }
 
+/* Cuando el jugador tiene alguna doble amarilla, se añade una tercera
+   tarjeta (ver .card-item.yellow-red) y esta clase pasa la cuadrícula
+   a 3 columnas en escritorio. En móvil, la media query de más abajo
+   la vuelve a colapsar a 1 columna igual que el resto de .cards-display. */
+.cards-display-triple {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .card-item {
   display: flex;
   align-items: center;
@@ -1108,7 +1116,8 @@
   .goals-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .cards-display {
+  .cards-display,
+  .cards-display-triple {
     grid-template-columns: 1fr;
   }
   .totals-grid {

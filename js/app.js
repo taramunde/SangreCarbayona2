@@ -2587,7 +2587,7 @@ const App = {
                 </div>
                 <div class="disciplinary-card">
                     <h3 class="card-title">${t('disciplina') || 'Disciplina'}</h3>
-                    <div class="cards-display"${jugador.stats.dobleAmarillas > 0 ? ' style="grid-template-columns: repeat(3, 1fr);"' : ''}>
+                    <div class="cards-display${jugador.stats.dobleAmarillas > 0 ? ' cards-display-triple' : ''}">
                         <div class="card-item yellow"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.amarillas ?? 0}</span><span class="card-label">${t('amarillas') || 'Amarillas'}</span></div></div>
                         <div class="card-item red"><div class="card-icon"><i class="fas fa-square"></i></div><div class="card-info"><span class="card-count">${jugador.stats.rojas ?? 0}</span><span class="card-label">${t('rojas') || 'Rojas'}</span></div></div>
                         ${jugador.stats.dobleAmarillas > 0 ? `<div class="card-item yellow-red"><div class="card-icon"><span class="card-icon-split"></span></div><div class="card-info"><span class="card-count">${jugador.stats.dobleAmarillas}</span><span class="card-label">${t('doble_amarilla') || 'Doble Amarilla'}</span></div></div>` : ''}
