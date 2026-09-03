@@ -58,7 +58,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'mate-sauri',
       codigo: 'mate-sauri',
-      dorsal: 26,
+      dorsal: "-",
       posicion: 'Portero',
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -204,7 +204,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'diego-espinosa-garcia-de-muro',
       codigo: 'diego-espinosa-garcia-de-muro',
-      dorsal: '-',
+      dorsal: "-",
       posicion: 'Central',
       enClubDesde: '2025',
       contratoHasta: '2029',
@@ -215,7 +215,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
   id: "david-jimenez-corredor",
   codigo: "david-jimenez-corredor",
-  dorsal: "-",
+  dorsal: 21,
   posicion: "Lateral Derecho",
   enClubDesde: "2026",
   contratoHasta: "2029",
@@ -244,7 +244,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'brandon-jose-domingues',
       codigo: 'brandon-jose-domingues',
-      dorsal: 25,
+      dorsal: 19,
       posicion: 'Mediocentro',
       enClubDesde: '2025',
       contratoHasta: '2028',
@@ -337,7 +337,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'guillermo-berzal-rueda',
       codigo: 'guillermo-berzal-rueda',
-      dorsal: 33,
+      dorsal: "-",
       posicion: 'Mediapunta',
       enClubDesde: '2025',
       contratoHasta: '2026',
@@ -379,7 +379,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
   id: "mikel-goti-lopez",
   codigo: "mikel-goti-lopez",
-  dorsal: "-",
+  dorsal: 8,
   posicion: "Mediapunta",
   enClubDesde: "2026",
   contratoHasta: "2027",
@@ -436,7 +436,7 @@ CLUB_DATA.temporadas['2026-27'] = {
     {
       id: 'jaime-coballes-fernandez',
       codigo: 'jaime-coballes-fernandez',
-      dorsal: '-',
+      dorsal: "-",
       posicion: 'Delantero Centro',
       enClubDesde: '2016',
       contratoHasta: '2028',
