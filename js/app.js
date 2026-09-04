@@ -388,12 +388,32 @@ function autoCalcularStatsEquipo(temporada) {
         (CLUB_DATA && p.local === CLUB_DATA.club.nombre);
       const gf = esLocal ? p.golesLocal || 0 : p.golesVisitante || 0;
       const gc = esLocal ? p.golesVisitante || 0 : p.golesLocal || 0;
-      d.golesFavor += gf;
-      d.golesContra += gc;
 
-      if (p.resultado === 'V') d.victorias++;
-      else if (p.resultado === 'E') d.empates++;
-      else if (p.resultado === 'D') d.derrotas++;
+      // Partidos de eliminatoria (Copa, Fase de Ascenso...) que acaban en
+      // empate se deciden por penaltis: penaltisLocal/penaltisVisitante.
+      // Esos goles de la tanda se suman al goleador global igual que si
+      // fueran del partido, y el resultado efectivo (V/D) se calcula por
+      // quién gana la tanda en vez de quedarse como empate.
+      let pf = 0;
+      let pc = 0;
+      let resultadoEfectivo = p.resultado;
+      if (
+        typeof p.penaltisLocal === 'number' &&
+        typeof p.penaltisVisitante === 'number'
+      ) {
+        pf = esLocal ? p.penaltisLocal : p.penaltisVisitante;
+        pc = esLocal ? p.penaltisVisitante : p.penaltisLocal;
+        if (p.resultado === 'E' && pf !== pc) {
+          resultadoEfectivo = pf > pc ? 'V' : 'D';
+        }
+      }
+
+      d.golesFavor += gf + pf;
+      d.golesContra += gc + pc;
+
+      if (resultadoEfectivo === 'V') d.victorias++;
+      else if (resultadoEfectivo === 'E') d.empates++;
+      else if (resultadoEfectivo === 'D') d.derrotas++;
     });
   });
 
