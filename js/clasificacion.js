@@ -258,8 +258,8 @@
     {
       equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'R.C. Celta Fortuna',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'S.D. Eibar',
@@ -270,14 +270,14 @@
     {
       equipo1: 'C.D. Eldense',
       equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'U.D. Las Palmas',
       equipo2: 'C.D. Leganés',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'Real Oviedo',
@@ -288,8 +288,8 @@
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'C.D. Tenerife',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'C.E. Sabadell',
@@ -300,14 +300,14 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'Girona F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'Real Valladolid',
       equipo2: 'F.C. Andorra',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
 
     // Jornada 5 (13/09/2026)
