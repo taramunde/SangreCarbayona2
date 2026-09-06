@@ -46,40 +46,42 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/08/29/pablo-saenz-escandell-dan-respiro-real-oviedo/00031788026346847505679.htm',
-    titulo: 'Pablo Sáenz y Escandell dan un respiro al Real Oviedo.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/06/cronica-oviedo-bur/00031788707460075843872.htm',
+    titulo:
+      'El Real Oviedo da la cara con uno menos y merece más ante el Burgos.',
     descripcion:
-      'Un Oviedo gris suma su primer triunfo del curso ante un Albacete (0-1) que tampoco estuvo fino, pero Escandell tuvo que aparecer. Calero cambio el dibujo táctico y Reina no jugó ni un minuto.',
-    imagen: 'img/varios/J3LVA.webp',
-    fecha: '29 agosto 2026',
+      'Los azules, que fueron superiores en prácticamente todas las fases del encuentro (0-0), tuvieron que lidiar con la expulsión de Aldasoro en el ecuador del primer tiempo.',
+    imagen: 'img/varios/J4LVA.webp',
+    fecha: '06 septiembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/08/29/oviedo-pone-coraza-triunfa-victoria-133766872.html',
+    url: 'https://www.lne.es/real-oviedo/2026/09/06/punto-mejor-oviedo-empate-burgos-134009168.html',
     titulo:
-      'El Oviedo se pone coraza y triunfa: victoria efectiva en Albacete (0-1).',
+      'Un punto para el mejor Oviedo: empate con uno menos ante el Burgos (0-0).',
     descripcion:
-      'Calero pone en liza la versión más práctica y conquista el primer triunfo del curso',
-    imagen: 'img/varios/J3LNE.webp',
-    fecha: '29 agosto 2026',
+      'Los azules, con Aldasoro expulsado a los 25 minutos, dominan y tienen ocasiones para llevarse la victoria',
+    imagen: 'img/varios/J4LNE.webp',
+    fecha: '06 septiembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/albacete-real-oviedo-resultado-goles-partido-futbol-20260829214954-nt.html',
-    titulo: 'El Real Oviedo echa el candado a los tres puntos.',
+    url: 'https://www.elcomercio.es/real-oviedo/escaso-premio-buen-entregado-real-oviedo-20260906183912-nt.html',
+    titulo: 'Escaso premio para un buen y entregado Real Oviedo.',
     descripcion:
-      'El dispositivo defensivo de Julián Calero logra cambiar la dinámica y ganar el primer partido de la temporada en Albacete.',
-    imagen: 'img/varios/J3EC.webp',
-    fecha: '29 agosto 2026',
+      'El conjunto azul no pasó del empate ante el Burgos aunque fue mejor y tuvo más oportunidades, pese a jugar con uno menos 70 minutos.',
+    imagen: 'img/varios/J4EC.webp',
+    fecha: '06 septiembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-pablo-saenz-abre-la-puerta-de-la-victoria-al-oviedo',
-    titulo: 'La Crónica: Pablo Sáenz abre la puerta de la victoria al Oviedo.',
+    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-un-oviedo-contra-todo-se-queda-las-puertas-del-premio',
+    titulo:
+      'La Crónica: Un Oviedo contra todo se queda a las puertas del premio.',
     descripcion:
-      'Un gol del extremo antes del descanso y una intervención decisiva de Aarón en el tramo final permitieron al cuadro carbayón superar al Albacete y celebrar su primer triunfo del curso.',
-    imagen: 'img/varios/J3KA.webp',
-    fecha: '29 agosto 2026',
+      'Los azules jugaron más de una hora con diez por la expulsión de Aldasoro y rozaron una victoria que se resistió ante el Burgos (0-0).',
+    imagen: 'img/varios/J4KA.webp',
+    fecha: '06 septiembre 2026',
   },
 ];
 
