@@ -252,8 +252,8 @@
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'A.D. Ceuta F.C.',
@@ -264,8 +264,8 @@
     {
       equipo1: 'S.D. Eibar',
       equipo2: 'Granada C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Eldense',
@@ -282,8 +282,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Burgos C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'Real Sociedad B',
