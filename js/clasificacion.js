@@ -246,8 +246,8 @@
     {
       equipo1: 'U.D. Almería',
       equipo2: 'Cádiz C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Castellón',
