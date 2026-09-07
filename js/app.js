@@ -898,7 +898,21 @@ const App = {
     }
 
     // ── Formato nuevo: desglose por competición ───────────────
+    // El orden de aparición aquí depende de qué partido se encuentra
+    // primero al recorrer los jugadores (autoCalcularStatsEquipo), que no
+    // tiene por qué ser el de liga (p.ej. si la Copa se jugó en agosto,
+    // antes de arrancar la liga, puede colarse la primera). Como la
+    // "posición" y la pestaña activa por defecto se basan en cuál es la
+    // primera competición, forzamos aquí que la liga vaya siempre primero.
+    const esCompeticionLiga = (nombre) => {
+      const n = (nombre || '').toLowerCase();
+      return n.includes('división') || n.includes('division') || n.includes('liga');
+    };
     const competiciones = Object.keys(statsData.desglose);
+    const idxLiga = competiciones.findIndex(esCompeticionLiga);
+    if (idxLiga > 0) {
+      competiciones.unshift(competiciones.splice(idxLiga, 1)[0]);
+    }
 
     function getCompMeta(nombre) {
       const n = (nombre || '').toLowerCase();
