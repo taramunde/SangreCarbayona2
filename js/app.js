@@ -2850,7 +2850,7 @@ const App = {
         const goalText = esPorteroPos
           ? t('goles_encajados_abrev')
           : partido.goles > 1
-            ? partido.goles + ' ' + t('goles')
+            ? t('goles')
             : t('gol');
         chips.push(
           `<span class="match-chip ${goalChipClass}"><i class="fas ${goalIcon}"></i> ${partido.goles} ${goalText}</span>`,
