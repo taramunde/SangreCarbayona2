@@ -294,8 +294,8 @@
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'Córdoba C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 2,
     },
     {
       equipo1: 'Real Sporting de Gijón',
