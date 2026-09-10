@@ -2673,6 +2673,13 @@ const App = {
         jugadorEnTemp.partidos !== null && jugadorEnTemp.partidos !== undefined;
       if (!tienePartidos) return;
 
+      // La temporada cuenta para el selector en cuanto el jugador figura en
+      // ella (aunque su array de partidos esté vacío, p.ej. una temporada
+      // en la plantilla sin minutos registrados) — así se ve reflejada
+      // igual que las temporadas en las que sí jugó, mostrando el aviso de
+      // "sin partidos" al seleccionarla en vez de desaparecer del filtro.
+      temporadasConPartidos.push({ id: temp.id, nombre: temp.nombre });
+
       // Marcar cada partido con metadatos de temporada
       const partidos = jugadorEnTemp.partidos.map((p) => ({
         ...p,
@@ -2682,7 +2689,6 @@ const App = {
       }));
 
       if (partidos.length > 0) {
-        temporadasConPartidos.push({ id: temp.id, nombre: temp.nombre });
         todosLosPartidos.push(...partidos);
       }
     });
