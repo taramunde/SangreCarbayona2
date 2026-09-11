@@ -246,7 +246,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Gijón',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2000-06-24',
-    imagen: 'https://i.ibb.co/BK4hVdFv/Berto-H-rreo-PNG.webp',
+    imagen: 'img/jugadores/BertoHorreo.webp',
   },
 
   'gabriel-nascimento-resende-brazao': {
