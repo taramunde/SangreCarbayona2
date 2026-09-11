@@ -231,7 +231,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Manacor',
     provinciaNacimiento: 'Islas Baleares',
     fechaNacimiento: '1996-08-19',
-    imagen: 'https://i.postimg.cc/pXXcdcZp/Femenias-PNG.webp',
+    imagen: 'https://i.ibb.co/dsTwTYy3/Femen-as-PNG.webp',
   },
 
   'alberto-horreo-taveras': {
@@ -246,7 +246,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Gijón',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2000-06-24',
-    imagen: 'https://i.postimg.cc/GtkRh7JM/Berto-Horreo-PNG.webp',
+    imagen: 'https://i.ibb.co/BK4hVdFv/Berto-H-rreo-PNG.webp',
   },
 
   'gabriel-nascimento-resende-brazao': {
@@ -261,7 +261,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Uberlândia',
     provinciaNacimiento: 'Minas Gerais',
     fechaNacimiento: '2000-10-05',
-    imagen: 'https://i.postimg.cc/CLs032K5/Brazao-PNG.webp',
+    imagen: 'https://i.ibb.co/GQRVzmS1/Braz-o-PNG.webp',
     seleccion: {
       pais: 'Brasil',
       bandera: 'https://flagcdn.com/16x12/br.webp',
