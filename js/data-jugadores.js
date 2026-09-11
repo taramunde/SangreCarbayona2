@@ -231,7 +231,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Manacor',
     provinciaNacimiento: 'Islas Baleares',
     fechaNacimiento: '1996-08-19',
-    imagen: 'https://i.ibb.co/dsTwTYy3/Femen-as-PNG.webp',
+    imagen: 'img/jugadores/Femenias.webp',
   },
 
   'alberto-horreo-taveras': {
