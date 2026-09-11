@@ -261,7 +261,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Uberlândia',
     provinciaNacimiento: 'Minas Gerais',
     fechaNacimiento: '2000-10-05',
-    imagen: 'https://i.ibb.co/GQRVzmS1/Braz-o-PNG.webp',
+    imagen: 'img/jugadores/Brazao.webp',
     seleccion: {
       pais: 'Brasil',
       bandera: 'https://flagcdn.com/16x12/br.webp',
