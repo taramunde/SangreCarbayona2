@@ -201,7 +201,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Manacor',
     provinciaNacimiento: 'Islas Baleares',
     fechaNacimiento: '1989-02-08',
-    imagen: 'https://i.postimg.cc/FK81Y63m/Tomeu-Nadal-PNG.webp',
+    imagen: 'https://i.ibb.co/gL9SM8xQ/Tomeu-Nadal-PNG.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
