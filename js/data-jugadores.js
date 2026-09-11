@@ -4403,10 +4403,10 @@ CLUB_DATA.jugadoresMaestro = {
   },
 
   'edgar-gonzalez-estrada': {
-    nombre: 'Édgar',
+    nombre: 'Edgar',
     apellidos: 'González Estrada',
-    nombreCompleto: 'Édgar González Estrada',
-    apodo: 'Édgar',
+    nombreCompleto: 'Edgar González Estrada',
+    apodo: 'Edgar',
     posicion: 'Centrocampista',
     posicionCorta: 'MCO',
     altura: 1.92,
