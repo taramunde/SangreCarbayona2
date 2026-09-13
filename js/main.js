@@ -160,6 +160,18 @@ function ajustarRutasEnlacesFichas() {
       }
     }
   });
+
+  // El header.html se inyecta con innerHTML, así que sus rutas relativas
+  // (como el escudo) se resuelven contra la URL de la página actual, no
+  // contra header.html. Sin este ajuste, imágenes como img/varios/... se
+  // rompen en fichas/ y juegos/ porque el navegador busca fichas/img/...
+  const imgs = document.querySelectorAll('#header-placeholder img');
+  imgs.forEach((img) => {
+    const src = img.getAttribute('src');
+    if (src && !src.startsWith('http') && !src.startsWith('../')) {
+      img.setAttribute('src', '../' + src);
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', cargarComunes);
