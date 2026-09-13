@@ -6074,7 +6074,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombre: 'Mikel',
     apellidos: 'Goti López',
     nombreCompleto: 'Mikel Goti López',
-    apodo: 'Mikel Goti',
+    apodo: 'Goti',
     posicion: 'Centrocampista',
     posicionCorta: 'MCO',
     altura: 1.85,
