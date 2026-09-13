@@ -46,42 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/06/cronica-oviedo-bur/00031788707460075843872.htm',
-    titulo:
-      'El Real Oviedo da la cara con uno menos y merece más ante el Burgos.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/13/cronica/00031789312730547233655.htm',
+    titulo: 'El Real Oviedo se da un gustazo en el José Zorrilla.',
     descripcion:
-      'Los azules, que fueron superiores en prácticamente todas las fases del encuentro (0-0), tuvieron que lidiar con la expulsión de Aldasoro en el ecuador del primer tiempo.',
-    imagen: 'img/varios/J4LVA.webp',
-    fecha: '06 septiembre 2026',
+      'Los azules golean al Real Valladolid (0-3) para sumar su segundo triunfo de la temporada, el segundo también a domicilio. El Oviedo suma 8 puntos y se mete en playoff.',
+    imagen: 'img/varios/J5LVA.webp',
+    fecha: '13 septiembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/09/06/punto-mejor-oviedo-empate-burgos-134009168.html',
+    url: 'https://www.lne.es/real-oviedo/2026/09/13/oviedo-desata-zorrilla-goleada-0-134243568.html',
     titulo:
-      'Un punto para el mejor Oviedo: empate con uno menos ante el Burgos (0-0).',
+      'El Oviedo se desata en Zorrilla: goleada (0-3) para seguir creciendo.',
     descripcion:
-      'Los azules, con Aldasoro expulsado a los 25 minutos, dominan y tienen ocasiones para llevarse la victoria',
-    imagen: 'img/varios/J4LNE.webp',
-    fecha: '06 septiembre 2026',
+      'Los azules, con una propuesta notable y gran efectividad, se sobreponen a las bajas y pasan por encima del Valladolid.',
+    imagen: 'img/varios/J5LNE.webp',
+    fecha: '13 septiembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/escaso-premio-buen-entregado-real-oviedo-20260906183912-nt.html',
-    titulo: 'Escaso premio para un buen y entregado Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-encuentra-gol-festin-valladolid-victoria-20260913184245-nt.html',
+    titulo: 'El Real Oviedo encuentra el gol y se da un festín.',
     descripcion:
-      'El conjunto azul no pasó del empate ante el Burgos aunque fue mejor y tuvo más oportunidades, pese a jugar con uno menos 70 minutos.',
-    imagen: 'img/varios/J4EC.webp',
-    fecha: '06 septiembre 2026',
+      'En el quinto partido de la temporada, los carbayones destaparon la lata del gol y lograron una contundente victoria ante el Valladolid.',
+    imagen: 'img/varios/J5EC.webp',
+    fecha: '13 septiembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-un-oviedo-contra-todo-se-queda-las-puertas-del-premio',
-    titulo:
-      'La Crónica: Un Oviedo contra todo se queda a las puertas del premio.',
+    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-despega-lo-grande-en-zorrilla',
+    titulo: 'La Crónica: El Oviedo despega a lo grande en Zorrilla.',
     descripcion:
-      'Los azules jugaron más de una hora con diez por la expulsión de Aldasoro y rozaron una victoria que se resistió ante el Burgos (0-0).',
-    imagen: 'img/varios/J4KA.webp',
-    fecha: '06 septiembre 2026',
+      'Los azules firman su partido más completo del curso y tumban al Valladolid con los goles de Carlos Domínguez, Dani Calvo y Pablo Sáenz (0-3).',
+    imagen: 'img/varios/J5KA.webp',
+    fecha: '13 septiembre 2026',
   },
 ];
 
