@@ -26,4 +26,18 @@ CLUB_DATA.videos = [
     fecha: '2026-08-29',
     videoId: 'swKo6ScIK_M',
   },
+  {
+    id: 4,
+    jornada: 4,
+    titulo: 'Real Oviedo Vs Burgos C.F.',
+    fecha: '2026-09-06',
+    videoId: 'MPnozqWN-G4',
+  },
+  {
+    id: 5,
+    jornada: 5,
+    titulo: 'Real Valladolid Vs Real Oviedo',
+    fecha: '2026-09-13',
+    videoId: 'yazqCmvvvWI',
+  },
 ];
