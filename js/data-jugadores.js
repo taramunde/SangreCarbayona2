@@ -7003,7 +7003,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombre: 'Víctor',
     apellidos: 'García Mingo',
     nombreCompleto: 'Víctor García Mingo',
-    apodo: 'Víctor Mingo',
+    apodo: 'Mingo',
     posicion: 'Delantero',
     posicionCorta: 'DL',
     altura: 1.88,
