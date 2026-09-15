@@ -332,8 +332,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'S.D. Eibar',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 4,
     },
     {
       equipo1: 'Córdoba C.F.',
