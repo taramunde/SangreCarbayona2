@@ -2866,6 +2866,96 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+   "victor-david-diaz-miguel": {
+  nombre: "Víctor David",
+  apellidos: "Díaz Miguel",
+  nombreCompleto: "Víctor David Díaz Miguel",
+  apodo: "Víctor David",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.83,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Sevilla",
+  provinciaNacimiento: "Sevilla",
+  fechaNacimiento: "1988-06-12",
+  imagen: "https://i.ibb.co/QFZgTQHn/V-ctor-D-az-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U19",
+        partidos: 9,
+        goles: 0,
+        asistencias: 0,
+        minutos: 748,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"ernesto-amantegui-phumipha": {
+  nombre: "Ernesto",
+  apellidos: "Amantegui Phumipha",
+  nombreCompleto: "Ernesto Amantegui Phumipha",
+  apodo: "Ernesto",
+  posicion: "Defensa",
+  posicionCorta: "LI",
+  altura: 1.8,
+  nacionalidad: ["Española", "Tailandesa"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1990-04-16",
+  imagen: "https://i.ibb.co/FMpkbGw/Ernesto-PNG.webp",
+  seleccion: {
+    pais: "Tailandia",
+    bandera: "https://flagcdn.com/16x12/th.webp",
+    datos: [
+      {
+        categoria: "Absoluta",
+        partidos: 3,
+        goles: 0,
+        asistencias: 0,
+        minutos: 188,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"alfonso-artabe-meca": {
+  nombre: "Alfonso",
+  apellidos: "Artabe Meca",
+  nombreCompleto: "Alfonso Artabe Meca",
+  apodo: "Artabe",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.8,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Palma",
+  provinciaNacimiento: "Islas Baleares",
+  fechaNacimiento: "1988-08-18",
+  imagen: "https://i.ibb.co/xt514ffy/Artabe-PNG.webp",
+},
+
+"gonzalo-de-la-fuente-de-la-iglesia": {
+  nombre: "Gonzalo",
+  apellidos: "de la Fuente de la Iglesia",
+  nombreCompleto: "Gonzalo de la Fuente de la Iglesia",
+  apodo: "Gonzalo",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.82,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Burgos",
+  provinciaNacimiento: "Burgos",
+  fechaNacimiento: "1984-03-21",
+  imagen: "https://i.ibb.co/bRQyb6St/Gonzalo-PNG.webp",
+},
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
@@ -6085,6 +6175,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'img/jugadores/Goti.webp',
   },
 
+  "alejandro-martinez-diaz": {
+  nombre: "Alejandro",
+  apellidos: "Martínez Díaz",
+  nombreCompleto: "Alejandro Martínez Díaz",
+  apodo: "Jandro",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.86,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1983-09-14",
+  imagen: "https://i.ibb.co/YFY1XXmN/Jandro-PNG.webp",
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -7874,6 +7979,55 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '1985-04-04',
     imagen: 'https://i.ibb.co/rRvrCpB2/Martins-PNG.webp',
   },
+
+   "jorge-perona-garcia": {
+  nombre: "Jorge",
+  apellidos: "Perona García",
+  nombreCompleto: "Jorge Perona García",
+  apodo: "Perona",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.8,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Enguera",
+  provinciaNacimiento: "Valencia",
+  fechaNacimiento: "1982-04-01",
+  imagen: "https://i.ibb.co/5X2p0tFG/Perona-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U18",
+        partidos: 12,
+        goles: 9,
+        asistencias: 0,
+        minutos: 839,
+        amarillas: 1,
+        rojas: 0,
+      },
+      {
+        categoria: "U17",
+        partidos: 3,
+        goles: 0,
+        asistencias: 0,
+        minutos: 181,
+        amarillas: 1,
+        rojas: 0,
+      },
+      {
+        categoria: "U16",
+        partidos: 9,
+        goles: 8,
+        asistencias: 0,
+        minutos: 540,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
