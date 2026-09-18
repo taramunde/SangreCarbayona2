@@ -449,9 +449,8 @@
             color: #333;
             text-align: center;
             line-height: 1.2;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            overflow-wrap: break-word;
             max-width: 100%;
         }
 
