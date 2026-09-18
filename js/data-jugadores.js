@@ -8555,6 +8555,35 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1968-03-23',
     imagen: 'https://i.ibb.co/XkDKKmwy/Pacheta-entrenador-PNG.webp',
   },
+
+  "argimiro-perez-garcia": {
+  nombre: "Argimiro",
+  apellidos: "Pérez García",
+  nombreCompleto: "Argimiro Pérez García",
+  apodo: "Pichi Lucas",
+  cargo: "Entrenador Principal",
+  cargoCorto: "ENT",
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Camponaraya",
+  provinciaNacimiento: "León",
+  fechaNacimiento: "1959-03-14",
+  imagen: "https://i.ibb.co/rfmvDrpp/Pichi-Lucas-entrenador-PNG.webp",
+},
+
+"jose-manuel-martinez-garcia": {
+  nombre: "José Manuel",
+  apellidos: "Martínez García",
+  nombreCompleto: "José Manuel Martínez García",
+  apodo: "José Manuel Martínez",
+  cargo: "Entrenador Principal",
+  cargoCorto: "ENT",
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Magaz de Cepeda",
+  provinciaNacimiento: "León",
+  fechaNacimiento: "1970-05-03",
+  imagen: "https://i.ibb.co/hr0rsSG/Jos-Manuel-entrenador-PNG.webp",
+},
+
 };
 
 window.CLUB_DATA = CLUB_DATA;
