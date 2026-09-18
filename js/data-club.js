@@ -131,6 +131,12 @@ const CLUB_DATA = {
       fotoPosition: 'center 10%',
       actual: false,
     },
+    {
+      id: '2010-11',
+      nombre: '2010/11',
+      fotoPosition: 'center 10%',
+      actual: false,
+    },
   ],
 
   // ===================================

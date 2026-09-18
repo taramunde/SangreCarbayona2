@@ -744,6 +744,66 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.ibb.co/LD741dzF/Adri-n-PNG.webp',
   },
 
+   "oinatz-aulestia-alkorta": {
+  nombre: "Oinatz",
+  apellidos: "Aulestia Alkorta",
+  nombreCompleto: "Oinatz Aulestia Alkorta",
+  apodo: "Aulestia",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Ondárroa",
+  provinciaNacimiento: "Vizcaya",
+  fechaNacimiento: "1981-03-23",
+  imagen: "https://i.ibb.co/Fb7hMn5b/Aulestia-PNG.webp",
+},
+
+"javier-martinez-gonzalez": {
+  nombre: "Javier",
+  apellidos: "Martínez González",
+  nombreCompleto: "Javier Martínez González",
+  apodo: "Javi Martínez",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.79,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Tarancón",
+  provinciaNacimiento: "Cuenca",
+  fechaNacimiento: "1987-06-27",
+  imagen: "https://i.ibb.co/jPvGHy7D/Javi-Mart-nez-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U16",
+        partidos: 5,
+        goles: 1,
+        asistencias: 0,
+        minutos: 257,
+        amarillas: 1,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"alberto-benito-iglesias": {
+  nombre: "Alberto",
+  apellidos: "Benito Iglesias",
+  nombreCompleto: "Alberto Benito Iglesias",
+  apodo: "Alberto",
+  posicion: "Portero",
+  posicionCorta: "PO",
+  altura: 1.85,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "El Entrego",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1987-04-21",
+  imagen: "https://i.ibb.co/WNbgJfK5/Alberto-PNG.webp",
+},
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
@@ -2954,6 +3014,36 @@ CLUB_DATA.jugadoresMaestro = {
   provinciaNacimiento: "Burgos",
   fechaNacimiento: "1984-03-21",
   imagen: "https://i.ibb.co/bRQyb6St/Gonzalo-PNG.webp",
+},
+
+"daniel-lopez-ramos": {
+  nombre: "Daniel",
+  apellidos: "López Ramos",
+  nombreCompleto: "Daniel López Ramos",
+  apodo: "López Ramos",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.82,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Jerez de la Frontera",
+  provinciaNacimiento: "Cádiz",
+  fechaNacimiento: "1976-11-24",
+  imagen: "https://i.ibb.co/HTdQbWtZ/L-pez-Ramos-PNG.webp",
+},
+
+"ricardo-segura-martinez": {
+  nombre: "Ricardo",
+  apellidos: "Segura Martínez",
+  nombreCompleto: "Ricardo Segura Martínez",
+  apodo: "Richi",
+  posicion: "Defensa",
+  posicionCorta: "DC",
+  altura: 1.84,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Madrid",
+  provinciaNacimiento: "Madrid",
+  fechaNacimiento: "1986-04-22",
+  imagen: "https://i.ibb.co/8Dp8LFq6/Richi-PNG.webp",
 },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
@@ -6190,6 +6280,81 @@ CLUB_DATA.jugadoresMaestro = {
   imagen: "https://i.ibb.co/YFY1XXmN/Jandro-PNG.webp",
 },
 
+"marc-castells-ortega": {
+  nombre: "Marc",
+  apellidos: "Castells Ortega",
+  nombreCompleto: "Marc Castells Ortega",
+  apodo: "Castells",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.85,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Sueca",
+  provinciaNacimiento: "Valencia",
+  fechaNacimiento: "1990-03-12",
+  imagen: "https://i.ibb.co/gFXcLr9L/Marc-Castells-PNG.webp",
+},
+
+"jonathan-rodriguez-menendez": {
+  nombre: "Jonathan",
+  apellidos: "Rodríguez Menéndez",
+  nombreCompleto: "Jonathan Rodríguez Menéndez",
+  apodo: "Jony",
+  posicion: "Centrocampista",
+  posicionCorta: "MCO",
+  altura: 1.79,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Cangas del Narcea",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1991-07-09",
+  imagen: "https://i.ibb.co/KjLHsmhP/Jony-PNG.webp",
+},
+
+"diego-alvarez-arguelles": {
+  nombre: "Diego",
+  apellidos: "Álvarez Argüelles",
+  nombreCompleto: "Diego Álvarez Argüelles",
+  apodo: "Prosi",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.78,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1988-01-25",
+  imagen: "https://i.ibb.co/2Y835VDS/Prosi-PNG.webp",
+  seleccion: {
+    pais: "España",
+    bandera: "https://flagcdn.com/16x12/es.webp",
+    datos: [
+      {
+        categoria: "U17",
+        partidos: 3,
+        goles: 0,
+        asistencias: 0,
+        minutos: 239,
+        amarillas: 0,
+        rojas: 0,
+      }
+    ],
+  },
+},
+
+"jose-manuel-camporro-sanchez": {
+  nombre: "José Manuel",
+  apellidos: "Camporro Sánchez",
+  nombreCompleto: "José Manuel Camporro Sánchez",
+  apodo: "Yosu",
+  posicion: "Centrocampista",
+  posicionCorta: "MC",
+  altura: 1.8,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Langreo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1991-10-04",
+  imagen: "https://i.ibb.co/4gJNRSLZ/Yosu-PNG.webp",
+},
+
   // ── DELANTEROS ────────────────────────────────────────────
 
   'ilyas-chaira-oihi': {
@@ -8028,6 +8193,50 @@ CLUB_DATA.jugadoresMaestro = {
   },
 },
 
+"miguel-angel-lopez-cedron-freije": {
+  nombre: "Miguel Ángel",
+  apellidos: "López-Cedrón Freije",
+  nombreCompleto: "Miguel Ángel López-Cedrón Freije",
+  apodo: "Miguel",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.95,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1978-06-03",
+  imagen: "https://i.ibb.co/G4rBhyPh/Miguel-Cedr-n-PNG.webp",
+},
+
+"carlos-garcia-cuello": {
+  nombre: "Carlos",
+  apellidos: "García Cuello",
+  nombreCompleto: "Carlos García Cuello",
+  apodo: "Carlos Cuello",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.81,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Oviedo",
+  provinciaNacimiento: "Asturias",
+  fechaNacimiento: "1989-01-07",
+  imagen: "https://i.ibb.co/7BVsgmJ/Carlos-Cuello-PNG.webp",
+},
+
+"pablo-alberto-carnero-llauger": {
+  nombre: "Pablo Alberto",
+  apellidos: "Carnero Llauger",
+  nombreCompleto: "Pablo Alberto Carnero Llauger",
+  apodo: "Pablo Carnero",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 1.81,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Vigo",
+  provinciaNacimiento: "Pontevedra",
+  fechaNacimiento: "1988-01-03",
+  imagen: "https://i.ibb.co/mrRr16b7/Pablo-Carnero-PNG.webp",
+},
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
