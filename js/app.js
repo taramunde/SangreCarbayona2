@@ -2417,9 +2417,7 @@ const App = {
           )
         : 0;
 
-    const rendimientoTitle = esPorteroPos
-      ? t('portero_stat')
-      : t('rendimiento') || 'Rendimiento';
+    const rendimientoTitle = t('rendimiento') || 'Rendimiento';
     const golesPartidoLabel = esPorteroPos
       ? t('goles_encajados_partido') || 'Goles Encajados/Partido'
       : t('goles_partido') || 'Goles por partido';
