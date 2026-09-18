@@ -8237,6 +8237,22 @@ CLUB_DATA.jugadoresMaestro = {
   fechaNacimiento: "1988-01-03",
   imagen: "https://i.ibb.co/mrRr16b7/Pablo-Carnero-PNG.webp",
 },
+
+"moises-suarez-perez": {
+  nombre: "Moisés",
+  apellidos: "Suárez Pérez",
+  nombreCompleto: "Moisés Suárez Pérez",
+  apodo: "Moi",
+  posicion: "Delantero",
+  posicionCorta: "DL",
+  altura: 0,
+  nacionalidad: ["Española"],
+  lugarNacimiento: "Santa Cruz de Tenerife",
+  provinciaNacimiento: "Santa Cruz de Tenerife",
+  fechaNacimiento: "1991-03-05",
+  imagen: "https://i.ibb.co/Mk5hrhsD/Moi-PNG.webp",
+},
+
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
