@@ -1438,4 +1438,64 @@ CLUB_DATA.temporadas['2011-12'] = {
 ],
 };
 
+// ===================================
+// TEMPORADA 2010/2011
+// ===================================
+CLUB_DATA.temporadas['2010-11'] = {
+  competicion: 'Segunda División B',
+  grupo: 'Grupo: 1',
+
+  estadisticasEquipo: {
+    posicion: 8,
+    desglose: {
+      'Segunda División B': {
+        partidos:    38,
+        victorias:   15,
+        empates:     13,
+        derrotas:    10,
+        golesFavor:  45,
+        golesContra: 34,
+      },
+      'Copa del Rey (Felipe VI)': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  6,
+        golesContra: 7,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+
+    
+    
+
+    // DEFENSAS
+    
+    
+    
+    // CENTROCAMPISTAS
+    
+
+    
+    // DELANTEROS
+    
+
+
+
+ ],
+
+  cuerpoTecnico: [
+    
+    // ENTRENADORES
+    
+    
+    
+],
+};
 window.CLUB_DATA = CLUB_DATA;
