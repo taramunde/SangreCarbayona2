@@ -118,6 +118,7 @@ CLUB_DATA.temporadas['2026-27'] = {
           amarilla: false,
           roja: false,
         },
+        { id: 6, jornada: 6, competicion: "Segunda División", fecha: "2026-09-20", local: "C.E. Sabadell", visitante: "Real Oviedo", golesLocal: 3, golesVisitante: 1, resultado: "D", minutos: 90, goles: 3, asistencias: 0, amarilla: false, roja: false },
       ],
     },
 
@@ -1791,6 +1792,17 @@ CLUB_DATA.temporadas['2026-27'] = {
           golesVisitante: 3,
           resultado: 'V',
         },
+        { id: 6, 
+          jornada: 6, 
+          competicion: "Segunda División", 
+          fecha: "2026-09-20", 
+          local: "C.E. Sabadell", 
+          visitante: "Real Oviedo", 
+          golesLocal: 3, 
+          golesVisitante: 1, 
+          resultado: "D" 
+        },
+
       ],
     },
   ],
