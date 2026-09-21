@@ -46,31 +46,31 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/13/cronica/00031789312730547233655.htm',
-    titulo: 'El Real Oviedo se da un gustazo en el José Zorrilla.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/20/sabadell-pasa-encima-real-oviedo/00031789908649136384929.htm',
+    titulo: 'El Sabadell pasa por encima del Real Oviedo.',
     descripcion:
-      'Los azules golean al Real Valladolid (0-3) para sumar su segundo triunfo de la temporada, el segundo también a domicilio. El Oviedo suma 8 puntos y se mete en playoff.',
-    imagen: 'img/varios/J5LVA.webp',
-    fecha: '13 septiembre 2026',
+      'Los azules fueron muy inferiores a su rival desde el primer minuto hasta el último y caen con merecimiento (3-1) en la Nova Creu Alta. Estanis Pedrola marcó y se lesionó en el hombro.',
+    imagen: 'img/varios/J6LVA.webp',
+    fecha: '20 septiembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/09/13/oviedo-desata-zorrilla-goleada-0-134243568.html',
+    url: 'https://www.lne.es/real-oviedo/2026/09/20/pucela-espejismo-sabadell-real-oviedo-134490287.html',
     titulo:
-      'El Oviedo se desata en Zorrilla: goleada (0-3) para seguir creciendo.',
+      'Lo de Pucela, un espejismo en Sabadell: el Real Oviedo firma su peor partido del curso ante un gran rival (3-1).',
     descripcion:
-      'Los azules, con una propuesta notable y gran efectividad, se sobreponen a las bajas y pasan por encima del Valladolid.',
-    imagen: 'img/varios/J5LNE.webp',
-    fecha: '13 septiembre 2026',
+      'Un golazo de Estanis fue el único argumento ofensivo de un Oviedo desdibujado que sucumbió ante la efectividad de un Sabadell superior en todas las facetas del encuentro.',
+    imagen: 'img/varios/J6LNE.webp',
+    fecha: '20 septiembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-encuentra-gol-festin-valladolid-victoria-20260913184245-nt.html',
-    titulo: 'El Real Oviedo encuentra el gol y se da un festín.',
+    url: 'https://www.elcomercio.es/real-oviedo/sabadell-real-oviedo-peor-version-derbi-asturiano-20260920114800-di.html',
+    titulo: 'La peor versión del Real Oviedo aflora antes del derbi asturiano.',
     descripcion:
-      'En el quinto partido de la temporada, los carbayones destaparon la lata del gol y lograron una contundente victoria ante el Valladolid.',
-    imagen: 'img/varios/J5EC.webp',
-    fecha: '13 septiembre 2026',
+      'Revés. Los azules pierden ante el Sabadell con merecimiento tras mostrarse como un equipo muy endeble en defensa e inexistente en ataque.',
+    imagen: 'img/varios/J6EC.webp',
+    fecha: '20 septiembre 2026',
   },
   {
     medio: 'killerasturias',
@@ -78,8 +78,8 @@ const NOTICIAS_DATA = [
     titulo: 'La Crónica: El Oviedo despega a lo grande en Zorrilla.',
     descripcion:
       'Los azules firman su partido más completo del curso y tumban al Valladolid con los goles de Carlos Domínguez, Dani Calvo y Pablo Sáenz (0-3).',
-    imagen: 'img/varios/J5KA.webp',
-    fecha: '13 septiembre 2026',
+    imagen: 'img/varios/J6KA.webp',
+    fecha: '20 septiembre 2026',
   },
 ];
 
