@@ -45,6 +45,6 @@ CLUB_DATA.videos = [
     jornada: 6,
     titulo: 'C.E. Sabadell Vs Real Oviedo',
     fecha: '2026-09-20',
-    videoId: 'YYhntkvVb6OTY_z7',
+    videoId: 'n-KFtBKjuZc',
   },
 ];
