@@ -674,6 +674,16 @@ function bdfFechaISO(ddmmaaaa) {
   return `${p[2]}-${p[1]}-${p[0]}`;
 }
 
+// BDFutbol suele escribir el club con el nombre corto ("Oviedo" en vez de
+// "Real Oviedo"), así que la comprobación tiene que valer en los dos
+// sentidos: que el nombre del equipo contenga el texto buscado, o al
+// revés, que el texto buscado contenga el nombre corto del equipo.
+function matchClubBDF(nombreEquipo, clubLower) {
+  const n = (nombreEquipo || '').toLowerCase();
+  if (!n || !clubLower) return false;
+  return n.includes(clubLower) || clubLower.includes(n);
+}
+
 function importarBDF() {
   const raw = document.getElementById('bdf-input').value;
   if (!raw.trim()) return alert('Pega el HTML fuente (Ctrl+U) de la página "Partidos" del jugador en BDFutbol primero.');
@@ -712,9 +722,9 @@ function importarBDF() {
     const jornadaLabel = row[24];
     const jornadaCorta = row[25];
 
-    const localLower = (nombreLocal || '').toLowerCase();
-    const visitanteLower = (nombreVisitante || '').toLowerCase();
-    const relevant = localLower.includes(clubLower) || visitanteLower.includes(clubLower);
+    const esLocalClub = matchClubBDF(nombreLocal, clubLower);
+    const esVisitanteClub = matchClubBDF(nombreVisitante, clubLower);
+    const relevant = esLocalClub || esVisitanteClub;
     if (!relevant) { descartadosNoRelevantes++; return; }
 
     // Solo primer equipo: fuera cualquier partido donde intervenga el filial.
@@ -726,8 +736,8 @@ function importarBDF() {
     // Corrige el nombre corto de BDFutbol ("Oviedo") por el texto exacto
     // que hayas puesto en "Club objetivo" ("Real Oviedo"), solo en el
     // lado que coincidía con la búsqueda; el rival se deja tal cual.
-    const localFinal = localLower.includes(clubLower) ? clubObjetivo : nombreLocal;
-    const visitanteFinal = visitanteLower.includes(clubLower) ? clubObjetivo : nombreVisitante;
+    const localFinal = esLocalClub ? clubObjetivo : nombreLocal;
+    const visitanteFinal = esVisitanteClub ? clubObjetivo : nombreVisitante;
 
     // Goles del propio jugador: cuenta los códigos GOxx / PNxx de sus notas.
     const notasStr = (typeof notas === 'string') ? notas : '';
