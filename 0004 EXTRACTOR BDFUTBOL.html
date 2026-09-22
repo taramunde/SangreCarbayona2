@@ -706,6 +706,7 @@ function importarBDF() {
   let descartadosNoRelevantes = 0;
   let descartadosFilial = 0;
   let descartadosOtraTemporada = 0;
+  let descartadosSinMinutos = 0;
   let conAmarilla = 0;
   let conRoja = 0;
 
@@ -740,6 +741,14 @@ function importarBDF() {
     // Solo primer equipo: fuera cualquier partido donde intervenga el filial.
     if (esNombreFilialGenerico(nombreLocal) || esNombreFilialGenerico(nombreVisitante)) {
       descartadosFilial++;
+      return;
+    }
+
+    // Solo partidos en los que el jugador participó de verdad: si no
+    // jugó ni un minuto (no convocado, suplente no utilizado, lesionado
+    // y no llegó a saltar al campo...) no cuenta como partido jugado.
+    if (!minutos || minutos <= 0) {
+      descartadosSinMinutos++;
       return;
     }
 
@@ -807,6 +816,7 @@ function importarBDF() {
     }
     if (descartadosOtraTemporada > 0) msg += `\n\n${descartadosOtraTemporada} partidos descartados por ser de otra temporada.`;
     if (descartadosFilial > 0) msg += `\n\n${descartadosFilial} partidos del filial descartados (esta versión solo importa primer equipo).`;
+    if (descartadosSinMinutos > 0) msg += `\n\n${descartadosSinMinutos} partidos descartados por no haber llegado a jugar (no convocado, suplente no utilizado o lesionado sin saltar al campo).`;
     msg += `\n\n⚠️ Las asistencias no vienen en estos datos: quedan a 0, añádelas a mano si las quieres.`;
     if (conAmarilla > 0 || conRoja > 0) {
       msg += `\n\n⚠️ Tarjetas detectadas por heurística: ${conAmarilla} amarilla(s) y ${conRoja} roja(s). Esos partidos han quedado resaltados en la lista — revísalos uno a uno antes de generar el código.`;
