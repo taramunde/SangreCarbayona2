@@ -758,10 +758,13 @@ function importarBDF() {
     const localFinal = esLocalClub ? clubObjetivo : nombreLocal;
     const visitanteFinal = esVisitanteClub ? clubObjetivo : nombreVisitante;
 
-    // Goles del propio jugador: cuenta los códigos GOxx / PNxx de sus notas.
+    // Goles del propio jugador: cuenta cuántas veces aparece un código
+    // GOxx (gol) o PNxx (gol de penalti) en sus notas. Se busca en todo
+    // el texto en vez de partir por "-" y exigir coincidencia exacta,
+    // porque un gol en el descuento puede venir anotado como "GO90+2"
+    // (con un "+"), y eso rompía el conteo con la versión anterior.
     const notasStr = (typeof notas === 'string') ? notas : '';
-    const tokens = notasStr ? notasStr.split('-') : [];
-    const golesJugador = tokens.filter(t => /^(GO|PN)\d*$/.test(t)).length;
+    const golesJugador = (notasStr.match(/(GO|PN)\d+/g) || []).length;
 
     // Heurística de tarjetas (ver aviso en pantalla) — 0 es falsy, así que
     // basta con comprobar si el valor existe.
