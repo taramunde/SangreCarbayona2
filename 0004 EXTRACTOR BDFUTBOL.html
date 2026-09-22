@@ -261,7 +261,12 @@ body.modo-entrenador .partido-row-stats { grid-template-columns: 150px 80px 80px
         <label>Club objetivo</label>
         <input type="text" id="bdf-club-objetivo" value="Real Oviedo">
       </div>
+      <div class="field" style="flex: 0 0 180px;">
+        <label>Temporada (opcional)</label>
+        <input type="text" id="bdf-temporada" placeholder="Ej: 2010-11">
+      </div>
     </div>
+    <div class="bs-hint" style="margin-top:-8px; margin-bottom:16px;">El array de BDFutbol trae <b>toda la carrera del jugador</b>, no solo una temporada. Si dejas "Temporada" vacío se importan TODAS las que coincidan con el club (útil si vas a repartirlas tú a mano); si pones una temporada (formato igual que en la URL de BDFutbol, ej. "2010-11"), solo se importa esa.</div>
 
     <textarea id="bdf-input" class="scraper-textarea" placeholder="Pega aquí el HTML fuente de la página de partidos del jugador en BDFutbol"></textarea>
     <button class="btn-scraper" onclick="importarBDF()">Procesar BDFutbol</button>
@@ -689,6 +694,7 @@ function importarBDF() {
   if (!raw.trim()) return alert('Pega el HTML fuente (Ctrl+U) de la página "Partidos" del jugador en BDFutbol primero.');
   const clubObjetivo = (document.getElementById('bdf-club-objetivo').value || 'Real Oviedo').trim();
   const clubLower = clubObjetivo.toLowerCase();
+  const temporadaFiltro = (document.getElementById('bdf-temporada').value || '').trim();
   const esPorteroSel = (document.getElementById('p-posicion').value || '') === 'Portero';
 
   const P = extractBDFArray(raw);
@@ -699,6 +705,7 @@ function importarBDF() {
   let importados = 0;
   let descartadosNoRelevantes = 0;
   let descartadosFilial = 0;
+  let descartadosOtraTemporada = 0;
   let conAmarilla = 0;
   let conRoja = 0;
 
@@ -721,6 +728,9 @@ function importarBDF() {
     const nombreVisitante = row[18];
     const jornadaLabel = row[24];
     const jornadaCorta = row[25];
+    const temporadaId = row[26];
+
+    if (temporadaFiltro && temporadaId !== temporadaFiltro) { descartadosOtraTemporada++; return; }
 
     const esLocalClub = matchClubBDF(nombreLocal, clubLower);
     const esVisitanteClub = matchClubBDF(nombreVisitante, clubLower);
@@ -791,7 +801,11 @@ function importarBDF() {
 
   if (importados > 0) {
     reordenarYReindexar();
-    let msg = `✅ Se han importado ${importados} partidos de BDFutbol para "${clubObjetivo}".`;
+    let msg = `✅ Se han importado ${importados} partidos de BDFutbol para "${clubObjetivo}"${temporadaFiltro ? ' en la temporada ' + temporadaFiltro : ''}.`;
+    if (!temporadaFiltro) {
+      msg += `\n\n⚠️ No has puesto temporada: esto junta TODAS las temporadas que el jugador tuvo en ese club en una sola lista. Si el club generó más de una temporada, revisa/reparte los partidos a mano, o repite la importación poniendo la temporada cada vez.`;
+    }
+    if (descartadosOtraTemporada > 0) msg += `\n\n${descartadosOtraTemporada} partidos descartados por ser de otra temporada.`;
     if (descartadosFilial > 0) msg += `\n\n${descartadosFilial} partidos del filial descartados (esta versión solo importa primer equipo).`;
     msg += `\n\n⚠️ Las asistencias no vienen en estos datos: quedan a 0, añádelas a mano si las quieres.`;
     if (conAmarilla > 0 || conRoja > 0) {
