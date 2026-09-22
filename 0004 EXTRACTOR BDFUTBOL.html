@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extractor BDFutbol + BeSoccer (Oficiales 1er equipo) — Sangre Carbayona</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0d10;
+  --surface: #111418;
+  --surface2: #181c22;
+  --border: #2a2f38;
+  --accent: #00c87a;
+  --accent-coach: #e8a000;
+  --accent-bs: #3b811f;
+  --accent-bdf: #2f7bd6;
+  --text: #e8eaf0;
+  --text2: #8a909e;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 20px;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+body.modo-entrenador { --accent: var(--accent-coach); }
+
+.container { max-width: 1100px; margin: 0 auto; }
+h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; margin-bottom: 6px; color: var(--accent-bdf); text-align: center; }
+.subtitle { text-align: center; color: var(--text2); margin-bottom: 30px; font-size: 0.9rem; }
+
+.modo-selector { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
+.modo-btn {
+  padding: 12px 30px; background: var(--surface2); border: 2px solid var(--border);
+  color: var(--text2); border-radius: 30px; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.2s ease;
+}
+.modo-btn.active { background: rgba(0, 200, 122, 0.1); border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 15px rgba(0, 200, 122, 0.2); }
+body.modo-entrenador .modo-btn.active { background: rgba(232, 160, 0, 0.1); box-shadow: 0 4px 15px rgba(232, 160, 0, 0.2); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 24px; }
+.card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 20px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+label { font-size: 0.75rem; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+input, select, textarea { background: var(--surface2); border: 1px solid var(--border); padding: 12px; border-radius: 8px; color: #fff; font-family: inherit; outline: none; transition: border 0.2s; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+input[readonly] { opacity: 0.6; cursor: not-allowed; }
+
+optgroup { color: var(--accent); font-size: 0.7rem; font-weight: 700; background: #0d1117;}
+option { color: #fff; background: var(--surface2); }
+
+.bs-section { background: rgba(59, 129, 31, 0.08); border: 1px dashed rgba(59, 129, 31, 0.5); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.bs-title { color: var(--accent-bs); font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
+.bs-hint { color: var(--text2); font-size: 0.82rem; margin-bottom: 16px; }
+.scraper-textarea { width: 100%; height: 260px; resize: vertical; font-family: 'DM Mono', monospace; font-size: 0.75rem; margin-bottom: 15px; }
+.bs-row { display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap; }
+.bs-row .field { flex: 1; min-width: 220px; }
+.btn-scraper { background: var(--accent-bs); color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-weight: 800; cursor: pointer; transition: opacity 0.2s; white-space: nowrap; }
+.btn-scraper:hover { opacity: 0.85; }
+.bs-warning { margin-top: 10px; font-size: 0.78rem; color: #ffc94d; background: rgba(255,180,0,0.08); border: 1px solid rgba(255,180,0,0.3); border-radius: 8px; padding: 10px 14px; }
+
+.bdf-section { background: rgba(47, 123, 214, 0.08); border-color: rgba(47, 123, 214, 0.5); }
+.bdf-section .bs-title { color: var(--accent-bdf); }
+.bdf-section .btn-scraper { background: var(--accent-bdf); }
+.bdf-tech { margin-top: 10px; font-size: 0.74rem; color: var(--text2); background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+.bdf-tech summary { cursor: pointer; color: var(--accent-bdf); font-weight: 700; }
+.bdf-tech ul { margin: 8px 0 0 18px; }
+
+.partidos-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.btn-add { background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; cursor: pointer; transition: transform 0.2s; }
+.btn-add:hover { transform: scale(1.05); }
+
+.partido-item { background: var(--surface2); border: 1px solid var(--border); padding: 20px; border-radius: 12px; margin-bottom: 15px; position: relative; }
+.partido-row-main { display: grid; grid-template-columns: 80px 150px 1fr 1fr 180px 40px; gap: 12px; align-items: end; margin-bottom: 15px; }
+.partido-row-stats { display: grid; grid-template-columns: 150px 80px 80px 120px 80px 80px 80px 100px 100px; gap: 12px; align-items: end; }
+
+body.modo-entrenador .hide-coach { display: none !important; }
+body:not(.modo-entrenador) .hide-player { display: none !important; }
+body.modo-entrenador .partido-row-stats { grid-template-columns: 150px 80px 80px 120px; }
+
+.btn-del { background: rgba(255, 77, 77, 0.1); color: #ff4d4d; border: 1px solid #ff4d4d; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+.btn-del:hover { background: #ff4d4d; color: white; }
+
+.toggles-container { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+.toggle-wrapper { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; cursor: pointer; transition: all .2s; flex: 1; min-width: 250px; }
+.toggle-wrapper.danger:has(input:checked) { background: rgba(255,77,77,0.1); border-color: rgba(255,77,77,0.4); }
+.toggle-wrapper.danger .toggle-label { color: #ff7a7a; }
+.toggle-wrapper.danger .toggle input:checked + .toggle-track { background: rgba(255,77,77,0.3); border-color: #ff4d4d; }
+.toggle-wrapper.danger .toggle input:checked + .toggle-track::before { transform: translateX(19px); background: #ff4d4d; }
+.toggle-wrapper.warning:has(input:checked) { background: rgba(255,180,0,0.1); border-color: rgba(255,180,0,0.4); }
+.toggle-wrapper.warning .toggle-label { color: #ffc94d; }
+.toggle-wrapper.warning .toggle input:checked + .toggle-track { background: rgba(255,180,0,0.3); border-color: #ffb400; }
+.toggle-wrapper.warning .toggle input:checked + .toggle-track::before { transform: translateX(19px); background: #ffb400; }
+.toggle-wrapper.primary:has(input:checked) { background: rgba(232,160,0,0.1); border-color: rgba(232,160,0,0.4); }
+.toggle-wrapper.primary .toggle-label { color: var(--accent); }
+.toggle-wrapper.primary .toggle input:checked + .toggle-track { background: rgba(232,160,0,0.3); border-color: var(--accent); }
+.toggle-wrapper.primary .toggle input:checked + .toggle-track::before { transform: translateX(19px); background: var(--accent); }
+
+.toggle-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; flex: 1; }
+.toggle { position: relative; width: 42px; height: 23px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+.toggle-track { position: absolute; inset: 0; background: #2a2f38; border: 1px solid #363c48; border-radius: 12px; transition: all .2s; }
+.toggle-track::before { content: ''; position: absolute; width: 17px; height: 17px; left: 2px; top: 2px; background: #555d6e; border-radius: 50%; transition: all .2s; }
+
+.cedido-club-row { display: none; margin-top: 15px; }
+.cedido-club-row.visible { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+.output-wrapper { position: relative; margin-top: 20px; display: none; }
+.output-wrapper.visible { display: block; }
+.output-area { background: #05070a; padding: 40px 25px 25px; border-radius: 12px; border: 1px solid var(--accent); font-family: 'DM Mono', monospace; font-size: 0.9rem; white-space: pre; overflow-x: auto; color: #d1d5db; }
+
+.btn-generate { width: 100%; background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 18px; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; border-radius: 12px; cursor: pointer; transition: all 0.3s; }
+.btn-generate:hover { background: var(--accent); color: #000; }
+
+.btn-copy { position: absolute; top: 12px; right: 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text2); padding: 7px 14px; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.05em; z-index: 2; }
+.btn-copy:hover, .btn-copy.copied { background: var(--accent); border-color: var(--accent); color: #000; }
+
+.key { color: #e06c75; } .str { color: #98c379; } .num { color: #d19a66; } .bool { color: #56b6c2; }
+
+.field-warn select { border-color: #ffb400 !important; box-shadow: 0 0 0 1px rgba(255,180,0,0.5); }
+.field-warn label { color: #ffc94d !important; }
+.badge-auto { display: inline-block; margin-left: 6px; font-size: 0.65rem; font-weight: 800; color: #ffb400; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Extractor BDFutbol + BeSoccer</h1>
+  <div class="subtitle">Sangre Carbayona — solo partidos oficiales del primer equipo (sin amistosos, sin filial/Vetusta)</div>
+
+  <div class="modo-selector">
+    <button class="modo-btn active" id="btn-modo-jugador" onclick="setModo('jugador')">👕 Jugador / Portero</button>
+    <button class="modo-btn" id="btn-modo-entrenador" onclick="setModo('entrenador')">📋 Entrenador / Staff</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Datos Principales</div>
+    <div class="grid">
+      <div class="field">
+        <label id="lbl-nombre">Nombre Completo</label>
+        <input type="text" id="p-nombre" placeholder="Ej: David Fernández" oninput="generateIDs()">
+      </div>
+      <div class="field">
+        <label>Código Interno</label>
+        <input type="text" id="p-id" readonly>
+      </div>
+      <div class="field hide-coach">
+        <label>Dorsal</label>
+        <input type="number" id="p-dorsal" value="1">
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="field hide-coach">
+        <label>Posición</label>
+        <select id="p-posicion">
+          <optgroup label="Portería">
+            <option value="Portero">Portero</option>
+          </optgroup>
+          <optgroup label="Defensa">
+            <option value="Defensa">Defensa (Genérico)</option>
+            <option value="Líbero">Líbero</option>
+            <option value="Central">Central</option>
+            <option value="Lateral Derecho">Lateral Derecho</option>
+            <option value="Lateral Izquierdo">Lateral Izquierdo</option>
+            <option value="Carrilero Derecho">Carrilero Derecho</option>
+            <option value="Carrilero Izquierdo">Carrilero Izquierdo</option>
+          </optgroup>
+          <optgroup label="Medio">
+            <option value="Centrocampista">Centrocampista (Genérico)</option>
+            <option value="Pivote">Pivote</option>
+            <option value="Mediocentro Defensivo">Mediocentro Defensivo</option>
+            <option value="Mediocentro">Mediocentro</option>
+            <option value="Interior Derecho">Interior Derecho</option>
+            <option value="Interior Izquierdo">Interior Izquierdo</option>
+            <option value="Volante Derecho">Volante Derecho</option>
+            <option value="Volante Izquierdo">Volante Izquierdo</option>
+            <option value="Mediocentro Ofensivo">Mediocentro Ofensivo</option>
+            <option value="Mediapunta">Mediapunta</option>
+          </optgroup>
+          <optgroup label="Ataque">
+            <option value="Delantero">Delantero (Genérico)</option>
+            <option value="Extremo Derecho">Extremo Derecho</option>
+            <option value="Extremo Izquierdo">Extremo Izquierdo</option>
+            <option value="Extremo">Extremo (Ambas bandas)</option>
+            <option value="Segundo Delantero">Segundo Delantero</option>
+            <option value="Falso 9">Falso 9</option>
+            <option value="Delantero Centro">Delantero Centro</option>
+            <option value="Ariete">Ariete</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="field hide-player">
+        <label>Cargo Técnico</label>
+        <select id="p-cargo">
+          <option value="Entrenador Principal">Entrenador Principal</option>
+          <option value="Segundo Entrenador">Segundo Entrenador</option>
+          <option value="Entrenador de Porteros">Entrenador de Porteros</option>
+          <option value="Preparador Físico">Preparador Físico</option>
+          <option value="Analista">Analista</option>
+          <option value="Médico">Médico</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>En Club Desde</label>
+        <input type="text" id="p-desde" placeholder="2024">
+      </div>
+      <div class="field">
+        <label>Contrato Hasta</label>
+        <input type="text" id="p-hasta" placeholder="2027">
+      </div>
+    </div>
+
+    <div class="toggles-container">
+      <label class="toggle-wrapper danger" onclick="document.getElementById('t-baja').click(); event.preventDefault()">
+        <div class="toggle"><input type="checkbox" id="t-baja" onclick="event.stopPropagation()"><span class="toggle-track"></span></div>
+        <span class="toggle-label">Ha causado baja en la temporada</span>
+      </label>
+      <label class="toggle-wrapper warning hide-coach" onclick="document.getElementById('t-cedido').click(); event.preventDefault()">
+        <div class="toggle"><input type="checkbox" id="t-cedido" onclick="event.stopPropagation()" onchange="onCedidoChange()"><span class="toggle-track"></span></div>
+        <span class="toggle-label">Cedido a otro club</span>
+      </label>
+      <label class="toggle-wrapper primary hide-player" onclick="document.getElementById('t-principal').click(); event.preventDefault()">
+        <div class="toggle"><input type="checkbox" id="t-principal" onclick="event.stopPropagation()" checked><span class="toggle-track"></span></div>
+        <span class="toggle-label">Es Entrenador Principal</span>
+      </label>
+    </div>
+
+    <div class="cedido-club-row" id="cedido-club-row">
+      <div class="field">
+        <label>¿A qué club está cedido?</label>
+        <input type="text" id="p-cedido-club" placeholder="Ej: SD Huesca">
+      </div>
+    </div>
+
+    <div class="grid hide-player" style="margin-top: 15px;">
+        <div class="field"><label>Ruta Imagen (Solo Staff)</label><input type="text" id="p-imagen" placeholder="img/entrenadores/Nombre.webp"></div>
+    </div>
+  </div>
+
+  <div class="bs-section bdf-section">
+    <div class="bs-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      Extractor BDFutbol
+    </div>
+    <div class="bs-hint">Pega el HTML fuente de la página "Partidos" del jugador en BDFutbol (bdfutbol.com/es/p/j####.html → Ctrl+U). No hace falta que la pestaña de partidos esté abierta ni que la tabla se vea: los datos van dentro de un bloque &lt;script&gt; que viaja siempre, incluso en el código fuente en bruto.</div>
+
+    <div class="bs-row">
+      <div class="field" style="flex: 0 0 220px;">
+        <label>Club objetivo</label>
+        <input type="text" id="bdf-club-objetivo" value="Real Oviedo">
+      </div>
+    </div>
+
+    <textarea id="bdf-input" class="scraper-textarea" placeholder="Pega aquí el HTML fuente de la página de partidos del jugador en BDFutbol"></textarea>
+    <button class="btn-scraper" onclick="importarBDF()">Procesar BDFutbol</button>
+    <div class="bs-warning">⚠️ Las asistencias no vienen en este dato de BDFutbol: se importan a 0, añádelas a mano si las quieres. Los amistosos tampoco se filtran automáticamente aquí (no he encontrado un código fiable para identificarlos): revisa y borra a mano si aparece alguno.</div>
+    <div class="bs-warning" style="color:#ffb400; border-color: rgba(255,180,0,0.4);">⚠️ Amarilla/roja se detectan con una heurística deducida de los datos (no está documentada oficialmente por BDFutbol). Cada partido donde se detecte tarjeta queda <b>resaltado en amarillo</b> en la lista de abajo — revísalo antes de generar el código.</div>
+
+    <details class="bdf-tech">
+      <summary>Qué campos se leen y cómo (detalle técnico)</summary>
+      <div style="margin-top:8px;">
+        La página no pinta los partidos como HTML: los construye en el navegador desde un array <code>P=[[...]];</code> que sí está en el código fuente. Este extractor busca y parsea ese array directamente (es JSON válido). Por fila se usan:
+        <ul>
+          <li><b>Fecha, rival, marcador, jornada/ronda, temporada</b> — leídos directamente, alta confianza.</li>
+          <li><b>Minutos jugados, titular/suplente</b> — leídos directamente, alta confianza.</li>
+          <li><b>Goles</b> — se cuentan los códigos <code>GOxx</code> (gol) y <code>PNxx</code> (gol de penalti) que trae la fila del propio jugador.</li>
+          <li><b>Amarilla/roja</b> — heurística: hay un campo que casi siempre es 0 salvo cuando el jugador fue amonestado (entonces trae el minuto o la marca "S"), y otro par de campos que coinciden en un valor cuando hubo expulsión. No está confirmado al 100%, de ahí el resaltado.</li>
+          <li><b>Asistencias</b> — no aparecen en estos datos.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+
+  <div class="bs-section">
+    <div class="bs-title">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      Extractor BeSoccer
+    </div>
+    <div class="bs-hint">Pega el HTML fuente de la página "Partidos" del jugador en BeSoccer (Ctrl+U / Ver código fuente, y copia todo — o al menos el bloque de la tabla con id="event"). No sirve el texto renderizado, tiene que ser HTML.</div>
+
+    <div class="bs-row">
+      <div class="field" style="flex: 0 0 220px;">
+        <label>Club objetivo</label>
+        <input type="text" id="bs-club-objetivo" value="Real Oviedo">
+      </div>
+    </div>
+
+    <textarea id="bs-input" class="scraper-textarea" placeholder="Pega aquí el HTML fuente de la página de partidos de BeSoccer"></textarea>
+    <button class="btn-scraper" onclick="importarBS()">Procesar BeSoccer</button>
+    <div class="bs-warning">⚠️ Goles, tarjeta amarilla, tarjeta roja y asistencias ya se detectan automáticamente. Otros eventos (sustituciones, segunda amarilla, etc.) no están confirmados todavía y se ignoran — revisa esos casos a mano si te salen datos que no cuadran.</div>
+  </div>
+
+  <div class="bs-section" style="border-color: rgba(232,160,0,0.5); background: rgba(232,160,0,0.06);">
+    <div class="bs-title" style="color: var(--accent-coach);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+      Enriquecer con Jornada / Ronda (realoviedo.info)
+    </div>
+    <div class="bs-hint">Pega aquí el texto de la temporada correspondiente de <b>realoviedo.info</b> (ej: realoviedo.info/14-15.html — selecciona toda la página y copia). Cruza cada partido ya importado por rival + local/visitante para rellenarle la jornada o la ronda de copa. No hace falta que quites nada del texto pegado.</div>
+    <textarea id="ro-input" class="scraper-textarea" style="height:180px;" placeholder="Pega aquí el texto de la página de temporada de realoviedo.info"></textarea>
+    <button class="btn-scraper" style="background: var(--accent-coach); color:#000;" onclick="enriquecerJornadasRO()">Cruzar Jornadas</button>
+  </div>
+
+  <div class="card">
+    <div class="partidos-header">
+      <div class="card-title" style="border: none; margin: 0; padding: 0;">Lista de Partidos</div>
+      <button class="btn-add" onclick="addPartido()">+ Añadir Manualmente</button>
+    </div>
+    <div id="partidos-container"></div>
+  </div>
+
+  <button class="btn-generate" onclick="generateJS()">⚡ Generar Código Final</button>
+
+  <div class="output-wrapper" id="output-wrapper">
+    <button class="btn-copy" id="btn-copy" onclick="copyOutput()">📋 Copiar</button>
+    <div id="output-area" class="output-area"></div>
+  </div>
+</div>
+
+<script>
+let partidos = [];
+let isCoach = false;
+
+const COMPETICIONES = [
+  { grupo: "⚽ Liga", opciones: ["Primera División", "Segunda División", "Segunda División B", "Tercera División", "Primera RFEF"] },
+  { grupo: "🔥 Fases Extra", opciones: ["Fase de Ascenso", "Play-off de Descenso", "Promoción"] },
+  { grupo: "🏆 Copa de España", opciones: ["Copa del Rey (Alfonso XIII)", "Copa de la República", "Copa del Generalísimo", "Copa del Rey (Juan Carlos I)", "Copa del Rey (Felipe VI)", "Copa R.F.E.F."] },
+  { grupo: "📍 Competiciones Regionales", opciones: ["Campeonato de Asturias", "Campeonato Astur-Cántabro", "Campeonato Astur-Gallego"] },
+  { grupo: "🌍 Competición Internacional", opciones: ["Copa de la UEFA", "Liga de Campeones", "Liga Europa UEFA", "Liga Conferencia UEFA", "Recopa de Europa", "Copa Intertoto"] },
+  { grupo: "🤝 Amistosos", opciones: ["Amistoso"] }
+];
+
+function setModo(modo) {
+  const newIsCoach = (modo === 'entrenador');
+
+  if (newIsCoach !== isCoach && partidos.length > 0) {
+      if(!confirm("Cambiar de modo borrará los partidos actuales. ¿Continuar?")) return;
+      partidos = [];
+  }
+
+  isCoach = newIsCoach;
+  document.getElementById('btn-modo-jugador').classList.toggle('active', !isCoach);
+  document.getElementById('btn-modo-entrenador').classList.toggle('active', isCoach);
+
+  if(isCoach) {
+    document.body.classList.add('modo-entrenador');
+    document.getElementById('lbl-nombre').innerText = "Nombre del Miembro del Staff";
+    document.getElementById('t-cedido').checked = false;
+    onCedidoChange();
+  } else {
+    document.body.classList.remove('modo-entrenador');
+    document.getElementById('lbl-nombre').innerText = "Nombre del Jugador";
+  }
+  renderPartidos();
+}
+
+function onCedidoChange() {
+  document.getElementById('cedido-club-row').classList.toggle('visible', document.getElementById('t-cedido').checked);
+}
+
+function generateIDs() {
+  const nombre = document.getElementById('p-nombre').value;
+  const slug = nombre.toLowerCase().trim()
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+
+  document.getElementById('p-id').value = slug;
+}
+
+function escapeStr(str) {
+    return str ? str.toString().replace(/"/g, '\\"') : "";
+}
+
+function reordenarYReindexar() {
+    partidos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    partidos.forEach((p, idx) => {
+        p.id = idx + 1;
+    });
+}
+
+function addPartido() {
+  partidos.push({
+    id: partidos.length + 1,
+    jornada: "",
+    competicion: "Segunda División",
+    fecha: new Date().toISOString().split('T')[0],
+    local: "Real Oviedo",
+    visitante: "Rival",
+    golesLocal: 0,
+    golesVisitante: 0,
+    resultado: "E",
+    minutos: 0,
+    goles: 0,
+    asistencias: 0,
+    amarilla: false,
+    roja: false
+  });
+  reordenarYReindexar();
+  renderPartidos();
+}
+
+// ------------------------------------------------------------------
+// EXTRACTOR BESOCCER (HTML fuente de la página "Partidos")
+// ------------------------------------------------------------------
+
+const BS_MESES = { ene:'01', feb:'02', mar:'03', abr:'04', may:'05', jun:'06', jul:'07', ago:'08', sep:'09', oct:'10', nov:'11', dic:'12' };
+
+function bsFecha(day, monthAbbr, year) {
+  const mm = BS_MESES[(monthAbbr || '').toLowerCase()];
+  if (!mm || !year || !day) return '';
+  return `${year}-${mm}-${day.padStart(2, '0')}`;
+}
+
+function normalizeCompeticionBS(raw) {
+  const n = (raw || '').toLowerCase();
+  if (n.includes('primera federación') || n.includes('primera federacion')) return 'Primera RFEF';
+  if (n.includes('segunda división b') || n.includes('segunda division b') || n.includes('segunda b')) {
+    if (n.includes('play off') || n.includes('playoff') || n.includes('ascenso')) return 'Fase de Ascenso';
+    return 'Segunda División B';
+  }
+  if (n.includes('segunda división') || n.includes('segunda division')) return 'Segunda División';
+  if (n.includes('primera división') || n.includes('primera division')) return 'Primera División';
+  if (n.includes('copa del rey')) return 'Copa del Rey (Felipe VI)';
+  if (n.includes('amistoso')) return 'Amistoso';
+  return (raw || '').trim();
+}
+
+function esNombreFilialGenerico(n) {
+  const t = (n || '').toLowerCase();
+  return t.includes('vetusta') || t.includes('aficionados') || t.includes('oviedo b');
+}
+
+function importarBS() {
+  const raw = document.getElementById('bs-input').value;
+  if (!raw.trim()) return alert('Pega el HTML fuente de la página de partidos de BeSoccer primero.');
+  const clubObjetivo = (document.getElementById('bs-club-objetivo').value || 'Real Oviedo').trim();
+  const clubLower = clubObjetivo.toLowerCase();
+  const esPorteroSel = (document.getElementById('p-posicion').value || '') === 'Portero';
+
+  let doc;
+  try {
+    doc = new DOMParser().parseFromString(raw, 'text/html');
+  } catch (e) {
+    return alert('❌ No se ha podido interpretar el HTML pegado.');
+  }
+
+  const container = doc.querySelector('#event') || doc.querySelector('table.table') || doc;
+  const rows = container.querySelectorAll('tr.row-head, tr.row-body');
+
+  if (rows.length === 0) {
+    return alert('❌ No se ha encontrado ninguna fila de partidos en el HTML pegado. Asegúrate de pegar el código fuente completo (Ctrl+U), no el texto visible.');
+  }
+
+  let currentYear = null;
+  let importados = 0;
+  let descartadosNoJugados = 0;
+  let descartadosAmistoso = 0;
+  let descartadosFilial = 0;
+
+  rows.forEach(row => {
+    if (row.classList.contains('row-head')) {
+      const ths = row.querySelectorAll('th');
+      const yearText = ths[1] ? ths[1].textContent.trim() : '';
+      if (/^\d{4}$/.test(yearText)) currentYear = yearText;
+      return;
+    }
+
+    const tds = row.querySelectorAll('td');
+    if (tds.length < 3) return;
+
+    const competicionRaw = tds[0].querySelector('img')?.getAttribute('alt') || '';
+
+    const colorCell = tds[1];
+    const spans = colorCell.querySelectorAll('.color-box span');
+    const day = spans[0]?.textContent.trim();
+    const monthAbbr = spans[1]?.textContent.trim();
+    let resultado = null;
+    if (colorCell.classList.contains('win')) resultado = 'V';
+    else if (colorCell.classList.contains('draw')) resultado = 'E';
+    else if (colorCell.classList.contains('lose')) resultado = 'D';
+
+    const matchCell = tds[2];
+    const shieldImgs = matchCell.querySelectorAll('.image.shield img');
+    const homeName = shieldImgs[0]?.getAttribute('alt') || '';
+    const awayName = shieldImgs[1]?.getAttribute('alt') || '';
+    const markerText = matchCell.querySelector('.marker-wrapper')?.textContent.trim() || '';
+    const scoreMatch = markerText.match(/^(\d+)(?:\([^)]*\))?-(\d+)/);
+    let golesLocal = 0, golesVisitante = 0;
+    if (scoreMatch) { golesLocal = parseInt(scoreMatch[1], 10); golesVisitante = parseInt(scoreMatch[2], 10); }
+
+    const statusImg = row.querySelector('img[alt="Banquillo"], img[alt="Suspendido"], img[alt="Coronavirus"], img[alt="Aplazado"]');
+    let jugado = true, minutos = 0;
+    if (statusImg) {
+      jugado = false;
+    } else {
+      const minText = (tds[3]?.textContent || '').trim();
+      const m = minText.match(/(\d+)'/);
+      minutos = m ? parseInt(m[1], 10) : 0;
+    }
+
+    let hisTeamIsHome = null;
+    if (resultado === 'V') hisTeamIsHome = golesLocal > golesVisitante;
+    else if (resultado === 'D') hisTeamIsHome = golesLocal < golesVisitante;
+
+    const relevant = homeName.toLowerCase().includes(clubLower) || awayName.toLowerCase().includes(clubLower);
+    if (!relevant) return;
+
+    // Esta variante es solo para partidos OFICIALES del PRIMER EQUIPO:
+    // se descartan amistosos y cualquier partido en el que intervenga el filial,
+    // bajo cualquiera de sus nombres habituales (Vetusta, Real Oviedo B, Real Oviedo Aficionados).
+    if (competicionRaw.toLowerCase().includes('amistoso')) { descartadosAmistoso++; return; }
+    if (esNombreFilialGenerico(homeName) || esNombreFilialGenerico(awayName)) { descartadosFilial++; return; }
+
+    if (!jugado) { descartadosNoJugados++; return; }
+
+    let incluir = false;
+    if (hisTeamIsHome === true && homeName.toLowerCase().includes(clubLower)) incluir = true;
+    else if (hisTeamIsHome === false && awayName.toLowerCase().includes(clubLower)) incluir = true;
+    else if (hisTeamIsHome === null && relevant) incluir = true; // empate: no se puede distinguir de qué lado jugaba, se incluye igualmente
+
+    if (!incluir) return;
+
+    // Eventos: solo se han podido confirmar estos 4 códigos (goles=1, roja=3, amarilla=5, asistencia=22);
+    // cualquier otro event-N (sustituciones, etc.) se ignora por no estar confirmado.
+    let goles = 0, asistencias = 0, amarilla = false, roja = false;
+    row.querySelectorAll('.img-ico').forEach(icon => {
+      if (icon.classList.contains('event-1')) goles++;
+      else if (icon.classList.contains('event-22')) asistencias++;
+      else if (icon.classList.contains('event-5')) amarilla = true;
+      else if (icon.classList.contains('event-3')) roja = true;
+    });
+
+    // Para porteros, "goles" representa goles ENCAJADOS, no marcados: el icono event-1
+    // refleja goles anotados por el jugador (casi siempre 0 en un portero) y no sirve aquí.
+    // Se calcula a partir del marcador: los goles del equipo rival.
+    if (esPorteroSel) {
+      goles = (hisTeamIsHome === false) ? golesLocal : golesVisitante;
+    }
+
+    partidos.push({
+      id: 0,
+      jornada: '',
+      competicion: normalizeCompeticionBS(competicionRaw),
+      fecha: bsFecha(day, monthAbbr, currentYear),
+      local: homeName,
+      visitante: awayName,
+      golesLocal: golesLocal,
+      golesVisitante: golesVisitante,
+      resultado: resultado || 'E',
+      minutos: minutos,
+      goles: goles,
+      asistencias: asistencias,
+      amarilla: amarilla,
+      roja: roja
+    });
+    importados++;
+  });
+
+  if (importados > 0) {
+    reordenarYReindexar();
+    let msg = `✅ ¡Éxito! Se han importado y ordenado ${importados} partidos OFICIALES del primer equipo desde BeSoccer.`;
+    if (descartadosNoJugados > 0) msg += `\n\n${descartadosNoJugados} partidos descartados por no haber sido jugados (banquillo/suspendido/aplazado).`;
+    if (descartadosAmistoso > 0) msg += `\n\n${descartadosAmistoso} amistosos descartados (esta versión solo importa partidos oficiales).`;
+    if (descartadosFilial > 0) msg += `\n\n${descartadosFilial} partidos del filial (Vetusta) descartados (esta versión solo importa primer equipo).`;
+    msg += `\n\n⚠️ Goles/tarjetas/asistencias detectados automáticamente donde ha sido posible confirmarlos; revisa a mano si algo no cuadra.`;
+    alert(msg);
+    document.getElementById('bs-input').value = '';
+    renderPartidos();
+  } else {
+    alert('❌ No se ha importado ningún partido para "' + clubObjetivo + '". Revisa el nombre del club objetivo o el HTML pegado.');
+  }
+}
+
+// ------------------------------------------------------------------
+// EXTRACTOR BDFUTBOL (HTML fuente de la página "Partidos" del jugador)
+// ------------------------------------------------------------------
+//
+// bdfutbol.com NO pinta los partidos como <tr> en el HTML: los construye
+// en el navegador a partir de un array JS gigante, "P=[[...]];", que sí
+// viaja dentro del código fuente (Ctrl+U). Por eso aquí no se busca en
+// el DOM: se localiza ese array de texto y se parsea como JSON.
+//
+// Columnas de cada fila de P (deducidas comparando muchas filas reales,
+// BDFutbol no las documenta en ningún sitio):
+//   0  año de inicio de temporada
+//   1  código de competición ("2a", "2aB", "COP", "PR2", "FED"...)
+//   2  sin uso aparente (casi siempre "")
+//   3  fecha "dd/mm/aaaa"
+//   4  1 si el jugador jugaba en el equipo LOCAL de esta fila, 0 si jugaba en el visitante
+//   5  nombre del equipo LOCAL
+//   6  goles del LOCAL
+//   7  goles del VISITANTE
+//   8  id interno del partido en bdfutbol (no se usa)
+//   9  1 = fue titular
+//   10 1 = jugó el partido completo
+//   11 1 = entró desde el banquillo
+//   12 minutos jugados
+//   13 sin identificar con certeza (siempre 0 en las pruebas hechas)
+//   14 heurística de AMARILLA: 0 si no hubo, minuto o marca "S" si sí
+//   15/16 heurística de ROJA: minuto de expulsión repetido en ambos campos
+//   17 notas de gol del propio jugador: "GO45" = gol al min 45,
+//      "PN52" = gol de penalti al min 52; varios juntos separados por "-"
+//   18 nombre del equipo VISITANTE
+//   19 id del equipo rival (no se usa)
+//   20 id del propio equipo del jugador (no se usa)
+//   21 resultado desde el punto de vista del jugador (1/0/-1) — no se usa,
+//      se recalcula directamente desde los goles por seguridad
+//   22 sin identificar con certeza
+//   23 sin identificar con certeza
+//   24 etiqueta de jornada/ronda ("Jornada 6", "Octavos de final (ida)"...)
+//   25 jornada corta ("6", "1/8 1"...)
+//   26 id de temporada ("2004-05")
+
+function extractBDFArray(raw) {
+  const m = raw.match(/P\s*=\s*(\[\[[\s\S]*\]\])\s*;/);
+  if (!m) return null;
+  try {
+    return JSON.parse(m[1]);
+  } catch (e) {
+    return null;
+  }
+}
+
+const BDF_LIGA_CODES = ['1a', '2a', '2aB', 'rf1', '3a'];
+
+function esCompeticionLigaBDF(code) {
+  return BDF_LIGA_CODES.includes(code);
+}
+
+function mapCopaDelReyPorAnio(year) {
+  if (year <= 1930) return 'Copa del Rey (Alfonso XIII)';
+  if (year >= 1931 && year <= 1936) return 'Copa de la República';
+  if (year >= 1939 && year <= 1975) return 'Copa del Generalísimo';
+  if (year >= 1976 && year <= 2013) return 'Copa del Rey (Juan Carlos I)';
+  return 'Copa del Rey (Felipe VI)';
+}
+
+function mapCompeticionBDF(code, year) {
+  switch (code) {
+    case '1a': return 'Primera División';
+    case '2a': return 'Segunda División';
+    case '2aB': return 'Segunda División B';
+    case 'rf1': return 'Primera RFEF';
+    case 'PR2': return 'Fase de Ascenso';
+    case 'COP': return mapCopaDelReyPorAnio(year);
+    case 'SUP': return 'Supercopa';
+    case 'FED': return 'Copa Federación';
+    case 'PR1': return 'Promoción a 1ª';
+    case 'PR3': return 'Permanencia en 2ªB';
+    case 'P23': return 'Permanencia en 2ª';
+    case 'PRF': return 'Promoción a 1ª RFEF';
+    case 'CLI': case 'CL2': case 'CL3': return 'Copa de la Liga';
+    default: return code || 'Desconocida';
+  }
+}
+
+function bdfFechaISO(ddmmaaaa) {
+  const p = (ddmmaaaa || '').split('/');
+  if (p.length !== 3) return '';
+  return `${p[2]}-${p[1]}-${p[0]}`;
+}
+
+function importarBDF() {
+  const raw = document.getElementById('bdf-input').value;
+  if (!raw.trim()) return alert('Pega el HTML fuente (Ctrl+U) de la página "Partidos" del jugador en BDFutbol primero.');
+  const clubObjetivo = (document.getElementById('bdf-club-objetivo').value || 'Real Oviedo').trim();
+  const clubLower = clubObjetivo.toLowerCase();
+  const esPorteroSel = (document.getElementById('p-posicion').value || '') === 'Portero';
+
+  const P = extractBDFArray(raw);
+  if (!P || !P.length) {
+    return alert('❌ No se ha encontrado el array de partidos (P=[[...]];) en el HTML pegado. Asegúrate de pegar el código fuente completo (Ctrl+U), no el texto visible ni solo un fragmento.');
+  }
+
+  let importados = 0;
+  let descartadosNoRelevantes = 0;
+  let descartadosFilial = 0;
+  let conAmarilla = 0;
+  let conRoja = 0;
+
+  P.forEach(row => {
+    const year = row[0];
+    const compCode = row[1];
+    const fechaRaw = row[3];
+    const esLocal = row[4];
+    const nombreLocal = row[5];
+    const golesLocal = row[6];
+    const golesVisitante = row[7];
+    const pt = row[9];
+    const pc = row[10];
+    const ps = row[11];
+    const minutos = row[12];
+    const cardAmarilla = row[14];
+    const cardRoja1 = row[15];
+    const cardRoja2 = row[16];
+    const notas = row[17];
+    const nombreVisitante = row[18];
+    const jornadaLabel = row[24];
+    const jornadaCorta = row[25];
+
+    const localLower = (nombreLocal || '').toLowerCase();
+    const visitanteLower = (nombreVisitante || '').toLowerCase();
+    const relevant = localLower.includes(clubLower) || visitanteLower.includes(clubLower);
+    if (!relevant) { descartadosNoRelevantes++; return; }
+
+    // Solo primer equipo: fuera cualquier partido donde intervenga el filial.
+    if (esNombreFilialGenerico(nombreLocal) || esNombreFilialGenerico(nombreVisitante)) {
+      descartadosFilial++;
+      return;
+    }
+
+    // Corrige el nombre corto de BDFutbol ("Oviedo") por el texto exacto
+    // que hayas puesto en "Club objetivo" ("Real Oviedo"), solo en el
+    // lado que coincidía con la búsqueda; el rival se deja tal cual.
+    const localFinal = localLower.includes(clubLower) ? clubObjetivo : nombreLocal;
+    const visitanteFinal = visitanteLower.includes(clubLower) ? clubObjetivo : nombreVisitante;
+
+    // Goles del propio jugador: cuenta los códigos GOxx / PNxx de sus notas.
+    const notasStr = (typeof notas === 'string') ? notas : '';
+    const tokens = notasStr ? notasStr.split('-') : [];
+    const golesJugador = tokens.filter(t => /^(GO|PN)\d*$/.test(t)).length;
+
+    // Heurística de tarjetas (ver aviso en pantalla) — 0 es falsy, así que
+    // basta con comprobar si el valor existe.
+    const amarilla = !!cardAmarilla;
+    const roja = !!cardRoja1 || !!cardRoja2;
+    if (amarilla) conAmarilla++;
+    if (roja) conRoja++;
+
+    let goles = golesJugador;
+    if (esPorteroSel) {
+      goles = esLocal === 1 ? golesVisitante : golesLocal;
+    }
+
+    const gf = esLocal === 1 ? golesLocal : golesVisitante;
+    const gc = esLocal === 1 ? golesVisitante : golesLocal;
+    let resultado = 'E';
+    if (gf > gc) resultado = 'V'; else if (gf < gc) resultado = 'D';
+
+    let jornada = '';
+    if (esCompeticionLigaBDF(compCode)) {
+      const n = parseInt(jornadaCorta, 10);
+      jornada = isNaN(n) ? (jornadaLabel || '') : n;
+    } else {
+      jornada = jornadaLabel || jornadaCorta || '';
+    }
+
+    partidos.push({
+      id: 0,
+      jornada: jornada,
+      competicion: mapCompeticionBDF(compCode, year),
+      fecha: bdfFechaISO(fechaRaw),
+      local: localFinal,
+      visitante: visitanteFinal,
+      golesLocal: golesLocal,
+      golesVisitante: golesVisitante,
+      resultado: resultado,
+      minutos: minutos || 0,
+      goles: goles,
+      asistencias: 0,
+      amarilla: amarilla,
+      roja: roja,
+      _bdfAutoCard: (amarilla || roja)
+    });
+    importados++;
+  });
+
+  if (importados > 0) {
+    reordenarYReindexar();
+    let msg = `✅ Se han importado ${importados} partidos de BDFutbol para "${clubObjetivo}".`;
+    if (descartadosFilial > 0) msg += `\n\n${descartadosFilial} partidos del filial descartados (esta versión solo importa primer equipo).`;
+    msg += `\n\n⚠️ Las asistencias no vienen en estos datos: quedan a 0, añádelas a mano si las quieres.`;
+    if (conAmarilla > 0 || conRoja > 0) {
+      msg += `\n\n⚠️ Tarjetas detectadas por heurística: ${conAmarilla} amarilla(s) y ${conRoja} roja(s). Esos partidos han quedado resaltados en la lista — revísalos uno a uno antes de generar el código.`;
+    }
+    alert(msg);
+    document.getElementById('bdf-input').value = '';
+    renderPartidos();
+  } else {
+    alert('❌ No se ha importado ningún partido para "' + clubObjetivo + '". Revisa el nombre del club objetivo o el HTML pegado (¿está el array "P=[[...]];" completo?).');
+  }
+}
+
+// ------------------------------------------------------------------
+// ENRIQUECER JORNADA/RONDA (realoviedo.info)
+// ------------------------------------------------------------------
+
+function normTeamRO(s) {
+  return (s || '').toUpperCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/["'.,()]/g, '')
+    .replace(/[^A-Z0-9 ]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function teamsMatchRO(a, b) {
+  const na = normTeamRO(a), nb = normTeamRO(b);
+  if (!na || !nb) return false;
+  if (na === nb) return true;
+  if (na.includes(nb) || nb.includes(na)) return true;
+  const ta = na.split(' ').filter(t => t.length >= 3);
+  const tb = nb.split(' ').filter(t => t.length >= 3);
+  return ta.some(t => tb.includes(t));
+}
+
+function parseRealOviedoInfo(raw) {
+  const lines = raw.split('\n').map(l => l.trim()).filter(l => l !== '');
+  const refs = [];
+  let section = null;
+  let ascensoCounter = 0;
+  const ascensoLabels = ['Semifinal - Ida', 'Semifinal - Vuelta', 'Final - Ida', 'Final - Vuelta'];
+
+  const isCopa = l => /COPA/.test(l.toUpperCase());
+  const isAscenso = l => /PROMOCI/.test(l.toUpperCase());
+  const isLiga = l => /(DIVISI|RFEF|PREFERENTE|REGIONAL|TERCERA)/.test(l.toUpperCase());
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.length < 60 && isAscenso(line)) { section = 'ascenso'; ascensoCounter = 0; continue; }
+    if (line.length < 60 && isCopa(line)) { section = 'copa'; continue; }
+    if (line.length < 60 && isLiga(line) && !line.includes(' - ')) { section = 'liga'; continue; }
+
+    if (line.includes(' - ') && section) {
+      const idx = line.indexOf(' - ');
+      const home = line.slice(0, idx).trim();
+      const away = line.slice(idx + 3).trim();
+      if (!home || !away) continue;
+
+      let label = '';
+      if (section === 'liga') {
+        for (let j = i - 1; j >= 0 && j > i - 4; j--) {
+          if (/^\d{1,2}$/.test(lines[j])) { label = lines[j]; break; }
+        }
+      } else if (section === 'copa') {
+        for (let j = i - 1; j >= 0 && j > i - 4; j--) {
+          const cand = lines[j];
+          if (!cand.includes(' - ') && !/^(ronda|partido|result\.?|goleadores)$/i.test(cand) && cand.length < 40) { label = cand; break; }
+        }
+      } else if (section === 'ascenso') {
+        label = ascensoLabels[ascensoCounter] || '';
+        ascensoCounter++;
+      }
+      if (label) refs.push({ section, label, home, away });
+    }
+  }
+  return refs;
+}
+
+function enriquecerJornadasRO() {
+  const raw = document.getElementById('ro-input').value;
+  if (!raw.trim()) return alert('Pega el texto de la página de realoviedo.info primero.');
+  const clubObjetivo = (document.getElementById('bs-club-objetivo').value || 'Real Oviedo').trim();
+
+  const refs = parseRealOviedoInfo(raw);
+  if (refs.length === 0) return alert('❌ No he reconocido ninguna fila de partidos en ese texto.');
+
+  let matched = 0, noMatch = 0;
+  partidos.forEach(p => {
+    if (p.jornada) return;
+    const esLocalClub = teamsMatchRO(p.local, clubObjetivo);
+    const rival = esLocalClub ? p.visitante : p.local;
+
+    const candidato = refs.find(r => {
+      const refIsClubHome = teamsMatchRO(r.home, clubObjetivo);
+      const refIsClubAway = teamsMatchRO(r.away, clubObjetivo);
+      if (!refIsClubHome && !refIsClubAway) return false;
+      if (refIsClubHome !== esLocalClub) return false;
+      const refRival = refIsClubHome ? r.away : r.home;
+      return teamsMatchRO(refRival, rival);
+    });
+
+    if (candidato) { p.jornada = candidato.label; matched++; }
+    else { noMatch++; }
+  });
+
+  renderPartidos();
+  let msg = `✅ Jornada/ronda asignada a ${matched} partido(s).`;
+  if (noMatch > 0) msg += `\n\n${noMatch} no se han podido cruzar (revísalos a mano).`;
+  alert(msg);
+}
+
+// ------------------------------------------------------------------
+// RENDER / EDICIÓN MANUAL (igual que el editor unificado)
+// ------------------------------------------------------------------
+
+function formatValue(val) {
+    if (typeof val === 'boolean') return `<span class="bool">${val}</span>`;
+    if (!isNaN(val) && val !== "" && !isNaN(parseFloat(val))) return `<span class="num">${val}</span>`;
+    return `<span class="str">"${escapeStr(val)}"</span>`;
+}
+
+function buildCompeticionSelect(idx, valorActual) {
+  let html = `<select onchange="updatePartido(${idx}, 'competicion', this.value)">`;
+  for (const grupo of COMPETICIONES) {
+    html += `<optgroup label="${grupo.grupo}">`;
+    let found = false;
+    for (const op of grupo.opciones) {
+      if (op === valorActual) found = true;
+      html += `<option value="${op}" ${op === valorActual ? 'selected' : ''}>${op}</option>`;
+    }
+    if (!found && valorActual && grupo.grupo.includes('Liga') && !grupo.grupo.includes('Internacional')) {
+        html += `<option value="${valorActual}" selected>${valorActual}</option>`;
+    }
+    html += `</optgroup>`;
+  }
+  if (valorActual && !COMPETICIONES.some(g => g.opciones.includes(valorActual))) {
+    html += `<option value="${valorActual}" selected>${valorActual} (custom)</option>`;
+  }
+  html += `</select>`;
+  return html;
+}
+
+function buildResultadoSelect(idx, valorActual) {
+  const opts = [{ v: 'V', label: 'V' }, { v: 'E', label: 'E' }, { v: 'D', label: 'D' }];
+  let html = `<select onchange="updatePartido(${idx}, 'resultado', this.value)">`;
+  for (const o of opts) { html += `<option value="${o.v}" ${o.v === valorActual ? 'selected' : ''}>${o.label}</option>`; }
+  html += `</select>`; return html;
+}
+
+function updatePartido(index, field, value) {
+  if (['amarilla', 'roja'].includes(field)) {
+    partidos[index][field] = (value === 'true');
+    delete partidos[index]._bdfAutoCard; // el usuario ya lo ha revisado a mano
+  }
+  else if (['id', 'golesLocal', 'golesVisitante', 'minutos', 'goles', 'asistencias'].includes(field)) partidos[index][field] = parseInt(value) || 0;
+  else partidos[index][field] = value;
+
+  if (field === 'golesLocal' || field === 'golesVisitante') {
+    const p = partidos[index];
+    const clubObjetivo = (document.getElementById('bs-club-objetivo').value || 'Real Oviedo').trim().toLowerCase();
+    const esLocal = p.local.toLowerCase().includes(clubObjetivo);
+    const gf = esLocal ? p.golesLocal : p.golesVisitante;
+    const gc = esLocal ? p.golesVisitante : p.golesLocal;
+    if (gf > gc) p.resultado = 'V'; else if (gf < gc) p.resultado = 'D'; else p.resultado = 'E';
+    renderPartidos();
+  }
+}
+
+function removePartido(index) { partidos.splice(index, 1); renderPartidos(); }
+
+function renderPartidos() {
+  const container = document.getElementById('partidos-container');
+  container.innerHTML = '';
+  partidos.forEach((p, i) => {
+    const div = document.createElement('div'); div.className = 'partido-item';
+    const amaClass = p._bdfAutoCard ? 'field-warn' : '';
+    const rojClass = p._bdfAutoCard ? 'field-warn' : '';
+    const autoBadge = p._bdfAutoCard ? '<span class="badge-auto">revisar</span>' : '';
+    div.innerHTML = `
+      <div class="partido-row-main">
+        <div class="field"><label>ID</label><input type="number" value="${p.id}" onchange="updatePartido(${i}, 'id', this.value)"></div>
+        <div class="field"><label>Jornada</label><input type="text" value="${p.jornada}" onchange="updatePartido(${i}, 'jornada', this.value)"></div>
+        <div class="field"><label>Local</label><input type="text" value="${p.local}" onchange="updatePartido(${i}, 'local', this.value)"></div>
+        <div class="field"><label>Visitante</label><input type="text" value="${p.visitante}" onchange="updatePartido(${i}, 'visitante', this.value)"></div>
+        <div class="field"><label>Competición</label>${buildCompeticionSelect(i, p.competicion)}</div>
+        <button class="btn-del" title="Borrar partido" onclick="removePartido(${i})"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+      </div>
+      <div class="partido-row-stats">
+        <div class="field"><label>Fecha</label><input type="date" value="${p.fecha}" onchange="updatePartido(${i}, 'fecha', this.value)"></div>
+        <div class="field"><label>Goles L.</label><input type="number" value="${p.golesLocal}" min="0" onchange="updatePartido(${i}, 'golesLocal', this.value)"></div>
+        <div class="field"><label>Goles V.</label><input type="number" value="${p.golesVisitante}" min="0" onchange="updatePartido(${i}, 'golesVisitante', this.value)"></div>
+        <div class="field"><label>Res</label>${buildResultadoSelect(i, p.resultado)}</div>
+        <div class="field hide-coach"><label>Mins</label><input type="number" value="${p.minutos}" onchange="updatePartido(${i}, 'minutos', this.value)"></div>
+        <div class="field hide-coach"><label>Goles</label><input type="number" value="${p.goles}" onchange="updatePartido(${i}, 'goles', this.value)"></div>
+        <div class="field hide-coach"><label>Asist</label><input type="number" value="${p.asistencias}" onchange="updatePartido(${i}, 'asistencias', this.value)"></div>
+        <div class="field hide-coach ${amaClass}"><label>Ama ${p.amarilla ? autoBadge : ''}</label><select onchange="updatePartido(${i}, 'amarilla', this.value)"><option value="false" ${!p.amarilla?'selected':''}>No</option><option value="true" ${p.amarilla?'selected':''}>Sí</option></select></div>
+        <div class="field hide-coach ${rojClass}"><label>Roj ${p.roja ? autoBadge : ''}</label><select onchange="updatePartido(${i}, 'roja', this.value)"><option value="false" ${!p.roja?'selected':''}>No</option><option value="true" ${p.roja?'selected':''}>Sí</option></select></div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function generateJS() {
+  const id = escapeStr(document.getElementById('p-id').value) || "nuevo-registro";
+  const nombre = escapeStr(document.getElementById('p-nombre').value);
+  const desde = escapeStr(document.getElementById('p-desde').value);
+  const hasta = escapeStr(document.getElementById('p-hasta').value);
+  const esBaja = document.getElementById('t-baja').checked;
+
+  let code = `{\n  <span class="key">id</span>: <span class="str">"${id}"</span>,\n  <span class="key">codigo</span>: <span class="str">"${id}"</span>,\n`;
+
+  if (isCoach) {
+    const cargo = escapeStr(document.getElementById('p-cargo').value);
+    const imagen = escapeStr(document.getElementById('p-imagen').value);
+    const esPrincipal = document.getElementById('t-principal').checked;
+
+    code += `  <span class="key">nombre</span>: <span class="str">"${nombre}"</span>,\n  <span class="key">cargo</span>: <span class="str">"${cargo}"</span>,\n`;
+    if (imagen) code += `  <span class="key">imagen</span>: <span class="str">"${imagen}"</span>,\n`;
+    code += `  <span class="key">esPrincipal</span>: <span class="bool">${esPrincipal}</span>,\n  <span class="key">enClubDesde</span>: <span class="str">"${desde}"</span>,\n  <span class="key">contratoHasta</span>: <span class="str">"${hasta}"</span>,\n`;
+    if (esBaja) code += `  <span class="key">estado</span>: <span class="str">"baja"</span>,\n`;
+    code += `  <span class="key">estadisticas</span>: {},\n`;
+  } else {
+    const dorsal = parseInt(document.getElementById('p-dorsal').value) || 0;
+    const posicion = escapeStr(document.getElementById('p-posicion').value);
+    const esCedido = document.getElementById('t-cedido').checked;
+    const cedidoClub = escapeStr(document.getElementById('p-cedido-club').value);
+
+    code += `  <span class="key">dorsal</span>: <span class="num">${dorsal}</span>,\n  <span class="key">posicion</span>: <span class="str">"${posicion}"</span>,\n  <span class="key">enClubDesde</span>: <span class="str">"${desde}"</span>,\n  <span class="key">contratoHasta</span>: <span class="str">"${hasta}"</span>,\n`;
+
+    if (esBaja) {
+      code += `  <span class="key">estado</span>: <span class="str">"baja"</span>,\n`;
+    } else if (esCedido) {
+      code += `  <span class="key">estado</span>: <span class="str">"cedido"</span>,\n`;
+      if (cedidoClub) code += `  <span class="key">cedidoEn</span>: <span class="str">"${cedidoClub}"</span>,\n`;
+    }
+    code += `  <span class="key">stats</span>: {},\n`;
+  }
+
+  code += `  <span class="key">partidos</span>: [\n`;
+
+  partidos.forEach(p => {
+    code += `    { <span class="key">id</span>: <span class="num">${p.id}</span>, <span class="key">jornada</span>: ${formatValue(p.jornada)}, <span class="key">competicion</span>: <span class="str">"${escapeStr(p.competicion)}"</span>, <span class="key">fecha</span>: <span class="str">"${escapeStr(p.fecha)}"</span>, <span class="key">local</span>: <span class="str">"${escapeStr(p.local)}"</span>, <span class="key">visitante</span>: <span class="str">"${escapeStr(p.visitante)}"</span>, <span class="key">golesLocal</span>: <span class="num">${p.golesLocal}</span>, <span class="key">golesVisitante</span>: <span class="num">${p.golesVisitante}</span>, <span class="key">resultado</span>: <span class="str">"${escapeStr(p.resultado)}"</span>`;
+    if (!isCoach) {
+        code += `, <span class="key">minutos</span>: <span class="num">${p.minutos}</span>, <span class="key">goles</span>: <span class="num">${p.goles}</span>, <span class="key">asistencias</span>: <span class="num">${p.asistencias}</span>, <span class="key">amarilla</span>: <span class="bool">${p.amarilla}</span>, <span class="key">roja</span>: <span class="bool">${p.roja}</span>`;
+    }
+    code += ` },\n`;
+  });
+
+  code += `  ]\n},`;
+
+  const out = document.getElementById('output-area');
+  out.innerHTML = code;
+  document.getElementById('output-wrapper').classList.add('visible');
+  out.scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyOutput() {
+  const out = document.getElementById('output-area');
+  navigator.clipboard.writeText(out.innerText).then(() => {
+    const btn = document.getElementById('btn-copy');
+    btn.textContent = '✅ Copiado';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
