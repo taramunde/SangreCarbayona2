@@ -149,7 +149,7 @@ const translations = {
     temporada: 'Temporada',
     asistencias: 'Asistencias',
     minutos: 'Minutos',
-    prorroga: 'p.p.',
+    prorroga: 'pró.',
     altura: 'Altura',
     peso: 'Peso',
     pie: 'Pie',

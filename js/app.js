@@ -1887,7 +1887,7 @@ const App = {
         partido.penaltisVisitante !== undefined;
       const tieneProrroga = partido.minutos && partido.minutos > 90;
       const aetBadge = tieneProrroga
-        ? ` <span class="match-score-aet">${t('prorroga') || 'p.p.'}</span>`
+        ? ` <span class="match-score-aet">${t('prorroga') || 'pró.'}</span>`
         : '';
       const pensBadge = tienePenaltis
         ? ` <span class="match-score-pens">(${partido.penaltisLocal}-${partido.penaltisVisitante} pen.)</span>`
@@ -2914,7 +2914,7 @@ const App = {
         partido.penaltisVisitante !== undefined;
       const tieneProrroga = partido.minutos && partido.minutos > 90;
       const aetBadge = tieneProrroga
-        ? ` <span class="match-score-aet">${t('prorroga') || 'p.p.'}</span>`
+        ? ` <span class="match-score-aet">${t('prorroga') || 'pró.'}</span>`
         : '';
       const pensBadge = tienePenaltis
         ? ` <span class="match-score-pens">(${partido.penaltisLocal}-${partido.penaltisVisitante} pen.)</span>`
