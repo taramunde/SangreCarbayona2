@@ -74,10 +74,10 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-despega-lo-grande-en-zorrilla',
-    titulo: 'La Crónica: El Oviedo despega a lo grande en Zorrilla.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-sabadell-desnuda-al-oviedo',
+    titulo: 'La Crónica: El Sabadell desnuda al Oviedo.',
     descripcion:
-      'Los azules firman su partido más completo del curso y tumban al Valladolid con los goles de Carlos Domínguez, Dani Calvo y Pablo Sáenz (0-3).',
+      'Los azules firmaron una pésima primera mitad, reaccionaron con un golazo de Estanis tras el descanso y terminaron claudicando ante un conjunto arlequinado superior.',
     imagen: 'img/varios/J6KA.webp',
     fecha: '20 septiembre 2026',
   },
