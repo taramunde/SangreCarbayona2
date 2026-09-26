@@ -456,14 +456,14 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'C.E. Sabadell',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Sociedad B',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 1,
     },
     {
       equipo1: 'S.D. Eibar',
@@ -474,14 +474,14 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'Granada C.F.',
       equipo2: 'F.C. Andorra',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'C.D. Leganés',
@@ -504,8 +504,8 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'Cádiz C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'Real Valladolid',
