@@ -2649,6 +2649,26 @@ const App = {
     const todosLosPartidos = [];
     const temporadasConPartidos = []; // [{id, nombre}] para el selector
 
+    // Partidos que llegaron a prórroga, aunque ESTE jugador concreto no
+    // llegara a jugarla (p.ej. fue sustituido en el min. 60 de un partido
+    // que se decidió en la prórroga): si algún compañero de ese mismo
+    // partido superó los 90 minutos, se considera que hubo prórroga.
+    // Clave: "<temporadaId>|<competicion>|<jornada>|<fecha>".
+    const partidosConProrroga = new Set();
+    CLUB_DATA.temporadasDisponibles.forEach((temp) => {
+      const datosTemp = CLUB_DATA.temporadas[temp.id];
+      if (!datosTemp || !datosTemp.jugadores) return;
+      datosTemp.jugadores.forEach((j) => {
+        (j.partidos || []).forEach((p) => {
+          if (p.minutos > 90 || p.penaltisLocal !== undefined) {
+            partidosConProrroga.add(
+              `${temp.id}|${p.competicion}|${p.jornada}|${p.fecha}`,
+            );
+          }
+        });
+      });
+    });
+
     CLUB_DATA.temporadasDisponibles.forEach((temp) => {
       const datosTemp = CLUB_DATA.temporadas[temp.id];
       if (!datosTemp) return;
@@ -2912,7 +2932,9 @@ const App = {
       const tienePenaltis =
         partido.penaltisLocal !== undefined &&
         partido.penaltisVisitante !== undefined;
-      const tieneProrroga = partido.minutos && partido.minutos > 90;
+      const tieneProrroga = partidosConProrroga.has(
+        `${partido._temporadaId}|${partido.competicion}|${partido.jornada}|${partido.fecha}`,
+      );
       const aetBadge = tieneProrroga
         ? ` <span class="match-score-aet">${t('prorroga') || 'pró.'}</span>`
         : '';
