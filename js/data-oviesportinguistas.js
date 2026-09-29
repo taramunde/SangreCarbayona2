@@ -25,7 +25,7 @@
 
 CLUB_DATA.oviesportinguistas = {
   intro:
-    'A pesar de que hoy en día pueda parecer imposible e incluso una traición, la historia de los equipos senior del Real Oviedo y del Real Sporting de Gijón revela una realidad distinta. A lo largo de los años, aproximadamente 58 jugadores y 6 entrenadores han representado a ambos clubes en diferentes momentos de sus carreras. El primero en hacerlo fue el gijonés Jesús Rodríguez Álvarez, conocido como "Chus", quien en la temporada 1930/31 pasó del Real Sporting de Gijón al Real Oviedo, abriendo así un camino de intercambios entre los dos históricos rivales.',
+    'Aunque hoy en día pueda parecer impensable, incluso una traición, la historia de los primeros equipos del Real Oviedo y el Real Sporting de Gijón revela una realidad muy distinta. A lo largo de más de un siglo, alrededor de 58 jugadores y 6 entrenadores han vestido las camisetas de ambos clubes en distintos momentos de su carrera. El primero en hacerlo fue el gijonés Jesús Rodríguez Álvarez, "Chus", que en la temporada 1930/31 dejó el Real Sporting de Gijón para fichar por el Real Oviedo, abriendo así un largo capítulo de idas y venidas entre los dos eternos rivales.',
 
   jugadores: [
     {
