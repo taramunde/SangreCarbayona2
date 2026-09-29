@@ -63,8 +63,12 @@
     const introEl = document.getElementById('oviesIntro');
     if (introEl) introEl.textContent = datos.intro;
 
-    renderGrupo(datos.jugadores, 'oviesJugadoresGrid');
-    renderGrupo(datos.entrenadores, 'oviesEntrenadoresGrid');
+    const porNombre = (a, b) => a.nombre.localeCompare(b.nombre, 'es');
+    const jugadoresOrdenados = [...datos.jugadores].sort(porNombre);
+    const entrenadoresOrdenados = [...datos.entrenadores].sort(porNombre);
+
+    renderGrupo(jugadoresOrdenados, 'oviesJugadoresGrid');
+    renderGrupo(entrenadoresOrdenados, 'oviesEntrenadoresGrid');
   }
 
   function filtrarOvies() {
