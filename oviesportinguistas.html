@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="img/varios/LogoSangreCarbayona.webp" />
+    <title>Oviesportinguistas | Sangre Carbayona</title>
+    <meta
+      name="description"
+      content="Todos los jugadores y entrenadores que han vestido tanto la camiseta del Real Oviedo como la de su eterno rival, el Real Sporting de Gijón."
+    />
+    <link rel="stylesheet" href="css/styles.css?nocache=20260929v5" />
+    <link rel="stylesheet" href="css/oviesportinguistas.css?nocache=20260929v5" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="main-header" id="header-placeholder"></header>
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <section class="page-header">
+      <div class="page-header-bg ovies-header-bg">
+        <i class="fas fa-people-arrows ovies-header-icon" aria-hidden="true"></i>
+      </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+          <span class="current">Oviesportinguistas</span>
+        </div>
+        <h1 class="page-title">Oviesportinguistas</h1>
+        <p class="page-subtitle">
+          Jugadores y entrenadores que han vestido las dos camisetas: Real
+          Oviedo y Real Sporting de Gijón
+        </p>
+      </div>
+    </section>
+
+    <section class="ovies-listing-section">
+      <div class="container">
+        <p class="ovies-intro" id="oviesIntro"></p>
+
+        <div class="ovies-buscador-wrap">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="oviesBuscador"
+            placeholder="Busca por nombre..."
+            aria-label="Buscar por nombre"
+          />
+        </div>
+
+        <div class="ovies-seccion">
+          <div class="section-header">
+            <h2 class="section-title">Jugadores</h2>
+          </div>
+          <div class="ovies-grid" id="oviesJugadoresGrid"></div>
+        </div>
+
+        <div class="ovies-seccion">
+          <div class="section-header">
+            <h2 class="section-title">Entrenadores</h2>
+          </div>
+          <div class="ovies-grid" id="oviesEntrenadoresGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compartir página -->
+    <div class="container">
+      <div class="page-share">
+        <p data-i18n="compartir_pagina">Comparte esta página</p>
+        <div class="page-share-buttons" id="pageShareButtons"></div>
+      </div>
+    </div>
+
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <script src="js/data-club.js?nocache=20260929v5"></script>
+    <script src="js/data-jugadores.js?nocache=20260929v5"></script>
+    <script src="js/busqueda.js?nocache=20260929v5"></script>
+    <script src="js/i18n.js?nocache=20260929v5"></script>
+    <script src="js/seo.js?nocache=20260929v5"></script>
+    <script src="js/main.js?nocache=20260929v5"></script>
+    <script src="js/data-oviesportinguistas.js?nocache=20260929v5"></script>
+    <script src="js/oviesportinguistas.js?nocache=20260929v5"></script>
+    <script src="js/compartir-pagina.js?nocache=20260929v5"></script>
+  </body>
+</html>

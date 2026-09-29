@@ -1,0 +1,173 @@
+/* ===================================
+   OVIESPORTINGUISTAS
+   =================================== */
+
+.ovies-header-bg {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 70%,
+    #0a1730 100%
+  );
+  overflow: hidden;
+}
+
+.ovies-header-icon {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15rem;
+  color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .ovies-header-icon {
+    font-size: 8rem;
+    right: -8%;
+  }
+}
+
+.ovies-intro {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  color: var(--gray-600);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.ovies-buscador-wrap {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto 40px;
+}
+
+.ovies-buscador-wrap i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-600);
+}
+
+#oviesBuscador {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 16px 12px 44px;
+  border: 1px solid var(--gray-200);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+#oviesBuscador:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.ovies-seccion {
+  margin-bottom: 50px;
+}
+
+.ovies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.ovies-card {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ovies-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ovies-foto {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  background: #e8edf4;
+  border: 2px solid #e0e8f0;
+}
+
+.ovies-foto-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.3rem;
+  border: none;
+}
+
+.ovies-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ovies-clubes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.ovies-escudo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.ovies-flecha {
+  color: var(--secondary-color);
+  font-size: 0.75rem;
+}
+
+.ovies-nombre {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.ovies-texto {
+  color: var(--gray-600);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+#oviesSinResultados {
+  display: none;
+  text-align: center;
+  color: var(--gray-600);
+  padding: 30px 0;
+}
+
+@media (max-width: 480px) {
+  .ovies-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ovies-clubes {
+    justify-content: center;
+  }
+}
