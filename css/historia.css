@@ -1,0 +1,234 @@
+/* ===================================
+   HISTORIA
+   =================================== */
+
+/* Cabecera de la página (imagen + overlay + texto blanco), igual que
+   en derbis.css/equipo-styles.css: esta página no carga ninguno de
+   esos dos archivos, así que necesita su propia copia. */
+.page-header {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.page-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.page-header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 26, 110, 0.55);
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.page-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.page-header .breadcrumb .current {
+  color: var(--secondary-color, #fdb913);
+  font-weight: 600;
+}
+
+.page-header .breadcrumb span {
+  margin: 0 6px;
+}
+
+.page-header .page-title {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+.page-header .page-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ── Línea de tiempo ── */
+
+.historia-timeline {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.historia-timeline::before {
+  content: '';
+  position: absolute;
+  left: 29px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gray-200);
+}
+
+.historia-item {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  padding-bottom: 50px;
+}
+
+.historia-item:last-child {
+  padding-bottom: 0;
+}
+
+.historia-marcador {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.historia-escudo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.historia-numero {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.historia-contenido {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+}
+
+.historia-periodo {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.historia-titulo {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+}
+
+.historia-contenido p {
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.historia-contenido p:last-of-type {
+  margin-bottom: 0;
+}
+
+.historia-imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.historia-imagen {
+  flex: 1 1 220px;
+  max-width: 320px;
+  margin: 0;
+}
+
+.historia-imagen img {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+.historia-imagen figcaption {
+  margin-top: 6px;
+  color: var(--gray-600);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.historia-imagen figcaption a {
+  color: var(--gray-600);
+  font-style: normal;
+}
+
+@media (max-width: 600px) {
+  .historia-timeline::before {
+    left: 21px;
+  }
+
+  .historia-item {
+    gap: 14px;
+  }
+
+  .historia-marcador {
+    width: 44px;
+    height: 44px;
+  }
+
+  .historia-numero {
+    font-size: 1rem;
+  }
+
+  .historia-contenido {
+    padding: 16px 18px;
+  }
+
+  .historia-titulo {
+    font-size: 1.2rem;
+  }
+}

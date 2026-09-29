@@ -70,6 +70,7 @@ const PAGINAS_ESTATICAS = [
   { loc: '/', changefreq: 'daily', priority: '1.0' },
   { loc: '/noticias.html', changefreq: 'daily', priority: '0.9' },
   { loc: '/primer-equipo.html', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/historia.html', changefreq: 'yearly', priority: '0.6' },
   { loc: '/palmares.html', changefreq: 'yearly', priority: '0.6' },
   { loc: '/clasificacion.html', changefreq: 'weekly', priority: '0.7' },
   { loc: '/calendario.html', changefreq: 'weekly', priority: '0.7' },
@@ -80,7 +81,11 @@ const PAGINAS_ESTATICAS = [
   { loc: '/juegos.html', changefreq: 'monthly', priority: '0.5' },
   { loc: '/videos.html', changefreq: 'weekly', priority: '0.5' },
   { loc: '/juegos/quiz.html', changefreq: 'monthly', priority: '0.4' },
-  { loc: '/juegos/puzzlecarbayon.html', changefreq: 'monthly', priority: '0.4' },
+  {
+    loc: '/juegos/puzzlecarbayon.html',
+    changefreq: 'monthly',
+    priority: '0.4',
+  },
   { loc: '/juegos/autodefinido.html', changefreq: 'monthly', priority: '0.4' },
   // Nota: ficha-jugador.html y derbi.html NO se incluyen a propósito:
   // ambas llevan noindex,nofollow porque son plantillas dinámicas sin
@@ -138,7 +143,9 @@ function cargarClubData() {
     vm.runInContext(rawDerbis, sandbox);
     derbisData = sandbox.window.DERBIS_DATA || [];
   } else {
-    console.warn('⚠ No encuentro data-derbis.js: el sitemap no incluirá fichas de derbis.');
+    console.warn(
+      '⚠ No encuentro data-derbis.js: el sitemap no incluirá fichas de derbis.',
+    );
   }
 
   return { CLUB_DATA: sandbox.window.CLUB_DATA, DERBIS_DATA: derbisData };
@@ -202,7 +209,8 @@ function bloqueUrl(loc, changefreq, priority, hoy) {
 
 function generarSitemap() {
   const { CLUB_DATA, DERBIS_DATA } = cargarClubData();
-  const { mapaJugadores, mapaEntrenadores } = calcularFichasCanonicas(CLUB_DATA);
+  const { mapaJugadores, mapaEntrenadores } =
+    calcularFichasCanonicas(CLUB_DATA);
   const hoy = new Date().toISOString().split('T')[0];
   const cache = cargarCache();
   const urls = [];
@@ -217,19 +225,34 @@ function generarSitemap() {
 
   Object.entries(mapaJugadores).forEach(([slug, jugador]) => {
     const loc = `/fichas/${slug}.html`;
-    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, jugador, cache, hoy);
+    const lastmod = lastmodParaContenido(
+      `${SITE_BASE_URL}${loc}`,
+      jugador,
+      cache,
+      hoy,
+    );
     urls.push(bloqueUrl(loc, 'weekly', '0.6', lastmod));
   });
 
   Object.entries(mapaEntrenadores).forEach(([slug, miembro]) => {
     const loc = `/fichas/${slug}.html`;
-    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, miembro, cache, hoy);
+    const lastmod = lastmodParaContenido(
+      `${SITE_BASE_URL}${loc}`,
+      miembro,
+      cache,
+      hoy,
+    );
     urls.push(bloqueUrl(loc, 'weekly', '0.5', lastmod));
   });
 
   DERBIS_DATA.forEach((partido) => {
     const loc = `/fichas/derbi-${partido.id}.html`;
-    const lastmod = lastmodParaContenido(`${SITE_BASE_URL}${loc}`, partido, cache, hoy);
+    const lastmod = lastmodParaContenido(
+      `${SITE_BASE_URL}${loc}`,
+      partido,
+      cache,
+      hoy,
+    );
     urls.push(bloqueUrl(loc, 'yearly', '0.5', lastmod));
   });
 
