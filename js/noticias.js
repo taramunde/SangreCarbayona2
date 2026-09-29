@@ -46,40 +46,42 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/20/sabadell-pasa-encima-real-oviedo/00031789908649136384929.htm',
-    titulo: 'El Sabadell pasa por encima del Real Oviedo.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/27/real-oviedo-come-sporting-vuelve-reinar-derbi-asturiano/00031790532467889635955.htm',
+    titulo:
+      'El Real Oviedo se come al Sporting y vuelve a reinar en el derbi asturiano.',
     descripcion:
-      'Los azules fueron muy inferiores a su rival desde el primer minuto hasta el último y caen con merecimiento (3-1) en la Nova Creu Alta. Estanis Pedrola marcó y se lesionó en el hombro.',
-    imagen: 'img/varios/J6LVA.webp',
-    fecha: '20 septiembre 2026',
+      'Los azules, muy superiores desde el principio hasta el final, superan a los rojiblancos (2-0) con goles de Chris Ramos y Enzo Pérez. El Oviedo no metía dos goles en el Tartiere desde el día que ascendió a Primera ante el Mirandés.',
+    imagen: 'img/varios/J7LVA.webp',
+    fecha: '27 septiembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/09/20/pucela-espejismo-sabadell-real-oviedo-134490287.html',
+    url: 'https://www.lne.es/real-oviedo/2026/09/27/oviedo-vuelve-reinar-derbi-victoria-134740590.html',
     titulo:
-      'Lo de Pucela, un espejismo en Sabadell: el Real Oviedo firma su peor partido del curso ante un gran rival (3-1).',
+      'El Oviedo vuelve a reinar en el derbi: victoria merecida (2-0) ante un Sporting con dudas.',
     descripcion:
-      'Un golazo de Estanis fue el único argumento ofensivo de un Oviedo desdibujado que sucumbió ante la efectividad de un Sabadell superior en todas las facetas del encuentro.',
-    imagen: 'img/varios/J6LNE.webp',
-    fecha: '20 septiembre 2026',
+      'Los de Calero se mostraron más decididos que los de Larcamón y se quedan con el choque más deseado.',
+    imagen: 'img/varios/J7LNE.webp',
+    fecha: '27 septiembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/sabadell-real-oviedo-peor-version-derbi-asturiano-20260920114800-di.html',
-    titulo: 'La peor versión del Real Oviedo aflora antes del derbi asturiano.',
+    url: 'https://www.elcomercio.es/deportes/futbol/real-oviedo-sporting-gijon-derbi-asturiano-resultado-goles-resumen-20260927110906-di.html',
+    titulo:
+      'El Real Oviedo renace en el derbi asturiano a costa del Real Sporting de Gijón.',
     descripcion:
       'Revés. Los azules pierden ante el Sabadell con merecimiento tras mostrarse como un equipo muy endeble en defensa e inexistente en ataque.',
-    imagen: 'img/varios/J6EC.webp',
-    fecha: '20 septiembre 2026',
+    imagen: 'img/varios/J7EC.webp',
+    fecha: '27 septiembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-sabadell-desnuda-al-oviedo',
-    titulo: 'La Crónica: El Sabadell desnuda al Oviedo.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-recupera-el-trono-del-derbi-asturiano',
+    titulo: 'La Crónica: El Oviedo recupera el trono del derbi asturiano.',
     descripcion:
-      'Los azules firmaron una pésima primera mitad, reaccionaron con un golazo de Estanis tras el descanso y terminaron claudicando ante un conjunto arlequinado superior.',
-    imagen: 'img/varios/J6KA.webp',
-    fecha: '20 septiembre 2026',
+      'Victoria justa del Real Oviedo en el derbi asturiano ante un endeble Sporting a nivel defensivo gracias a los goles de Chris Ramos y Enzo Pérez.',
+    imagen: 'img/varios/J7KA.webp',
+    fecha: '27 septiembre 2026',
   },
 ];
 
