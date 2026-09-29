@@ -2,6 +2,33 @@
    ESTADIOS - CÓMO LLEGAR
    =================================== */
 
+.estadios-header-bg {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 70%,
+    #0a1730 100%
+  );
+  overflow: hidden;
+}
+
+.estadios-header-icon {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  font-size: 16rem;
+  color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .estadios-header-icon {
+    font-size: 9rem;
+    right: -10%;
+  }
+}
+
 .estadios-buscador-wrap {
   position: relative;
   max-width: 480px;
