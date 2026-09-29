@@ -2,31 +2,79 @@
    OVIESPORTINGUISTAS
    =================================== */
 
-.ovies-header-bg {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--primary-dark) 70%,
-    #0a1730 100%
-  );
+/* Cabecera de la página (imagen + overlay + texto blanco), igual que
+   en derbis.css/equipo-styles.css: esta página no carga ninguno de
+   esos dos archivos, así que necesita su propia copia para que el
+   fondo, el degradado y el título se vean bien (y no se rompan en
+   móvil). */
+.page-header {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
   overflow: hidden;
+  padding-bottom: 40px;
 }
 
-.ovies-header-icon {
+.page-header-bg {
   position: absolute;
-  right: 4%;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 15rem;
-  color: rgba(255, 255, 255, 0.08);
-  pointer-events: none;
+  inset: 0;
+  z-index: 0;
 }
 
-@media (max-width: 768px) {
-  .ovies-header-icon {
-    font-size: 8rem;
-    right: -8%;
-  }
+.page-header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 26, 110, 0.55);
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.page-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.page-header .breadcrumb .current {
+  color: var(--secondary-color, #fdb913);
+  font-weight: 600;
+}
+
+.page-header .breadcrumb span {
+  margin: 0 6px;
+}
+
+.page-header .page-title {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+.page-header .page-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
 }
 
 .ovies-intro {
