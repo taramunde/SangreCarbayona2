@@ -47,4 +47,11 @@ CLUB_DATA.videos = [
     fecha: '2026-09-20',
     videoId: 'n-KFtBKjuZc',
   },
+  {
+    id: 7,
+    jornada: 7,
+    titulo: 'Real Oviedo Vs Real Sporting de Gijón',
+    fecha: '2026-09-27',
+    videoId: 'iNAvTAVVQOU',
+  },
 ];
