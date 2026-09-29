@@ -30,7 +30,8 @@
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(135deg, rgba(0,29,110,.95) 0%, rgba(0,61,165,.80) 100%);
+        linear-gradient(135deg, rgba(0,29,110,.85) 0%, rgba(0,61,165,.75) 100%),
+        url('../img/varios/LogoUltimasNoticias.webp') center/cover no-repeat;
     z-index: 0;
 }
 .page-hero-bg::after {
