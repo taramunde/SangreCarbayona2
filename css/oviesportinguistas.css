@@ -97,8 +97,8 @@
 
 .ovies-foto {
   flex: 0 0 auto;
-  width: 56px;
-  height: 56px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top center;
@@ -112,7 +112,7 @@
   justify-content: center;
   background: var(--primary-color);
   color: rgba(255, 255, 255, 0.85);
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   border: none;
 }
 
@@ -129,8 +129,8 @@
 }
 
 .ovies-escudo {
-  width: 26px;
-  height: 26px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
