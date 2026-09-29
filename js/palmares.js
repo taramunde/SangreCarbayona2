@@ -64,6 +64,12 @@
         gridRegionales.appendChild(crearTarjeta(t, false)),
       );
     }
+
+    const precedenteEl = document.getElementById('palmaresPrecedente');
+    if (precedenteEl && datos.precedente) {
+      const p = datos.precedente;
+      precedenteEl.innerHTML = `<i class="fas fa-circle-info"></i> El título de ${p.temporada} del ${p.competicion} lo ganó el <b>${p.club}</b>, uno de los dos clubes cuya fusión en 1926 dio lugar al Real Oviedo. No se cuenta como título del Real Oviedo, se recoge aquí solo como antecedente histórico.`;
+    }
   }
 
   document.addEventListener('DOMContentLoaded', renderPalmares);
