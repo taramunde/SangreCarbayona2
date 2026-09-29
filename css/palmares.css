@@ -68,6 +68,9 @@
 }
 
 .palmares-precedente {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin-top: 20px;
   padding: 14px 18px;
   background: var(--gray-100);
@@ -80,6 +83,22 @@
 .palmares-precedente i {
   color: var(--secondary-color);
   margin-right: 4px;
+}
+
+.palmares-precedente-foto {
+  flex: 0 0 auto;
+  width: 90px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 480px) {
+  .palmares-precedente {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .palmares-grid {
@@ -118,6 +137,13 @@
   background: var(--primary-color);
   color: var(--secondary-color);
   font-size: 1.4rem;
+  overflow: hidden;
+}
+
+.palmares-icono img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
 
 .palmares-info {
@@ -160,6 +186,26 @@
   font-size: 0.78rem;
   padding: 3px 9px;
   border-radius: 20px;
+}
+
+.palmares-foto {
+  margin: 14px 0 0;
+}
+
+.palmares-foto img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  display: block;
+}
+
+.palmares-foto figcaption {
+  margin-top: 6px;
+  color: var(--gray-600);
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* Regionales: mismas tarjetas pero sin icono circular, algo más discretas */

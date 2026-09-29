@@ -21,6 +21,17 @@
    uno de los dos clubes (junto al Real Club Deportivo Oviedo)
    cuya fusión en 1926 dio lugar al Real Oviedo; se menciona aparte
    como precedente histórico, sin sumarlo al recuento del club.
+
+   Imágenes:
+   - "escudo": escudo de la época del primer título de cada
+     competición. Son los mismos escudos históricos que ya usa
+     el proyecto en js/data-derbis.js, reutilizados aquí tal cual.
+   - "foto": únicamente en los dos casos donde se ha podido
+     verificar una fotografía histórica real y de dominio público
+     en Wikimedia Commons (ver enlaces "fuente" de cada una). Para
+     el resto de títulos no se ha añadido foto por no encontrar
+     ninguna verificada; ver nota para el usuario sobre dónde
+     buscar más en el propio Wikimedia Commons.
    =================================== */
 
 CLUB_DATA.palmares = {
@@ -28,21 +39,28 @@ CLUB_DATA.palmares = {
     {
       competicion: 'Segunda División',
       icono: 'fa-trophy',
+      escudo: 'https://i.postimg.cc/15KYzZpW/Oviedo-F-C-1934-40.png',
+      foto: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Real_Oviedo_team_in_the_1932-33_season.jpg',
+      fotoPie: 'Plantilla del Real Oviedo en la temporada 1932-33, su primer título de Segunda División',
+      fotoFuente: 'https://commons.wikimedia.org/wiki/File:Real_Oviedo_team_in_the_1932-33_season.jpg',
       temporadas: ['1932-33', '1951-52', '1957-58', '1971-72', '1974-75'],
     },
     {
       competicion: 'Tercera División',
       icono: 'fa-award',
+      escudo: 'https://i.postimg.cc/nhzTc9Vz/Real-Oviedo-2000-18.png',
       temporadas: ['2003-04', '2004-05', '2007-08', '2008-09'],
     },
     {
       competicion: 'Segunda División B',
       icono: 'fa-medal',
+      escudo: 'https://i.postimg.cc/nhzTc9Vz/Real-Oviedo-2000-18.png',
       temporadas: ['2014-15'],
     },
     {
       competicion: 'Copa de la Liga de Segunda División',
       icono: 'fa-shield-halved',
+      escudo: 'https://i.postimg.cc/kGqvrBh7/Real-Oviedo-CF-1957-87.png',
       temporadas: ['1984-85'],
     },
   ],
@@ -50,14 +68,17 @@ CLUB_DATA.palmares = {
   regionales: [
     {
       competicion: 'Campeonato Regional de Asturias',
+      escudo: 'https://i.postimg.cc/C57HwSWk/Real-Oviedo-FC-1926-30.png',
       temporadas: ['1927-28', '1928-29', '1932-33', '1933-34', '1934-35'],
     },
     {
       competicion: 'Campeonato Astur-Cántabro',
+      escudo: 'https://i.postimg.cc/15KYzZpW/Oviedo-F-C-1934-40.png',
       temporadas: ['1931-32'],
     },
     {
       competicion: 'Campeonato Astur-Gallego',
+      escudo: 'https://i.postimg.cc/15KYzZpW/Oviedo-F-C-1934-40.png',
       temporadas: ['1935-36'],
     },
   ],
@@ -68,5 +89,8 @@ CLUB_DATA.palmares = {
     club: 'Real Stadium Club Ovetense',
     competicion: 'Campeonato Regional de Asturias',
     temporada: '1924-25',
+    foto: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Real_Oviedo_1926.jpg',
+    fotoPie: 'Primera plantilla del Real Oviedo, 1 de mayo de 1926, recién fusionados los dos clubes',
+    fotoFuente: 'https://commons.wikimedia.org/wiki/File:Real_Oviedo_1926.jpg',
   },
 };

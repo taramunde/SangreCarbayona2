@@ -16,14 +16,33 @@
       .join('');
   }
 
-  function crearTarjeta(titulo, conIcono) {
+  function crearFotoDestacada(titulo) {
+    if (!titulo.foto) return '';
+    return `
+      <figure class="palmares-foto">
+        <img src="${titulo.foto}" alt="${titulo.fotoPie || titulo.competicion}" loading="lazy" />
+        <figcaption>
+          ${titulo.fotoPie || ''}
+          ${
+            titulo.fotoFuente
+              ? `<br /><a href="${titulo.fotoFuente}" target="_blank" rel="noopener">Fuente: Wikimedia Commons</a>`
+              : ''
+          }
+        </figcaption>
+      </figure>
+    `;
+  }
+
+  function crearTarjeta(titulo) {
     const card = document.createElement('div');
     card.className = 'palmares-card';
     card.innerHTML = `
       ${
-        conIcono
-          ? `<div class="palmares-icono"><i class="fas ${titulo.icono}"></i></div>`
-          : ''
+        titulo.escudo
+          ? `<div class="palmares-icono"><img src="${titulo.escudo}" alt="Escudo de época" loading="lazy" /></div>`
+          : titulo.icono
+            ? `<div class="palmares-icono"><i class="fas ${titulo.icono}"></i></div>`
+            : ''
       }
       <div class="palmares-info">
         <div class="palmares-cabecera">
@@ -31,6 +50,7 @@
           <span class="palmares-contador">${titulo.temporadas.length}</span>
         </div>
         <div class="palmares-chips">${crearChips(titulo.temporadas)}</div>
+        ${crearFotoDestacada(titulo)}
       </div>
     `;
     return card;
@@ -44,7 +64,7 @@
     if (gridNacionales) {
       gridNacionales.innerHTML = '';
       datos.nacionales.forEach((t) =>
-        gridNacionales.appendChild(crearTarjeta(t, true)),
+        gridNacionales.appendChild(crearTarjeta(t)),
       );
     }
 
@@ -61,14 +81,28 @@
     if (gridRegionales) {
       gridRegionales.innerHTML = '';
       datos.regionales.forEach((t) =>
-        gridRegionales.appendChild(crearTarjeta(t, false)),
+        gridRegionales.appendChild(crearTarjeta(t)),
       );
     }
 
     const precedenteEl = document.getElementById('palmaresPrecedente');
     if (precedenteEl && datos.precedente) {
       const p = datos.precedente;
-      precedenteEl.innerHTML = `<i class="fas fa-circle-info"></i> El título de ${p.temporada} del ${p.competicion} lo ganó el <b>${p.club}</b>, uno de los dos clubes cuya fusión en 1926 dio lugar al Real Oviedo. No se cuenta como título del Real Oviedo, se recoge aquí solo como antecedente histórico.`;
+      precedenteEl.innerHTML = `
+        ${
+          p.foto
+            ? `<img class="palmares-precedente-foto" src="${p.foto}" alt="${p.fotoPie || p.club}" loading="lazy" />`
+            : ''
+        }
+        <span>
+          <i class="fas fa-circle-info"></i> El título de ${p.temporada} del ${p.competicion} lo ganó el <b>${p.club}</b>, uno de los dos clubes cuya fusión en 1926 dio lugar al Real Oviedo. No se cuenta como título del Real Oviedo, se recoge aquí solo como antecedente histórico.
+          ${
+            p.fotoFuente
+              ? ` <a href="${p.fotoFuente}" target="_blank" rel="noopener">(Fuente: Wikimedia Commons)</a>`
+              : ''
+          }
+        </span>
+      `;
     }
   }
 
