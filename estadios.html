@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="img/varios/LogoSangreCarbayona.webp" />
+    <title>Cómo Llegar a los Estadios | Sangre Carbayona</title>
+    <meta
+      name="description"
+      content="Direcciones y cómo llegar a los estadios de todos los equipos de Segunda División, la categoría del Real Oviedo, incluido el Carlos Tartiere."
+    />
+    <link rel="stylesheet" href="css/styles.css?nocache=20260929v5" />
+    <link rel="stylesheet" href="css/estadios.css?nocache=20260929v5" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="main-header" id="header-placeholder"></header>
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <section class="page-header">
+      <div class="page-header-bg">
+        <img
+          src="https://picsum.photos/seed/estadios-laliga/1920/400"
+          alt="Estadio"
+        />
+      </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+          <span class="current" data-i18n="nav_como_llegar"
+            >Cómo Llegar</span
+          >
+        </div>
+        <h1 class="page-title" data-i18n="nav_como_llegar">
+          Cómo Llegar a los Estadios
+        </h1>
+        <p class="page-subtitle">
+          Direcciones de los 22 estadios de Segunda División para tus
+          desplazamientos
+        </p>
+      </div>
+    </section>
+
+    <section class="estadios-listing-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Estadios de LaLiga Hypermotion 2026/27</h2>
+        </div>
+
+        <div class="estadios-buscador-wrap">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="estadiosBuscador"
+            placeholder="Busca por equipo o ciudad..."
+            aria-label="Buscar estadio por equipo o ciudad"
+          />
+        </div>
+
+        <div class="estadios-grid" id="estadiosGrid"></div>
+        <p id="estadiosSinResultados">No se ha encontrado ningún estadio.</p>
+      </div>
+    </section>
+
+    <!-- Compartir página -->
+    <div class="container">
+      <div class="page-share">
+        <p data-i18n="compartir_pagina">Comparte esta página</p>
+        <div class="page-share-buttons" id="pageShareButtons"></div>
+      </div>
+    </div>
+
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <script src="js/data-club.js?nocache=20260929v5"></script>
+    <script src="js/data-jugadores.js?nocache=20260929v5"></script>
+    <script src="js/busqueda.js?nocache=20260929v5"></script>
+    <script src="js/i18n.js?nocache=20260929v5"></script>
+    <script src="js/seo.js?nocache=20260929v5"></script>
+    <script src="js/main.js?nocache=20260929v5"></script>
+    <script src="js/data-estadios.js?nocache=20260929v5"></script>
+    <script src="js/estadios.js?nocache=20260929v5"></script>
+    <script src="js/compartir-pagina.js?nocache=20260929v5"></script>
+  </body>
+</html>
