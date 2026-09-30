@@ -18,65 +18,78 @@
 }
 
 /* ================================================================
-   PAGE HERO
+   PAGE HEADER (imagen + overlay + texto blanco), igual que en
+   derbis.css/equipo-styles.css: esta página no carga ninguno de
+   esos dos archivos, así que necesita su propia copia.
    ================================================================ */
-.page-hero {
-    position: relative;
-    background: var(--azul-dark);
-    overflow: hidden;
-    padding: 56px 0 40px;
+.page-header {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: 40px;
 }
-.page-hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(135deg, rgba(0,29,110,.85) 0%, rgba(0,61,165,.75) 100%),
-        url('../img/varios/LogoUltimasNoticias.webp') center/cover no-repeat;
-    z-index: 0;
+
+.page-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
-.page-hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(255,215,0,.08) 1px, transparent 1px);
-    background-size: 28px 28px;
+
+.page-header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
-.page-hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
+
+.page-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 26, 110, 0.55);
 }
-.page-hero-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255,215,0,.15);
-    border: 1px solid rgba(255,215,0,.3);
-    color: var(--oro);
-    font-family: 'Oswald', sans-serif;
-    font-size: .78em;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 12px;
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
 }
-.page-hero-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.6em;
-    font-weight: 700;
-    color: var(--blanco);
-    letter-spacing: .03em;
-    text-transform: uppercase;
-    margin: 0 0 8px;
-    line-height: 1.1;
+
+.page-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
 }
-.page-hero-sub {
-    font-family: 'Source Sans 3', sans-serif;
-    color: rgba(255,255,255,.65);
-    font-size: 1em;
-    margin: 0;
+
+.page-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.page-header .breadcrumb .current {
+  color: var(--secondary-color, #fdb913);
+  font-weight: 600;
+}
+
+.page-header .breadcrumb span {
+  margin: 0 6px;
+}
+
+.page-header .page-title {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+.page-header .page-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
 }
 
 /* ================================================================
