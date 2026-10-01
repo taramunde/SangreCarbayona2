@@ -145,6 +145,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/cesar-negredo-sanchez.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jorge-eugenio-rodriguez-alvarez.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/daniel-lopez-ramos.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/pelayo-novo-garcia.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -159,6 +177,30 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/aitor-sanz-martin.html</loc>
     <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/pascual-puente-aller.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/xavier-more-roca.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/miguel-falcon-garcia-ramos.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/marc-castells-ortega.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -211,18 +253,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/cesar-negredo-sanchez.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jorge-eugenio-rodriguez-alvarez.html</loc>
-    <lastmod>2026-10-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/juan-pablo-de-miguel-bravo.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -247,25 +277,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/pascual-puente-aller.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/paul-abasolo-amantegui.html</loc>
-    <lastmod>2026-09-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/xavier-more-roca.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/miguel-falcon-garcia-ramos.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
