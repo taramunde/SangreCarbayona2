@@ -3028,7 +3028,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Jerez de la Frontera',
     provinciaNacimiento: 'Cádiz',
     fechaNacimiento: '1976-11-24',
-    imagen: 'https://i.ibb.co/HTdQbWtZ/L-pez-Ramos-PNG.webp',
+    imagen: 'https://i.postimg.cc/CdpYHH5Z/Lopez-Ramos-PNG.webp',
   },
 
   'ricardo-segura-martinez': {
