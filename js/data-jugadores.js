@@ -2833,7 +2833,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1980-08-02',
-    imagen: 'https://i.ibb.co/7sDtBDH/C-sar-Negredo-PNG.webp',
+    imagen: 'https://i.postimg.cc/hGsFQRV7/Cesar-Negredo-PNG.webp',
   },
 
   'jorge-eugenio-rodriguez-alvarez': {
