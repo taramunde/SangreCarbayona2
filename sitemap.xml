@@ -2077,6 +2077,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/samuel-franganillo-moreno.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/samuel-rodriguez-de-la-riva.html</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -2187,6 +2193,12 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/estanislau-pedrola-fortuny.html</loc>
     <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/oscar-de-la-hera-suarez.html</loc>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
