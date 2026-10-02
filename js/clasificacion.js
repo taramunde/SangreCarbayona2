@@ -550,7 +550,6 @@
       equipo2: 'Real Oviedo',
       goles1: null,
       goles2: null,
-      aplazado: true, // Aplazado por meteorología
     },
     {
       equipo1: 'Girona F.C.',
