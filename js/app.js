@@ -671,7 +671,9 @@ const App = {
 
     const jugados = partidosOviedo.filter((p) => p.jugado);
     const ultimo = jugados.length > 0 ? jugados[jugados.length - 1] : null;
-    const proximo = partidosOviedo.find((p) => !p.jugado) || null;
+    // Los partidos aplazados siguen sin jugarse, pero no son "el próximo"
+    // hasta que tengan nueva fecha (ver también js/calendario.js).
+    const proximo = partidosOviedo.find((p) => !p.jugado && !p.aplazado) || null;
 
     const getEscudo = (nombre) => {
       const eq = equipos.find((e) => e.nombre === nombre);
