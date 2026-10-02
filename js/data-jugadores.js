@@ -804,6 +804,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.ibb.co/WNbgJfK5/Alberto-PNG.webp',
   },
 
+  'samuel-franganillo-moreno': {
+    nombre: 'Samuel',
+    apellidos: 'Franganillo Moreno',
+    nombreCompleto: 'Samuel Franganillo Moreno',
+    apodo: 'Samu Franganillo',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.9,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2003-01-11',
+    imagen: 'https://i.ibb.co/ks21hG7y/Samu-Franganillo.webp',
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
