@@ -2848,7 +2848,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Madrid',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1980-08-02',
-    imagen: 'https://i.postimg.cc/hGsFQRV7/Cesar-Negredo-PNG.webp',
+    imagen: 'https://i.ibb.co/7sDtBDH/C-sar-Negredo-PNG.webp',
   },
 
   'jorge-eugenio-rodriguez-alvarez': {
@@ -3043,7 +3043,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Jerez de la Frontera',
     provinciaNacimiento: 'Cádiz',
     fechaNacimiento: '1976-11-24',
-    imagen: 'https://i.postimg.cc/CdpYHH5Z/Lopez-Ramos-PNG.webp',
+    imagen: 'https://i.ibb.co/HTdQbWtZ/L-pez-Ramos-PNG.webp',
   },
 
   'ricardo-segura-martinez': {
@@ -8266,6 +8266,21 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Santa Cruz de Tenerife',
     fechaNacimiento: '1991-03-05',
     imagen: 'https://i.ibb.co/Mk5hrhsD/Moi-PNG.webp',
+  },
+
+  'oscar-de-la-hera-suarez': {
+    nombre: 'Óscar',
+    apellidos: 'de La Hera Suárez',
+    nombreCompleto: 'Óscar de La Hera Suárez',
+    apodo: 'De La Hera',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.86,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '2005-01-01',
+    imagen: 'https://i.ibb.co/6J8GGSGy/De-La-Hera.webp',
   },
 }; // fin jugadoresMaestro
 
