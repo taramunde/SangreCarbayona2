@@ -67,7 +67,7 @@
 
   // ── Estado visual del partido ────────────────────────
   function getEstado(p) {
-    if (!p.jugado) return 'pendiente';
+    if (!p.jugado) return p.aplazado ? 'aplazado' : 'pendiente';
     const esLocal = p.equipo1 === OVIEDO;
     const golesO = esLocal ? p.goles1 : p.goles2;
     const golesR = esLocal ? p.goles2 : p.goles1;
@@ -77,8 +77,12 @@
   }
 
   // ── Próximo partido del Oviedo ───────────────────────
+  // Salta los partidos marcados como aplazados: siguen pendientes de
+  // jugarse, pero no son "el siguiente" hasta que se les ponga nueva
+  // fecha (momento en el que, como cualquier otro, dejará de tener
+  // sentido seguir marcándolo "aplazado").
   function getProximoPartido(partidos) {
-    return partidos.find((p) => !p.jugado) || null;
+    return partidos.find((p) => !p.jugado && !p.aplazado) || null;
   }
 
   // ── Último partido jugado ────────────────────────────
@@ -164,6 +168,11 @@
                                 ${golesIzq}<span class="cal-resultado-sep">–</span>${golesDer}
                             </div>
                             <span class="cal-resultado-badge ${badgeClass}">${badgeText}</span>
+                        `;
+          } else if (p.aplazado) {
+            centroHTML = `
+                            <div class="cal-vs">VS</div>
+                            <span class="cal-resultado-badge badge-aplazado">${t('aplazado')}</span>
                         `;
           } else {
             // Usar t() para traducir Casa / Fuera

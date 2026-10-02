@@ -47,7 +47,7 @@
 }
 
 .cal-hero-content h1 {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 2.8em;
   font-weight: 700;
   text-transform: uppercase;
@@ -95,7 +95,7 @@
 }
 
 .cal-stat-num {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.8em;
   font-weight: 700;
   color: #001a6e;
@@ -184,7 +184,7 @@
 }
 
 .cal-jornada-num {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 0.78em;
   font-weight: 700;
   color: #001a6e;
@@ -238,6 +238,10 @@
 }
 .cal-match-card.estado-pendiente {
   border-left-color: #ccd6ff;
+}
+
+.cal-match-card.estado-aplazado {
+  border-left-color: #c4a6ff;
 }
 
 /* Tarjeta del PRÓXIMO partido — destacada */
@@ -302,7 +306,7 @@
 }
 
 .cal-resultado {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.55em;
   font-weight: 700;
   color: #1a1a2e;
@@ -317,7 +321,7 @@
 }
 
 .cal-vs {
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-size: 1.1em;
   font-weight: 600;
   color: #ccd6ff;
@@ -345,6 +349,10 @@
 .badge-derrota {
   background: #ffe0dd;
   color: #cc2200;
+}
+.badge-aplazado {
+  background: #f0e4ff;
+  color: #6b21a8;
 }
 
 /* Indicador local/visitante */
