@@ -46,42 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/09/27/real-oviedo-come-sporting-vuelve-reinar-derbi-asturiano/00031790532467889635955.htm',
-    titulo:
-      'El Real Oviedo se come al Sporting y vuelve a reinar en el derbi asturiano.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/02/real-oviedo-deshace-pepico-amat/00031790968887809223160.htm',
+    titulo: 'El Real Oviedo se deshace en el Pepico Amat.',
     descripcion:
-      'Los azules, muy superiores desde el principio hasta el final, superan a los rojiblancos (2-0) con goles de Chris Ramos y Enzo Pérez. El Oviedo no metía dos goles en el Tartiere desde el día que ascendió a Primera ante el Mirandés.',
-    imagen: 'img/varios/J7LVA.webp',
-    fecha: '27 septiembre 2026',
+      'Los azules, que marcaron en el primer minuto del partido, caen ante el Eldense tras una muy mala actuación (4-1).',
+    imagen: 'img/varios/J8LVA.webp',
+    fecha: '02 octubre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/09/27/oviedo-vuelve-reinar-derbi-victoria-134740590.html',
+    url: 'https://www.lne.es/real-oviedo/2026/10/02/elda-acaba-impulso-post-derbi-134944318.html',
     titulo:
-      'El Oviedo vuelve a reinar en el derbi: victoria merecida (2-0) ante un Sporting con dudas.',
+      'Elda acaba con el impulso post derbi de un plumazo: el Oviedo cae 4-1.',
     descripcion:
-      'Los de Calero se mostraron más decididos que los de Larcamón y se quedan con el choque más deseado.',
-    imagen: 'img/varios/J7LNE.webp',
-    fecha: '27 septiembre 2026',
+      'Los azules, que se quejan de la segunda infracción señalada por Sánchez Martínez, desaprovechan la ventaja inicial de Reina y acaban goleados.',
+    imagen: 'img/varios/J8LNE.webp',
+    fecha: '02 octubre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/deportes/futbol/real-oviedo-sporting-gijon-derbi-asturiano-resultado-goles-resumen-20260927110906-di.html',
-    titulo:
-      'El Real Oviedo renace en el derbi asturiano a costa del Real Sporting de Gijón.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-eldense-derrota-partido-goles-cronica-20261002233123-nt.html',
+    titulo: 'El Real Oviedo dilapida su ventaja y su crédito ante el Eldense.',
     descripcion:
-      'Revés. Los azules pierden ante el Sabadell con merecimiento tras mostrarse como un equipo muy endeble en defensa e inexistente en ataque.',
-    imagen: 'img/varios/J7EC.webp',
-    fecha: '27 septiembre 2026',
+      'Derrota con todo a favor tras adelantarse en el marcador en el primer minuto de juego, el conjunto ovetense acabó perdiendo con contundencia.',
+    imagen: 'img/varios/J8EC.webp',
+    fecha: '02 octubre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-recupera-el-trono-del-derbi-asturiano',
-    titulo: 'La Crónica: El Oviedo recupera el trono del derbi asturiano.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-desplome-absoluto-del-oviedo-en-el-pepico-amat',
+    titulo: 'La Crónica: Desplome absoluto del Oviedo en el Pepico Amat.',
     descripcion:
-      'Victoria justa del Real Oviedo en el derbi asturiano ante un endeble Sporting a nivel defensivo gracias a los goles de Chris Ramos y Enzo Pérez.',
-    imagen: 'img/varios/J7KA.webp',
-    fecha: '27 septiembre 2026',
+      'Los azules se adelantaron a los 30 segundos por medio de Reina, pero se descompusieron tras el descanso y acabaron goleados por el Eldense.',
+    imagen: 'img/varios/J8KA.webp',
+    fecha: '02 octubre 2026',
   },
 ];
 
