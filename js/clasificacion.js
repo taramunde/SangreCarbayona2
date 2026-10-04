@@ -518,26 +518,26 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'S.D. Eibar',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 3,
     },
     {
       equipo1: 'U.D. Almería',
       equipo2: 'Burgos C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Cádiz C.F.',
       equipo2: 'C.D. Leganés',
-      goles1: null,
-      goles2: null,
+      goles1: 4,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'Córdoba C.F.',
@@ -548,8 +548,8 @@
     {
       equipo1: 'C.D. Eldense',
       equipo2: 'Real Oviedo',
-      goles1: null,
-      goles2: null,
+      goles1: 4,
+      goles2: 1,
     },
     {
       equipo1: 'Girona F.C.',
@@ -560,14 +560,14 @@
     {
       equipo1: 'U.D. Las Palmas',
       equipo2: 'Real Valladolid',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 2,
     },
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'Granada C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'C.E. Sabadell',
@@ -578,8 +578,8 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'R.C. Celta Fortuna',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 2,
     },
 
     // Jornada 9 (11/10/2026)
