@@ -54,4 +54,11 @@ CLUB_DATA.videos = [
     fecha: '2026-09-27',
     videoId: 'iNAvTAVVQOU',
   },
+  {
+    id: 8,
+    jornada: 8,
+    titulo: 'C.D. Eldense Vs Real Oviedo',
+    fecha: '2026-10-02',
+    videoId: 'HxUlshaWxaI',
+  },
 ];
