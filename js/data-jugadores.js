@@ -8282,6 +8282,21 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '2005-01-01',
     imagen: 'https://i.ibb.co/6J8GGSGy/De-La-Hera.webp',
   },
+
+  'jose-luis-morales-nogales': {
+    nombre: 'José Luis',
+    apellidos: 'Morales Nogales',
+    nombreCompleto: 'José Luis Morales Nogales',
+    apodo: 'Morales',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.8,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1987-07-23',
+    imagen: 'img/jugadores/Morales.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────

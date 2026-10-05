@@ -554,8 +554,8 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'U.D. Las Palmas',
@@ -572,8 +572,8 @@
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'F.C. Andorra',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'Real Sporting de Gijón',

@@ -2508,6 +2508,17 @@ CLUB_DATA.temporadas['2026-27'] = {
       stats: {},
       partidos: [],
     },
+
+    {
+      id: 'jose-luis-morales-nogales',
+      codigo: 'jose-luis-morales-nogales',
+      dorsal: 9,
+      posicion: 'Delantero Centro',
+      enClubDesde: '2026',
+      contratoHasta: '2027',
+      stats: {},
+      partidos: [],
+    },
   ],
 
   // ENTRENADORES
