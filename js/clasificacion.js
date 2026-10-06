@@ -542,8 +542,8 @@
     {
       equipo1: 'Córdoba C.F.',
       equipo2: 'C.D. Tenerife',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Eldense',
