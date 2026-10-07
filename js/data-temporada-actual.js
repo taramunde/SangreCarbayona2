@@ -589,7 +589,7 @@ CLUB_DATA.temporadas['2026-27'] = {
           id: 6,
           jornada: 7,
           competicion: 'Segunda División',
-          fecha: '2026-09-17',
+          fecha: '2026-09-27',
           local: 'Real Oviedo',
           visitante: 'Real Sporting de Gijón',
           golesLocal: 2,

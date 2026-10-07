@@ -11,17 +11,9 @@
   const POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos por jornada
 
   // ── Partidos de Copa del Rey / otras eliminatorias ───
-  // A diferencia de "enfrentamientos" (liga), estos SÍ llevan fecha y hora
-  // reales, porque se anuncian de uno en uno cuando se sabe el día del
-  // sorteo — no hay un calendario completo de toda la ronda como en liga.
-  //
-  // "trasJornada": estimación de qué jornada de LIGA habrá quedado jugada
-  // justo antes de la fecha real de este partido (calculado a partir del
-  // ritmo semanal habitual). Se usa solo para decidir cuándo este partido
-  // pasa a ser el "próximo partido" en el widget de portada, en vez de la
-  // siguiente jornada de liga sin jugar — no afecta a nada más. Si el
-  // calendario real de liga se retrasa o adelanta mucho, puede ajustarse
-  // este número a mano.
+  // A diferencia de "enfrentamientos" (liga), estos se anuncian de uno en
+  // uno cuando se sabe el día del sorteo, así que la fecha (y hora, en
+  // cuanto se conozca) se pone aquí directamente a mano.
   const partidosEspeciales = [
     {
       competicion: 'Copa del Rey',
@@ -32,7 +24,6 @@
       hora: '20:00',
       goles1: null,
       goles2: null,
-      trasJornada: 11,
     },
   ];
 
@@ -79,6 +70,15 @@
       month: 'short',
     });
     return horaStr ? `${dia} · ${horaStr}` : dia;
+  }
+
+  // Igual que formatearFechaHora, pero añade "(aprox.)" cuando la fecha
+  // todavía no es la oficial (jornadas de liga aún sin jugar, estimadas
+  // por ritmo semanal — ver "aproximada" en enfrentamientos).
+  function etiquetaFecha(p) {
+    const base = formatearFechaHora(p.fecha, p.hora);
+    if (!base) return '';
+    return p.aproximada ? `${base} (${t('aproximada') || 'aprox.'})` : base;
   }
 
   // ── Datos de partidos del Oviedo ─────────────────────
@@ -144,9 +144,11 @@
   }
 
   // ── Próximo partido contando también Copa/otras eliminatorias ─
-  // El de liga es siempre "el siguiente" salvo que ya se haya jugado la
-  // jornada marcada en "trasJornada" del partido especial — en ese punto
-  // el especial le toma el turno (ver comentario junto a "trasJornada").
+  // Todos los partidos de liga llevan ya una fecha (real si se jugó, o
+  // aproximada por ritmo semanal si no — ver "fecha"/"aproximada" en
+  // enfrentamientos, en clasificacion.js), así que comparar por fecha
+  // real contra la fecha real del especial basta para decidir cuál es
+  // antes, sin tener que adivinar nada aquí.
   function getProximoPartidoGeneral() {
     const proximaLiga = getProximoPartido(getPartidosOviedo());
     const proximoEspecial =
@@ -155,11 +157,10 @@
     if (!proximoEspecial) return proximaLiga;
     if (!proximaLiga) return proximoEspecial;
 
-    if (
-      typeof proximoEspecial.trasJornada === 'number' &&
-      proximaLiga.jornada > proximoEspecial.trasJornada
-    ) {
-      return proximoEspecial;
+    if (proximaLiga.fecha && proximoEspecial.fecha) {
+      return new Date(proximoEspecial.fecha) < new Date(proximaLiga.fecha)
+        ? proximoEspecial
+        : proximaLiga;
     }
     return proximaLiga;
   }
@@ -201,7 +202,7 @@
     } else {
       centroHTML = `
                 <div class="cal-vs">VS</div>
-                <span class="cal-localidad">${formatearFechaHora(p.fecha, p.hora)}</span>
+                <span class="cal-localidad">${etiquetaFecha(p)}</span>
             `;
     }
 
@@ -255,7 +256,11 @@
     actualizarStatBar(stats);
 
     const proximo = getProximoPartidoGeneral();
-    const especiales = getPartidosEspeciales();
+    // Se insertan por fecha real/aproximada, en el hueco que les
+    // corresponda entre dos jornadas de liga (ver getProximoPartidoGeneral).
+    const especialesPendientes = getPartidosEspeciales()
+      .slice()
+      .sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
 
     // Agrupar por jornada
     const jornadas = {};
@@ -270,15 +275,27 @@
       .sort((a, b) => a - b)
       .forEach((numJornada) => {
         const ps = jornadas[numJornada];
+        const fechaJornada = ps[0] && ps[0].fecha;
+
+        // Los especiales con fecha anterior a esta jornada van justo antes.
+        while (
+          especialesPendientes.length &&
+          fechaJornada &&
+          new Date(especialesPendientes[0].fecha) < new Date(fechaJornada)
+        ) {
+          const esp = especialesPendientes.shift();
+          container.appendChild(crearBloqueEspecial(esp, proximo === esp));
+        }
 
         const block = document.createElement('div');
         block.className = 'cal-jornada-block';
         block.dataset.jornada = numJornada;
 
         // Cabecera jornada — usa t() para traducir "Jornada"
+        const fechaTexto = ps[0] ? etiquetaFecha(ps[0]) : '';
         block.innerHTML = `
                     <div class="cal-jornada-header">
-                        <span class="cal-jornada-num">${t('jornada')} ${numJornada}</span>
+                        <span class="cal-jornada-num">${t('jornada')} ${numJornada}${fechaTexto ? ` · ${fechaTexto}` : ''}</span>
                         <span class="cal-jornada-line"></span>
                     </div>
                 `;
@@ -360,15 +377,12 @@
         });
 
         container.appendChild(block);
-
-        // Partidos especiales (Copa, etc.) que caen justo después de esta
-        // jornada — ver comentario de "trasJornada" junto a su definición.
-        especiales
-          .filter((p) => String(p.trasJornada) === String(numJornada))
-          .forEach((p) => {
-            container.appendChild(crearBloqueEspecial(p, proximo === p));
-          });
       });
+
+    // Especiales cuya fecha cae después de la última jornada de liga.
+    especialesPendientes.forEach((esp) => {
+      container.appendChild(crearBloqueEspecial(esp, proximo === esp));
+    });
 
     // Mensaje vacío (usado por filtros)
     const emptyMsg = document.createElement('div');
@@ -517,9 +531,10 @@
       const escudoIzq = esLocal ? escudoO : escudoR;
       const escudoDer = esLocal ? escudoR : escudoO;
 
+      const fechaTexto = etiquetaFecha(proximo);
       const etiquetaFooter = esEspecial
-        ? `${proximo.competicion} · ${proximo.ronda} · ${formatearFechaHora(proximo.fecha, proximo.hora)}`
-        : `${t('jornada')} ${proximo.jornada}`;
+        ? `${proximo.competicion} · ${proximo.ronda} · ${fechaTexto}`
+        : `${t('jornada')} ${proximo.jornada}${fechaTexto ? ` · ${fechaTexto}` : ''}`;
 
       const elProximo = document.createElement('div');
       elProximo.className = 'match-item home-match-next';

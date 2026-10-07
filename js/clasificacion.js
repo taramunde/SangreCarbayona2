@@ -90,6 +90,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Granada C.F.',
+      fecha: '2026-08-15',
+      aproximada: false,
       goles1: 0,
       goles2: 0,
     },
@@ -158,6 +160,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.D. Leganés',
+      fecha: '2026-08-22',
+      aproximada: false,
       goles1: 0,
       goles2: 1,
     },
@@ -178,6 +182,8 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'Real Oviedo',
+      fecha: '2026-08-29',
+      aproximada: false,
       goles1: 0,
       goles2: 1,
     },
@@ -282,6 +288,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Burgos C.F.',
+      fecha: '2026-09-06',
+      aproximada: false,
       goles1: 0,
       goles2: 0,
     },
@@ -374,6 +382,8 @@
     {
       equipo1: 'Real Valladolid',
       equipo2: 'Real Oviedo',
+      fecha: '2026-09-13',
+      aproximada: false,
       goles1: 0,
       goles2: 3,
     },
@@ -442,6 +452,8 @@
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'Real Oviedo',
+      fecha: '2026-09-20',
+      aproximada: false,
       goles1: 3,
       goles2: 1,
     },
@@ -498,6 +510,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Real Sporting de Gijón',
+      fecha: '2026-09-27',
+      aproximada: false,
       goles1: 2,
       goles2: 0,
     },
@@ -548,6 +562,8 @@
     {
       equipo1: 'C.D. Eldense',
       equipo2: 'Real Oviedo',
+      fecha: '2026-10-02',
+      aproximada: false,
       goles1: 4,
       goles2: 1,
     },
@@ -634,6 +650,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'S.D. Eibar',
+      fecha: '2026-10-08',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -666,6 +684,8 @@
     {
       equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'Real Oviedo',
+      fecha: '2026-10-15',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -728,6 +748,8 @@
     {
       equipo1: 'U.D. Almería',
       equipo2: 'Real Oviedo',
+      fecha: '2026-10-22',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -832,6 +854,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'U.D. Las Palmas',
+      fecha: '2026-10-29',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -870,6 +894,8 @@
     {
       equipo1: 'Cádiz C.F.',
       equipo2: 'Real Oviedo',
+      fecha: '2026-11-05',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -968,6 +994,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Girona F.C.',
+      fecha: '2026-11-12',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1024,6 +1052,8 @@
     {
       equipo1: 'Córdoba C.F.',
       equipo2: 'Real Oviedo',
+      fecha: '2026-11-19',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1116,6 +1146,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'R.C. Celta Fortuna',
+      fecha: '2026-11-26',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1130,6 +1162,8 @@
     {
       equipo1: 'F.C. Andorra',
       equipo2: 'Real Oviedo',
+      fecha: '2026-12-03',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1252,6 +1286,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Real Sociedad B',
+      fecha: '2026-12-10',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1326,6 +1362,8 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'Real Oviedo',
+      fecha: '2026-12-17',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1388,6 +1426,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.D. Castellón',
+      fecha: '2026-12-24',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1438,6 +1478,8 @@
     {
       equipo1: 'R.C.D. Mallorca',
       equipo2: 'Real Oviedo',
+      fecha: '2026-12-31',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1524,6 +1566,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'U.D. Almería',
+      fecha: '2027-01-07',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1562,6 +1606,8 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'Real Oviedo',
+      fecha: '2027-01-14',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1660,6 +1706,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Cádiz C.F.',
+      fecha: '2027-01-21',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1704,6 +1752,8 @@
     {
       equipo1: 'C.D. Leganés',
       equipo2: 'Real Oviedo',
+      fecha: '2027-01-28',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1796,6 +1846,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.E. Sabadell',
+      fecha: '2027-02-04',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1834,6 +1886,8 @@
     {
       equipo1: 'S.D. Eibar',
       equipo2: 'Real Oviedo',
+      fecha: '2027-02-11',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1932,6 +1986,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.D. Tenerife',
+      fecha: '2027-02-18',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -1964,6 +2020,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'Real Oviedo',
+      fecha: '2027-02-25',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2056,6 +2114,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Córdoba C.F.',
+      fecha: '2027-03-04',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2124,6 +2184,8 @@
     {
       equipo1: 'U.D. Las Palmas',
       equipo2: 'Real Oviedo',
+      fecha: '2027-03-11',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2192,6 +2254,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Real Valladolid',
+      fecha: '2027-03-18',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2224,6 +2288,8 @@
     {
       equipo1: 'Burgos C.F.',
       equipo2: 'Real Oviedo',
+      fecha: '2027-03-25',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2334,6 +2400,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'C.D. Eldense',
+      fecha: '2027-04-01',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2384,6 +2452,8 @@
     {
       equipo1: 'Granada C.F.',
       equipo2: 'Real Oviedo',
+      fecha: '2027-04-08',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2482,6 +2552,8 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'Real Oviedo',
+      fecha: '2027-04-15',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2532,6 +2604,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Albacete Balompié',
+      fecha: '2027-04-22',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2612,6 +2686,8 @@
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'Real Oviedo',
+      fecha: '2027-04-29',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2674,6 +2750,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'A.D. Ceuta F.C.',
+      fecha: '2027-05-06',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2742,6 +2820,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'R.C.D. Mallorca',
+      fecha: '2027-05-13',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2780,6 +2860,8 @@
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'Real Oviedo',
+      fecha: '2027-05-20',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
@@ -2872,6 +2954,8 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'F.C. Andorra',
+      fecha: '2027-05-27',
+      aproximada: true,
       goles1: null,
       goles2: null,
     },
