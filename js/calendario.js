@@ -43,7 +43,14 @@
   let filtrosListenerActivo = false;
 
   // ── Utilidades ──────────────────────────────────────
+  // Rivales de Copa (u otras eliminatorias) que no juegan en la misma
+  // categoría, así que no están en la lista "equipos" de la liga actual.
+  const escudosExtra = {
+    'C.D. Numancia': 'img/escudos/Numancia.webp',
+  };
+
   function getEscudo(nombre) {
+    if (escudosExtra[nombre]) return escudosExtra[nombre];
     if (typeof equipos === 'undefined') return '';
     const eq = equipos.find((e) => e.nombre === nombre);
     return eq ? eq.escudo : '';
