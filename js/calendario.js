@@ -10,6 +10,41 @@
   const OVIEDO = 'Real Oviedo';
   const POR_JORNADA = 11; // MODIFICADO: 22 equipos = 11 partidos por jornada
 
+  // ── Partidos de Copa del Rey / otras eliminatorias ───
+  // A diferencia de "enfrentamientos" (liga), estos SÍ llevan fecha y hora
+  // reales, porque se anuncian de uno en uno cuando se sabe el día del
+  // sorteo — no hay un calendario completo de toda la ronda como en liga.
+  //
+  // "trasJornada": estimación de qué jornada de LIGA habrá quedado jugada
+  // justo antes de la fecha real de este partido (calculado a partir del
+  // ritmo semanal habitual). Se usa solo para decidir cuándo este partido
+  // pasa a ser el "próximo partido" en el widget de portada, en vez de la
+  // siguiente jornada de liga sin jugar — no afecta a nada más. Si el
+  // calendario real de liga se retrasa o adelanta mucho, puede ajustarse
+  // este número a mano.
+  const partidosEspeciales = [
+    {
+      competicion: 'Copa del Rey',
+      ronda: 'Primera Ronda',
+      equipo1: 'Real Oviedo',
+      equipo2: 'C.D. Numancia',
+      fecha: '2026-10-28',
+      hora: '20:00',
+      goles1: null,
+      goles2: null,
+      trasJornada: 11,
+    },
+  ];
+
+  function getPartidosEspeciales() {
+    return partidosEspeciales
+      .map((p) => ({
+        ...p,
+        jugado: p.goles1 !== null && p.goles2 !== null,
+      }))
+      .filter((p) => p.equipo1 === OVIEDO || p.equipo2 === OVIEDO);
+  }
+
   // Los botones de filtro son fijos en el HTML (no se recrean al volver a
   // renderizar el calendario, p.ej. al cambiar de idioma), así que el
   // listener solo debe engancharse una vez o se acumulan y un solo clic
@@ -21,6 +56,29 @@
     if (typeof equipos === 'undefined') return '';
     const eq = equipos.find((e) => e.nombre === nombre);
     return eq ? eq.escudo : '';
+  }
+
+  // Si un rival no tiene escudo mapeado (p.ej. un equipo de Copa que no
+  // juega en la misma categoría y no está en la lista de "equipos"), no
+  // se pone ningún <img> en vez de dejar un icono roto.
+  function imgEscudo(url, alt, claseCss) {
+    return url
+      ? `<img src="${url}" alt="${alt}" class="${claseCss}">`
+      : '';
+  }
+
+  // Fecha + hora reales de un partido especial, formateadas en el idioma
+  // activo (sin depender de app.js, que no se carga en calendario.html).
+  function formatearFechaHora(fechaStr, horaStr) {
+    if (!fechaStr) return '';
+    const [y, m, d] = fechaStr.split('-');
+    const fecha = new Date(y, m - 1, d);
+    const lang = localStorage.getItem('lang') || 'es';
+    const dia = fecha.toLocaleDateString(lang, {
+      day: 'numeric',
+      month: 'short',
+    });
+    return horaStr ? `${dia} · ${horaStr}` : dia;
   }
 
   // ── Datos de partidos del Oviedo ─────────────────────
@@ -85,10 +143,97 @@
     return partidos.find((p) => !p.jugado && !p.aplazado) || null;
   }
 
+  // ── Próximo partido contando también Copa/otras eliminatorias ─
+  // El de liga es siempre "el siguiente" salvo que ya se haya jugado la
+  // jornada marcada en "trasJornada" del partido especial — en ese punto
+  // el especial le toma el turno (ver comentario junto a "trasJornada").
+  function getProximoPartidoGeneral() {
+    const proximaLiga = getProximoPartido(getPartidosOviedo());
+    const proximoEspecial =
+      getPartidosEspeciales().find((p) => !p.jugado) || null;
+
+    if (!proximoEspecial) return proximaLiga;
+    if (!proximaLiga) return proximoEspecial;
+
+    if (
+      typeof proximoEspecial.trasJornada === 'number' &&
+      proximaLiga.jornada > proximoEspecial.trasJornada
+    ) {
+      return proximoEspecial;
+    }
+    return proximaLiga;
+  }
+
   // ── Último partido jugado ────────────────────────────
   function getUltimoPartido(partidos) {
     const jugados = partidos.filter((p) => p.jugado);
     return jugados.length ? jugados[jugados.length - 1] : null;
+  }
+
+  // ── Bloque de un partido especial (Copa, etc.) ───────
+  function crearBloqueEspecial(p, esProximo) {
+    const esLocal = p.equipo1 === OVIEDO;
+    const rival = esLocal ? p.equipo2 : p.equipo1;
+    const escudoO = getEscudo(OVIEDO);
+    const escudoR = getEscudo(rival);
+    const equipoIzq = esLocal ? OVIEDO : rival;
+    const equipoDer = esLocal ? rival : OVIEDO;
+    const escudoIzq = esLocal ? escudoO : escudoR;
+    const escudoDer = esLocal ? escudoR : escudoO;
+
+    const estado = getEstado(p);
+    let centroHTML;
+    if (p.jugado) {
+      const badgeClass = {
+        victoria: 'badge-victoria',
+        empate: 'badge-empate',
+        derrota: 'badge-derrota',
+      }[estado];
+      const badgeText = {
+        victoria: t('victoria'),
+        empate: t('empate'),
+        derrota: t('derrota'),
+      }[estado];
+      centroHTML = `
+                <div class="cal-resultado">${p.goles1}<span class="cal-resultado-sep">–</span>${p.goles2}</div>
+                <span class="cal-resultado-badge ${badgeClass}">${badgeText}</span>
+            `;
+    } else {
+      centroHTML = `
+                <div class="cal-vs">VS</div>
+                <span class="cal-localidad">${formatearFechaHora(p.fecha, p.hora)}</span>
+            `;
+    }
+
+    const block = document.createElement('div');
+    block.className = 'cal-jornada-block';
+    block.innerHTML = `
+            <div class="cal-jornada-header">
+                <span class="cal-jornada-num">${p.competicion} · ${p.ronda}</span>
+                <span class="cal-jornada-line"></span>
+            </div>
+        `;
+
+    const card = document.createElement('div');
+    card.className = `cal-match-card estado-${estado}${esProximo ? ' proximo-partido' : ''}`;
+    card.dataset.estado = estado;
+    card.dataset.localidad = esLocal ? 'local' : 'visitante';
+    card.innerHTML = `
+            ${esProximo ? `<div class="cal-proximo-badge">${t('proximo_partido')}</div>` : ''}
+            <div class="cal-team local">
+                ${imgEscudo(escudoIzq, equipoIzq, 'cal-team-escudo')}
+                <span class="cal-team-nombre${equipoIzq === OVIEDO ? ' es-oviedo' : ''}">${equipoIzq}</span>
+            </div>
+            <div class="cal-match-center">
+                ${centroHTML}
+            </div>
+            <div class="cal-team visitante">
+                ${imgEscudo(escudoDer, equipoDer, 'cal-team-escudo')}
+                <span class="cal-team-nombre${equipoDer === OVIEDO ? ' es-oviedo' : ''}">${equipoDer}</span>
+            </div>
+        `;
+    block.appendChild(card);
+    return block;
   }
 
   // =====================================================
@@ -109,7 +254,8 @@
     const stats = calcularStats(partidos);
     actualizarStatBar(stats);
 
-    const proximo = getProximoPartido(partidos);
+    const proximo = getProximoPartidoGeneral();
+    const especiales = getPartidosEspeciales();
 
     // Agrupar por jornada
     const jornadas = {};
@@ -198,14 +344,14 @@
           card.innerHTML = `
                         ${esProximo ? `<div class="cal-proximo-badge">${t('proximo_partido')}</div>` : ''}
                         <div class="cal-team local">
-                            <img src="${escudoIzq}" alt="${equipoIzq}" class="cal-team-escudo">
+                            ${imgEscudo(escudoIzq, equipoIzq, 'cal-team-escudo')}
                             <span class="cal-team-nombre${equipoIzq === OVIEDO ? ' es-oviedo' : ''}">${equipoIzq}</span>
                         </div>
                         <div class="cal-match-center">
                             ${centroHTML}
                         </div>
                         <div class="cal-team visitante">
-                            <img src="${escudoDer}" alt="${equipoDer}" class="cal-team-escudo">
+                            ${imgEscudo(escudoDer, equipoDer, 'cal-team-escudo')}
                             <span class="cal-team-nombre${equipoDer === OVIEDO ? ' es-oviedo' : ''}">${equipoDer}</span>
                         </div>
                     `;
@@ -214,6 +360,14 @@
         });
 
         container.appendChild(block);
+
+        // Partidos especiales (Copa, etc.) que caen justo después de esta
+        // jornada — ver comentario de "trasJornada" junto a su definición.
+        especiales
+          .filter((p) => String(p.trasJornada) === String(numJornada))
+          .forEach((p) => {
+            container.appendChild(crearBloqueEspecial(p, proximo === p));
+          });
       });
 
     // Mensaje vacío (usado por filtros)
@@ -348,12 +502,12 @@
     const lista = document.getElementById('calendarioList');
     if (!lista) return; // no estamos en index.html
 
-    const partidos = getPartidosOviedo();
-    const proximo = getProximoPartido(partidos);
+    const proximo = getProximoPartidoGeneral();
 
     lista.innerHTML = '';
 
     if (proximo) {
+      const esEspecial = !!proximo.competicion;
       const esLocal = proximo.equipo1 === OVIEDO;
       const rival = esLocal ? proximo.equipo2 : proximo.equipo1;
       const escudoO = getEscudo(OVIEDO);
@@ -363,12 +517,16 @@
       const escudoIzq = esLocal ? escudoO : escudoR;
       const escudoDer = esLocal ? escudoR : escudoO;
 
+      const etiquetaFooter = esEspecial
+        ? `${proximo.competicion} · ${proximo.ronda} · ${formatearFechaHora(proximo.fecha, proximo.hora)}`
+        : `${t('jornada')} ${proximo.jornada}`;
+
       const elProximo = document.createElement('div');
       elProximo.className = 'match-item home-match-next';
       elProximo.innerHTML = `
                 <div class="home-match-teams">
                     <div class="home-team${equipoIzq === OVIEDO ? ' oviedo' : ''}">
-                        <img src="${escudoIzq}" alt="${equipoIzq}" class="home-escudo-md">
+                        ${imgEscudo(escudoIzq, equipoIzq, 'home-escudo-md')}
                         <span class="home-team-nombre">${equipoIzq}</span>
                     </div>
                     <div class="home-match-center">
@@ -376,12 +534,12 @@
                         <span class="home-localidad-badge">${esLocal ? t('en_casa') : t('fuera')}</span>
                     </div>
                     <div class="home-team right${equipoDer === OVIEDO ? ' oviedo' : ''}">
-                        <img src="${escudoDer}" alt="${equipoDer}" class="home-escudo-md">
+                        ${imgEscudo(escudoDer, equipoDer, 'home-escudo-md')}
                         <span class="home-team-nombre">${equipoDer}</span>
                     </div>
                 </div>
                 <div class="home-match-footer">
-                    <span class="home-match-label"><i class="fas fa-calendar-alt"></i> ${t('jornada')} ${proximo.jornada}</span>
+                    <span class="home-match-label"><i class="fas fa-calendar-alt"></i> ${etiquetaFooter}</span>
                 </div>
             `;
       lista.appendChild(elProximo);
