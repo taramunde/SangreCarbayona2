@@ -882,12 +882,32 @@
       selJugador,
     ].forEach((sel) => sel.addEventListener('change', actualizar));
 
+    // Filtros secundarios (todos salvo el texto libre y el propio tipo):
+    // se reinician cada vez que se cambia de tipo de contenido. Si no,
+    // un filtro elegido para "Partidos" (p. ej. Rival) se queda puesto
+    // por debajo aunque el campo esté oculto, y como Oviesportinguistas
+    // o Derbis no tienen ese dato, el filtro los descartaba todos sin
+    // dar ninguna pista de por qué no salía nada.
+    function resetFiltrosSecundarios() {
+      selTemporada.value = '';
+      selCompeticion.value = '';
+      selPosicion.value = '';
+      selResultado.value = '';
+      selRival.value = '';
+      selLocalidad.value = '';
+      selJornada.value = '';
+      selTarjeta.value = '';
+      selNacionalidad.value = '';
+      selJugador.value = '';
+    }
+
     selTipo.querySelectorAll('.busc-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         selTipo
           .querySelectorAll('.busc-chip')
           .forEach((c) => c.classList.remove('active'));
         chip.classList.add('active');
+        resetFiltrosSecundarios();
         actualizar();
       });
     });
@@ -906,16 +926,7 @@
 
     btnLimpiar.addEventListener('click', () => {
       inputTexto.value = '';
-      selTemporada.value = '';
-      selCompeticion.value = '';
-      selPosicion.value = '';
-      selResultado.value = '';
-      selRival.value = '';
-      selLocalidad.value = '';
-      selJornada.value = '';
-      selTarjeta.value = '';
-      selNacionalidad.value = '';
-      selJugador.value = '';
+      resetFiltrosSecundarios();
       selTipo
         .querySelectorAll('.busc-chip')
         .forEach((c) => c.classList.remove('active'));
