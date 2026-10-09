@@ -329,6 +329,22 @@ a.busc-card {
   margin-right: 2px;
 }
 
+.busc-stats-jugador {
+  margin: 6px 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--gray-100);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.busc-stats-jugador i {
+  color: var(--secondary-color);
+  margin-right: 3px;
+}
+
 .busc-tarjetas {
   margin: 6px 0 0;
   display: flex;

@@ -240,18 +240,32 @@
               goleadores: new Set(),
               amarilla: false,
               roja: false,
+              statsPorJugador: {},
             });
           }
           const grupo = porClave.get(clave);
+          const esPortero = datosMaestro.posicion === 'Portero';
           grupo.jugadores.add(nombreJugador);
           // En los porteros, "goles" son los encajados, no marcados
           // (mismo criterio que ya usa el resto del proyecto) — no
           // deben contar como goleadores.
-          if (p.goles > 0 && datosMaestro.posicion !== 'Portero') {
+          if (p.goles > 0 && !esPortero) {
             grupo.goleadores.add(nombreJugador);
           }
           if (p.amarilla) grupo.amarilla = true;
           if (p.roja) grupo.roja = true;
+
+          // Aportación individual de este jugador en este partido en
+          // concreto, para poder mostrarla al filtrar por su nombre
+          // (cuántos goles marcó, o si es portero cuántos encajó).
+          grupo.statsPorJugador[nombreJugador] = {
+            goles: p.goles || 0,
+            esPortero,
+            asistencias: p.asistencias || 0,
+            amarilla: !!p.amarilla,
+            roja: !!p.roja,
+            minutos: p.minutos || 0,
+          };
         });
       });
     });
@@ -260,7 +274,15 @@
     // lista completa de jugadores que lo disputaron, quién marcó y si
     // hubo tarjetas.
     porClave.forEach(
-      ({ p, seasonId, jugadores, goleadores, amarilla, roja }) => {
+      ({
+        p,
+        seasonId,
+        jugadores,
+        goleadores,
+        amarilla,
+        roja,
+        statsPorJugador,
+      }) => {
         const esLocal = p.local === OVIEDO;
         const rival = esLocal ? p.visitante : p.local;
         const res = resultadoEfectivo(p);
@@ -289,6 +311,7 @@
           jornada: p.jornada != null ? String(p.jornada) : '',
           jugadores: listaJugadores,
           goleadores: listaGoleadores,
+          statsPorJugador,
           amarilla,
           roja,
           imagen: '',
@@ -542,7 +565,15 @@
     const rivales = indice.map((i) => i.rival);
     const nacionalidades = indice.flatMap((i) => i.nacionalidades || []);
     const jornadas = indice.map((i) => i.jornada);
+    const nombresJugadores = indice
+      .filter((i) => i.tipo === 'jugador')
+      .map((i) => i.titulo);
 
+    poblarSelect(
+      document.getElementById('buscJugador'),
+      nombresJugadores,
+      'Elige un jugador...',
+    );
     poblarSelect(
       document.getElementById('buscTemporada'),
       temporadas,
@@ -596,6 +627,8 @@
     )
       return false;
     if (estado.jornada && item.jornada !== estado.jornada) return false;
+    if (estado.jugador && !(item.jugadores || []).includes(estado.jugador))
+      return false;
     if (estado.tarjeta === 'amarilla' && !item.amarilla) return false;
     if (estado.tarjeta === 'roja' && !item.roja) return false;
     if (estado.tarjeta === 'ninguna' && (item.amarilla || item.roja))
@@ -638,7 +671,40 @@
     derbi: 'Derbi',
   };
 
-  function crearTarjeta(item) {
+  function statsJugadorHtml(item, jugadorSeleccionado) {
+    if (
+      !jugadorSeleccionado ||
+      item.tipo !== 'partido' ||
+      !item.statsPorJugador
+    )
+      return '';
+    const s = item.statsPorJugador[jugadorSeleccionado];
+    if (!s) return '';
+
+    const partes = [];
+    if (s.esPortero) {
+      partes.push(
+        s.goles > 0
+          ? `Encajó ${s.goles} gol${s.goles === 1 ? '' : 'es'}`
+          : 'Portería a cero',
+      );
+    } else if (s.goles > 0) {
+      partes.push(`${s.goles} gol${s.goles === 1 ? '' : 'es'}`);
+    }
+    if (s.asistencias > 0)
+      partes.push(
+        `${s.asistencias} asistencia${s.asistencias === 1 ? '' : 's'}`,
+      );
+    if (s.amarilla) partes.push('Amarilla');
+    if (s.roja) partes.push('Roja');
+    if (s.minutos) partes.push(`${s.minutos}'`);
+
+    if (!partes.length) partes.push('Jugó sin incidencias');
+
+    return `<p class="busc-stats-jugador"><i class="fas fa-star"></i> ${jugadorSeleccionado}: ${partes.join(' · ')}</p>`;
+  }
+
+  function crearTarjeta(item, jugadorSeleccionado) {
     const esEnlazable = !!item.url;
     const Tag = esEnlazable ? 'a' : 'div';
     const card = document.createElement(Tag);
@@ -659,6 +725,7 @@
 
     const jugadoresHtml = listaCorta(item.jugadores, 'fa-users');
     const goleadoresHtml = listaCorta(item.goleadores, 'fa-futbol');
+    const statsHtml = statsJugadorHtml(item, jugadorSeleccionado);
 
     let tarjetasHtml = '';
     if (item.amarilla || item.roja) {
@@ -674,6 +741,7 @@
         <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${ETIQUETAS_TIPO[item.tipo]}</span>
         <b class="busc-titulo">${item.titulo}</b>
         ${item.subtitulo ? `<p class="busc-subtitulo">${item.subtitulo}</p>` : ''}
+        ${statsHtml}
         ${jugadoresHtml}
         ${goleadoresHtml}
         ${tarjetasHtml}
@@ -683,10 +751,18 @@
     return card;
   }
 
-  function render(resultados, contenedor, contador, mostrados) {
+  function render(
+    resultados,
+    contenedor,
+    contador,
+    mostrados,
+    jugadorSeleccionado,
+  ) {
     contenedor.innerHTML = '';
     const lote = resultados.slice(0, mostrados);
-    lote.forEach((item) => contenedor.appendChild(crearTarjeta(item)));
+    lote.forEach((item) =>
+      contenedor.appendChild(crearTarjeta(item, jugadorSeleccionado)),
+    );
 
     contador.textContent = resultados.length
       ? `${resultados.length} resultado${resultados.length === 1 ? '' : 's'}`
@@ -709,6 +785,7 @@
     const selResultado = document.getElementById('buscResultado');
     const selRival = document.getElementById('buscRival');
     const selLocalidad = document.getElementById('buscLocalidad');
+    const selJugador = document.getElementById('buscJugador');
     const contenedor = document.getElementById('buscResultados');
     const contador = document.getElementById('buscContador');
     const btnMas = document.getElementById('buscMostrarMas');
@@ -723,6 +800,7 @@
     const campoJornada = document.getElementById('buscCampoJornada');
     const campoTarjeta = document.getElementById('buscCampoTarjeta');
     const campoNacionalidad = document.getElementById('buscCampoNacionalidad');
+    const campoJugador = document.getElementById('buscCampoJugador');
 
     let resultadosActuales = [];
     let mostrados = PAGINA;
@@ -741,6 +819,7 @@
         jornada: selJornada.value,
         tarjeta: selTarjeta.value,
         nacionalidad: selNacionalidad.value,
+        jugador: selJugador.value,
       };
     }
 
@@ -770,6 +849,7 @@
       campoJornada.style.display = esTipoPartido ? '' : 'none';
       campoTarjeta.style.display = esTipoSoloPartido ? '' : 'none';
       campoNacionalidad.style.display = esTipoConNacionalidad ? '' : 'none';
+      campoJugador.style.display = esTipoSoloPartido ? '' : 'none';
 
       mostrados = PAGINA;
       resultadosActuales = filtrar(indice, estado);
@@ -778,6 +858,7 @@
         contenedor,
         contador,
         mostrados,
+        estado.jugador,
       );
       btnMas.style.display = hayMas ? '' : 'none';
     }
@@ -798,6 +879,7 @@
       selJornada,
       selTarjeta,
       selNacionalidad,
+      selJugador,
     ].forEach((sel) => sel.addEventListener('change', actualizar));
 
     selTipo.querySelectorAll('.busc-chip').forEach((chip) => {
@@ -817,6 +899,7 @@
         contenedor,
         contador,
         mostrados,
+        selJugador.value,
       );
       btnMas.style.display = hayMas ? '' : 'none';
     });
@@ -832,6 +915,7 @@
       selJornada.value = '';
       selTarjeta.value = '';
       selNacionalidad.value = '';
+      selJugador.value = '';
       selTipo
         .querySelectorAll('.busc-chip')
         .forEach((c) => c.classList.remove('active'));
