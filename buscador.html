@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="img/varios/LogoSangreCarbayona.webp"
+    />
+    <title>Buscador | Sangre Carbayona</title>
+    <meta
+      name="description"
+      content="Buscador avanzado del Real Oviedo: encuentra jugadores, entrenadores, partidos, títulos, estadios, capítulos de la historia del club y derbis, con filtros por temporada, competición, posición y resultado."
+    />
+    <link rel="stylesheet" href="css/styles.css?nocache=20261009v5" />
+    <link rel="stylesheet" href="css/buscador.css?nocache=20261009v5" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="main-header" id="header-placeholder"></header>
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <section class="page-header">
+      <div class="page-header-bg">
+        <img
+          src="https://picsum.photos/seed/stadium-derbis/1920/400"
+          alt="Estadio"
+        />
+      </div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+          <span class="current" data-i18n="nav_buscador">Buscador</span>
+        </div>
+        <h1 class="page-title" data-i18n="nav_buscador">Buscador</h1>
+        <p class="page-subtitle">
+          Jugadores, entrenadores, partidos, títulos, estadios, historia y
+          derbis: todo lo que hay en la web, en un solo sitio
+        </p>
+      </div>
+    </section>
+
+    <section class="buscador-section">
+      <div class="container">
+        <div class="busc-buscador-wrap">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="buscTexto"
+            placeholder="Busca por nombre, apellidos, apodo, rival, competición..."
+            aria-label="Buscar"
+          />
+        </div>
+
+        <div class="busc-chips" id="buscTipoChips">
+          <button type="button" class="busc-chip active" data-tipo="todos">
+            <i class="fas fa-border-all"></i> Todos
+          </button>
+          <button type="button" class="busc-chip" data-tipo="jugador">
+            <i class="fas fa-user"></i> Jugadores
+          </button>
+          <button type="button" class="busc-chip" data-tipo="entrenador">
+            <i class="fas fa-clipboard-user"></i> Entrenadores
+          </button>
+          <button type="button" class="busc-chip" data-tipo="partido">
+            <i class="fas fa-futbol"></i> Partidos
+          </button>
+          <button type="button" class="busc-chip" data-tipo="titulo">
+            <i class="fas fa-trophy"></i> Títulos
+          </button>
+          <button type="button" class="busc-chip" data-tipo="estadio">
+            <i class="fas fa-flag"></i> Estadios
+          </button>
+          <button type="button" class="busc-chip" data-tipo="historia">
+            <i class="fas fa-landmark"></i> Historia
+          </button>
+          <button type="button" class="busc-chip" data-tipo="derbi">
+            <i class="fas fa-shield-halved"></i> Derbis
+          </button>
+          <button type="button" class="busc-chip" data-tipo="oviesportinguista">
+            <i class="fas fa-people-arrows"></i> Oviesportinguistas
+          </button>
+        </div>
+
+        <div class="busc-filtros">
+          <div class="busc-campo">
+            <label for="buscTemporada">Temporada</label>
+            <select id="buscTemporada"></select>
+          </div>
+          <div class="busc-campo">
+            <label for="buscCompeticion">Competición</label>
+            <select id="buscCompeticion"></select>
+          </div>
+          <div class="busc-campo" id="buscCampoPosicion">
+            <label for="buscPosicion">Posición</label>
+            <select id="buscPosicion"></select>
+          </div>
+          <div class="busc-campo" id="buscCampoResultado">
+            <label for="buscResultado">Resultado</label>
+            <select id="buscResultado">
+              <option value="">Todos los resultados</option>
+              <option value="V">Victoria</option>
+              <option value="E">Empate</option>
+              <option value="D">Derrota</option>
+            </select>
+          </div>
+          <button type="button" class="busc-limpiar" id="buscLimpiar">
+            <i class="fas fa-rotate-left"></i> Limpiar filtros
+          </button>
+        </div>
+
+        <div class="busc-cabecera-resultados">
+          <span id="buscContador">Cargando…</span>
+        </div>
+
+        <div class="busc-grid" id="buscResultados"></div>
+
+        <div class="busc-mas-wrap">
+          <button type="button" class="busc-mas" id="buscMostrarMas">
+            Mostrar más resultados
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compartir página -->
+    <div class="container">
+      <div class="page-share">
+        <p data-i18n="compartir_pagina">Comparte esta página</p>
+        <div class="page-share-buttons" id="pageShareButtons"></div>
+      </div>
+    </div>
+
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <script src="js/data-club.js?nocache=20261009v5"></script>
+    <script src="js/data-jugadores.js?nocache=20261009v5"></script>
+    <script src="js/data-temporada-actual.js?nocache=20261009v5"></script>
+    <script src="js/data-historico.js?nocache=20261009v5"></script>
+    <script src="js/data-utils.js?nocache=20261009v5"></script>
+    <script src="js/data-palmares.js?nocache=20261009v5"></script>
+    <script src="js/data-estadios.js?nocache=20261009v5"></script>
+    <script src="js/data-historia.js?nocache=20261009v5"></script>
+    <script src="js/data-oviesportinguistas.js?nocache=20261009v5"></script>
+    <script src="js/data-derbis.js?nocache=20261009v5"></script>
+    <script src="js/busqueda.js?nocache=20261009v5"></script>
+    <script src="js/i18n.js?nocache=20261009v5"></script>
+    <script src="js/seo.js?nocache=20261009v5"></script>
+    <script src="js/main.js?nocache=20261009v5"></script>
+    <script src="js/buscador.js?nocache=20261009v5"></script>
+    <script src="js/compartir-pagina.js?nocache=20261009v5"></script>
+  </body>
+</html>

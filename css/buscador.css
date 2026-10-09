@@ -1,0 +1,411 @@
+/* ===================================
+   BUSCADOR
+   =================================== */
+
+/* Cabecera de la página (imagen + overlay + texto blanco), igual que
+   en derbis.css/equipo-styles.css: esta página no carga ninguno de
+   esos dos archivos, así que necesita su propia copia. */
+.page-header {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.page-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.page-header-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 26, 110, 0.55);
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.page-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.page-header .breadcrumb .current {
+  color: var(--secondary-color, #fdb913);
+  font-weight: 600;
+}
+
+.page-header .breadcrumb span {
+  margin: 0 6px;
+}
+
+.page-header .page-title {
+  font-family: var(--font-heading, 'Oswald', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  letter-spacing: 1px;
+}
+
+.page-header .page-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ── Buscador de texto libre ── */
+
+.busc-buscador-wrap {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto 20px;
+}
+
+.busc-buscador-wrap i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-600);
+}
+
+#buscTexto {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 16px 12px 44px;
+  border: 1px solid var(--gray-200);
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+#buscTexto:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+/* ── Chips de tipo de contenido ── */
+
+.busc-chips {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.busc-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.busc-chip:hover {
+  border-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.busc-chip.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* ── Filtros avanzados ── */
+
+.busc-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  background: var(--gray-100);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.busc-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+  flex: 1 1 160px;
+}
+
+.busc-campo label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.busc-campo select {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-900, #111827);
+}
+
+.busc-campo select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.busc-limpiar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 9px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: fit-content;
+}
+
+.busc-limpiar:hover {
+  border-color: var(--danger, #ef4444);
+  color: var(--danger, #ef4444);
+}
+
+/* ── Contador de resultados ── */
+
+.busc-cabecera-resultados {
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+/* ── Rejilla de resultados ── */
+
+.busc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.busc-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--gray-200);
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+a.busc-card {
+  cursor: pointer;
+}
+
+.busc-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.busc-foto,
+.busc-foto-fallback {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.busc-foto {
+  background: #e8edf4;
+  border: 2px solid #e0e8f0;
+}
+
+.busc-foto-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}
+
+.busc-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.busc-tipo-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--gray-600);
+  margin-bottom: 3px;
+}
+
+.busc-titulo {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.busc-subtitulo {
+  margin: 2px 0 0;
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.busc-meta {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 9px;
+  border-radius: 20px;
+}
+
+.busc-meta-v {
+  background: #d4f5e2;
+  color: #1a8f3c;
+}
+
+.busc-meta-e {
+  background: #fff3cc;
+  color: #a07800;
+}
+
+.busc-meta-d {
+  background: #ffe0dd;
+  color: #cc2200;
+}
+
+/* Colores por tipo en el borde izquierdo, para distinguir a golpe de vista */
+.busc-tipo-jugador {
+  border-left-color: var(--primary-color);
+}
+.busc-tipo-entrenador {
+  border-left-color: #2d6a4f;
+}
+.busc-tipo-partido {
+  border-left-color: var(--secondary-color);
+}
+.busc-tipo-titulo {
+  border-left-color: #c9a227;
+}
+.busc-tipo-estadio {
+  border-left-color: #6b7a8d;
+}
+.busc-tipo-historia {
+  border-left-color: #8b5cf6;
+}
+.busc-tipo-derbi {
+  border-left-color: var(--accent-color, #e53e3e);
+}
+.busc-tipo-oviesportinguista {
+  border-left-color: #0ea5e9;
+}
+
+/* ── Mostrar más ── */
+
+.busc-mas-wrap {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.busc-mas {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.busc-mas:hover {
+  background: var(--primary-dark);
+}
+
+@media (max-width: 600px) {
+  .busc-filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .busc-campo {
+    min-width: 0;
+  }
+
+  .busc-limpiar {
+    justify-content: center;
+  }
+
+  .busc-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -68,6 +68,7 @@ function lastmodParaContenido(loc, contenido, cache, hoy) {
 // una carpeta "juegos/"; ajustar la ruta si no es así.)
 const PAGINAS_ESTATICAS = [
   { loc: '/', changefreq: 'daily', priority: '1.0' },
+  { loc: '/buscador.html', changefreq: 'monthly', priority: '0.7' },
   { loc: '/noticias.html', changefreq: 'daily', priority: '0.9' },
   { loc: '/primer-equipo.html', changefreq: 'weekly', priority: '0.8' },
   { loc: '/historia.html', changefreq: 'yearly', priority: '0.6' },

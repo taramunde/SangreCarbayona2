@@ -8,6 +8,7 @@ const translations = {
     // NAVEGACIÓN
     // ============================================
     nav_inicio: 'Inicio',
+    nav_buscador: 'Buscador',
     nav_club: 'Club',
     nav_equipo: 'Equipo',
     nav_competiciones: 'Competiciones',
@@ -393,6 +394,7 @@ const translations = {
     // NAVIGATION
     // ============================================
     nav_inicio: 'Home',
+    nav_buscador: 'Search',
     nav_club: 'Club',
     nav_equipo: 'Team',
     nav_competiciones: 'Competitions',
