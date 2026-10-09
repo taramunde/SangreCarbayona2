@@ -566,16 +566,32 @@
       ordenados.map((v) => `<option value="${v}">${v}</option>`).join('');
   }
 
-  function poblarFiltros(indice) {
-    const temporadas = indice.flatMap((i) => i.temporadas || []);
-    const competiciones = indice.map((i) => i.competicion);
-    const posiciones = indice.map((i) => i.posicion);
-    const rivales = indice.map((i) => i.rival);
-    const nacionalidades = indice.flatMap((i) => i.nacionalidades || []);
-    const jornadas = indice.map((i) => i.jornada);
-    const nombresJugadores = indice
-      .filter((i) => i.tipo === 'jugador')
-      .map((i) => i.titulo);
+  // "indiceTipo" es el subconjunto del índice que corresponde al tipo
+  // de contenido elegido (o el índice completo si es "todos"): cada
+  // desplegable solo debe ofrecer valores que existan de verdad para
+  // ese tipo (p. ej. si el tipo es "Entrenadores", "Nacionalidad" no
+  // debe listar nacionalidades que solo tengan jugadores, aunque sí
+  // existan en el índice completo).
+  //
+  // "indiceCompleto" se usa aparte solo para el desplegable de
+  // "Jugador" (quién jugó cada partido): esa lista sale siempre de
+  // los partidos, nunca de las fichas de jugador, así que no debe
+  // vaciarse cuando el tipo elegido es "Partidos" (que es precisamente
+  // cuando ese filtro tiene sentido y se muestra).
+  function poblarFiltros(indiceTipo, indiceCompleto) {
+    const temporadas = indiceTipo.flatMap((i) => i.temporadas || []);
+    const competiciones = indiceTipo.map((i) => i.competicion);
+    const posiciones = indiceTipo.map((i) => i.posicion);
+    const rivales = indiceTipo.map((i) => i.rival);
+    const nacionalidades = indiceTipo.flatMap((i) => i.nacionalidades || []);
+    const jornadas = indiceTipo.map((i) => i.jornada);
+    const nombresJugadores = Array.from(
+      new Set(
+        indiceCompleto
+          .filter((i) => i.tipo === 'partido')
+          .flatMap((i) => i.jugadores || []),
+      ),
+    );
 
     poblarSelect(
       document.getElementById('buscJugador'),
@@ -826,7 +842,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const indice = construirIndice();
-    poblarFiltros(indice);
+    poblarFiltros(indice, indice);
 
     indice.forEach((i) => {
       if (i.tipo === 'jugador' && i.url) mapaJugadorUrl[i.titulo] = i.url;
@@ -956,6 +972,16 @@
       selJugador.value = '';
     }
 
+    // Recalcula las opciones de cada desplegable para que solo ofrezcan
+    // valores que existan de verdad dentro del tipo de contenido
+    // elegido (p. ej. "Nacionalidad" no debe listar nacionalidades que
+    // solo tengan jugadores si el tipo elegido es "Entrenadores").
+    function actualizarFiltrosDisponibles(tipo) {
+      const indiceTipo =
+        tipo === 'todos' ? indice : indice.filter((i) => i.tipo === tipo);
+      poblarFiltros(indiceTipo, indice);
+    }
+
     selTipo.querySelectorAll('.busc-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
         selTipo
@@ -963,6 +989,7 @@
           .forEach((c) => c.classList.remove('active'));
         chip.classList.add('active');
         resetFiltrosSecundarios();
+        actualizarFiltrosDisponibles(chip.dataset.tipo);
         actualizar();
       });
     });
@@ -988,6 +1015,7 @@
       selTipo
         .querySelector('.busc-chip[data-tipo="todos"]')
         .classList.add('active');
+      actualizarFiltrosDisponibles('todos');
       actualizar();
     });
 
