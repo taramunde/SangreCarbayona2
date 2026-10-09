@@ -125,6 +125,8 @@
             : '',
         meta: datos.posicionCorta || datos.posicion || '',
         posicion: datos.posicion || '',
+        nacionalidad: (datos.nacionalidad && datos.nacionalidad[0]) || '',
+        nacionalidades: datos.nacionalidad || [],
         temporada: temporadas.length ? temporadas[0].id : null,
         temporadas: temporadas.map((t) => t.id),
         competicion: null,
@@ -132,7 +134,15 @@
         imagen: resolverImagen(datos.imagen),
         url: urlJugador(codigo),
         _tokens: normalizar(
-          [datos.apodo, datos.nombre, datos.apellidos, datos.nombreCompleto]
+          [
+            datos.apodo,
+            datos.nombre,
+            datos.apellidos,
+            datos.nombreCompleto,
+            datos.lugarNacimiento,
+            datos.provinciaNacimiento,
+            (datos.nacionalidad || []).join(' '),
+          ]
             .filter(Boolean)
             .join(' '),
         ),
@@ -155,6 +165,8 @@
             : '',
         meta: datos.cargo || 'Entrenador',
         posicion: '',
+        nacionalidad: (datos.nacionalidad && datos.nacionalidad[0]) || '',
+        nacionalidades: datos.nacionalidad || [],
         temporada: seasonPorDefecto,
         temporadas: temporadas.map((t) => t.id),
         competicion: null,
@@ -162,7 +174,15 @@
         imagen: resolverImagen(datos.imagen),
         url: urlEntrenador(codigo, seasonPorDefecto),
         _tokens: normalizar(
-          [datos.apodo, datos.nombre, datos.apellidos, datos.nombreCompleto]
+          [
+            datos.apodo,
+            datos.nombre,
+            datos.apellidos,
+            datos.nombreCompleto,
+            datos.lugarNacimiento,
+            datos.provinciaNacimiento,
+            (datos.nacionalidad || []).join(' '),
+          ]
             .filter(Boolean)
             .join(' '),
         ),
@@ -190,49 +210,107 @@
 
   function indexarPartidos(indice) {
     if (!window.CLUB_DATA || !CLUB_DATA.temporadas) return;
-    const vistos = new Set();
+    const maestro = CLUB_DATA.jugadoresMaestro || {};
+
+    // Primera pasada: agrupar por partido (misma clave que ya usa
+    // autoCalcularStatsEquipo en js/app.js) y recoger, para cada uno,
+    // a TODOS los jugadores cuyo partidos[] lo incluye. Sin este
+    // agrupamiento previo, el partido se quedaba solo con los datos
+    // del primer jugador que lo tenía registrado y buscar por el
+    // nombre de cualquier otro jugador que también lo jugó no
+    // encontraba nada.
+    const porClave = new Map();
 
     Object.entries(CLUB_DATA.temporadas).forEach(([seasonId, temporada]) => {
-      (temporada.jugadores || []).forEach((jugador) => {
-        (jugador.partidos || []).forEach((p) => {
+      (temporada.jugadores || []).forEach((jugadorTemp) => {
+        const datosMaestro = maestro[jugadorTemp.codigo] || {};
+        const nombreJugador =
+          datosMaestro.apodo ||
+          datosMaestro.nombreCompleto ||
+          jugadorTemp.codigo;
+
+        (jugadorTemp.partidos || []).forEach((p) => {
           if (!p.local || !p.visitante || !p.fecha) return;
           const clave = `${p.competicion}|${p.jornada}|${p.fecha}`;
-          if (vistos.has(clave)) return;
-          vistos.add(clave);
-
-          const esLocal = p.local === OVIEDO;
-          const rival = esLocal ? p.visitante : p.local;
-          const res = resultadoEfectivo(p);
-          const resTexto =
-            { V: 'Victoria', E: 'Empate', D: 'Derrota' }[res] || '';
-          const marcador =
-            typeof p.golesLocal === 'number' &&
-            typeof p.golesVisitante === 'number'
-              ? `${p.golesLocal} - ${p.golesVisitante}`
-              : '';
-
-          indice.push({
-            tipo: 'partido',
-            titulo: `${p.local} ${marcador} ${p.visitante}`.trim(),
-            subtitulo: `${p.competicion || ''}${p.jornada ? ' · Jornada ' + p.jornada : ''}`,
-            meta: resTexto,
-            posicion: '',
-            temporada: seasonId,
-            temporadas: [seasonId],
-            competicion: p.competicion || '',
-            resultado: res || '',
-            imagen: '',
-            fecha: p.fecha,
-            url: null,
-            _tokens: normalizar(
-              [p.local, p.visitante, rival, p.competicion, p.fecha, seasonId]
-                .filter(Boolean)
-                .join(' '),
-            ),
-          });
+          if (!porClave.has(clave)) {
+            porClave.set(clave, {
+              p,
+              seasonId,
+              jugadores: new Set(),
+              goleadores: new Set(),
+              amarilla: false,
+              roja: false,
+            });
+          }
+          const grupo = porClave.get(clave);
+          grupo.jugadores.add(nombreJugador);
+          // En los porteros, "goles" son los encajados, no marcados
+          // (mismo criterio que ya usa el resto del proyecto) — no
+          // deben contar como goleadores.
+          if (p.goles > 0 && datosMaestro.posicion !== 'Portero') {
+            grupo.goleadores.add(nombreJugador);
+          }
+          if (p.amarilla) grupo.amarilla = true;
+          if (p.roja) grupo.roja = true;
         });
       });
     });
+
+    // Segunda pasada: un item de índice por partido único, ya con la
+    // lista completa de jugadores que lo disputaron, quién marcó y si
+    // hubo tarjetas.
+    porClave.forEach(
+      ({ p, seasonId, jugadores, goleadores, amarilla, roja }) => {
+        const esLocal = p.local === OVIEDO;
+        const rival = esLocal ? p.visitante : p.local;
+        const res = resultadoEfectivo(p);
+        const resTexto =
+          { V: 'Victoria', E: 'Empate', D: 'Derrota' }[res] || '';
+        const marcador =
+          typeof p.golesLocal === 'number' &&
+          typeof p.golesVisitante === 'number'
+            ? `${p.golesLocal} - ${p.golesVisitante}`
+            : '';
+        const listaJugadores = Array.from(jugadores);
+        const listaGoleadores = Array.from(goleadores);
+
+        indice.push({
+          tipo: 'partido',
+          titulo: `${p.local} ${marcador} ${p.visitante}`.trim(),
+          subtitulo: `${p.competicion || ''}${p.jornada ? ' · Jornada ' + p.jornada : ''}`,
+          meta: resTexto,
+          posicion: '',
+          temporada: seasonId,
+          temporadas: [seasonId],
+          competicion: p.competicion || '',
+          resultado: res || '',
+          rival,
+          esLocal,
+          jornada: p.jornada != null ? String(p.jornada) : '',
+          jugadores: listaJugadores,
+          goleadores: listaGoleadores,
+          amarilla,
+          roja,
+          imagen: '',
+          fecha: p.fecha,
+          url: null,
+          _tokens: normalizar(
+            [
+              p.local,
+              p.visitante,
+              rival,
+              p.competicion,
+              p.fecha,
+              seasonId,
+              listaJugadores.join(' '),
+              listaGoleadores.join(' '),
+            ]
+              .filter(Boolean)
+              .join(' '),
+          ),
+        });
+      },
+    );
   }
 
   // ── ÍNDICE: TÍTULOS ───────────────────────────────────────────
@@ -398,6 +476,12 @@
             : derbi.ganador === 'sporting'
               ? 'D'
               : 'E',
+        rival:
+          derbi.local.nombre === OVIEDO
+            ? derbi.visitante.nombre
+            : derbi.local.nombre,
+        esLocal: derbi.local.nombre === OVIEDO,
+        jornada: derbi.jornada != null ? String(derbi.jornada) : '',
         imagen: derbi.local.escudo || '',
         url: `fichas/derbi-${derbi.id}.html`,
         _tokens: normalizar(
@@ -429,11 +513,23 @@
 
   // ── POBLAR FILTROS DINÁMICAMENTE A PARTIR DEL ÍNDICE ────────────
 
-  function poblarSelect(select, valores, etiquetaTodos) {
+  function poblarSelect(select, valores, etiquetaTodos, orden) {
     const actuales = new Set(valores.filter(Boolean));
-    const ordenados = Array.from(actuales).sort((a, b) =>
-      b.localeCompare(a, 'es'),
-    );
+    const ordenados = Array.from(actuales).sort((a, b) => {
+      if (orden === 'numerico') {
+        const na = parseInt(a, 10);
+        const nb = parseInt(b, 10);
+        const aEsNum = !Number.isNaN(na) && String(na) === a;
+        const bEsNum = !Number.isNaN(nb) && String(nb) === b;
+        if (aEsNum && bEsNum) return na - nb;
+        if (aEsNum) return -1; // números antes que jornadas tipo "Final"
+        if (bEsNum) return 1;
+        return a.localeCompare(b, 'es');
+      }
+      return orden === 'desc'
+        ? b.localeCompare(a, 'es')
+        : a.localeCompare(b, 'es');
+    });
     select.innerHTML =
       `<option value="">${etiquetaTodos}</option>` +
       ordenados.map((v) => `<option value="${v}">${v}</option>`).join('');
@@ -443,11 +539,15 @@
     const temporadas = indice.flatMap((i) => i.temporadas || []);
     const competiciones = indice.map((i) => i.competicion);
     const posiciones = indice.map((i) => i.posicion);
+    const rivales = indice.map((i) => i.rival);
+    const nacionalidades = indice.flatMap((i) => i.nacionalidades || []);
+    const jornadas = indice.map((i) => i.jornada);
 
     poblarSelect(
       document.getElementById('buscTemporada'),
       temporadas,
       'Todas las temporadas',
+      'desc',
     );
     poblarSelect(
       document.getElementById('buscCompeticion'),
@@ -458,6 +558,22 @@
       document.getElementById('buscPosicion'),
       posiciones,
       'Todas las posiciones',
+    );
+    poblarSelect(
+      document.getElementById('buscRival'),
+      rivales,
+      'Todos los rivales',
+    );
+    poblarSelect(
+      document.getElementById('buscNacionalidad'),
+      nacionalidades,
+      'Todas las nacionalidades',
+    );
+    poblarSelect(
+      document.getElementById('buscJornada'),
+      jornadas,
+      'Todas las jornadas',
+      'numerico',
     );
   }
 
@@ -471,6 +587,19 @@
       return false;
     if (estado.posicion && item.posicion !== estado.posicion) return false;
     if (estado.resultado && item.resultado !== estado.resultado) return false;
+    if (estado.rival && item.rival !== estado.rival) return false;
+    if (estado.localidad && String(item.esLocal) !== estado.localidad)
+      return false;
+    if (
+      estado.nacionalidad &&
+      !(item.nacionalidades || []).includes(estado.nacionalidad)
+    )
+      return false;
+    if (estado.jornada && item.jornada !== estado.jornada) return false;
+    if (estado.tarjeta === 'amarilla' && !item.amarilla) return false;
+    if (estado.tarjeta === 'roja' && !item.roja) return false;
+    if (estado.tarjeta === 'ninguna' && (item.amarilla || item.roja))
+      return false;
 
     if (estado.query) {
       const palabras = estado.query.split(/\s+/).filter(Boolean);
@@ -520,12 +649,34 @@
       ? `<img class="busc-foto" src="${item.imagen}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;busc-foto-fallback&quot;><i class=&quot;fas ${ICONOS[item.tipo]}&quot;></i></div>'" />`
       : `<div class="busc-foto-fallback"><i class="fas ${ICONOS[item.tipo]}"></i></div>`;
 
+    function listaCorta(lista, icono) {
+      if (!lista || !lista.length) return '';
+      const maxVisibles = 6;
+      const visibles = lista.slice(0, maxVisibles).join(', ');
+      const resto = lista.length - maxVisibles;
+      return `<p class="busc-jugadores"><i class="fas ${icono}"></i> ${visibles}${resto > 0 ? ` y ${resto} más` : ''}</p>`;
+    }
+
+    const jugadoresHtml = listaCorta(item.jugadores, 'fa-users');
+    const goleadoresHtml = listaCorta(item.goleadores, 'fa-futbol');
+
+    let tarjetasHtml = '';
+    if (item.amarilla || item.roja) {
+      tarjetasHtml = `<p class="busc-tarjetas">
+        ${item.amarilla ? '<span class="busc-tarjeta busc-tarjeta-amarilla"></span>' : ''}
+        ${item.roja ? '<span class="busc-tarjeta busc-tarjeta-roja"></span>' : ''}
+      </p>`;
+    }
+
     card.innerHTML = `
       ${iconoFoto}
       <div class="busc-info">
         <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${ETIQUETAS_TIPO[item.tipo]}</span>
         <b class="busc-titulo">${item.titulo}</b>
         ${item.subtitulo ? `<p class="busc-subtitulo">${item.subtitulo}</p>` : ''}
+        ${jugadoresHtml}
+        ${goleadoresHtml}
+        ${tarjetasHtml}
         ${item.meta ? `<span class="busc-meta busc-meta-${(item.resultado || '').toLowerCase()}">${item.meta}</span>` : ''}
       </div>
     `;
@@ -556,12 +707,22 @@
     const selCompeticion = document.getElementById('buscCompeticion');
     const selPosicion = document.getElementById('buscPosicion');
     const selResultado = document.getElementById('buscResultado');
+    const selRival = document.getElementById('buscRival');
+    const selLocalidad = document.getElementById('buscLocalidad');
     const contenedor = document.getElementById('buscResultados');
     const contador = document.getElementById('buscContador');
     const btnMas = document.getElementById('buscMostrarMas');
+    const selJornada = document.getElementById('buscJornada');
+    const selTarjeta = document.getElementById('buscTarjeta');
+    const selNacionalidad = document.getElementById('buscNacionalidad');
     const btnLimpiar = document.getElementById('buscLimpiar');
     const campoResultado = document.getElementById('buscCampoResultado');
     const campoPosicion = document.getElementById('buscCampoPosicion');
+    const campoRival = document.getElementById('buscCampoRival');
+    const campoLocalidad = document.getElementById('buscCampoLocalidad');
+    const campoJornada = document.getElementById('buscCampoJornada');
+    const campoTarjeta = document.getElementById('buscCampoTarjeta');
+    const campoNacionalidad = document.getElementById('buscCampoNacionalidad');
 
     let resultadosActuales = [];
     let mostrados = PAGINA;
@@ -575,23 +736,40 @@
         competicion: selCompeticion.value,
         posicion: selPosicion.value,
         resultado: selResultado.value,
+        rival: selRival.value,
+        localidad: selLocalidad.value,
+        jornada: selJornada.value,
+        tarjeta: selTarjeta.value,
+        nacionalidad: selNacionalidad.value,
       };
     }
 
     function actualizar() {
       const estado = estadoActual();
 
-      // Los filtros de posición/resultado solo tienen sentido para
-      // jugadores/partidos: se ocultan con el resto de tipos para no
-      // confundir con un control que no va a filtrar nada.
-      campoPosicion.style.display =
-        estado.tipo === 'todos' || estado.tipo === 'jugador' ? '' : 'none';
-      campoResultado.style.display =
+      // Cada filtro se oculta cuando el tipo elegido no lo usa para
+      // nada, para no dejar en pantalla un control que no va a
+      // cambiar ningún resultado.
+      const esTipoJugador =
+        estado.tipo === 'todos' || estado.tipo === 'jugador';
+      const esTipoPartido =
         estado.tipo === 'todos' ||
         estado.tipo === 'partido' ||
-        estado.tipo === 'derbi'
-          ? ''
-          : 'none';
+        estado.tipo === 'derbi';
+      const esTipoSoloPartido =
+        estado.tipo === 'todos' || estado.tipo === 'partido';
+      const esTipoConNacionalidad =
+        estado.tipo === 'todos' ||
+        estado.tipo === 'jugador' ||
+        estado.tipo === 'entrenador';
+
+      campoPosicion.style.display = esTipoJugador ? '' : 'none';
+      campoResultado.style.display = esTipoPartido ? '' : 'none';
+      campoRival.style.display = esTipoPartido ? '' : 'none';
+      campoLocalidad.style.display = esTipoPartido ? '' : 'none';
+      campoJornada.style.display = esTipoPartido ? '' : 'none';
+      campoTarjeta.style.display = esTipoSoloPartido ? '' : 'none';
+      campoNacionalidad.style.display = esTipoConNacionalidad ? '' : 'none';
 
       mostrados = PAGINA;
       resultadosActuales = filtrar(indice, estado);
@@ -610,9 +788,17 @@
       debounce = setTimeout(actualizar, 150);
     });
 
-    [selTemporada, selCompeticion, selPosicion, selResultado].forEach((sel) =>
-      sel.addEventListener('change', actualizar),
-    );
+    [
+      selTemporada,
+      selCompeticion,
+      selPosicion,
+      selResultado,
+      selRival,
+      selLocalidad,
+      selJornada,
+      selTarjeta,
+      selNacionalidad,
+    ].forEach((sel) => sel.addEventListener('change', actualizar));
 
     selTipo.querySelectorAll('.busc-chip').forEach((chip) => {
       chip.addEventListener('click', () => {
@@ -641,6 +827,11 @@
       selCompeticion.value = '';
       selPosicion.value = '';
       selResultado.value = '';
+      selRival.value = '';
+      selLocalidad.value = '';
+      selJornada.value = '';
+      selTarjeta.value = '';
+      selNacionalidad.value = '';
       selTipo
         .querySelectorAll('.busc-chip')
         .forEach((c) => c.classList.remove('active'));

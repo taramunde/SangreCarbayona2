@@ -315,6 +315,41 @@ a.busc-card {
   -webkit-box-orient: vertical;
 }
 
+.busc-jugadores {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  color: var(--gray-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.busc-jugadores i {
+  color: var(--secondary-color);
+  margin-right: 2px;
+}
+
+.busc-tarjetas {
+  margin: 6px 0 0;
+  display: flex;
+  gap: 4px;
+}
+
+.busc-tarjeta {
+  display: inline-block;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.busc-tarjeta-amarilla {
+  background: #f5c518;
+}
+
+.busc-tarjeta-roja {
+  background: #e53e3e;
+}
+
 .busc-meta {
   display: inline-block;
   margin-top: 6px;
