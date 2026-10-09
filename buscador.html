@@ -180,6 +180,29 @@
       </div>
     </section>
 
+    <!-- Ventana emergente con el listado completo de jugadores/goleadores
+         de un partido, cuando la lista de la tarjeta sale cortada -->
+    <div class="busc-modal-overlay" id="buscModalOverlay">
+      <div
+        class="busc-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="buscModalTitulo"
+      >
+        <button
+          type="button"
+          class="busc-modal-cerrar"
+          id="buscModalCerrar"
+          aria-label="Cerrar"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <h3 id="buscModalTitulo"></h3>
+        <p class="busc-modal-subtitulo" id="buscModalSubtitulo"></p>
+        <ul class="busc-modal-lista" id="buscModalLista"></ul>
+      </div>
+    </div>
+
     <!-- Compartir página -->
     <div class="container">
       <div class="page-share">

@@ -460,3 +460,94 @@ a.busc-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Lista de jugadores/goleadores clicable, dentro de la tarjeta ── */
+
+.busc-jugadores.busc-clicable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.busc-jugadores.busc-clicable:hover {
+  color: var(--primary-color);
+}
+
+/* ── Ventana emergente (modal) con el listado completo ── */
+
+.busc-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.busc-modal-overlay.visible {
+  display: flex;
+}
+
+.busc-modal {
+  position: relative;
+  background: var(--white);
+  border-radius: 10px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px 22px;
+  box-shadow: var(--shadow-lg);
+}
+
+.busc-modal-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--gray-100);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--gray-600);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.busc-modal-cerrar:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.busc-modal h3 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin: 0 20px 2px 0;
+}
+
+.busc-modal-subtitulo {
+  color: var(--gray-600);
+  font-size: 0.82rem;
+  margin: 0 0 14px;
+}
+
+.busc-modal-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.busc-modal-lista li {
+  background: var(--gray-100);
+  color: var(--gray-900, #111827);
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+}

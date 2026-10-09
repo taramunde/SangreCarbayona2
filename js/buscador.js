@@ -704,6 +704,26 @@
     return `<p class="busc-stats-jugador"><i class="fas fa-star"></i> ${jugadorSeleccionado}: ${partes.join(' · ')}</p>`;
   }
 
+  // ── VENTANA EMERGENTE CON EL LISTADO COMPLETO ───────────────────
+
+  function abrirModal(tituloPartido, lista, etiqueta) {
+    const overlay = document.getElementById('buscModalOverlay');
+    const tituloEl = document.getElementById('buscModalTitulo');
+    const subtituloEl = document.getElementById('buscModalSubtitulo');
+    const listaEl = document.getElementById('buscModalLista');
+    if (!overlay || !tituloEl || !subtituloEl || !listaEl) return;
+
+    tituloEl.textContent = `${etiqueta} (${lista.length})`;
+    subtituloEl.textContent = tituloPartido;
+    listaEl.innerHTML = lista.map((nombre) => `<li>${nombre}</li>`).join('');
+    overlay.classList.add('visible');
+  }
+
+  function cerrarModal() {
+    const overlay = document.getElementById('buscModalOverlay');
+    if (overlay) overlay.classList.remove('visible');
+  }
+
   function crearTarjeta(item, jugadorSeleccionado) {
     const esEnlazable = !!item.url;
     const Tag = esEnlazable ? 'a' : 'div';
@@ -715,16 +735,20 @@
       ? `<img class="busc-foto" src="${item.imagen}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;busc-foto-fallback&quot;><i class=&quot;fas ${ICONOS[item.tipo]}&quot;></i></div>'" />`
       : `<div class="busc-foto-fallback"><i class="fas ${ICONOS[item.tipo]}"></i></div>`;
 
-    function listaCorta(lista, icono) {
+    function listaCorta(lista, icono, clave) {
       if (!lista || !lista.length) return '';
       const maxVisibles = 6;
       const visibles = lista.slice(0, maxVisibles).join(', ');
       const resto = lista.length - maxVisibles;
-      return `<p class="busc-jugadores"><i class="fas ${icono}"></i> ${visibles}${resto > 0 ? ` y ${resto} más` : ''}</p>`;
+      return `<p class="busc-jugadores busc-clicable" data-lista="${clave}"><i class="fas ${icono}"></i> ${visibles}${resto > 0 ? ` y ${resto} más` : ''}</p>`;
     }
 
-    const jugadoresHtml = listaCorta(item.jugadores, 'fa-users');
-    const goleadoresHtml = listaCorta(item.goleadores, 'fa-futbol');
+    const jugadoresHtml = listaCorta(item.jugadores, 'fa-users', 'jugadores');
+    const goleadoresHtml = listaCorta(
+      item.goleadores,
+      'fa-futbol',
+      'goleadores',
+    );
     const statsHtml = statsJugadorHtml(item, jugadorSeleccionado);
 
     let tarjetasHtml = '';
@@ -748,6 +772,18 @@
         ${item.meta ? `<span class="busc-meta busc-meta-${(item.resultado || '').toLowerCase()}">${item.meta}</span>` : ''}
       </div>
     `;
+
+    card.querySelectorAll('[data-lista]').forEach((el) => {
+      const clave = el.dataset.lista;
+      const lista = clave === 'goleadores' ? item.goleadores : item.jugadores;
+      const etiqueta = clave === 'goleadores' ? 'Goleadores' : 'Jugadores';
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        abrirModal(item.titulo, lista, etiqueta);
+      });
+    });
+
     return card;
   }
 
@@ -934,6 +970,19 @@
         .querySelector('.busc-chip[data-tipo="todos"]')
         .classList.add('active');
       actualizar();
+    });
+
+    // ── Cierre de la ventana emergente de jugadores/goleadores ──
+    const modalOverlay = document.getElementById('buscModalOverlay');
+    const modalCerrar = document.getElementById('buscModalCerrar');
+    if (modalCerrar) modalCerrar.addEventListener('click', cerrarModal);
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) cerrarModal();
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') cerrarModal();
     });
 
     actualizar();
