@@ -551,3 +551,18 @@ a.busc-card {
   padding: 5px 12px;
   border-radius: 20px;
 }
+
+.busc-modal-lista li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.busc-modal-lista li:has(a) {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  transition: background 0.2s ease;
+}
+
+.busc-modal-lista li:has(a):hover {
+  background: var(--primary-dark);
+}

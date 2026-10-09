@@ -28,6 +28,14 @@
   const OVIEDO = 'Real Oviedo';
   const PAGINA = 30; // resultados que se muestran por tanda
 
+  // Nombre mostrado → URL de su ficha, para poder enlazar desde la
+  // ventana emergente de jugadores de un partido. Se rellena una vez
+  // construido el índice (ver DOMContentLoaded). Si dos jugadores
+  // distintos comparten nombre mostrado (apodo/nombre completo igual),
+  // se queda con uno de los dos: la misma limitación que ya tiene el
+  // filtro "Jugador", que también busca por nombre y no por código.
+  let mapaJugadorUrl = {};
+
   // ── HELPERS ────────────────────────────────────────────────
 
   function normalizar(str) {
@@ -715,7 +723,14 @@
 
     tituloEl.textContent = `${etiqueta} (${lista.length})`;
     subtituloEl.textContent = tituloPartido;
-    listaEl.innerHTML = lista.map((nombre) => `<li>${nombre}</li>`).join('');
+    listaEl.innerHTML = lista
+      .map((nombre) => {
+        const url = mapaJugadorUrl[nombre];
+        return url
+          ? `<li><a href="${url}">${nombre}</a></li>`
+          : `<li>${nombre}</li>`;
+      })
+      .join('');
     overlay.classList.add('visible');
   }
 
@@ -812,6 +827,10 @@
   document.addEventListener('DOMContentLoaded', () => {
     const indice = construirIndice();
     poblarFiltros(indice);
+
+    indice.forEach((i) => {
+      if (i.tipo === 'jugador' && i.url) mapaJugadorUrl[i.titulo] = i.url;
+    });
 
     const inputTexto = document.getElementById('buscTexto');
     const selTipo = document.getElementById('buscTipoChips');
