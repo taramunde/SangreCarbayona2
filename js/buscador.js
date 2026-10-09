@@ -299,7 +299,7 @@
         indice.push({
           tipo: 'partido',
           titulo: `${p.local} ${marcador} ${p.visitante}`.trim(),
-          subtitulo: `${p.competicion || ''}${p.jornada ? ' · Jornada ' + p.jornada : ''}`,
+          subtitulo: `${p.competicion || ''}${p.jornada ? ' · Jornada ' + p.jornada : ''} · ${seasonId.replace('-', '/')}`,
           meta: resTexto,
           posicion: '',
           temporada: seasonId,
