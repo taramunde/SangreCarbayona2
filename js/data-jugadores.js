@@ -5666,6 +5666,36 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'thiago-cruz-fernandez': {
+    nombre: 'Thiago',
+    apellidos: 'Cruz Fernández',
+    nombreCompleto: 'Thiago Cruz Fernández',
+    apodo: 'Thiago Fernández',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.75,
+    nacionalidad: ['Argentina'],
+    lugarNacimiento: 'Buenos Aires',
+    provinciaNacimiento: 'Buenos Aires',
+    fechaNacimiento: '2004-04-03',
+    imagen: 'https://i.postimg.cc/yYs1MfJd/Thiago-Fernandez-PNG.webp',
+    seleccion: {
+      pais: 'Argentina',
+      bandera: 'https://flagcdn.com/16x12/ar.webp',
+      datos: [
+        {
+          categoria: 'U23',
+          partidos: 2,
+          goles: 0,
+          asistencias: 0,
+          minutos: 92,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   'david-generelo-miranda': {
     nombre: 'David',
     apellidos: 'Generelo Miranda',
@@ -6528,36 +6558,6 @@ CLUB_DATA.jugadoresMaestro = {
           asistencias: 0,
           minutos: 77,
           amarillas: 1,
-          rojas: 0,
-        },
-      ],
-    },
-  },
-
-  'thiago-cruz-fernandez': {
-    nombre: 'Thiago',
-    apellidos: 'Cruz Fernández',
-    nombreCompleto: 'Thiago Cruz Fernández',
-    apodo: 'Thiago Fernández',
-    posicion: 'Delantero',
-    posicionCorta: 'EI',
-    altura: 1.75,
-    nacionalidad: ['Argentina'],
-    lugarNacimiento: 'Buenos Aires',
-    provinciaNacimiento: 'Buenos Aires',
-    fechaNacimiento: '2004-04-03',
-    imagen: 'https://i.postimg.cc/yYs1MfJd/Thiago-Fernandez-PNG.webp',
-    seleccion: {
-      pais: 'Argentina',
-      bandera: 'https://flagcdn.com/16x12/ar.webp',
-      datos: [
-        {
-          categoria: 'U23',
-          partidos: 2,
-          goles: 0,
-          asistencias: 0,
-          minutos: 92,
-          amarillas: 0,
           rojas: 0,
         },
       ],
