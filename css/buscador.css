@@ -233,6 +233,7 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 0;
   background: var(--white);
   border-radius: 8px;
   box-shadow: var(--shadow);
@@ -337,7 +338,10 @@ a.busc-card {
   background: var(--gray-100);
   padding: 4px 8px;
   border-radius: 6px;
-  display: inline-block;
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+  box-sizing: border-box;
 }
 
 .busc-stats-jugador i {
