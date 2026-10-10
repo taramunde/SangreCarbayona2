@@ -20,7 +20,7 @@ const translations = {
     nav_palmares: 'Palmarés',
     nav_estadio: 'Estadio Municipal',
     nav_directiva: 'Directiva',
-    nav_primer_equipo: '1ª Equip.',
+    nav_primer_equipo: 'Primer Equipo',
     nav_cuerpo_tecnico: 'Cuerpo Técnico',
     nav_cantera: 'Cantera',
     nav_fem: 'Fútbol Femenino',
