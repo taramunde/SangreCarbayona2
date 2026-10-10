@@ -304,6 +304,18 @@
         const listaJugadores = Array.from(jugadores);
         const listaGoleadores = Array.from(goleadores);
 
+        // El Oviedo marcó pero ningún jugador tiene gol registrado en
+        // los datos: lo más probable es que sea un gol en propia
+        // puerta del rival (no sale en el partidos[] de ningún
+        // jugador del Oviedo), aunque también podría ser un hueco en
+        // los datos todavía sin rellenar. Se marca igual para no dejar
+        // el partido sin ninguna pista de quién/qué hizo el gol.
+        const golesOviedo = esLocal ? p.golesLocal : p.golesVisitante;
+        const golSinAutor =
+          typeof golesOviedo === 'number' &&
+          golesOviedo > 0 &&
+          listaGoleadores.length === 0;
+
         indice.push({
           tipo: 'partido',
           titulo: `${p.local} ${marcador} ${p.visitante}`.trim(),
@@ -319,6 +331,7 @@
           jornada: p.jornada != null ? String(p.jornada) : '',
           jugadores: listaJugadores,
           goleadores: listaGoleadores,
+          golSinAutor,
           statsPorJugador,
           amarilla,
           roja,
@@ -335,6 +348,7 @@
               seasonId,
               listaJugadores.join(' '),
               listaGoleadores.join(' '),
+              golSinAutor ? 'propia puerta autogol' : '',
             ]
               .filter(Boolean)
               .join(' '),
@@ -790,11 +804,9 @@
     }
 
     const jugadoresHtml = listaCorta(item.jugadores, 'fa-users', 'jugadores');
-    const goleadoresHtml = listaCorta(
-      item.goleadores,
-      'fa-futbol',
-      'goleadores',
-    );
+    const goleadoresHtml = item.golSinAutor
+      ? `<p class="busc-jugadores"><i class="fas fa-futbol"></i> Gol sin goleador registrado (posible autogol rival)</p>`
+      : listaCorta(item.goleadores, 'fa-futbol', 'goleadores');
     const statsHtml = statsJugadorHtml(item, jugadorSeleccionado);
 
     let tarjetasHtml = '';
