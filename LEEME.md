@@ -10,10 +10,12 @@ que sepas programar** para la mayoría de estos cambios: son objetos de
 datos con una forma fija, solo hay que copiar un bloque existente y
 cambiar los valores.
 
-> Cada vez que termines de editar algo, guarda y ejecuta `npm run subir`
-> desde la terminal (en la carpeta del proyecto) para que se regeneren
-> las páginas y se suba todo a GitHub. Si solo quieres previsualizar sin
-> subir, usa `npm run generar`.
+> Cada vez que termines de editar algo, guarda y ejecuta **`npm run
+> subir`** desde la terminal (en la carpeta del proyecto): regenera las
+> páginas Y lo sube todo a GitHub en un solo paso — es el comando que
+> deberías usar casi siempre. `npm run generar` solo regenera en local
+> sin subir nada; úsalo únicamente si quieres previsualizar antes de
+> subir.
 
 ---
 
@@ -56,15 +58,11 @@ encajados.
 ### Después de editar datos, hay que regenerar
 
 Editar `js/data-historico.js`, `js/data-temporada-actual.js`, etc. **no
-actualiza las páginas de fichas por sí solo**. Hay que ejecutar:
-
-```
-npm run generar
-```
-
-Esto reescribe todos los HTML de `/fichas/` y el `sitemap.xml` a partir de
-los datos. `npm run subir` hace esto automáticamente y además sube los
-cambios a GitHub (ver sección 17).
+actualiza las páginas de fichas por sí solo**. Hace falta ejecutar
+`npm run subir` para que se reescriban todos los HTML de `/fichas/` y el
+`sitemap.xml` a partir de los datos nuevos, y además se suban a GitHub
+(ver sección 17). Si solo quieres previsualizar en local sin subir
+todavía, usa `npm run generar`.
 
 ---
 
