@@ -1247,14 +1247,11 @@ img {
   display: inline-block;
   flex-shrink: 0;
 }
-.dot.champions {
+.dot.ascenso-directo {
   background: #2ecc71;
 }
-.dot.europa {
-  background: #20b2aa;
-}
-.dot.conference {
-  background: #3498db;
+.dot.playoff {
+  background: #f39c12;
 }
 .dot.descenso {
   background: #e74c3c;
