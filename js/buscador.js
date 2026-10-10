@@ -653,10 +653,25 @@
     if (estado.jornada && item.jornada !== estado.jornada) return false;
     if (estado.jugador && !(item.jugadores || []).includes(estado.jugador))
       return false;
-    if (estado.tarjeta === 'amarilla' && !item.amarilla) return false;
-    if (estado.tarjeta === 'roja' && !item.roja) return false;
-    if (estado.tarjeta === 'ninguna' && (item.amarilla || item.roja))
-      return false;
+
+    if (estado.tarjeta) {
+      // Si hay un jugador concreto elegido, la tarjeta tiene que ser la
+      // SUYA en ese partido, no la de cualquier otro compañero que
+      // también jugara (item.amarilla/item.roja son del partido entero,
+      // no de una persona en particular).
+      const statsJugador =
+        estado.jugador && item.statsPorJugador
+          ? item.statsPorJugador[estado.jugador]
+          : null;
+      const tieneAmarilla = statsJugador
+        ? statsJugador.amarilla
+        : item.amarilla;
+      const tieneRoja = statsJugador ? statsJugador.roja : item.roja;
+      if (estado.tarjeta === 'amarilla' && !tieneAmarilla) return false;
+      if (estado.tarjeta === 'roja' && !tieneRoja) return false;
+      if (estado.tarjeta === 'ninguna' && (tieneAmarilla || tieneRoja))
+        return false;
+    }
 
     if (estado.query) {
       const palabras = estado.query.split(/\s+/).filter(Boolean);
