@@ -25,20 +25,21 @@ cambiar los valores.
 2. [Jugadores y entrenadores (temporada actual e histórico)](#2-jugadores-y-entrenadores-temporada-actual-e-histórico)
 3. [Datos de cada partido (el campo más importante)](#3-datos-de-cada-partido-el-campo-más-importante)
 4. [Clasificación y calendario de la categoría](#4-clasificación-y-calendario-de-la-categoría)
-5. [Cambiar de categoría (ascenso o descenso)](#5-cambiar-de-categoría-ascenso-o-descenso) ⚠️
-6. [Cómo Llegar (estadios rivales)](#6-cómo-llegar-estadios-rivales)
-7. [Palmarés](#7-palmarés)
-8. [Historia del club](#8-historia-del-club)
-9. [Derbis Asturianos](#9-derbis-asturianos)
-10. [Oviesportinguistas](#10-oviesportinguistas)
-11. [Noticias](#11-noticias)
-12. [Vídeos (resúmenes)](#12-vídeos-resúmenes)
-13. [Buscador avanzado](#13-buscador-avanzado)
-14. [Imágenes de cabecera de cada sección](#14-imágenes-de-cabecera-de-cada-sección)
-15. [Añadir una página nueva al menú](#15-añadir-una-página-nueva-al-menú)
-16. [Traducciones (español/inglés)](#16-traducciones-españolinglés)
-17. [Generar, formatear y subir los cambios](#17-generar-formatear-y-subir-los-cambios)
-18. [Si aparece un conflicto al hacer git pull](#18-si-aparece-un-conflicto-al-hacer-git-pull)
+5. [Alineación del próximo partido](#5-alineación-del-próximo-partido)
+6. [Cambiar de categoría (ascenso o descenso)](#6-cambiar-de-categoría-ascenso-o-descenso) ⚠️
+7. [Cómo Llegar (estadios rivales)](#7-cómo-llegar-estadios-rivales)
+8. [Palmarés](#8-palmarés)
+9. [Historia del club](#9-historia-del-club)
+10. [Derbis Asturianos](#10-derbis-asturianos)
+11. [Oviesportinguistas](#11-oviesportinguistas)
+12. [Noticias](#12-noticias)
+13. [Vídeos (resúmenes)](#13-vídeos-resúmenes)
+14. [Buscador avanzado](#14-buscador-avanzado)
+15. [Imágenes de cabecera de cada sección](#15-imágenes-de-cabecera-de-cada-sección)
+16. [Añadir una página nueva al menú](#16-añadir-una-página-nueva-al-menú)
+17. [Traducciones (español/inglés)](#17-traducciones-españolinglés)
+18. [Generar, formatear y subir los cambios](#18-generar-formatear-y-subir-los-cambios)
+19. [Si aparece un conflicto al hacer git pull](#19-si-aparece-un-conflicto-al-hacer-git-pull)
 
 ---
 
@@ -61,7 +62,7 @@ Editar `js/data-historico.js`, `js/data-temporada-actual.js`, etc. **no
 actualiza las páginas de fichas por sí solo**. Hace falta ejecutar
 `npm run subir` para que se reescriban todos los HTML de `/fichas/` y el
 `sitemap.xml` a partir de los datos nuevos, y además se suban a GitHub
-(ver sección 17). Si solo quieres previsualizar en local sin subir
+(ver sección 18). Si solo quieres previsualizar en local sin subir
 todavía, usa `npm run generar`.
 
 ---
@@ -193,7 +194,7 @@ desde entonces.
 
 **Un mismo partido se repite en el `partidos[]` de cada jugador que lo
 jugó** — no hay una lista única de partidos del equipo, cada jugador
-lleva la suya. El buscador avanzado (sección 13) ya se encarga de juntar
+lleva la suya. El buscador avanzado (sección 14) ya se encarga de juntar
 todo eso solo; tú no tienes que deduplicar nada a mano.
 
 ---
@@ -242,9 +243,96 @@ partidos, ver `POR_JORNADA` en `js/calendario.js`). Eso significa:
 
 - Un partido que aún no se ha jugado lleva `goles1: null, goles2: null`.
 
+### Fecha y hora de los partidos del Oviedo (`fecha` / `hora` / `aproximada`)
+
+Solo en los partidos donde juega el Oviedo (no en el resto de la
+liga) se puede añadir `fecha: 'AAAA-MM-DD'` y, si se sabe, `hora:
+'HH:MM'`:
+
+```js
+{ equipo1: 'Real Oviedo', equipo2: 'C.D. Eldense', fecha: '2026-10-02', hora: '20:30', aproximada: false, goles1: 4, goles2: 1 },
+```
+
+- En un partido **ya jugado**, pon la fecha/hora real y `aproximada:
+  false` — ya no va a cambiar.
+- En un partido **todavía sin jugar**, aunque pongas la fecha oficial
+  del calendario, dale `aproximada: true` — así en la web sale un
+  aviso de "(aprox.)" recordando que todavía podría aplazarse o
+  cambiar de horario. En cuanto se juegue de verdad, pásalo a `false`
+  y ajusta la fecha si hizo falta.
+- Si un partido de Oviedo no tiene `fecha`, simplemente no se muestra
+  ninguna fecha para él (no rompe nada), pero conviene rellenarla en
+  cuanto se sepa.
+
+### Copa del Rey y otras eliminatorias (`partidosEspeciales`)
+
+Archivo: **`js/calendario.js`**, constante `partidosEspeciales` (cerca
+del principio del archivo). A diferencia de la liga, estos partidos sí
+llevan la fecha real desde el principio (se anuncian de uno en uno):
+
+```js
+const partidosEspeciales = [
+  {
+    competicion: 'Copa del Rey',
+    ronda: 'Primera Ronda',
+    equipo1: 'Real Oviedo',
+    equipo2: 'C.D. Numancia',
+    fecha: '2026-10-28',
+    hora: '20:00',
+    goles1: null,
+    goles2: null,
+  },
+];
+```
+
+Se coloca solo en su sitio en el Calendario (entre las dos jornadas de
+liga que le correspondan según su fecha) y en el widget de "Próximo
+Partido" de la portada, comparando fechas reales — no hay que decirle
+dónde va.
+
+Si el rival de esa eliminatoria **no juega en la categoría actual**
+(por eso no tiene escudo en la lista `equipos`), añade su escudo en el
+objeto `escudosExtra`, un poco más abajo en el mismo archivo:
+
+```js
+const escudosExtra = {
+  'C.D. Numancia': 'img/escudos/Numancia.webp',
+};
+```
+
+(sube antes la imagen a `img/escudos/`).
+
 ---
 
-## 5. Cambiar de categoría (ascenso o descenso) ⚠️
+## 5. Alineación del próximo partido
+
+Archivo: **`js/data-alineacion.js`**. Es el único archivo que hay que
+tocar para la página `alineacion.html` — no hace falta abrir
+`js/alineacion.js` para nada. El propio archivo lleva una guía de 7
+pasos al principio con todo el detalle; aquí va el resumen:
+
+1. En cuanto se anuncia el partido (aunque no haya once todavía):
+   rellena `equipoLocal`, `equipoVisitante`, `competicion`, `jornada`,
+   `estadio`, `fecha`, `hora`; deja `golesLocal`/`golesVisitante` en
+   `null`, `estado: 'pendiente'` y `titulares`/`suplentes` en `[]`.
+2. Cuando haya una alineación probable o la oficial: cambia `estado` a
+   `'probable'` o `'confirmada'`, pon `formacion` (`'442'`, `'433'`,
+   `'343'`, `'451'`, `'4141'` o `'4231'`) y rellena `titulares` con un
+   objeto por jugador: `{ slot: 'def1', jugadorId: '...' }`.
+3. El `jugadorId` es el mismo id que usa el jugador en el resto del
+   proyecto (búscalo por dorsal en `js/data-temporada-actual.js` si no
+   lo recuerdas) — de ahí se cogen solas la foto y el nombre.
+4. Para marcar al capitán, añade `capitan: true` a su objeto dentro de
+   `titulares`.
+5. `suplentes` es opcional: una lista simple de `jugadorId`.
+6. Al terminar el partido, rellena `golesLocal`/`golesVisitante`.
+7. Para el siguiente partido, se pisan todos los datos desde el punto 1
+   — este archivo no guarda historial, siempre es el próximo/último
+   partido.
+
+---
+
+## 6. Cambiar de categoría (ascenso o descenso) ⚠️
 
 Esto es lo que más sitios toca a la vez. Lista de comprobación completa,
 en orden:
@@ -280,13 +368,13 @@ en orden:
    europeas, habría que añadir ahí clases tipo `.dot.champions`,
    `.dot.europa`, etc. en ambos sitios.
 6. **`js/data-estadios.js`** (sección "Cómo Llegar") → sustituir la lista
-   de clubes por los de la nueva categoría (ver sección 6).
+   de clubes por los de la nueva categoría (ver sección 7).
 7. Los partidos que se vayan jugando a partir de ahora, con el
    `competicion` correcto de la nueva categoría (ver sección 3).
 
 ---
 
-## 6. Cómo Llegar (estadios rivales)
+## 7. Cómo Llegar (estadios rivales)
 
 Archivo: **`js/data-estadios.js`**. Un objeto por equipo:
 
@@ -308,7 +396,7 @@ mostrarán en la tarjeta — pero son opcionales.
 
 ---
 
-## 7. Palmarés
+## 8. Palmarés
 
 Archivo: **`js/data-palmares.js`**. Dos listas —`nacionales` (títulos de
 la RFEF) y `regionales` (época amateur, antes de la Liga)— más un objeto
@@ -336,7 +424,7 @@ incorrecto.
 
 ---
 
-## 8. Historia del club
+## 9. Historia del club
 
 Archivo: **`js/data-historia.js`**. Es un array de capítulos,
 `CLUB_DATA.historia`, cada uno con esta forma:
@@ -363,7 +451,7 @@ página).
 
 ---
 
-## 9. Derbis Asturianos
+## 10. Derbis Asturianos
 
 Archivo: **`js/data-derbis.js`** (`window.DERBIS_DATA`). Es el esquema
 más detallado del proyecto: incluye alineaciones completas con eventos
@@ -380,7 +468,7 @@ node generador/generar-derbis.js
 
 ---
 
-## 10. Oviesportinguistas
+## 11. Oviesportinguistas
 
 Archivo: **`js/data-oviesportinguistas.js`**. Dos listas, `jugadores` y
 `entrenadores`, con esta forma:
@@ -404,7 +492,7 @@ correcto). Si tienes la foto del jugador ya en el proyecto (en
 
 ---
 
-## 11. Noticias
+## 12. Noticias
 
 Archivo: **`js/noticias.js`**, array `NOTICIAS_DATA` (máximo 4 noticias
 visibles). El índice 0 es siempre la noticia destacada:
@@ -424,7 +512,7 @@ todo del archivo), añade ahí su logo y color antes de usarlo.
 
 ---
 
-## 12. Vídeos (resúmenes)
+## 13. Vídeos (resúmenes)
 
 Archivo: **`js/data-videos.js`**, `CLUB_DATA.videos`:
 
@@ -440,7 +528,7 @@ Archivo: **`js/data-videos.js`**, `CLUB_DATA.videos`:
 
 ---
 
-## 13. Buscador avanzado
+## 14. Buscador avanzado
 
 Archivo **`buscador.html`** + **`js/buscador.js`**. Este apartado **no
 necesita mantenimiento**: lee en vivo todos los archivos de datos
@@ -451,7 +539,7 @@ aparece allí automáticamente, sin tocar nada del buscador.
 
 ---
 
-## 14. Imágenes de cabecera de cada sección
+## 15. Imágenes de cabecera de cada sección
 
 Cada página interior (Historia, Palmarés, Cómo Llegar,
 Oviesportinguistas, Derbis, Noticias, Buscador...) tiene una imagen de
@@ -472,7 +560,7 @@ etiqueta `<img>`.)
 
 ---
 
-## 15. Añadir una página nueva al menú
+## 16. Añadir una página nueva al menú
 
 Edita **`header.html`**, dentro de `<ul class="nav-list">`. Para un enlace
 suelto (no desplegable):
@@ -488,13 +576,13 @@ Competiciones, Multimedia), busca su `<ul class="submenu">` y añade el
 `<li>` ahí dentro.
 
 No olvides:
-- Añadir la clave `nav_mi_pagina` en `js/i18n.js` (sección 16).
+- Añadir la clave `nav_mi_pagina` en `js/i18n.js` (sección 17).
 - Añadir la página a `PAGINAS_ESTATICAS` en
   `generador/generar-sitemap.js` para que Google la indexe.
 
 ---
 
-## 16. Traducciones (español/inglés)
+## 17. Traducciones (español/inglés)
 
 Archivo: **`js/i18n.js`**. Hay dos bloques grandes, uno para `es` y otro
 para `en`, cada uno con una lista plana de `clave: 'Texto'`. Para que un
@@ -507,7 +595,7 @@ texto cambie de idioma automáticamente:
 
 ---
 
-## 17. Generar, formatear y subir los cambios
+## 18. Generar, formatear y subir los cambios
 
 En la carpeta del proyecto, por terminal:
 
@@ -533,7 +621,7 @@ npx prettier --write js/el-archivo-que-edites.js   # lo corrige automáticamente
 
 ---
 
-## 18. Si aparece un conflicto al hacer git pull
+## 19. Si aparece un conflicto al hacer git pull
 
 Lo más habitual es que el conflicto salga en **`sitemap.xml`** o
 **`generador/.sitemap-cache.json`** (por trabajar desde dos ordenadores
