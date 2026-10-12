@@ -226,6 +226,7 @@
             <div class="ali-player-photo-wrap">
               <img class="ali-player-photo" src="${info.imagen || ''}" alt="${info.nombre}" onerror="this.style.visibility='hidden'">
               ${info.dorsal ? `<span class="ali-player-dorsal">${info.dorsal}</span>` : ''}
+              ${tit.capitan ? `<span class="ali-player-capitan" title="Capitán">C</span>` : ''}
             </div>
             <span class="ali-player-nombre">${info.nombre}</span>
           </div>

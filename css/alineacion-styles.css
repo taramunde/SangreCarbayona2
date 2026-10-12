@@ -420,6 +420,24 @@
   border: 1.5px solid #fff;
 }
 
+.ali-player-capitan {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  background: #001a6e;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.6em;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+}
+
 .ali-player-nombre {
   background: rgba(0, 10, 40, 0.78);
   color: #fff;
