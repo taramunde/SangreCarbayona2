@@ -562,6 +562,7 @@
                 </div>
                 <div class="home-match-footer">
                     <span class="home-match-label"><i class="fas fa-calendar-alt"></i> ${etiquetaFooter}</span>
+                    <a href="alineacion.html" class="home-match-alineacion">${t('ver_alineacion') || 'Ver alineación'} <i class="fas fa-arrow-right"></i></a>
                 </div>
             `;
       lista.appendChild(elProximo);
@@ -590,6 +591,9 @@
   // pero el calendario es dinámico, así que lo enganchamos aquí.
   window.renderCalendario = renderCalendario;
   window.renderWidgetHome = renderWidgetHome;
+  // La página de Alineación reutiliza esta misma búsqueda de escudos
+  // (equipos de liga + escudosExtra) en vez de mantener su propia copia.
+  window.getEscudoEquipo = getEscudo;
 
   // ── Estilos inline para el widget home ──────────────
   const homeStyles = document.createElement('style');
@@ -680,7 +684,9 @@
             padding-top: 10px;
             border-top: 1px solid #f0f2fa;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .home-match-label {
@@ -692,9 +698,23 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            text-align: center;
         }
 
         .home-match-label i { color: #ccd6ff; }
+
+        .home-match-alineacion {
+            font-size: 0.78em;
+            font-weight: 700;
+            color: #001a6e;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-match-alineacion:hover { text-decoration: underline; }
+        .home-match-alineacion i { font-size: 0.75em; }
     `;
   document.head.appendChild(homeStyles);
 })();

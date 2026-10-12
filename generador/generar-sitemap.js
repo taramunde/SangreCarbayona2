@@ -75,6 +75,7 @@ const PAGINAS_ESTATICAS = [
   { loc: '/palmares.html', changefreq: 'yearly', priority: '0.6' },
   { loc: '/clasificacion.html', changefreq: 'weekly', priority: '0.7' },
   { loc: '/calendario.html', changefreq: 'weekly', priority: '0.7' },
+  { loc: '/alineacion.html', changefreq: 'daily', priority: '0.7' },
   { loc: '/primera-division.html', changefreq: 'monthly', priority: '0.6' },
   { loc: '/derbis.html', changefreq: 'monthly', priority: '0.6' },
   { loc: '/oviesportinguistas.html', changefreq: 'monthly', priority: '0.5' },

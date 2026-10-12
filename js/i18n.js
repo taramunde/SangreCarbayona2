@@ -252,6 +252,18 @@ const translations = {
     calendario_subtitulo:
       'Todos los partidos del Real Oviedo · Segunda División',
 
+    ver_alineacion: 'Ver alineación',
+    alineacion_titulo: 'Alineación',
+    alineacion_subtitulo: 'El once del Real Oviedo, partido a partido',
+    alineacion_estadio: 'Estadio',
+    once_confirmado: 'Once confirmado',
+    once_probable: 'Once probable',
+    once_pendiente: 'Once sin confirmar',
+    alineacion_sin_confirmar_titulo: 'Todavía no hay once',
+    alineacion_sin_confirmar_texto:
+      'En cuanto se confirme o se filtre una alineación probable para este partido, aparecerá aquí.',
+    alineacion_banquillo: 'Banquillo',
+
     // ============================================
     // CLASIFICACIÓN
     // ============================================
@@ -636,6 +648,18 @@ const translations = {
     calendario_fuera: 'Away',
     laliga_ea_sports: 'LaLiga EA Sports',
     calendario_subtitulo: 'All Real Oviedo matches · Second Division',
+
+    ver_alineacion: 'View lineup',
+    alineacion_titulo: 'Lineup',
+    alineacion_subtitulo: "Real Oviedo's starting XI, match by match",
+    alineacion_estadio: 'Stadium',
+    once_confirmado: 'Confirmed lineup',
+    once_probable: 'Probable lineup',
+    once_pendiente: 'Lineup not confirmed',
+    alineacion_sin_confirmar_titulo: 'No lineup yet',
+    alineacion_sin_confirmar_texto:
+      'As soon as a lineup is confirmed or a probable one is reported for this match, it will show up here.',
+    alineacion_banquillo: 'Bench',
 
     // ============================================
     // STANDINGS

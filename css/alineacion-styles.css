@@ -1,0 +1,511 @@
+/* css/alineacion-styles.css */
+
+/* ===== HERO ===== */
+.ali-hero {
+  position: relative;
+  padding: 60px 0 40px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #001a6e 0%, #0033cc 60%, #0057b8 100%);
+}
+
+.ali-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(255, 204, 0, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 40%
+    );
+}
+
+.ali-hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.ali-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 204, 0, 0.2);
+  border: 1px solid rgba(255, 204, 0, 0.4);
+  color: #ffcc00;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.ali-hero-content h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  line-height: 1.1;
+}
+
+.ali-hero-content h1 span {
+  color: #ffcc00;
+}
+
+.ali-hero-content p {
+  opacity: 0.8;
+  font-size: 0.95em;
+  margin: 0;
+}
+
+/* ===== MAIN ===== */
+.ali-main {
+  padding: 36px 0 60px;
+  background: #f4f6fb;
+  min-height: 60vh;
+}
+
+/* ===== MARCADOR ===== */
+.ali-scoreboard {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  padding: 24px 24px 18px;
+  margin-bottom: 28px;
+}
+
+.ali-scoreboard-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ali-sb-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ali-sb-escudo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.ali-sb-nombre {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: #002a5c;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.ali-sb-team.es-oviedo .ali-sb-nombre {
+  color: #001a6e;
+  font-weight: 700;
+}
+
+.ali-sb-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+}
+
+.ali-sb-score {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #001a6e;
+  letter-spacing: 2px;
+}
+
+.ali-sb-vs {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #ccd6ff;
+  letter-spacing: 2px;
+}
+
+.ali-sb-badge {
+  font-size: 0.68em;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 10px;
+  background: #e8eeff;
+  color: #0033cc;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.ali-scoreboard-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f2fa;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: #667;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.ali-scoreboard-info i {
+  color: #0057b8;
+  margin-right: 4px;
+}
+
+.ali-scoreboard-info .sep {
+  color: #ccd0e0;
+}
+
+/* ===== ESTADO DEL ONCE (badge arriba del campo) ===== */
+.ali-estado-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.ali-estado-tag {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ali-estado-tag.confirmada {
+  background: #e3f9ed;
+  color: #0a8f4f;
+}
+
+.ali-estado-tag.probable {
+  background: #fff6e0;
+  color: #b8860b;
+}
+
+.ali-estado-tag.pendiente {
+  background: #eef0f6;
+  color: #5a6072;
+}
+
+.ali-estado-tag .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ===== AVISO SIN CONFIRMAR ===== */
+.ali-sin-confirmar {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  padding: 60px 30px;
+  text-align: center;
+  color: #556;
+}
+
+.ali-sin-confirmar i {
+  font-size: 2.4em;
+  color: #ccd6ff;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.ali-sin-confirmar h3 {
+  font-family: 'Oswald', sans-serif;
+  color: #001a6e;
+  font-size: 1.3em;
+  margin-bottom: 8px;
+}
+
+.ali-sin-confirmar p {
+  font-size: 0.95em;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ===== CAMPO DE FÚTBOL ===== */
+.ali-field-wrap {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.ali-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ali-field-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #002a5c;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.ali-formacion-tag {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: #fff;
+  background: #001a6e;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+.ali-field {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 2 / 3;
+  margin: 0 auto;
+  background: linear-gradient(
+    to bottom,
+    #2e8b2e 0%,
+    #279227 50%,
+    #2e8b2e 100%
+  );
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ali-field::before {
+  /* franjas del césped */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045) 0,
+    rgba(255, 255, 255, 0.045) 11.11%,
+    transparent 11.11%,
+    transparent 22.22%
+  );
+}
+
+.ali-field-line {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.85);
+  width: calc(100% - 20px);
+  height: 2px;
+  top: calc(50% - 1px);
+  left: 10px;
+}
+
+.ali-field-circle {
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ali-field-area {
+  position: absolute;
+  width: 46%;
+  height: 11%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ali-field-area.top {
+  top: 0;
+  border-top: none;
+}
+
+.ali-field-area.bottom {
+  bottom: 0;
+  border-bottom: none;
+}
+
+.ali-field-area-mini {
+  position: absolute;
+  width: 22%;
+  height: 5.5%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ali-field-area-mini.top {
+  top: 0;
+  border-top: none;
+}
+
+.ali-field-area-mini.bottom {
+  bottom: 0;
+  border-bottom: none;
+}
+
+/* ===== JUGADOR EN EL CAMPO ===== */
+.ali-player {
+  position: absolute;
+  width: 18%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.ali-player-photo-wrap {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 4px;
+}
+
+.ali-player-photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  display: block;
+  background: #0a3a7a;
+}
+
+.ali-player-dorsal {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #ffcc00;
+  color: #001a6e;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.62em;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #fff;
+}
+
+.ali-player-nombre {
+  background: rgba(0, 10, 40, 0.78);
+  color: #fff;
+  font-size: 0.62em;
+  font-weight: 600;
+  padding: 2px 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: inline-block;
+}
+
+/* ===== BANQUILLO ===== */
+.ali-bench {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+}
+
+.ali-bench-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #002a5c;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 14px;
+}
+
+.ali-bench-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.ali-bench-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f6fb;
+  border-radius: 30px;
+  padding: 5px 14px 5px 5px;
+}
+
+.ali-bench-player img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ali-bench-player span {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #223;
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 600px) {
+  .ali-hero-content h1 {
+    font-size: 1.9em;
+  }
+
+  .ali-sb-escudo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .ali-sb-nombre {
+    font-size: 0.82em;
+  }
+
+  .ali-field {
+    max-width: 100%;
+  }
+
+  .ali-player-photo,
+  .ali-player-photo-wrap {
+    width: 38px;
+    height: 38px;
+  }
+
+  .ali-player-nombre {
+    font-size: 0.56em;
+  }
+}
