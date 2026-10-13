@@ -213,6 +213,80 @@
   color: var(--danger, #ef4444);
 }
 
+/* ── Tarjeta-resumen (respuesta directa a jugador/entrenador + filtros) ── */
+
+.busc-resumen {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #001a6e 100%);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.busc-resumen-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.busc-resumen-cabecera i {
+  font-size: 1.4rem;
+  color: var(--secondary-color);
+}
+
+.busc-resumen-cabecera b {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  display: block;
+}
+
+.busc-resumen-filtros {
+  display: block;
+  font-size: 0.82rem;
+  opacity: 0.85;
+  text-transform: capitalize;
+}
+
+.busc-resumen-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.busc-resumen-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 84px;
+}
+
+.busc-resumen-num {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.busc-resumen-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .busc-resumen-tile {
+    min-width: 72px;
+    padding: 8px 10px;
+  }
+}
+
 /* ── Contador de resultados ── */
 
 .busc-cabecera-resultados {

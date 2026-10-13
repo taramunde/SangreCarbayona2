@@ -119,6 +119,10 @@
             <label for="buscJugador">Jugador (goles, encajados...)</label>
             <select id="buscJugador"></select>
           </div>
+          <div class="busc-campo" id="buscCampoEntrenador">
+            <label for="buscEntrenador">Entrenador (resumen)</label>
+            <select id="buscEntrenador"></select>
+          </div>
           <div class="busc-campo" id="buscCampoPosicion">
             <label for="buscPosicion">Posición</label>
             <select id="buscPosicion"></select>
@@ -154,6 +158,7 @@
               <option value="">Todos los partidos</option>
               <option value="amarilla">Con amarilla</option>
               <option value="roja">Con roja</option>
+              <option value="dobleamarilla">Con doble amarilla</option>
               <option value="ninguna">Sin tarjetas</option>
             </select>
           </div>
@@ -165,6 +170,8 @@
             <i class="fas fa-rotate-left"></i> Limpiar filtros
           </button>
         </div>
+
+        <div id="buscResumen"></div>
 
         <div class="busc-cabecera-resultados">
           <span id="buscContador">Cargando…</span>

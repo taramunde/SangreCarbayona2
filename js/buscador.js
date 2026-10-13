@@ -219,6 +219,7 @@
   function indexarPartidos(indice) {
     if (!window.CLUB_DATA || !CLUB_DATA.temporadas) return;
     const maestro = CLUB_DATA.jugadoresMaestro || {};
+    const maestroEnt = CLUB_DATA.entrenadorMaestro || {};
 
     // Primera pasada: agrupar por partido (misma clave que ya usa
     // autoCalcularStatsEquipo en js/app.js) y recoger, para cada uno,
@@ -228,6 +229,23 @@
     // nombre de cualquier otro jugador que también lo jugó no
     // encontraba nada.
     const porClave = new Map();
+
+    function grupoDe(clave, p, seasonId) {
+      if (!porClave.has(clave)) {
+        porClave.set(clave, {
+          p,
+          seasonId,
+          jugadores: new Set(),
+          entrenadores: new Set(),
+          goleadores: new Set(),
+          amarilla: false,
+          roja: false,
+          dobleAmarilla: false,
+          statsPorJugador: {},
+        });
+      }
+      return porClave.get(clave);
+    }
 
     Object.entries(CLUB_DATA.temporadas).forEach(([seasonId, temporada]) => {
       (temporada.jugadores || []).forEach((jugadorTemp) => {
@@ -240,18 +258,7 @@
         (jugadorTemp.partidos || []).forEach((p) => {
           if (!p.local || !p.visitante || !p.fecha) return;
           const clave = `${p.competicion}|${p.jornada}|${p.fecha}`;
-          if (!porClave.has(clave)) {
-            porClave.set(clave, {
-              p,
-              seasonId,
-              jugadores: new Set(),
-              goleadores: new Set(),
-              amarilla: false,
-              roja: false,
-              statsPorJugador: {},
-            });
-          }
-          const grupo = porClave.get(clave);
+          const grupo = grupoDe(clave, p, seasonId);
           const esPortero = datosMaestro.posicion === 'Portero';
           grupo.jugadores.add(nombreJugador);
           // En los porteros, "goles" son los encajados, no marcados
@@ -260,8 +267,16 @@
           if (p.goles > 0 && !esPortero) {
             grupo.goleadores.add(nombreJugador);
           }
+          // Segunda amarilla (amarilla+roja sin ser roja directa) cuenta
+          // como amarilla Y como "doble amarilla" propia, no como roja
+          // suelta — mismo criterio que autoCalcularStatsJugador en
+          // js/app.js.
+          const esDobleAmarilla =
+            p.amarilla === true && p.roja === true && p.rojaDirecta !== true;
           if (p.amarilla) grupo.amarilla = true;
-          if (p.roja) grupo.roja = true;
+          if (p.roja && (!p.amarilla || p.rojaDirecta === true))
+            grupo.roja = true;
+          if (esDobleAmarilla) grupo.dobleAmarilla = true;
 
           // Aportación individual de este jugador en este partido en
           // concreto, para poder mostrarla al filtrar por su nombre
@@ -271,9 +286,26 @@
             esPortero,
             asistencias: p.asistencias || 0,
             amarilla: !!p.amarilla,
-            roja: !!p.roja,
+            roja: !!p.roja && (!p.amarilla || p.rojaDirecta === true),
+            dobleAmarilla: esDobleAmarilla,
             minutos: p.minutos || 0,
           };
+        });
+      });
+
+      // Entrenador(es) que dirigieron cada partido — mismos partidos[]
+      // que ya usa autoCalcularStatsEntrenador en js/app.js, pero aquí
+      // solo hace falta saber QUIÉN dirigió cada uno (no tienen goles ni
+      // tarjetas propias).
+      (temporada.cuerpoTecnico || []).forEach((entTemp) => {
+        const datosMaestro = maestroEnt[entTemp.codigo] || {};
+        const nombreEnt =
+          datosMaestro.apodo || datosMaestro.nombreCompleto || entTemp.codigo;
+
+        (entTemp.partidos || []).forEach((p) => {
+          if (!p.local || !p.visitante || !p.fecha) return;
+          const clave = `${p.competicion}|${p.jornada}|${p.fecha}`;
+          grupoDe(clave, p, seasonId).entrenadores.add(nombreEnt);
         });
       });
     });
@@ -286,9 +318,11 @@
         p,
         seasonId,
         jugadores,
+        entrenadores,
         goleadores,
         amarilla,
         roja,
+        dobleAmarilla,
         statsPorJugador,
       }) => {
         const esLocal = p.local === OVIEDO;
@@ -302,7 +336,10 @@
             ? `${p.golesLocal} - ${p.golesVisitante}`
             : '';
         const listaJugadores = Array.from(jugadores);
+        const listaEntrenadores = Array.from(entrenadores);
         const listaGoleadores = Array.from(goleadores);
+        const golesFavor = esLocal ? p.golesLocal : p.golesVisitante;
+        const golesContra = esLocal ? p.golesVisitante : p.golesLocal;
 
         // El Oviedo marcó pero ningún jugador tiene gol registrado en
         // los datos: lo más probable es que sea un gol en propia
@@ -330,11 +367,15 @@
           esLocal,
           jornada: p.jornada != null ? String(p.jornada) : '',
           jugadores: listaJugadores,
+          entrenadores: listaEntrenadores,
           goleadores: listaGoleadores,
           golSinAutor,
           statsPorJugador,
           amarilla,
           roja,
+          dobleAmarilla,
+          golesFavor: typeof golesFavor === 'number' ? golesFavor : null,
+          golesContra: typeof golesContra === 'number' ? golesContra : null,
           imagen: '',
           fecha: p.fecha,
           url: null,
@@ -347,6 +388,7 @@
               p.fecha,
               seasonId,
               listaJugadores.join(' '),
+              listaEntrenadores.join(' '),
               listaGoleadores.join(' '),
               golSinAutor ? 'propia puerta autogol' : '',
             ]
@@ -606,11 +648,23 @@
           .flatMap((i) => i.jugadores || []),
       ),
     );
+    const nombresEntrenadores = Array.from(
+      new Set(
+        indiceCompleto
+          .filter((i) => i.tipo === 'partido')
+          .flatMap((i) => i.entrenadores || []),
+      ),
+    );
 
     poblarSelect(
       document.getElementById('buscJugador'),
       nombresJugadores,
       'Elige un jugador...',
+    );
+    poblarSelect(
+      document.getElementById('buscEntrenador'),
+      nombresEntrenadores,
+      'Elige un entrenador...',
     );
     poblarSelect(
       document.getElementById('buscTemporada'),
@@ -667,6 +721,11 @@
     if (estado.jornada && item.jornada !== estado.jornada) return false;
     if (estado.jugador && !(item.jugadores || []).includes(estado.jugador))
       return false;
+    if (
+      estado.entrenador &&
+      !(item.entrenadores || []).includes(estado.entrenador)
+    )
+      return false;
 
     if (estado.tarjeta) {
       // Si hay un jugador concreto elegido, la tarjeta tiene que ser la
@@ -681,8 +740,12 @@
         ? statsJugador.amarilla
         : item.amarilla;
       const tieneRoja = statsJugador ? statsJugador.roja : item.roja;
+      const tieneDoble = statsJugador
+        ? statsJugador.dobleAmarilla
+        : item.dobleAmarilla;
       if (estado.tarjeta === 'amarilla' && !tieneAmarilla) return false;
       if (estado.tarjeta === 'roja' && !tieneRoja) return false;
+      if (estado.tarjeta === 'dobleamarilla' && !tieneDoble) return false;
       if (estado.tarjeta === 'ninguna' && (tieneAmarilla || tieneRoja))
         return false;
     }
@@ -865,6 +928,145 @@
     return lote.length < resultados.length;
   }
 
+  // ── TARJETA-RESUMEN (respuesta directa a "cuántos/cuántas veces") ──
+  // Se calcula sumando los partidos que ya han pasado el resto de
+  // filtros (rival, competición, temporada, resultado, local/
+  // visitante, jornada) — no vuelve a filtrar nada por su cuenta, solo
+  // agrega lo que ya se está mostrando abajo en la lista.
+
+  function calcularResumen(resultadosFiltrados, estado) {
+    if (!estado.jugador && !estado.entrenador) return null;
+    const partidos = resultadosFiltrados.filter((i) => i.tipo === 'partido');
+    if (!partidos.length) return null;
+
+    if (estado.jugador) {
+      const r = {
+        quien: 'jugador',
+        nombre: estado.jugador,
+        esPortero: false,
+        pj: 0,
+        goles: 0,
+        porteriasACero: 0,
+        asistencias: 0,
+        v: 0,
+        e: 0,
+        d: 0,
+        amarillas: 0,
+        rojas: 0,
+        dobles: 0,
+        minutos: 0,
+      };
+      partidos.forEach((item) => {
+        const s = item.statsPorJugador && item.statsPorJugador[estado.jugador];
+        if (!s) return;
+        r.pj++;
+        r.goles += s.goles || 0;
+        r.asistencias += s.asistencias || 0;
+        r.minutos += s.minutos || 0;
+        if (s.amarilla) r.amarillas++;
+        if (s.roja) r.rojas++;
+        if (s.dobleAmarilla) r.dobles++;
+        if (s.esPortero) {
+          r.esPortero = true;
+          if (!s.goles) r.porteriasACero++;
+        }
+        if (item.resultado === 'V') r.v++;
+        else if (item.resultado === 'E') r.e++;
+        else if (item.resultado === 'D') r.d++;
+      });
+      return r;
+    }
+
+    const r = {
+      quien: 'entrenador',
+      nombre: estado.entrenador,
+      pj: 0,
+      v: 0,
+      e: 0,
+      d: 0,
+      gf: 0,
+      gc: 0,
+    };
+    partidos.forEach((item) => {
+      r.pj++;
+      if (item.resultado === 'V') r.v++;
+      else if (item.resultado === 'E') r.e++;
+      else if (item.resultado === 'D') r.d++;
+      if (typeof item.golesFavor === 'number') r.gf += item.golesFavor;
+      if (typeof item.golesContra === 'number') r.gc += item.golesContra;
+    });
+    return r;
+  }
+
+  // Frase descriptiva con los filtros activos, para que la tarjeta deje
+  // claro exactamente qué se está contando ("vs Sporting, en Liga,
+  // fuera de casa...").
+  function describirFiltros(estado) {
+    const partes = [];
+    if (estado.rival) partes.push(`contra ${estado.rival}`);
+    if (estado.competicion) partes.push(`en ${estado.competicion}`);
+    if (estado.temporada) partes.push(`temporada ${estado.temporada}`);
+    if (estado.localidad)
+      partes.push(estado.localidad === 'true' ? 'en casa' : 'fuera de casa');
+    if (estado.resultado)
+      partes.push(
+        { V: 'ganados', E: 'empatados', D: 'perdidos' }[estado.resultado],
+      );
+    if (estado.jornada) partes.push(`jornada ${estado.jornada}`);
+    return partes.join(' · ');
+  }
+
+  function tile(numero, etiqueta) {
+    return `<div class="busc-resumen-tile"><span class="busc-resumen-num">${numero}</span><span class="busc-resumen-label">${etiqueta}</span></div>`;
+  }
+
+  function renderResumen(contenedor, resultadosFiltrados, estado) {
+    const r = calcularResumen(resultadosFiltrados, estado);
+    if (!r) {
+      contenedor.innerHTML = '';
+      return;
+    }
+
+    const filtrosTexto = describirFiltros(estado);
+    const tilesHtml =
+      r.quien === 'jugador'
+        ? [
+            tile(r.pj, 'Partidos'),
+            r.esPortero
+              ? tile(r.goles, 'Encajados')
+              : tile(r.goles, 'Goles'),
+            r.esPortero ? tile(r.porteriasACero, 'Porterías a cero') : '',
+            !r.esPortero ? tile(r.asistencias, 'Asistencias') : '',
+            tile(r.v, 'Victorias'),
+            tile(r.e, 'Empates'),
+            tile(r.d, 'Derrotas'),
+            tile(r.amarillas, 'Amarillas'),
+            tile(r.rojas, 'Rojas'),
+            r.dobles > 0 ? tile(r.dobles, 'Doble amarilla') : '',
+          ].join('')
+        : [
+            tile(r.pj, 'Partidos dirigidos'),
+            tile(r.v, 'Victorias'),
+            tile(r.e, 'Empates'),
+            tile(r.d, 'Derrotas'),
+            tile(r.gf, 'Goles a favor'),
+            tile(r.gc, 'Goles en contra'),
+          ].join('');
+
+    contenedor.innerHTML = `
+      <div class="busc-resumen">
+        <div class="busc-resumen-cabecera">
+          <i class="fas fa-chart-simple"></i>
+          <div>
+            <b>${r.nombre}</b>
+            ${filtrosTexto ? `<span class="busc-resumen-filtros">${filtrosTexto}</span>` : ''}
+          </div>
+        </div>
+        <div class="busc-resumen-tiles">${tilesHtml}</div>
+      </div>
+    `;
+  }
+
   // ── INICIALIZACIÓN ───────────────────────────────────────────
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -884,7 +1086,9 @@
     const selRival = document.getElementById('buscRival');
     const selLocalidad = document.getElementById('buscLocalidad');
     const selJugador = document.getElementById('buscJugador');
+    const selEntrenador = document.getElementById('buscEntrenador');
     const contenedor = document.getElementById('buscResultados');
+    const resumenContenedor = document.getElementById('buscResumen');
     const contador = document.getElementById('buscContador');
     const btnMas = document.getElementById('buscMostrarMas');
     const selJornada = document.getElementById('buscJornada');
@@ -899,6 +1103,7 @@
     const campoTarjeta = document.getElementById('buscCampoTarjeta');
     const campoNacionalidad = document.getElementById('buscCampoNacionalidad');
     const campoJugador = document.getElementById('buscCampoJugador');
+    const campoEntrenador = document.getElementById('buscCampoEntrenador');
 
     let resultadosActuales = [];
     let mostrados = PAGINA;
@@ -918,6 +1123,7 @@
         tarjeta: selTarjeta.value,
         nacionalidad: selNacionalidad.value,
         jugador: selJugador.value,
+        entrenador: selEntrenador.value,
       };
     }
 
@@ -948,9 +1154,11 @@
       campoTarjeta.style.display = esTipoSoloPartido ? '' : 'none';
       campoNacionalidad.style.display = esTipoConNacionalidad ? '' : 'none';
       campoJugador.style.display = esTipoSoloPartido ? '' : 'none';
+      campoEntrenador.style.display = esTipoSoloPartido ? '' : 'none';
 
       mostrados = PAGINA;
       resultadosActuales = filtrar(indice, estado);
+      renderResumen(resumenContenedor, resultadosActuales, estado);
       const hayMas = render(
         resultadosActuales,
         contenedor,
@@ -978,6 +1186,7 @@
       selTarjeta,
       selNacionalidad,
       selJugador,
+      selEntrenador,
     ].forEach((sel) => sel.addEventListener('change', actualizar));
 
     // Filtros secundarios (todos salvo el texto libre y el propio tipo):
@@ -997,6 +1206,7 @@
       selTarjeta.value = '';
       selNacionalidad.value = '';
       selJugador.value = '';
+      selEntrenador.value = '';
     }
 
     // Recalcula las opciones de cada desplegable para que solo ofrezcan
