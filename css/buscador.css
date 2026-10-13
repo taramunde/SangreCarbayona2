@@ -245,7 +245,6 @@
   display: block;
   font-size: 0.82rem;
   opacity: 0.85;
-  text-transform: capitalize;
 }
 
 .busc-resumen-tiles {
@@ -285,6 +284,112 @@
     min-width: 72px;
     padding: 8px 10px;
   }
+}
+
+/* ── Ranking (máximo goleador / más partidos, sin jugador fijado) ── */
+
+.busc-ranking {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.busc-ranking-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.busc-ranking-cabecera i {
+  font-size: 1.4rem;
+  color: var(--secondary-color);
+}
+
+.busc-ranking-cabecera b {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: var(--primary-color);
+  display: block;
+}
+
+.busc-ranking-columnas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.busc-ranking-col {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.busc-ranking-col h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.busc-ranking-col h4 i {
+  color: var(--secondary-color);
+}
+
+.busc-ranking-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: ranking;
+}
+
+.busc-ranking-lista li {
+  counter-increment: ranking;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.88rem;
+}
+
+.busc-ranking-lista li::before {
+  content: counter(ranking) '.';
+  font-weight: 700;
+  color: var(--gray-400);
+  margin-right: 6px;
+}
+
+.busc-ranking-nombre {
+  flex: 1;
+  color: var(--gray-900, #111827);
+}
+
+.busc-ranking-nombre a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.busc-ranking-nombre a:hover {
+  text-decoration: underline;
+}
+
+.busc-ranking-valor {
+  font-weight: 700;
+  color: var(--primary-color);
+  white-space: nowrap;
+}
+
+.busc-ranking-vacio {
+  color: var(--gray-600);
+  font-size: 0.85rem;
 }
 
 /* ── Contador de resultados ── */
@@ -388,6 +493,13 @@ a.busc-card {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.busc-prorroga {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--secondary-color);
 }
 
 .busc-jugadores {

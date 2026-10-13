@@ -242,9 +242,24 @@
           roja: false,
           dobleAmarilla: false,
           statsPorJugador: {},
+          // Prórroga: puede jugarla solo parte de la plantilla (p. ej. un
+          // suplente que entró ya en los 90') — con que UNO solo llegue a
+          // más de 90' en este partido, ya hubo prórroga para todos.
+          maxMinutos: 0,
+          penaltisLocal: undefined,
+          penaltisVisitante: undefined,
         });
       }
-      return porClave.get(clave);
+      const grupo = porClave.get(clave);
+      if ((p.minutos || 0) > grupo.maxMinutos) grupo.maxMinutos = p.minutos;
+      if (
+        grupo.penaltisLocal === undefined &&
+        typeof p.penaltisLocal === 'number'
+      ) {
+        grupo.penaltisLocal = p.penaltisLocal;
+        grupo.penaltisVisitante = p.penaltisVisitante;
+      }
+      return grupo;
     }
 
     Object.entries(CLUB_DATA.temporadas).forEach(([seasonId, temporada]) => {
@@ -324,6 +339,9 @@
         roja,
         dobleAmarilla,
         statsPorJugador,
+        maxMinutos,
+        penaltisLocal,
+        penaltisVisitante,
       }) => {
         const esLocal = p.local === OVIEDO;
         const rival = esLocal ? p.visitante : p.local;
@@ -340,6 +358,11 @@
         const listaGoleadores = Array.from(goleadores);
         const golesFavor = esLocal ? p.golesLocal : p.golesVisitante;
         const golesContra = esLocal ? p.golesVisitante : p.golesLocal;
+        const hayPenaltis = typeof penaltisLocal === 'number';
+        const prorroga = maxMinutos > 90 || hayPenaltis;
+        const penaltisMarcador = hayPenaltis
+          ? `${penaltisLocal}-${penaltisVisitante} pen.`
+          : '';
 
         // El Oviedo marcó pero ningún jugador tiene gol registrado en
         // los datos: lo más probable es que sea un gol en propia
@@ -376,6 +399,9 @@
           dobleAmarilla,
           golesFavor: typeof golesFavor === 'number' ? golesFavor : null,
           golesContra: typeof golesContra === 'number' ? golesContra : null,
+          prorroga,
+          penaltis: hayPenaltis,
+          penaltisMarcador,
           imagen: '',
           fecha: p.fecha,
           url: null,
@@ -750,6 +776,15 @@
         return false;
     }
 
+    if (estado.prorroga === 'si' && !item.prorroga) return false;
+    if (estado.prorroga === 'no' && item.prorroga) return false;
+    if (estado.prorroga === 'penaltis' && !item.penaltis) return false;
+
+    if (estado.fechaDesde && item.fecha && item.fecha < estado.fechaDesde)
+      return false;
+    if (estado.fechaHasta && item.fecha && item.fecha > estado.fechaHasta)
+      return false;
+
     if (estado.query) {
       const palabras = estado.query.split(/\s+/).filter(Boolean);
       const coincideTodas = palabras.every((p) => item._tokens.includes(p));
@@ -886,6 +921,7 @@
         <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${ETIQUETAS_TIPO[item.tipo]}</span>
         <b class="busc-titulo">${item.titulo}</b>
         ${item.subtitulo ? `<p class="busc-subtitulo">${item.subtitulo}</p>` : ''}
+        ${item.prorroga ? `<p class="busc-prorroga"><i class="fas fa-clock"></i> ${item.penaltisMarcador || 'Prórroga'}</p>` : ''}
         ${statsHtml}
         ${jugadoresHtml}
         ${goleadoresHtml}
@@ -1067,6 +1103,107 @@
     `;
   }
 
+  // ── RANKING (máximo goleador / más partidos, sin fijar un jugador) ──
+  // Se muestra en vez del resumen de arriba cuando NO se ha elegido un
+  // jugador/entrenador concreto: responde a "¿quién ha marcado más
+  // contra tal rival?" en lugar de "cuánto ha marcado X contra tal
+  // rival?". Usa los mismos filtros ya aplicados (rival, competición,
+  // temporada, resultado, fechas...).
+  const TOP_RANKING = 5;
+
+  function calcularRanking(resultadosFiltrados) {
+    const partidos = resultadosFiltrados.filter((i) => i.tipo === 'partido');
+    if (!partidos.length) return null;
+
+    const acumulado = {};
+    partidos.forEach((item) => {
+      Object.entries(item.statsPorJugador || {}).forEach(([nombre, s]) => {
+        if (!acumulado[nombre]) {
+          acumulado[nombre] = {
+            nombre,
+            partidos: 0,
+            goles: 0,
+            asistencias: 0,
+            esPortero: s.esPortero,
+          };
+        }
+        acumulado[nombre].partidos++;
+        acumulado[nombre].goles += s.goles || 0;
+        acumulado[nombre].asistencias += s.asistencias || 0;
+      });
+    });
+
+    const todos = Object.values(acumulado);
+    const goleadores = todos
+      .filter((v) => !v.esPortero && v.goles > 0)
+      .sort((a, b) => b.goles - a.goles || b.partidos - a.partidos)
+      .slice(0, TOP_RANKING);
+    const masPartidos = todos
+      .slice()
+      .sort((a, b) => b.partidos - a.partidos)
+      .slice(0, TOP_RANKING);
+
+    if (!goleadores.length && !masPartidos.length) return null;
+    return { goleadores, masPartidos, totalPartidos: partidos.length };
+  }
+
+  function listaRanking(items, valorClave, etiquetaSingular, etiquetaPlural) {
+    if (!items.length) return '<p class="busc-ranking-vacio">Sin datos</p>';
+    return `<ol class="busc-ranking-lista">${items
+      .map((it) => {
+        const url = mapaJugadorUrl[it.nombre];
+        const nombreHtml = url
+          ? `<a href="${url}">${it.nombre}</a>`
+          : it.nombre;
+        const valor = it[valorClave];
+        const etiqueta = valor === 1 ? etiquetaSingular : etiquetaPlural;
+        return `<li><span class="busc-ranking-nombre">${nombreHtml}</span><span class="busc-ranking-valor">${valor} ${etiqueta}</span></li>`;
+      })
+      .join('')}</ol>`;
+  }
+
+  function renderRanking(contenedor, resultadosFiltrados, estado) {
+    // Solo tiene sentido para resultados de tipo partido, y solo cuando
+    // no hay ya un jugador/entrenador concreto elegido (en ese caso se
+    // ve el resumen de arriba, que responde algo más concreto).
+    const aplica =
+      (estado.tipo === 'todos' || estado.tipo === 'partido') &&
+      !estado.jugador &&
+      !estado.entrenador;
+    if (!aplica) {
+      contenedor.innerHTML = '';
+      return;
+    }
+    const ranking = calcularRanking(resultadosFiltrados);
+    if (!ranking) {
+      contenedor.innerHTML = '';
+      return;
+    }
+
+    const filtrosTexto = describirFiltros(estado);
+    contenedor.innerHTML = `
+      <div class="busc-ranking">
+        <div class="busc-ranking-cabecera">
+          <i class="fas fa-ranking-star"></i>
+          <div>
+            <b>Ranking${filtrosTexto ? ` · ${filtrosTexto}` : ' · toda la historia'}</b>
+            <span class="busc-resumen-filtros">Sobre ${ranking.totalPartidos} partido${ranking.totalPartidos === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+        <div class="busc-ranking-columnas">
+          <div class="busc-ranking-col">
+            <h4><i class="fas fa-futbol"></i> Máximos goleadores</h4>
+            ${listaRanking(ranking.goleadores, 'goles', 'gol', 'goles')}
+          </div>
+          <div class="busc-ranking-col">
+            <h4><i class="fas fa-user-group"></i> Más partidos jugados</h4>
+            ${listaRanking(ranking.masPartidos, 'partidos', 'partido', 'partidos')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   // ── INICIALIZACIÓN ───────────────────────────────────────────
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -1089,10 +1226,14 @@
     const selEntrenador = document.getElementById('buscEntrenador');
     const contenedor = document.getElementById('buscResultados');
     const resumenContenedor = document.getElementById('buscResumen');
+    const rankingContenedor = document.getElementById('buscRanking');
     const contador = document.getElementById('buscContador');
     const btnMas = document.getElementById('buscMostrarMas');
     const selJornada = document.getElementById('buscJornada');
     const selTarjeta = document.getElementById('buscTarjeta');
+    const selProrroga = document.getElementById('buscProrroga');
+    const inputFechaDesde = document.getElementById('buscFechaDesde');
+    const inputFechaHasta = document.getElementById('buscFechaHasta');
     const selNacionalidad = document.getElementById('buscNacionalidad');
     const btnLimpiar = document.getElementById('buscLimpiar');
     const campoResultado = document.getElementById('buscCampoResultado');
@@ -1101,6 +1242,9 @@
     const campoLocalidad = document.getElementById('buscCampoLocalidad');
     const campoJornada = document.getElementById('buscCampoJornada');
     const campoTarjeta = document.getElementById('buscCampoTarjeta');
+    const campoProrroga = document.getElementById('buscCampoProrroga');
+    const campoFechaDesde = document.getElementById('buscCampoFechaDesde');
+    const campoFechaHasta = document.getElementById('buscCampoFechaHasta');
     const campoNacionalidad = document.getElementById('buscCampoNacionalidad');
     const campoJugador = document.getElementById('buscCampoJugador');
     const campoEntrenador = document.getElementById('buscCampoEntrenador');
@@ -1124,6 +1268,9 @@
         nacionalidad: selNacionalidad.value,
         jugador: selJugador.value,
         entrenador: selEntrenador.value,
+        prorroga: selProrroga.value,
+        fechaDesde: inputFechaDesde.value,
+        fechaHasta: inputFechaHasta.value,
       };
     }
 
@@ -1152,6 +1299,9 @@
       campoLocalidad.style.display = esTipoPartido ? '' : 'none';
       campoJornada.style.display = esTipoPartido ? '' : 'none';
       campoTarjeta.style.display = esTipoSoloPartido ? '' : 'none';
+      campoProrroga.style.display = esTipoSoloPartido ? '' : 'none';
+      campoFechaDesde.style.display = esTipoPartido ? '' : 'none';
+      campoFechaHasta.style.display = esTipoPartido ? '' : 'none';
       campoNacionalidad.style.display = esTipoConNacionalidad ? '' : 'none';
       campoJugador.style.display = esTipoSoloPartido ? '' : 'none';
       campoEntrenador.style.display = esTipoSoloPartido ? '' : 'none';
@@ -1159,6 +1309,7 @@
       mostrados = PAGINA;
       resultadosActuales = filtrar(indice, estado);
       renderResumen(resumenContenedor, resultadosActuales, estado);
+      renderRanking(rankingContenedor, resultadosActuales, estado);
       const hayMas = render(
         resultadosActuales,
         contenedor,
@@ -1184,6 +1335,9 @@
       selLocalidad,
       selJornada,
       selTarjeta,
+      selProrroga,
+      inputFechaDesde,
+      inputFechaHasta,
       selNacionalidad,
       selJugador,
       selEntrenador,
@@ -1204,6 +1358,9 @@
       selLocalidad.value = '';
       selJornada.value = '';
       selTarjeta.value = '';
+      selProrroga.value = '';
+      inputFechaDesde.value = '';
+      inputFechaHasta.value = '';
       selNacionalidad.value = '';
       selJugador.value = '';
       selEntrenador.value = '';

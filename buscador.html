@@ -162,9 +162,26 @@
               <option value="ninguna">Sin tarjetas</option>
             </select>
           </div>
+          <div class="busc-campo" id="buscCampoProrroga">
+            <label for="buscProrroga">Prórroga / Penaltis</label>
+            <select id="buscProrroga">
+              <option value="">Da igual</option>
+              <option value="si">Con prórroga</option>
+              <option value="penaltis">Con tanda de penaltis</option>
+              <option value="no">Sin prórroga</option>
+            </select>
+          </div>
           <div class="busc-campo" id="buscCampoNacionalidad">
             <label for="buscNacionalidad">Nacionalidad</label>
             <select id="buscNacionalidad"></select>
+          </div>
+          <div class="busc-campo" id="buscCampoFechaDesde">
+            <label for="buscFechaDesde">Desde</label>
+            <input type="date" id="buscFechaDesde" />
+          </div>
+          <div class="busc-campo" id="buscCampoFechaHasta">
+            <label for="buscFechaHasta">Hasta</label>
+            <input type="date" id="buscFechaHasta" />
           </div>
           <button type="button" class="busc-limpiar" id="buscLimpiar">
             <i class="fas fa-rotate-left"></i> Limpiar filtros
@@ -172,6 +189,7 @@
         </div>
 
         <div id="buscResumen"></div>
+        <div id="buscRanking"></div>
 
         <div class="busc-cabecera-resultados">
           <span id="buscContador">Cargando…</span>
