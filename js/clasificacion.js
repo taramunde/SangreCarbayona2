@@ -622,8 +622,8 @@
     {
       equipo1: 'Burgos C.F.',
       equipo2: 'Granada C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'Cádiz C.F.',
@@ -660,21 +660,21 @@
       equipo2: 'S.D. Eibar',
       fecha: '2026-10-12',
       hora: '18:30',
-      aproximada: true,
-      goles1: null,
-      goles2: null,
+      aproximada: false,
+      goles1: 3,
+      goles2: 1,
     },
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'Girona F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'Real Valladolid',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 5,
+      goles2: 0,
     },
 
     // Jornada 10 (18/10/2026)
