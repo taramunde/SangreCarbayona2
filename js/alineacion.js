@@ -4,7 +4,8 @@
    campo de fútbol con el once (o aviso de que aún no hay).
    Depende de: js/data-club.js, js/data-jugadores.js,
    js/data-temporada-actual.js, js/data-alineacion.js,
-   js/clasificacion.js + js/calendario.js (para los escudos).
+   js/data-estadios.js (para el nombre del estadio si no se pone a
+   mano), js/clasificacion.js + js/calendario.js (para los escudos).
    ===================================================== */
 
 (function () {
@@ -128,6 +129,19 @@
     return url ? `<img src="${url}" alt="${alt}" class="${claseCss}">` : '';
   }
 
+  // Si no se ha puesto "estadio" a mano en data-alineacion.js, se
+  // busca solo el del equipo que juega como local en
+  // CLUB_DATA.estadios (js/data-estadios.js, la misma lista que usa
+  // la sección "Cómo llegar") — así no hay que escribirlo cada vez.
+  function getEstadio(nombreEquipoLocal) {
+    if (datos.estadio) return datos.estadio;
+    if (!Array.isArray(CLUB_DATA.estadios)) return '';
+    const club = CLUB_DATA.estadios.find(
+      (e) => e.equipo === nombreEquipoLocal,
+    );
+    return club ? club.estadio : '';
+  }
+
   function datosJugador(jugadorId) {
     const maestro =
       (CLUB_DATA.jugadoresMaestro && CLUB_DATA.jugadoresMaestro[jugadorId]) ||
@@ -155,6 +169,7 @@
     const rival = esLocal ? datos.equipoVisitante : datos.equipoLocal;
     const escudoOviedo = getEscudo(OVIEDO);
     const escudoRival = getEscudo(rival);
+    const estadio = getEstadio(datos.equipoLocal);
 
     const jugado =
       datos.golesLocal !== null && datos.golesLocal !== undefined;
@@ -191,7 +206,7 @@
         <span><i class="fas fa-trophy"></i>${datos.competicion}${datos.jornada ? ' · ' + (t('jornada') || 'Jornada') + ' ' + datos.jornada : ''}</span>
         <span class="sep">·</span>
         <span><i class="fas fa-calendar-alt"></i>${fechaTexto}${datos.hora ? ' · ' + datos.hora : ''}</span>
-        ${datos.estadio ? `<span class="sep">·</span><span><i class="fas fa-map-marker-alt"></i>${datos.estadio}</span>` : ''}
+        ${estadio ? `<span class="sep">·</span><span><i class="fas fa-map-marker-alt"></i>${estadio}</span>` : ''}
       </div>
     `;
   }

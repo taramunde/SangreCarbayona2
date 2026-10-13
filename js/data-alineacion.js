@@ -15,7 +15,12 @@
        en el resto del proyecto (ej. "Real Oviedo", "S.D. Eibar").
      - competicion: "Segunda División", "Copa del Rey", etc.
      - jornada: número de jornada (o quita esta línea si es Copa).
-     - estadio, fecha ("AAAA-MM-DD"), hora ("HH:MM").
+     - fecha ("AAAA-MM-DD"), hora ("HH:MM").
+     - estadio: NORMALMENTE DÉJALO EN "" (vacío). Se rellena solo con
+       el estadio del equipo que juegue como local, sacado de
+       CLUB_DATA.estadios (js/data-estadios.js — la misma lista que
+       usa "Cómo llegar"). Solo escribe algo aquí a mano si hace
+       falta forzar un campo distinto (p.ej. una final a sede neutral).
      - golesLocal / golesVisitante: déjalos en "null" (sin jugar).
      - estado: pon "pendiente" — con esto, en la web sale el aviso
        de "Todavía no hay once" en vez de un campo vacío.
