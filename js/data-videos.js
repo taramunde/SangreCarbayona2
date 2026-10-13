@@ -61,4 +61,11 @@ CLUB_DATA.videos = [
     fecha: '2026-10-02',
     videoId: 'HxUlshaWxaI',
   },
+  {
+    id: 9,
+    jornada: 9,
+    titulo: 'Real Oviedo Vs S.D. Eibar',
+    fecha: '2026-10-12',
+    videoId: 'yINIx-TE8xc',
+  },
 ];
