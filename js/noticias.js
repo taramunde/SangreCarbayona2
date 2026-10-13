@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/02/real-oviedo-deshace-pepico-amat/00031790968887809223160.htm',
-    titulo: 'El Real Oviedo se deshace en el Pepico Amat.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/12/real-oviedo-respira-tumbando-lider/00031791826053566216784.htm',
+    titulo: 'El Real Oviedo respira tumbando al líder.',
     descripcion:
-      'Los azules, que marcaron en el primer minuto del partido, caen ante el Eldense tras una muy mala actuación (4-1).',
-    imagen: 'img/varios/J8LVA.webp',
-    fecha: '02 octubre 2026',
+      'Los azules, en un partido extraño en el que el control fue de un lado a otro, frenó al imparable Eibar (3-1) con doblete de Carlos Domínguez incluido. Escandell, fundamental en su regreso.',
+    imagen: 'img/varios/J9LVA.webp',
+    fecha: '12 octubre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/10/02/elda-acaba-impulso-post-derbi-134944318.html',
+    url: 'https://www.lne.es/real-oviedo/2026/10/12/aaron-sostiene-dominguez-golea-oviedo-135256192.html',
     titulo:
-      'Elda acaba con el impulso post derbi de un plumazo: el Oviedo cae 4-1.',
+      'Aarón sostiene, Domínguez golea, el Oviedo triunfa: victoria ante el líder en el Tartiere (3-1).',
     descripcion:
-      'Los azules, que se quejan de la segunda infracción señalada por Sánchez Martínez, desaprovechan la ventaja inicial de Reina y acaban goleados.',
-    imagen: 'img/varios/J8LNE.webp',
-    fecha: '02 octubre 2026',
+      'Un doblete del defensa y las intervenciones del meta en una notable actuación azul sacan a los de Calero de las dudas con un triunfo de de caché.',
+    imagen: 'img/varios/J9LNE.webp',
+    fecha: '12 octubre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-eldense-derrota-partido-goles-cronica-20261002233123-nt.html',
-    titulo: 'El Real Oviedo dilapida su ventaja y su crédito ante el Eldense.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-eibar-segunda-division-goles-resultados-victoria-20261012161424-di.html',
+    titulo: 'El Real Oviedo se crece ante el líder y vuelve a ganar.',
     descripcion:
-      'Derrota con todo a favor tras adelantarse en el marcador en el primer minuto de juego, el conjunto ovetense acabó perdiendo con contundencia.',
-    imagen: 'img/varios/J8EC.webp',
-    fecha: '02 octubre 2026',
+      'Victoria de prestigio. El conjunto azul firmó uno de los mejores partidos de la temporada y, aunque sufrió, derrotó al Eibar con dos goles de Carlos Domínguez y otro de Goti.',
+    imagen: 'img/varios/J9EC.webp',
+    fecha: '12 octubre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-desplome-absoluto-del-oviedo-en-el-pepico-amat',
-    titulo: 'La Crónica: Desplome absoluto del Oviedo en el Pepico Amat.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-carlos-dominguez-tumba-al-lider',
+    titulo: 'La Crónica: Carlos Domínguez tumba al líder.',
     descripcion:
-      'Los azules se adelantaron a los 30 segundos por medio de Reina, pero se descompusieron tras el descanso y acabaron goleados por el Eldense.',
-    imagen: 'img/varios/J8KA.webp',
-    fecha: '02 octubre 2026',
+      'El central firma un doblete, con un golazo para sentenciar, en un triunfo en el que Aarón sostuvo a los azules en sus peores momentos (3-1).',
+    imagen: 'img/varios/J9KA.webp',
+    fecha: '12 octubre 2026',
   },
 ];
 
