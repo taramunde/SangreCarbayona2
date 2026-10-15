@@ -3773,6 +3773,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'ton-ripoll-i-solera': {
+    nombre: 'Ton',
+    apellidos: 'Ripoll i Solera',
+    nombreCompleto: 'Ton Ripoll i Solera',
+    apodo: 'Ton Ripoll',
+    posicion: 'Centrocampista',
+    posicionCorta: 'MCO',
+    altura: 1.78,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Sampedor',
+    provinciaNacimiento: 'Barcelona',
+    fechaNacimiento: '1998-05-27',
+    imagen: 'https://i.postimg.cc/rss30hkG/Ton-Ripoll-PNG.webp',
+  },
+
   'francisco-portillo-soler': {
     nombre: 'Francisco',
     apellidos: 'Portillo Soler',
@@ -7207,21 +7222,6 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Mendoza',
     fechaNacimiento: '1991-11-05',
     imagen: 'https://i.postimg.cc/900jhmgB/Blanco-Leschuk-PNG.webp',
-  },
-
-  'ton-ripoll-i-solera': {
-    nombre: 'Ton',
-    apellidos: 'Ripoll i Solera',
-    nombreCompleto: 'Ton Ripoll i Solera',
-    apodo: 'Ton Ripoll',
-    posicion: 'Delantero',
-    posicionCorta: 'EI',
-    altura: 1.78,
-    nacionalidad: ['Española'],
-    lugarNacimiento: 'Sampedor',
-    provinciaNacimiento: 'Barcelona',
-    fechaNacimiento: '1998-05-27',
-    imagen: 'https://i.postimg.cc/rss30hkG/Ton-Ripoll-PNG.webp',
   },
 
   'daniel-sandoval-fernandez': {
