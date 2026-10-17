@@ -5618,7 +5618,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Villarreal',
     provinciaNacimiento: 'Castellón',
     fechaNacimiento: '1984-06-15',
-    imagen: 'https://i.ibb.co/QvSHXvc6/H-ctor-Font-PNG.webp',
+    imagen: 'img/jugadores/HectorFont.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
