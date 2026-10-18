@@ -1068,9 +1068,7 @@
       r.quien === 'jugador'
         ? [
             tile(r.pj, 'Partidos'),
-            r.esPortero
-              ? tile(r.goles, 'Encajados')
-              : tile(r.goles, 'Goles'),
+            r.esPortero ? tile(r.goles, 'Encajados') : tile(r.goles, 'Goles'),
             r.esPortero ? tile(r.porteriasACero, 'Porterías a cero') : '',
             !r.esPortero ? tile(r.asistencias, 'Asistencias') : '',
             tile(r.v, 'Victorias'),
@@ -1425,6 +1423,12 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') cerrarModal();
     });
+
+    // Soporte para ?q=... en la URL, para que el SearchAction del
+    // JSON-LD sitewide (js/seo.js) y los enlaces compartidos lleguen
+    // con la búsqueda ya rellena y ejecutada.
+    const qUrl = new URLSearchParams(window.location.search).get('q');
+    if (qUrl) inputTexto.value = qUrl;
 
     actualizar();
   });

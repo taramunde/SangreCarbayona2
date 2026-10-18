@@ -100,6 +100,53 @@ const fichasHistoricas = []; // una entrada por jugador × temporada
   });
 });
 
+// Construye el JSON-LD (schema.org Person) de una ficha, omitiendo con
+// cuidado los campos que no tengamos confirmados en vez de dejarlos
+// vacíos o inventarlos (mismo criterio que el resto del proyecto).
+function construirJsonLdPersona(
+  datos,
+  nombreMostrar,
+  imagenUrl,
+  canonicalUrl,
+  posicion,
+) {
+  const persona = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: nombreMostrar,
+    url: canonicalUrl,
+  };
+
+  if (imagenUrl) persona.image = imagenUrl;
+  if (posicion) persona.jobTitle = posicion;
+  if (datos.fechaNacimiento) persona.birthDate = datos.fechaNacimiento;
+  if (datos.altura) persona.height = `${datos.altura} m`;
+  if (datos.nacionalidad && datos.nacionalidad.length) {
+    persona.nationality = datos.nacionalidad[0];
+  }
+  if (datos.lugarNacimiento) {
+    const address = {
+      '@type': 'PostalAddress',
+      addressLocality: datos.lugarNacimiento,
+    };
+    if (
+      datos.provinciaNacimiento &&
+      datos.provinciaNacimiento !== datos.lugarNacimiento
+    ) {
+      address.addressRegion = datos.provinciaNacimiento;
+    }
+    persona.birthPlace = { '@type': 'Place', address };
+  }
+
+  persona.memberOf = {
+    '@type': 'SportsTeam',
+    name: 'Real Oviedo',
+    sport: 'Fútbol',
+  };
+
+  return JSON.stringify(persona, null, 2);
+}
+
 // Helper: rellena la plantilla con los datos de un jugador/temporada
 function generarHtmlFicha(jugador, temporadaId, slug) {
   const temporadaNombre = temporadaId.replace('-', '/');
@@ -126,6 +173,13 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
   // es esa ficha canónica como si es una variante histórica
   // (jugador-2024-25.html), el canonical apunta al mismo sitio.
   const canonicalUrl = `${SITE_BASE_URL}/fichas/${jugador.codigo}.html`;
+  const jsonLdPersona = construirJsonLdPersona(
+    jugador,
+    nombreMostrar,
+    imagenMostrar,
+    canonicalUrl,
+    jugador.posicion || '',
+  );
 
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
@@ -135,7 +189,8 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
     .replace(/\{\{POSICION\}\}/g, jugador.posicion || '')
     .replace(/\{\{SLUG\}\}/g, slug)
-    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrl);
+    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrl)
+    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersona);
 }
 
 // 7. Generar fichas de jugadores
@@ -233,6 +288,14 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
   // su ficha siempre es canónica a sí misma.
   const canonicalUrlEnt = `${SITE_BASE_URL}/fichas/${slug}.html`;
 
+  const jsonLdPersonaEnt = construirJsonLdPersona(
+    maestro,
+    nombre,
+    imagen,
+    canonicalUrlEnt,
+    miembro.cargo || 'Entrenador',
+  );
+
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
     .replace(/\{\{IMAGEN\}\}/g, imagen)
@@ -241,7 +304,8 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
     .replace(/\{\{TEMPORADA_NOMBRE\}\}/g, temporadaNombre)
     .replace(/\{\{POSICION\}\}/g, miembro.cargo || 'Entrenador')
     .replace(/\{\{SLUG\}\}/g, slug)
-    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrlEnt);
+    .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrlEnt)
+    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersonaEnt);
 
   // Inyectar tipo=entrenador en el PLAYER_DATA_STATIC
   htmlContent = htmlContent.replace(

@@ -62,11 +62,61 @@
         name: 'Real Oviedo',
         sport: 'Fútbol',
       },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${SITE_BASE_URL}/buscador.html?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
     };
 
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.id = 'ld-json-website';
+    script.textContent = JSON.stringify(data);
+    document.head.appendChild(script);
+  }
+
+  // BreadcrumbList a partir del marcado visual .breadcrumb que ya
+  // lleva cada página, para no tener que mantener las migas de pan
+  // por duplicado (HTML visible + JSON-LD). Los enlaces href="#" son
+  // etiquetas de categoría no navegables (p. ej. "Equipo"), así que
+  // se omiten en vez de darles una URL falsa.
+  function insertarBreadcrumbJsonLd() {
+    if (document.getElementById('ld-json-breadcrumb')) return;
+    const contenedor = document.querySelector('.breadcrumb');
+    if (!contenedor) return;
+
+    const pasos = [];
+    contenedor.querySelectorAll('a, .current').forEach((el) => {
+      const nombre = el.textContent.trim();
+      if (!nombre) return;
+      if (el.tagName === 'A') {
+        const href = el.getAttribute('href');
+        if (!href || href === '#') return;
+        pasos.push({ nombre, url: new URL(href, window.location.href).href });
+      } else {
+        pasos.push({ nombre, url: urlCanonica() });
+      }
+    });
+    if (pasos.length < 2) return;
+
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: pasos.map((paso, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: paso.nombre,
+        item: paso.url,
+      })),
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'ld-json-breadcrumb';
     script.textContent = JSON.stringify(data);
     document.head.appendChild(script);
   }
@@ -79,6 +129,7 @@
     insertarCanonical();
     insertarOgUrl();
     insertarJsonLd();
+    insertarBreadcrumbJsonLd();
   }
 
   if (document.readyState === 'loading') {

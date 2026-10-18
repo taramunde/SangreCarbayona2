@@ -6,7 +6,11 @@
     <title>David Jiménez Corredor | Real Oviedo - Sangre Carbayona</title>
 
     <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
-    <link rel="icon" type="image/webp" href="../img/varios/LogoSangreCarbayona.webp" />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -83,21 +87,34 @@
     <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/david-jimenez-corredor.html" />
 
     <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
-         de Google al buscar el nombre del jugador -->
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "David Jiménez Corredor",
-        "image": "https://taramunde.github.io/SangreCarbayona2/img/jugadores/DavidJimenez.webp",
-        "url": "https://taramunde.github.io/SangreCarbayona2/fichas/david-jimenez-corredor.html",
-        "jobTitle": "Lateral Derecho",
-        "memberOf": {
-          "@type": "SportsTeam",
-          "name": "Real Oviedo",
-          "sport": "Fútbol"
-        }
-      }
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "David Jiménez Corredor",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/david-jimenez-corredor.html",
+  "image": "https://taramunde.github.io/SangreCarbayona2/img/jugadores/DavidJimenez.webp",
+  "jobTitle": "Lateral Derecho",
+  "birthDate": "2004-03-14",
+  "height": "1.7 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Madrid"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
     </script>
 
     <link rel="preconnect" href="https://taramunde.github.io/SangreCarbayona2/img/jugadores/DavidJimenez.webp" />
@@ -154,7 +171,7 @@
           <a href="../index.html" data-i18n="nav_inicio">Inicio</a
           ><span>/</span> <a href="#">Equipo</a><span>/</span>
           <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
-            >1ª Equip.</a
+            >Primer Equipo</a
           ><span>/</span>
           <span class="current">David Jiménez Corredor</span>
         </div>
@@ -190,15 +207,15 @@
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Scripts (Rutas con ../) -->
-    <script src="../js/i18n.js?nocache=20261017v3"></script>
-    <script src="../js/data-club.js?nocache=20261017v3"></script>
-    <script src="../js/data-jugadores.js?nocache=20261017v3"></script>
-    <script src="../js/busqueda.js?nocache=20261017v3"></script>
-    <script src="../js/data-temporada-actual.js?nocache=20261017v3"></script>
-    <script src="../js/data-historico.js?nocache=20261017v3"></script>
-    <script src="../js/data-utils.js?nocache=20261017v3"></script>
-    <script src="../js/app.js?nocache=20261017v3"></script>
-    <script src="../js/script.js?nocache=20261017v3"></script>
-    <script src="../js/main.js?nocache=20261017v3"></script>
+    <script src="../js/i18n.js?nocache=20261017v4"></script>
+    <script src="../js/data-club.js?nocache=20261017v4"></script>
+    <script src="../js/data-jugadores.js?nocache=20261017v4"></script>
+    <script src="../js/busqueda.js?nocache=20261017v4"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261017v4"></script>
+    <script src="../js/data-historico.js?nocache=20261017v4"></script>
+    <script src="../js/data-utils.js?nocache=20261017v4"></script>
+    <script src="../js/app.js?nocache=20261017v4"></script>
+    <script src="../js/script.js?nocache=20261017v4"></script>
+    <script src="../js/main.js?nocache=20261017v4"></script>
   </body>
 </html>

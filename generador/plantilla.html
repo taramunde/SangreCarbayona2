@@ -6,7 +6,11 @@
     <title>{{NOMBRE}} | Real Oviedo - Sangre Carbayona</title>
 
     <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
-    <link rel="icon" type="image/webp" href="../img/varios/LogoSangreCarbayona.webp" />
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -83,21 +87,12 @@
     <link rel="canonical" href="{{CANONICAL_URL}}" />
 
     <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
-         de Google al buscar el nombre del jugador -->
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "{{NOMBRE}}",
-        "image": "{{IMAGEN}}",
-        "url": "{{CANONICAL_URL}}",
-        "jobTitle": "{{POSICION}}",
-        "memberOf": {
-          "@type": "SportsTeam",
-          "name": "Real Oviedo",
-          "sport": "Fútbol"
-        }
-      }
+      {{JSON_LD_PERSONA}}
     </script>
 
     <link rel="preconnect" href="{{IMAGEN}}" />
@@ -154,7 +149,7 @@
           <a href="../index.html" data-i18n="nav_inicio">Inicio</a
           ><span>/</span> <a href="#">Equipo</a><span>/</span>
           <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
-            >1ª Equip.</a
+            >Primer Equipo</a
           ><span>/</span>
           <span class="current">{{NOMBRE}}</span>
         </div>
