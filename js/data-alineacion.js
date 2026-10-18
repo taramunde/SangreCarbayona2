@@ -84,7 +84,7 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.alineacion = {
-  estado: 'pendiente',
+  estado: 'confirmada',
 
   competicion: 'Segunda División',
   jornada: 10,
@@ -97,6 +97,30 @@ CLUB_DATA.alineacion = {
   golesVisitante: null,
 
   formacion: '442',
-  titulares: [],
-  suplentes: [],
+  titulares: [
+    { slot: 'gk', jugadorId: 'aaron-escandell-banacloche' },
+    { slot: 'def1', jugadorId: 'samuel-rodriguez-de-la-riva' },
+    { slot: 'def2', jugadorId: 'carlos-dominguez-caceres' },
+    { slot: 'def3', jugadorId: 'daniel-pedro-calvo-san-roman' },
+    { slot: 'def4', jugadorId: 'david-jimenez-corredor' },
+    { slot: 'mid1', jugadorId: 'alberto-reina-campos' },
+    { slot: 'mid2', jugadorId: 'youness-lachhab' },
+    { slot: 'mid3', jugadorId: 'aritz-aldasoro-sarriegi' },
+    { slot: 'mid4', jugadorId: 'mikel-goti-lopez' },
+    { slot: 'fwd1', jugadorId: 'victor-garcia-mingo' },
+    { slot: 'fwd2', jugadorId: 'enzo-perez-miranda' },
+  ],
+  suplentes: [
+    'miguel-de-jesus-narvaez-lopez',
+    'samuel-franganillo-moreno',
+    'david-costas-cordal',
+    'daniel-villahermosa-martinez',
+    'jacobo-gonzalez-rodriganez',
+    'brandon-jose-domingues',
+    'pablo-saenz-ezquerra',
+    'ignacio-vidal-miralles',
+    'jose-luis-morales-nogales',
+    'diego-menendez-secades',
+    'marco-esteban-fernandez',
+  ],
 };
