@@ -71,6 +71,7 @@
           <input
             type="text"
             id="buscTexto"
+            data-i18n="busc_placeholder"
             placeholder="Busca por nombre, apellidos, apodo, rival, competición..."
             aria-label="Buscar"
           />
@@ -78,113 +79,123 @@
 
         <div class="busc-chips" id="buscTipoChips">
           <button type="button" class="busc-chip active" data-tipo="todos">
-            <i class="fas fa-border-all"></i> Todos
+            <i class="fas fa-border-all"></i>
+            <span data-i18n="busc_tipo_todos">Todos</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="jugador">
-            <i class="fas fa-user"></i> Jugadores
+            <i class="fas fa-user"></i>
+            <span data-i18n="busc_tipo_jugadores">Jugadores</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="entrenador">
-            <i class="fas fa-clipboard-user"></i> Entrenadores
+            <i class="fas fa-clipboard-user"></i>
+            <span data-i18n="busc_tipo_entrenadores">Entrenadores</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="partido">
-            <i class="fas fa-futbol"></i> Partidos
+            <i class="fas fa-futbol"></i>
+            <span data-i18n="busc_tipo_partidos">Partidos</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="titulo">
-            <i class="fas fa-trophy"></i> Títulos
+            <i class="fas fa-trophy"></i>
+            <span data-i18n="busc_tipo_titulos">Títulos</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="estadio">
-            <i class="fas fa-flag"></i> Estadios
+            <i class="fas fa-flag"></i>
+            <span data-i18n="busc_tipo_estadios">Estadios</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="historia">
-            <i class="fas fa-landmark"></i> Historia
+            <i class="fas fa-landmark"></i>
+            <span data-i18n="busc_tipo_historia">Historia</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="derbi">
-            <i class="fas fa-shield-halved"></i> Derbis
+            <i class="fas fa-shield-halved"></i>
+            <span data-i18n="busc_tipo_derbis">Derbis</span>
           </button>
           <button type="button" class="busc-chip" data-tipo="oviesportinguista">
-            <i class="fas fa-people-arrows"></i> Oviesportinguistas
+            <i class="fas fa-people-arrows"></i>
+            <span data-i18n="busc_tipo_oviesportinguistas">Oviesportinguistas</span>
           </button>
         </div>
 
         <div class="busc-filtros">
           <div class="busc-campo">
-            <label for="buscTemporada">Temporada</label>
+            <label for="buscTemporada" data-i18n="busc_lbl_temporada">Temporada</label>
             <select id="buscTemporada"></select>
           </div>
           <div class="busc-campo">
-            <label for="buscCompeticion">Competición</label>
+            <label for="buscCompeticion" data-i18n="busc_lbl_competicion">Competición</label>
             <select id="buscCompeticion"></select>
           </div>
           <div class="busc-campo" id="buscCampoJugador">
-            <label for="buscJugador">Jugador (goles, encajados...)</label>
+            <label for="buscJugador" data-i18n="busc_lbl_jugador">Jugador (goles, encajados...)</label>
             <select id="buscJugador"></select>
           </div>
           <div class="busc-campo" id="buscCampoEntrenador">
-            <label for="buscEntrenador">Entrenador (resumen)</label>
+            <label for="buscEntrenador" data-i18n="busc_lbl_entrenador">Entrenador (resumen)</label>
             <select id="buscEntrenador"></select>
           </div>
           <div class="busc-campo" id="buscCampoPosicion">
-            <label for="buscPosicion">Posición</label>
+            <label for="buscPosicion" data-i18n="busc_lbl_posicion">Posición</label>
             <select id="buscPosicion"></select>
           </div>
           <div class="busc-campo" id="buscCampoResultado">
-            <label for="buscResultado">Resultado</label>
+            <label for="buscResultado" data-i18n="busc_lbl_resultado">Resultado</label>
             <select id="buscResultado">
-              <option value="">Todos los resultados</option>
-              <option value="V">Victoria</option>
-              <option value="E">Empate</option>
-              <option value="D">Derrota</option>
+              <option value="" data-i18n="busc_opt_todos_resultados">Todos los resultados</option>
+              <option value="V" data-i18n="busc_opt_victoria">Victoria</option>
+              <option value="E" data-i18n="busc_opt_empate">Empate</option>
+              <option value="D" data-i18n="busc_opt_derrota">Derrota</option>
             </select>
           </div>
           <div class="busc-campo" id="buscCampoRival">
-            <label for="buscRival">Rival</label>
+            <label for="buscRival" data-i18n="busc_lbl_rival">Rival</label>
             <select id="buscRival"></select>
           </div>
           <div class="busc-campo" id="buscCampoLocalidad">
-            <label for="buscLocalidad">Local / Visitante</label>
+            <label for="buscLocalidad" data-i18n="busc_lbl_localidad">Local / Visitante</label>
             <select id="buscLocalidad">
-              <option value="">Da igual</option>
-              <option value="true">En casa</option>
-              <option value="false">Fuera</option>
+              <option value="" data-i18n="busc_opt_da_igual">Da igual</option>
+              <option value="true" data-i18n="busc_opt_en_casa">En casa</option>
+              <option value="false" data-i18n="busc_opt_fuera">Fuera</option>
             </select>
           </div>
           <div class="busc-campo" id="buscCampoJornada">
-            <label for="buscJornada">Jornada</label>
+            <label for="buscJornada" data-i18n="busc_lbl_jornada">Jornada</label>
             <select id="buscJornada"></select>
           </div>
           <div class="busc-campo" id="buscCampoTarjeta">
-            <label for="buscTarjeta">Tarjetas</label>
+            <label for="buscTarjeta" data-i18n="busc_lbl_tarjetas">Tarjetas</label>
             <select id="buscTarjeta">
-              <option value="">Todos los partidos</option>
-              <option value="amarilla">Con amarilla</option>
-              <option value="roja">Con roja</option>
-              <option value="dobleamarilla">Con doble amarilla</option>
-              <option value="ninguna">Sin tarjetas</option>
+              <option value="" data-i18n="busc_opt_todos_partidos">Todos los partidos</option>
+              <option value="amarilla" data-i18n="busc_opt_con_amarilla">Con amarilla</option>
+              <option value="roja" data-i18n="busc_opt_con_roja">Con roja</option>
+              <option value="dobleamarilla" data-i18n="busc_opt_con_dobleamarilla">Con doble amarilla</option>
+              <option value="ninguna" data-i18n="busc_opt_sin_tarjetas">Sin tarjetas</option>
             </select>
           </div>
           <div class="busc-campo" id="buscCampoProrroga">
-            <label for="buscProrroga">Prórroga / Penaltis</label>
+            <label for="buscProrroga" data-i18n="busc_lbl_prorroga">Prórroga / Penaltis</label>
             <select id="buscProrroga">
-              <option value="">Da igual</option>
-              <option value="si">Con prórroga</option>
-              <option value="penaltis">Con tanda de penaltis</option>
-              <option value="no">Sin prórroga</option>
+              <option value="" data-i18n="busc_opt_da_igual">Da igual</option>
+              <option value="si" data-i18n="busc_opt_con_prorroga">Con prórroga</option>
+              <option value="penaltis" data-i18n="busc_opt_con_penaltis">Con tanda de penaltis</option>
+              <option value="no" data-i18n="busc_opt_sin_prorroga">Sin prórroga</option>
             </select>
           </div>
           <div class="busc-campo" id="buscCampoNacionalidad">
-            <label for="buscNacionalidad">Nacionalidad</label>
+            <label for="buscNacionalidad" data-i18n="busc_lbl_nacionalidad">Nacionalidad</label>
             <select id="buscNacionalidad"></select>
           </div>
           <div class="busc-campo" id="buscCampoFechaDesde">
-            <label for="buscFechaDesde">Desde</label>
+            <label for="buscFechaDesde" data-i18n="busc_lbl_desde">Desde</label>
             <input type="date" id="buscFechaDesde" />
           </div>
           <div class="busc-campo" id="buscCampoFechaHasta">
-            <label for="buscFechaHasta">Hasta</label>
+            <label for="buscFechaHasta" data-i18n="busc_lbl_hasta">Hasta</label>
             <input type="date" id="buscFechaHasta" />
           </div>
           <button type="button" class="busc-limpiar" id="buscLimpiar">
-            <i class="fas fa-rotate-left"></i> Limpiar filtros
+            <i class="fas fa-rotate-left"></i>
+            <span data-i18n="busc_limpiar_filtros">Limpiar filtros</span>
           </button>
         </div>
 
@@ -192,13 +203,18 @@
         <div id="buscRanking"></div>
 
         <div class="busc-cabecera-resultados">
-          <span id="buscContador">Cargando…</span>
+          <span id="buscContador" data-i18n="cargando">Cargando…</span>
         </div>
 
         <div class="busc-grid" id="buscResultados"></div>
 
         <div class="busc-mas-wrap">
-          <button type="button" class="busc-mas" id="buscMostrarMas">
+          <button
+            type="button"
+            class="busc-mas"
+            id="buscMostrarMas"
+            data-i18n="busc_mostrar_mas"
+          >
             Mostrar más resultados
           </button>
         </div>

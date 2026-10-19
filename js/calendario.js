@@ -594,6 +594,11 @@
   // La página de Alineación reutiliza esta misma búsqueda de escudos
   // (equipos de liga + escudosExtra) en vez de mantener su propia copia.
   window.getEscudoEquipo = getEscudo;
+  // ...y este mismo cálculo de cuál es el próximo partido (liga o Copa,
+  // el que corresponda), para saber automáticamente de qué partido
+  // tiene que hablar la alineación sin tener que repetir el rival/
+  // fecha a mano en data-alineacion.js.
+  window.getProximoPartidoGeneral = getProximoPartidoGeneral;
 
   // ── Estilos inline para el widget home ──────────────
   const homeStyles = document.createElement('style');

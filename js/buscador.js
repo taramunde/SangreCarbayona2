@@ -811,16 +811,20 @@
     derbi: 'fa-shield-halved',
   };
 
-  const ETIQUETAS_TIPO = {
-    jugador: 'Jugador',
-    entrenador: 'Entrenador',
-    partido: 'Partido',
-    titulo: 'Título',
-    estadio: 'Estadio',
-    historia: 'Historia',
-    oviesportinguista: 'Oviesportinguista',
-    derbi: 'Derbi',
+  const CLAVES_TIPO = {
+    jugador: 'busc_badge_jugador',
+    entrenador: 'busc_badge_entrenador',
+    partido: 'busc_badge_partido',
+    titulo: 'busc_badge_titulo',
+    estadio: 'busc_badge_estadio',
+    historia: 'busc_badge_historia',
+    oviesportinguista: 'busc_badge_oviesportinguista',
+    derbi: 'busc_badge_derbi',
   };
+
+  function etiquetaTipo(tipo) {
+    return typeof window.t === 'function' ? window.t(CLAVES_TIPO[tipo]) : tipo;
+  }
 
   function statsJugadorHtml(item, jugadorSeleccionado) {
     if (
@@ -833,24 +837,26 @@
     if (!s) return '';
 
     const partes = [];
+    const golEtiqueta = (n) =>
+      n === 1 ? t('busc_gol_singular') : t('busc_gol_plural');
     if (s.esPortero) {
       partes.push(
         s.goles > 0
-          ? `Encajó ${s.goles} gol${s.goles === 1 ? '' : 'es'}`
-          : 'Portería a cero',
+          ? `${t('busc_encajo')} ${s.goles} ${golEtiqueta(s.goles)}`
+          : t('busc_porteria_a_cero'),
       );
     } else if (s.goles > 0) {
-      partes.push(`${s.goles} gol${s.goles === 1 ? '' : 'es'}`);
+      partes.push(`${s.goles} ${golEtiqueta(s.goles)}`);
     }
     if (s.asistencias > 0)
       partes.push(
-        `${s.asistencias} asistencia${s.asistencias === 1 ? '' : 's'}`,
+        `${s.asistencias} ${t('asistencia')}${s.asistencias === 1 ? '' : 's'}`,
       );
-    if (s.amarilla) partes.push('Amarilla');
-    if (s.roja) partes.push('Roja');
+    if (s.amarilla) partes.push(t('busc_amarilla_singular'));
+    if (s.roja) partes.push(t('busc_roja_singular'));
     if (s.minutos) partes.push(`${s.minutos}'`);
 
-    if (!partes.length) partes.push('Jugó sin incidencias');
+    if (!partes.length) partes.push(t('busc_jugo_sin_incidencias'));
 
     return `<p class="busc-stats-jugador"><i class="fas fa-star"></i> ${jugadorSeleccionado}: ${partes.join(' · ')}</p>`;
   }
@@ -898,12 +904,14 @@
       const maxVisibles = 6;
       const visibles = lista.slice(0, maxVisibles).join(', ');
       const resto = lista.length - maxVisibles;
-      return `<p class="busc-jugadores busc-clicable" data-lista="${clave}"><i class="fas ${icono}"></i> ${visibles}${resto > 0 ? ` y ${resto} más` : ''}</p>`;
+      const yMas =
+        resto > 0 ? ` ${t('busc_y_mas').replace('{n}', resto)}` : '';
+      return `<p class="busc-jugadores busc-clicable" data-lista="${clave}"><i class="fas ${icono}"></i> ${visibles}${yMas}</p>`;
     }
 
     const jugadoresHtml = listaCorta(item.jugadores, 'fa-users', 'jugadores');
     const goleadoresHtml = item.golSinAutor
-      ? `<p class="busc-jugadores"><i class="fas fa-futbol"></i> Gol sin goleador registrado (posible autogol rival)</p>`
+      ? `<p class="busc-jugadores"><i class="fas fa-futbol"></i> ${t('busc_gol_sin_autor')}</p>`
       : listaCorta(item.goleadores, 'fa-futbol', 'goleadores');
     const statsHtml = statsJugadorHtml(item, jugadorSeleccionado);
 
@@ -918,10 +926,10 @@
     card.innerHTML = `
       ${iconoFoto}
       <div class="busc-info">
-        <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${ETIQUETAS_TIPO[item.tipo]}</span>
+        <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${etiquetaTipo(item.tipo)}</span>
         <b class="busc-titulo">${item.titulo}</b>
         ${item.subtitulo ? `<p class="busc-subtitulo">${item.subtitulo}</p>` : ''}
-        ${item.prorroga ? `<p class="busc-prorroga"><i class="fas fa-clock"></i> ${item.penaltisMarcador || 'Prórroga'}</p>` : ''}
+        ${item.prorroga ? `<p class="busc-prorroga"><i class="fas fa-clock"></i> ${item.penaltisMarcador || t('busc_prorroga_generica')}</p>` : ''}
         ${statsHtml}
         ${jugadoresHtml}
         ${goleadoresHtml}
@@ -933,7 +941,10 @@
     card.querySelectorAll('[data-lista]').forEach((el) => {
       const clave = el.dataset.lista;
       const lista = clave === 'goleadores' ? item.goleadores : item.jugadores;
-      const etiqueta = clave === 'goleadores' ? 'Goleadores' : 'Jugadores';
+      const etiqueta =
+        clave === 'goleadores'
+          ? t('busc_modal_goleadores')
+          : t('busc_modal_jugadores');
       el.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -958,8 +969,8 @@
     );
 
     contador.textContent = resultados.length
-      ? `${resultados.length} resultado${resultados.length === 1 ? '' : 's'}`
-      : 'Sin resultados';
+      ? `${resultados.length} ${resultados.length === 1 ? t('busc_resultado_singular') : t('busc_resultado_plural')}`
+      : t('busc_sin_resultados');
 
     return lote.length < resultados.length;
   }
@@ -1039,16 +1050,27 @@
   // fuera de casa...").
   function describirFiltros(estado) {
     const partes = [];
-    if (estado.rival) partes.push(`contra ${estado.rival}`);
-    if (estado.competicion) partes.push(`en ${estado.competicion}`);
-    if (estado.temporada) partes.push(`temporada ${estado.temporada}`);
+    if (estado.rival) partes.push(`${t('busc_filtro_contra')} ${estado.rival}`);
+    if (estado.competicion)
+      partes.push(`${t('busc_filtro_en')} ${estado.competicion}`);
+    if (estado.temporada)
+      partes.push(`${t('busc_filtro_temporada')} ${estado.temporada}`);
     if (estado.localidad)
-      partes.push(estado.localidad === 'true' ? 'en casa' : 'fuera de casa');
+      partes.push(
+        estado.localidad === 'true'
+          ? t('busc_filtro_en_casa')
+          : t('busc_filtro_fuera_de_casa'),
+      );
     if (estado.resultado)
       partes.push(
-        { V: 'ganados', E: 'empatados', D: 'perdidos' }[estado.resultado],
+        {
+          V: t('busc_filtro_ganados'),
+          E: t('busc_filtro_empatados'),
+          D: t('busc_filtro_perdidos'),
+        }[estado.resultado],
       );
-    if (estado.jornada) partes.push(`jornada ${estado.jornada}`);
+    if (estado.jornada)
+      partes.push(`${t('busc_filtro_jornada')} ${estado.jornada}`);
     return partes.join(' · ');
   }
 
@@ -1067,24 +1089,30 @@
     const tilesHtml =
       r.quien === 'jugador'
         ? [
-            tile(r.pj, 'Partidos'),
-            r.esPortero ? tile(r.goles, 'Encajados') : tile(r.goles, 'Goles'),
-            r.esPortero ? tile(r.porteriasACero, 'Porterías a cero') : '',
-            !r.esPortero ? tile(r.asistencias, 'Asistencias') : '',
-            tile(r.v, 'Victorias'),
-            tile(r.e, 'Empates'),
-            tile(r.d, 'Derrotas'),
-            tile(r.amarillas, 'Amarillas'),
-            tile(r.rojas, 'Rojas'),
-            r.dobles > 0 ? tile(r.dobles, 'Doble amarilla') : '',
+            tile(r.pj, t('busc_res_partidos')),
+            r.esPortero
+              ? tile(r.goles, t('busc_res_encajados'))
+              : tile(r.goles, t('busc_res_goles')),
+            r.esPortero
+              ? tile(r.porteriasACero, t('busc_res_porterias_cero'))
+              : '',
+            !r.esPortero ? tile(r.asistencias, t('busc_res_asistencias')) : '',
+            tile(r.v, t('busc_res_victorias')),
+            tile(r.e, t('busc_res_empates')),
+            tile(r.d, t('busc_res_derrotas')),
+            tile(r.amarillas, t('busc_res_amarillas')),
+            tile(r.rojas, t('busc_res_rojas')),
+            r.dobles > 0
+              ? tile(r.dobles, t('busc_res_doble_amarilla'))
+              : '',
           ].join('')
         : [
-            tile(r.pj, 'Partidos dirigidos'),
-            tile(r.v, 'Victorias'),
-            tile(r.e, 'Empates'),
-            tile(r.d, 'Derrotas'),
-            tile(r.gf, 'Goles a favor'),
-            tile(r.gc, 'Goles en contra'),
+            tile(r.pj, t('busc_res_partidos_dirigidos')),
+            tile(r.v, t('busc_res_victorias')),
+            tile(r.e, t('busc_res_empates')),
+            tile(r.d, t('busc_res_derrotas')),
+            tile(r.gf, t('busc_res_goles_favor')),
+            tile(r.gc, t('busc_res_goles_contra')),
           ].join('');
 
     contenedor.innerHTML = `
@@ -1146,7 +1174,8 @@
   }
 
   function listaRanking(items, valorClave, etiquetaSingular, etiquetaPlural) {
-    if (!items.length) return '<p class="busc-ranking-vacio">Sin datos</p>';
+    if (!items.length)
+      return `<p class="busc-ranking-vacio">${t('busc_sin_datos')}</p>`;
     return `<ol class="busc-ranking-lista">${items
       .map((it) => {
         const url = mapaJugadorUrl[it.nombre];
@@ -1179,23 +1208,27 @@
     }
 
     const filtrosTexto = describirFiltros(estado);
+    const totalPartidosTexto = t('busc_ranking_sobre_n_partidos').replace(
+      '{n}',
+      ranking.totalPartidos,
+    );
     contenedor.innerHTML = `
       <div class="busc-ranking">
         <div class="busc-ranking-cabecera">
           <i class="fas fa-ranking-star"></i>
           <div>
-            <b>Ranking${filtrosTexto ? ` · ${filtrosTexto}` : ' · toda la historia'}</b>
-            <span class="busc-resumen-filtros">Sobre ${ranking.totalPartidos} partido${ranking.totalPartidos === 1 ? '' : 's'}</span>
+            <b>${t('busc_ranking_titulo')}${filtrosTexto ? ` · ${filtrosTexto}` : ` · ${t('busc_ranking_toda_historia')}`}</b>
+            <span class="busc-resumen-filtros">${totalPartidosTexto}</span>
           </div>
         </div>
         <div class="busc-ranking-columnas">
           <div class="busc-ranking-col">
-            <h4><i class="fas fa-futbol"></i> Máximos goleadores</h4>
-            ${listaRanking(ranking.goleadores, 'goles', 'gol', 'goles')}
+            <h4><i class="fas fa-futbol"></i> ${t('busc_ranking_goleadores')}</h4>
+            ${listaRanking(ranking.goleadores, 'goles', t('busc_gol_singular'), t('busc_gol_plural'))}
           </div>
           <div class="busc-ranking-col">
-            <h4><i class="fas fa-user-group"></i> Más partidos jugados</h4>
-            ${listaRanking(ranking.masPartidos, 'partidos', 'partido', 'partidos')}
+            <h4><i class="fas fa-user-group"></i> ${t('busc_ranking_mas_partidos')}</h4>
+            ${listaRanking(ranking.masPartidos, 'partidos', t('busc_partido_singular'), t('busc_partido_plural'))}
           </div>
         </div>
       </div>
@@ -1431,5 +1464,10 @@
     if (qUrl) inputTexto.value = qUrl;
 
     actualizar();
+
+    // Para que setLanguage() (js/i18n.js) pueda volver a pintar las
+    // tarjetas, el resumen y el ranking al cambiar de idioma, ya que
+    // su contenido se genera aquí dinámicamente y no vía data-i18n.
+    window.renderBuscador = actualizar;
   });
 })();

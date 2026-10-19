@@ -12,10 +12,60 @@
   const container = document.getElementById('alineacionContent');
   if (!container) return; // no estamos en alineacion.html
 
-  const datos = CLUB_DATA.alineacion;
-  if (!datos) return;
-
+  const datosGuardados = CLUB_DATA.alineacion || {};
   const OVIEDO = CLUB_DATA.club.nombre || 'Real Oviedo';
+
+  // ── Partido real (liga o Copa) ─────────────────────────
+  // Siempre se coge en vivo del calendario (js/calendario.js), nunca
+  // de data-alineacion.js: así, en cuanto se mete el resultado de un
+  // partido y el "próximo partido" pasa a ser otro rival, esta página
+  // lo refleja sola, sin tener que tocar nada aquí.
+  function partidoRealActual() {
+    const p =
+      typeof window.getProximoPartidoGeneral === 'function'
+        ? window.getProximoPartidoGeneral()
+        : null;
+    if (!p) return null;
+
+    const esEspecial = !!p.competicion;
+    const temp =
+      CLUB_DATA.temporadas && CLUB_DATA.temporadas[CLUB_DATA.temporadaActualId];
+    return {
+      equipoLocal: p.equipo1,
+      equipoVisitante: p.equipo2,
+      competicion: esEspecial
+        ? p.competicion
+        : (temp && temp.competicion) || '',
+      rondaOJornada: esEspecial
+        ? p.ronda
+        : p.jornada != null
+          ? `${t('jornada') || 'Jornada'} ${p.jornada}`
+          : '',
+      fecha: p.fecha || '',
+      hora: p.hora || '',
+      golesLocal: p.goles1 ?? null,
+      golesVisitante: p.goles2 ?? null,
+    };
+  }
+
+  const partido = partidoRealActual();
+
+  // ── Datos del once a usar ──────────────────────────────
+  // Lo guardado en data-alineacion.js solo vale si es justo para ESTE
+  // partido (mismo "paraFecha"). Si no coincide —porque ya se jugó el
+  // anterior y el próximo partido ha cambiado de rival—, se ignora
+  // todo lo del once y se muestra "pendiente" automáticamente.
+  const esDeEstePartido =
+    !!partido && !!datosGuardados.paraFecha && datosGuardados.paraFecha === partido.fecha;
+
+  const datos = esDeEstePartido
+    ? datosGuardados
+    : {
+        estado: 'pendiente',
+        formacion: datosGuardados.formacion || '442',
+        titulares: [],
+        suplentes: [],
+      };
 
   // ── Posiciones de cada formación, en % sobre el campo ──
   // (top/left = esquina superior-izquierda del jugador, ya centrado
@@ -129,12 +179,10 @@
     return url ? `<img src="${url}" alt="${alt}" class="${claseCss}">` : '';
   }
 
-  // Si no se ha puesto "estadio" a mano en data-alineacion.js, se
-  // busca solo el del equipo que juega como local en
+  // Siempre se busca el del equipo que juega como local en
   // CLUB_DATA.estadios (js/data-estadios.js, la misma lista que usa
-  // la sección "Cómo llegar") — así no hay que escribirlo cada vez.
+  // la sección "Cómo llegar") — no hay que escribirlo a mano.
   function getEstadio(nombreEquipoLocal) {
-    if (datos.estadio) return datos.estadio;
     if (!Array.isArray(CLUB_DATA.estadios)) return '';
     const club = CLUB_DATA.estadios.find(
       (e) => e.equipo === nombreEquipoLocal,
@@ -165,19 +213,25 @@
 
   // ── 1. MARCADOR ───────────────────────────────────────
   function renderMarcador() {
-    const esLocal = datos.equipoLocal === OVIEDO;
-    const rival = esLocal ? datos.equipoVisitante : datos.equipoLocal;
+    if (!partido) {
+      return `<p class="ali-sb-sin-partido">${t('no_proximo_partido') || 'No hay próximos partidos.'}</p>`;
+    }
+
+    const esLocal = partido.equipoLocal === OVIEDO;
+    const rival = esLocal ? partido.equipoVisitante : partido.equipoLocal;
     const escudoOviedo = getEscudo(OVIEDO);
     const escudoRival = getEscudo(rival);
-    const estadio = getEstadio(datos.equipoLocal);
+    const estadio = getEstadio(partido.equipoLocal);
 
     const jugado =
-      datos.golesLocal !== null && datos.golesLocal !== undefined;
+      partido.golesLocal !== null && partido.golesLocal !== undefined;
     const centro = jugado
-      ? `<span class="ali-sb-score">${datos.golesLocal} - ${datos.golesVisitante}</span>`
+      ? `<span class="ali-sb-score">${partido.golesLocal} - ${partido.golesVisitante}</span>`
       : `<span class="ali-sb-vs">VS</span>`;
 
-    const fecha = datos.fecha ? new Date(datos.fecha + 'T00:00:00') : null;
+    const fecha = partido.fecha
+      ? new Date(partido.fecha + 'T00:00:00')
+      : null;
     const lang = localStorage.getItem('lang') || 'es';
     const fechaTexto = fecha
       ? fecha.toLocaleDateString(lang, {
@@ -189,23 +243,23 @@
 
     return `
       <div class="ali-scoreboard-teams">
-        <div class="ali-sb-team${datos.equipoLocal === OVIEDO ? ' es-oviedo' : ''}">
-          ${imgEscudo(esLocal ? escudoOviedo : escudoRival, datos.equipoLocal, 'ali-sb-escudo')}
-          <span class="ali-sb-nombre">${datos.equipoLocal}</span>
+        <div class="ali-sb-team${partido.equipoLocal === OVIEDO ? ' es-oviedo' : ''}">
+          ${imgEscudo(esLocal ? escudoOviedo : escudoRival, partido.equipoLocal, 'ali-sb-escudo')}
+          <span class="ali-sb-nombre">${partido.equipoLocal}</span>
         </div>
         <div class="ali-sb-center">
           ${centro}
           <span class="ali-sb-badge">${esLocal ? t('en_casa') || 'En casa' : t('fuera') || 'Fuera'}</span>
         </div>
-        <div class="ali-sb-team${datos.equipoVisitante === OVIEDO ? ' es-oviedo' : ''}">
-          ${imgEscudo(esLocal ? escudoRival : escudoOviedo, datos.equipoVisitante, 'ali-sb-escudo')}
-          <span class="ali-sb-nombre">${datos.equipoVisitante}</span>
+        <div class="ali-sb-team${partido.equipoVisitante === OVIEDO ? ' es-oviedo' : ''}">
+          ${imgEscudo(esLocal ? escudoRival : escudoOviedo, partido.equipoVisitante, 'ali-sb-escudo')}
+          <span class="ali-sb-nombre">${partido.equipoVisitante}</span>
         </div>
       </div>
       <div class="ali-scoreboard-info">
-        <span><i class="fas fa-trophy"></i>${datos.competicion}${datos.jornada ? ' · ' + (t('jornada') || 'Jornada') + ' ' + datos.jornada : ''}</span>
+        <span><i class="fas fa-trophy"></i>${partido.competicion}${partido.rondaOJornada ? ' · ' + partido.rondaOJornada : ''}</span>
         <span class="sep">·</span>
-        <span><i class="fas fa-calendar-alt"></i>${fechaTexto}${datos.hora ? ' · ' + datos.hora : ''}</span>
+        <span><i class="fas fa-calendar-alt"></i>${fechaTexto}${partido.hora ? ' · ' + partido.hora : ''}</span>
         ${estadio ? `<span class="sep">·</span><span><i class="fas fa-map-marker-alt"></i>${estadio}</span>` : ''}
       </div>
     `;
@@ -305,6 +359,11 @@
   function render() {
     const scoreboardEl = document.getElementById('alineacionScoreboard');
     if (scoreboardEl) scoreboardEl.innerHTML = renderMarcador();
+
+    if (!partido) {
+      container.innerHTML = '';
+      return;
+    }
 
     const hayOnce = datos.titulares && datos.titulares.length > 0;
     container.innerHTML =

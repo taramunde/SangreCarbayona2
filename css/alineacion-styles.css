@@ -81,6 +81,12 @@
   margin-bottom: 28px;
 }
 
+.ali-sb-sin-partido {
+  text-align: center;
+  color: #667;
+  padding: 10px 0;
+}
+
 .ali-scoreboard-teams {
   display: flex;
   align-items: center;
