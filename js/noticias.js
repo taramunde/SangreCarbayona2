@@ -46,40 +46,41 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/12/real-oviedo-respira-tumbando-lider/00031791826053566216784.htm',
-    titulo: 'El Real Oviedo respira tumbando al líder.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/18/real-oviedo-reencuentra-triunfo-domicilio/00031792328689780996946.htm',
+    titulo: 'El Real Oviedo se reencuentra con el triunfo a domicilio.',
     descripcion:
-      'Los azules, en un partido extraño en el que el control fue de un lado a otro, frenó al imparable Eibar (3-1) con doblete de Carlos Domínguez incluido. Escandell, fundamental en su regreso.',
-    imagen: 'img/varios/J9LVA.webp',
-    fecha: '12 octubre 2026',
+      'Los azules dominaron al Ceuta en la mayor parte del partido y, aunque sufrieron demasiado al final (1-2), se llevaron los tres puntos con goles de Samu Rodríguez y Carlos Domínguez. El Oviedo suma 17 puntos y está en playoff.',
+    imagen: 'img/varios/J10LVA.webp',
+    fecha: '18 octubre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/10/12/aaron-sostiene-dominguez-golea-oviedo-135256192.html',
+    url: 'https://www.lne.es/real-oviedo/2026/10/18/jekyll-ganar-fuera-casa-victoria-135467800.html',
     titulo:
-      'Aarón sostiene, Domínguez golea, el Oviedo triunfa: victoria ante el líder en el Tartiere (3-1).',
+      'Jekyll también sabe ganar fuera de casa: victoria del Oviedo en Ceuta (1-2).',
     descripcion:
-      'Un doblete del defensa y las intervenciones del meta en una notable actuación azul sacan a los de Calero de las dudas con un triunfo de de caché.',
-    imagen: 'img/varios/J9LNE.webp',
-    fecha: '12 octubre 2026',
+      'Dos acciones a balón parado acercan un triunfo sufrido en los últimos minutos para los de Calero.',
+    imagen: 'img/varios/J10LNE.webp',
+    fecha: '18 octubre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-eibar-segunda-division-goles-resultados-victoria-20261012161424-di.html',
-    titulo: 'El Real Oviedo se crece ante el líder y vuelve a ganar.',
+    url: 'https://www.elcomercio.es/real-oviedo/nueva-victoria-real-oviedo-ceuta-luces-sombras-20261018165636-nt.html',
+    titulo:
+      'Nueva victoria del Real Oviedo en Ceuta, pero con luces y sombras.',
     descripcion:
-      'Victoria de prestigio. El conjunto azul firmó uno de los mejores partidos de la temporada y, aunque sufrió, derrotó al Eibar con dos goles de Carlos Domínguez y otro de Goti.',
-    imagen: 'img/varios/J9EC.webp',
-    fecha: '12 octubre 2026',
+      'Sufrimiento inesperado. El conjunto de Calero encadenó su segunda victoria ante el Ceuta en un encuentro que parecía mucho más fácil.',
+    imagen: 'img/varios/J10EC.webp',
+    fecha: '18 octubre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-carlos-dominguez-tumba-al-lider',
-    titulo: 'La Crónica: Carlos Domínguez tumba al líder.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-sufre-pero-dobla-la-apuesta-en-el-murube',
+    titulo: 'La Crónica: El Oviedo sufre, resiste y gana en Ceuta.',
     descripcion:
-      'El central firma un doblete, con un golazo para sentenciar, en un triunfo en el que Aarón sostuvo a los azules en sus peores momentos (3-1).',
-    imagen: 'img/varios/J9KA.webp',
-    fecha: '12 octubre 2026',
+      'Los azules se impusieron al conjunto caballa (1-2) con goles de Samu Rodríguez y Carlos Domínguez. En el tramo final, el tanto ceutí puso en aprietos a los carbayones.',
+    imagen: 'img/varios/J10KA.webp',
+    fecha: '18 octubre 2026',
   },
 ];
 
