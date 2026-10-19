@@ -68,4 +68,11 @@ CLUB_DATA.videos = [
     fecha: '2026-10-12',
     videoId: 'yINIx-TE8xc',
   },
+  {
+    id: 10,
+    jornada: 10,
+    titulo: 'A.D. Ceuta F.C. Vs Real Oviedo',
+    fecha: '2026-10-12',
+    videoId: 'Ya1Bhc3gXH0',
+  },
 ];
