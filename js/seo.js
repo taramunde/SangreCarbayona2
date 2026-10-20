@@ -61,6 +61,7 @@
         '@type': 'SportsTeam',
         name: 'Real Oviedo',
         sport: 'Fútbol',
+        logo: `${SITE_BASE_URL}/img/escudos/Oviedo.webp`,
       },
       potentialAction: {
         '@type': 'SearchAction',

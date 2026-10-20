@@ -817,31 +817,31 @@ const App = {
             .hero-block { flex: 1; min-width: 260px; max-width: 460px; display: flex; flex-direction: column; gap: 14px; padding: 28px 20px 20px; }
             .hero-divider { width: 1px; background: rgba(255,255,255,0.12); margin: 24px 0; flex-shrink: 0; }
             .hero-label-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
-            .hero-comp-badge { font-size: .7em; font-weight: 700; color: #ffcc00; text-transform: uppercase; letter-spacing: .5px; display: flex; align-items: center; gap: 5px; }
+            .hero-comp-badge { font-size: .7em; font-weight: 700; color: #e3b23c; text-transform: uppercase; letter-spacing: .5px; display: flex; align-items: center; gap: 5px; }
             .hero-jornada-badge { font-size: .68em; font-weight: 600; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .4px; }
             .hero-scoreboard { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
             .hero-team { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; min-width: 0; }
             .hero-escudo { width: 54px; height: 54px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
-            .hero-escudo--oviedo { filter: drop-shadow(0 0 10px rgba(255,204,0,.4)); }
+            .hero-escudo--oviedo { filter: drop-shadow(0 0 10px rgba(227,178,60,.4)); }
             .hero-team-name { font-family: 'Oswald',sans-serif; font-size: .8em; font-weight: 600; color: rgba(255,255,255,.8); text-align: center; text-transform: uppercase; letter-spacing: .3px; line-height: 1.2; }
-            .hero-team-name--oviedo { color: #ffcc00; }
+            .hero-team-name--oviedo { color: #e3b23c; }
             .hero-team-tag { font-size: .6em; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
             .hero-score-center { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
             .hero-score-box { display: flex; align-items: center; gap: 2px; background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 10px 18px; }
-            .hero-score-box--upcoming { background: rgba(255,204,0,.08); border-color: rgba(255,204,0,.2); padding: 12px 22px; }
+            .hero-score-box--upcoming { background: rgba(227,178,60,.08); border-color: rgba(227,178,60,.2); padding: 12px 22px; }
             .hero-score { font-family: 'Oswald',sans-serif; font-size: 2em; font-weight: 700; color: white; line-height: 1; min-width: 26px; text-align: center; }
             .hero-score--win { color: #69f0ae; }
             .hero-score--lose { color: #ff6e6e; }
             .hero-score-sep { font-family: 'Oswald',sans-serif; font-size: 1.4em; color: rgba(255,255,255,.25); margin: 0 5px; }
-            .hero-vs { font-family: 'Oswald',sans-serif; font-size: 1.6em; font-weight: 700; color: rgba(255,204,0,.65); letter-spacing: 3px; }
+            .hero-vs { font-family: 'Oswald',sans-serif; font-size: 1.6em; font-weight: 700; color: rgba(227,178,60,.75); letter-spacing: 3px; }
             .hero-status { font-size: .68em; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
             .hero-status--final { color: rgba(255,255,255,.4); }
-            .hero-status--upcoming { color: rgba(255,204,0,.75); display: flex; align-items: center; gap: 5px; text-align: center; }
+            .hero-status--upcoming { color: rgba(227,178,60,.85); display: flex; align-items: center; gap: 5px; text-align: center; }
             .hero-badge-result { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: .7em; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: .4px; align-self: center; }
             .hero-badge--victoria { background: rgba(105,240,174,.15); color: #69f0ae; border: 1px solid rgba(105,240,174,.3); }
             .hero-badge--derrota { background: rgba(255,110,110,.15); color: #ff6e6e; border: 1px solid rgba(255,110,110,.3); }
             .hero-badge--empate { background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.2); }
-            .hero-badge--proximo { background: rgba(255,204,0,.15); color: #ffcc00; border: 1px solid rgba(255,204,0,.3); }
+            .hero-badge--proximo { background: rgba(227,178,60,.15); color: #e3b23c; border: 1px solid rgba(227,178,60,.3); }
             
             @media(max-width:640px) {
                 .hero-block { padding: 18px 12px 14px; min-width: 100%; }

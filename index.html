@@ -8,11 +8,12 @@
       type="image/webp"
       href="img/varios/LogoSangreCarbayona.webp"
     />
-    <title>Sangre Carbayona | Real Oviedo</title>
+    <title>Sangre Carbayona — La guía del Oviedismo | Real Oviedo</title>
     <meta
       name="description"
-      content="Web de aficionados del Real Oviedo Sangre Carbayona. Últimas noticias, plantilla y resultados."
+      content="Sangre Carbayona: noticias, plantilla, calendario, clasificación y la historia del Real Oviedo contados por y para el Carbayón más inquebrantable."
     />
+    <meta name="theme-color" content="#0b2f5c" />
     <link rel="stylesheet" href="css/styles.css?nocache=20261020v1" />
     <link rel="stylesheet" href="css/equipo-styles.css?nocache=20261020v1" />
     <link rel="stylesheet" href="css/noticias.css?nocache=20261020v1" />
@@ -30,10 +31,14 @@
     />
 
     <!-- Meta Tags para Compartir -->
-    <meta property="og:title" content="Sangre Carbayona - Real Oviedo" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta
+      property="og:title"
+      content="Sangre Carbayona — La guía del Oviedismo"
+    />
     <meta
       property="og:description"
-      content="Web de aficionados del Real Oviedo Sangre Carbayona. Últimas noticias, plantilla y resultados."
+      content="Noticias, plantilla, calendario, clasificación y la historia del Real Oviedo, contados por y para el Carbayón más inquebrantable."
     />
     <meta
       property="og:image"
@@ -46,6 +51,18 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_ES" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Sangre Carbayona — La guía del Oviedismo"
+    />
+    <meta
+      name="twitter:description"
+      content="Noticias, plantilla, calendario, clasificación y la historia del Real Oviedo, contados por y para el Carbayón más inquebrantable."
+    />
+    <meta
+      name="twitter:image"
+      content="https://i.postimg.cc/tgL8SLYy/Sangre-Carbayona-C-D-Oviedo-Stadium-Ovetense.webp"
+    />
   </head>
   <body>
     <h1
@@ -83,7 +100,17 @@
     <!-- Hero Section -->
     <section class="hero-match">
       <div class="hero-bg"><div class="stadium-pattern"></div></div>
+      <div class="hero-oak-watermark"></div>
       <div class="container">
+        <div class="hero-kicker">
+          <span class="hero-kicker-eyebrow"
+            ><i class="fas fa-tree"></i> Sangre Carbayona</span
+          >
+          <h2>
+            La guía del <strong>Oviedismo</strong>: resultados, historia y
+            alma carbayona, en un solo sitio.
+          </h2>
+        </div>
         <div class="match-showcase" id="heroMatch">
           <!-- Contenido dinámico -->
         </div>
@@ -237,16 +264,11 @@
       </div>
     </section>
 
-    <!-- Patrocinadores -->
-    <section class="sponsors-section">
+    <!-- El Carbayón cuenta -->
+    <section class="carbayon-strip">
       <div class="container">
-        <div class="section-header centered">
-          <h2 class="section-title" data-i18n="patrocinadores">
-            Patrocinadores
-          </h2>
-        </div>
-        <div class="sponsors-grid" id="patrocinadoresGrid">
-          <!-- Contenido dinámico -->
+        <div class="carbayon-card" id="carbayonDato">
+          <!-- Contenido dinámico: js/dato-carbayon.js -->
         </div>
       </div>
     </section>
@@ -307,6 +329,7 @@
     <script src="js/data-utils.js?nocache=20261020v1"></script>
     <script src="js/clasificacion.js?nocache=20261020v1"></script>
     <script src="js/noticias.js?nocache=20261020v1"></script>
+    <script src="js/dato-carbayon.js?nocache=20261020v1"></script>
     <script src="js/app.js?nocache=20261020v1"></script>
     <script src="js/script.js?nocache=20261020v1"></script>
     <script src="js/calendario.js?nocache=20261020v1"></script>
