@@ -628,19 +628,20 @@ img {
   background-size: 60px 60px;
 }
 
-/* El Carbayón, el roble que da nombre a la afición, como marca de
-   agua discreta en el hero: historia metida en el propio fondo, sin
-   depender de ninguna foto de archivo. */
+/* El Carbayón, el roble que da nombre a la afición, como ilustración
+   en la esquina del hero (SVG facilitado directamente, sin depender
+   de ninguna foto de archivo). */
 .hero-oak-watermark {
   position: absolute;
-  top: -10%;
-  right: -2%;
-  width: 260px;
-  height: 370px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMjAwIj48cGF0aCBkPSJNNTAsMTAgQzU4LjAsMTAuMCA3MS43LDIxLjAgNzQsMjYgQzc2LjMsMzEuMCA2Mi43LDM1LjcgNjQsNDAgQzY1LjMsNDQuMyA4MS43LDQ3LjcgODIsNTIgQzgyLjMsNTYuMyA2NS41LDYxLjMgNjYsNjYgQzY2LjUsNzAuNyA4NS4wLDc1LjMgODUsODAgQzg1LjAsODQuNyA2Ni44LDg5LjMgNjYsOTQgQzY1LjIsOTguNyA4MC4zLDEwMy43IDgwLDEwOCBDNzkuNywxMTIuMyA2Ni4wLDExNi4wIDY0LDEyMCBDNjIuMCwxMjQuMCA3MC4zLDEyNy43IDY4LDEzMiBDNjUuNywxMzYuMyA1Ni4wLDE0Ni4wIDUwLDE0NiBDNDQuMCwxNDYuMCAzNC4zLDEzNi4zIDMyLDEzMiBDMjkuNywxMjcuNyAzOC4wLDEyNC4wIDM2LDEyMCBDMzQuMCwxMTYuMCAyMC4zLDExMi4zIDIwLDEwOCBDMTkuNywxMDMuNyAzNC44LDk4LjcgMzQsOTQgQzMzLjIsODkuMyAxNS4wLDg0LjcgMTUsODAgQzE1LjAsNzUuMyAzMy41LDcwLjcgMzQsNjYgQzM0LjUsNjEuMyAxNy43LDU2LjMgMTgsNTIgQzE4LjMsNDcuNyAzNC43LDQ0LjMgMzYsNDAgQzM3LjMsMzUuNyAyMy43LDMxLjAgMjYsMjYgQzI4LjMsMjEuMCA0Mi4wLDEwLjAgNTAsMTBaIiBmaWxsPSIjZmZmZmZmIi8+PHBhdGggZD0iTTUwLDE0NiBMNTAsMTkwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==');
+  top: 6%;
+  right: 3%;
+  width: 150px;
+  height: 150px;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0iTTkwIDE0MCBMOTAgMTgwIEwxMTAgMTgwIEwxMTAgMTQwIFoiIGZpbGw9IiM4QjQ1MTMiIC8+PHBhdGggZD0iTTk1IDEzNSBRODUgMTU1IDc1IDE2NSBMODAgMTcwIFE5NSAxNTUgMTAwIDEzNSBaIiBmaWxsPSIjOEI0NTEzIiAvPjxwYXRoIGQ9Ik0xMDUgMTM1IFExMTUgMTU1IDEyNSAxNjUgTDEyMCAxNzAgUTEwNSAxNTUgMTAwIDEzNSBaIiBmaWxsPSIjOEI0NTEzIiAvPjxwYXRoIGQ9Ik0xMDAgMjAgQzcwIDIwIDUwIDQ1IDU1IDc1IEMzNSA4MCAyNSAxMDUgNDAgMTI1IEM0NSAxMzUgNjAgMTQ1IDc1IDE0MCBDODUgMTUwIDExNSAxNTAgMTI1IDE0MCBDMTQwIDE0NSAxNTUgMTM1IDE2MCAxMjUgQzE3NSAxMDUgMTY1IDgwIDE0NSA3NSBDMTUwIDQ1IDEzMCAyMCAxMDAgMjAgWiIgZmlsbD0iIzJFOEI1NyIgLz48L3N2Zz4=');
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.06;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
   pointer-events: none;
 }
 
@@ -688,8 +689,8 @@ img {
     font-size: 1.25rem;
   }
   .hero-oak-watermark {
-    width: 160px;
-    height: 230px;
+    width: 90px;
+    height: 90px;
   }
 }
 
