@@ -3,15 +3,10 @@
    =================================== */
 
 :root {
-  /* Azul y oro tomados del propio escudo del Real Oviedo (cruz de la
-     Victoria sobre campo azul, corona y letras en oro), no de una
-     plantilla genérica. El dorado queda reservado para detalles de
-     prestigio: insignias, palmarés, citas históricas. */
-  --primary-color: #1d4f8c;
-  --primary-dark: #0b2f5c;
-  --primary-light: #3b74b8;
-  --secondary-color: #e3b23c;
-  --secondary-light: #f2ca6b;
+  --primary-color: #1a365d;
+  --primary-dark: #0f2340;
+  --secondary-color: #c9a227;
+  --secondary-light: #e8c547;
   --accent-color: #e53e3e;
   --white: #ffffff;
   --gray-50: #f9fafb;
@@ -592,12 +587,8 @@ img {
    =================================== */
 .hero-match {
   position: relative;
-  background: linear-gradient(
-    160deg,
-    var(--primary-dark) 0%,
-    var(--primary-color) 130%
-  );
-  padding: 64px 0 80px;
+  background: var(--primary-dark);
+  padding: 80px 0;
   overflow: hidden;
 }
 
@@ -626,72 +617,6 @@ img {
       transparent 51%
     );
   background-size: 60px 60px;
-}
-
-/* El Carbayón, el roble que da nombre a la afición, como ilustración
-   en la esquina del hero (SVG facilitado directamente, sin depender
-   de ninguna foto de archivo). */
-.hero-oak-watermark {
-  position: absolute;
-  top: 6%;
-  right: 3%;
-  width: 150px;
-  height: 150px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PHBhdGggZD0iTTkwIDE0MCBMOTAgMTgwIEwxMTAgMTgwIEwxMTAgMTQwIFoiIGZpbGw9IiM4QjQ1MTMiIC8+PHBhdGggZD0iTTk1IDEzNSBRODUgMTU1IDc1IDE2NSBMODAgMTcwIFE5NSAxNTUgMTAwIDEzNSBaIiBmaWxsPSIjOEI0NTEzIiAvPjxwYXRoIGQ9Ik0xMDUgMTM1IFExMTUgMTU1IDEyNSAxNjUgTDEyMCAxNzAgUTEwNSAxNTUgMTAwIDEzNSBaIiBmaWxsPSIjOEI0NTEzIiAvPjxwYXRoIGQ9Ik0xMDAgMjAgQzcwIDIwIDUwIDQ1IDU1IDc1IEMzNSA4MCAyNSAxMDUgNDAgMTI1IEM0NSAxMzUgNjAgMTQ1IDc1IDE0MCBDODUgMTUwIDExNSAxNTAgMTI1IDE0MCBDMTQwIDE0NSAxNTUgMTM1IDE2MCAxMjUgQzE3NSAxMDUgMTY1IDgwIDE0NSA3NSBDMTUwIDQ1IDEzMCAyMCAxMDAgMjAgWiIgZmlsbD0iIzJFOEI1NyIgLz48L3N2Zz4=');
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.9;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
-  pointer-events: none;
-}
-
-.hero-kicker {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: var(--white);
-  max-width: 640px;
-  margin: 0 auto 36px;
-}
-
-.hero-kicker-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--secondary-color);
-  margin-bottom: 10px;
-}
-
-.hero-kicker-eyebrow i {
-  font-size: 0.85em;
-}
-
-.hero-kicker h2 {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--white);
-}
-
-.hero-kicker h2 strong {
-  color: var(--secondary-light);
-  font-weight: 700;
-}
-
-@media (max-width: 640px) {
-  .hero-kicker h2 {
-    font-size: 1.25rem;
-  }
-  .hero-oak-watermark {
-    width: 90px;
-    height: 90px;
-  }
 }
 
 .match-showcase {
@@ -862,7 +787,7 @@ img {
 .news-section,
 .standings-section,
 .squad-section,
-.carbayon-strip {
+.sponsors-section {
   padding: 70px 0;
 }
 
@@ -1488,73 +1413,39 @@ img {
 }
 
 /* ===================================
-   EL CARBAYÓN CUENTA (dato/historia del día)
+   PATROCINADORES
    =================================== */
-.carbayon-strip {
+.sponsors-section {
   background: var(--white);
   padding: 50px 0;
 }
 
-.carbayon-card {
+.sponsors-grid {
   display: flex;
-  align-items: center;
-  gap: 24px;
-  background: linear-gradient(
-    135deg,
-    var(--primary-dark),
-    var(--primary-color)
-  );
-  color: var(--white);
-  border-radius: 12px;
-  padding: 32px 40px;
-  box-shadow: var(--shadow-lg);
-}
-
-.carbayon-icon {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--secondary-color);
-  font-size: 1.6rem;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
-.carbayon-text {
-  min-width: 0;
+.sponsor-item {
+  padding: 20px 40px;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  transition: var(--transition);
 }
 
-.carbayon-kicker {
-  display: block;
+.sponsor-item:hover {
+  border-color: var(--secondary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.sponsor-logo span {
   font-family: var(--font-heading);
-  font-size: 0.78rem;
+  font-size: 1.1rem;
   font-weight: 600;
+  color: var(--gray-500);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--secondary-color);
-  margin-bottom: 6px;
-}
-
-.carbayon-frase {
-  font-size: 1.08rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.95);
-  max-width: 72ch;
-}
-
-@media (max-width: 640px) {
-  .carbayon-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 28px 24px;
-  }
-
-  .carbayon-frase {
-    max-width: none;
-  }
+  letter-spacing: 1px;
 }
 
 /* ===================================
