@@ -687,8 +687,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'C.D. Tenerife',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'A.D. Ceuta F.C.',
