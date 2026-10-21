@@ -1136,6 +1136,9 @@
   // rival?". Usa los mismos filtros ya aplicados (rival, competición,
   // temporada, resultado, fechas...).
   const TOP_RANKING = 5;
+  // Se conserva entre re-pintados (cada cambio de filtro vuelve a
+  // generar el ranking), para que no se pliegue solo al filtrar.
+  let rankingDesplegado = false;
 
   function calcularRanking(resultadosFiltrados) {
     const partidos = resultadosFiltrados.filter((i) => i.tipo === 'partido');
@@ -1151,26 +1154,47 @@
             goles: 0,
             asistencias: 0,
             esPortero: s.esPortero,
+            primeraTemporada: item.temporada,
+            ultimaTemporada: item.temporada,
           };
         }
-        acumulado[nombre].partidos++;
-        acumulado[nombre].goles += s.goles || 0;
-        acumulado[nombre].asistencias += s.asistencias || 0;
+        const a = acumulado[nombre];
+        a.partidos++;
+        a.goles += s.goles || 0;
+        a.asistencias += s.asistencias || 0;
+        // Ids tipo "2026-27": el orden de texto coincide con el cronológico.
+        if (item.temporada && item.temporada > (a.ultimaTemporada || ''))
+          a.ultimaTemporada = item.temporada;
+        if (
+          item.temporada &&
+          (!a.primeraTemporada || item.temporada < a.primeraTemporada)
+        )
+          a.primeraTemporada = item.temporada;
       });
     });
+
+    // A igualdad de goles/partidos, primero quien jugó más recientemente.
+    const porTemporadaReciente = (a, b) =>
+      (b.ultimaTemporada || '').localeCompare(a.ultimaTemporada || '') ||
+      a.nombre.localeCompare(b.nombre, 'es');
 
     const todos = Object.values(acumulado);
     const goleadores = todos
       .filter((v) => !v.esPortero && v.goles > 0)
-      .sort((a, b) => b.goles - a.goles || b.partidos - a.partidos)
-      .slice(0, TOP_RANKING);
+      .sort((a, b) => b.goles - a.goles || porTemporadaReciente(a, b));
     const masPartidos = todos
       .slice()
-      .sort((a, b) => b.partidos - a.partidos)
-      .slice(0, TOP_RANKING);
+      .sort((a, b) => b.partidos - a.partidos || porTemporadaReciente(a, b));
 
     if (!goleadores.length && !masPartidos.length) return null;
     return { goleadores, masPartidos, totalPartidos: partidos.length };
+  }
+
+  function textoTemporadas(it) {
+    if (!it.primeraTemporada) return '';
+    const ini = it.primeraTemporada.replace('-', '/');
+    const fin = (it.ultimaTemporada || it.primeraTemporada).replace('-', '/');
+    return ini === fin ? ini : `${ini} – ${fin}`;
   }
 
   function listaRanking(items, valorClave, etiquetaSingular, etiquetaPlural) {
@@ -1184,7 +1208,8 @@
           : it.nombre;
         const valor = it[valorClave];
         const etiqueta = valor === 1 ? etiquetaSingular : etiquetaPlural;
-        return `<li><span class="busc-ranking-nombre">${nombreHtml}</span><span class="busc-ranking-valor">${valor} ${etiqueta}</span></li>`;
+        const temporadas = textoTemporadas(it);
+        return `<li><span class="busc-ranking-nombre">${nombreHtml}${temporadas ? `<small class="busc-ranking-temporadas">${temporadas}</small>` : ''}</span><span class="busc-ranking-valor">${valor} ${etiqueta}</span></li>`;
       })
       .join('')}</ol>`;
   }
@@ -1212,8 +1237,21 @@
       '{n}',
       ranking.totalPartidos,
     );
+    const hayMas =
+      ranking.goleadores.length > TOP_RANKING ||
+      ranking.masPartidos.length > TOP_RANKING;
+    const desplegado = rankingDesplegado && hayMas;
+    const recorte = (lista) =>
+      desplegado ? lista : lista.slice(0, TOP_RANKING);
+
+    const textoBoton = desplegado
+      ? `<i class="fas fa-chevron-up"></i> <span>${t('busc_ranking_plegar')}</span>`
+      : `<i class="fas fa-chevron-down"></i> <span>${t('busc_ranking_ver_todo')
+          .replace('{g}', ranking.goleadores.length)
+          .replace('{p}', ranking.masPartidos.length)}</span>`;
+
     contenedor.innerHTML = `
-      <div class="busc-ranking">
+      <div class="busc-ranking${desplegado ? ' busc-ranking--desplegado' : ''}">
         <div class="busc-ranking-cabecera">
           <i class="fas fa-ranking-star"></i>
           <div>
@@ -1223,16 +1261,27 @@
         </div>
         <div class="busc-ranking-columnas">
           <div class="busc-ranking-col">
-            <h4><i class="fas fa-futbol"></i> ${t('busc_ranking_goleadores')}</h4>
-            ${listaRanking(ranking.goleadores, 'goles', t('busc_gol_singular'), t('busc_gol_plural'))}
+            <h4><i class="fas fa-futbol"></i> ${t('busc_ranking_goleadores')}${desplegado ? ` <span class="busc-ranking-total">(${ranking.goleadores.length})</span>` : ''}</h4>
+            ${listaRanking(recorte(ranking.goleadores), 'goles', t('busc_gol_singular'), t('busc_gol_plural'))}
           </div>
           <div class="busc-ranking-col">
-            <h4><i class="fas fa-user-group"></i> ${t('busc_ranking_mas_partidos')}</h4>
-            ${listaRanking(ranking.masPartidos, 'partidos', t('busc_partido_singular'), t('busc_partido_plural'))}
+            <h4><i class="fas fa-user-group"></i> ${t('busc_ranking_mas_partidos')}${desplegado ? ` <span class="busc-ranking-total">(${ranking.masPartidos.length})</span>` : ''}</h4>
+            ${listaRanking(recorte(ranking.masPartidos), 'partidos', t('busc_partido_singular'), t('busc_partido_plural'))}
           </div>
         </div>
+        ${hayMas ? `<button type="button" class="busc-ranking-toggle" aria-expanded="${desplegado}">${textoBoton}</button>` : ''}
       </div>
     `;
+
+    const boton = contenedor.querySelector('.busc-ranking-toggle');
+    if (boton) {
+      boton.addEventListener('click', () => {
+        rankingDesplegado = !rankingDesplegado;
+        renderRanking(contenedor, resultadosFiltrados, estado);
+        if (!rankingDesplegado)
+          contenedor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   }
 
   // ── INICIALIZACIÓN ───────────────────────────────────────────

@@ -392,6 +392,49 @@
   font-size: 0.85rem;
 }
 
+.busc-ranking-temporadas {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--gray-500);
+}
+
+.busc-ranking-total {
+  font-weight: 400;
+  color: var(--gray-500);
+  text-transform: none;
+}
+
+/* Ranking completo: cada lista con su propio scroll para no
+   convertir la página en un listado interminable. */
+.busc-ranking--desplegado .busc-ranking-lista {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.busc-ranking-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--gray-50);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.busc-ranking-toggle:hover {
+  background: var(--gray-100);
+  border-color: var(--secondary-color);
+}
+
 /* ── Contador de resultados ── */
 
 .busc-cabecera-resultados {

@@ -331,6 +331,9 @@ const translations = {
     busc_ranking_sobre_n_partidos: 'Sobre {n} partidos',
     busc_ranking_goleadores: 'Máximos goleadores',
     busc_ranking_mas_partidos: 'Más partidos jugados',
+    busc_ranking_ver_todo:
+      'Ver ranking completo ({g} goleadores · {p} jugadores)',
+    busc_ranking_plegar: 'Plegar ranking',
     busc_sin_datos: 'Sin datos',
     busc_filtro_contra: 'contra',
     busc_filtro_en: 'en',
@@ -831,6 +834,8 @@ const translations = {
     busc_ranking_sobre_n_partidos: 'Over {n} matches',
     busc_ranking_goleadores: 'Top scorers',
     busc_ranking_mas_partidos: 'Most matches played',
+    busc_ranking_ver_todo: 'Show full ranking ({g} scorers · {p} players)',
+    busc_ranking_plegar: 'Collapse ranking',
     busc_sin_datos: 'No data',
     busc_filtro_contra: 'against',
     busc_filtro_en: 'in',
