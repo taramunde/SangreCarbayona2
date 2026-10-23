@@ -85,13 +85,16 @@ function htmlPartidosEstaticos(nombre, codigo, esEntrenador) {
   const items = lista
     .map(
       (p) =>
-        `<li><small>${e(PC.fechaCorta(p.fecha))}</small><a href="../partidos/${e(p.slug)}.html">${e(p.local)} ${e(PC.marcador(p))} ${e(p.visitante)}</a></li>`,
+        `<li>${PC.bi(e(PC.fechaCorta(p.fecha)), e(PC.fechaCortaEn(p.fecha)), 'small')}<a href="../partidos/${e(p.slug)}.html">${e(p.local)} ${e(PC.marcador(p))} ${e(p.visitante)}</a></li>`,
     )
     .join('\n          ');
   return `<section class="ficha-partidos-estaticos">
       <div class="container">
         <details>
-          <summary>${esEntrenador ? 'Partidos dirigidos' : 'Partidos'} de ${e(nombre)} con el Real Oviedo (${lista.length})</summary>
+          <summary>${PC.bi(
+            `${esEntrenador ? 'Partidos dirigidos' : 'Partidos'} de ${e(nombre)} con el Real Oviedo (${lista.length})`,
+            `${esEntrenador ? 'Matches managed' : 'Matches'} by ${e(nombre)} with Real Oviedo (${lista.length})`,
+          )}</summary>
           <ul>
           ${items}
           </ul>

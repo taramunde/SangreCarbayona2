@@ -34,6 +34,8 @@
      pone "hoy ..." debajo del nombre.
    - nota: 'texto' → se muestra en la página de historial del rival
      (apartado "Sobre el club").
+   - notaEn: 'text' → la misma nota en inglés (si no está, se ve en
+     español también con la web en inglés).
    - Lo usa generador/generar-partidos.js al generar las páginas
      (`npm run generar` / `npm run subir`). No hace falta cargarlo en
      ninguna página HTML.
@@ -73,6 +75,7 @@ CLUB_DATA.equiposHistoricos = [
   {
     nombre: 'Real Avilés Industrial C.F.',
     nota: 'Constituido el 10 de mayo de 1983 tras la unión del Real Avilés C.F. con el C.D. Ensidesa. Entre 2012 y 2020 se llamó Real Avilés C.F., S.A.D. El club reivindica 1903 como año de fundación, el del Avilés original.',
+    notaEn: 'Founded on 10 May 1983 after Real Avilés C.F. merged with C.D. Ensidesa. Between 2012 and 2020 it was called Real Avilés C.F., S.A.D. The club claims 1903, the year the original Avilés was founded, as its founding year.',
     otrosNombres: [
       { nombre: 'Real Avilés C.F.', desde: '2012-13', hasta: '2019-20' },
     ],
@@ -81,6 +84,7 @@ CLUB_DATA.equiposHistoricos = [
     nombre: 'Real Avilés C.F. (1903-1983)',
     desaparecido: true,
     nota: 'El Real Avilés original, fundado en 1903 (Sport Club Avilesino) y llamado Real Avilés C.F. desde 1940. En 1983 se unió al C.D. Ensidesa para formar el actual Real Avilés Industrial C.F.',
+    notaEn: 'The original Real Avilés, founded in 1903 (Sport Club Avilesino) and called Real Avilés C.F. from 1940. In 1983 it merged with C.D. Ensidesa to form today\'s Real Avilés Industrial C.F.',
     otrosNombres: [
       { nombre: 'Real Avilés C.F.', hasta: '1982-83' },
       'Stadium Club Avilesino',

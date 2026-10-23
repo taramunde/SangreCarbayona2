@@ -36,7 +36,21 @@ const {
   slugTemporada,
   urlAbsoluta,
   claveEquipo,
+  bi,
+  competicionEn,
+  competicionCortaEn,
+  jornadaEn,
+  posicionEn,
+  fechaLargaEn,
+  fechaCortaEn,
 } = C;
+
+// Plural sencillo: n partido/partidos · match/matches
+const nPartidos = (n) => bi(`${n} ${n === 1 ? 'partido' : 'partidos'}`, `${n} ${n === 1 ? 'match' : 'matches'}`);
+const nPartidosTxt = (n) => `${n} ${n === 1 ? 'partido' : 'partidos'}`;
+const temporadaBi = (tid) => bi(`Temporada ${nombreTemporada(tid)}`, `Season ${nombreTemporada(tid)}`);
+const vedEs = (r) => `${r.v}V ${r.e}E ${r.d}D`;
+const vedEn = (r) => `${r.v}W ${r.e}D ${r.d}L`;
 
 console.log('🚀 Iniciando generador de páginas de partidos...');
 
@@ -125,11 +139,22 @@ function resultadoOviedo(p) {
   return a > b ? 'V' : a < b ? 'D' : 'E';
 }
 const TEXTO_RES = { V: 'Victoria', E: 'Empate', D: 'Derrota' };
+const NOTA_PORTEROS = bi(
+  'En los porteros, la columna Goles muestra los goles encajados (<span class="goles-encajados">en rojo</span>).',
+  'For goalkeepers, the Goals column shows goals conceded (<span class="goles-encajados">in red</span>).',
+);
+const CHIP_RES = {
+  V: ['Victoria del Oviedo', 'Oviedo win'],
+  E: ['Empate', 'Draw'],
+  D: ['Derrota del Oviedo', 'Oviedo defeat'],
+};
 
 function quienPasaPenaltis(p) {
   if (p.penaltisLocal === null || p.penaltisLocal === undefined) return '';
   const ganaLocal = p.penaltisLocal > p.penaltisVisitante;
-  return `${ganaLocal ? p.local : p.visitante} gana ${Math.max(p.penaltisLocal, p.penaltisVisitante)}-${Math.min(p.penaltisLocal, p.penaltisVisitante)} en los penaltis`;
+  const quien = e(ganaLocal ? p.local : p.visitante);
+  const tanda = `${Math.max(p.penaltisLocal, p.penaltisVisitante)}-${Math.min(p.penaltisLocal, p.penaltisVisitante)}`;
+  return bi(`${quien} gana ${tanda} en los penaltis`, `${quien} win ${tanda} on penalties`);
 }
 
 function enlaceFicha(jugador, tid) {
@@ -153,12 +178,12 @@ function resumenNumeros(lista) {
 
 function htmlResumen(r) {
   return `<div class="resumen">
-          <div><strong>${r.pj}</strong><span>Jugados</span></div>
-          <div><strong>${r.v}</strong><span>Victorias</span></div>
-          <div><strong>${r.e}</strong><span>Empates</span></div>
-          <div><strong>${r.d}</strong><span>Derrotas</span></div>
-          <div><strong>${r.gf}</strong><span>Goles a favor</span></div>
-          <div><strong>${r.gc}</strong><span>Goles en contra</span></div>
+          <div><strong>${r.pj}</strong>${bi('Jugados', 'Played')}</div>
+          <div><strong>${r.v}</strong>${bi('Victorias', 'Wins')}</div>
+          <div><strong>${r.e}</strong>${bi('Empates', 'Draws')}</div>
+          <div><strong>${r.d}</strong>${bi('Derrotas', 'Losses')}</div>
+          <div><strong>${r.gf}</strong>${bi('Goles a favor', 'Goals for')}</div>
+          <div><strong>${r.gc}</strong>${bi('Goles en contra', 'Goals against')}</div>
         </div>`;
 }
 
@@ -170,9 +195,12 @@ function htmlFilaPartido(p, { mostrarTemporada = false } = {}) {
   const detalle = [competicionCorta(p.competicion), etiquetaJornada(p.jornada)]
     .filter(Boolean)
     .join(' · ');
+  const detalleEn = [competicionCortaEn(p.competicion), jornadaEn(p.jornada)]
+    .filter(Boolean)
+    .join(' · ');
   return `<li><a class="fila-partido" href="${e(p.slug)}.html">
-            <span class="cuando">${e(fechaCorta(p.fecha))}${mostrarTemporada ? `<br />${e(nombreTemporada(p.tid))}` : ''}</span>
-            <span class="cruce">${lado(p.local)} – ${lado(p.visitante)}<small>${e(detalle)}</small></span>
+            <span class="cuando">${bi(e(fechaCorta(p.fecha)), e(fechaCortaEn(p.fecha)))}${mostrarTemporada ? `<br />${e(nombreTemporada(p.tid))}` : ''}</span>
+            <span class="cruce">${lado(p.local)} – ${lado(p.visitante)}${bi(e(detalle), e(detalleEn), 'small')}</span>
             <span class="res res-${res}" title="${TEXTO_RES[res] || ''}">${e(marcador(p).replace(' pen.', ''))}</span>
           </a></li>`;
 }
@@ -186,15 +214,17 @@ function pagina({
   jsonLd = [],
   migas,
   h1,
+  h1En,
   subtitulo,
+  subtituloEn,
   cuerpo,
 }) {
   const canonical = urlAbsoluta(slug);
   const migasHtml = migas
     .map((m, i) =>
       i === migas.length - 1
-        ? `<span class="current">${e(m.nombre)}</span>`
-        : `<a href="${e(m.href)}">${e(m.nombre)}</a><span>/</span>`,
+        ? `<span class="current">${bi(e(m.nombre), m.en ? e(m.en) : undefined)}</span>`
+        : `<a href="${e(m.href)}">${bi(e(m.nombre), m.en ? e(m.en) : undefined)}</a><span>/</span>`,
     )
     .join('');
   const breadcrumbLd = {
@@ -259,8 +289,8 @@ function pagina({
     <section class="partidos-header">
       <div class="container">
         <nav class="breadcrumb" aria-label="Migas de pan">${migasHtml}</nav>
-        <h1>${e(h1)}</h1>
-        ${subtitulo ? `<p class="subtitulo">${e(subtitulo)}</p>` : ''}
+        ${h1En && h1En !== h1 ? bi(e(h1), e(h1En), 'h1') : `<h1>${e(h1)}</h1>`}
+        ${subtitulo ? `<p class="subtitulo">${bi(e(subtitulo), subtituloEn ? e(subtituloEn) : undefined)}</p>` : ''}
       </div>
     </section>
 
@@ -278,6 +308,7 @@ ${cuerpo}
     <script src="../js/busqueda.js?nocache=${nc}"></script>
     <script src="../js/i18n.js?nocache=${nc}"></script>
     <script src="../js/seo.js?nocache=${nc}"></script>
+    <script src="../js/script.js?nocache=${nc}"></script>
     <script src="../js/main.js?nocache=${nc}"></script>
   </body>
 </html>
@@ -286,11 +317,13 @@ ${cuerpo}
 
 const MIGA_INICIO = {
   nombre: 'Inicio',
+  en: 'Home',
   href: '../index.html',
   url: `${SITE_BASE_URL}/`,
 };
 const MIGA_PARTIDOS = {
   nombre: 'Partidos',
+  en: 'Matches',
   href: 'index.html',
   url: urlAbsoluta('index'),
 };
@@ -331,10 +364,10 @@ function nombresUsados(lista) {
   });
   return [...m.values()].sort((a, b) => a.desde.localeCompare(b.desde));
 }
-function rangoTemporadas(x) {
+function rangoTemporadas(x, en = false) {
   return x.desde === x.hasta
     ? nombreTemporada(x.desde)
-    : `${nombreTemporada(x.desde)} a ${nombreTemporada(x.hasta)}`;
+    : `${nombreTemporada(x.desde)} ${en ? 'to' : 'a'} ${nombreTemporada(x.hasta)}`;
 }
 const temporadasIds = [...porTemporada.keys()].sort(); // antigua → reciente
 
@@ -395,7 +428,7 @@ partidos.forEach((p, i) => {
         (j.roja ? '<span class="tarjeta tarjeta-roja" title="Roja"></span>' : '');
       return `<tr>
               <td>${enlaceFicha(j, p.tid)}</td>
-              <td class="pos ocultar-movil">${e(j.posicion || '')}</td>
+              <td class="pos ocultar-movil">${bi(e(j.posicion || ''), e(posicionEn(j.posicion)))}</td>
               <td class="num">${j.minutos ?? '–'}</td>
               <td class="num">${
                 j.esPortero
@@ -411,13 +444,16 @@ partidos.forEach((p, i) => {
     .join('\n');
   const hayPortero = p.jugadores.some((j) => j.esPortero);
 
+  const jornadaEnTxt = jornadaEn(p.jornada);
+  const compYJornadaEs = `${p.competicion}${jornadaTxt ? ` · ${jornadaTxt}` : ''}`;
+  const compYJornadaEn = `${competicionEn(p.competicion)}${jornadaEnTxt ? ` · ${jornadaEnTxt}` : ''}`;
   const datos = [
-    `<span><i class="fas fa-trophy"></i>${e(p.competicion)}${jornadaTxt ? ` · ${e(jornadaTxt)}` : ''}</span>`,
-    `<span><i class="far fa-calendar-alt"></i>${e(fechaLarga(p.fecha))}</span>`,
+    `<span><i class="fas fa-trophy"></i>${bi(e(compYJornadaEs), e(compYJornadaEn))}</span>`,
+    `<span><i class="far fa-calendar-alt"></i>${bi(e(fechaLarga(p.fecha)), e(fechaLargaEn(p.fecha)))}</span>`,
     p.oviedoLocal
       ? `<span><i class="fas fa-map-marker-alt"></i>${e(ESTADIO_OVIEDO)}</span>`
       : '',
-    `<span><i class="fas fa-layer-group"></i>Temporada ${e(temporadaNom)}</span>`,
+    `<span><i class="fas fa-layer-group"></i>${temporadaBi(p.tid)}</span>`,
   ]
     .filter(Boolean)
     .join('\n            ');
@@ -425,7 +461,7 @@ partidos.forEach((p, i) => {
   const equipoHtml = (nombre) => `<div class="marcador-equipo${nombre === OVIEDO ? ' es-oviedo' : ''}">
             ${htmlEscudo(nombre === OVIEDO ? nombre : p.club)}
             <span class="nombre">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(p.club)}.html">${e(nombre)}</a>`}</span>
-            ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">${(clubInfo.get(claveEquipo(p.club)) || {}).desaparecido ? e(p.club) : `hoy ${e(p.club)}`}</span>` : ''}
+            ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">${(clubInfo.get(claveEquipo(p.club)) || {}).desaparecido ? e(p.club) : bi(`hoy ${e(p.club)}`, `now ${e(p.club)}`)}</span>` : ''}
           </div>`;
 
   const cuerpo = `
@@ -434,8 +470,8 @@ partidos.forEach((p, i) => {
             ${equipoHtml(p.local)}
             <div class="marcador-centro">
               <div class="resultado">${p.golesLocal ?? '-'} - ${p.golesVisitante ?? '-'}</div>
-              ${p.penaltisLocal !== null && p.penaltisLocal !== undefined ? `<div class="penaltis">${e(quienPasaPenaltis(p))}</div>` : ''}
-              <span class="chip chip-${res}">${TEXTO_RES[res] || ''} del Oviedo</span>
+              ${p.penaltisLocal !== null && p.penaltisLocal !== undefined ? `<div class="penaltis">${quienPasaPenaltis(p)}</div>` : ''}
+              ${CHIP_RES[res] ? `<span class="chip chip-${res}">${bi(CHIP_RES[res][0], CHIP_RES[res][1])}</span>` : ''}
             </div>
             ${equipoHtml(p.visitante)}
           </div>
@@ -447,11 +483,11 @@ partidos.forEach((p, i) => {
         ${
           goleadores.length || p.entrenadores.length
             ? `<section class="bloque">
-          ${goleadores.length ? `<h2>Goles del Real Oviedo</h2>
+          ${goleadores.length ? `<h2>${bi('Goles del Real Oviedo', 'Real Oviedo goals')}</h2>
           <ul class="lista-simple">
             ${goleadores.map((j) => `<li>${enlaceFicha(j, p.tid)}${j.goles > 1 ? ` (${j.goles})` : ''}</li>`).join('\n            ')}
           </ul>` : ''}
-          ${p.entrenadores.length ? `<h2 style="margin-top:${goleadores.length ? '20px' : '0'}">Entrenador</h2>
+          ${p.entrenadores.length ? `<h2 style="margin-top:${goleadores.length ? '20px' : '0'}">${bi('Entrenador', 'Coach')}</h2>
           <ul class="lista-simple">
             ${p.entrenadores.map((en) => `<li><a href="../fichas/${e(en.slugFicha)}.html">${e(en.nombreCompleto)}</a></li>`).join('\n            ')}
           </ul>` : ''}
@@ -462,33 +498,33 @@ partidos.forEach((p, i) => {
         ${
           p.jugadores.length
             ? `<section class="bloque">
-          <h2>Jugadores del Real Oviedo</h2>
+          <h2>${bi('Jugadores del Real Oviedo', 'Real Oviedo players')}</h2>
           <div class="tabla-scroll">
             <table class="tabla">
               <thead>
-                <tr><th>Jugador</th><th class="ocultar-movil">Posición</th><th class="num">Min.</th><th class="num">Goles</th><th class="num">Asist.</th><th class="num">Tarj.</th></tr>
+                <tr><th>${bi('Jugador', 'Player')}</th><th class="ocultar-movil">${bi('Posición', 'Position')}</th><th class="num">Min.</th><th class="num">${bi('Goles', 'Goals')}</th><th class="num">${bi('Asist.', 'Ast.')}</th><th class="num">${bi('Tarj.', 'Cards')}</th></tr>
               </thead>
               <tbody>
             ${filasJugadores}
               </tbody>
             </table>
           </div>
-          ${hayPortero ? '<p class="nota">En los porteros, la columna Goles muestra los goles encajados (<span class="goles-encajados">en rojo</span>).</p>' : ''}
+          ${hayPortero ? `<p class="nota">${NOTA_PORTEROS}</p>` : ''}
         </section>`
             : ''
         }
 
         <section class="bloque">
-          <h2>Más partidos</h2>
+          <h2>${bi('Más partidos', 'More matches')}</h2>
           <ul class="lista-simple">
-            <li><a href="${slugTemporada(p.tid)}.html">Todos los partidos de la temporada ${e(temporadaNom)}</a></li>
-            <li><a href="${slugRival(p.club)}.html">Historial contra ${e(p.club)} (${rival.partidos.length} ${rival.partidos.length === 1 ? 'partido' : 'partidos'})</a></li>
+            <li><a href="${slugTemporada(p.tid)}.html">${bi(`Todos los partidos de la temporada ${e(temporadaNom)}`, `All matches of the ${e(temporadaNom)} season`)}</a></li>
+            <li><a href="${slugRival(p.club)}.html">${bi(`Historial contra ${e(p.club)} (${nPartidosTxt(rival.partidos.length)})`, `Head-to-head vs ${e(p.club)} (${rival.partidos.length} ${rival.partidos.length === 1 ? 'match' : 'matches'})`)}</a></li>
           </ul>
         </section>
 
         <nav class="nav-partidos" aria-label="Partido anterior y siguiente">
-          ${anterior ? `<a class="ant" href="${e(anterior.slug)}.html"><small>← Partido anterior</small><strong>${e(anterior.local)} ${e(marcador(anterior))} ${e(anterior.visitante)}</strong></a>` : ''}
-          ${siguiente ? `<a class="sig" href="${e(siguiente.slug)}.html"><small>Partido siguiente →</small><strong>${e(siguiente.local)} ${e(marcador(siguiente))} ${e(siguiente.visitante)}</strong></a>` : ''}
+          ${anterior ? `<a class="ant" href="${e(anterior.slug)}.html"><small>${bi('← Partido anterior', '← Previous match')}</small><strong>${e(anterior.local)} ${e(marcador(anterior))} ${e(anterior.visitante)}</strong></a>` : ''}
+          ${siguiente ? `<a class="sig" href="${e(siguiente.slug)}.html"><small>${bi('Partido siguiente →', 'Next match →')}</small><strong>${e(siguiente.local)} ${e(marcador(siguiente))} ${e(siguiente.visitante)}</strong></a>` : ''}
         </nav>`;
 
   escribir(
@@ -502,11 +538,13 @@ partidos.forEach((p, i) => {
       migas: [
         MIGA_INICIO,
         MIGA_PARTIDOS,
-        { nombre: `Temporada ${temporadaNom}`, href: `${slugTemporada(p.tid)}.html`, url: urlAbsoluta(slugTemporada(p.tid)) },
+        { nombre: `Temporada ${temporadaNom}`, en: `Season ${temporadaNom}`, href: `${slugTemporada(p.tid)}.html`, url: urlAbsoluta(slugTemporada(p.tid)) },
         { nombre: `${p.local} - ${p.visitante}` },
       ],
       h1: `${p.local} ${marcador(p)} ${p.visitante}`,
-      subtitulo: `${p.competicion}${jornadaTxt ? ` · ${jornadaTxt}` : ''} · ${fechaLarga(p.fecha)}`,
+      h1En: `${p.local} ${marcador(p).replace(' pen.', ' pens')} ${p.visitante}`,
+      subtitulo: `${compYJornadaEs} · ${fechaLarga(p.fecha)}`,
+      subtituloEn: `${compYJornadaEn} · ${fechaLargaEn(p.fecha)}`,
       cuerpo,
     }),
   );
@@ -529,7 +567,7 @@ temporadasIds.forEach((tid, i) => {
   const filasComp = comps
     .map((c) => {
       const rc = resumenNumeros(lista.filter((p) => p.competicion === c));
-      return `<tr><td>${e(c)}</td><td class="num">${rc.pj}</td><td class="num">${rc.v}</td><td class="num">${rc.e}</td><td class="num">${rc.d}</td><td class="num">${rc.gf}</td><td class="num">${rc.gc}</td></tr>`;
+      return `<tr><td>${bi(e(c), e(competicionEn(c)))}</td><td class="num">${rc.pj}</td><td class="num">${rc.v}</td><td class="num">${rc.e}</td><td class="num">${rc.d}</td><td class="num">${rc.gf}</td><td class="num">${rc.gc}</td></tr>`;
     })
     .join('\n                ');
 
@@ -561,17 +599,22 @@ temporadasIds.forEach((tid, i) => {
     `${r.pj} partidos, ${r.v} victorias, ${r.e} empates y ${r.d} derrotas. ` +
     `${maxGoleador ? `Máximo goleador: ${maxGoleador.nombre} (${maxGoleador.goles}). ` : ''}Resultados, plantilla y entrenadores.`;
 
+  const compTemp = temp.competicion || comps[0];
+  const introEn =
+    `All Real Oviedo matches in the ${nom} season (${competicionEn(compTemp)}): ` +
+    `${r.pj} matches, ${r.v} wins, ${r.e} draws and ${r.d} losses.` +
+    `${maxGoleador ? ` Top scorer: ${maxGoleador.nombre} (${maxGoleador.goles}).` : ''}`;
   const cuerpo = `
         <section class="bloque">
-          <p class="texto-intro">${e(descripcion.replace(' Resultados, plantilla y entrenadores.', ''))}</p>
+          <p class="texto-intro">${bi(e(descripcion.replace(' Resultados, plantilla y entrenadores.', '')), e(introEn))}</p>
           ${htmlResumen(r)}
         </section>
 
         <section class="bloque">
-          <h2>Por competición</h2>
+          <h2>${bi('Por competición', 'By competition')}</h2>
           <div class="tabla-scroll">
             <table class="tabla">
-              <thead><tr><th>Competición</th><th class="num">PJ</th><th class="num">V</th><th class="num">E</th><th class="num">D</th><th class="num">GF</th><th class="num">GC</th></tr></thead>
+              <thead><tr><th>${bi('Competición', 'Competition')}</th><th class="num">${bi('PJ', 'P')}</th><th class="num">${bi('V', 'W')}</th><th class="num">${bi('E', 'D')}</th><th class="num">${bi('D', 'L')}</th><th class="num">GF</th><th class="num">${bi('GC', 'GA')}</th></tr></thead>
               <tbody>
                 ${filasComp}
               </tbody>
@@ -580,7 +623,7 @@ temporadasIds.forEach((tid, i) => {
         </section>
 
         <section class="bloque">
-          <h2>Partidos (${lista.length})</h2>
+          <h2>${bi(`Partidos (${lista.length})`, `Matches (${lista.length})`)}</h2>
           <ul class="lista-partidos">
           ${lista.map((p) => htmlFilaPartido(p)).join('\n          ')}
           </ul>
@@ -589,7 +632,7 @@ temporadasIds.forEach((tid, i) => {
         ${
           entrenadores.length
             ? `<section class="bloque">
-          <h2>Entrenadores</h2>
+          <h2>${bi('Entrenadores', 'Coaches')}</h2>
           <ul class="lista-simple">
             ${entrenadores.map((en) => `<li><a href="../fichas/${e(en.slugFicha)}.html">${e(en.nombreCompleto)}</a></li>`).join('\n            ')}
           </ul>
@@ -598,26 +641,26 @@ temporadasIds.forEach((tid, i) => {
         }
 
         <section class="bloque">
-          <h2>Plantilla ${e(nom)}</h2>
+          <h2>${bi(`Plantilla ${e(nom)}`, `Squad ${e(nom)}`)}</h2>
           <div class="tabla-scroll">
             <table class="tabla">
-              <thead><tr><th>Jugador</th><th class="ocultar-movil">Posición</th><th class="num">PJ</th><th class="num">Goles</th></tr></thead>
+              <thead><tr><th>${bi('Jugador', 'Player')}</th><th class="ocultar-movil">${bi('Posición', 'Position')}</th><th class="num">${bi('PJ', 'Apps')}</th><th class="num">${bi('Goles', 'Goals')}</th></tr></thead>
               <tbody>
                 ${plantilla
                   .map(
                     (j) =>
-                      `<tr><td>${j.tieneFicha ? `<a href="../fichas/${e(j.codigo)}-${e(tid)}.html">${e(j.nombreCompleto)}</a>` : e(j.nombreCompleto)}</td><td class="pos ocultar-movil">${e(j.posicion)}</td><td class="num">${j.pj}</td><td class="num">${j.esPortero && j.goles > 0 ? `<span class="goles-encajados" title="Goles encajados">${j.goles}</span>` : j.goles}</td></tr>`,
+                      `<tr><td>${j.tieneFicha ? `<a href="../fichas/${e(j.codigo)}-${e(tid)}.html">${e(j.nombreCompleto)}</a>` : e(j.nombreCompleto)}</td><td class="pos ocultar-movil">${bi(e(j.posicion), e(posicionEn(j.posicion)))}</td><td class="num">${j.pj}</td><td class="num">${j.esPortero && j.goles > 0 ? `<span class="goles-encajados" title="Goles encajados">${j.goles}</span>` : j.goles}</td></tr>`,
                   )
                   .join('\n                ')}
               </tbody>
             </table>
           </div>
-          ${plantilla.some((j) => j.esPortero) ? '<p class="nota">En los porteros, la columna Goles muestra los goles encajados (<span class="goles-encajados">en rojo</span>).</p>' : ''}
+          ${plantilla.some((j) => j.esPortero) ? `<p class="nota">${NOTA_PORTEROS}</p>` : ''}
         </section>
 
         <nav class="nav-partidos" aria-label="Temporada anterior y siguiente">
-          ${anterior ? `<a class="ant" href="${slugTemporada(anterior)}.html"><small>← Temporada anterior</small><strong>${nombreTemporada(anterior)}</strong></a>` : ''}
-          ${siguiente ? `<a class="sig" href="${slugTemporada(siguiente)}.html"><small>Temporada siguiente →</small><strong>${nombreTemporada(siguiente)}</strong></a>` : ''}
+          ${anterior ? `<a class="ant" href="${slugTemporada(anterior)}.html"><small>${bi('← Temporada anterior', '← Previous season')}</small><strong>${nombreTemporada(anterior)}</strong></a>` : ''}
+          ${siguiente ? `<a class="sig" href="${slugTemporada(siguiente)}.html"><small>${bi('Temporada siguiente →', 'Next season →')}</small><strong>${nombreTemporada(siguiente)}</strong></a>` : ''}
         </nav>`;
 
   escribir(
@@ -635,9 +678,11 @@ temporadasIds.forEach((tid, i) => {
           about: { '@type': 'SportsTeam', name: OVIEDO, sport: 'Fútbol' },
         },
       ],
-      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: `Temporada ${nom}` }],
+      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: `Temporada ${nom}`, en: `Season ${nom}` }],
       h1: `Real Oviedo · Temporada ${nom}`,
-      subtitulo: `${temp.competicion || comps[0]} · ${r.pj} partidos · ${r.v}V ${r.e}E ${r.d}D`,
+      h1En: `Real Oviedo · Season ${nom}`,
+      subtitulo: `${compTemp} · ${r.pj} partidos · ${vedEs(r)}`,
+      subtituloEn: `${competicionEn(compTemp)} · ${r.pj} matches · ${vedEn(r)}`,
       cuerpo,
     }),
   );
@@ -671,39 +716,52 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
     `Historial del Real Oviedo contra ${nombre}${usadosAntiguos.length ? `, también como ${usadosAntiguos.map((x) => x.nombre).join(' y ')}` : ''}: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} (${r.v} victorias, ${r.e} empates, ${r.d} derrotas, ${r.gf}-${r.gc} en goles). ` +
     `Último enfrentamiento: ${ultimo.local} ${marcador(ultimo)} ${ultimo.visitante} (${fechaCorta(ultimo.fecha)}).`;
 
+  const antiguosTxt = usadosAntiguos.map((x) => x.nombre);
+  const descripcionEn =
+    `Real Oviedo head-to-head against ${nombre}${antiguosTxt.length ? `, also as ${antiguosTxt.join(' and ')}` : ''}: ${r.pj} ${r.pj === 1 ? 'match' : 'matches'} (${r.v} wins, ${r.e} draws, ${r.d} losses, ${r.gf}-${r.gc} on goals). ` +
+    `Last meeting: ${ultimo.local} ${marcador(ultimo).replace(' pen.', ' pens')} ${ultimo.visitante} (${fechaCortaEn(ultimo.fecha)}).`;
+  const vCasa = resumenNumeros(enCasa).v;
+  const vFuera = resumenNumeros(fuera).v;
+  const desde = nombreTemporada(temporadasIds[0]);
+  const notaCasaFuera = bi(
+    `En casa: ${nPartidosTxt(enCasa.length)} (${vCasa} victorias). Fuera: ${nPartidosTxt(fuera.length)} (${vFuera} victorias). Datos desde la temporada ${desde}.`,
+    `At home: ${enCasa.length} ${enCasa.length === 1 ? 'match' : 'matches'} (${vCasa} wins). Away: ${fuera.length} ${fuera.length === 1 ? 'match' : 'matches'} (${vFuera} wins). Data since the ${desde} season.`,
+  );
+
   const bloqueNombres =
     usados.length > 1 || usadosAntiguos.length || otros.length
       ? `
         <section class="bloque">
-          <h2>Nombres del club</h2>
-          ${usados.length > 1 || usadosAntiguos.length ? `<p>${usados.length > 1 ? `Contra el Real Oviedo ha jugado con ${usados.length} nombres distintos:` : 'Contra el Real Oviedo ha jugado con este nombre:'}</p>
+          <h2>${bi('Nombres del club', 'Club names')}</h2>
+          ${usados.length > 1 || usadosAntiguos.length ? `<p>${usados.length > 1 ? bi(`Contra el Real Oviedo ha jugado con ${usados.length} nombres distintos:`, `Has played Real Oviedo under ${usados.length} different names:`) : bi('Contra el Real Oviedo ha jugado con este nombre:', 'Has played Real Oviedo under this name:')}</p>
           <ul class="lista-simple">
-            ${usados.map((x) => `<li><strong>${e(x.nombre)}</strong> · ${e(rangoTemporadas(x))} (${x.n} ${x.n === 1 ? 'partido' : 'partidos'})</li>`).join('\n            ')}
+            ${usados.map((x) => `<li><strong>${e(x.nombre)}</strong> · ${bi(`${e(rangoTemporadas(x))} (${nPartidosTxt(x.n)})`, `${e(rangoTemporadas(x, true))} (${x.n} ${x.n === 1 ? 'match' : 'matches'})`)}</li>`).join('\n            ')}
           </ul>` : ''}
-          ${otros.length ? `<p class="nota">También conocido como: ${otros.map((n) => e(n)).join(', ')}.</p>` : ''}
+          ${otros.length ? `<p class="nota">${bi(`También conocido como: ${otros.map((n) => e(n)).join(', ')}.`, `Also known as: ${otros.map((n) => e(n)).join(', ')}.`)}</p>` : ''}
         </section>`
       : '';
   const notaClub = (clubInfo.get(claveEquipo(nombre)) || {}).nota;
+  const notaClubEn = (clubInfo.get(claveEquipo(nombre)) || {}).notaEn;
 
   const cuerpo = `
         <section class="bloque">
           <div class="marcador">
             ${`<div class="marcador-equipo es-oviedo">${htmlEscudo(OVIEDO)}<span class="nombre">${OVIEDO}</span></div>`}
-            <div class="marcador-centro"><div class="resultado">${r.v}-${r.e}-${r.d}</div><div class="penaltis">victorias · empates · derrotas</div></div>
+            <div class="marcador-centro"><div class="resultado">${r.v}-${r.e}-${r.d}</div><div class="penaltis">${bi('victorias · empates · derrotas', 'wins · draws · losses')}</div></div>
             ${`<div class="marcador-equipo">${htmlEscudo(nombre)}<span class="nombre">${e(nombre)}</span></div>`}
           </div>
         </section>
 
         <section class="bloque">
-          <p class="texto-intro">${e(descripcion)}</p>
+          <p class="texto-intro">${bi(e(descripcion), e(descripcionEn))}</p>
           ${htmlResumen(r)}
-          <p class="nota">En casa: ${enCasa.length} partidos (${resumenNumeros(enCasa).v} victorias). Fuera: ${fuera.length} partidos (${resumenNumeros(fuera).v} victorias). Datos desde la temporada ${nombreTemporada(temporadasIds[0])}.</p>
+          <p class="nota">${notaCasaFuera}</p>
         </section>
 ${bloqueNombres}
-${notaClub ? `        <section class="bloque"><h2>Sobre el club</h2><p>${e(notaClub)}</p></section>` : ''}
+${notaClub ? `        <section class="bloque"><h2>${bi('Sobre el club', 'About the club')}</h2><p>${bi(e(notaClub), notaClubEn ? e(notaClubEn) : undefined)}</p></section>` : ''}
 
         <section class="bloque">
-          <h2>Todos los partidos</h2>
+          <h2>${bi('Todos los partidos', 'All matches')}</h2>
           <ul class="lista-partidos">
           ${[...lista].reverse().map((p) => htmlFilaPartido(p, { mostrarTemporada: true })).join('\n          ')}
           </ul>
@@ -733,11 +791,12 @@ ${notaClub ? `        <section class="bloque"><h2>Sobre el club</h2><p>${e(notaC
       migas: [
         MIGA_INICIO,
         MIGA_PARTIDOS,
-        { nombre: 'Rivales', href: 'rivales.html', url: urlAbsoluta('rivales') },
-        { nombre: `Contra ${nombre}` },
+        { nombre: 'Rivales', en: 'Opponents', href: 'rivales.html', url: urlAbsoluta('rivales') },
+        { nombre: `Contra ${nombre}`, en: `vs ${nombre}` },
       ],
       h1: `Real Oviedo vs ${nombre}`,
-      subtitulo: `Historial: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} desde ${nombreTemporada(lista[0].tid)}${usadosAntiguos.length ? ` · También como ${usadosAntiguos.map((x) => x.nombre).join(', ')}` : ''}`,
+      subtitulo: `Historial: ${nPartidosTxt(r.pj)} desde ${nombreTemporada(lista[0].tid)}${antiguosTxt.length ? ` · También como ${antiguosTxt.join(', ')}` : ''}`,
+      subtituloEn: `Head-to-head: ${r.pj} ${r.pj === 1 ? 'match' : 'matches'} since ${nombreTemporada(lista[0].tid)}${antiguosTxt.length ? ` · Also as ${antiguosTxt.join(', ')}` : ''}`,
       cuerpo,
     }),
   );
@@ -770,29 +829,30 @@ function nombreParaOrdenar(nombre) {
   const titulo = `Rivales del Real Oviedo de la A a la Z: historial contra cada equipo | Sangre Carbayona`;
   const descripcion = `Los ${conOrden.length} equipos contra los que ha jugado el Real Oviedo desde ${nombreTemporada(temporadasIds[0])}, ordenados alfabéticamente, con el historial de partidos contra cada uno.`;
 
+  const descripcionEn = `The ${conOrden.length} teams Real Oviedo has played since ${nombreTemporada(temporadasIds[0])}, in alphabetical order, with the head-to-head record against each one.`;
   const cuerpo = `
         <section class="bloque">
-          <p class="texto-intro">${e(descripcion)}</p>
+          <p class="texto-intro">${bi(e(descripcion), e(descripcionEn))}</p>
           <label class="filtro-rivales">
             <i class="fas fa-search" aria-hidden="true"></i>
-            <input type="search" id="filtroRivales" placeholder="Buscar rival..." aria-label="Buscar rival" autocomplete="off" />
+            <input type="search" id="filtroRivales" placeholder="Buscar rival..." data-en-placeholder="Search opponent..." aria-label="Buscar rival" autocomplete="off" />
           </label>
           <nav class="indice-letras" id="indice" aria-label="Índice alfabético">
             ${letras.map((l) => `<a href="#letra-${l === '#' ? 'otros' : l}">${l}</a>`).join('')}
           </nav>
-          <p class="sin-resultados" id="sinResultados" hidden>Ningún rival coincide con la búsqueda.</p>
+          <p class="sin-resultados" id="sinResultados" hidden>${bi('Ningún rival coincide con la búsqueda.', 'No opponent matches your search.')}</p>
         </section>
 
         ${letras
           .map(
             (l) => `<section class="bloque grupo-letra" id="letra-${l === '#' ? 'otros' : l}">
-          <h2>${l}<a class="volver-indice" href="#indice">↑ Índice</a></h2>
+          <h2>${l}<a class="volver-indice" href="#indice">${bi('↑ Índice', '↑ Index')}</a></h2>
           <ul class="lista-rivales">
             ${conOrden
               .filter((x) => x.letra === l)
               .map(
                 (x) =>
-                  `<li data-buscar="${e([x.nombre, ...x.antiguos, ...(otrosNombresDe.get(claveEquipo(x.nombre)) || [])].map((n) => C.slugTexto(n).replace(/-/g, ' ')).join(' | '))}"><a href="${slugRival(x.nombre)}.html"><span class="nombre-rival">${e(x.nombre)}${x.antiguos.length ? `<small>antes ${e(x.antiguos.join(', '))}</small>` : ''}</span><span class="cuenta">${x.partidos.length}</span></a></li>`,
+                  `<li data-buscar="${e([x.nombre, ...x.antiguos, ...(otrosNombresDe.get(claveEquipo(x.nombre)) || [])].map((n) => C.slugTexto(n).replace(/-/g, ' ')).join(' | '))}"><a href="${slugRival(x.nombre)}.html"><span class="nombre-rival">${e(x.nombre)}${x.antiguos.length ? bi(`antes ${e(x.antiguos.join(', '))}`, `formerly ${e(x.antiguos.join(', '))}`, 'small') : ''}</span><span class="cuenta">${x.partidos.length}</span></a></li>`,
               )
               .join('\n            ')}
           </ul>
@@ -841,9 +901,11 @@ function nombreParaOrdenar(nombre) {
           url: urlAbsoluta('rivales'),
         },
       ],
-      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: 'Rivales' }],
+      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: 'Rivales', en: 'Opponents' }],
       h1: 'Rivales del Real Oviedo',
+      h1En: 'Real Oviedo opponents',
       subtitulo: `${conOrden.length} equipos de la A a la Z`,
+      subtituloEn: `${conOrden.length} teams from A to Z`,
       cuerpo,
     }),
   );
@@ -862,46 +924,49 @@ function nombreParaOrdenar(nombre) {
     `Archivo de resultados del Real Oviedo de ${primera} a ${ultima}: ${r.pj} partidos con marcador, goleadores y alineaciones, ` +
     `organizados por temporada y por rival.`;
 
+  const introEn =
+    `Real Oviedo results archive from ${primera} to ${ultima}: ${r.pj} matches with score, scorers and line-ups, ` +
+    `organised by season and by opponent. Every match has its own page with the players who took part, their minutes, goals and cards.`;
   const cuerpo = `
         <section class="bloque">
-          <p class="texto-intro">${e(descripcion)} Cada partido tiene su propia página con los jugadores que participaron, sus minutos, goles y tarjetas.</p>
+          <p class="texto-intro">${bi(`${e(descripcion)} Cada partido tiene su propia página con los jugadores que participaron, sus minutos, goles y tarjetas.`, e(introEn))}</p>
           ${htmlResumen(r)}
         </section>
 
         <section class="bloque">
-          <h2>Últimos partidos</h2>
+          <h2>${bi('Últimos partidos', 'Latest matches')}</h2>
           <ul class="lista-partidos">
           ${partidos.slice(-10).reverse().map((p) => htmlFilaPartido(p, { mostrarTemporada: true })).join('\n          ')}
           </ul>
         </section>
 
         <section class="bloque">
-          <h2>Por temporada</h2>
+          <h2>${bi('Por temporada', 'By season')}</h2>
           <div class="rejilla-enlaces">
             ${[...temporadasIds]
               .reverse()
               .map((tid) => {
                 const rt = resumenNumeros(porTemporada.get(tid));
                 const comp = (CLUB_DATA.temporadas[tid] || {}).competicion || '';
-                return `<a href="${slugTemporada(tid)}.html"><strong>${nombreTemporada(tid)}</strong><span>${e(comp)} · ${rt.v}V ${rt.e}E ${rt.d}D</span></a>`;
+                return `<a href="${slugTemporada(tid)}.html"><strong>${nombreTemporada(tid)}</strong>${bi(`${e(comp)} · ${vedEs(rt)}`, `${e(competicionEn(comp))} · ${vedEn(rt)}`)}</a>`;
               })
               .join('\n            ')}
           </div>
         </section>
 
         <section class="bloque">
-          <h2>Rivales más habituales</h2>
+          <h2>${bi('Rivales más habituales', 'Most frequent opponents')}</h2>
           <div class="rejilla-enlaces">
             ${[...rivalesOrdenados]
               .sort((a, b) => b.partidos.length - a.partidos.length || a.nombre.localeCompare(b.nombre, 'es'))
               .slice(0, RIVALES_EN_PORTADA)
               .map(
                 ({ nombre, partidos: l }) =>
-                  `<a href="${slugRival(nombre)}.html"><strong>${e(nombre)}</strong><span>${l.length} ${l.length === 1 ? 'partido' : 'partidos'}</span></a>`,
+                  `<a href="${slugRival(nombre)}.html"><strong>${e(nombre)}</strong>${nPartidos(l.length)}</a>`,
               )
               .join('\n            ')}
           </div>
-          <a class="boton-ver-todos" href="rivales.html">Ver los ${rivalesOrdenados.length} rivales de la A a la Z →</a>
+          <a class="boton-ver-todos" href="rivales.html">${bi(`Ver los ${rivalesOrdenados.length} rivales de la A a la Z →`, `See all ${rivalesOrdenados.length} opponents from A to Z →`)}</a>
         </section>`;
 
   escribir(
@@ -919,9 +984,11 @@ function nombreParaOrdenar(nombre) {
           about: { '@type': 'SportsTeam', name: OVIEDO, sport: 'Fútbol' },
         },
       ],
-      migas: [MIGA_INICIO, { nombre: 'Partidos' }],
+      migas: [MIGA_INICIO, { nombre: 'Partidos', en: 'Matches' }],
       h1: 'Resultados del Real Oviedo',
+      h1En: 'Real Oviedo results',
       subtitulo: `${r.pj} partidos de ${primera} a ${ultima}`,
+      subtituloEn: `${r.pj} matches from ${primera} to ${ultima}`,
       cuerpo,
     }),
   );

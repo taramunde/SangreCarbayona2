@@ -250,6 +250,7 @@ function clubesHistoricos(CLUB_DATA) {
       nombre: c.nombre,
       desaparecido: Boolean(c.desaparecido),
       nota: c.nota || '',
+      notaEn: c.notaEn || '',
       alias: (c.otrosNombres || [])
         .map((o) =>
           typeof o === 'string'
@@ -564,6 +565,89 @@ function nocacheActual() {
   return `${hoy}v1`;
 }
 
+// ── TRADUCCIÓN AL INGLÉS ──────────────────────────────────────
+// Las páginas generadas llevan el texto en español (el que indexa
+// Google) y, al lado, su versión en inglés en un atributo data-en.
+// js/i18n.js intercambia ambos al cambiar de idioma. Competiciones,
+// rondas y posiciones se traducen con las mismas claves de i18n.js
+// para que coincidan con el resto de la web.
+
+let _en = null;
+function traduccionesEn() {
+  if (_en) return _en;
+  try {
+    const sandbox = {
+      window: {},
+      console,
+      localStorage: { getItem: () => 'es', setItem() {} },
+      document: {
+        addEventListener() {},
+        querySelectorAll: () => [],
+        getElementById: () => null,
+        documentElement: {},
+      },
+    };
+    vm.createContext(sandbox);
+    const src = fs.readFileSync(path.join(__dirname, '../js/i18n.js'), 'utf-8');
+    vm.runInContext(`${src}\n;globalThis.__T = translations;`, sandbox);
+    _en = (sandbox.__T && sandbox.__T.en) || {};
+  } catch (e) {
+    console.warn('⚠ No se pudieron leer las traducciones de i18n.js:', e.message);
+    _en = {};
+  }
+  return _en;
+}
+
+// Misma normalización que translateCompeticion() de i18n.js
+function claveI18n(texto) {
+  return quitarAcentos(texto)
+    .toLowerCase()
+    .replace(/[().]/g, '')
+    .replace(/[-\s]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
+}
+
+function competicionEn(comp) {
+  return traduccionesEn()[`comp_${claveI18n(comp)}`] || comp || '';
+}
+function competicionCortaEn(comp) {
+  return /^Copa del Rey/i.test(comp || '') ? 'Copa del Rey' : competicionEn(comp);
+}
+function jornadaEn(jornada) {
+  if (jornada === null || jornada === undefined || jornada === '') return '';
+  if (/^\d+$/.test(String(jornada).trim())) return `Matchday ${jornada}`;
+  const t = traduccionesEn()[`copa_ronda_${claveI18n(jornada)}`];
+  if (t) return t;
+  return String(jornada)
+    .replace(/\(Ida\)/i, '(1st Leg)')
+    .replace(/\(Vuelta\)/i, '(2nd Leg)');
+}
+function posicionEn(pos) {
+  return traduccionesEn()[`pos_${claveI18n(pos)}`] || pos || '';
+}
+
+const MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+function fechaLargaEn(iso) {
+  const [a, m, d] = iso.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1]} ${a}`;
+}
+function fechaCortaEn(iso) {
+  const [a, m, d] = iso.split('-').map(Number);
+  return `${d} ${MONTHS[m - 1].slice(0, 3)} ${a}`;
+}
+
+// Texto bilingüe: devuelve el HTML en español con su versión inglesa
+// en data-en. Ambos argumentos son HTML ya escapado. No anidar: el
+// contenido se sustituye entero al cambiar de idioma.
+function bi(esHtml, enHtml, etiqueta = 'span') {
+  if (enHtml === undefined || enHtml === null || enHtml === esHtml) return esHtml;
+  return `<${etiqueta} data-en="${String(enHtml).replace(/&/g, '&amp;').replace(/"/g, '&quot;')}">${esHtml}</${etiqueta}>`;
+}
+
 module.exports = {
   SITE_BASE_URL,
   OVIEDO,
@@ -588,4 +672,11 @@ module.exports = {
   datosJugador,
   datosEntrenador,
   nocacheActual,
+  competicionEn,
+  competicionCortaEn,
+  jornadaEn,
+  posicionEn,
+  fechaLargaEn,
+  fechaCortaEn,
+  bi,
 };

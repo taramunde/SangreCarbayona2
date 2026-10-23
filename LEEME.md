@@ -651,6 +651,13 @@ común está en `generador/partidos-comun.js`.
 No edites los HTML de `/partidos/`: se borran y se reescriben enteros
 cada vez que se genera.
 
+Estas páginas están **en los dos idiomas**: el HTML lleva el texto en
+español (el que lee Google) y su traducción inglesa en un atributo
+`data-en`, que `js/i18n.js` intercambia al pulsar la bandera. Las
+competiciones, rondas y posiciones se traducen con las mismas claves
+de `i18n.js` (`comp_...`, `copa_ronda_...`, `pos_...`): si añades una
+competición nueva a `i18n.js`, regenera y saldrá traducida también aquí.
+
 ### Clubes que cambiaron de nombre — `js/data-equipos.js`
 
 Si un rival jugó con otro nombre en el pasado (por ejemplo, el Sporting
@@ -677,7 +684,7 @@ llamó igual entre 2012 y 2020), ese nombre se escribe con su periodo de
 temporadas: `{ nombre: 'Real Avilés C.F.', desde: '2012-13', hasta:
 '2019-20' }`. Un club que ya no existe lleva `desaparecido: true`, y
 cualquier club puede llevar una `nota` que sale en su página de
-historial. El ejemplo completo está en el propio `js/data-equipos.js`.
+historial (y `notaEn` con la misma nota en inglés). El ejemplo completo está en el propio `js/data-equipos.js`.
 
 ---
 

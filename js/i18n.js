@@ -1074,6 +1074,23 @@ function setLanguage(lang) {
     }
   });
 
+  // Páginas generadas (p. ej. /partidos/ y la lista de partidos de las
+  // fichas): traen el texto en español y su versión inglesa en data-en.
+  document.querySelectorAll('[data-en]').forEach((el) => {
+    if (!el.hasAttribute('data-es')) el.setAttribute('data-es', el.innerHTML);
+    el.innerHTML =
+      lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
+  });
+  document.querySelectorAll('[data-en-placeholder]').forEach((el) => {
+    if (!el.hasAttribute('data-es-placeholder')) {
+      el.setAttribute('data-es-placeholder', el.placeholder);
+    }
+    el.placeholder =
+      lang === 'en'
+        ? el.getAttribute('data-en-placeholder')
+        : el.getAttribute('data-es-placeholder');
+  });
+
   // Re-renderiza las partes dinámicas
   if (window.App) {
     App.renderSeasonSelector();
