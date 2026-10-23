@@ -365,7 +365,13 @@ partidos.forEach((p, i) => {
               <td>${enlaceFicha(j, p.tid)}</td>
               <td class="pos ocultar-movil">${e(j.posicion || '')}</td>
               <td class="num">${j.minutos ?? '–'}</td>
-              <td class="num">${j.esPortero ? '–' : j.goles}</td>
+              <td class="num">${
+                j.esPortero
+                  ? j.goles > 0
+                    ? `<span class="goles-encajados" title="Goles encajados">${j.goles}</span>`
+                    : '0'
+                  : j.goles
+              }</td>
               <td class="num">${j.asistencias}</td>
               <td class="num">${tarjetas || '–'}</td>
             </tr>`;
@@ -434,7 +440,7 @@ partidos.forEach((p, i) => {
               </tbody>
             </table>
           </div>
-          ${hayPortero ? '<p class="nota">En los porteros no se muestran goles: en los datos de la web ese campo recoge los goles encajados.</p>' : ''}
+          ${hayPortero ? '<p class="nota">En los porteros, la columna Goles muestra los goles encajados (<span class="goles-encajados">en rojo</span>).</p>' : ''}
         </section>`
             : ''
         }
@@ -502,8 +508,9 @@ temporadasIds.forEach((tid, i) => {
     .filter((j) => (j.partidos || []).length)
     .map((j) => {
       const info = C.datosJugador(CLUB_DATA, j.codigo);
-      const goles = info.posicion === 'Portero' ? null : (j.partidos || []).reduce((s, p) => s + (p.goles || 0), 0);
-      return { codigo: j.codigo, ...info, pj: j.partidos.length, goles };
+      const goles = (j.partidos || []).reduce((s, p) => s + (p.goles || 0), 0);
+      const esPortero = info.posicion === 'Portero';
+      return { codigo: j.codigo, ...info, pj: j.partidos.length, goles, esPortero };
     })
     .sort(
       (a, b) =>
@@ -512,7 +519,7 @@ temporadasIds.forEach((tid, i) => {
         b.pj - a.pj,
     );
   const maxGoleador = plantilla
-    .filter((j) => j.goles)
+    .filter((j) => j.goles && !j.esPortero)
     .sort((a, b) => b.goles - a.goles)[0];
 
   const titulo = `Real Oviedo temporada ${nom}: resultados de todos los partidos | Sangre Carbayona`;
@@ -566,12 +573,13 @@ temporadasIds.forEach((tid, i) => {
                 ${plantilla
                   .map(
                     (j) =>
-                      `<tr><td>${j.tieneFicha ? `<a href="../fichas/${e(j.codigo)}-${e(tid)}.html">${e(j.nombreCompleto)}</a>` : e(j.nombreCompleto)}</td><td class="pos ocultar-movil">${e(j.posicion)}</td><td class="num">${j.pj}</td><td class="num">${j.goles === null ? '–' : j.goles}</td></tr>`,
+                      `<tr><td>${j.tieneFicha ? `<a href="../fichas/${e(j.codigo)}-${e(tid)}.html">${e(j.nombreCompleto)}</a>` : e(j.nombreCompleto)}</td><td class="pos ocultar-movil">${e(j.posicion)}</td><td class="num">${j.pj}</td><td class="num">${j.esPortero && j.goles > 0 ? `<span class="goles-encajados" title="Goles encajados">${j.goles}</span>` : j.goles}</td></tr>`,
                   )
                   .join('\n                ')}
               </tbody>
             </table>
           </div>
+          ${plantilla.some((j) => j.esPortero) ? '<p class="nota">En los porteros, la columna Goles muestra los goles encajados (<span class="goles-encajados">en rojo</span>).</p>' : ''}
         </section>
 
         <nav class="nav-partidos" aria-label="Temporada anterior y siguiente">

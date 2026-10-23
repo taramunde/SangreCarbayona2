@@ -277,6 +277,10 @@
 .tarjeta-amarilla {
   background: #facc15;
 }
+.goles-encajados {
+  color: #dc2626;
+  font-weight: 700;
+}
 .tarjeta-roja {
   background: #dc2626;
 }
