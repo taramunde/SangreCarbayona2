@@ -236,6 +236,55 @@ function datosEntrenador(CLUB_DATA, miembro) {
   };
 }
 
+// ── CLUBES CON VARIOS NOMBRES (js/data-equipos.js) ───────────
+
+// Normaliza CLUB_DATA.equiposHistoricos. Cada "otro nombre" puede ser
+// un texto ('Real Gijón') o un objeto con periodo, para cuando el MISMO
+// nombre ha correspondido a clubes distintos según la época:
+//   { nombre: 'Real Avilés C.F.', desde: '2010-11', hasta: '2022-23' }
+// desde/hasta son ids de temporada (como '1982-83') y son opcionales.
+function clubesHistoricos(CLUB_DATA) {
+  return (CLUB_DATA.equiposHistoricos || [])
+    .filter((c) => c && c.nombre)
+    .map((c) => ({
+      nombre: c.nombre,
+      desaparecido: Boolean(c.desaparecido),
+      nota: c.nota || '',
+      alias: (c.otrosNombres || [])
+        .map((o) =>
+          typeof o === 'string'
+            ? { nombre: o, desde: null, hasta: null }
+            : { nombre: o.nombre, desde: o.desde || null, hasta: o.hasta || null },
+        )
+        .filter((o) => o.nombre),
+    }));
+}
+
+// Devuelve una función (nombreEnElPartido, temporadaId) → nombre del
+// club. Un alias con periodo gana a uno sin periodo; si ninguno
+// encaja, el nombre se queda tal cual (club independiente).
+function crearBuscadorDeClub(CLUB_DATA) {
+  const reglas = [];
+  clubesHistoricos(CLUB_DATA).forEach((club) => {
+    reglas.push({ clave: claveEquipo(club.nombre), club: club.nombre, desde: null, hasta: null });
+    club.alias.forEach((a) =>
+      reglas.push({ clave: claveEquipo(a.nombre), club: club.nombre, desde: a.desde, hasta: a.hasta }),
+    );
+  });
+  return (nombre, tid) => {
+    const clave = claveEquipo(nombre);
+    const candidatas = reglas.filter(
+      (r) =>
+        r.clave === clave &&
+        (!r.desde || !tid || tid >= r.desde) &&
+        (!r.hasta || !tid || tid <= r.hasta),
+    );
+    if (!candidatas.length) return nombre;
+    candidatas.sort((a, b) => Number(Boolean(b.desde || b.hasta)) - Number(Boolean(a.desde || a.hasta)));
+    return candidatas[0].club;
+  };
+}
+
 // ── CONSTRUCCIÓN DE LA LISTA ÚNICA DE PARTIDOS ────────────────
 
 const ORDEN_POSICION = {
@@ -367,16 +416,9 @@ function construirPartidos(CLUB_DATA) {
     return [...m.entries()].sort((a, b) => b[1] - a[1])[0][0];
   };
 
-  // Clubes con varios nombres (js/data-equipos.js): cualquier nombre
-  // de la lista → nombre actual del club.
-  const clubPorClave = new Map();
-  (CLUB_DATA.equiposHistoricos || []).forEach((club) => {
-    if (!club || !club.nombre) return;
-    [club.nombre, ...(club.otrosNombres || [])].forEach((n) => {
-      clubPorClave.set(claveEquipo(n), club.nombre);
-    });
-  });
-  const clubDe = (nombre) => clubPorClave.get(claveEquipo(nombre)) || nombre;
+  // Clubes con varios nombres (js/data-equipos.js): nombre usado en
+  // un partido (+ temporada) → club al que pertenece.
+  const clubDe = crearBuscadorDeClub(CLUB_DATA);
 
   const partidos = [];
 
@@ -401,7 +443,7 @@ function construirPartidos(CLUB_DATA) {
       visitante: oviedoLocal ? rival : OVIEDO,
       oviedoLocal,
       rival, // nombre del rival en ESE partido (puede ser un nombre antiguo)
-      club: clubDe(rival), // nombre actual del club, para agrupar el historial
+      club: clubDe(rival, g.tid), // nombre actual del club, para agrupar el historial
       golesLocal,
       golesVisitante,
       penaltisLocal: moda(g.copias.map((p) => p.penaltisLocal ?? null)),
@@ -528,6 +570,7 @@ module.exports = {
   CARPETA_PARTIDOS,
   cargarClubData,
   construirPartidos,
+  clubesHistoricos,
   indicePorFecha,
   claveEquipo,
   slugTexto,

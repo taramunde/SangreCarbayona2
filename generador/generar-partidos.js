@@ -309,11 +309,12 @@ partidos.forEach((p) => {
 });
 
 // Otros nombres de cada club según js/data-equipos.js
-const otrosNombresDe = new Map();
-(CLUB_DATA.equiposHistoricos || []).forEach((club) => {
-  if (club && club.nombre) {
-    otrosNombresDe.set(claveEquipo(club.nombre), club.otrosNombres || []);
-  }
+const otrosNombresDe = new Map(); // clave del club → [nombres de texto]
+const clubInfo = new Map(); // clave del club → { desaparecido, nota }
+C.clubesHistoricos(CLUB_DATA).forEach((club) => {
+  const k = claveEquipo(club.nombre);
+  otrosNombresDe.set(k, [...new Set(club.alias.map((a) => a.nombre))]);
+  clubInfo.set(k, club);
 });
 
 // Nombres con los que se jugó contra un club, con sus temporadas:
@@ -424,7 +425,7 @@ partidos.forEach((p, i) => {
   const equipoHtml = (nombre) => `<div class="marcador-equipo${nombre === OVIEDO ? ' es-oviedo' : ''}">
             ${htmlEscudo(nombre === OVIEDO ? nombre : p.club)}
             <span class="nombre">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(p.club)}.html">${e(nombre)}</a>`}</span>
-            ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">hoy ${e(p.club)}</span>` : ''}
+            ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">${(clubInfo.get(claveEquipo(p.club)) || {}).desaparecido ? e(p.club) : `hoy ${e(p.club)}`}</span>` : ''}
           </div>`;
 
   const cuerpo = `
@@ -671,17 +672,18 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
     `Último enfrentamiento: ${ultimo.local} ${marcador(ultimo)} ${ultimo.visitante} (${fechaCorta(ultimo.fecha)}).`;
 
   const bloqueNombres =
-    usados.length > 1 || otros.length
+    usados.length > 1 || usadosAntiguos.length || otros.length
       ? `
         <section class="bloque">
           <h2>Nombres del club</h2>
-          ${usados.length > 1 ? `<p>Contra el Real Oviedo ha jugado con ${usados.length} nombres distintos:</p>
+          ${usados.length > 1 || usadosAntiguos.length ? `<p>${usados.length > 1 ? `Contra el Real Oviedo ha jugado con ${usados.length} nombres distintos:` : 'Contra el Real Oviedo ha jugado con este nombre:'}</p>
           <ul class="lista-simple">
             ${usados.map((x) => `<li><strong>${e(x.nombre)}</strong> · ${e(rangoTemporadas(x))} (${x.n} ${x.n === 1 ? 'partido' : 'partidos'})</li>`).join('\n            ')}
           </ul>` : ''}
           ${otros.length ? `<p class="nota">También conocido como: ${otros.map((n) => e(n)).join(', ')}.</p>` : ''}
         </section>`
       : '';
+  const notaClub = (clubInfo.get(claveEquipo(nombre)) || {}).nota;
 
   const cuerpo = `
         <section class="bloque">
@@ -698,6 +700,7 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
           <p class="nota">En casa: ${enCasa.length} partidos (${resumenNumeros(enCasa).v} victorias). Fuera: ${fuera.length} partidos (${resumenNumeros(fuera).v} victorias). Datos desde la temporada ${nombreTemporada(temporadasIds[0])}.</p>
         </section>
 ${bloqueNombres}
+${notaClub ? `        <section class="bloque"><h2>Sobre el club</h2><p>${e(notaClub)}</p></section>` : ''}
 
         <section class="bloque">
           <h2>Todos los partidos</h2>
