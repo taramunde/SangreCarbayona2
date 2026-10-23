@@ -1566,5 +1566,3333 @@
   "https://taramunde.github.io/SangreCarbayona2/alineacion.html": {
     "hash": null,
     "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/index.html": {
+    "hash": "e13c18cf7cc98a883261848f97712499e4494e87",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2010-11.html": {
+    "hash": "fc6867c45947f06699f30540bff1d1382f3dbf57",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2011-12.html": {
+    "hash": "1ca14af750e24e3d0d41e388ceb8c1fbab179070",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2012-13.html": {
+    "hash": "31b376a926f5ffb89daa3f357420d4a455482a3c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2013-14.html": {
+    "hash": "34d4de05583209f8338f96f99459f499ba696b07",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2014-15.html": {
+    "hash": "bf7a0ba590ec45c8088b60f3733af9f598e984ad",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2015-16.html": {
+    "hash": "03f92238bdd853246681ec0d87b633424fc6669c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2016-17.html": {
+    "hash": "556b8233ba98b58e3e640995d017c1ab0517a618",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2017-18.html": {
+    "hash": "511a177be8d12a3145a417cc29db67cb875a1a6f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2018-19.html": {
+    "hash": "42203febb68188ca3372e500231f8b90ff51ca54",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2019-20.html": {
+    "hash": "a8aa8b74cfe056fca23f6ac956f3801b8e3e0e9d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2020-21.html": {
+    "hash": "c810890add8820083074c7e408c81e505c5ca1a0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2021-22.html": {
+    "hash": "655156fdc40995f6da44202b95a15d73b2454de4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2022-23.html": {
+    "hash": "70940d0262c6c24e1b92ebb06fcebb83ee8bdf29",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2023-24.html": {
+    "hash": "f6a8dd9383d37270cce05b4631d0007618fc8893",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2024-25.html": {
+    "hash": "b63350ac597e7cbba70ba6cd59ecc05db8d20aed",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2025-26.html": {
+    "hash": "02f85693d427aff1a7c8f9a2cec7b33cc87e0ec3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2026-27.html": {
+    "hash": "509c98f5b61b2baa2088eca429503607da30cf6b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-eibar.html": {
+    "hash": "05c9a3374caa81445c0f9dc8667623097ba34eaa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-logrones.html": {
+    "hash": "c2d3f25a4d9bf78f85c1e7220c6ef95a16018c86",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-murcia.html": {
+    "hash": "528570f1aeb51177b35865e42d9b8c4a04f78abc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rs-gimnastica-de-torrelavega.html": {
+    "hash": "225e0fdc48c9938073a50da70c2cc4116d251773",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-barakaldo-cf.html": {
+    "hash": "249f627810169b0a8e87efec2d8da6d8e7cab6df",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cf-palencia.html": {
+    "hash": "94cf3c9c1761cf0e12604af27835c5eacbb2ed8b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-mirandes.html": {
+    "hash": "50a118933774f9cb8bcf76d4541455731abadab4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-sporting-de-gijon-b.html": {
+    "hash": "0d94be2db149ae09efdbe34c855563af30b2b23c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-pena-sport-fc.html": {
+    "hash": "fe1e365ce4300139705809b1e712cff72d357dfd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-bilbao-athletic.html": {
+    "hash": "92205f77a79fa9ffe98625bead1811fcb83fdfcc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-la-muela.html": {
+    "hash": "f03790a328779f0a38849b644b07170f3da64248",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-deportivo-alaves.html": {
+    "hash": "b066049f57b3a6e7b4a30ecf6468347769178626",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-lemona.html": {
+    "hash": "14d63a045c2e76a88f4579b8146dfa6627c6535a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-guijuelo.html": {
+    "hash": "4f1f1028d98e43357c8f1d9790e623b49c4a6836",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cultural-y-deportiva-leonesa.html": {
+    "hash": "461faddfd0b84d106c083a294f971ffcb6c3805f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-zamora-cf.html": {
+    "hash": "5931e822c67e6fa10b9c3baa06b0cd179e1c1ced",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-caudal-deportivo.html": {
+    "hash": "160e85ba7b3351c9b7e76988da678b8ad61556bb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ca-osasuna-b.html": {
+    "hash": "c4ca4daa909ee405fbc98ca17bd61361461784d9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-sociedad-b.html": {
+    "hash": "37aea06a2f4afd475cd54609c0c7962d03dddf6e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-union-club.html": {
+    "hash": "bb6af1a92280e5457ad05c526ccaaf8e3041f5e5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-leganes.html": {
+    "hash": "1f31a1ca11ff198c8fdd0ea9288b11b8929ad63c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-toledo.html": {
+    "hash": "db0d10eb5cbffde5528feff7671ace8a2e714108",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-lugo.html": {
+    "hash": "0900e2a6091c13804af0d0e71bffe8063abbbf73",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rc-celta-de-vigo-b.html": {
+    "hash": "816b2706ab2341caf34ecd5c39696950f6710741",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-salamanca.html": {
+    "hash": "4df4b8d5c043f3a8631f677db1bd625841fa9f30",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-atletico-de-madrid-b.html": {
+    "hash": "75cce592a355ea1704535c10658d5363cf8858d3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-la-roda-cf.html": {
+    "hash": "db58072e056e2770faae8fec3cef4037beb467ce",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-club-marino-de-luanco.html": {
+    "hash": "d874e172f2ac9adb4f5c53544af9d4f391c5edda",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rsd-alcala.html": {
+    "hash": "9b2c8d27f2775b37dfe3fb533222dd2067be3e98",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-vecindario.html": {
+    "hash": "09369a436d402b8ef1422e79ea579d21526250ee",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ub-conquense.html": {
+    "hash": "6d8ee00a18b2f09098e07d0fa0b5bbd7bb5099f3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-albacete-balompie.html": {
+    "hash": "b7b98f50a94f7dc5285b79cf038b1554e38fa6fa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-coruxo-fc.html": {
+    "hash": "cd7d1ec03210b76853ede1c9ac8f496f0379cfb8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-getafe-cf-b.html": {
+    "hash": "3b946013357c043d8e39179cdd0edea865abc63f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-atletico-coruna-montaneros-cf.html": {
+    "hash": "c98cc4bedcb38484a386304b917e6d40aeab8b49",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-madrid-castilla.html": {
+    "hash": "99f9ddd7e5dffee33d613560c471e203618b4d81",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-athletic-club.html": {
+    "hash": "6faff4ccb71b4b3d02495b4287306bc03a283844",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-tenerife.html": {
+    "hash": "13ce2d0de669191fdac70fa012515a3946e0f630",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rayo-vallecano-b.html": {
+    "hash": "7b4196a51dd49c128f8bb5a470ef983408e18831",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-san-sebastian-de-los-reyes.html": {
+    "hash": "6b1cfbeaddcbb7647e6ca8f0cbe46b3a808c72c5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-aviles-cf.html": {
+    "hash": "4ce9fbe32e633f0764a728cdbba2607cb1b3300b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cf-fuenlabrada.html": {
+    "hash": "ba8beb283a73bf64f93ba524ba9ead8cb6df1a99",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ae-prat.html": {
+    "hash": "7e1801438ace96a284d163382728075124b7c3c1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-marino.html": {
+    "hash": "4c3a83f881cd7209bf6197980529244d17e487b8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-ourense.html": {
+    "hash": "60182d2165bdcfaa4e37e496f0e5d3546a4cd412",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-madrid-c.html": {
+    "hash": "006fa88c7133dd4affdff7bf8449d4e512180dea",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-burgos-cf.html": {
+    "hash": "f8872377f9238ed36719c3e05ef4c5ec236ecbec",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-noja.html": {
+    "hash": "10fd2bdd0cf255f53a99c1fb8641ff79d1c45071",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-haro-deportivo.html": {
+    "hash": "524a5c299954e70291111e2b649f78a720a426f4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-tropezon.html": {
+    "hash": "6ad378c0f69fae5e79c92914fe7cc4a43a9dd1c5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-racing-de-santander.html": {
+    "hash": "8d66caa149376cb18176c2813fd4eb371e281469",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-logrones.html": {
+    "hash": "492a36c3e4b329a4f1b4c6dd8eaf1735ef316dda",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-compostela.html": {
+    "hash": "fecf0ba9e21607ceab645c4cebc21d0c95356040",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-racing-de-ferrol.html": {
+    "hash": "3b1728e5742b0b3c89c48a9c293f5c98682cb868",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-amorebieta.html": {
+    "hash": "e23831d8d79697b873149a386b7e1fb3c60c6c01",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-valladolid-b.html": {
+    "hash": "dd07e93f1947efd197860322f32783d8bc8bc3ba",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ucam-murcia.html": {
+    "hash": "1f0d1cf5278392bc05bf4e4c58e9e094a77dc67f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-lealtad-de-villaviciosa.html": {
+    "hash": "b8b1afc07bee436fb50ad45b6fe664ab58059a43",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-up-de-langreo.html": {
+    "hash": "241980d89382e0e14e5a2320fb4f8e7077687404",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-atletico-astorga-fc.html": {
+    "hash": "4042c7aee819cc51d9c5204f77f0f9b04711d152",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-sociedad.html": {
+    "hash": "03d2d0844391cf73d8b8c7b6b18d5d0be525df89",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-somozas.html": {
+    "hash": "d0750bec8693387345ae0964b0afc88d677d01c3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cadiz-cf.html": {
+    "hash": "2977b836fc2c5c3bfe19ec2ba7a547417c4e84aa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-gimnastic-de-tarragona.html": {
+    "hash": "c829130728ffd31b6c3c761692883292811e6bde",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-valladolid.html": {
+    "hash": "1b9f7980a9875e0d2c1ac16492c17de7e66d3333",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-girona-fc.html": {
+    "hash": "f5cf38b8ca0be0bb671711e720bccb6d016ee518",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-elche-cf.html": {
+    "hash": "0d84c30bfbde78a4e2bf3cf2896d887c1779d595",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rcd-mallorca.html": {
+    "hash": "13cf5ccfd090172da5adfd50a2da5bcbe268bd57",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ad-alcorcon.html": {
+    "hash": "d48d57edd2a3a89fb72423f19fd1835c52719564",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-ponferradina.html": {
+    "hash": "555ad4ac1545cfb58e1938094e6248cd82838274",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-numancia.html": {
+    "hash": "d1a99dce63a8c69d5e8f5abf050fe6b787be9bd0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sd-huesca.html": {
+    "hash": "63743f01ba030a57807ca75099b58295dfb8a941",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cordoba-cf.html": {
+    "hash": "a58f79ed90a55465551ea4add0de7afc70ef9664",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ue-llagostera.html": {
+    "hash": "58822b7a5b41b2419f7a72a3ffb76072a25b8408",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-almeria.html": {
+    "hash": "9c9ac82802be5072977f4ec1cd449d0017214985",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-zaragoza.html": {
+    "hash": "9096b850db966a5030d018c2e92284fbe38887e5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ca-osasuna.html": {
+    "hash": "89b8200ad0e88efb0edee52b9152b3f148289eee",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-getafe-cf.html": {
+    "hash": "077aef38047dbad1d59cfd35c236bc8ed3ce6ad9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cf-reus-deportiu.html": {
+    "hash": "213d5d27f4e2ab67d5b2e746381abfa7e154b6f8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rayo-vallecano.html": {
+    "hash": "063f0eca4cb7789a358acc0e6ee63ce5871731ac",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-levante-ud.html": {
+    "hash": "9507a4e24f0f697680f01a26a8593a1941f0779d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sevilla-atletico.html": {
+    "hash": "2fbeb78bd3bc07de7c2bfb730e43a6c588174277",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-sporting-de-gijon.html": {
+    "hash": "d5757e26cf8921298a9fbb06e92b3cff53cc0a01",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-fc-barcelona-b.html": {
+    "hash": "67b7e02e1322b7a2ec3b6b224608da45c799baf9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-granada-cf.html": {
+    "hash": "6b40bae1cff37cb1e89f3c93f598cfce5da5bec3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-lorca-fc.html": {
+    "hash": "f77afddb94061f698a296faa79364a6ea1117f5f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-extremadura-ud.html": {
+    "hash": "33c75d45d8651db64f6795af36db7cc3d1cb8a66",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cf-rayo-majadahonda.html": {
+    "hash": "9545e566839295fa035de087df3782dd637ee5ed",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rc-deportivo-de-la-coruna.html": {
+    "hash": "f7fb4f4290115bac438a7191c7ee2a48bbe18353",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-las-palmas.html": {
+    "hash": "1f80f179d128971deedc18bd5890dd838cc31e79",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-malaga-cf.html": {
+    "hash": "61fd983db9b76fbd5feea03836e21047ce5bf6e5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cf-badalona.html": {
+    "hash": "b9b6e1dad4fb2ca4aebb807d9b413b95c8932a04",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-fc-cartagena.html": {
+    "hash": "16516b6e1b7613c5aa3687fa28b182633f662b18",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rcd-espanyol.html": {
+    "hash": "2154069734384b30f5147976be64950823df850b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-castellon.html": {
+    "hash": "c4d5bd84f0e9cf479bb16d9fe70e70c6991abd5a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ce-sabadell.html": {
+    "hash": "42822d6ba7fa7f20b7046d72125c9086a827ca51",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-coria.html": {
+    "hash": "8e22aba5212b04482f9485e77f19fd47e5b108b2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-ibiza.html": {
+    "hash": "6a6065bfc4b2c9103312f7a02e0e22768e8c6b5c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ce-andratx.html": {
+    "hash": "b890f53a1a72ffd62d931078964e56dd2c950db0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-fc-andorra.html": {
+    "hash": "bec9c7d7d7b5923c77c4c3824ed313e44128fa85",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-villarreal-cf-b.html": {
+    "hash": "3744858d15bee3ee52987669f9fbe3adb25970e8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-atletico-de-madrid.html": {
+    "hash": "6eac41a531f80a88b8709dad85364a1c91cafa0b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-eldense.html": {
+    "hash": "3da9ae9c420feb8cbe44b7338a4c8ed9ab940208",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ue-manresa.html": {
+    "hash": "c94291f708bd144e0774a7f60445a0bd485f08e6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-avila.html": {
+    "hash": "0c155796bc59fd632d2efe048ae53083282858c5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-villarreal-cf.html": {
+    "hash": "00a620d969cfb85b732ffd5f204229b6ba1fea3e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-madrid.html": {
+    "hash": "8b3f0a9ecff7d12665cac614b05587201d575fb9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-fc-barcelona.html": {
+    "hash": "12efff82d04a045474e5374ade533ba9c567da51",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-valencia-cf.html": {
+    "hash": "71bd8ba36fa3c539a6468db179419102ce61e27d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ourense-cf.html": {
+    "hash": "6f89802984454dbe4ad0c746257e33e1776fe8c1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-sevilla-fc.html": {
+    "hash": "f2e7cfd8f33c08d75c0dc7cbe3b7be01d70e0956",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-rc-celta-de-vigo.html": {
+    "hash": "96eb4673dc964d0342eb1c151f0681287bd7c8f2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-betis.html": {
+    "hash": "d3af86d87a53ec1a003ddf2e9091a1786cae93d9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ad-ceuta-fc.html": {
+    "hash": "19173a210e3e0981bcb6fea70b28e6273ebc1f03",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2010-08-25.html": {
+    "hash": "1ce818c9e7fef32c71f02316936b4c62bcf0ec41",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-logrones-2010-08-29.html": {
+    "hash": "3b67ee8c63a9d1ac9bc75c2b3bafd23f1144c4a3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-murcia-2010-09-01.html": {
+    "hash": "db63e5e13995a0a53ba9edcd94c97ba671dd59d4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rs-gimnastica-de-torrelavega-real-oviedo-2010-09-05.html": {
+    "hash": "0ff13c33802bfe61659f14f0512965a3e56ee1de",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-barakaldo-cf-2010-09-12.html": {
+    "hash": "76808f9457c3b0d0c8a0aa2baf5be32c4f134dd1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-palencia-real-oviedo-2010-09-19.html": {
+    "hash": "3651817462fdf361066874240de340e26bf638f3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2010-09-22.html": {
+    "hash": "6fe64966cac9ae26944c6d90399843063b0195a3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-b-real-oviedo-2010-09-26.html": {
+    "hash": "bb579d4d2b84f1b7690dd9e38d46ded91e40e4b5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2010-10-03.html": {
+    "hash": "14adb5cbeebfb2b3ff017e10b1d56321c10a28ee",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-pena-sport-fc-2010-10-10.html": {
+    "hash": "a05a87056fa5c168dfb38cbc0a406ad551b3a108",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/bilbao-athletic-real-oviedo-2010-10-16.html": {
+    "hash": "8a5b5491f459cdc33bd8d34c88d0ae66b6afd12d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-la-muela-2010-10-24.html": {
+    "hash": "f9d138234d3359664c955a051408c16df805835f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/deportivo-alaves-real-oviedo-2010-10-31.html": {
+    "hash": "c3cdf6dc86352fe7547abc1cea27de530befca6f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-lemona-2010-11-06.html": {
+    "hash": "4044619c9e34d519f48dd639cc8730683575a3cf",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-guijuelo-real-oviedo-2010-11-14.html": {
+    "hash": "b9d90235cb5c83ad2b0fb2fa2611d1313e440fba",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cultural-y-deportiva-leonesa-2010-11-21.html": {
+    "hash": "916663cdad291b68219a64941e7916e6a4152dfa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/zamora-cf-real-oviedo-2010-11-28.html": {
+    "hash": "7b0ca676d9f1ca5ed41e878bff089fbbd8eade05",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-caudal-deportivo-2010-12-05.html": {
+    "hash": "709c19d1ec738790e32d696723347336aca14a28",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ca-osasuna-b-real-oviedo-2010-12-11.html": {
+    "hash": "770fb97a4fc6482068641567bea308bf4980f608",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sociedad-b-2010-12-19.html": {
+    "hash": "645f789de89fea460ff36f1581354ec041689e36",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-union-club-real-oviedo-2010-12-23.html": {
+    "hash": "0f1404a6f8d5c6faf03eb0c4667f159c89a776f3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-logrones-real-oviedo-2011-01-09.html": {
+    "hash": "69b6cfe5047b57ad360e77fd6e96311f887753a6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rs-gimnastica-de-torrelavega-2011-01-16.html": {
+    "hash": "97001fc70a65bcd1a826f6a8f4519064f5dceb3b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/barakaldo-cf-real-oviedo-2011-01-23.html": {
+    "hash": "7732f48ebed11d3e5a8be48a173ead3ca756bf56",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-palencia-2011-01-30.html": {
+    "hash": "1b726f6bf9ef946740065be875340316bd39ea3f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2011-02-06.html": {
+    "hash": "86b16ca0ae6791724924c2bbffdb9eeda15cc454",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2011-02-13.html": {
+    "hash": "3496369c631235ceb9bd77f3078b57922a3e7e18",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2011-02-20.html": {
+    "hash": "dfb586a4de816c71669fae603fe2787de9fc3113",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/pena-sport-fc-real-oviedo-2011-02-27.html": {
+    "hash": "111f649a3ef43839b3be29937a7eda7ab21fe2e3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-bilbao-athletic-2011-03-06.html": {
+    "hash": "7832f4718f0831291f8a152260560012db53d079",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-la-muela-real-oviedo-2011-03-13.html": {
+    "hash": "d61bc962c10908cdbb9f41a2ca196a077588adc9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-deportivo-alaves-2011-03-20.html": {
+    "hash": "32cacb4ea446bc0aa766e65a12749eb7bd8aff8b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-lemona-real-oviedo-2011-03-26.html": {
+    "hash": "db9c63e5ba6dd4d9fef560879f921379d9d4b35a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-guijuelo-2011-04-03.html": {
+    "hash": "d69fff40817a6d9a4652a191df0ba18011e42f97",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cultural-y-deportiva-leonesa-real-oviedo-2011-04-10.html": {
+    "hash": "7ab3391d8108b3cac8b45efad734c2740617777e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-zamora-cf-2011-04-17.html": {
+    "hash": "93f44d9841d9566cffe0ac422630ccbc2ffda89f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/caudal-deportivo-real-oviedo-2011-04-24.html": {
+    "hash": "aec93ca74357cc236de2dbda18cbcb596c14b848",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ca-osasuna-b-2011-05-01.html": {
+    "hash": "63913c8d7408a915f99db22278b8650622dae186",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sociedad-b-real-oviedo-2011-05-08.html": {
+    "hash": "21465a577b7e987e8ebc6ec6a2e9900ab87f592f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-union-club-2011-05-15.html": {
+    "hash": "0de0713258b7752412e4561a5def90cc99bc732e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2011-08-21.html": {
+    "hash": "64c1eb27ce6229d56eb70b583c4d0f7e5d01fd2f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-toledo-2011-08-28.html": {
+    "hash": "92c4e04c8ca03d80f420de81071c3cac63499871",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2011-08-31.html": {
+    "hash": "00a5964ba26ddc2f8c94bd74f431a2af175d36f3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-celta-de-vigo-b-real-oviedo-2011-09-04.html": {
+    "hash": "4f503b7ce12497dcdc5ba5c0f1fa0d072d872a1e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-salamanca-2011-09-07.html": {
+    "hash": "32489a881553e72e1c0cc37d8d2fd90653f3794e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2011-09-11.html": {
+    "hash": "5b0c52a4e9036991be7877ef137a07d17e1eecd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/atletico-de-madrid-b-real-oviedo-2011-09-18.html": {
+    "hash": "388f7a75b811231ee4bd593fca5b97f40f40ed71",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-la-roda-cf-2011-09-25.html": {
+    "hash": "e48c2902266990a66a58c870b84c3754a2bbaf73",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-club-marino-de-luanco-2011-10-02.html": {
+    "hash": "3f813cda9f9ed3217d0853753602bbb510620175",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rsd-alcala-real-oviedo-2011-10-09.html": {
+    "hash": "5d0d262d8c41b81dec0ec179277888aa14e57d41",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-vecindario-2011-10-16.html": {
+    "hash": "a71e7e6d4c5817503fd9c99febcc8dd55ff40842",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-b-real-oviedo-2011-10-23.html": {
+    "hash": "11871eef054050d3b332395ef6ed0d7e1d716045",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ub-conquense-2011-10-30.html": {
+    "hash": "12fe6bd8350ed37073dbd65a97eac1cf81fc04f6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2011-11-06.html": {
+    "hash": "a8aa5e4cb1185a75f4cd88b8d9991a1acfed57cf",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-coruxo-fc-2011-11-13.html": {
+    "hash": "ae65fa3d12b9518e7352a7a5dd206d911c6fb928",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/getafe-cf-b-real-oviedo-2011-11-20.html": {
+    "hash": "9cdb8eca099bb098156fae32f26078a316863ac5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-coruna-montaneros-cf-2011-11-27.html": {
+    "hash": "2bfe1f1ddf99fa4180a99f392af40007c1291645",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-madrid-castilla-real-oviedo-2011-12-04.html": {
+    "hash": "666cb939d3b7ae005efdd3cf582410934a639acd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-athletic-club-2011-12-08.html": {
+    "hash": "ad303d1667b0c1c95fdc528247b1fff205b95b83",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2011-12-11.html": {
+    "hash": "115eafe90148161126af5612701968983de5c661",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-b-real-oviedo-2011-12-18.html": {
+    "hash": "b899ecf35e1c67b85ee526e7c3a0fe0bafa1e40c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/athletic-club-real-oviedo-2011-12-21.html": {
+    "hash": "b163e0b036d003aeb678f7d6759c589ef79fd300",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-san-sebastian-de-los-reyes-2012-01-08.html": {
+    "hash": "f891298c7140255533c84948542e578180450ab2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2012-01-15.html": {
+    "hash": "9c21516287237511387de35d77e6d675d2dddf7e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-toledo-real-oviedo-2012-01-22.html": {
+    "hash": "b40fc72fa3c05bf4f37a18d79dea62f8f24c6b88",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-celta-de-vigo-b-2012-01-29.html": {
+    "hash": "4129b0b9338e713ccc261a87b30300c3fdf62148",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2012-02-05.html": {
+    "hash": "df2cbfe2d23a2e498c61773b00bb30bf6e3b953a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-de-madrid-b-2012-02-12.html": {
+    "hash": "1eb69decba4d9346392aed17b8b3f7237a887fa7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/la-roda-cf-real-oviedo-2012-02-19.html": {
+    "hash": "812b2f38025149e7fadd3630815468e2a0692d44",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/club-marino-de-luanco-real-oviedo-2012-02-26.html": {
+    "hash": "95aee7d50e3d8bc22dd687ba73e8b61e6ebf45c5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rsd-alcala-2012-03-04.html": {
+    "hash": "9631fe48a40330d0c43b26381cc80dba9a75d2de",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-vecindario-real-oviedo-2012-03-11.html": {
+    "hash": "734849362360bab6f720c013b3808ba26945bace",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2012-03-17.html": {
+    "hash": "12c7edca472a7289972c3c33a174546460946fdd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ub-conquense-real-oviedo-2012-03-21.html": {
+    "hash": "989658c76e3d32effd10f7618bd5f97589ead9c6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2012-03-25.html": {
+    "hash": "a7dcb10217079c402e5266d819f401b58985f73d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/coruxo-fc-real-oviedo-2012-04-01.html": {
+    "hash": "98d56cb289e794cb3da272f4b813c6460f6431c0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-getafe-cf-b-2012-04-08.html": {
+    "hash": "7a1c0c1bcadfed1e93027dec30a4e25248d8d0dd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/atletico-coruna-montaneros-cf-real-oviedo-2012-04-15.html": {
+    "hash": "aa89250a0d044252214227f6f7ed571da27bf016",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-madrid-castilla-2012-04-22.html": {
+    "hash": "9816a35498c2ac3a10cf5087a75ef0d62688ceff",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2012-04-29.html": {
+    "hash": "86824893827c531816dfcadb1ddd2e39dfe94f73",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-b-2012-05-06.html": {
+    "hash": "30c92c738179c39cdfcdeef84f1e71041bb2c5a6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-san-sebastian-de-los-reyes-real-oviedo-2012-05-13.html": {
+    "hash": "9a1fe3d9d5f9f74dc98eca29940ce0ba9db86238",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-aviles-cf-real-oviedo-2012-08-25.html": {
+    "hash": "0b2efa6d497dc10dd12e438d5c4334c8dc5ad596",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-fuenlabrada-2012-08-30.html": {
+    "hash": "54d4c90332938ea42702ab6cdbb60f4ee524b486",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-fuenlabrada-2012-09-02.html": {
+    "hash": "f402fcada8712f2f194bbb4f5c38ab16693c42d1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-san-sebastian-de-los-reyes-real-oviedo-2012-09-09.html": {
+    "hash": "f29f39f6c9fff962a372bbf93d21095c1f3426e3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ae-prat-2012-09-12.html": {
+    "hash": "335bc5204ca2c73dd5aef4e8c118fae199c8bcb6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rsd-alcala-2012-09-16.html": {
+    "hash": "02c12767083e69c21cd2efdfb75e8e9714ac820e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-salamanca-real-oviedo-2012-09-23.html": {
+    "hash": "17624574224bc38ab8f7aa2a3534ca9180844c7d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-marino-2012-09-30.html": {
+    "hash": "d533424ac060c25372381ef9f32e27c2005f7597",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-b-real-oviedo-2012-10-07.html": {
+    "hash": "d3690faf0dfe353bfd9334115a5c86bb58eb7c70",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-ourense-2012-10-14.html": {
+    "hash": "809e9632afac7f4fefeaac084215dc7eebee9ada",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/caudal-deportivo-real-oviedo-2012-10-21.html": {
+    "hash": "0bdd0b528fa5d9d4a981daeadff21fa9960c1182",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2012-10-28.html": {
+    "hash": "00448ee35ab23bc8623221704e98a271e99adf62",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/zamora-cf-real-oviedo-2012-11-04.html": {
+    "hash": "1f1a640e8a48761fbc8d259ecd7a805a750d4d9e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-madrid-c-2012-11-11.html": {
+    "hash": "4269c44c846028eecf1d8e60838a5167f47573e3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/atletico-de-madrid-b-real-oviedo-2012-11-18.html": {
+    "hash": "642a5c62474634eb8aa8d954087e0f52c79476a2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-guijuelo-2012-11-25.html": {
+    "hash": "57626b5f0e34ef1b708b449fa7b085ab4984f043",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2012-12-02.html": {
+    "hash": "290c64a1f635a34c022fc13d842fe8bd06bbc6ed",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-getafe-cf-b-2012-12-09.html": {
+    "hash": "91a6092ce5ddaafb1933577791ca70f60d736e08",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/coruxo-fc-real-oviedo-2012-12-16.html": {
+    "hash": "4ba2715bc80ab97037d472c570ccf8294fc8df8a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-club-marino-de-luanco-2012-12-22.html": {
+    "hash": "4a79d2f4ede5aa03161b9cdabc821f5970b8befa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-b-real-oviedo-2013-01-06.html": {
+    "hash": "05a63932aecb2a1731bfbf6cf4f8f1eb27565445",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-aviles-cf-2013-01-13.html": {
+    "hash": "8bf76939aa680ba32c730cc5311af98bd53032a6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-fuenlabrada-real-oviedo-2013-01-20.html": {
+    "hash": "8325d88c44146efad60ae9deb51b83666dbdd325",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-san-sebastian-de-los-reyes-2013-01-27.html": {
+    "hash": "0de43771b4713a858fa6eccb304db18cf23e02d9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rsd-alcala-real-oviedo-2013-02-03.html": {
+    "hash": "40f8200604f0a742b62f166d7ad5264399f853e2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-salamanca-2013-02-10.html": {
+    "hash": "b496e7e13dbfcec30e324291e56a1f284b454bfb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-marino-real-oviedo-2013-02-17.html": {
+    "hash": "721db695fabaf1154ecdb8490525660409604d4b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-b-2013-02-24.html": {
+    "hash": "54698da1d4d8f099b3da6d0a404e0f819b955ccb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-ourense-real-oviedo-2013-03-03.html": {
+    "hash": "b9c30f900cffc0010a9ccd0c678511f05fd83cd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-caudal-deportivo-2013-03-10.html": {
+    "hash": "ea2e133f64061e37d25e935498cb24ca2223f899",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2013-03-17.html": {
+    "hash": "79711d0448aa1628757bd5966f9b097db75c7a81",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-zamora-cf-2013-03-23.html": {
+    "hash": "f90c633d7911a5953b2f165fb62e1772b462e3f0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-madrid-c-real-oviedo-2013-03-28.html": {
+    "hash": "3360f182094aebed0f9e7fc93b769ad4e8419456",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-de-madrid-b-2013-04-07.html": {
+    "hash": "37266a30dd076a3bc606df60fc569c17330610e0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-guijuelo-real-oviedo-2013-04-14.html": {
+    "hash": "cce586dc24ea5fa96a5e950c6109c7ec47d57304",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2013-04-21.html": {
+    "hash": "41785e0dc54c1f01f0795ca339a24043478350ea",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/getafe-cf-b-real-oviedo-2013-04-27.html": {
+    "hash": "159cb14726af94610d3dad0d765905809996cadd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-coruxo-fc-2013-05-05.html": {
+    "hash": "6f60f10827e64ce2c233e053b73437b13454f596",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/club-marino-de-luanco-real-oviedo-2013-05-12.html": {
+    "hash": "05396d9a90a05add1c9d14731f88aa0f7293780b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2013-05-19.html": {
+    "hash": "9c6cbad399a5a382cb4d22977a9d6144ed124d67",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2013-05-26.html": {
+    "hash": "543ccce797eabe58ed23736a9f0f6094d7ba37b3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2013-06-02.html": {
+    "hash": "dc741be6794b27393d0bf17215bb6f81113d47cd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2013-06-09.html": {
+    "hash": "e7f864a5f03de0d5aa0a5923114f052016fe21a4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2013-06-15.html": {
+    "hash": "9561a4eac467d27e02137690d66506220fc64501",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2013-08-24.html": {
+    "hash": "1707fc5ada654fe64552bb0a41ae0d5dc22970c8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-noja-2013-08-31.html": {
+    "hash": "1776319b45f442ba70d44871b6b53d2682729b53",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/haro-deportivo-real-oviedo-2013-09-04.html": {
+    "hash": "259d8c4b495497f61d1f319cb1cf3ca4a43dc4b3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tropezon-real-oviedo-2013-09-08.html": {
+    "hash": "0cccbc2f4f19d94c5df28aaba774c54e8d8753a0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-logrones-2013-09-15.html": {
+    "hash": "3b645e5d05e07333c59433fc6a9901cc898cca44",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-ourense-real-oviedo-2013-09-22.html": {
+    "hash": "efb9047fb281be75f91d25a796e48b4e407544ba",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-coruxo-fc-2013-09-29.html": {
+    "hash": "749871c167b1af55e34181c1a340d0ecae85a461",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/club-marino-de-luanco-real-oviedo-2013-10-06.html": {
+    "hash": "26a90620b22b4773b1da577962bc4f39799401bd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-aviles-cf-2013-10-13.html": {
+    "hash": "423a304464b664285bfe4de0b5fd8fac248aef2b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-guijuelo-real-oviedo-2013-10-20.html": {
+    "hash": "6571fd17cf7f9df2aa8e373362b09c18d6c643cb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-zamora-cf-2013-10-26.html": {
+    "hash": "e9f67c22f05657d0d65665d2b4d59d7f4dd34827",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cultural-y-deportiva-leonesa-real-oviedo-2013-10-30.html": {
+    "hash": "a481fc4fbd99f3126fd66c25bb7968195829a7a0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-2013-11-03.html": {
+    "hash": "520ebbd9071e4e63c3ae32359c6cf0f2846ba199",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-logrones-real-oviedo-2013-11-10.html": {
+    "hash": "797e4532fac73bf0b5b347981aa4ae158df063e8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-compostela-2013-11-17.html": {
+    "hash": "7766d4beb53859c44dd01916d2e6c97f8a523985",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-celta-de-vigo-b-real-oviedo-2013-11-24.html": {
+    "hash": "59f37f5b7d9410fcf605dc3451e71a482a407fb9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-b-real-oviedo-2013-12-08.html": {
+    "hash": "fd054ef0481efe05bbf37f91fff72ba0de7e374f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/caudal-deportivo-real-oviedo-2013-12-15.html": {
+    "hash": "012b18307efe4227270ad355e62aa482d79e6b49",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2014-01-05.html": {
+    "hash": "e04b81fbc3e408bde99afc4ab0dd6e3238954a59",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-noja-real-oviedo-2014-01-12.html": {
+    "hash": "f412e847f9b2b695f09ebedda8c73f8a6312ebd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-ferrol-2014-01-16.html": {
+    "hash": "576df13979df9fed04cf11fd7ca1c1dc3ed94c4c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tropezon-2014-01-19.html": {
+    "hash": "0e2053b00f72e2bd336cd159cbb1b49da29fc038",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-logrones-real-oviedo-2014-01-26.html": {
+    "hash": "232a0930e75e48e6005fced308e0f682921d2bbb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-ourense-2014-02-02.html": {
+    "hash": "1602b507cddda9133124bf5fb6fb0aa44315193f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-club-marino-de-luanco-2014-02-16.html": {
+    "hash": "ff82dd65e01ca850d8b0d8615788909b7552c41d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-aviles-cf-real-oviedo-2014-02-23.html": {
+    "hash": "89de8d6e4544323b3ebfabb8602b3080853e1163",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-guijuelo-2014-03-02.html": {
+    "hash": "ae6d2c612f54cbcccf79045e74614caee3eca27d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/zamora-cf-real-oviedo-2014-03-09.html": {
+    "hash": "ee33f7ab7a23c679f7275e949926f4e06c30e2c2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cultural-y-deportiva-leonesa-2014-03-16.html": {
+    "hash": "9c104475d95a0cea84b77859aa683ea5cda047c3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-real-oviedo-2014-03-23.html": {
+    "hash": "b7a2e2a57f4e527e3cdbb6a556678b7c5e162480",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-logrones-2014-03-29.html": {
+    "hash": "43ebb3563ace62e49ba384503315a546f503d427",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/coruxo-fc-real-oviedo-2014-04-02.html": {
+    "hash": "da45a4a90a28535d4740fd83310bffca67007c9a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-compostela-real-oviedo-2014-04-05.html": {
+    "hash": "5f2ac0ee507c246dd96158247776b1219cded992",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-celta-de-vigo-b-2014-04-13.html": {
+    "hash": "9846cfc0928fbcb72c8b3104dd30add2c5ac0b3e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-ferrol-real-oviedo-2014-04-20.html": {
+    "hash": "fcd97d68c3cbc68a88aeb74fdb95599e2f86a5f8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2014-04-27.html": {
+    "hash": "acd5e999fab7c5c650212314eda45c95913ab487",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-caudal-deportivo-2014-05-04.html": {
+    "hash": "a46ef640b9ef64b01ab848107d310c91b56b39e7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2014-08-24.html": {
+    "hash": "c2963f6a0e90b7f9132f76c2e7a6337773afdb13",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-aviles-cf-real-oviedo-2014-08-30.html": {
+    "hash": "dc2bacd1f3bffc2f546d98b3e20ace649f4425c9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-amorebieta-2014-09-03.html": {
+    "hash": "8bc5cb2345e4dd6e9aec22c78c15e38a5611f342",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2014-09-07.html": {
+    "hash": "dcc8c4f6fbea8ca73957df4a510503cc88b642bc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cultural-y-deportiva-leonesa-real-oviedo-2014-09-14.html": {
+    "hash": "7c6a6c9d1df147f1d7919614579d761ff9dbceb2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-guijuelo-2014-09-21.html": {
+    "hash": "9ec83dec58882c470b8b3e2da4ea9e760b099c86",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-b-real-oviedo-2014-09-28.html": {
+    "hash": "8e7e25ac630bb818cb6d9e2796e95ad1558ffdce",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-logrones-2014-10-05.html": {
+    "hash": "3c63ee6ceefe174b6bf43f324ef09ec67ab86e15",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-ferrol-real-oviedo-2014-10-12.html": {
+    "hash": "615a54aa3827fb27460ab355ab45346ca85e60e6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ucam-murcia-2014-10-15.html": {
+    "hash": "fbe30c4ec566fe756edceb0f70ea4339e1e13aa9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-celta-de-vigo-b-2014-10-19.html": {
+    "hash": "74c81c1e41d52a33279b2370d0dcded405c16980",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/club-marino-de-luanco-real-oviedo-2014-10-26.html": {
+    "hash": "4c49ad477cf92c4c0888c1f2a44ccc08a143f203",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lealtad-de-villaviciosa-2014-11-02.html": {
+    "hash": "8f88fb9347e6148d492053b240fb49cdc5c68b7a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/up-de-langreo-real-oviedo-2014-11-09.html": {
+    "hash": "c5cd87c9ed275d1c201bb59a28f2a65686f2a077",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-murcia-2014-11-16.html": {
+    "hash": "6d717f6a7a158c5f69f74f5b4226bb4336a4fd20",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/atletico-astorga-fc-real-oviedo-2014-11-23.html": {
+    "hash": "05214bff16efcb00006535bd0ca2ee0a8cb98c7d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-zamora-cf-2014-11-30.html": {
+    "hash": "8d444151a9546219669ede2c902994e55c34f876",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sociedad-2014-12-04.html": {
+    "hash": "65df9ddc7222af6c38f5012621b57a99207c06d5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tropezon-real-oviedo-2014-12-07.html": {
+    "hash": "4b347e831aacd73d08831d9d740fbe7705e4d126",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-compostela-2014-12-13.html": {
+    "hash": "e525029c8b377466f64c277a976d7e00d65adf8a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sociedad-real-oviedo-2014-12-17.html": {
+    "hash": "a56efd41f6f14f262c72ce5ea447e33f176eb558",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-somozas-real-oviedo-2014-12-20.html": {
+    "hash": "88ceeb72e0570737aa1883ce6e2dec4c6f5eb21b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-coruxo-fc-2015-01-04.html": {
+    "hash": "4d07dc75600781b6bb641a697d289fbca9988ff9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-b-real-oviedo-2015-01-11.html": {
+    "hash": "0a1a74a76e5479f08e883a69370715216ff3ab3e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-aviles-cf-2015-01-18.html": {
+    "hash": "4b9d65dbe7a1fe1eb8255ea2598f181674b6e053",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2015-01-25.html": {
+    "hash": "97229ef3fc083edf48ffb682ec08560f197b6552",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cultural-y-deportiva-leonesa-2015-02-01.html": {
+    "hash": "334fda0f394df668a2b2bc77d55801084ddf94f2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-guijuelo-real-oviedo-2015-02-08.html": {
+    "hash": "e0043401f0e7a7f01e2cabf3e41a343b91ab2fb6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-b-2015-02-15.html": {
+    "hash": "bc8d4fc9bdf5826ca9ad93377d7799d78c958e7b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-logrones-real-oviedo-2015-02-22.html": {
+    "hash": "bbc4cc1ddff97064ef37de105c2e2f01aec428f6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-ferrol-2015-03-01.html": {
+    "hash": "9acd85a9bc149b39f514404389a3398a385d5212",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-celta-de-vigo-b-real-oviedo-2015-03-08.html": {
+    "hash": "4eef23ded06cfd86ed2a033acf4eb516489c319c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-club-marino-de-luanco-2015-03-15.html": {
+    "hash": "5f9324d525f69d0b3ab386afd2964a41bc4a62ae",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lealtad-de-villaviciosa-real-oviedo-2015-03-21.html": {
+    "hash": "91d077785638bed795f252e1f4c86cc00e3626ff",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-up-de-langreo-2015-03-29.html": {
+    "hash": "441c339fbe3b877c5d890ff011212d626e1d05d7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-murcia-real-oviedo-2015-04-04.html": {
+    "hash": "c8eb27dd26d8d1b9d7766c0d0be06219607170de",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-astorga-fc-2015-04-12.html": {
+    "hash": "2e70c3cb3ff7ccb4387299d0eb2fbd1a4b13f7d1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/zamora-cf-real-oviedo-2015-04-19.html": {
+    "hash": "c385f7ffa1641f4b6eef4baefa6582b035ff0907",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tropezon-2015-04-26.html": {
+    "hash": "560847a4d91366ac135a9502ef6d811aa50618ab",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-compostela-real-oviedo-2015-05-03.html": {
+    "hash": "f8b7ba46e6992b9a6513dfee8f9d2e898cc35db3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-somozas-2015-05-10.html": {
+    "hash": "9266f7fd9849aeed15b4b199becf3f160760de67",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/coruxo-fc-real-oviedo-2015-05-16.html": {
+    "hash": "74ae1a2e0f53862fe281991c6870a607d00396d3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2015-05-24.html": {
+    "hash": "d916f5c0de3d9d83f33d9e835633ef2978523072",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2015-05-31.html": {
+    "hash": "3bb382eeef0ebdda1fbfbedff69ddcb8fb2475d4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/gimnastic-de-tarragona-real-oviedo-2015-06-07.html": {
+    "hash": "d63cf0004ca5b9cc8cad984dbff44a98208a5e81",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-gimnastic-de-tarragona-2015-06-10.html": {
+    "hash": "bb10f886bffce323c5fdc6c4135bd3ebefc2cb38",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2015-08-23.html": {
+    "hash": "b1e5203d06f0d3016345e6b6ba43db722a5650ef",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/deportivo-alaves-real-oviedo-2015-08-30.html": {
+    "hash": "a7d11cced810d70bf45217c16978cff769ce82ec",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2015-09-06.html": {
+    "hash": "b87a68e8b650249b47e3b26b63301560ed22a507",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2015-09-09.html": {
+    "hash": "8ae6e8a7e9c2c9c742a922a92a5dea061efadef0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2015-09-13.html": {
+    "hash": "8754fff83a84c94eb047e810503a4eaee2acb07d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2015-09-19.html": {
+    "hash": "cca2e7e91dbfbbd3eae165feb5a9ffda092d7587",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2015-09-27.html": {
+    "hash": "ad45bcc89f04837cd08022a56ea6f2b3c7ca3741",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-mallorca-2015-10-04.html": {
+    "hash": "857e308e98c38bfb5f52cb6cc963fa11460a74bd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2015-10-11.html": {
+    "hash": "c372df97173bb8ae1b38cef01f816ebc422dae27",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2015-10-14.html": {
+    "hash": "b534fce5ed9529a03546f148837df82c423bff71",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2015-10-17.html": {
+    "hash": "096422b764b7b5255951b7f47cc5dd55bd88fdc2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-ponferradina-real-oviedo-2015-10-25.html": {
+    "hash": "723a105334d27c4c41d377d2b0d5efc1370d265e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-bilbao-athletic-2015-11-01.html": {
+    "hash": "405d023dd36c0f9c1a294b5ce9dee6918eb1c37c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-numancia-real-oviedo-2015-11-08.html": {
+    "hash": "487007e9f1ace0b5d695f7e352095ed02e7f078a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-gimnastic-de-tarragona-2015-11-15.html": {
+    "hash": "ae941cd47b55046b228e5a38a111fc72edb2a962",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2015-11-21.html": {
+    "hash": "980cb42fc8852db1afd7ef4dc34e3424219befd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cordoba-cf-real-oviedo-2015-11-29.html": {
+    "hash": "ac2b04abd75157d777dcf3866ae70d04c1373d97",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ue-llagostera-2015-12-06.html": {
+    "hash": "0affed49221bfdd9f100251db2e9f7ed335ced39",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2015-12-13.html": {
+    "hash": "cf05368ab370535827860fa57db3fe33a126597b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2015-12-20.html": {
+    "hash": "8b1c02585824177acc35499b1a7536859b519143",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2016-01-03.html": {
+    "hash": "938beab260f3ce5f5050077c63a1b0f208737915",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2016-01-10.html": {
+    "hash": "c66a331bc3679745acb65baa7977d1d3550c00af",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ca-osasuna-real-oviedo-2016-01-16.html": {
+    "hash": "08361afca7ae57edd322e09d225257570d05a3b7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2016-01-23.html": {
+    "hash": "61fd086e74c3acc31dfdcae867da83c05581a7d2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-deportivo-alaves-2016-01-30.html": {
+    "hash": "f66f7b440105234e0a7f64aa8cfeaff928600f3b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2016-02-06.html": {
+    "hash": "0b935c1ed74f6659ce1876f99f2b147ae4f864fc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2016-02-14.html": {
+    "hash": "2f52b9610df0698df905eecc3d9447638de2af8a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2016-02-21.html": {
+    "hash": "cdb457a32e4eacb148f019e3e06e157b2beade04",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2016-02-28.html": {
+    "hash": "6f927726e191e904556729ce4a069b2e0e85dda5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2016-03-05.html": {
+    "hash": "9fa8b91aa3fa9b429aa647d990d7f1b9e606ccab",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2016-03-12.html": {
+    "hash": "91fb7525401173f39669a54929fda302c26eea14",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2016-03-19.html": {
+    "hash": "1c5424666a6684e4d28a4914dfbbf1c6248f58f7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-ponferradina-2016-03-26.html": {
+    "hash": "4310ba98ade663c417f6931ebd6749195e55cfc6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/bilbao-athletic-real-oviedo-2016-04-04.html": {
+    "hash": "f19226ecdfd15bb6d78e2c5b4a312ef6afdfa530",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2016-04-10.html": {
+    "hash": "cf9b9361a38e79ec3d97f4d5fa3b8067fe21528f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/gimnastic-de-tarragona-real-oviedo-2016-04-17.html": {
+    "hash": "c843e8919aa6c47c0f5b3545d9d3179846af3596",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2016-04-23.html": {
+    "hash": "135bc1845357d85357c91a5b89aa7d909bfa4d3b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cordoba-cf-2016-05-01.html": {
+    "hash": "8c58ddc2e3b61ee295cd3149eb9bfe7df8e615ea",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ue-llagostera-real-oviedo-2016-05-07.html": {
+    "hash": "79440b394b0dfa53d0ad0ed6e51b9dd0b3aab917",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2016-05-14.html": {
+    "hash": "95963779cec1842cfe02072b272c97593716924e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2016-05-22.html": {
+    "hash": "6459b2236b35db79ffa7d613deac24125aaa25fc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2016-05-26.html": {
+    "hash": "b98e57f8c43693945efd06558dd8264fdc8f2877",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2016-05-29.html": {
+    "hash": "ca59a29937599001f9ddbc739bb9a75c88ae1705",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ca-osasuna-2016-06-04.html": {
+    "hash": "45b29ee952439f39a9af86c25b48e5e668842286",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2016-08-21.html": {
+    "hash": "34e2ba685f2c64248703afc4fc29bf7a2edca698",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2016-08-27.html": {
+    "hash": "fba2652ff32bce433ba9a4e9448ec936eca9f532",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2016-09-04.html": {
+    "hash": "f77139a51bd94fd87288d37ec295e5ff65a8b172",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ucam-murcia-real-oviedo-2016-09-08.html": {
+    "hash": "7683ccb5504f19b7e4e2bc3ec9956eacad0d0215",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2016-09-11.html": {
+    "hash": "f04650c9856bf2cfd9cf575527b54dbe009433a6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/getafe-cf-real-oviedo-2016-09-18.html": {
+    "hash": "280e5ec3aa22cbf1a61835153b6d5d687baa7c8e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-reus-deportiu-2016-09-22.html": {
+    "hash": "645b836515c1bf36a60f0df5e4e2d6e99d8afbe1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2016-09-25.html": {
+    "hash": "b836d85f13712968749ce8086b45fefa3b26ed0a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2016-10-02.html": {
+    "hash": "7d7b41f29417f1c30ccb1aa65c7d0ac0fc43344e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-2016-10-09.html": {
+    "hash": "635ce9b672fb91ff6949b2f8a2110d90904a1a61",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2016-10-15.html": {
+    "hash": "d8c8f7b56c5ebb17a6e23cf804b85c880813c87c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2016-10-23.html": {
+    "hash": "0bfeb18647d9f62ef54cc22ea830230b2ab1fb97",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ucam-murcia-real-oviedo-2016-10-30.html": {
+    "hash": "07d4344ca3bc1c73c7a2763b9625f0013c48350d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2016-11-06.html": {
+    "hash": "5372740ae70f86c841d014b71f9b057dea472555",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2016-11-12.html": {
+    "hash": "13b7591b748cee317b4c0d2f78e228c94e96b60d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-levante-ud-2016-11-19.html": {
+    "hash": "47d5a12efe2d0c2be98a7e9b636eb8e9fb07a0cb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2016-11-26.html": {
+    "hash": "7c6ec7c9e476c580e01ba1e6a2bbd0336cb80878",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-gimnastic-de-tarragona-2016-12-04.html": {
+    "hash": "fe7bddb7a2d58d537615db617e3336be0727cc2f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2016-12-11.html": {
+    "hash": "b19f073ea3f41ee22f63d2bad4f2ba88f8af0353",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cordoba-cf-2016-12-17.html": {
+    "hash": "5e408c2862fcd27e7fc713c1473f4de66518897f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sevilla-atletico-real-oviedo-2017-01-08.html": {
+    "hash": "841454502cabc4f54827560d0270e22888c1e5a2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2017-01-14.html": {
+    "hash": "da23893b3f430615febec6088ef93bc65ba3d398",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2017-01-21.html": {
+    "hash": "067fe035d1934c70702124931a3b05050520474e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2017-01-29.html": {
+    "hash": "48326ab2121984a1bc2f81fdfdbab49ed59ef38e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-mallorca-2017-02-05.html": {
+    "hash": "85d47e3bdea6978e571f1a48ce50cdf2c3aab5b7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2017-02-12.html": {
+    "hash": "8b857ab5a60fbc650155e56c8fb46415f440c21b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-getafe-cf-2017-02-19.html": {
+    "hash": "4417413bbeb6f998b91715b5b3ae7153514f3584",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-reus-deportiu-real-oviedo-2017-02-24.html": {
+    "hash": "7125f9a36c45e2a82fdd1004e19f1db5db236a48",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2017-03-04.html": {
+    "hash": "17ac0de9f9e08edbb0db484f59a6502a3127119c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-numancia-real-oviedo-2017-03-11.html": {
+    "hash": "ce01b390fab73d59e180b100c945ab23a699698f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-real-oviedo-2017-03-19.html": {
+    "hash": "2cab34a4d2c9b9cd4cfc3c8e114cd2ea413966ab",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2017-03-25.html": {
+    "hash": "d568f8914e64c2d3deca68fd142c0c2683f0a84d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2017-04-02.html": {
+    "hash": "9e6aa524c62fe1287b1e819f7014dbc8fd967c56",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ucam-murcia-2017-04-09.html": {
+    "hash": "ab3169e92f736accc826c64740907e941ecebdcb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2017-04-16.html": {
+    "hash": "527f67defced9ce7c723f587f19c0483a33c2265",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2017-04-21.html": {
+    "hash": "cac3cba3f57432204b15ec71af2a533d882797cf",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/levante-ud-real-oviedo-2017-04-29.html": {
+    "hash": "8309f21faaf7981a1847784fe9b209f9dd122290",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2017-05-05.html": {
+    "hash": "8db810be84c7c5493ae96c548358b6175d158feb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/gimnastic-de-tarragona-real-oviedo-2017-05-13.html": {
+    "hash": "6504f843087ea2f7b3fe43d3418467a03fe56465",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2017-05-20.html": {
+    "hash": "49111a199417333a52bcf2056dce2d5ee43dc457",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cordoba-cf-real-oviedo-2017-05-28.html": {
+    "hash": "1b4eacaee1ead3c9851f1a9e125f5034433087a1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sevilla-atletico-2017-06-04.html": {
+    "hash": "417d2afffc948fab366663e1edd1084c97c1dbbd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2017-06-10.html": {
+    "hash": "b18cebb512dc60d42785375646732fa5fc1245b3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-2017-08-20.html": {
+    "hash": "e3de44f08fcb58c6d33a5c4803eb2e809587fc60",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2017-08-26.html": {
+    "hash": "b124e5e208550ee7a8347313ab974da0b492d620",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-reus-deportiu-2017-09-03.html": {
+    "hash": "67070a35a22e55479d8e7260c48c47ec85b73a8b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2017-09-06.html": {
+    "hash": "740879bf5cf94d4f6f2a1cad0db0b187ba972d93",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2017-09-09.html": {
+    "hash": "e2d7dc12307b9b566a976ac3e2ce6e2942bb719d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2017-09-17.html": {
+    "hash": "bbc54ff8cf775845584003752caaa33d078d1930",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2017-09-24.html": {
+    "hash": "f7213485943d5fc4bc7778849e5a42c7d73b4dbb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2017-10-02.html": {
+    "hash": "b37499dfdda587b1421db264dcec014a6ae10a36",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-barcelona-b-real-oviedo-2017-10-08.html": {
+    "hash": "777a4d2a87914654dde9a770f06e7e2e21ee3160",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2017-10-11.html": {
+    "hash": "a1a32a3d3657f83b9dee76a922fda645b7f7de37",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/granada-cf-real-oviedo-2017-10-14.html": {
+    "hash": "dbc61b2ab5e582bdb6a04a67791cdce953686515",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cordoba-cf-2017-10-22.html": {
+    "hash": "a32e1d64472f5886f7fd0f5450e0e5e4d4e99579",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2017-10-29.html": {
+    "hash": "c30e673be96c37ba50b686ca70b22306045fe228",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2017-11-05.html": {
+    "hash": "1fe814cf3cac43c0cd6d0cf9a782203c4cc02be6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/gimnastic-de-tarragona-real-oviedo-2017-11-12.html": {
+    "hash": "1d8f308e9d3002b289de57ddc94a8e4b9dc16cd2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2017-11-18.html": {
+    "hash": "c0a8f63433fd044572217c58dcd4cbf2ca936965",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2017-11-25.html": {
+    "hash": "f66d632c9df10e0791150550f9690d874a6572d0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/lorca-fc-real-oviedo-2017-12-02.html": {
+    "hash": "614d2a4037fa687ef7bbb3cb5ec801fd63256bc5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ca-osasuna-2017-12-10.html": {
+    "hash": "5101d99994983186ec2b1404dd357dd1b4305eb6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sevilla-atletico-real-oviedo-2017-12-17.html": {
+    "hash": "f59114c82a0c95834132d69016c7be94da48f5ea",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cultural-y-deportiva-leonesa-2017-12-23.html": {
+    "hash": "eccfee56757c1e30af5638b32908e58cc0ade9a8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2018-01-07.html": {
+    "hash": "6db7f4453cbe34ec08452cd5564c5bcf99ad247a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-real-oviedo-2018-01-12.html": {
+    "hash": "ee83b7cbcf0714f78ec588c499b6e875eafeefaf",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2018-01-20.html": {
+    "hash": "18f6d936319a183dfaa171a6aa16b6edd0704ffe",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-reus-deportiu-real-oviedo-2018-01-27.html": {
+    "hash": "b60a884d55dec59020c9008962d7933491231289",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2018-02-04.html": {
+    "hash": "1bfde6d0b28b4d4f1f4fd7c01887b1582639c002",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2018-02-10.html": {
+    "hash": "72d4a9011d62be4676179b2d8e5ee9f6c7993152",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2018-02-17.html": {
+    "hash": "ef2a24d45588473393b494c0d2bcbe225af91e62",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2018-02-25.html": {
+    "hash": "d362948088f4f5eaf7bfee9813f4c3eee4ac7fa0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-barcelona-b-2018-03-02.html": {
+    "hash": "fd75ae2a9dce39d1c58bb1ee0fc2e33446eb688b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2018-03-09.html": {
+    "hash": "8f8f7ddd2d6c93f3fd87de26e3c592e0204f7b72",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2018-03-18.html": {
+    "hash": "fc134be7179b53c934e9fbefd91a10ad23fb0df6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cordoba-cf-real-oviedo-2018-03-24.html": {
+    "hash": "6961278f553c39e6a2acda990c637cc80df33ebd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2018-03-31.html": {
+    "hash": "49c52f615800753735843f8b7b7a2bb008355937",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2018-04-08.html": {
+    "hash": "ed9adab783ec60875a9d9523350bbe8a3995c9b0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-gimnastic-de-tarragona-2018-04-15.html": {
+    "hash": "a71a24558d26a7e51cf84ebcbdbd91752206b540",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2018-04-20.html": {
+    "hash": "47ce4341498db6374993c1a1ef0b7dd0af952bc1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-numancia-real-oviedo-2018-04-29.html": {
+    "hash": "6df683a109d802eeaed02b3ef8a09cd0ffe976fa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-lorca-fc-2018-05-06.html": {
+    "hash": "be96aef50d11b91ff48a2fe44a00cfafb25ece25",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ca-osasuna-real-oviedo-2018-05-12.html": {
+    "hash": "dd45df4e266525a9628f64b66371e9d86f89d65e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sevilla-atletico-2018-05-19.html": {
+    "hash": "f17cd5be09001892d5effa1f5779d973d5c84043",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cultural-y-deportiva-leonesa-real-oviedo-2018-05-27.html": {
+    "hash": "12304118f38ba5338b73e788d0f334b1aba37383",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2018-06-02.html": {
+    "hash": "3848d4c519115a8dc4b7729996f4d6b310cbe3da",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-extremadura-ud-2018-08-19.html": {
+    "hash": "bdd77580fd6167322df0188f9851c374bf260a7b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cordoba-cf-real-oviedo-2018-08-25.html": {
+    "hash": "89afd1c8a38a5cc15ee5c390f7396018bb7873ef",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2018-09-01.html": {
+    "hash": "c717fde62238042cdc3a4003e2e99e89bdb4d70a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2018-09-08.html": {
+    "hash": "4a9e9fe00e6b45432b43b30f8379c2fd0ae18d9b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2018-09-11.html": {
+    "hash": "2e2c22bbcb1256a1fa44c8ef24fc21ace5bc151a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2018-09-16.html": {
+    "hash": "5fa3b69dad03b9ccc1ee19c3c18fd2aa24f07486",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2018-09-23.html": {
+    "hash": "50cdb4f099c987b626239b9dbc4102f500f3cd47",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2018-09-30.html": {
+    "hash": "b5744e8d7c29c8aaeee3ec3f972734d7ec2266f9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2018-10-07.html": {
+    "hash": "7e0547af3c99a5bb7ba7650162cdd80830757344",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-rayo-majadahonda-real-oviedo-2018-10-14.html": {
+    "hash": "1dfe58a2223e3e0716286836d7a2f79b8cc0ee3a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ca-osasuna-2018-10-20.html": {
+    "hash": "be621f13f7afbcea66299d7317114a388b040216",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/gimnastic-de-tarragona-real-oviedo-2018-10-28.html": {
+    "hash": "41ce522e88e6a587b288d6b2731cd3c508bbb743",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-mallorca-2018-11-04.html": {
+    "hash": "46a39d81d2638425fa8cd1891a1723732d0a0219",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-deportivo-de-la-coruna-real-oviedo-2018-11-10.html": {
+    "hash": "0e23b30edb86966d58e26815c2b958a4fdd5c59b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2018-11-17.html": {
+    "hash": "8e8520d73e48da79a862633d1a483a9b7fb11bd0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-reus-deportiu-2018-11-25.html": {
+    "hash": "71b05a9ad6d769eee14cc64c9d4143d6d446f25b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-las-palmas-real-oviedo-2018-12-02.html": {
+    "hash": "48aee7f558cf23cdac823779b461fd4aebd3dc78",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2018-12-08.html": {
+    "hash": "7f5ce616ebb7a25baa54b1610b3474c28433c19a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/granada-cf-real-oviedo-2018-12-15.html": {
+    "hash": "0f167ac2d4af1da8ada97adc9f6ba711e6ea037b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2018-12-22.html": {
+    "hash": "6447e27ba4368c0709aaedb5e57f261d3d9262ef",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-numancia-real-oviedo-2019-01-07.html": {
+    "hash": "ad28e6da4ae8e4a29fc7d73c91e2f36224b95c1e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2019-01-12.html": {
+    "hash": "413f582d823c7af61e3584e527cf8f0443f1039b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/extremadura-ud-real-oviedo-2019-01-20.html": {
+    "hash": "a2eae3029326c2794c368dd704f704b941f09b1c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2019-01-25.html": {
+    "hash": "841551b36baae26d880065472dcc984fb0a57be9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2019-02-03.html": {
+    "hash": "1b492e6a959780b46bd16c9f0fc92893ac062b2c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2019-02-09.html": {
+    "hash": "3523c34c0fff419566565579e055a3b4dcb8e328",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2019-02-16.html": {
+    "hash": "84bc73527e154f4dd582db87bd4ca83e2928c221",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2019-02-23.html": {
+    "hash": "f29e1d3d090c9ba1e3556d7b7714cc8dab9ca8ac",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2019-03-03.html": {
+    "hash": "74ad4b2bd2c7bd3cba8c97d9593b33f7888b187b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2019-03-09.html": {
+    "hash": "cbebab2d56eed148be3f9b59e62ce4254e2ea5f8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-gimnastic-de-tarragona-2019-03-17.html": {
+    "hash": "fc83ee83e10bdc70eeedf172a4711573b5fa1414",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2019-03-24.html": {
+    "hash": "982be5dc5c24562cb78e515c49146d5e9c0a91b0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-deportivo-de-la-coruna-2019-03-31.html": {
+    "hash": "360158b7bd6781ae423a72b940b75fcdeb4fd8d1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-las-palmas-2019-04-06.html": {
+    "hash": "0c3654ca49d586a1a0f700e93816026be9cab5c8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cordoba-cf-2019-04-21.html": {
+    "hash": "970f5b39658c693a282bbdbf1d8432ae043c991e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2019-04-27.html": {
+    "hash": "c2d481b104a939bb0de10e78d982e00023120702",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2019-05-05.html": {
+    "hash": "aeb21de2089a8f52210a6fd7c0db68e1482ede73",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2019-05-13.html": {
+    "hash": "2fcef1d4ea1a067745944af95d5e849f9a19d713",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2019-05-19.html": {
+    "hash": "d5dcf1f94c2e94f2e72e6ef187360d50ee44ccc0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2019-05-26.html": {
+    "hash": "d85ad26409af6b53d53976ed0ae46456323fc5f0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-rayo-majadahonda-2019-06-04.html": {
+    "hash": "75003981e04eac0ef0aa6242e057743845e3eeeb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ca-osasuna-real-oviedo-2019-06-08.html": {
+    "hash": "6991c83d276345039703fe3f50e221429b2a2f79",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-deportivo-de-la-coruna-real-oviedo-2019-08-18.html": {
+    "hash": "82b55d86930cb8b5f358587bf33d051caf911fc7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2019-08-24.html": {
+    "hash": "e8d12130e3957a4d83868907263701c036549ec2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-fuenlabrada-real-oviedo-2019-08-31.html": {
+    "hash": "d3cad4049f81ef527fa509bef1ab61598d049ce7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2019-09-08.html": {
+    "hash": "bc9c9f9e2931b8a6c29acc78912f20d848473195",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2019-09-15.html": {
+    "hash": "7a57faf20bd293cebfee2598105c19e3a832a92c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-extremadura-ud-2019-09-19.html": {
+    "hash": "a538b36b6e4e6aebbdde7af3196d5a4f1af64a42",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-ponferradina-real-oviedo-2019-09-22.html": {
+    "hash": "ff926ae06ffda4455f50cfe120ef21fafa9bf31f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2019-09-29.html": {
+    "hash": "d6e48a113d9b56efb18d643e73ffc54bde4d815e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2019-10-02.html": {
+    "hash": "64180c7dece09bf57e12e9e964802ea81b778f41",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-numancia-2019-10-06.html": {
+    "hash": "0cdff2e5ac33dd26794068aa1ccf98fb14fbc0e2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2019-10-13.html": {
+    "hash": "c78f4989d4fb94778e3f32844d19ab608ac07020",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2019-10-20.html": {
+    "hash": "d2862e1581e676ae0d10da5284cf526fa843f509",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2019-10-26.html": {
+    "hash": "05a7dfbdb6c222f5b50a649e9d7877ae5463ca18",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2019-11-01.html": {
+    "hash": "f647815b198fadd84f5bcfd250b70c9e97c13944",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2019-11-09.html": {
+    "hash": "722da7d573e2c05ca030b17046a11da7946c8814",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2019-11-17.html": {
+    "hash": "79ba091186c2393fd878a82fe1660610d01857e0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-las-palmas-real-oviedo-2019-11-24.html": {
+    "hash": "0856d1622adc127b43f414eef5fa9ee85fa31c81",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-2019-12-01.html": {
+    "hash": "ece6c96b54a3792efb814f178dbd0f78ba1a6b4e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2019-12-06.html": {
+    "hash": "e85ca42485969aed2235a904438b679fa607d70c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2019-12-15.html": {
+    "hash": "430a839087c3f7503cb0e7a55e021e55f94fac75",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-badalona-real-oviedo-2019-12-18.html": {
+    "hash": "4a9cd73b4702fc8325a7cc36c947a51a0c92913f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-real-oviedo-2019-12-21.html": {
+    "hash": "705cdb6cb2ff3751f9905b377871452a3b63925b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2020-01-05.html": {
+    "hash": "f4762f399447568541a5bfff60a2fd059f310a8e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2020-01-16.html": {
+    "hash": "58938ba5eeb74bc66e988c5d61aca222562fb874",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2020-01-19.html": {
+    "hash": "dc1e821658b12435ca0770e0d9006e73ffde488c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2020-01-26.html": {
+    "hash": "4b868e3c65e5e23faa1283a968cbb7c53431eb6b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2020-02-02.html": {
+    "hash": "68376d379d32204af93da2e5844d7f6632e1c6bc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-real-oviedo-2020-02-09.html": {
+    "hash": "799bf286940e5c35e2a9a587fd5cdeed36614110",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2020-02-15.html": {
+    "hash": "4389eb5f5a6fa2fdbf7ead63cdc54f1f63872a24",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2020-02-23.html": {
+    "hash": "9f15c27d41e7c056786d76b39046689cc2369bf9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2020-03-01.html": {
+    "hash": "16f914a6dbdc8163085706e2b9f4be5d368f7058",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/extremadura-ud-real-oviedo-2020-03-07.html": {
+    "hash": "ca79c97a0b0cf838f805325a83e550ad979d887f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-ponferradina-2020-06-12.html": {
+    "hash": "0a8bb99ac66c82bad9de9eb4d6010c6bf38f74fb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-deportivo-de-la-coruna-2020-06-17.html": {
+    "hash": "35242c3de1f9fd705357acfb3aa1957be01d3102",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2020-06-22.html": {
+    "hash": "214162d4cc10c01e9b41c72d2a583b068dcd0868",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-fuenlabrada-2020-06-25.html": {
+    "hash": "3bba9e79eb074e7f158eaea414e63fa605402fa2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-numancia-real-oviedo-2020-06-28.html": {
+    "hash": "d01cdfd87049407c2dc038eba06ff863759a27ad",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2020-07-01.html": {
+    "hash": "1c1623ca2b0d29ae0eb33ad0981cd1cf1dc42c5e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2020-07-04.html": {
+    "hash": "71b7beeba7ded2a26534e7ba71a051bcf0fc2e48",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-las-palmas-2020-07-08.html": {
+    "hash": "6065c160a51d22008e0015193ffcc469cfa95062",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2020-07-12.html": {
+    "hash": "62d0b2674b6fef26815d483486f46f0ee82a8f8f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-2020-07-17.html": {
+    "hash": "bdfe640f886acb648b2c67dceb8e1c0fe9ec5499",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2020-07-20.html": {
+    "hash": "2314efa1d08544580a49d73de11ddf42be780330",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-cartagena-2020-09-13.html": {
+    "hash": "d180460d152fc737988f2231d25a49b57e1ac9b0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2020-09-19.html": {
+    "hash": "c5d9d7558b51f921c07d7696a975e70f8566e682",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-espanyol-2020-09-27.html": {
+    "hash": "c6d48e69db8994e9f6bccb74504a4e0a1397800b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2020-10-03.html": {
+    "hash": "0b551b13a20f02b8c093386adab0fefe5cd5f1ec",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2020-10-11.html": {
+    "hash": "ae5e5597c8dd9a32bf670b5dbb182734cec006f8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2020-10-18.html": {
+    "hash": "cf311cf6c84aa2f491755baa98c80b045da8d1c6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-2020-10-22.html": {
+    "hash": "bb572e474e406fbdab096256606368cd49f1b286",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2020-10-25.html": {
+    "hash": "5ce5f6561edc582c102dc6f363ff85cd3301f5da",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-logrones-2020-10-28.html": {
+    "hash": "ebbb5113de4eb95e3954a70794c59c497457a7af",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-las-palmas-real-oviedo-2020-10-31.html": {
+    "hash": "d2595baa681be7e3024384964c842744d7d41f3e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-castellon-2020-11-08.html": {
+    "hash": "d87fefd344bd77b590fcfac9612ab0c81d49dce6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2020-11-13.html": {
+    "hash": "fd44fe89ab45acad5842e3df0350801fd10bcaa3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-fuenlabrada-2020-11-21.html": {
+    "hash": "74200183ca9baaeb6d286df83e53888778cdd91b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2020-11-24.html": {
+    "hash": "986d90954637bb6597b613f0543f772c20afee12",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2020-11-30.html": {
+    "hash": "921a7de74b42a158cf68d7a2ce1908666056b42f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2020-12-03.html": {
+    "hash": "a2a4c18e06fecff6620b5c3d0fad73a5980e5183",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ce-sabadell-real-oviedo-2020-12-06.html": {
+    "hash": "24b33b8a64ecfcc81a5e818f7a7d04dfedef1fd9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2020-12-11.html": {
+    "hash": "58f28d63f125edd52cc011b28b06d22ae4b47787",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-coria-real-oviedo-2020-12-15.html": {
+    "hash": "816b602e8fa2030414cce54c77280e6c8fbc35df",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-ponferradina-real-oviedo-2020-12-18.html": {
+    "hash": "a3043e29777888f8133c66dfa9de855cf35b360b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-mallorca-2021-01-03.html": {
+    "hash": "e6603e6b96ece8c5c4f1034f61b3ac63b38c90e6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2021-01-06.html": {
+    "hash": "9bc4f92c36289b5fbda368e6f57fe80fcbeda1d3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2021-01-09.html": {
+    "hash": "4813debc0a17cd9aa9e6eea9c9656351e3c2f588",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-logrones-real-oviedo-2021-01-24.html": {
+    "hash": "391289d28ba5848f914ad5312dcfdcc4347beb73",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2021-01-30.html": {
+    "hash": "9bcc15a2f158655f3c47a2e6ca9faf130f0dbbc6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-cartagena-real-oviedo-2021-02-06.html": {
+    "hash": "2d0b5f055aca5de2b98d958137b9c41180a8f904",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2021-02-15.html": {
+    "hash": "0c4b454a0c1689ba4dbb8576a40ca03679af8695",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-fuenlabrada-real-oviedo-2021-02-22.html": {
+    "hash": "9154fef8481f1f1dc0db9453f48e0b4484b7a24f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2021-02-28.html": {
+    "hash": "fa075783010d4862abb81e9d97c8597adabbf2e8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-espanyol-real-oviedo-2021-03-05.html": {
+    "hash": "f81ada32737c8b6da38e0c056837dd63149f726e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2021-03-14.html": {
+    "hash": "ca09f88931d2114d6be269b59bbc265b2ad7b7f4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2021-03-20.html": {
+    "hash": "b6129aeb4f0d7665ea9c6214feadfe7baaf03200",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-ponferradina-2021-03-27.html": {
+    "hash": "43548a2dd7715d91da7c6b0ac34e0d68836a5a7e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2021-03-30.html": {
+    "hash": "583d48368fa7bd1706845749682cb97987e292ae",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-castellon-real-oviedo-2021-04-03.html": {
+    "hash": "74381b70848ba8ceab3a69edd232374f1148fe0f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-las-palmas-2021-04-10.html": {
+    "hash": "36c083f3edc40a74335ca3c6e1e9624bebb83f09",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2021-04-17.html": {
+    "hash": "18f209fb113026b6dd1afd41df42d82a4885a2b2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2021-04-25.html": {
+    "hash": "e2d5add16f4545a687dfab43d322c8f45ee03d65",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2021-05-01.html": {
+    "hash": "d202b115c7cf2ef592165f14a1b9271caabb278c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ce-sabadell-2021-05-09.html": {
+    "hash": "2bb337f3d39f0d587cccfb8ff9e2e22b42b4a994",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2021-05-17.html": {
+    "hash": "de6ae94d68b72a3b8f58a9e2887da88025651f77",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-real-oviedo-2021-05-20.html": {
+    "hash": "b58d64ec4125423a8182364182d2e4974a72ed6f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2021-05-24.html": {
+    "hash": "53bded0f36b0ad6336e37ff04f1ea10cf6ad4b29",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2021-05-29.html": {
+    "hash": "c7a02d33a11ccdc9c1003de83ef628735195454d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2021-08-15.html": {
+    "hash": "3c4dee1a329f27bb9c9a2d0284d83bb9cd92077b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2021-08-20.html": {
+    "hash": "7c3561b2c5fa6d1db61c2a2dcbc61e02a525fb1a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2021-08-28.html": {
+    "hash": "9eea555bae59fc4809c86419442ad800c983966e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2021-09-06.html": {
+    "hash": "f6a276df9ac40a7f662dd721242d88832fb9f518",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-cartagena-2021-09-12.html": {
+    "hash": "8ed16a5529f952340f5ff20beb0a40e1a8dbe023",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-ibiza-real-oviedo-2021-09-18.html": {
+    "hash": "aa258b4fe3a911a4a8960d42098f246d278cc96f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2021-09-26.html": {
+    "hash": "a1b379c272b2918c50cec0d5a0dedecac6afb266",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2021-10-02.html": {
+    "hash": "96822a6131ec4abdfdc72e7859883bb28df35593",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2021-10-09.html": {
+    "hash": "221aeb8c7c693487afd101cd15229e5e15b377cb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sociedad-b-real-oviedo-2021-10-17.html": {
+    "hash": "f519a34c4d667a84126f451fe1365cd4f3e34413",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2021-10-21.html": {
+    "hash": "caa71b022199299f51590be7e4811964df504680",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-ponferradina-real-oviedo-2021-10-24.html": {
+    "hash": "34a9e8789718ed4c5942c744370f80f9a027ad95",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2021-10-31.html": {
+    "hash": "116c4c7cefdcc95cd6e9e085f9a2075e73a160b1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2021-11-03.html": {
+    "hash": "5bab450ebc21f1cda52c7cb11d1c9505fc8f77d0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-las-palmas-2021-11-06.html": {
+    "hash": "c4e9d585faf552ba2727935d9b9734fd247dcd28",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2021-11-14.html": {
+    "hash": "4461a898321fe1c067ca33e675c6dd418824b79d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-amorebieta-2021-11-20.html": {
+    "hash": "aa3173ed8546ad37f9b52a9dc891d915e1827fde",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2021-11-26.html": {
+    "hash": "08e4835edc68e9b52b8135b8eac0fc117a24e665",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ce-andratx-real-oviedo-2021-12-01.html": {
+    "hash": "ced75009cc6fdc34a61081b16ef61a5679493b1a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2021-12-05.html": {
+    "hash": "299645c2241de5daa8781f89ad5f1821555e2be0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2021-12-12.html": {
+    "hash": "88dba3720ebe5cbe3c314d1e1e77bcfebe9cefd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cf-fuenlabrada-real-oviedo-2021-12-19.html": {
+    "hash": "f710d2350737e19588c0ba97a1916348a561c876",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-ponferradina-2021-12-31.html": {
+    "hash": "a37cb414fa9b6b23cdef8f33cfc169724743af1f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2022-01-10.html": {
+    "hash": "8b3d9e0d1b2560ceaf4debe13ccf9f41874277f9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2022-01-21.html": {
+    "hash": "0227dd8eeb2da307fb09182e3175c17d34fdc1a8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2022-01-29.html": {
+    "hash": "a6fe4284d3b9fc8c511ac055f7ec366957561ce2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-amorebieta-real-oviedo-2022-02-06.html": {
+    "hash": "09b37ce003e72160edbe1ac9b8988aa8736427b1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2022-02-13.html": {
+    "hash": "404ca8ba96118542c40251ec747033a0b8aee4bc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2022-02-20.html": {
+    "hash": "cde8ef1603f6ad807935f2593266ae15b57f6865",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sociedad-b-2022-02-26.html": {
+    "hash": "078e2539a7a71f0bf62bfcbb3d69e303a181abaa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2022-03-06.html": {
+    "hash": "f7c1db22a6eff210d8814abc524782855a29d965",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2022-03-13.html": {
+    "hash": "acfcc2b8d6dfcf6ea11ea7b809170e070c6c0a95",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2022-03-19.html": {
+    "hash": "b83b0631325b7aa37ee96fdd56e6e63e8b63ddd4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-fuenlabrada-2022-03-26.html": {
+    "hash": "24855027846dcf251a778a6e93792bc2d66750db",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-cartagena-real-oviedo-2022-04-03.html": {
+    "hash": "11bde37dbb66093cc7d0d7bcb0667950d5540927",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2022-04-10.html": {
+    "hash": "e6ead9c78f3ec214ee3fc8b2855fa55e81c6dd65",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2022-04-16.html": {
+    "hash": "2e686a0921c568f321436b56015e781b8c38a1c2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2022-04-24.html": {
+    "hash": "5b9916c710d365939d1245b788c1ef839e6dfe67",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2022-04-30.html": {
+    "hash": "ac003dc86d8c290e984b4fd10a71fe0a7613a267",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2022-05-07.html": {
+    "hash": "4fcfefb14de86f0b27c9e1c678236aca6e6b8626",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2022-05-16.html": {
+    "hash": "380645a1ab614c17d1642a9e7ba2f68416c7b10c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-las-palmas-real-oviedo-2022-05-21.html": {
+    "hash": "34a6005cdb0b574b2897ec64a99257d5c28b05b2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-ibiza-2022-05-29.html": {
+    "hash": "aa812bbca277292feb13476662258534a44e24c9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-andorra-2022-08-15.html": {
+    "hash": "f7f6971b0f50546e79bfb087bff08c72ee99c0c0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2022-08-21.html": {
+    "hash": "f31a27ccf7beb12cfd805d637bfcb0aa6ac83194",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-real-oviedo-2022-08-28.html": {
+    "hash": "d44400de6821001d2d74ea111466de436e28b5e3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-levante-ud-2022-09-05.html": {
+    "hash": "d9ce99190bbb35cf443a8533c1ad7b8b7d87ad09",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2022-09-10.html": {
+    "hash": "6b4b12fe59f0ac125330989f75463334762d6508",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-ibiza-2022-09-17.html": {
+    "hash": "a6ae7641776e36d416638475f0b5097840c46a69",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-lugo-real-oviedo-2022-09-25.html": {
+    "hash": "ece0a70f2e7e6531d91b0d6402288b1f2bd81651",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-cartagena-2022-10-02.html": {
+    "hash": "3c1291654f1eec017e248a5fa3e6faea36134b57",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2022-10-09.html": {
+    "hash": "3c7de5507950eb14f5c7e62129a0757d4ce1b553",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2022-10-12.html": {
+    "hash": "d5820ec8b4377858c6f2f79e000f2f82d1e01447",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2022-10-15.html": {
+    "hash": "5e9cd68a94907cc9c5420ba13ad6303133c556a0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2022-10-24.html": {
+    "hash": "b6993a970518d513c876b594ece987aaca6c1bf5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/deportivo-alaves-real-oviedo-2022-10-29.html": {
+    "hash": "34c7c54a3a8f336d7cac9fb1f2e5bf9a8f0ca6b3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/villarreal-cf-b-real-oviedo-2022-11-02.html": {
+    "hash": "21a2c37e74070ea703932fd73ddf7635d4ebb541",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2022-11-06.html": {
+    "hash": "935f0ec5a6919933befc20752a76eabdd58aff4e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rs-gimnastica-de-torrelavega-real-oviedo-2022-11-13.html": {
+    "hash": "173d37b86374cad324f2c1a50e4d819edc8d05c1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-ponferradina-real-oviedo-2022-11-19.html": {
+    "hash": "d2f01ea3d9639704fff8fd4fb5cca30011be8a5a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2022-11-26.html": {
+    "hash": "35ed6b00073412518feea1e920540e8021ceff8a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2022-11-30.html": {
+    "hash": "1a8080e00b6ffe9a6bfdf5b7bc2a125f1e6b0cba",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-las-palmas-2022-12-06.html": {
+    "hash": "f08240bcd118841ed5fb58cc9d202c5b5e1fd778",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2022-12-11.html": {
+    "hash": "07345bffeb3868289eb09e08579cb22df3d9fae8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2022-12-17.html": {
+    "hash": "f06d0efb19d14681f8ec7e7bbe76f14d0312ad57",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2022-12-22.html": {
+    "hash": "cc0ded92b02b21a2e6520357b772260fcda3ef98",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-de-madrid-2023-01-04.html": {
+    "hash": "3cdb084a863ae124e3472b9e23abc838a2d3f994",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-andorra-real-oviedo-2023-01-07.html": {
+    "hash": "06c500b4291c1bf80f50fa23dd87ef70dc5a7da8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-deportivo-alaves-2023-01-13.html": {
+    "hash": "a610ca009815276babb49d65d385b14eaa8d50bb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2023-01-22.html": {
+    "hash": "3e270637a423701fd43a26c86e5f4ebd6bd8011d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-villarreal-cf-b-2023-01-28.html": {
+    "hash": "bff7c8f4cc82a91cbab8a5398ce8cbadd3042f78",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2023-02-03.html": {
+    "hash": "93bbc3f732288284c697d4f98b455f590d0f85c6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2023-02-12.html": {
+    "hash": "8c7cf0100ab5331949089c453123267741cc6493",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-cartagena-real-oviedo-2023-02-17.html": {
+    "hash": "ae2665b76af883bd81c1b96c9c56835d76868546",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2023-02-26.html": {
+    "hash": "7eef1150e0848034c4a1665b76f43c42714ac75b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2023-03-04.html": {
+    "hash": "c4f313bf70c3d704fa1fd77287afac8a0bb4fd2f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2023-03-10.html": {
+    "hash": "6269acf6ba7c126dcd899a0a7c82f472b2c696d7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2023-03-18.html": {
+    "hash": "f56b5543c3399a085ef6be9f0596f034ca182686",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/granada-cf-real-oviedo-2023-03-26.html": {
+    "hash": "10e4d8b6c99ca15fb3dfc2f0f143f759602c20bb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2023-04-01.html": {
+    "hash": "79330b89d10b8da56ac6a604d79848bb1c440498",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-las-palmas-real-oviedo-2023-04-09.html": {
+    "hash": "ea9696ee352e9dea6463322735d8f96c913e1a80",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-lugo-2023-04-15.html": {
+    "hash": "4b95367592d20619ed865a9d14b6a3cc7eaccd38",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-ibiza-real-oviedo-2023-04-22.html": {
+    "hash": "7020851517c0c3c18ef542361d8d876456a56692",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-ponferradina-2023-04-30.html": {
+    "hash": "258018ed060828e882b66b74af08e09bb6e9242d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2023-05-07.html": {
+    "hash": "90c931cc76779e83811d47f343a0a2b9ca8ad344",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2023-05-13.html": {
+    "hash": "d597085cf8ae7f353aea8f6a8ae842a3ff21f46f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-2023-05-21.html": {
+    "hash": "48546a759faa372817933f61d84fb4901c2e4315",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/levante-ud-real-oviedo-2023-05-27.html": {
+    "hash": "81548985d463829e1f18fa51c65a934681af1aea",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2023-08-14.html": {
+    "hash": "177faf013131ef41cebc9a077361f1688ee1d391",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-ferrol-2023-08-20.html": {
+    "hash": "1a9583f343dcfb5fe58133654c77cd7c0f359a77",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2023-08-26.html": {
+    "hash": "355ecb138b96b572611288f4dd94818e84e6b31b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/levante-ud-real-oviedo-2023-09-02.html": {
+    "hash": "c37213f764becaa8185a54b229206d621d7d5876",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2023-09-09.html": {
+    "hash": "87fec9db81a2febde0bc1941a5b304e67c7690d3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-andorra-real-oviedo-2023-09-18.html": {
+    "hash": "a0a3f6c507b71ebd0f7cdba734ed208015e08361",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-valladolid-2023-09-24.html": {
+    "hash": "ee3bee4f96f4cbe61a7e29eebfbd189fa47958b7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-eldense-real-oviedo-2023-10-01.html": {
+    "hash": "6b2613a0ac14efff8184fcf7a2647702d3ab774f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2023-10-04.html": {
+    "hash": "d4330a7cf3cfa0fde745ff99335ae28062fa822f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2023-10-07.html": {
+    "hash": "1b0bda26a7a64a63ccde6a7ef6053b9a3eafbd3f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2023-10-13.html": {
+    "hash": "969f0f59eeec537bd1b23fc34ccbf23a034b538e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-amorebieta-real-oviedo-2023-10-21.html": {
+    "hash": "4d6855abd9f0f12efe03ef6a1de34e20a98c2098",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2023-10-29.html": {
+    "hash": "a2b53f78c5032506e58bf749125a3d5b60db02d5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ue-manresa-real-oviedo-2023-11-01.html": {
+    "hash": "b92d5e8fb6a2c3fdd50ddfa56e808ed4595cce4d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2023-11-06.html": {
+    "hash": "f38728e7197d5ea31b1f1bbb091ece7aeb8ea456",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-cartagena-2023-11-13.html": {
+    "hash": "387b7eff49f30443fa1e8fe16dc9006251caa473",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2023-11-19.html": {
+    "hash": "bc7a4e0f0be816cbec6ed2d569ac5b3eb4c9e4f4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2023-11-26.html": {
+    "hash": "04299cb87f2775f8e84b95edc743a8b10d53c6fb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-espanyol-2023-12-01.html": {
+    "hash": "56a286e8ad9e8e7f976c00301807a8a824b31b64",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-castellon-real-oviedo-2023-12-05.html": {
+    "hash": "516709d20b4fd6b085ca525b9146488dfc44a379",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-real-oviedo-2023-12-10.html": {
+    "hash": "efe5b83cdb07b9f0a367011a0313fce677129d3a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2023-12-15.html": {
+    "hash": "28c1f7df94fa1812b08e0d9735fd0520262e55c3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/villarreal-cf-b-real-oviedo-2023-12-21.html": {
+    "hash": "bfe3fa60ce0d2e63006a238d50b68199ad0edc48",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-amorebieta-2024-01-13.html": {
+    "hash": "1bee7ac56b3d10320563b21ff8bbb06c5ba850b9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-ferrol-real-oviedo-2024-01-20.html": {
+    "hash": "dfe3645a3c08d8b09a2ec5de674ac93854a7f6ce",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2024-01-27.html": {
+    "hash": "0aa1d7f1e87fbd0c11ba07b0828c4331e56bf59c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-eldense-2024-02-04.html": {
+    "hash": "807e592326a131ee199429a2ba9ecb84b4a66ce3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2024-02-10.html": {
+    "hash": "e08f0fcc347f129b3396dd6d62fb2c449abed8be",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2024-02-17.html": {
+    "hash": "98d434ecf4e213fa864a188edd1b7e3e86328ccb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2024-02-23.html": {
+    "hash": "addf3db0acdde8e3c3da182ce5a10ed81f87835c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-levante-ud-2024-03-02.html": {
+    "hash": "7c78104733bf2c45ca10344a41bd04fd998cf417",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2024-03-09.html": {
+    "hash": "2ca4ccc0c98b17bbfc93099c0e4596d52e9bb637",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-2024-03-16.html": {
+    "hash": "85d457503302c1f5afed1990d891aa948f2b9f25",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2024-03-23.html": {
+    "hash": "f1d739ababa6c306d87b5255b279407f7655486d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-villarreal-cf-b-2024-03-31.html": {
+    "hash": "b174946a1ef037d29d1180909af17c3919490cdb",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2024-04-05.html": {
+    "hash": "f3990bdb8421fef4af2deb947cc82444c43ba292",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2024-04-14.html": {
+    "hash": "55bcacfcde64c9551c0472ed6068df568cb777bd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-cartagena-real-oviedo-2024-04-22.html": {
+    "hash": "9d979813108d5eba1bcc3af2f92b4132233b1a2b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2024-04-28.html": {
+    "hash": "6a0ac0cd639fd17bce5062483217b2afa7c62d83",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2024-05-04.html": {
+    "hash": "668f50bd1c5af08e2adc05880bb7d60e8f84c3be",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2024-05-12.html": {
+    "hash": "87c7fb65e5e3eaf4d1d92972e53bdd53487ab696",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-espanyol-real-oviedo-2024-05-20.html": {
+    "hash": "45fa426e7e97aad94ae1ab8ffdb946b6e79fbba7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-andorra-2024-05-26.html": {
+    "hash": "0334802ca9e65cc21edaae943e9d68740f25a1d6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2024-06-02.html": {
+    "hash": "b0016b2e14819b807cb9508556735e1233d1401c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2024-06-08.html": {
+    "hash": "0c39b59b6ec214c3f20bacf1e1e0bc17548f06ac",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2024-06-12.html": {
+    "hash": "e0f6d051d801c5db34f8de691ccf4e2e78033a62",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-espanyol-2024-06-16.html": {
+    "hash": "32db0dc48460d835cfd085f82bf3c0020ccdf502",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-espanyol-real-oviedo-2024-06-23.html": {
+    "hash": "3987dacda54f740c395a2cadb185880650b7bfbc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-deportivo-de-la-coruna-real-oviedo-2024-08-17.html": {
+    "hash": "782a2b3781c552c49c674d8324dcee1473a1df0e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-castellon-real-oviedo-2024-08-25.html": {
+    "hash": "4fb7b4788df434d44bdfbf75409de7d56f48adf8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-2024-08-30.html": {
+    "hash": "49c9f5a5df23df8ef6608bb12a7a6346d9c9b6f4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sporting-de-gijon-real-oviedo-2024-09-07.html": {
+    "hash": "efa4bdd527d98ffa5520b976f3ad90b3d7bab3e8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-cartagena-2024-09-15.html": {
+    "hash": "fea8eda409849d2fd83fc0ef510b35a89f5c9be3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-eldense-real-oviedo-2024-09-21.html": {
+    "hash": "b43b66d94f3522b06a771846291cb381364ee82f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2024-09-29.html": {
+    "hash": "87aa00f18f446889346a67aef4e979658c47a125",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/levante-ud-real-oviedo-2024-10-06.html": {
+    "hash": "7aced49a7dcb2395227f49a80a9c4854df43bf11",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2024-10-13.html": {
+    "hash": "0299279c50e7b7ec0586e443f5b831b6d5ff7cb6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/malaga-cf-real-oviedo-2024-10-19.html": {
+    "hash": "20a5d4dcf425f55be3d8e9f05858268ed28bb9db",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2024-10-22.html": {
+    "hash": "a82080a25f169a3c858d6cd9674fe23ae4fcb103",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cadiz-cf-real-oviedo-2024-10-26.html": {
+    "hash": "5f8250ec2db9285437ff0a3d81daeef1c404e8c3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-avila-real-oviedo-2024-10-31.html": {
+    "hash": "97e5b816edab510ecd28589f3f36fac494c62ca9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2024-11-03.html": {
+    "hash": "8ac7ffc165a095198d4e3fc4e24d45777d06b6a4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2024-11-10.html": {
+    "hash": "e2c1c8268a4343260070186307ffdc98a753ae86",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-tenerife-2024-11-17.html": {
+    "hash": "042cc2193b311fca9ff35e1e6e7eb688f9e1b8f8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2024-11-24.html": {
+    "hash": "93f14b61865cdd3b5d0229c9afb722c9f0342946",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-huesca-2024-11-29.html": {
+    "hash": "8585f6b847705166eeb9897c2f9c5787e15ab226",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-ferrol-real-oviedo-2024-12-08.html": {
+    "hash": "ba822bf9c85e5af8ad2d663aee0629fb1766de94",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2024-12-14.html": {
+    "hash": "a289ecb9630bba0f7522b212ec374d8f9ed61b98",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-zaragoza-real-oviedo-2024-12-17.html": {
+    "hash": "05832a9cd6ea4462d5605beccd702bc1e58a2372",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cordoba-cf-2024-12-21.html": {
+    "hash": "8ae7b0393da6a685516001caa61ec31911cc2829",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2025-01-11.html": {
+    "hash": "4f2427c00d0993c5cab0929b9ad3e9646cc1d62b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-cartagena-real-oviedo-2025-01-17.html": {
+    "hash": "3223ea329a18b38b1fe08600b176659c3430962b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-castellon-2025-01-26.html": {
+    "hash": "90d8f5eb4d5ffdd7fe151ea53ac9f799a5b1f5d5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2025-02-01.html": {
+    "hash": "78c46a30fe8cd635bcd26c5fd8d1342a1feb0524",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-eldense-2025-02-10.html": {
+    "hash": "24279bd29e1d21ec793c56f5df0a0a71e9627b3b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-albacete-balompie-2025-02-16.html": {
+    "hash": "b514801ba6ed8694e5807a23dc82242b76c4ebb8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/burgos-cf-real-oviedo-2025-02-22.html": {
+    "hash": "5360ed61d5bba0d4dac3cdeb1711d63b8928e2c8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-deportivo-de-la-coruna-2025-03-02.html": {
+    "hash": "142bf4d2497eeb96210fe607e34c0100a5d02f99",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2025-03-08.html": {
+    "hash": "182d9110a46c6d21f72167c095e3c15f7d814a90",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2025-03-14.html": {
+    "hash": "493725f7f33322d55979aeaaaa72e041f3033ac1",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/granada-cf-real-oviedo-2025-03-22.html": {
+    "hash": "f10645c3f2284a89573c9264c6f8dea4fbb03b87",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-malaga-cf-2025-03-30.html": {
+    "hash": "0ea0f294d99c974b27cf26613a0500ae8743821a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-eibar-real-oviedo-2025-04-05.html": {
+    "hash": "471b46782d1322912e50b3b705e77adab03ed2f7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-ferrol-2025-04-12.html": {
+    "hash": "138cad5c7332e8f137efa8d3c0e3deb7696fb372",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cordoba-cf-real-oviedo-2025-04-20.html": {
+    "hash": "ca5dc7af6a7545f33bf6e04c969aca2f089b46c3",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-levante-ud-2025-04-26.html": {
+    "hash": "25d495a4cd4cfd39e8c94968815f2f5526f207e7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sd-huesca-real-oviedo-2025-05-03.html": {
+    "hash": "e53b5d32874da33479ec2d2e1361f7c0a3b43a8c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-real-oviedo-2025-05-11.html": {
+    "hash": "91a4dfaf7e95fc23c98d23d87f67dc182dba4d41",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-zaragoza-2025-05-18.html": {
+    "hash": "7608d378a421dbc65b51c38c8ffd3177e43065aa",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-real-oviedo-2025-05-25.html": {
+    "hash": "4928548a59f437aea476283779594ce675d72a04",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cadiz-cf-2025-06-01.html": {
+    "hash": "9aa128a9e8991be9b50aaa0fed9aa3bd0a07600b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2025-06-07.html": {
+    "hash": "98aa55f9a18df49046682cf0b9e9e79fd333d12a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-almeria-2025-06-11.html": {
+    "hash": "4f39630d7bb3008d6453d4a77c7c2634350439bf",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-mirandes-real-oviedo-2025-06-15.html": {
+    "hash": "9e089a23046543dbced157b31d6ccac3c55e46ab",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-mirandes-2025-06-21.html": {
+    "hash": "4b5bf6dbb537de01dfa34129de2c57a86b7e79ff",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/villarreal-cf-real-oviedo-2025-08-15.html": {
+    "hash": "0a67236983083eed4973b5fefddf6819d997a174",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-madrid-2025-08-24.html": {
+    "hash": "832559a84216eff9b11b5f43393b65400203d6d8",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sociedad-2025-08-30.html": {
+    "hash": "aebaedda43e08525c2d9e6c8cb331254d1125be4",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/getafe-cf-real-oviedo-2025-09-13.html": {
+    "hash": "8c1bf96545ed04cb988fe8ed0d5299b66aa24e2d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/elche-cf-real-oviedo-2025-09-21.html": {
+    "hash": "59b0fb84bf2bae5483c359748bfaa39fc4f165db",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-fc-barcelona-2025-09-25.html": {
+    "hash": "736ae0778211e1fb0cbc5bc5b51bc39896d7bc41",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/valencia-cf-real-oviedo-2025-09-30.html": {
+    "hash": "b8f6911cc1a44ffe9d05424a6a1a0e251953c32e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-levante-ud-2025-10-04.html": {
+    "hash": "b1aa21586c9f424c5781faf5911485314e0676b2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-espanyol-2025-10-17.html": {
+    "hash": "c939684b5f91c1640deb4d8f016c47c3e004a5cc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/girona-fc-real-oviedo-2025-10-25.html": {
+    "hash": "b1f8c3a6efc0f875b49b0f47d63df071ad3bc0f0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ourense-cf-real-oviedo-2025-10-28.html": {
+    "hash": "22ae2593eaeff6a19f49e8af8ff973fa8c85e29a",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ca-osasuna-2025-11-03.html": {
+    "hash": "72574a7788767d87c0a44349bf39c1e571ec6f47",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/athletic-club-real-oviedo-2025-11-09.html": {
+    "hash": "573b3b6ea19bf5157c2b14cf45e6cbcbef6ca2b9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rayo-vallecano-2025-11-23.html": {
+    "hash": "6b8aa83a4b574589d833bed87baa1882a81fe195",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/atletico-de-madrid-real-oviedo-2025-11-29.html": {
+    "hash": "7d214bdad4438ae8ef5ee7328268ad9b0f519a40",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rcd-mallorca-2025-12-05.html": {
+    "hash": "59b19a7de916434b2c5018844553ce6c6629268c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/sevilla-fc-real-oviedo-2025-12-14.html": {
+    "hash": "6da13e874762f8d9f77189205b2a5014977598c6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rc-celta-de-vigo-2025-12-20.html": {
+    "hash": "f7bc5c36b1eadc19527f422cbf82f35c60150f4f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/deportivo-alaves-real-oviedo-2026-01-04.html": {
+    "hash": "774e20d13f0497b69a7697bf2413fd83557870e0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-betis-2026-01-10.html": {
+    "hash": "66a68945d8ade65a56bfc145a0d81a6d1e7047b5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ca-osasuna-real-oviedo-2026-01-17.html": {
+    "hash": "044d91c8300a63e0139a217fd54c6120c4fe7320",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/fc-barcelona-real-oviedo-2026-01-25.html": {
+    "hash": "d11fc3416d0fe14ab7aa073f00d4578ccb5a63f6",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-girona-fc-2026-01-31.html": {
+    "hash": "cf5f1e2bfd7ffee2b102493f564b2538f223ca3e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-athletic-club-2026-02-15.html": {
+    "hash": "cbd6c25ec5f151db64af1f904bd15917ea5e184d",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-sociedad-real-oviedo-2026-02-21.html": {
+    "hash": "0112640844fdb4b3374eab28610d66918e82072b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-de-madrid-2026-02-28.html": {
+    "hash": "10461fa02f5d23bdbd8f92ee1856c81f4cd18bd5",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rayo-vallecano-real-oviedo-2026-03-04.html": {
+    "hash": "13b7784e03e4f97c9e319710d555b01248f460d0",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-espanyol-real-oviedo-2026-03-09.html": {
+    "hash": "566fad4759f413e20979a2eaabc13c6aae2a8f7c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-valencia-cf-2026-03-14.html": {
+    "hash": "0dcc15959593a07636af21ea733855308e5477a2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/levante-ud-real-oviedo-2026-03-21.html": {
+    "hash": "4f7cf8eb5967422ba94e19977b2345f1c06f6eca",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sevilla-fc-2026-04-05.html": {
+    "hash": "53e452484cd811541f4bb575e9836d99e153bd31",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rc-celta-de-vigo-real-oviedo-2026-04-12.html": {
+    "hash": "69e15ae0ccc8c3bdba5677171e5dfb8bf071006c",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-villarreal-cf-2026-04-23.html": {
+    "hash": "3eda0954ad3a80e05d475595d9f2cb9c9c73cf7e",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-elche-cf-2026-04-26.html": {
+    "hash": "43e089d1003e58195cbca234eea58c34df5895a7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-betis-real-oviedo-2026-05-03.html": {
+    "hash": "6970f86128e7cf12f7bf992433eafbaa49efc8a2",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-getafe-cf-2026-05-10.html": {
+    "hash": "97712a184cbc5d1eddcc1fcfe409548a04dca043",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-madrid-real-oviedo-2026-05-14.html": {
+    "hash": "9c9dda418440eb436f7305537a444f585bee2f85",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-deportivo-alaves-2026-05-17.html": {
+    "hash": "02b30c3f350cbd5b9acab8dd3824dcad582d8ac7",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rcd-mallorca-real-oviedo-2026-05-23.html": {
+    "hash": "fc344aad85bbc7cfc203fe8ea42b36c1db428bcd",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-granada-cf-2026-08-15.html": {
+    "hash": "359ee6e2f4f281fd698437feeac4e25e9ebe0a0f",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-leganes-2026-08-22.html": {
+    "hash": "ad1e497a4aefa26d5d3a8bba7e17f4ff16df8ed9",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/albacete-balompie-real-oviedo-2026-08-29.html": {
+    "hash": "dc653a97b7fdc1e6f524629264acb72139456205",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-burgos-cf-2026-09-06.html": {
+    "hash": "86933d7c8734efe523c4e409da81653fd20d06ab",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-valladolid-real-oviedo-2026-09-13.html": {
+    "hash": "b6cec0a2d73ec341e6abf7dbc2b218f6d8c4a7dc",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ce-sabadell-real-oviedo-2026-09-20.html": {
+    "hash": "17cbee6bf11b1ffba55b779250026ced8b625c27",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-2026-09-27.html": {
+    "hash": "80c34eeab3cb9028e0330b5a8e73bbb9d1a5790b",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/cd-eldense-real-oviedo-2026-10-02.html": {
+    "hash": "013c3c7cbbf10f59bb1ffacf7597009b7d98a505",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-sd-eibar-2026-10-12.html": {
+    "hash": "8b653ae8652f72d7a8ed4f16256b033c4a061294",
+    "lastmod": "2026-10-23"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/ad-ceuta-fc-real-oviedo-2026-10-18.html": {
+    "hash": "b7534138a78ec4cd36a2dead8b2ce80d15c945da",
+    "lastmod": "2026-10-23"
   }
 }

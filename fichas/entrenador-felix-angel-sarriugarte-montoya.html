@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -204,19 +205,62 @@
       </div>
     </section>
 
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary>Partidos dirigidos de Félix Ángel Sarriugarte Montoya con el Real Oviedo (30)</summary>
+          <ul>
+          <li><small>10 mar 2013</small><a href="../partidos/real-oviedo-caudal-deportivo-2013-03-10.html">Real Oviedo 2-2 Caudal Deportivo</a></li>
+          <li><small>3 mar 2013</small><a href="../partidos/cd-ourense-real-oviedo-2013-03-03.html">C.D. Ourense 0-0 Real Oviedo</a></li>
+          <li><small>24 feb 2013</small><a href="../partidos/real-oviedo-rayo-vallecano-b-2013-02-24.html">Real Oviedo 2-1 Rayo Vallecano B</a></li>
+          <li><small>17 feb 2013</small><a href="../partidos/cd-marino-real-oviedo-2013-02-17.html">C.D. Marino 2-1 Real Oviedo</a></li>
+          <li><small>10 feb 2013</small><a href="../partidos/real-oviedo-ud-salamanca-2013-02-10.html">Real Oviedo 0-0 U.D. Salamanca</a></li>
+          <li><small>3 feb 2013</small><a href="../partidos/rsd-alcala-real-oviedo-2013-02-03.html">R.S.D. Alcalá 2-1 Real Oviedo</a></li>
+          <li><small>27 ene 2013</small><a href="../partidos/real-oviedo-ud-san-sebastian-de-los-reyes-2013-01-27.html">Real Oviedo 4-0 U.D. San Sebastián de Los Reyes</a></li>
+          <li><small>20 ene 2013</small><a href="../partidos/cf-fuenlabrada-real-oviedo-2013-01-20.html">C.F. Fuenlabrada 0-2 Real Oviedo</a></li>
+          <li><small>13 ene 2013</small><a href="../partidos/real-oviedo-real-aviles-cf-2013-01-13.html">Real Oviedo 2-0 Real Avilés C.F.</a></li>
+          <li><small>6 ene 2013</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2013-01-06.html">Real Sporting de Gijón B 4-1 Real Oviedo</a></li>
+          <li><small>22 dic 2012</small><a href="../partidos/real-oviedo-club-marino-de-luanco-2012-12-22.html">Real Oviedo 1-0 Club Marino de Luanco</a></li>
+          <li><small>16 dic 2012</small><a href="../partidos/coruxo-fc-real-oviedo-2012-12-16.html">Coruxo F.C. 1-2 Real Oviedo</a></li>
+          <li><small>9 dic 2012</small><a href="../partidos/real-oviedo-getafe-cf-b-2012-12-09.html">Real Oviedo 1-0 Getafe C.F. B</a></li>
+          <li><small>2 dic 2012</small><a href="../partidos/cd-tenerife-real-oviedo-2012-12-02.html">C.D. Tenerife 1-1 Real Oviedo</a></li>
+          <li><small>25 nov 2012</small><a href="../partidos/real-oviedo-cd-guijuelo-2012-11-25.html">Real Oviedo 1-1 C.D. Guijuelo</a></li>
+          <li><small>18 nov 2012</small><a href="../partidos/atletico-de-madrid-b-real-oviedo-2012-11-18.html">Atlético de Madrid B 1-1 Real Oviedo</a></li>
+          <li><small>11 nov 2012</small><a href="../partidos/real-oviedo-real-madrid-c-2012-11-11.html">Real Oviedo 1-0 Real Madrid C</a></li>
+          <li><small>4 nov 2012</small><a href="../partidos/zamora-cf-real-oviedo-2012-11-04.html">Zamora C.F. 2-2 Real Oviedo</a></li>
+          <li><small>28 oct 2012</small><a href="../partidos/real-oviedo-cd-leganes-2012-10-28.html">Real Oviedo 3-0 C.D. Leganés</a></li>
+          <li><small>21 oct 2012</small><a href="../partidos/caudal-deportivo-real-oviedo-2012-10-21.html">Caudal Deportivo 2-1 Real Oviedo</a></li>
+          <li><small>14 oct 2012</small><a href="../partidos/real-oviedo-cd-ourense-2012-10-14.html">Real Oviedo 1-1 C.D. Ourense</a></li>
+          <li><small>7 oct 2012</small><a href="../partidos/rayo-vallecano-b-real-oviedo-2012-10-07.html">Rayo Vallecano B 0-1 Real Oviedo</a></li>
+          <li><small>30 sep 2012</small><a href="../partidos/real-oviedo-cd-marino-2012-09-30.html">Real Oviedo 0-0 C.D. Marino</a></li>
+          <li><small>23 sep 2012</small><a href="../partidos/ud-salamanca-real-oviedo-2012-09-23.html">U.D. Salamanca 3-1 Real Oviedo</a></li>
+          <li><small>16 sep 2012</small><a href="../partidos/real-oviedo-rsd-alcala-2012-09-16.html">Real Oviedo 3-0 R.S.D. Alcalá</a></li>
+          <li><small>12 sep 2012</small><a href="../partidos/real-oviedo-ae-prat-2012-09-12.html">Real Oviedo 0-0 (4-5 pen.) A.E. Prat</a></li>
+          <li><small>9 sep 2012</small><a href="../partidos/ud-san-sebastian-de-los-reyes-real-oviedo-2012-09-09.html">U.D. San Sebastián de Los Reyes 3-2 Real Oviedo</a></li>
+          <li><small>2 sep 2012</small><a href="../partidos/real-oviedo-cf-fuenlabrada-2012-09-02.html">Real Oviedo 1-0 C.F. Fuenlabrada</a></li>
+          <li><small>30 ago 2012</small><a href="../partidos/real-oviedo-cf-fuenlabrada-2012-08-30.html">Real Oviedo 2-0 C.F. Fuenlabrada</a></li>
+          <li><small>25 ago 2012</small><a href="../partidos/real-aviles-cf-real-oviedo-2012-08-25.html">Real Avilés C.F. 0-2 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Scripts (Rutas con ../) -->
-    <script src="../js/i18n.js?nocache=20261022v3"></script>
-    <script src="../js/data-club.js?nocache=20261022v3"></script>
-    <script src="../js/data-jugadores.js?nocache=20261022v3"></script>
-    <script src="../js/busqueda.js?nocache=20261022v3"></script>
-    <script src="../js/data-temporada-actual.js?nocache=20261022v3"></script>
-    <script src="../js/data-historico.js?nocache=20261022v3"></script>
-    <script src="../js/data-utils.js?nocache=20261022v3"></script>
-    <script src="../js/app.js?nocache=20261022v3"></script>
-    <script src="../js/script.js?nocache=20261022v3"></script>
-    <script src="../js/main.js?nocache=20261022v3"></script>
+    <script src="../js/i18n.js?nocache=20261023v2"></script>
+    <script src="../js/data-club.js?nocache=20261023v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20261023v2"></script>
+    <script src="../js/busqueda.js?nocache=20261023v2"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261023v2"></script>
+    <script src="../js/data-historico.js?nocache=20261023v2"></script>
+    <script src="../js/data-utils.js?nocache=20261023v2"></script>
+    <script src="../js/app.js?nocache=20261023v2"></script>
+    <script src="../js/script.js?nocache=20261023v2"></script>
+    <script src="../js/main.js?nocache=20261023v2"></script>
   </body>
 </html>

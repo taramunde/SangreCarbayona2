@@ -601,7 +601,7 @@ En la carpeta del proyecto, por terminal:
 
 | Comando | Qué hace |
 |---|---|
-| `npm run generar` | Regenera las fichas y el sitemap a partir de los datos, sin subir nada a GitHub. Úsalo para previsualizar en local. |
+| `npm run generar` | Regenera las páginas de partidos (`/partidos/`), las fichas y el sitemap a partir de los datos, sin subir nada a GitHub. Úsalo para previsualizar en local. |
 | `npm run subir` | Genera + añade todos los cambios a git + hace commit + `git pull --rebase` + sube a GitHub. El comando normal del día a día. |
 | `npm run forzar` | Como `subir`, pero con `git push --force`. Solo si sabes lo que haces — sobrescribe lo que haya en GitHub. |
 | `node generador/generar-derbis.js` | Regenera las fichas de derbis. **No** está incluido en `generar`/`subir`: hay que ejecutarlo aparte si has tocado `data-derbis.js`, antes de subir. |
@@ -618,6 +618,35 @@ comprobar que un archivo quedó bien formateado:
 npx prettier --check js/el-archivo-que-edites.js
 npx prettier --write js/el-archivo-que-edites.js   # lo corrige automáticamente
 ```
+
+### Páginas de partidos (`/partidos/`)
+
+`generador/generar-partidos.js` (incluido en `generar` y `subir`) crea
+páginas HTML **estáticas** —con el contenido ya escrito, sin depender de
+JavaScript— para que Google las pueda leer:
+
+- `partidos/index.html` → portada de resultados (enlace "Resultados" en
+  el menú Competiciones y en el footer).
+- `partidos/temporada-2014-15.html` → una por temporada: resumen,
+  partidos, entrenadores y plantilla.
+- `partidos/rival-real-sporting-de-gijon.html` → historial contra cada
+  rival.
+- `partidos/real-oviedo-cd-tenerife-2024-11-17.html` → una por partido:
+  marcador, goleadores, entrenador y los jugadores que participaron.
+
+Además, cada ficha de jugador/entrenador lleva al final una lista
+desplegable con enlaces a todos sus partidos.
+
+**No hay que tocar nada a mano**: todo sale de los `partidos[]` de cada
+jugador (sección 3). Como un mismo partido está repetido en cada
+jugador, el generador los junta por temporada + fecha y, si alguna copia
+tiene una errata (nombre del rival, marcador o fecha distintos al resto),
+usa el valor que más se repite. Al terminar muestra un aviso `⚠` con la
+lista de esas erratas para que puedas corregirlas en los datos. La lógica
+común está en `generador/partidos-comun.js`.
+
+No edites los HTML de `/partidos/`: se borran y se reescriben enteros
+cada vez que se genera.
 
 ---
 

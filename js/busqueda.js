@@ -28,6 +28,9 @@
     if (href.includes('/fichas/')) {
       return href.split('/fichas/')[0];
     }
+    if (href.includes('/partidos/')) {
+      return href.split('/partidos/')[0];
+    }
     return href.replace(/\/[^/]*\.html$/, '').replace(/\/$/, '');
   }
 

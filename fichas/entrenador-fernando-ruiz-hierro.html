@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -204,19 +205,75 @@
       </div>
     </section>
 
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary>Partidos dirigidos de Fernando Ruiz Hierro con el Real Oviedo (43)</summary>
+          <ul>
+          <li><small>10 jun 2017</small><a href="../partidos/elche-cf-real-oviedo-2017-06-10.html">Elche C.F. 0-2 Real Oviedo</a></li>
+          <li><small>4 jun 2017</small><a href="../partidos/real-oviedo-sevilla-atletico-2017-06-04.html">Real Oviedo 1-0 Sevilla Atlético</a></li>
+          <li><small>28 may 2017</small><a href="../partidos/cordoba-cf-real-oviedo-2017-05-28.html">Córdoba C.F. 4-2 Real Oviedo</a></li>
+          <li><small>20 may 2017</small><a href="../partidos/real-oviedo-real-zaragoza-2017-05-20.html">Real Oviedo 0-0 Real Zaragoza</a></li>
+          <li><small>13 may 2017</small><a href="../partidos/gimnastic-de-tarragona-real-oviedo-2017-05-13.html">Gimnàstic de Tarragona 2-2 Real Oviedo</a></li>
+          <li><small>5 may 2017</small><a href="../partidos/real-oviedo-ad-alcorcon-2017-05-05.html">Real Oviedo 0-1 A.D. Alcorcón</a></li>
+          <li><small>29 abr 2017</small><a href="../partidos/levante-ud-real-oviedo-2017-04-29.html">Levante U.D. 1-0 Real Oviedo</a></li>
+          <li><small>21 abr 2017</small><a href="../partidos/real-oviedo-sd-huesca-2017-04-21.html">Real Oviedo 1-1 S.D. Huesca</a></li>
+          <li><small>16 abr 2017</small><a href="../partidos/cd-lugo-real-oviedo-2017-04-16.html">C.D. Lugo 2-1 Real Oviedo</a></li>
+          <li><small>9 abr 2017</small><a href="../partidos/real-oviedo-ucam-murcia-2017-04-09.html">Real Oviedo 2-0 U.C.A.M. Murcia</a></li>
+          <li><small>2 abr 2017</small><a href="../partidos/cd-tenerife-real-oviedo-2017-04-02.html">C.D. Tenerife 1-0 Real Oviedo</a></li>
+          <li><small>25 mar 2017</small><a href="../partidos/real-oviedo-girona-fc-2017-03-25.html">Real Oviedo 2-0 Girona F.C.</a></li>
+          <li><small>19 mar 2017</small><a href="../partidos/rayo-vallecano-real-oviedo-2017-03-19.html">Rayo Vallecano 2-0 Real Oviedo</a></li>
+          <li><small>11 mar 2017</small><a href="../partidos/cd-numancia-real-oviedo-2017-03-11.html">C.D. Numancia 0-0 Real Oviedo</a></li>
+          <li><small>4 mar 2017</small><a href="../partidos/real-oviedo-cadiz-cf-2017-03-04.html">Real Oviedo 2-1 Cádiz C.F.</a></li>
+          <li><small>24 feb 2017</small><a href="../partidos/cf-reus-deportiu-real-oviedo-2017-02-24.html">C.F. Reus Deportiu 1-1 Real Oviedo</a></li>
+          <li><small>19 feb 2017</small><a href="../partidos/real-oviedo-getafe-cf-2017-02-19.html">Real Oviedo 2-1 Getafe C.F.</a></li>
+          <li><small>12 feb 2017</small><a href="../partidos/cd-mirandes-real-oviedo-2017-02-12.html">C.D. Mirandés 0-2 Real Oviedo</a></li>
+          <li><small>5 feb 2017</small><a href="../partidos/real-oviedo-rcd-mallorca-2017-02-05.html">Real Oviedo 2-1 R.C.D. Mallorca</a></li>
+          <li><small>29 ene 2017</small><a href="../partidos/ud-almeria-real-oviedo-2017-01-29.html">U.D. Almería 3-0 Real Oviedo</a></li>
+          <li><small>21 ene 2017</small><a href="../partidos/real-oviedo-real-valladolid-2017-01-21.html">Real Oviedo 1-0 Real Valladolid</a></li>
+          <li><small>14 ene 2017</small><a href="../partidos/real-oviedo-elche-cf-2017-01-14.html">Real Oviedo 2-1 Elche C.F.</a></li>
+          <li><small>8 ene 2017</small><a href="../partidos/sevilla-atletico-real-oviedo-2017-01-08.html">Sevilla Atlético 5-3 Real Oviedo</a></li>
+          <li><small>17 dic 2016</small><a href="../partidos/real-oviedo-cordoba-cf-2016-12-17.html">Real Oviedo 1-2 Córdoba C.F.</a></li>
+          <li><small>11 dic 2016</small><a href="../partidos/real-zaragoza-real-oviedo-2016-12-11.html">Real Zaragoza 2-1 Real Oviedo</a></li>
+          <li><small>4 dic 2016</small><a href="../partidos/real-oviedo-gimnastic-de-tarragona-2016-12-04.html">Real Oviedo 1-0 Gimnàstic de Tarragona</a></li>
+          <li><small>26 nov 2016</small><a href="../partidos/ad-alcorcon-real-oviedo-2016-11-26.html">A.D. Alcorcón 5-1 Real Oviedo</a></li>
+          <li><small>19 nov 2016</small><a href="../partidos/real-oviedo-levante-ud-2016-11-19.html">Real Oviedo 2-0 Levante U.D.</a></li>
+          <li><small>12 nov 2016</small><a href="../partidos/sd-huesca-real-oviedo-2016-11-12.html">S.D. Huesca 4-0 Real Oviedo</a></li>
+          <li><small>6 nov 2016</small><a href="../partidos/real-oviedo-cd-lugo-2016-11-06.html">Real Oviedo 1-1 C.D. Lugo</a></li>
+          <li><small>30 oct 2016</small><a href="../partidos/ucam-murcia-real-oviedo-2016-10-30.html">U.C.A.M. Murcia 0-1 Real Oviedo</a></li>
+          <li><small>23 oct 2016</small><a href="../partidos/real-oviedo-cd-tenerife-2016-10-23.html">Real Oviedo 2-0 C.D. Tenerife</a></li>
+          <li><small>15 oct 2016</small><a href="../partidos/girona-fc-real-oviedo-2016-10-15.html">Girona F.C. 0-0 Real Oviedo</a></li>
+          <li><small>9 oct 2016</small><a href="../partidos/real-oviedo-rayo-vallecano-2016-10-09.html">Real Oviedo 2-0 Rayo Vallecano</a></li>
+          <li><small>2 oct 2016</small><a href="../partidos/real-oviedo-cd-numancia-2016-10-02.html">Real Oviedo 2-2 C.D. Numancia</a></li>
+          <li><small>25 sep 2016</small><a href="../partidos/cadiz-cf-real-oviedo-2016-09-25.html">Cádiz C.F. 0-2 Real Oviedo</a></li>
+          <li><small>22 sep 2016</small><a href="../partidos/real-oviedo-cf-reus-deportiu-2016-09-22.html">Real Oviedo 0-1 C.F. Reus Deportiu</a></li>
+          <li><small>18 sep 2016</small><a href="../partidos/getafe-cf-real-oviedo-2016-09-18.html">Getafe C.F. 2-1 Real Oviedo</a></li>
+          <li><small>11 sep 2016</small><a href="../partidos/real-oviedo-cd-mirandes-2016-09-11.html">Real Oviedo 0-0 C.D. Mirandés</a></li>
+          <li><small>8 sep 2016</small><a href="../partidos/ucam-murcia-real-oviedo-2016-09-08.html">U.C.A.M. Murcia 4-3 Real Oviedo</a></li>
+          <li><small>4 sep 2016</small><a href="../partidos/rcd-mallorca-real-oviedo-2016-09-04.html">R.C.D. Mallorca 0-0 Real Oviedo</a></li>
+          <li><small>27 ago 2016</small><a href="../partidos/real-oviedo-ud-almeria-2016-08-27.html">Real Oviedo 2-0 U.D. Almería</a></li>
+          <li><small>21 ago 2016</small><a href="../partidos/real-valladolid-real-oviedo-2016-08-21.html">Real Valladolid 1-0 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Scripts (Rutas con ../) -->
-    <script src="../js/i18n.js?nocache=20261022v3"></script>
-    <script src="../js/data-club.js?nocache=20261022v3"></script>
-    <script src="../js/data-jugadores.js?nocache=20261022v3"></script>
-    <script src="../js/busqueda.js?nocache=20261022v3"></script>
-    <script src="../js/data-temporada-actual.js?nocache=20261022v3"></script>
-    <script src="../js/data-historico.js?nocache=20261022v3"></script>
-    <script src="../js/data-utils.js?nocache=20261022v3"></script>
-    <script src="../js/app.js?nocache=20261022v3"></script>
-    <script src="../js/script.js?nocache=20261022v3"></script>
-    <script src="../js/main.js?nocache=20261022v3"></script>
+    <script src="../js/i18n.js?nocache=20261023v2"></script>
+    <script src="../js/data-club.js?nocache=20261023v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20261023v2"></script>
+    <script src="../js/busqueda.js?nocache=20261023v2"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261023v2"></script>
+    <script src="../js/data-historico.js?nocache=20261023v2"></script>
+    <script src="../js/data-utils.js?nocache=20261023v2"></script>
+    <script src="../js/app.js?nocache=20261023v2"></script>
+    <script src="../js/script.js?nocache=20261023v2"></script>
+    <script src="../js/main.js?nocache=20261023v2"></script>
   </body>
 </html>

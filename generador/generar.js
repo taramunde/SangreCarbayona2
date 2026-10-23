@@ -3,6 +3,7 @@ const path = require('path');
 const vm = require('vm');
 
 const SITE_BASE_URL = 'https://taramunde.github.io/SangreCarbayona2';
+const PC = require('./partidos-comun');
 
 console.log('🚀 Iniciando generador de fichas...');
 
@@ -52,6 +53,51 @@ if (!CLUB_DATA) {
     '❌ ERROR: Los archivos de datos se ejecutaron pero no se encontró window.CLUB_DATA.',
   );
   process.exit(1);
+}
+
+// 3b. Lista única de partidos (la misma que usa generar-partidos.js),
+//     para enlazar desde cada ficha a la página de cada partido.
+const { partidos: listaPartidos } = PC.construirPartidos(CLUB_DATA);
+const partidoPorFecha = PC.indicePorFecha(listaPartidos);
+
+// Partidos de un jugador o entrenador en TODAS sus temporadas, sin
+// repetir, de más reciente a más antiguo.
+function partidosDe(codigo, esEntrenador) {
+  const vistos = new Map();
+  Object.entries(CLUB_DATA.temporadas).forEach(([tid, temp]) => {
+    const lista = esEntrenador ? temp.cuerpoTecnico : temp.jugadores;
+    (lista || []).forEach((m) => {
+      const cod = esEntrenador ? String(m.codigo || m.id) : m.codigo;
+      if (cod !== codigo) return;
+      (m.partidos || []).forEach((p) => {
+        const partido = partidoPorFecha[`${tid}|${p.fecha}`];
+        if (partido) vistos.set(partido.slug, partido);
+      });
+    });
+  });
+  return [...vistos.values()].sort((a, b) => b.fecha.localeCompare(a.fecha));
+}
+
+function htmlPartidosEstaticos(nombre, codigo, esEntrenador) {
+  const lista = partidosDe(codigo, esEntrenador);
+  if (!lista.length) return '';
+  const e = PC.escaparHtml;
+  const items = lista
+    .map(
+      (p) =>
+        `<li><small>${e(PC.fechaCorta(p.fecha))}</small><a href="../partidos/${e(p.slug)}.html">${e(p.local)} ${e(PC.marcador(p))} ${e(p.visitante)}</a></li>`,
+    )
+    .join('\n          ');
+  return `<section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary>${esEntrenador ? 'Partidos dirigidos' : 'Partidos'} de ${e(nombre)} con el Real Oviedo (${lista.length})</summary>
+          <ul>
+          ${items}
+          </ul>
+        </details>
+      </div>
+    </section>`;
 }
 
 // 4. Leer Plantilla
@@ -190,7 +236,11 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     .replace(/\{\{POSICION\}\}/g, jugador.posicion || '')
     .replace(/\{\{SLUG\}\}/g, slug)
     .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrl)
-    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersona);
+    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersona)
+    .replace(
+      /\{\{PARTIDOS_ESTATICOS\}\}/g,
+      () => htmlPartidosEstaticos(nombreMostrar, jugador.codigo, false),
+    );
 }
 
 // 7. Generar fichas de jugadores
@@ -305,7 +355,11 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
     .replace(/\{\{POSICION\}\}/g, miembro.cargo || 'Entrenador')
     .replace(/\{\{SLUG\}\}/g, slug)
     .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrlEnt)
-    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersonaEnt);
+    .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersonaEnt)
+    .replace(
+      /\{\{PARTIDOS_ESTATICOS\}\}/g,
+      () => htmlPartidosEstaticos(nombre, String(entId), true),
+    );
 
   // Inyectar tipo=entrenador en el PLAYER_DATA_STATIC
   htmlContent = htmlContent.replace(

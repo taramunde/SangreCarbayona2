@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -203,19 +204,62 @@
       </div>
     </section>
 
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary>Partidos de Juan Pablo de Miguel Bravo con el Real Oviedo (30)</summary>
+          <ul>
+          <li><small>13 may 2012</small><a href="../partidos/ud-san-sebastian-de-los-reyes-real-oviedo-2012-05-13.html">U.D. San Sebastián de Los Reyes 2-0 Real Oviedo</a></li>
+          <li><small>29 abr 2012</small><a href="../partidos/cd-tenerife-real-oviedo-2012-04-29.html">C.D. Tenerife 3-0 Real Oviedo</a></li>
+          <li><small>22 abr 2012</small><a href="../partidos/real-oviedo-real-madrid-castilla-2012-04-22.html">Real Oviedo 1-0 Real Madrid Castilla</a></li>
+          <li><small>15 abr 2012</small><a href="../partidos/atletico-coruna-montaneros-cf-real-oviedo-2012-04-15.html">Atlético Coruña Montañeros C.F. 2-1 Real Oviedo</a></li>
+          <li><small>8 abr 2012</small><a href="../partidos/real-oviedo-getafe-cf-b-2012-04-08.html">Real Oviedo 1-2 Getafe C.F. B</a></li>
+          <li><small>1 abr 2012</small><a href="../partidos/coruxo-fc-real-oviedo-2012-04-01.html">Coruxo F.C. 1-1 Real Oviedo</a></li>
+          <li><small>25 mar 2012</small><a href="../partidos/real-oviedo-albacete-balompie-2012-03-25.html">Real Oviedo 1-0 Albacete Balompié</a></li>
+          <li><small>21 mar 2012</small><a href="../partidos/ub-conquense-real-oviedo-2012-03-21.html">U.B. Conquense 1-0 Real Oviedo</a></li>
+          <li><small>17 mar 2012</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2012-03-17.html">Real Oviedo 2-1 Real Sporting de Gijón B</a></li>
+          <li><small>11 mar 2012</small><a href="../partidos/ud-vecindario-real-oviedo-2012-03-11.html">U.D. Vecindario 3-0 Real Oviedo</a></li>
+          <li><small>4 mar 2012</small><a href="../partidos/real-oviedo-rsd-alcala-2012-03-04.html">Real Oviedo 1-0 R.S.D. Alcalá</a></li>
+          <li><small>26 feb 2012</small><a href="../partidos/club-marino-de-luanco-real-oviedo-2012-02-26.html">Club Marino de Luanco 0-2 Real Oviedo</a></li>
+          <li><small>12 feb 2012</small><a href="../partidos/real-oviedo-atletico-de-madrid-b-2012-02-12.html">Real Oviedo 0-2 Atlético de Madrid B</a></li>
+          <li><small>29 ene 2012</small><a href="../partidos/real-oviedo-rc-celta-de-vigo-b-2012-01-29.html">Real Oviedo 3-0 R.C. Celta de Vigo B</a></li>
+          <li><small>21 dic 2011</small><a href="../partidos/athletic-club-real-oviedo-2011-12-21.html">Athletic Club 1-0 Real Oviedo</a></li>
+          <li><small>18 dic 2011</small><a href="../partidos/rayo-vallecano-b-real-oviedo-2011-12-18.html">Rayo Vallecano B 1-0 Real Oviedo</a></li>
+          <li><small>11 dic 2011</small><a href="../partidos/real-oviedo-cd-tenerife-2011-12-11.html">Real Oviedo 1-0 C.D. Tenerife</a></li>
+          <li><small>8 dic 2011</small><a href="../partidos/real-oviedo-athletic-club-2011-12-08.html">Real Oviedo 0-1 Athletic Club</a></li>
+          <li><small>4 dic 2011</small><a href="../partidos/real-madrid-castilla-real-oviedo-2011-12-04.html">Real Madrid Castilla 1-3 Real Oviedo</a></li>
+          <li><small>27 nov 2011</small><a href="../partidos/real-oviedo-atletico-coruna-montaneros-cf-2011-11-27.html">Real Oviedo 2-1 Atlético Coruña Montañeros C.F.</a></li>
+          <li><small>20 nov 2011</small><a href="../partidos/getafe-cf-b-real-oviedo-2011-11-20.html">Getafe C.F. B 1-1 Real Oviedo</a></li>
+          <li><small>13 nov 2011</small><a href="../partidos/real-oviedo-coruxo-fc-2011-11-13.html">Real Oviedo 2-0 Coruxo F.C.</a></li>
+          <li><small>6 nov 2011</small><a href="../partidos/albacete-balompie-real-oviedo-2011-11-06.html">Albacete Balompié 1-2 Real Oviedo</a></li>
+          <li><small>30 oct 2011</small><a href="../partidos/real-oviedo-ub-conquense-2011-10-30.html">Real Oviedo 1-0 U.B. Conquense</a></li>
+          <li><small>2 oct 2011</small><a href="../partidos/real-oviedo-club-marino-de-luanco-2011-10-02.html">Real Oviedo 1-0 Club Marino de Luanco</a></li>
+          <li><small>25 sep 2011</small><a href="../partidos/real-oviedo-la-roda-cf-2011-09-25.html">Real Oviedo 1-1 La Roda C.F.</a></li>
+          <li><small>18 sep 2011</small><a href="../partidos/atletico-de-madrid-b-real-oviedo-2011-09-18.html">Atlético de Madrid B 2-3 Real Oviedo</a></li>
+          <li><small>4 sep 2011</small><a href="../partidos/rc-celta-de-vigo-b-real-oviedo-2011-09-04.html">R.C. Celta de Vigo B 2-2 Real Oviedo</a></li>
+          <li><small>28 ago 2011</small><a href="../partidos/real-oviedo-cd-toledo-2011-08-28.html">Real Oviedo 0-3 C.D. Toledo</a></li>
+          <li><small>21 ago 2011</small><a href="../partidos/cd-leganes-real-oviedo-2011-08-21.html">C.D. Leganés 3-2 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Scripts (Rutas con ../) -->
-    <script src="../js/i18n.js?nocache=20261022v3"></script>
-    <script src="../js/data-club.js?nocache=20261022v3"></script>
-    <script src="../js/data-jugadores.js?nocache=20261022v3"></script>
-    <script src="../js/busqueda.js?nocache=20261022v3"></script>
-    <script src="../js/data-temporada-actual.js?nocache=20261022v3"></script>
-    <script src="../js/data-historico.js?nocache=20261022v3"></script>
-    <script src="../js/data-utils.js?nocache=20261022v3"></script>
-    <script src="../js/app.js?nocache=20261022v3"></script>
-    <script src="../js/script.js?nocache=20261022v3"></script>
-    <script src="../js/main.js?nocache=20261022v3"></script>
+    <script src="../js/i18n.js?nocache=20261023v2"></script>
+    <script src="../js/data-club.js?nocache=20261023v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20261023v2"></script>
+    <script src="../js/busqueda.js?nocache=20261023v2"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261023v2"></script>
+    <script src="../js/data-historico.js?nocache=20261023v2"></script>
+    <script src="../js/data-utils.js?nocache=20261023v2"></script>
+    <script src="../js/app.js?nocache=20261023v2"></script>
+    <script src="../js/script.js?nocache=20261023v2"></script>
+    <script src="../js/main.js?nocache=20261023v2"></script>
   </body>
 </html>

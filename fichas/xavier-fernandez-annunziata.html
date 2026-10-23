@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -203,19 +204,65 @@
       </div>
     </section>
 
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary>Partidos de Xavier Fernández Annunziata con el Real Oviedo (33)</summary>
+          <ul>
+          <li><small>4 may 2014</small><a href="../partidos/real-oviedo-caudal-deportivo-2014-05-04.html">Real Oviedo 1-1 Caudal Deportivo</a></li>
+          <li><small>27 abr 2014</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2014-04-27.html">Real Oviedo 1-4 Real Sporting de Gijón B</a></li>
+          <li><small>20 abr 2014</small><a href="../partidos/racing-de-ferrol-real-oviedo-2014-04-20.html">Racing de Ferrol 0-1 Real Oviedo</a></li>
+          <li><small>13 abr 2014</small><a href="../partidos/real-oviedo-rc-celta-de-vigo-b-2014-04-13.html">Real Oviedo 5-1 R.C. Celta de Vigo B</a></li>
+          <li><small>5 abr 2014</small><a href="../partidos/sd-compostela-real-oviedo-2014-04-05.html">S.D. Compostela 1-1 Real Oviedo</a></li>
+          <li><small>2 abr 2014</small><a href="../partidos/coruxo-fc-real-oviedo-2014-04-02.html">Coruxo F.C. 3-2 Real Oviedo</a></li>
+          <li><small>29 mar 2014</small><a href="../partidos/real-oviedo-sd-logrones-2014-03-29.html">Real Oviedo 1-0 S.D. Logroñés</a></li>
+          <li><small>23 mar 2014</small><a href="../partidos/racing-de-santander-real-oviedo-2014-03-23.html">Racing de Santander 2-0 Real Oviedo</a></li>
+          <li><small>16 mar 2014</small><a href="../partidos/real-oviedo-cultural-y-deportiva-leonesa-2014-03-16.html">Real Oviedo 0-0 Cultural y Deportiva Leonesa</a></li>
+          <li><small>2 mar 2014</small><a href="../partidos/real-oviedo-cd-guijuelo-2014-03-02.html">Real Oviedo 2-0 C.D. Guijuelo</a></li>
+          <li><small>23 feb 2014</small><a href="../partidos/real-aviles-cf-real-oviedo-2014-02-23.html">Real Avilés C.F. 1-2 Real Oviedo</a></li>
+          <li><small>16 feb 2014</small><a href="../partidos/real-oviedo-club-marino-de-luanco-2014-02-16.html">Real Oviedo 2-2 Club Marino de Luanco</a></li>
+          <li><small>2 feb 2014</small><a href="../partidos/real-oviedo-cd-ourense-2014-02-02.html">Real Oviedo 0-1 C.D. Ourense</a></li>
+          <li><small>26 ene 2014</small><a href="../partidos/ud-logrones-real-oviedo-2014-01-26.html">U.D. Logroñés 1-4 Real Oviedo</a></li>
+          <li><small>19 ene 2014</small><a href="../partidos/real-oviedo-cd-tropezon-2014-01-19.html">Real Oviedo 2-1 C.D. Tropezón</a></li>
+          <li><small>16 ene 2014</small><a href="../partidos/real-oviedo-racing-de-ferrol-2014-01-16.html">Real Oviedo 1-2 Racing de Ferrol</a></li>
+          <li><small>12 ene 2014</small><a href="../partidos/sd-noja-real-oviedo-2014-01-12.html">S.D. Noja 0-0 Real Oviedo</a></li>
+          <li><small>5 ene 2014</small><a href="../partidos/real-oviedo-burgos-cf-2014-01-05.html">Real Oviedo 1-0 Burgos C.F.</a></li>
+          <li><small>15 dic 2013</small><a href="../partidos/caudal-deportivo-real-oviedo-2013-12-15.html">Caudal Deportivo 0-1 Real Oviedo</a></li>
+          <li><small>8 dic 2013</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2013-12-08.html">Real Sporting de Gijón B 2-1 Real Oviedo</a></li>
+          <li><small>24 nov 2013</small><a href="../partidos/rc-celta-de-vigo-b-real-oviedo-2013-11-24.html">R.C. Celta de Vigo B 2-2 Real Oviedo</a></li>
+          <li><small>17 nov 2013</small><a href="../partidos/real-oviedo-sd-compostela-2013-11-17.html">Real Oviedo 1-1 S.D. Compostela</a></li>
+          <li><small>10 nov 2013</small><a href="../partidos/sd-logrones-real-oviedo-2013-11-10.html">S.D. Logroñés 1-2 Real Oviedo</a></li>
+          <li><small>3 nov 2013</small><a href="../partidos/real-oviedo-racing-de-santander-2013-11-03.html">Real Oviedo 2-3 Racing de Santander</a></li>
+          <li><small>26 oct 2013</small><a href="../partidos/real-oviedo-zamora-cf-2013-10-26.html">Real Oviedo 0-0 Zamora C.F.</a></li>
+          <li><small>20 oct 2013</small><a href="../partidos/cd-guijuelo-real-oviedo-2013-10-20.html">C.D. Guijuelo 2-1 Real Oviedo</a></li>
+          <li><small>13 oct 2013</small><a href="../partidos/real-oviedo-real-aviles-cf-2013-10-13.html">Real Oviedo 2-0 Real Avilés C.F.</a></li>
+          <li><small>6 oct 2013</small><a href="../partidos/club-marino-de-luanco-real-oviedo-2013-10-06.html">Club Marino de Luanco 1-2 Real Oviedo</a></li>
+          <li><small>29 sep 2013</small><a href="../partidos/real-oviedo-coruxo-fc-2013-09-29.html">Real Oviedo 0-1 Coruxo F.C.</a></li>
+          <li><small>22 sep 2013</small><a href="../partidos/cd-ourense-real-oviedo-2013-09-22.html">C.D. Ourense 2-1 Real Oviedo</a></li>
+          <li><small>15 sep 2013</small><a href="../partidos/real-oviedo-ud-logrones-2013-09-15.html">Real Oviedo 2-1 U.D. Logroñés</a></li>
+          <li><small>4 sep 2013</small><a href="../partidos/haro-deportivo-real-oviedo-2013-09-04.html">Haro Deportivo 0-0 (4-2 pen.) Real Oviedo</a></li>
+          <li><small>31 ago 2013</small><a href="../partidos/real-oviedo-sd-noja-2013-08-31.html">Real Oviedo 2-2 S.D. Noja</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Scripts (Rutas con ../) -->
-    <script src="../js/i18n.js?nocache=20261022v3"></script>
-    <script src="../js/data-club.js?nocache=20261022v3"></script>
-    <script src="../js/data-jugadores.js?nocache=20261022v3"></script>
-    <script src="../js/busqueda.js?nocache=20261022v3"></script>
-    <script src="../js/data-temporada-actual.js?nocache=20261022v3"></script>
-    <script src="../js/data-historico.js?nocache=20261022v3"></script>
-    <script src="../js/data-utils.js?nocache=20261022v3"></script>
-    <script src="../js/app.js?nocache=20261022v3"></script>
-    <script src="../js/script.js?nocache=20261022v3"></script>
-    <script src="../js/main.js?nocache=20261022v3"></script>
+    <script src="../js/i18n.js?nocache=20261023v2"></script>
+    <script src="../js/data-club.js?nocache=20261023v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20261023v2"></script>
+    <script src="../js/busqueda.js?nocache=20261023v2"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261023v2"></script>
+    <script src="../js/data-historico.js?nocache=20261023v2"></script>
+    <script src="../js/data-utils.js?nocache=20261023v2"></script>
+    <script src="../js/app.js?nocache=20261023v2"></script>
+    <script src="../js/script.js?nocache=20261023v2"></script>
+    <script src="../js/main.js?nocache=20261023v2"></script>
   </body>
 </html>

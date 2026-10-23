@@ -28,7 +28,9 @@ const DIR_RAIZ = __dirname;
 
 // Carpetas que NO se deben tocar (por ejemplo, las fichas generadas por generar.js,
 // que ya se regeneran solas y no usan este sistema de nocache manual)
-const EXCLUIR_CARPETAS = ['fichas', 'node_modules', '.git'];
+// ("partidos" la regenera entera generador/generar-partidos.js, que ya
+// copia el nocache actual de index.html cada vez que se ejecuta)
+const EXCLUIR_CARPETAS = ['fichas', 'partidos', 'node_modules', '.git'];
 
 // Patrón que detecta el nocache actual.
 // Formato real del proyecto: ?nocache=20260601v13  (fecha AAAAMMDD + "v" + versión)

@@ -1,8 +1,9 @@
 function cargarComunes() {
-  // Detecta si estamos en una subcarpeta (fichas o juegos) para ajustar las rutas
+  // Detecta si estamos en una subcarpeta (fichas, juegos o partidos) para ajustar las rutas
   const esSubcarpeta =
     window.location.pathname.includes('/fichas/') ||
-    window.location.pathname.includes('/juegos/');
+    window.location.pathname.includes('/juegos/') ||
+    window.location.pathname.includes('/partidos/');
   const rutaBase = esSubcarpeta ? '../' : '';
 
   // Cargar el Header
@@ -35,6 +36,12 @@ function cargarComunes() {
       const footerPlaceholder = document.getElementById('footer-placeholder');
       if (footerPlaceholder) {
         footerPlaceholder.innerHTML = data;
+
+        // Igual que en el header: desde /fichas/, /juegos/ o /partidos/
+        // los enlaces relativos del footer necesitan "../" delante.
+        if (esSubcarpeta) {
+          ajustarRutasEnlacesFichas('#footer-placeholder');
+        }
 
         // Traducir el footer recién inyectado
         if (typeof setLanguage === 'function') {
@@ -150,11 +157,15 @@ function inicializarFuncionesHeader() {
   });
 }
 
-function ajustarRutasEnlacesFichas() {
-  const navLinks = document.querySelectorAll('#header-placeholder a');
+function ajustarRutasEnlacesFichas(contenedor = '#header-placeholder') {
+  const navLinks = document.querySelectorAll(`${contenedor} a`);
   navLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    if (href && href !== '#' && !href.startsWith('http')) {
+    if (
+      href &&
+      !href.startsWith('#') &&
+      !/^(https?:|mailto:|tel:)/.test(href)
+    ) {
       if (!href.startsWith('../')) {
         link.setAttribute('href', '../' + href);
       }
@@ -165,7 +176,7 @@ function ajustarRutasEnlacesFichas() {
   // (como el escudo) se resuelven contra la URL de la página actual, no
   // contra header.html. Sin este ajuste, imágenes como img/varios/... se
   // rompen en fichas/ y juegos/ porque el navegador busca fichas/img/...
-  const imgs = document.querySelectorAll('#header-placeholder img');
+  const imgs = document.querySelectorAll(`${contenedor} img`);
   imgs.forEach((img) => {
     const src = img.getAttribute('src');
     if (src && !src.startsWith('http') && !src.startsWith('../')) {

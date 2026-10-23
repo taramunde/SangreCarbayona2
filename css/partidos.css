@@ -1,0 +1,526 @@
+/* ===================================
+   PARTIDOS.CSS
+   Estilos de las páginas generadas en /partidos/ por
+   generador/generar-partidos.js (partido, temporada, rival y
+   portada de resultados). Usa las mismas variables de color y
+   tipografía que styles.css.
+   =================================== */
+
+/* ── Cabecera de página ─────────────────────────────────────── */
+.partidos-header {
+  position: relative;
+  padding: 48px 0 36px;
+  background: linear-gradient(135deg, #003da5 0%, #002070 60%, #1a1a2e 100%);
+  color: #fff;
+  overflow: hidden;
+}
+.partidos-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 85% 20%,
+    rgba(201, 162, 39, 0.18),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+.partidos-header .container {
+  position: relative;
+  z-index: 1;
+}
+.partidos-header .breadcrumb {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+.partidos-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.75);
+}
+.partidos-header .breadcrumb a:hover {
+  color: #fff;
+}
+.partidos-header .breadcrumb span {
+  margin: 0 6px;
+}
+.partidos-header .breadcrumb .current {
+  color: var(--secondary-light, #e8c547);
+  font-weight: 600;
+  margin: 0;
+}
+.partidos-header h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  margin: 0 0 8px;
+  color: #fff;
+}
+.partidos-header .subtitulo {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.02rem;
+}
+
+/* ── Contenedor principal ──────────────────────────────────── */
+.partidos-main {
+  padding: 32px 0 56px;
+  background: var(--gray-50);
+}
+.partidos-main .container {
+  max-width: 1040px;
+}
+.bloque {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+.bloque h2 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin: 0 0 14px;
+  letter-spacing: 0.3px;
+}
+.bloque p {
+  margin: 0 0 10px;
+}
+.texto-intro {
+  color: var(--gray-700);
+  font-size: 1.02rem;
+}
+.nota {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-top: 10px;
+}
+
+/* ── Marcador del partido ──────────────────────────────────── */
+.marcador {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.marcador-equipo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.marcador-equipo .nombre a {
+  color: inherit;
+}
+.marcador-equipo .nombre a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.marcador-equipo .nombre {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+.marcador-equipo.es-oviedo .nombre {
+  color: #003da5;
+}
+.escudo {
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+.escudo-generico {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.marcador-centro .resultado {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+  white-space: nowrap;
+}
+.marcador-centro .penaltis {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+.chip {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-top: 10px;
+}
+.chip-V {
+  background: #dcfce7;
+  color: #166534;
+}
+.chip-E {
+  background: #fef3c7;
+  color: #92400e;
+}
+.chip-D {
+  background: #fee2e2;
+  color: #991b1b;
+}
+.datos-partido {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-size: 0.95rem;
+}
+.datos-partido i {
+  color: var(--secondary-color);
+  margin-right: 6px;
+}
+
+/* ── Goleadores / entrenador ───────────────────────────────── */
+.lista-simple {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.lista-simple li {
+  background: var(--gray-100);
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+.lista-simple a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.lista-simple a:hover {
+  text-decoration: underline;
+}
+
+/* ── Tablas ────────────────────────────────────────────────── */
+.tabla-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.tabla th {
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--gray-200);
+  white-space: nowrap;
+}
+.tabla td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--gray-100);
+  vertical-align: middle;
+}
+.tabla .num {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.tabla a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.tabla a:hover {
+  text-decoration: underline;
+}
+.tabla .pos {
+  color: var(--gray-500);
+  font-size: 0.85rem;
+}
+.tarjeta {
+  display: inline-block;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+.tarjeta-amarilla {
+  background: #facc15;
+}
+.tarjeta-roja {
+  background: #dc2626;
+}
+
+/* ── Lista de partidos (temporada, rival, portada) ─────────── */
+.lista-partidos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lista-partidos li + li {
+  border-top: 1px solid var(--gray-100);
+}
+.fila-partido {
+  display: grid;
+  grid-template-columns: 92px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 6px;
+  color: var(--gray-800);
+  border-radius: 6px;
+  transition: var(--transition-fast);
+}
+.fila-partido:hover {
+  background: var(--gray-50);
+}
+.fila-partido .cuando {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  line-height: 1.3;
+}
+.fila-partido .cruce {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.fila-partido .cruce .oviedo {
+  color: #003da5;
+}
+.fila-partido .cruce small {
+  display: block;
+  font-weight: 400;
+  color: var(--gray-500);
+  font-size: 0.82rem;
+}
+.fila-partido .res {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 3px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.res-V {
+  background: #dcfce7;
+  color: #166534;
+}
+.res-E {
+  background: #fef3c7;
+  color: #92400e;
+}
+.res-D {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ── Resumen numérico ──────────────────────────────────────── */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.resumen div {
+  background: var(--gray-50);
+  border-radius: 10px;
+  padding: 12px 6px;
+  text-align: center;
+}
+.resumen strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  line-height: 1.1;
+}
+.resumen span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+}
+
+/* ── Rejillas de enlaces (temporadas, rivales) ─────────────── */
+.rejilla-enlaces {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+.rejilla-enlaces a {
+  display: block;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--gray-800);
+  transition: var(--transition-fast);
+}
+.rejilla-enlaces a:hover {
+  border-color: var(--secondary-color);
+  background: #fff;
+}
+.rejilla-enlaces strong {
+  display: block;
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.rejilla-enlaces span {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+/* ── Navegación anterior / siguiente ───────────────────────── */
+.nav-partidos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.nav-partidos a {
+  display: block;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  color: var(--gray-800);
+  transition: var(--transition-fast);
+}
+.nav-partidos a:hover {
+  box-shadow: var(--shadow-md);
+}
+.nav-partidos .sig {
+  text-align: right;
+  grid-column: 2;
+}
+.nav-partidos small {
+  display: block;
+  color: var(--gray-500);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.nav-partidos strong {
+  color: var(--primary-color);
+}
+
+/* ── Bloque estático de partidos en las fichas de jugador ──── */
+.ficha-partidos-estaticos {
+  padding: 0 0 40px;
+}
+.ficha-partidos-estaticos details {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 4px 20px;
+}
+.ficha-partidos-estaticos summary {
+  cursor: pointer;
+  padding: 14px 0;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  letter-spacing: 0.3px;
+}
+.ficha-partidos-estaticos ul {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  columns: 2 340px;
+  column-gap: 28px;
+}
+.ficha-partidos-estaticos li {
+  break-inside: avoid;
+  padding: 5px 0;
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+.ficha-partidos-estaticos li a {
+  color: var(--gray-800);
+}
+.ficha-partidos-estaticos li a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.ficha-partidos-estaticos li small {
+  color: var(--gray-500);
+  margin-right: 6px;
+}
+
+/* ── Móvil ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .partidos-header {
+    padding: 32px 0 26px;
+  }
+  .bloque {
+    padding: 18px 16px;
+    border-radius: 10px;
+  }
+  .escudo,
+  .escudo-generico {
+    width: 54px;
+    height: 54px;
+  }
+  .escudo-generico {
+    font-size: 1.1rem;
+  }
+  .marcador {
+    gap: 8px;
+  }
+  .marcador-equipo .nombre {
+    font-size: 0.95rem;
+  }
+  .resumen {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .fila-partido {
+    grid-template-columns: 70px 1fr auto;
+    gap: 8px;
+  }
+  .tabla {
+    font-size: 0.88rem;
+  }
+  .tabla th,
+  .tabla td {
+    padding: 8px 6px;
+  }
+  /* En móvil la posición sobra: así la tabla cabe sin scroll lateral */
+  .tabla .ocultar-movil {
+    display: none;
+  }
+  .nav-partidos {
+    grid-template-columns: 1fr;
+  }
+  .nav-partidos .sig {
+    grid-column: 1;
+  }
+}

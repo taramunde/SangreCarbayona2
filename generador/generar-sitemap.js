@@ -12,6 +12,10 @@
         listarse aparte en el sitemap.
      3. Las fichas estáticas de derbis (/fichas/derbi-{id}.html),
         generadas por generar-derbis.js a partir de data-derbis.js.
+     4. Las páginas de /partidos/ (portada de resultados, una por
+        temporada, una por rival y una por partido), generadas por
+        generar-partidos.js. Se calculan con la misma lógica compartida
+        (partidos-comun.js), así que siempre coinciden con lo generado.
 
    Uso (desde la carpeta donde está generar.js):
      node generar-sitemap.js
@@ -26,6 +30,7 @@ const vm = require('vm');
 const crypto = require('crypto');
 
 const SITE_BASE_URL = 'https://taramunde.github.io/SangreCarbayona2';
+const PC = require('./partidos-comun');
 
 // Cache que recuerda, por URL, el hash del contenido que la generó la
 // última vez y la fecha (lastmod) que se le puso entonces. Así, si el
@@ -258,6 +263,63 @@ function generarSitemap() {
     urls.push(bloqueUrl(loc, 'yearly', '0.5', lastmod));
   });
 
+  // Páginas de /partidos/
+  const { partidos } = PC.construirPartidos(CLUB_DATA);
+  const porTemporada = {};
+  const porRival = {};
+  partidos.forEach((p) => {
+    (porTemporada[p.tid] = porTemporada[p.tid] || []).push(p);
+    const k = PC.claveEquipo(p.rival);
+    if (!porRival[k]) porRival[k] = { nombre: p.rival, partidos: [] };
+    porRival[k].partidos.push(p);
+  });
+  // Contenido "resumido" de cada página para decidir su lastmod: si
+  // no cambia, se mantiene la fecha antigua.
+  const resumenPartido = (p) => [
+    p.fecha,
+    p.local,
+    p.visitante,
+    p.golesLocal,
+    p.golesVisitante,
+    p.jugadores.map((j) => [j.codigo, j.minutos, j.goles, j.asistencias, j.amarilla, j.roja]),
+  ];
+  const paginasPartidos = [
+    {
+      slug: 'index',
+      contenido: partidos.map((p) => [p.slug, p.golesLocal, p.golesVisitante]),
+      changefreq: 'weekly',
+      priority: '0.8',
+    },
+    ...Object.entries(porTemporada).map(([tid, lista]) => ({
+      slug: PC.slugTemporada(tid),
+      contenido: lista.map(resumenPartido),
+      changefreq: tid === CLUB_DATA.temporadaActual ? 'weekly' : 'yearly',
+      priority: '0.7',
+    })),
+    ...Object.values(porRival).map(({ nombre, partidos: lista }) => ({
+      slug: PC.slugRival(nombre),
+      contenido: lista.map((p) => [p.slug, p.golesLocal, p.golesVisitante]),
+      changefreq: 'monthly',
+      priority: '0.6',
+    })),
+    ...partidos.map((p) => ({
+      slug: p.slug,
+      contenido: resumenPartido(p),
+      changefreq: p.tid === CLUB_DATA.temporadaActual ? 'monthly' : 'yearly',
+      priority: '0.5',
+    })),
+  ];
+  paginasPartidos.forEach((pg) => {
+    const loc = `/${PC.CARPETA_PARTIDOS}/${pg.slug}.html`;
+    const lastmod = lastmodParaContenido(
+      `${SITE_BASE_URL}${loc}`,
+      pg.contenido,
+      cache,
+      hoy,
+    );
+    urls.push(bloqueUrl(loc, pg.changefreq, pg.priority, lastmod));
+  });
+
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
@@ -269,7 +331,7 @@ function generarSitemap() {
   guardarCache(cache);
   console.log(
     `✅ sitemap.xml regenerado con ${urls.length} URLs ` +
-      `(${PAGINAS_ESTATICAS.length} páginas fijas, ${Object.keys(mapaJugadores).length} jugadores, ${Object.keys(mapaEntrenadores).length} entrenadores, ${DERBIS_DATA.length} derbis).`,
+      `(${PAGINAS_ESTATICAS.length} páginas fijas, ${Object.keys(mapaJugadores).length} jugadores, ${Object.keys(mapaEntrenadores).length} entrenadores, ${DERBIS_DATA.length} derbis, ${paginasPartidos.length} páginas de partidos).`,
   );
 }
 
