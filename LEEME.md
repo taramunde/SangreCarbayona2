@@ -673,9 +673,9 @@ antiguos. No importan tildes, mayúsculas ni puntos, y los filiales
 
 Si un **mismo nombre** fue de clubes distintos según la época (el
 "Real Avilés C.F." de 1903-1983 y el Real Avilés Industrial, que se
-llamó igual entre 2010 y 2023), ese nombre se escribe con su periodo de
-temporadas: `{ nombre: 'Real Avilés C.F.', desde: '2010-11', hasta:
-'2022-23' }`. Un club que ya no existe lleva `desaparecido: true`, y
+llamó igual entre 2012 y 2020), ese nombre se escribe con su periodo de
+temporadas: `{ nombre: 'Real Avilés C.F.', desde: '2012-13', hasta:
+'2019-20' }`. Un club que ya no existe lleva `desaparecido: true`, y
 cualquier club puede llevar una `nota` que sale en su página de
 historial. El ejemplo completo está en el propio `js/data-equipos.js`.
 

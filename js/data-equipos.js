@@ -25,7 +25,7 @@
    Cuando un MISMO nombre ha sido de clubes distintos según la época
    (caso Real Avilés), el otro nombre se escribe con su periodo, usando
    ids de temporada como los de los datos ('1982-83'):
-       { nombre: 'Real Avilés C.F.', desde: '2010-11', hasta: '2022-23' }
+       { nombre: 'Real Avilés C.F.', desde: '2012-13', hasta: '2019-20' }
    "desde" y "hasta" son opcionales (sin "desde" = desde siempre; sin
    "hasta" = hasta hoy).
 
@@ -64,16 +64,17 @@ CLUB_DATA.equiposHistoricos = [
   // Son DOS clubes a efectos de historial, y el nombre "Real Avilés
   // C.F." corresponde a uno u otro según la temporada:
   //  - Hasta 1982-83: el Real Avilés C.F. original (de 1903).
-  //  - Desde 1983-84: el Real Avilés Industrial C.F. (unión con el
-  //    C.D. Ensidesa), que entre 2010-11 y 2022-23 volvió a llamarse
-  //    Real Avilés C.F.
+  //  - Desde 1983-84: el Real Avilés Industrial C.F. (constituido el
+  //    10 de mayo de 1983 tras la unión con el C.D. Ensidesa), que
+  //    entre 2012 y 2020 se llamó Real Avilés C.F., S.A.D.
+  // Fuente: La Futbolteca.
   // Si algún día prefieres tratarlos como un único club, borra el
   // segundo bloque y quita "desde"/"hasta" del primero.
   {
     nombre: 'Real Avilés Industrial C.F.',
-    nota: 'Nace en 1983 de la unión del Real Avilés C.F. con el C.D. Ensidesa. Entre 2010 y 2023 volvió a llamarse Real Avilés C.F. El club reivindica 1903 como año de fundación, el del Avilés original.',
+    nota: 'Constituido el 10 de mayo de 1983 tras la unión del Real Avilés C.F. con el C.D. Ensidesa. Entre 2012 y 2020 se llamó Real Avilés C.F., S.A.D. El club reivindica 1903 como año de fundación, el del Avilés original.',
     otrosNombres: [
-      { nombre: 'Real Avilés C.F.', desde: '2010-11', hasta: '2022-23' },
+      { nombre: 'Real Avilés C.F.', desde: '2012-13', hasta: '2019-20' },
     ],
   },
   {
