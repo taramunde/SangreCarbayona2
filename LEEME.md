@@ -651,6 +651,25 @@ común está en `generador/partidos-comun.js`.
 No edites los HTML de `/partidos/`: se borran y se reescriben enteros
 cada vez que se genera.
 
+### Escudos de los rivales — `js/data-escudos.js`
+
+Las páginas de `/partidos/` sacan el escudo de cada equipo de la lista
+de `js/data-escudos.js` (nombre del equipo → imagen). Para añadir uno:
+
+1. Sube la imagen `.webp` a `img/escudos/` (el nombre del archivo da
+   igual; mejor sin espacios ni tildes).
+2. En `js/data-escudos.js`, descomenta su línea en el bloque
+   "PENDIENTES" (están ordenados por número de partidos) o añade una
+   nueva: `'C.D. Mirandés': 'img/escudos/Mirandes.webp',`
+3. `npm run subir`.
+
+Los filiales sin escudo propio usan el de su primer equipo: los que
+acaban en " B" o " C" se detectan solos, y los de otro nombre
+(Castilla, Sevilla Atlético, Bilbao Athletic) están en
+`CLUB_DATA.filiales`, en el mismo archivo. Si una línea apunta a una
+imagen que no existe, el generador avisa con un `⚠` y en la web se ven
+las iniciales del equipo en lugar de una imagen rota.
+
 Estas páginas están **en los dos idiomas**: el HTML lleva el texto en
 español (el que lee Google) y su traducción inglesa en un atributo
 `data-en`, que `js/i18n.js` intercambia al pulsar la bandera. Las

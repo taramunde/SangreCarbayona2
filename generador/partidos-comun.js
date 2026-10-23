@@ -36,6 +36,7 @@ const DATA_FILES = [
   'data-utils.js',
 ].map((f) => path.join(__dirname, '../js', f));
 const EQUIPOS_FILE = path.join(__dirname, '../js/data-equipos.js');
+const ESCUDOS_FILE = path.join(__dirname, '../js/data-escudos.js');
 
 // Carga los archivos de datos en un "navegador simulado", igual que
 // generar.js, y devuelve window.CLUB_DATA.
@@ -63,18 +64,19 @@ function cargarClubData() {
     console.error('❌ ERROR: no se encontró window.CLUB_DATA.');
     process.exit(1);
   }
-  // Nombres históricos de clubes (opcional): si el archivo no existe,
-  // cada nombre se trata como un club distinto.
-  if (fs.existsSync(EQUIPOS_FILE)) {
+  // Archivos opcionales: nombres históricos de clubes y escudos. Si no
+  // existen, cada nombre es un club distinto y no se muestran escudos.
+  [EQUIPOS_FILE, ESCUDOS_FILE].forEach((f) => {
+    if (!fs.existsSync(f)) return;
     try {
-      vm.runInContext(fs.readFileSync(EQUIPOS_FILE, 'utf-8'), sandbox, {
-        filename: 'data-equipos.js',
+      vm.runInContext(fs.readFileSync(f, 'utf-8'), sandbox, {
+        filename: path.basename(f),
       });
     } catch (e) {
-      console.error('❌ ERROR ejecutando data-equipos.js:', e.message);
+      console.error(`❌ ERROR ejecutando ${path.basename(f)}:`, e.message);
       process.exit(1);
     }
-  }
+  });
   return sandbox.window.CLUB_DATA;
 }
 

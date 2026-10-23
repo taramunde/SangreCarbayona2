@@ -65,44 +65,38 @@ const ESTADIO_OVIEDO =
   (CLUB_DATA.club && CLUB_DATA.club.estadio) || 'Estadio Carlos Tartiere';
 
 // ── ESCUDOS ───────────────────────────────────────────────────
-// Solo se usa un escudo cuando el nombre coincide de verdad con el
-// club (nunca el del primer equipo para un filial: "Getafe C.F. B" no
-// lleva el escudo del Getafe). Si no hay escudo, se pinta un círculo
-// con las iniciales.
-const ESCUDOS = fs
-  .readdirSync(path.join(__dirname, '..', 'img', 'escudos'))
-  .filter((f) => f.endsWith('.webp'))
-  .map((f) => f.replace('.webp', ''));
-const ESCUDOS_ALIAS = {
-  realoviedo: 'Oviedo',
-  realsportingdegijon: 'Sporting',
-  rccelta: 'CeltaVigo',
-  rcceltadevigo: 'CeltaVigo',
-  celtadevigo: 'CeltaVigo',
-  rcdeportivodelacoruna: 'DeportivoACoruna',
-  deportivodelacoruna: 'DeportivoACoruna',
-  albacetebalompie: 'Albacete',
-  deportivoalaves: 'Alaves',
-  rcdespanyol: 'Espanyol',
-  realbetis: 'Betis',
-};
+// Salen de la lista de js/data-escudos.js (nombre del club → imagen).
+// Un filial sin escudo propio usa el de su primer equipo: los que
+// acaban en " B"/" C" se detectan solos y el resto (Castilla, Sevilla
+// Atlético, Bilbao Athletic...) se indican en CLUB_DATA.filiales.
+// Sin escudo, se pinta un círculo con las iniciales.
 const PREFIJOS = new Set([
   'cd', 'cf', 'ud', 'sd', 'fc', 'rcd', 'rc', 'ad', 'ca', 'ce', 'ue', 'ae', 'club',
 ]);
+const escudoPorClave = new Map();
+const escudosAusentes = new Set();
+Object.entries(CLUB_DATA.escudos || {}).forEach(([nombre, ruta]) => {
+  if (!ruta) return;
+  const limpia = String(ruta).replace(/^\/+/, '');
+  if (!/^https?:/.test(limpia) && !fs.existsSync(path.join(__dirname, '..', limpia))) {
+    escudosAusentes.add(`${nombre} → ${limpia}`);
+    return; // mejor iniciales que una imagen rota
+  }
+  escudoPorClave.set(claveEquipo(nombre), /^https?:/.test(limpia) ? limpia : `../${limpia}`);
+});
+const filialDe = new Map();
+Object.entries(CLUB_DATA.filiales || {}).forEach(([filial, primero]) => {
+  filialDe.set(claveEquipo(filial), primero);
+});
 
 function escudoDe(nombre) {
-  const completo = claveEquipo(nombre);
-  if (ESCUDOS_ALIAS[completo]) return `../img/escudos/${ESCUDOS_ALIAS[completo]}.webp`;
-  const palabras = C.slugTexto(nombre).split('-').filter(Boolean);
-  const sinPrefijos = palabras.filter((p) => !PREFIJOS.has(p));
-  const candidatos = [
-    completo,
-    sinPrefijos.join(''),
-    sinPrefijos.filter((p) => p !== 'real').join(''),
-  ];
-  for (const cand of candidatos) {
-    const f = ESCUDOS.find((x) => x.toLowerCase() === cand);
-    if (f) return `../img/escudos/${f}.webp`;
+  const clave = claveEquipo(nombre);
+  if (escudoPorClave.has(clave)) return escudoPorClave.get(clave);
+  const primero =
+    filialDe.get(clave) ||
+    (/\s(B|C)$/i.test(String(nombre).trim()) ? String(nombre).trim().replace(/\s(B|C)$/i, '') : null);
+  if (primero && escudoPorClave.has(claveEquipo(primero))) {
+    return escudoPorClave.get(claveEquipo(primero));
   }
   return null;
 }
@@ -1003,6 +997,13 @@ fs.readdirSync(outputDir).forEach((f) => {
     console.log(`  🗑 Eliminada página antigua: ${f}`);
   }
 });
+
+if (escudosAusentes.size) {
+  console.log(
+    `\n⚠ ${escudosAusentes.size} escudos de js/data-escudos.js apuntan a un archivo que no existe (se muestran las iniciales):`,
+  );
+  escudosAusentes.forEach((x) => console.log(`   - ${x}`));
+}
 
 if (avisos.length) {
   console.log(
