@@ -6660,7 +6660,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Campo Erê',
     provinciaNacimiento: 'Santa Catarina',
     fechaNacimiento: '1998-04-01',
-    imagen: 'https://i.postimg.cc/rmhzyWK7/Alemao-PNG-Alineacion.webp',
+    imagen: 'img/jugadores/Alemao.webp',
   },
 
   'francisco-fumaca-mascarenhas-costa-pessoa': {
