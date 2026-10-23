@@ -375,7 +375,7 @@
 /* ── Rejillas de enlaces (temporadas, rivales) ─────────────── */
 .rejilla-enlaces {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 10px;
 }
 .rejilla-enlaces a {
@@ -401,6 +401,143 @@
 .rejilla-enlaces span {
   font-size: 0.85rem;
   color: var(--gray-500);
+}
+
+/* ── Nombre actual de un club que jugó con otro nombre ─────── */
+.nombre-actual {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-top: -6px;
+}
+
+/* ── Botón "ver todos" ─────────────────────────────────────── */
+.boton-ver-todos {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 16px;
+  transition: var(--transition-fast);
+}
+.boton-ver-todos:hover {
+  background: #003da5;
+  color: #fff;
+}
+
+/* ── Índice de rivales A-Z ─────────────────────────────────── */
+.filtro-rivales {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 14px 0;
+  background: #fff;
+}
+.filtro-rivales:focus-within {
+  border-color: var(--secondary-color);
+}
+.filtro-rivales i {
+  color: var(--gray-400);
+}
+.filtro-rivales input {
+  border: 0;
+  outline: 0;
+  flex: 1;
+  font: inherit;
+  font-size: 1rem;
+  background: transparent;
+  min-width: 0;
+}
+.indice-letras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.indice-letras a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--gray-100);
+  color: var(--primary-color);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: var(--transition-fast);
+}
+.indice-letras a:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+.sin-resultados {
+  color: var(--gray-500);
+  margin: 10px 0 0;
+}
+.grupo-letra {
+  scroll-margin-top: 110px;
+}
+.grupo-letra h2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.volver-indice {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--gray-500);
+}
+.lista-rivales {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2 260px;
+  column-gap: 24px;
+}
+.lista-rivales li {
+  break-inside: avoid;
+  border-bottom: 1px solid var(--gray-100);
+}
+.lista-rivales a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 4px;
+  color: var(--gray-800);
+}
+.lista-rivales a:hover .nombre-rival {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.nombre-rival {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.nombre-rival small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+.lista-rivales .cuenta {
+  flex-shrink: 0;
+  min-width: 30px;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border-radius: 999px;
+  padding: 2px 8px;
 }
 
 /* ── Navegación anterior / siguiente ───────────────────────── */

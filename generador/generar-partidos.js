@@ -301,10 +301,40 @@ const porRival = new Map();
 partidos.forEach((p) => {
   if (!porTemporada.has(p.tid)) porTemporada.set(p.tid, []);
   porTemporada.get(p.tid).push(p);
-  const k = claveEquipo(p.rival);
-  if (!porRival.has(k)) porRival.set(k, { nombre: p.rival, partidos: [] });
+  // Se agrupa por el nombre ACTUAL del club (js/data-equipos.js), así
+  // "Real Gijón" y "Real Sporting de Gijón" comparten historial.
+  const k = claveEquipo(p.club);
+  if (!porRival.has(k)) porRival.set(k, { nombre: p.club, partidos: [] });
   porRival.get(k).partidos.push(p);
 });
+
+// Otros nombres de cada club según js/data-equipos.js
+const otrosNombresDe = new Map();
+(CLUB_DATA.equiposHistoricos || []).forEach((club) => {
+  if (club && club.nombre) {
+    otrosNombresDe.set(claveEquipo(club.nombre), club.otrosNombres || []);
+  }
+});
+
+// Nombres con los que se jugó contra un club, con sus temporadas:
+// [{ nombre, desde: '1941-42', hasta: '1969-70', n: 30 }, ...]
+function nombresUsados(lista) {
+  const m = new Map();
+  lista.forEach((p) => {
+    const k = claveEquipo(p.rival);
+    if (!m.has(k)) m.set(k, { nombre: p.rival, desde: p.tid, hasta: p.tid, n: 0 });
+    const x = m.get(k);
+    x.n++;
+    if (p.tid < x.desde) x.desde = p.tid;
+    if (p.tid > x.hasta) x.hasta = p.tid;
+  });
+  return [...m.values()].sort((a, b) => a.desde.localeCompare(b.desde));
+}
+function rangoTemporadas(x) {
+  return x.desde === x.hasta
+    ? nombreTemporada(x.desde)
+    : `${nombreTemporada(x.desde)} a ${nombreTemporada(x.hasta)}`;
+}
 const temporadasIds = [...porTemporada.keys()].sort(); // antigua → reciente
 
 const escritos = new Set();
@@ -324,7 +354,8 @@ partidos.forEach((p, i) => {
   const jornadaTxt = etiquetaJornada(p.jornada);
   const compCorta = competicionCorta(p.competicion);
   const goleadores = p.jugadores.filter((j) => !j.esPortero && j.goles > 0);
-  const rival = porRival.get(claveEquipo(p.rival));
+  const rival = porRival.get(claveEquipo(p.club));
+  const nombreAntiguo = p.rival !== p.club; // jugó con un nombre que ya no usa
 
   const textoGoles = goleadores.length
     ? ` Goles del Real Oviedo: ${goleadores
@@ -391,8 +422,9 @@ partidos.forEach((p, i) => {
     .join('\n            ');
 
   const equipoHtml = (nombre) => `<div class="marcador-equipo${nombre === OVIEDO ? ' es-oviedo' : ''}">
-            ${htmlEscudo(nombre)}
-            <span class="nombre">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(nombre)}.html">${e(nombre)}</a>`}</span>
+            ${htmlEscudo(nombre === OVIEDO ? nombre : p.club)}
+            <span class="nombre">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(p.club)}.html">${e(nombre)}</a>`}</span>
+            ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">hoy ${e(p.club)}</span>` : ''}
           </div>`;
 
   const cuerpo = `
@@ -449,7 +481,7 @@ partidos.forEach((p, i) => {
           <h2>Más partidos</h2>
           <ul class="lista-simple">
             <li><a href="${slugTemporada(p.tid)}.html">Todos los partidos de la temporada ${e(temporadaNom)}</a></li>
-            <li><a href="${slugRival(p.rival)}.html">Historial contra ${e(p.rival)} (${rival.partidos.length} ${rival.partidos.length === 1 ? 'partido' : 'partidos'})</a></li>
+            <li><a href="${slugRival(p.club)}.html">Historial contra ${e(p.club)} (${rival.partidos.length} ${rival.partidos.length === 1 ? 'partido' : 'partidos'})</a></li>
           </ul>
         </section>
 
@@ -623,10 +655,33 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
   const enCasa = lista.filter((p) => p.oviedoLocal);
   const fuera = lista.filter((p) => !p.oviedoLocal);
   const ultimo = lista[lista.length - 1];
-  const titulo = `Real Oviedo vs ${nombre}: historial y resultados | Sangre Carbayona`;
+  const usados = nombresUsados(lista);
+  const usadosAntiguos = usados.filter((x) => claveEquipo(x.nombre) !== claveEquipo(nombre));
+  // Otros nombres del club que todavía no aparecen en ningún partido
+  // de los datos (se muestran como "también conocido como").
+  const otros = (otrosNombresDe.get(claveEquipo(nombre)) || []).filter(
+    (n) => !usados.some((x) => claveEquipo(x.nombre) === claveEquipo(n)),
+  );
+  const entreParentesis = usadosAntiguos.length
+    ? ` (${usadosAntiguos.map((x) => x.nombre).join(', ')})`
+    : '';
+  const titulo = `Real Oviedo vs ${nombre}${entreParentesis}: historial y resultados | Sangre Carbayona`;
   const descripcion =
-    `Historial del Real Oviedo contra ${nombre}: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} (${r.v} victorias, ${r.e} empates, ${r.d} derrotas, ${r.gf}-${r.gc} en goles). ` +
+    `Historial del Real Oviedo contra ${nombre}${usadosAntiguos.length ? `, también como ${usadosAntiguos.map((x) => x.nombre).join(' y ')}` : ''}: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} (${r.v} victorias, ${r.e} empates, ${r.d} derrotas, ${r.gf}-${r.gc} en goles). ` +
     `Último enfrentamiento: ${ultimo.local} ${marcador(ultimo)} ${ultimo.visitante} (${fechaCorta(ultimo.fecha)}).`;
+
+  const bloqueNombres =
+    usados.length > 1 || otros.length
+      ? `
+        <section class="bloque">
+          <h2>Nombres del club</h2>
+          ${usados.length > 1 ? `<p>Contra el Real Oviedo ha jugado con ${usados.length} nombres distintos:</p>
+          <ul class="lista-simple">
+            ${usados.map((x) => `<li><strong>${e(x.nombre)}</strong> · ${e(rangoTemporadas(x))} (${x.n} ${x.n === 1 ? 'partido' : 'partidos'})</li>`).join('\n            ')}
+          </ul>` : ''}
+          ${otros.length ? `<p class="nota">También conocido como: ${otros.map((n) => e(n)).join(', ')}.</p>` : ''}
+        </section>`
+      : '';
 
   const cuerpo = `
         <section class="bloque">
@@ -642,6 +697,7 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
           ${htmlResumen(r)}
           <p class="nota">En casa: ${enCasa.length} partidos (${resumenNumeros(enCasa).v} victorias). Fuera: ${fuera.length} partidos (${resumenNumeros(fuera).v} victorias). Datos desde la temporada ${nombreTemporada(temporadasIds[0])}.</p>
         </section>
+${bloqueNombres}
 
         <section class="bloque">
           <h2>Todos los partidos</h2>
@@ -662,16 +718,134 @@ rivalesOrdenados.forEach(({ nombre, partidos: lista }) => {
           '@type': 'CollectionPage',
           name: `Real Oviedo contra ${nombre}`,
           url: urlAbsoluta(slug),
+          about: {
+            '@type': 'SportsTeam',
+            name: nombre,
+            ...(usadosAntiguos.length || otros.length
+              ? { alternateName: [...usadosAntiguos.map((x) => x.nombre), ...otros] }
+              : {}),
+          },
         },
       ],
-      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: `Contra ${nombre}` }],
+      migas: [
+        MIGA_INICIO,
+        MIGA_PARTIDOS,
+        { nombre: 'Rivales', href: 'rivales.html', url: urlAbsoluta('rivales') },
+        { nombre: `Contra ${nombre}` },
+      ],
       h1: `Real Oviedo vs ${nombre}`,
-      subtitulo: `Historial: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} desde ${nombreTemporada(lista[0].tid)}`,
+      subtitulo: `Historial: ${r.pj} ${r.pj === 1 ? 'partido' : 'partidos'} desde ${nombreTemporada(lista[0].tid)}${usadosAntiguos.length ? ` · También como ${usadosAntiguos.map((x) => x.nombre).join(', ')}` : ''}`,
       cuerpo,
     }),
   );
 });
 console.log(`  ✔ ${rivalesOrdenados.length} páginas de rival`);
+
+// ═════════════════════════════════════════════════════════════
+// 3b. ÍNDICE DE RIVALES DE LA A A LA Z (/partidos/rivales.html)
+// ═════════════════════════════════════════════════════════════
+// Se ordena ignorando prefijos como "C.D.", "U.D.", "Real"... para que
+// "C.D. Tenerife" salga en la T y no todos amontonados en la C.
+const RIVALES_EN_PORTADA = 12;
+const PREFIJOS_ORDEN = new Set([...PREFIJOS, 'real', 'sad', 'ud', 'club']);
+function nombreParaOrdenar(nombre) {
+  const palabras = C.slugTexto(nombre).split('-').filter(Boolean);
+  const i = palabras.findIndex((p) => !PREFIJOS_ORDEN.has(p));
+  return (i === -1 ? palabras : palabras.slice(i)).join(' ');
+}
+{
+  const conOrden = rivalesOrdenados.map((rv) => {
+    const orden = nombreParaOrdenar(rv.nombre);
+    const letra = /^[a-z]/.test(orden) ? orden[0].toUpperCase() : '#';
+    const antiguos = nombresUsados(rv.partidos)
+      .map((x) => x.nombre)
+      .filter((n) => claveEquipo(n) !== claveEquipo(rv.nombre));
+    return { ...rv, orden, letra, antiguos };
+  });
+  conOrden.sort((a, b) => a.orden.localeCompare(b.orden, 'es'));
+  const letras = [...new Set(conOrden.map((x) => x.letra))];
+  const titulo = `Rivales del Real Oviedo de la A a la Z: historial contra cada equipo | Sangre Carbayona`;
+  const descripcion = `Los ${conOrden.length} equipos contra los que ha jugado el Real Oviedo desde ${nombreTemporada(temporadasIds[0])}, ordenados alfabéticamente, con el historial de partidos contra cada uno.`;
+
+  const cuerpo = `
+        <section class="bloque">
+          <p class="texto-intro">${e(descripcion)}</p>
+          <label class="filtro-rivales">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="search" id="filtroRivales" placeholder="Buscar rival..." aria-label="Buscar rival" autocomplete="off" />
+          </label>
+          <nav class="indice-letras" id="indice" aria-label="Índice alfabético">
+            ${letras.map((l) => `<a href="#letra-${l === '#' ? 'otros' : l}">${l}</a>`).join('')}
+          </nav>
+          <p class="sin-resultados" id="sinResultados" hidden>Ningún rival coincide con la búsqueda.</p>
+        </section>
+
+        ${letras
+          .map(
+            (l) => `<section class="bloque grupo-letra" id="letra-${l === '#' ? 'otros' : l}">
+          <h2>${l}<a class="volver-indice" href="#indice">↑ Índice</a></h2>
+          <ul class="lista-rivales">
+            ${conOrden
+              .filter((x) => x.letra === l)
+              .map(
+                (x) =>
+                  `<li data-buscar="${e([x.nombre, ...x.antiguos, ...(otrosNombresDe.get(claveEquipo(x.nombre)) || [])].map((n) => C.slugTexto(n).replace(/-/g, ' ')).join(' | '))}"><a href="${slugRival(x.nombre)}.html"><span class="nombre-rival">${e(x.nombre)}${x.antiguos.length ? `<small>antes ${e(x.antiguos.join(', '))}</small>` : ''}</span><span class="cuenta">${x.partidos.length}</span></a></li>`,
+              )
+              .join('\n            ')}
+          </ul>
+        </section>`,
+          )
+          .join('\n\n        ')}
+
+        <script>
+          // Filtro instantáneo (opcional: sin JavaScript se ve la lista completa)
+          (function () {
+            var input = document.getElementById('filtroRivales');
+            if (!input) return;
+            var norm = function (t) {
+              return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+            };
+            input.addEventListener('input', function () {
+              var q = norm(input.value);
+              var hay = false;
+              document.querySelectorAll('.grupo-letra').forEach(function (g) {
+                var visibles = 0;
+                g.querySelectorAll('li').forEach(function (li) {
+                  var ok = !q || li.getAttribute('data-buscar').indexOf(q) !== -1;
+                  li.hidden = !ok;
+                  if (ok) visibles++;
+                });
+                g.hidden = visibles === 0;
+                if (visibles) hay = true;
+              });
+              document.getElementById('sinResultados').hidden = hay;
+              document.getElementById('indice').hidden = !!q;
+            });
+          })();
+        </script>`;
+
+  escribir(
+    'rivales',
+    pagina({
+      titulo,
+      descripcion,
+      slug: 'rivales',
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Rivales del Real Oviedo',
+          url: urlAbsoluta('rivales'),
+        },
+      ],
+      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: 'Rivales' }],
+      h1: 'Rivales del Real Oviedo',
+      subtitulo: `${conOrden.length} equipos de la A a la Z`,
+      cuerpo,
+    }),
+  );
+  console.log('  ✔ índice de rivales (A-Z)');
+}
 
 // ═════════════════════════════════════════════════════════════
 // 4. PORTADA DE RESULTADOS (/partidos/index.html)
@@ -713,15 +887,18 @@ console.log(`  ✔ ${rivalesOrdenados.length} páginas de rival`);
         </section>
 
         <section class="bloque">
-          <h2>Por rival (${rivalesOrdenados.length})</h2>
+          <h2>Rivales más habituales</h2>
           <div class="rejilla-enlaces">
-            ${rivalesOrdenados
+            ${[...rivalesOrdenados]
+              .sort((a, b) => b.partidos.length - a.partidos.length || a.nombre.localeCompare(b.nombre, 'es'))
+              .slice(0, RIVALES_EN_PORTADA)
               .map(
                 ({ nombre, partidos: l }) =>
                   `<a href="${slugRival(nombre)}.html"><strong>${e(nombre)}</strong><span>${l.length} ${l.length === 1 ? 'partido' : 'partidos'}</span></a>`,
               )
               .join('\n            ')}
           </div>
+          <a class="boton-ver-todos" href="rivales.html">Ver los ${rivalesOrdenados.length} rivales de la A a la Z →</a>
         </section>`;
 
   escribir(

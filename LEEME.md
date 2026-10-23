@@ -629,6 +629,9 @@ JavaScript— para que Google las pueda leer:
   el menú Competiciones y en el footer).
 - `partidos/temporada-2014-15.html` → una por temporada: resumen,
   partidos, entrenadores y plantilla.
+- `partidos/rivales.html` → todos los rivales de la A a la Z, con
+  índice de letras y buscador (la portada solo muestra los 12 más
+  habituales).
 - `partidos/rival-real-sporting-de-gijon.html` → historial contra cada
   rival.
 - `partidos/real-oviedo-cd-tenerife-2024-11-17.html` → una por partido:
@@ -647,6 +650,26 @@ común está en `generador/partidos-comun.js`.
 
 No edites los HTML de `/partidos/`: se borran y se reescriben enteros
 cada vez que se genera.
+
+### Clubes que cambiaron de nombre — `js/data-equipos.js`
+
+Si un rival jugó con otro nombre en el pasado (por ejemplo, el Sporting
+como "Real Gijón"), añádelo en `js/data-equipos.js`:
+
+```js
+{
+  nombre: 'Real Sporting de Gijón',      // nombre actual
+  otrosNombres: ['Real Gijón', 'Sporting de Gijón'],
+},
+```
+
+En cada partido se sigue viendo el nombre de esa época (con un "hoy
+Real Sporting de Gijón" debajo), pero el historial contra el rival
+junta todos los partidos bajo el nombre actual y muestra con qué
+nombres se jugó y en qué temporadas. El buscador de
+`partidos/rivales.html` también encuentra al club por sus nombres
+antiguos. No importan tildes, mayúsculas ni puntos, y los filiales
+("... B") siguen siendo equipos aparte.
 
 ---
 

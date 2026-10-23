@@ -35,6 +35,7 @@ const DATA_FILES = [
   'data-historico.js',
   'data-utils.js',
 ].map((f) => path.join(__dirname, '../js', f));
+const EQUIPOS_FILE = path.join(__dirname, '../js/data-equipos.js');
 
 // Carga los archivos de datos en un "navegador simulado", igual que
 // generar.js, y devuelve window.CLUB_DATA.
@@ -61,6 +62,18 @@ function cargarClubData() {
   if (!sandbox.window.CLUB_DATA) {
     console.error('❌ ERROR: no se encontró window.CLUB_DATA.');
     process.exit(1);
+  }
+  // Nombres históricos de clubes (opcional): si el archivo no existe,
+  // cada nombre se trata como un club distinto.
+  if (fs.existsSync(EQUIPOS_FILE)) {
+    try {
+      vm.runInContext(fs.readFileSync(EQUIPOS_FILE, 'utf-8'), sandbox, {
+        filename: 'data-equipos.js',
+      });
+    } catch (e) {
+      console.error('❌ ERROR ejecutando data-equipos.js:', e.message);
+      process.exit(1);
+    }
   }
   return sandbox.window.CLUB_DATA;
 }
@@ -354,6 +367,17 @@ function construirPartidos(CLUB_DATA) {
     return [...m.entries()].sort((a, b) => b[1] - a[1])[0][0];
   };
 
+  // Clubes con varios nombres (js/data-equipos.js): cualquier nombre
+  // de la lista → nombre actual del club.
+  const clubPorClave = new Map();
+  (CLUB_DATA.equiposHistoricos || []).forEach((club) => {
+    if (!club || !club.nombre) return;
+    [club.nombre, ...(club.otrosNombres || [])].forEach((n) => {
+      clubPorClave.set(claveEquipo(n), club.nombre);
+    });
+  });
+  const clubDe = (nombre) => clubPorClave.get(claveEquipo(nombre)) || nombre;
+
   const partidos = [];
 
   for (const [, g] of grupos) {
@@ -376,7 +400,8 @@ function construirPartidos(CLUB_DATA) {
       local: oviedoLocal ? OVIEDO : rival,
       visitante: oviedoLocal ? rival : OVIEDO,
       oviedoLocal,
-      rival,
+      rival, // nombre del rival en ESE partido (puede ser un nombre antiguo)
+      club: clubDe(rival), // nombre actual del club, para agrupar el historial
       golesLocal,
       golesVisitante,
       penaltisLocal: moda(g.copias.map((p) => p.penaltisLocal ?? null)),

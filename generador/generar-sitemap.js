@@ -269,8 +269,8 @@ function generarSitemap() {
   const porRival = {};
   partidos.forEach((p) => {
     (porTemporada[p.tid] = porTemporada[p.tid] || []).push(p);
-    const k = PC.claveEquipo(p.rival);
-    if (!porRival[k]) porRival[k] = { nombre: p.rival, partidos: [] };
+    const k = PC.claveEquipo(p.club);
+    if (!porRival[k]) porRival[k] = { nombre: p.club, partidos: [] };
     porRival[k].partidos.push(p);
   });
   // Contenido "resumido" de cada página para decidir su lastmod: si
@@ -289,6 +289,12 @@ function generarSitemap() {
       contenido: partidos.map((p) => [p.slug, p.golesLocal, p.golesVisitante]),
       changefreq: 'weekly',
       priority: '0.8',
+    },
+    {
+      slug: 'rivales',
+      contenido: Object.values(porRival).map((r) => [r.nombre, r.partidos.length]),
+      changefreq: 'monthly',
+      priority: '0.7',
     },
     ...Object.entries(porTemporada).map(([tid, lista]) => ({
       slug: PC.slugTemporada(tid),
