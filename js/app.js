@@ -671,11 +671,21 @@ const App = {
 
     const jugados = partidosOviedo.filter((p) => p.jugado);
     const ultimo = jugados.length > 0 ? jugados[jugados.length - 1] : null;
-    // Los partidos aplazados siguen sin jugarse, pero no son "el próximo"
-    // hasta que tengan nueva fecha (ver también js/calendario.js).
-    const proximo = partidosOviedo.find((p) => !p.jugado && !p.aplazado) || null;
+    // El próximo partido puede ser de liga o de Copa del Rey/otra
+    // eliminatoria (ver partidosEspeciales en js/calendario.js, que ya
+    // compara fechas reales para decidir cuál toca antes). Se reutiliza
+    // esa misma función en vez de recalcularlo solo con enfrentamientos
+    // de liga, que ignoraría la Copa por completo.
+    const proximo = window.getProximoPartidoGeneral
+      ? window.getProximoPartidoGeneral()
+      : partidosOviedo.find((p) => !p.jugado && !p.aplazado) || null;
 
     const getEscudo = (nombre) => {
+      // window.getEscudoEquipo (expuesto por js/calendario.js) conoce
+      // también los escudos de rivales de Copa que no juegan en la
+      // categoría actual (ver escudosExtra ahí) — sin esto, el escudo
+      // del rival de Copa saldría roto/vacío.
+      if (window.getEscudoEquipo) return window.getEscudoEquipo(nombre);
       const eq = equipos.find((e) => e.nombre === nombre);
       return eq ? eq.escudo : '';
     };
@@ -772,12 +782,22 @@ const App = {
       const equipoIzq = proximo.equipo1;
       const equipoDer = proximo.equipo2;
 
-      const fechaStr = `${t('jornada_abrev')}${proximo.jornada}`;
+      // Los especiales (Copa del Rey, etc.) no tienen "jornada" — llevan
+      // su propia competición y ronda (ver partidosEspeciales en
+      // js/calendario.js), así que la cabecera debe reflejar esas en
+      // vez de forzar la competición/jornada de liga.
+      const esEspecial = !!proximo.competicion;
+      const compTexto = esEspecial
+        ? proximo.competicion
+        : CLUB_DATA.competicionActual;
+      const fechaStr = esEspecial
+        ? proximo.ronda || ''
+        : `${t('jornada_abrev')}${proximo.jornada}`;
 
       html += `
         <div class="hero-block">
             <div class="hero-label-row">
-                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> ${CLUB_DATA.competicionActual}</span>
+                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> ${compTexto}</span>
                 <span class="hero-jornada-badge">${fechaStr}</span>
             </div>
             <div class="hero-scoreboard">
@@ -908,7 +928,9 @@ const App = {
     // primera competición, forzamos aquí que la liga vaya siempre primero.
     const esCompeticionLiga = (nombre) => {
       const n = (nombre || '').toLowerCase();
-      return n.includes('división') || n.includes('division') || n.includes('liga');
+      return (
+        n.includes('división') || n.includes('division') || n.includes('liga')
+      );
     };
     const competiciones = Object.keys(statsData.desglose);
     const idxLiga = competiciones.findIndex(esCompeticionLiga);
@@ -1309,7 +1331,11 @@ const App = {
       ? `${baseUrl}/fichas/${fichaSlug}.html`
       : window.location.href;
     const shareText = `Ficha de ${jugador.nombreCompleto} - ${CLUB_DATA.club.nombreCorto}`;
-    const shareLinks = generarEnlacesCompartir(pageUrl, shareText, 'player-social');
+    const shareLinks = generarEnlacesCompartir(
+      pageUrl,
+      shareText,
+      'player-social',
+    );
 
     // DIFERENCIAR ESTADÍSTICAS PARA PORTEROS EN LA FICHA
     const esPorteroPos = esPortero(jugador);
@@ -1459,7 +1485,11 @@ const App = {
       : window.location.href;
 
     const shareText = `Ficha de ${nombre} - ${CLUB_DATA.club.nombreCorto}`;
-    const shareLinks = generarEnlacesCompartir(pageUrl, shareText, 'player-social');
+    const shareLinks = generarEnlacesCompartir(
+      pageUrl,
+      shareText,
+      'player-social',
+    );
 
     container.innerHTML = `
       <div class="player-photo-container">
@@ -3676,7 +3706,8 @@ const App = {
     CLUB_DATA.juegos.forEach((juego) => {
       // Tu CSS usa la clase 'highlight-game' para los juegos destacados
       const specialClass = juego.esEspecial ? 'highlight-game' : '';
-      const titulo = (juego.id && t('juego_' + juego.id + '_titulo')) || juego.titulo;
+      const titulo =
+        (juego.id && t('juego_' + juego.id + '_titulo')) || juego.titulo;
       const descripcion =
         (juego.id && t('juego_' + juego.id + '_desc')) || juego.descripcion;
       const badge = juego.esEspecial
@@ -3709,11 +3740,12 @@ const App = {
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
-      const shareLinks = generarEnlacesCompartir(videoUrl, shareText, 'video-action-btn', [
-        'whatsapp',
-        'twitter',
-        'telegram',
-      ]);
+      const shareLinks = generarEnlacesCompartir(
+        videoUrl,
+        shareText,
+        'video-action-btn',
+        ['whatsapp', 'twitter', 'telegram'],
+      );
       html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions">${shareLinks}</div></div>`;
     });
     container.innerHTML = html;
