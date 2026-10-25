@@ -22,6 +22,7 @@
       equipo2: 'C.D. Numancia',
       fecha: '2026-10-28',
       hora: '20:00',
+      aproximada: false,
       goles1: null,
       goles2: null,
     },
