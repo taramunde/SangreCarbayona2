@@ -364,6 +364,14 @@
   letter-spacing: 0.4px;
 }
 
+/* Hora del partido (solo si ya se conoce) */
+.cal-hora {
+  font-size: 0.72em;
+  color: #556;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
 /* Jornada oculta por filtro */
 .cal-match-card.oculto {
   display: none;

@@ -362,6 +362,7 @@
             centroHTML = `
                             <div class="cal-vs">VS</div>
                             <span class="cal-localidad">${esLocal ? t('en_casa') : t('fuera')}</span>
+                            ${p.hora ? `<span class="cal-hora">${p.hora}</span>` : ''}
                         `;
           }
 
