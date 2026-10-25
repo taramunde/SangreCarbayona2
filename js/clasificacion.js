@@ -779,7 +779,7 @@
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'Real Sporting de Gijón',
-      goles1: 3,
+      goles1: 4,
       goles2: 0,
     },
     {
