@@ -793,6 +793,12 @@ const App = {
       const fechaStr = esEspecial
         ? proximo.ronda || ''
         : `${t('jornada_abrev')}${proximo.jornada}`;
+      // Fecha/hora real del partido (si ya se conoce), con el mismo
+      // formateo que usan las tarjetas de js/calendario.js — se
+      // reutiliza esa función en vez de duplicar aquí el formateo.
+      const fechaHoraTexto = window.getEtiquetaFecha
+        ? window.getEtiquetaFecha(proximo)
+        : '';
 
       html += `
         <div class="hero-block">
@@ -821,7 +827,7 @@ const App = {
                 </div>
             </div>
             <div class="hero-badge-result hero-badge--proximo">
-                <i class="fas fa-calendar-alt"></i> ${t('proximo_partido_label')} · ${esLocal ? t('en_casa') : t('fuera')}
+                <i class="fas fa-calendar-alt"></i> ${t('proximo_partido_label')} · ${esLocal ? t('en_casa') : t('fuera')}${fechaHoraTexto ? ` · ${fechaHoraTexto}` : ''}
             </div>
         </div>`;
     }

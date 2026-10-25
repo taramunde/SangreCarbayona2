@@ -615,6 +615,10 @@
   // tiene que hablar la alineación sin tener que repetir el rival/
   // fecha a mano en data-alineacion.js.
   window.getProximoPartidoGeneral = getProximoPartidoGeneral;
+  // Mismo formateo de fecha/hora (con "(aprox.)" cuando corresponda) que
+  // ya usan las tarjetas del calendario, para que el widget "hero" de
+  // index.html (js/app.js) no tenga que duplicar esta lógica.
+  window.getEtiquetaFecha = etiquetaFecha;
 
   // ── Estilos inline para el widget home ──────────────
   const homeStyles = document.createElement('style');
