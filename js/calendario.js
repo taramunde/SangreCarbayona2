@@ -60,9 +60,7 @@
   // juega en la misma categoría y no está en la lista de "equipos"), no
   // se pone ningún <img> en vez de dejar un icono roto.
   function imgEscudo(url, alt, claseCss) {
-    return url
-      ? `<img src="${url}" alt="${alt}" class="${claseCss}">`
-      : '';
+    return url ? `<img src="${url}" alt="${alt}" class="${claseCss}">` : '';
   }
 
   // Fecha + hora reales de un partido especial, formateadas en el idioma
@@ -148,6 +146,18 @@
   // sentido seguir marcándolo "aplazado").
   function getProximoPartido(partidos) {
     return partidos.find((p) => !p.jugado && !p.aplazado) || null;
+  }
+
+  // getPartidosOviedo()/getPartidosEspeciales() reconstruyen los objetos
+  // con .map() cada vez que se llaman, así que dos partidos "iguales"
+  // vistos en llamadas distintas nunca son el === (misma referencia).
+  // Hace falta comparar por contenido para saber si una tarjeta ya
+  // renderizada es el partido que devolvió getProximoPartidoGeneral().
+  function esMismoPartido(a, b) {
+    if (!a || !b) return false;
+    return (
+      a.fecha === b.fecha && a.equipo1 === b.equipo1 && a.equipo2 === b.equipo2
+    );
   }
 
   // ── Próximo partido contando también Copa/otras eliminatorias ─
@@ -291,7 +301,9 @@
           new Date(especialesPendientes[0].fecha) < new Date(fechaJornada)
         ) {
           const esp = especialesPendientes.shift();
-          container.appendChild(crearBloqueEspecial(esp, proximo === esp));
+          container.appendChild(
+            crearBloqueEspecial(esp, esMismoPartido(esp, proximo)),
+          );
         }
 
         const block = document.createElement('div');
@@ -314,7 +326,7 @@
           const escudoO = getEscudo(OVIEDO);
           const escudoR = getEscudo(rival);
           const estado = getEstado(p);
-          const esProximo = proximo && p === proximo;
+          const esProximo = esMismoPartido(p, proximo);
 
           // Datos visuales del resultado
           let centroHTML;
@@ -388,7 +400,9 @@
 
     // Especiales cuya fecha cae después de la última jornada de liga.
     especialesPendientes.forEach((esp) => {
-      container.appendChild(crearBloqueEspecial(esp, proximo === esp));
+      container.appendChild(
+        crearBloqueEspecial(esp, esMismoPartido(esp, proximo)),
+      );
     });
 
     // Mensaje vacío (usado por filtros)
