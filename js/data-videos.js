@@ -75,4 +75,11 @@ CLUB_DATA.videos = [
     fecha: '2026-10-12',
     videoId: 'Ya1Bhc3gXH0',
   },
+  {
+    id: 11,
+    jornada: 11,
+    titulo: 'U.D. Almería Vs Real Oviedo',
+    fecha: '2026-10-24',
+    videoId: 'rZQTOwleG1k',
+  },
 ];
