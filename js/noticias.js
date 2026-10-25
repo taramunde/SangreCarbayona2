@@ -46,22 +46,22 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/18/real-oviedo-reencuentra-triunfo-domicilio/00031792328689780996946.htm',
-    titulo: 'El Real Oviedo se reencuentra con el triunfo a domicilio.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/24/real-oviedo-saca-orgullo-lleva-punto-almeria/00031792871358941698273.htm',
+    titulo: 'El Real Oviedo saca el orgullo y se lleva un punto de Almería.',
     descripcion:
-      'Los azules dominaron al Ceuta en la mayor parte del partido y, aunque sufrieron demasiado al final (1-2), se llevaron los tres puntos con goles de Samu Rodríguez y Carlos Domínguez. El Oviedo suma 17 puntos y está en playoff.',
-    imagen: 'img/varios/J10LVA.webp',
-    fecha: '18 octubre 2026',
+      'Los azules fueron perdiendo 2-0 al descnaso tras dos errores defensivos y en la recta final empataron con un doblete de Jacobo González (2-2).',
+    imagen: 'img/varios/J11LVA.webp',
+    fecha: '24 octubre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/10/18/jekyll-ganar-fuera-casa-victoria-135467800.html',
+    url: 'https://www.lne.es/real-oviedo/2026/10/24/minutos-jacobo-derribar-fortaleza-lider-135723127.html',
     titulo:
-      'Jekyll también sabe ganar fuera de casa: victoria del Oviedo en Ceuta (1-2).',
+      'Dos minutos de Jacobo para derribar la fortaleza del líder: El Real Oviedo empata sobre la bocina en Almería (2-2).',
     descripcion:
-      'Dos acciones a balón parado acercan un triunfo sufrido en los últimos minutos para los de Calero.',
-    imagen: 'img/varios/J10LNE.webp',
-    fecha: '18 octubre 2026',
+      'El conjunto azul logra igualar un partido que parecía perdido tras un mal inicio defensivo y una notable mejoría táctica con la entrada de extremos en la segunda mitad.',
+    imagen: 'img/varios/J11LNE.webp',
+    fecha: '24 octubre 2026',
   },
   {
     medio: 'elcomercio',
@@ -70,8 +70,8 @@ const NOTICIAS_DATA = [
       'Nueva victoria del Real Oviedo en Ceuta, pero con luces y sombras.',
     descripcion:
       'Sufrimiento inesperado. El conjunto de Calero encadenó su segunda victoria ante el Ceuta en un encuentro que parecía mucho más fácil.',
-    imagen: 'img/varios/J10EC.webp',
-    fecha: '18 octubre 2026',
+    imagen: 'img/varios/J11EC.webp',
+    fecha: '24 octubre 2026',
   },
   {
     medio: 'killerasturias',
@@ -79,8 +79,8 @@ const NOTICIAS_DATA = [
     titulo: 'La Crónica: El Oviedo sufre, resiste y gana en Ceuta.',
     descripcion:
       'Los azules se impusieron al conjunto caballa (1-2) con goles de Samu Rodríguez y Carlos Domínguez. En el tramo final, el tanto ceutí puso en aprietos a los carbayones.',
-    imagen: 'img/varios/J10KA.webp',
-    fecha: '18 octubre 2026',
+    imagen: 'img/varios/J11KA.webp',
+    fecha: '24 octubre 2026',
   },
 ];
 
