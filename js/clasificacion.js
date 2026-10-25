@@ -752,8 +752,8 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'C.D. Eldense',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'U.D. Almería',
@@ -773,14 +773,14 @@
     {
       equipo1: 'Cádiz C.F.',
       equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 1,
     },
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'Real Sporting de Gijón',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'Córdoba C.F.',
@@ -815,8 +815,8 @@
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'C.D. Tenerife',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
 
     // Jornada 12 (01/11/2026)
