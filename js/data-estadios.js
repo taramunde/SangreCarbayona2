@@ -129,6 +129,14 @@ CLUB_DATA.estadios = [
     estadio: 'Instalaciones Zubieta',
     ciudad: 'San Sebastián',
   },
+  // Rival de Copa del Rey (no es de Segunda División): se deja en la
+  // lista para que también salga en "Cómo llegar".
+  {
+    equipo: 'C.D. Numancia',
+    escudo: 'img/escudos/Numancia.webp',
+    estadio: 'Nuevo Estadio Los Pajaritos',
+    ciudad: 'Soria',
+  },
   {
     equipo: 'C.E. Sabadell',
     escudo: 'img/escudos/Sabadell.webp',
