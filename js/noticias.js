@@ -65,20 +65,19 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/nueva-victoria-real-oviedo-ceuta-luces-sombras-20261018165636-nt.html',
-    titulo:
-      'Nueva victoria del Real Oviedo en Ceuta, pero con luces y sombras.',
+    url: 'https://www.elcomercio.es/real-oviedo/supense-epica-real-oviedo-salvar-punto-jacobo-almeria-20261024235058-nt.html',
+    titulo: 'Suspense y épica en el Real Oviedo para salvar un punto merecido.',
     descripcion:
-      'Sufrimiento inesperado. El conjunto de Calero encadenó su segunda victoria ante el Ceuta en un encuentro que parecía mucho más fácil.',
+      'Tablas. Jacobo entró a los 86 minutos y en su primera acción marcó el primer gol, luego un disparo suyo lo desvió Pulido para anotar el empate.',
     imagen: 'img/varios/J11EC.webp',
     fecha: '24 octubre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-oviedo-sufre-pero-dobla-la-apuesta-en-el-murube',
-    titulo: 'La Crónica: El Oviedo sufre, resiste y gana en Ceuta.',
+    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-se-levanta-de-la-lona-en-almeria',
+    titulo: 'La Crónica: El Oviedo se levanta de la lona en Almería.',
     descripcion:
-      'Los azules se impusieron al conjunto caballa (1-2) con goles de Samu Rodríguez y Carlos Domínguez. En el tramo final, el tanto ceutí puso en aprietos a los carbayones.',
+      'Un doblete de Jacobo en los minutos 87 y 89 rescata a los azules de un 2-0 en un partido en el que generaron ocasiones de sobra para no marcharse de vacío (2-2).',
     imagen: 'img/varios/J11KA.webp',
     fecha: '24 octubre 2026',
   },
