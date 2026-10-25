@@ -228,7 +228,7 @@
     block.className = 'cal-jornada-block';
     block.innerHTML = `
             <div class="cal-jornada-header">
-                <span class="cal-jornada-num">${p.competicion} · ${p.ronda}</span>
+                <span class="cal-jornada-num">${p.competicion} · ${p.ronda}${etiquetaFecha(p) ? ` · ${etiquetaFecha(p)}` : ''}</span>
                 <span class="cal-jornada-line"></span>
             </div>
         `;
