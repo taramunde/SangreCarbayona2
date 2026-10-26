@@ -767,8 +767,8 @@
     {
       equipo1: 'F.C. Andorra',
       equipo2: 'Burgos C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'Cádiz C.F.',
