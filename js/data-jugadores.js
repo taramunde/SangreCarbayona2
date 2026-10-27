@@ -3160,6 +3160,51 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'daniel-hedrera-lobaton': {
+    nombre: 'Daniel',
+    apellidos: 'Hedrera Lobatón',
+    nombreCompleto: 'Daniel Hedrera Lobatón',
+    apodo: 'Dani Hedrera',
+    posicion: 'Defensa',
+    posicionCorta: 'DC',
+    altura: 1.86,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Jerez de La Frontera',
+    provinciaNacimiento: 'Cádiz',
+    fechaNacimiento: '1983-08-15',
+    imagen: 'https://i.postimg.cc/P5hTC409/Dani-Hedrera-PNG.webp',
+  },
+
+  'nicolas-alvarez-garcia': {
+    nombre: 'Nicolás',
+    apellidos: 'Álvarez García',
+    nombreCompleto: 'Nicolás Álvarez García',
+    apodo: 'Nico',
+    posicion: 'Defensa',
+    posicionCorta: 'DC',
+    altura: 0,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1991-04-03',
+    imagen: 'https://i.postimg.cc/bJQjYS3p/Nico-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U16',
+          partidos: 0,
+          goles: 0,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {
