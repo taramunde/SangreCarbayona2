@@ -8990,6 +8990,48 @@ CLUB_DATA.entrenadorMaestro = {
     fechaNacimiento: '1970-05-03',
     imagen: 'https://i.ibb.co/hr0rsSG/Jos-Manuel-entrenador-PNG.webp',
   },
+
+  'julio-raul-gonzalez-perez': {
+    nombre: 'Julio Raúl',
+    apellidos: 'González Pérez',
+    nombreCompleto: 'Julio Raúl González Pérez',
+    apodo: 'Raúl González',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Avilés',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1952-10-23',
+    imagen: 'https://i.postimg.cc/Qt8xPrQX/Raul-Gonzalez-(entrenador)-PNG.webp',
+  },
+
+  'fermin-alvarez-rodriguez': {
+    nombre: 'Fermín',
+    apellidos: 'Álvarez Rodríguez',
+    nombreCompleto: 'Fermín Álvarez Rodríguez',
+    apodo: 'Fermín Álvarez',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1973-03-13',
+    imagen: 'https://i.postimg.cc/yYBnbQ5L/Fermin-(entrenador)-PNG.webp',
+  },
+
+  'argimiro-perez-garcia': {
+    nombre: 'Argimiro',
+    apellidos: 'Pérez García',
+    nombreCompleto: 'Argimiro Pérez García',
+    apodo: 'Pichi Lucas',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Camponaraya',
+    provinciaNacimiento: 'León',
+    fechaNacimiento: '1959-03-14',
+    imagen: 'https://i.postimg.cc/J4GtMm90/Pichi-Lucas-(entrenador)-PNG.webp',
+  },
 };
 
 window.CLUB_DATA = CLUB_DATA;
