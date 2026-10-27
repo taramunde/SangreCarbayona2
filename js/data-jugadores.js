@@ -819,6 +819,36 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.ibb.co/ks21hG7y/Samu-Franganillo.webp',
   },
 
+  'ivan-cabrero-serrano': {
+    nombre: 'Iván',
+    apellidos: 'Cabrero Serrano',
+    nombreCompleto: 'Iván Cabrero Serrano',
+    apodo: 'Iván Serrano',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.9,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Santander',
+    provinciaNacimiento: 'Cantabria',
+    fechaNacimiento: '1987-09-22',
+    imagen: 'https://i.postimg.cc/26GFRmgT/Ivan-Serrano-PNG.webp',
+  },
+
+  'jesus-reguillos-moya': {
+    nombre: 'Jesús',
+    apellidos: 'Reguillos Moya',
+    nombreCompleto: 'Jesús Reguillos Moya',
+    apodo: 'Limones',
+    posicion: 'Portero',
+    posicionCorta: 'PO',
+    altura: 1.89,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Daimiel',
+    provinciaNacimiento: 'Ciudad Real',
+    fechaNacimiento: '1986-10-17',
+    imagen: 'https://i.postimg.cc/pr7jRdCQ/Limones-PNG.webp',
+  },
+
   // ── DEFENSAS ──────────────────────────────────────────────
 
   'eric-bertrand-bailly': {
@@ -3059,6 +3089,75 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1986-04-22',
     imagen: 'https://i.ibb.co/8Dp8LFq6/Richi-PNG.webp',
+  },
+
+  'ruben-gonzalez-gonzalez': {
+    nombre: 'Rubén',
+    apellidos: 'González González',
+    nombreCompleto: 'Rubén González González',
+    apodo: 'Rubén González',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: 1.77,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '1985-08-01',
+    imagen: 'https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp',
+  },
+
+  'javier-barral-garcia': {
+    nombre: 'Javier',
+    apellidos: 'Barral García',
+    nombreCompleto: 'Javier Barral García',
+    apodo: 'Javi Barral',
+    posicion: 'Defensa',
+    posicionCorta: 'LI',
+    altura: 1.78,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1981-09-30',
+    imagen: 'https://i.postimg.cc/htH88Xbk/Javi-Barral-PNG.webp',
+  },
+
+  'ander-larrea-murga': {
+    nombre: 'Ander',
+    apellidos: 'Larrea Murga',
+    nombreCompleto: 'Ander Larrea Murga',
+    apodo: 'Larrea',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: 1.7,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Bilbao',
+    provinciaNacimiento: 'Vizcaya',
+    fechaNacimiento: '1989-01-23',
+    imagen: 'https://i.postimg.cc/D09fp3jw/Larrea-PNG.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U17',
+          partidos: 0,
+          goles: 0,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+        {
+          categoria: 'U16',
+          partidos: 3,
+          goles: 0,
+          asistencias: 0,
+          minutos: 219,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
   },
 
   // ── CENTROCAMPISTAS ───────────────────────────────────────
