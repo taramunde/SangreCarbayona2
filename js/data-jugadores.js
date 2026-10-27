@@ -3205,6 +3205,21 @@ CLUB_DATA.jugadoresMaestro = {
     },
   },
 
+  'xavi-vicente-jimenez': {
+    nombre: 'Xavi',
+    apellidos: 'Vicente Jiménez',
+    nombreCompleto: 'Xavi Vicente Jiménez',
+    apodo: 'Xavi',
+    posicion: 'Defensa',
+    posicionCorta: 'LD',
+    altura: '-',
+    nacionalidad: ['Española'],
+    lugarNacimiento: '-',
+    provinciaNacimiento: '-',
+    fechaNacimiento: '2009-01-01',
+    imagen: 'img/jugadores/XaviVicente.webp',
+  },
+
   // ── CENTROCAMPISTAS ───────────────────────────────────────
 
   'alberto-reina-campos': {

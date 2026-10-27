@@ -1343,6 +1343,17 @@ CLUB_DATA.temporadas['2026-27'] = {
       ],
     },
 
+    {
+      id: 'xavi-vicente-jimenez',
+      codigo: 'xavi-vicente-jimenez',
+      dorsal: 35,
+      posicion: 'Lateral Derecho',
+      enClubDesde: '2024',
+      contratoHasta: '2029',
+      stats: {},
+      partidos: [],
+    },
+
     // CENTROCAMPISTAS
 
     {
