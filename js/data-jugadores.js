@@ -8660,6 +8660,21 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '1989-01-27',
     imagen: 'https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp',
   },
+
+  'enzo-cazorla-santirso': {
+    nombre: 'Enzo',
+    apellidos: 'Cazorla Santirso',
+    nombreCompleto: 'Enzo Cazorla Santirso',
+    apodo: 'Enzo Cazorla',
+    posicion: 'Delantero',
+    posicionCorta: 'EI',
+    altura: 1.72,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Oviedo',
+    provinciaNacimiento: 'Asturias',
+    fechaNacimiento: '2009-12-30',
+    imagen: 'img/jugadores/EnzoCazorla.webp',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────

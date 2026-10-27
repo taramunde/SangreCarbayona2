@@ -3288,6 +3288,17 @@ CLUB_DATA.temporadas['2026-27'] = {
         },
       ],
     },
+
+    {
+      id: 'enzo-cazorla-santirso',
+      codigo: 'enzo-cazorla-santirso',
+      dorsal: 34,
+      posicion: 'Extremo Izquierdo',
+      enClubDesde: '2023',
+      contratoHasta: '2028',
+      stats: {},
+      partidos: [],
+    },
   ],
 
   // ENTRENADORES
