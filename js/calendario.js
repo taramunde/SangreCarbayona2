@@ -18,8 +18,8 @@
     {
       competicion: 'Copa del Rey',
       ronda: 'Primera Ronda',
-      equipo1: 'Real Oviedo',
-      equipo2: 'C.D. Numancia',
+      equipo1: 'C.D. Numancia',
+      equipo2: 'Real Oviedo',
       fecha: '2026-10-29',
       hora: '18:00',
       aproximada: false,
