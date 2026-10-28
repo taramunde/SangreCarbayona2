@@ -137,6 +137,12 @@ const CLUB_DATA = {
       fotoPosition: 'center 10%',
       actual: false,
     },
+    {
+      id: '2009-10',
+      nombre: '2009/10',
+      fotoPosition: 'center 10%',
+      actual: false,
+    },
   ],
 
   // ===================================
@@ -146,8 +152,7 @@ const CLUB_DATA = {
     {
       id: 'quiz',
       titulo: 'Quiz Carbayón',
-      descripcion:
-        'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
+      descripcion: 'Demuestra tus conocimientos sobre la historia del Real Oviedo.',
       imagen: 'img/varios/QuizRealOviedo.webp',
       enlace: 'juegos/quiz.html',
       esEspecial: false,
@@ -155,8 +160,7 @@ const CLUB_DATA = {
     {
       id: 'puzzle',
       titulo: 'Puzzle Carbayón',
-      descripcion:
-        'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
+      descripcion: 'Completa los rompecabezas con imágenes históricas del Real Oviedo.',
       imagen: 'img/varios/PuzzleRealOviedo.webp',
       enlace: 'juegos/puzzlecarbayon.html',
       esEspecial: true,
@@ -164,8 +168,7 @@ const CLUB_DATA = {
     {
       id: 'autodefinido',
       titulo: 'Autodefinido Carbayón',
-      descripcion:
-        'Pon a prueba lo que sabes del Real Oviedo con este crucigrama autodefinido.',
+      descripcion: 'Pon a prueba lo que sabes del Real Oviedo con este crucigrama autodefinido.',
       imagen: 'img/varios/AutodefinidoRealOviedo.webp',
       enlace: 'juegos/autodefinido.html',
       esEspecial: false,
