@@ -14,6 +14,17 @@
   // A diferencia de "enfrentamientos" (liga), estos se anuncian de uno en
   // uno cuando se sabe el día del sorteo, así que la fecha (y hora, en
   // cuanto se conozca) se pone aquí directamente a mano.
+  //
+  // Prórroga y penaltis (mismo criterio que los partidos de las fichas):
+  //   - goles1/goles2: el marcador FINAL, contando la prórroga si la hubo
+  //     (los goles de la tanda de penaltis NO van aquí).
+  //   - prorroga: true si se jugó la prórroga (sale la etiqueta "pró.").
+  //   - penaltis1/penaltis2: la tanda de penaltis, si la hubo (equipo1 y
+  //     equipo2, en el mismo orden). Si no hubo penaltis, déjalos en null.
+  //     Con penaltis, el partido cuenta como victoria o derrota según quién
+  //     gane la tanda, no como empate.
+  //   Ejemplo: 1-1 tras la prórroga y 3-4 en los penaltis para el Oviedo:
+  //     goles1: 1, goles2: 1, prorroga: true, penaltis1: 3, penaltis2: 4,
   const partidosEspeciales = [
     {
       competicion: 'Copa del Rey',
@@ -25,6 +36,9 @@
       aproximada: false,
       goles1: null,
       goles2: null,
+      prorroga: false,
+      penaltis1: null,
+      penaltis2: null,
     },
   ];
 
@@ -129,12 +143,34 @@
     return { jugados, ganados, empates, derrotas, gf, gc, pendientes };
   }
 
+  // ── Prórroga / penaltis (partidos de Copa) ───────────
+  function tienePenaltis(p) {
+    return typeof p.penaltis1 === 'number' && typeof p.penaltis2 === 'number';
+  }
+
+  function extrasResultadoHTML(p) {
+    const pen = tienePenaltis(p);
+    if (!p.prorroga && !pen) return '';
+    const aet = p.prorroga
+      ? `<span class="cal-score-aet">${t('prorroga') || 'pró.'}</span>`
+      : '';
+    const pens = pen
+      ? `<span class="cal-score-pens">(${p.penaltis1}-${p.penaltis2} pen.)</span>`
+      : '';
+    return `<div class="cal-resultado-extra">${aet}${pens}</div>`;
+  }
+
   // ── Estado visual del partido ────────────────────────
   function getEstado(p) {
     if (!p.jugado) return p.aplazado ? 'aplazado' : 'pendiente';
     const esLocal = p.equipo1 === OVIEDO;
     const golesO = esLocal ? p.goles1 : p.goles2;
     const golesR = esLocal ? p.goles2 : p.goles1;
+    if (golesO === golesR && tienePenaltis(p)) {
+      const penO = esLocal ? p.penaltis1 : p.penaltis2;
+      const penR = esLocal ? p.penaltis2 : p.penaltis1;
+      if (penO !== penR) return penO > penR ? 'victoria' : 'derrota';
+    }
     if (golesO > golesR) return 'victoria';
     else if (golesO < golesR) return 'derrota';
     else return 'empate';
@@ -215,6 +251,7 @@
       }[estado];
       centroHTML = `
                 <div class="cal-resultado">${p.goles1}<span class="cal-resultado-sep">–</span>${p.goles2}</div>
+                ${extrasResultadoHTML(p)}
                 <span class="cal-resultado-badge ${badgeClass}">${badgeText}</span>
             `;
     } else {

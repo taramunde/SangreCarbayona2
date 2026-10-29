@@ -459,3 +459,34 @@
     justify-content: space-around;
   }
 }
+
+/* Prórroga / penaltis en partidos de Copa (mismo estilo que las fichas) */
+.cal-resultado-extra {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin: 2px 0 4px;
+}
+
+.cal-score-aet {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #7a6200;
+  background: #fff8dc;
+  border: 1px solid #e6d000;
+  border-radius: 4px;
+  padding: 1px 5px;
+  letter-spacing: 0.3px;
+}
+
+.cal-score-pens {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #003da5;
+  background: #e8eeff;
+  border: 1px solid #99b0f0;
+  border-radius: 4px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
