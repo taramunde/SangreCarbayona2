@@ -56,13 +56,13 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/10/24/minutos-jacobo-derribar-fortaleza-lider-135723127.html',
+    url: 'https://www.lne.es/real-oviedo/2026/10/29/pablo-saenz-goti-evitar-derrota-135896236.html',
     titulo:
-      'Dos minutos de Jacobo para derribar la fortaleza del líder: El Real Oviedo empata sobre la bocina en Almería (2-2).',
+      'Ni Pablo Sáenz y ni Goti pueden evitar una derrota sonrojante del Real Oviedo: los azules caen en los penaltis ante el Numancia.',
     descripcion:
-      'El conjunto azul logra igualar un partido que parecía perdido tras un mal inicio defensivo y una notable mejoría táctica con la entrada de extremos en la segunda mitad.',
-    imagen: 'img/varios/J11LNE.webp',
-    fecha: '24 octubre 2026',
+      'Los hombres de Calero no logran superar la barrera de la primera ronda copera y encajan una nueva eliminación frente a un oponente que milita dos categorías por debajo.',
+    imagen: 'img/varios/C1LNE.webp',
+    fecha: '29 octubre 2026',
   },
   {
     medio: 'elcomercio',
