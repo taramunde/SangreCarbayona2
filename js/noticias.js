@@ -66,12 +66,12 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/supense-epica-real-oviedo-salvar-punto-jacobo-almeria-20261024235058-nt.html',
-    titulo: 'Suspense y épica en el Real Oviedo para salvar un punto merecido.',
+    url: 'https://www.elcomercio.es/real-oviedo/borchorno-copa-abandona-real-oviedo-20261029211512-nt.html',
+    titulo: 'El borchorno de la Copa no abandona al Real Oviedo.',
     descripcion:
-      'Tablas. Jacobo entró a los 86 minutos y en su primera acción marcó el primer gol, luego un disparo suyo lo desvió Pulido para anotar el empate.',
-    imagen: 'img/varios/J11EC.webp',
-    fecha: '24 octubre 2026',
+      'El conjunto azul volvió a caer eliminado en la primera eliminatoria y lo hizo ofreciendo una muy pobre imagen.',
+    imagen: 'img/varios/C1EC.webp',
+    fecha: '29 octubre 2026',
   },
   {
     medio: 'killerasturias',
