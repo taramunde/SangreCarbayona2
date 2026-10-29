@@ -34,11 +34,11 @@
       fecha: '2026-10-29',
       hora: '18:00',
       aproximada: false,
-      goles1: null,
-      goles2: null,
-      prorroga: false,
-      penaltis1: null,
-      penaltis2: null,
+      goles1: 3,
+      goles2: 3,
+      prorroga: true,
+      penaltis1: 4,
+      penaltis2: 2,
     },
   ];
 
