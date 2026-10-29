@@ -46,12 +46,13 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/24/real-oviedo-saca-orgullo-lleva-punto-almeria/00031792871358941698273.htm',
-    titulo: 'El Real Oviedo saca el orgullo y se lleva un punto de Almería.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/29/numan-ovi/00031793296811942963706.htm',
+    titulo:
+      'El Real Oviedo acude fiel a su cita con el fracaso en la Copa del Rey.',
     descripcion:
-      'Los azules fueron perdiendo 2-0 al descnaso tras dos errores defensivos y en la recta final empataron con un doblete de Jacobo González (2-2).',
-    imagen: 'img/varios/J11LVA.webp',
-    fecha: '24 octubre 2026',
+      'Los azules, en un partido en el que les costó un mundo demostrar las dos diferencias de categoría con el Numancia (3-3), son eliminados en la tanda de penaltis.',
+    imagen: 'img/varios/C1LVA.webp',
+    fecha: '29 octubre 2026',
   },
   {
     medio: 'lanuevaespana',
