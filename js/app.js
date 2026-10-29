@@ -670,7 +670,13 @@ const App = {
       .filter((p) => p.equipo1 === OVIEDO || p.equipo2 === OVIEDO);
 
     const jugados = partidosOviedo.filter((p) => p.jugado);
-    const ultimo = jugados.length > 0 ? jugados[jugados.length - 1] : null;
+    // El último partido también puede ser de Copa/otra eliminatoria
+    // (ver getUltimoPartidoGeneral en js/calendario.js).
+    const ultimo = window.getUltimoPartidoGeneral
+      ? window.getUltimoPartidoGeneral()
+      : jugados.length > 0
+        ? jugados[jugados.length - 1]
+        : null;
     // El próximo partido puede ser de liga o de Copa del Rey/otra
     // eliminatoria (ver partidosEspeciales en js/calendario.js, que ya
     // compara fechas reales para decidir cuál toca antes). Se reutiliza
@@ -694,14 +700,22 @@ const App = {
       const esLocal = p.equipo1 === OVIEDO;
       const golesO = esLocal ? p.goles1 : p.goles2;
       const golesR = esLocal ? p.goles2 : p.goles1;
-      if (golesO > golesR)
+      // Con penaltis, decide la tanda (js/calendario.js lo calcula).
+      const estado = window.getEstadoPartido
+        ? window.getEstadoPartido(p)
+        : golesO > golesR
+          ? 'victoria'
+          : golesO < golesR
+            ? 'derrota'
+            : 'empate';
+      if (estado === 'victoria')
         return {
           tipo: 'victoria',
           texto: t('victoria'),
           icono: 'fa-check-circle',
           color: 'win',
         };
-      if (golesO < golesR)
+      if (estado === 'derrota')
         return {
           tipo: 'derrota',
           texto: t('derrota'),
@@ -725,7 +739,16 @@ const App = {
       const resultado = getResultadoData(ultimo);
       const escudoO = getEscudo(OVIEDO);
       const escudoR = getEscudo(rival);
-      const fechaStr = `${t('jornada_abrev')}${ultimo.jornada}`;
+      const ultimoEsEspecial = !!ultimo.competicion;
+      const compUltimo = ultimoEsEspecial
+        ? ultimo.competicion
+        : CLUB_DATA.competicionActual;
+      const fechaStr = ultimoEsEspecial
+        ? ultimo.ronda || ''
+        : `${t('jornada_abrev')}${ultimo.jornada}`;
+      const extrasUltimo = window.getExtrasResultadoHTML
+        ? window.getExtrasResultadoHTML(ultimo)
+        : '';
 
       // Para el último partido: equipo1 (local) a la izquierda, equipo2 (visitante) a la derecha
       const escudoIzq = ultimo.goles1 !== null ? getEscudo(ultimo.equipo1) : '';
@@ -736,7 +759,7 @@ const App = {
       html += `
         <div class="hero-block">
             <div class="hero-label-row">
-                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> ${CLUB_DATA.competicionActual}</span>
+                <span class="hero-comp-badge"><i class="fas fa-futbol"></i> ${compUltimo}</span>
                 <span class="hero-jornada-badge">${fechaStr}</span>
             </div>
             <div class="hero-scoreboard">
@@ -751,6 +774,7 @@ const App = {
                         <span class="hero-score-sep">–</span>
                         <span class="hero-score hero-score--${resultado.color}">${ultimo.goles2}</span>
                     </div>
+                    ${extrasUltimo}
                     <span class="hero-status hero-status--final">${t('finalizado')}</span>
                 </div>
                 <div class="hero-team">
@@ -862,6 +886,9 @@ const App = {
             .hero-vs { font-family: 'Oswald',sans-serif; font-size: 1.6em; font-weight: 700; color: rgba(255,204,0,.65); letter-spacing: 3px; }
             .hero-status { font-size: .68em; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
             .hero-status--final { color: rgba(255,255,255,.4); }
+            #heroMatch .cal-resultado-extra { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+            #heroMatch .cal-score-aet { font-size: .68em; font-weight: 700; color: #7a6200; background: #fff8dc; border: 1px solid #e6d000; border-radius: 4px; padding: 1px 5px; }
+            #heroMatch .cal-score-pens { font-size: .7em; font-weight: 700; color: #003da5; background: #e8eeff; border: 1px solid #99b0f0; border-radius: 4px; padding: 1px 6px; white-space: nowrap; }
             .hero-status--upcoming { color: rgba(255,204,0,.75); display: flex; align-items: center; gap: 5px; text-align: center; }
             .hero-badge-result { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: .7em; font-weight: 700; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: .4px; align-self: center; }
             .hero-badge--victoria { background: rgba(105,240,174,.15); color: #69f0ae; border: 1px solid rgba(105,240,174,.3); }

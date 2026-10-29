@@ -225,6 +225,26 @@
     return jugados.length ? jugados[jugados.length - 1] : null;
   }
 
+  // ── Último partido jugado contando también Copa ──────
+  // El de liga y el último especial jugado (Copa, etc.): gana el de
+  // fecha más reciente. Lo usa el bloque "último partido" de la portada.
+  function getUltimoPartidoGeneral() {
+    const ultimaLiga = getUltimoPartido(getPartidosOviedo());
+    const especialesJugados = getPartidosEspeciales().filter((p) => p.jugado);
+    const ultimoEspecial = especialesJugados.length
+      ? especialesJugados[especialesJugados.length - 1]
+      : null;
+
+    if (!ultimoEspecial) return ultimaLiga;
+    if (!ultimaLiga) return ultimoEspecial;
+    if (ultimaLiga.fecha && ultimoEspecial.fecha) {
+      return new Date(ultimoEspecial.fecha) >= new Date(ultimaLiga.fecha)
+        ? ultimoEspecial
+        : ultimaLiga;
+    }
+    return ultimaLiga;
+  }
+
   // ── Bloque de un partido especial (Copa, etc.) ───────
   function crearBloqueEspecial(p, esProximo) {
     const esLocal = p.equipo1 === OVIEDO;
@@ -652,6 +672,12 @@
   // tiene que hablar la alineación sin tener que repetir el rival/
   // fecha a mano en data-alineacion.js.
   window.getProximoPartidoGeneral = getProximoPartidoGeneral;
+  // Igual para el último partido jugado (liga o Copa), y su estado
+  // (victoria/empate/derrota, teniendo en cuenta los penaltis) y las
+  // etiquetas de prórroga/penaltis, para el widget "hero" de js/app.js.
+  window.getUltimoPartidoGeneral = getUltimoPartidoGeneral;
+  window.getEstadoPartido = getEstado;
+  window.getExtrasResultadoHTML = extrasResultadoHTML;
   // Mismo formateo de fecha/hora (con "(aprox.)" cuando corresponda) que
   // ya usan las tarjetas del calendario, para que el widget "hero" de
   // index.html (js/app.js) no tenga que duplicar esta lógica.
