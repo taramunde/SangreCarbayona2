@@ -3773,13 +3773,19 @@ const App = {
       const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`;
       const videoUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
       const shareText = `${video.titulo} - Real Oviedo | Sangre Carbayona`;
+      // Liga: "J11". Copa u otras eliminatorias: competición y ronda.
+      const etiquetaPartido = video.jornada
+        ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>`
+        : video.competicion
+          ? `<span style="margin-left: 10px;"><i class="fas fa-trophy"></i> ${video.competicion}${video.ronda ? ` · ${video.ronda}` : ''}</span>`
+          : '';
       const shareLinks = generarEnlacesCompartir(
         videoUrl,
         shareText,
         'video-action-btn',
         ['whatsapp', 'twitter', 'telegram'],
       );
-      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${video.jornada ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>` : ''}</div></div></a><div class="video-card-actions">${shareLinks}</div></div>`;
+      html += `<div class="video-card"><a href="${videoUrl}" target="_blank" rel="noopener noreferrer" class="video-main-link" style="text-decoration: none; color: inherit; display: block;"><div class="video-thumbnail"><img src="${thumbnailUrl}" alt="${video.titulo}"><div class="play-overlay"><i class="fas fa-play-circle"></i></div></div><div class="video-info"><h3>${video.titulo}</h3><div class="video-meta"><span><i class="far fa-calendar"></i> ${fecha}</span>${etiquetaPartido}</div></div></a><div class="video-card-actions">${shareLinks}</div></div>`;
     });
     container.innerHTML = html;
   },

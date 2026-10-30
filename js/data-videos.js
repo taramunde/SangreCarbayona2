@@ -82,4 +82,12 @@ CLUB_DATA.videos = [
     fecha: '2026-10-24',
     videoId: 'rZQTOwleG1k',
   },
+  {
+    id: 12,
+    competicion: 'Copa del Rey',
+    ronda: 'Primera Ronda',
+    titulo: 'C.D. Numancia Vs Real Oviedo',
+    fecha: '2026-10-29',
+    videoId: '_Lu92-L_XBQ',
+  },
 ];
