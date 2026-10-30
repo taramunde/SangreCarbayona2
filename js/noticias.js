@@ -75,12 +75,12 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-el-oviedo-se-levanta-de-la-lona-en-almeria',
-    titulo: 'La Crónica: El Oviedo se levanta de la lona en Almería.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-el-numancia-castiga-un-oviedo-que-no-aprende',
+    titulo: 'La Crónica: El Numancia castiga a un Oviedo que no aprende.',
     descripcion:
-      'Un doblete de Jacobo en los minutos 87 y 89 rescata a los azules de un 2-0 en un partido en el que generaron ocasiones de sobra para no marcharse de vacío (2-2).',
-    imagen: 'img/varios/J11KA.webp',
-    fecha: '24 octubre 2026',
+      'Los azules levantaron un 2-0 y un 3-2, pero terminaron eliminados en los penaltis después de otra noche repleta de errores.',
+    imagen: 'img/varios/C1KA.webp',
+    fecha: '29 octubre 2026',
   },
 ];
 
