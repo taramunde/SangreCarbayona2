@@ -26,6 +26,51 @@
   opacity: 0.3;
 }
 
+/* Cabecera de temporada en PC: la foto del equipo se ve entera
+   (sin recortar cabezas ni piernas) y los lados se rellenan con la
+   misma foto difuminada. En móvil sigue a pantalla completa (cover). */
+@media (min-width: 900px) {
+  .page-header-bg--foto::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background-image: var(--foto-temporada);
+    background-size: cover;
+    background-position: center;
+    filter: blur(22px);
+    opacity: 0.25;
+  }
+
+  .page-header-bg--foto #pageHeaderImg {
+    /* La caja de la imagen mide lo mismo que la foto (alto completo,
+       ancho proporcional), así el difuminado de los bordes cae justo
+       en los bordes de la foto. */
+    position: relative;
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+    object-position: center center !important;
+    opacity: 0.38;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+  }
+}
+
 .page-header .container {
   position: relative;
   z-index: 2;

@@ -430,6 +430,21 @@ function autoCalcularStatsEquipo(temporada) {
 const App = {
   temporadaActiva: null,
 
+  // En PC la cabecera es mucho más apaisada que las fotos de equipo: allí
+  // la foto se ve ENTERA (css/equipo-styles.css) y los lados se rellenan
+  // con la misma foto difuminada, que se pasa aquí como variable CSS.
+  _setHeaderFondo: function (img, seasonId) {
+    const fondo = img.parentElement;
+    if (!fondo) return;
+    fondo.classList.add('page-header-bg--foto');
+    fondo.style.setProperty(
+      '--foto-temporada',
+      // Ruta absoluta: url() dentro de una variable CSS se resolvería
+      // respecto a la carpeta css/, no respecto a la página.
+      `url('${new URL(`img/temporadas/${seasonId}.webp`, document.baseURI).href}')`,
+    );
+  },
+
   _getHeaderImgPosition: function (seasonId) {
     const temp = CLUB_DATA.temporadasDisponibles.find((t) => t.id === seasonId);
     return temp && temp.fotoPosition ? temp.fotoPosition : 'center 20%';
@@ -454,6 +469,7 @@ const App = {
       _headerImg.style.objectPosition = this._getHeaderImgPosition(
         this.temporadaActiva,
       );
+      this._setHeaderFondo(_headerImg, this.temporadaActiva);
     }
 
     // Detectar qué filtro está activo en el HTML al cargar   ← esta línea ya existía
@@ -526,6 +542,7 @@ const App = {
       headerImg.src = `img/temporadas/${seasonId}.webp`;
       headerImg.alt = `Temporada ${seasonId}`;
       headerImg.style.objectPosition = this._getHeaderImgPosition(seasonId);
+      this._setHeaderFondo(headerImg, seasonId);
     }
 
     if (typeof SeasonSelector !== 'undefined') {
