@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rubén González González | Real Oviedo - Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Estadísticas, trayectoria y ficha técnica de Rubén González González. Temporada 2009/10."
+    />
+    <meta property="og:title" content="Rubén González González - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Rubén González González. Temporada 2009/10."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Rubén González González - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez-2009-10.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rubén González González - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Rubén González González. Temporada 2009/10."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rubén González González",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html",
+  "image": "https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp",
+  "jobTitle": "Lateral Derecho",
+  "birthDate": "1985-08-01",
+  "height": "1.77 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oviedo",
+      "addressRegion": "Asturias"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'ruben-gonzalez-gonzalez',
+        season: '2009-10',
+        nombre: 'Rubén González González',
+        imagen: 'https://i.postimg.cc/T3rj9R7h/Ruben-Gonzalez-PNG.webp',
+        posicion: 'Lateral Derecho',
+        codigo: 'ruben-gonzalez-gonzalez-2009-10',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Rubén González González — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Rubén González González</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Rubén González González with Real Oviedo (35)">Partidos de Rubén González González con el Real Oviedo (35)</span></summary>
+          <ul>
+          <li><small data-en="23 May 2010">23 may 2010</small><a href="../partidos/real-oviedo-pontevedra-cf-2010-05-23.html">Real Oviedo 1-2 Pontevedra C.F.</a></li>
+          <li><small data-en="15 May 2010">15 may 2010</small><a href="../partidos/pontevedra-cf-real-oviedo-2010-05-15.html">Pontevedra C.F. 2-1 Real Oviedo</a></li>
+          <li><small data-en="9 May 2010">9 may 2010</small><a href="../partidos/real-oviedo-universidad-las-palmas-de-gran-canaria-cf-2010-05-09.html">Real Oviedo 1-2 Universidad Las Palmas de Gran Canaria C.F.</a></li>
+          <li><small data-en="2 May 2010">2 may 2010</small><a href="../partidos/ud-lanzarote-real-oviedo-2010-05-02.html">U.D. Lanzarote 0-2 Real Oviedo</a></li>
+          <li><small data-en="25 Apr 2010">25 abr 2010</small><a href="../partidos/real-oviedo-ud-vecindario-2010-04-25.html">Real Oviedo 9-1 U.D. Vecindario</a></li>
+          <li><small data-en="11 Apr 2010">11 abr 2010</small><a href="../partidos/real-oviedo-real-madrid-castilla-2010-04-11.html">Real Oviedo 2-1 Real Madrid Castilla</a></li>
+          <li><small data-en="4 Apr 2010">4 abr 2010</small><a href="../partidos/cd-leganes-real-oviedo-2010-04-04.html">C.D. Leganés 1-1 Real Oviedo</a></li>
+          <li><small data-en="28 Mar 2010">28 mar 2010</small><a href="../partidos/real-oviedo-rsd-alcala-2010-03-28.html">Real Oviedo 3-3 R.S.D. Alcalá</a></li>
+          <li><small data-en="21 Mar 2010">21 mar 2010</small><a href="../partidos/ud-puertollano-real-oviedo-2010-03-21.html">U.D. Puertollano 3-1 Real Oviedo</a></li>
+          <li><small data-en="14 Mar 2010">14 mar 2010</small><a href="../partidos/real-oviedo-ad-cerro-de-reyes-badajoz-atletico-2010-03-14.html">Real Oviedo 3-0 A.D. Cerro de Reyes Badajoz Atlético</a></li>
+          <li><small data-en="7 Mar 2010">7 mar 2010</small><a href="../partidos/cd-tenerife-b-real-oviedo-2010-03-07.html">C.D. Tenerife B 1-0 Real Oviedo</a></li>
+          <li><small data-en="28 Feb 2010">28 feb 2010</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2010-02-28.html">Real Oviedo 2-1 Real Sporting de Gijón B</a></li>
+          <li><small data-en="18 Feb 2010">18 feb 2010</small><a href="../partidos/cd-toledo-real-oviedo-2010-02-18.html">C.D. Toledo 0-1 Real Oviedo</a></li>
+          <li><small data-en="14 Feb 2010">14 feb 2010</small><a href="../partidos/real-oviedo-ub-conquense-2010-02-14.html">Real Oviedo 3-2 U.B. Conquense</a></li>
+          <li><small data-en="7 Feb 2010">7 feb 2010</small><a href="../partidos/racing-de-santander-b-real-oviedo-2010-02-07.html">Racing de Santander B 0-1 Real Oviedo</a></li>
+          <li><small data-en="31 Jan 2010">31 ene 2010</small><a href="../partidos/real-oviedo-atletico-de-madrid-b-2010-01-31.html">Real Oviedo 4-3 Atlético de Madrid B</a></li>
+          <li><small data-en="24 Jan 2010">24 ene 2010</small><a href="../partidos/ad-alcorcon-real-oviedo-2010-01-24.html">A.D. Alcorcón 2-0 Real Oviedo</a></li>
+          <li><small data-en="17 Jan 2010">17 ene 2010</small><a href="../partidos/real-oviedo-cd-guadalajara-2010-01-17.html">Real Oviedo 3-1 C.D. Guadalajara</a></li>
+          <li><small data-en="3 Jan 2010">3 ene 2010</small><a href="../partidos/universidad-de-las-palmas-de-gran-canaria-cf-real-oviedo-2010-01-03.html">Universidad de Las Palmas de Gran Canaria C.F. 3-0 Real Oviedo</a></li>
+          <li><small data-en="20 Dec 2009">20 dic 2009</small><a href="../partidos/real-oviedo-ud-lanzarote-2009-12-20.html">Real Oviedo 2-0 U.D. Lanzarote</a></li>
+          <li><small data-en="13 Dec 2009">13 dic 2009</small><a href="../partidos/ud-vecindario-real-oviedo-2009-12-13.html">U.D. Vecindario 2-2 Real Oviedo</a></li>
+          <li><small data-en="6 Dec 2009">6 dic 2009</small><a href="../partidos/cf-villanovense-real-oviedo-2009-12-06.html">C.F. Villanovense 1-2 Real Oviedo</a></li>
+          <li><small data-en="28 Nov 2009">28 nov 2009</small><a href="../partidos/real-oviedo-rs-gimnastica-de-torrelavega-2009-11-28.html">Real Oviedo 1-0 R.S. Gimnástica de Torrelavega</a></li>
+          <li><small data-en="22 Nov 2009">22 nov 2009</small><a href="../partidos/real-madrid-castilla-real-oviedo-2009-11-22.html">Real Madrid Castilla 0-1 Real Oviedo</a></li>
+          <li><small data-en="15 Nov 2009">15 nov 2009</small><a href="../partidos/real-oviedo-cd-leganes-2009-11-15.html">Real Oviedo 0-0 C.D. Leganés</a></li>
+          <li><small data-en="1 Nov 2009">1 nov 2009</small><a href="../partidos/real-oviedo-ud-puertollano-2009-11-01.html">Real Oviedo 0-0 U.D. Puertollano</a></li>
+          <li><small data-en="25 Oct 2009">25 oct 2009</small><a href="../partidos/ad-cerro-de-reyes-badajoz-atletico-real-oviedo-2009-10-25.html">A.D. Cerro de Reyes Badajoz Atlético 2-2 Real Oviedo</a></li>
+          <li><small data-en="18 Oct 2009">18 oct 2009</small><a href="../partidos/real-oviedo-cd-tenerife-b-2009-10-18.html">Real Oviedo 1-0 C.D. Tenerife B</a></li>
+          <li><small data-en="11 Oct 2009">11 oct 2009</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2009-10-11.html">Real Sporting de Gijón B 1-0 Real Oviedo</a></li>
+          <li><small data-en="4 Oct 2009">4 oct 2009</small><a href="../partidos/real-oviedo-cp-cacereno-2009-10-04.html">Real Oviedo 4-0 C.P. Cacereño</a></li>
+          <li><small data-en="27 Sep 2009">27 sep 2009</small><a href="../partidos/ub-conquense-real-oviedo-2009-09-27.html">U.B. Conquense 0-0 Real Oviedo</a></li>
+          <li><small data-en="23 Sep 2009">23 sep 2009</small><a href="../partidos/real-oviedo-racing-de-santander-b-2009-09-23.html">Real Oviedo 0-0 Racing de Santander B</a></li>
+          <li><small data-en="20 Sep 2009">20 sep 2009</small><a href="../partidos/atletico-de-madrid-b-real-oviedo-2009-09-20.html">Atlético de Madrid B 0-2 Real Oviedo</a></li>
+          <li><small data-en="13 Sep 2009">13 sep 2009</small><a href="../partidos/real-oviedo-ad-alcorcon-2009-09-13.html">Real Oviedo 1-1 A.D. Alcorcón</a></li>
+          <li><small data-en="6 Sep 2009">6 sep 2009</small><a href="../partidos/cd-guadalajara-real-oviedo-2009-09-06.html">C.D. Guadalajara 2-0 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261030v3"></script>
+    <script src="../js/data-club.js?nocache=20261030v3"></script>
+    <script src="../js/data-jugadores.js?nocache=20261030v3"></script>
+    <script src="../js/busqueda.js?nocache=20261030v3"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261030v3"></script>
+    <script src="../js/data-historico.js?nocache=20261030v3"></script>
+    <script src="../js/data-utils.js?nocache=20261030v3"></script>
+    <script src="../js/app.js?nocache=20261030v3"></script>
+    <script src="../js/script.js?nocache=20261030v3"></script>
+    <script src="../js/main.js?nocache=20261030v3"></script>
+  </body>
+</html>
