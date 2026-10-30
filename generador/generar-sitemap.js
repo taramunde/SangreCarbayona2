@@ -264,7 +264,11 @@ function generarSitemap() {
   });
 
   // Páginas de /partidos/
-  const { partidos } = PC.construirPartidos(CLUB_DATA);
+  // Se cargan los datos con el MISMO cargador que generar-partidos.js
+  // (incluye js/data-equipos.js): sin los nombres históricos de los
+  // clubes, un rival renombrado acababa en el sitemap con un nombre de
+  // página que no existe (p. ej. rival-real-aviles-cf.html).
+  const { partidos } = PC.construirPartidos(PC.cargarClubData());
   const porTemporada = {};
   const porRival = {};
   partidos.forEach((p) => {
