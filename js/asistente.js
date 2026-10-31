@@ -708,9 +708,9 @@
   // marcador y los goleadores) y al historial completo contra ese club.
   // Partidos (del índice, con marcador y goleadores) de un jugador o
   // entrenador que cumplen los filtros de la pregunta.
-  function partidosDePersona(per, f) {
+  function partidosDePersona(per, f, filtroPropio) {
     return per.partidos
-      .filter((p) => pasaFiltros(p, f))
+      .filter((p) => pasaFiltros(p, f) && (!filtroPropio || filtroPropio(p)))
       .map((pp) =>
         M.partidos.find(
           (ip) => ip.fecha === pp.fecha && ip.temporada === pp.temporada,
@@ -723,16 +723,25 @@
   // Lista enlazada de esos partidos: todos si son pocos; si son muchos,
   // los últimos y el enlace a la ficha (que los tiene todos).
   const MAX_LISTA_PARTIDOS = 12;
-  function bloquePartidosPersona(per, f) {
-    const filas = partidosDePersona(per, f);
+  // filtroPropio: para listar solo algunos partidos de la persona (en
+  // los que marcó, dio asistencia, vio tarjeta...); titulo: cómo
+  // presentarlos ("Partidos en los que marcó").
+  function bloquePartidosPersona(per, f, filtroPropio, titulo) {
+    const filas = partidosDePersona(per, f, filtroPropio);
     if (!filas.length) return '';
+    const cab = titulo ? `<br>${esc(titulo)}:` : '';
     if (filas.length <= MAX_LISTA_PARTIDOS)
-      return `<ul>${filas.map(filaPartido).join('')}</ul>`;
+      return `${cab}<ul>${filas.map(filaPartido).join('')}</ul>`;
     const ultimos = filas.slice(-5);
     return (
-      `<br>Los últimos ${ultimos.length}:<ul>${ultimos.map(filaPartido).join('')}</ul>` +
+      `<br>${titulo ? `${esc(titulo)} (los últimos ${ultimos.length})` : `Los últimos ${ultimos.length}`}:<ul>${ultimos.map(filaPartido).join('')}</ul>` +
       `Todos sus partidos, en su ficha: ${enlace(per.nombre, per.url)}.`
     );
+  }
+
+  // Enlace final a la ficha, para las respuestas sin lista de partidos.
+  function enlaceFichaFinal(per) {
+    return `<br><small>Más datos en su ficha: ${enlace(per.nombre, per.url)}.</small>`;
   }
 
   function bloquePartidosContraRival(per, f) {
@@ -897,6 +906,12 @@
       return `No tengo registrado ningún partido de ${nom}${esc(ctx)}.`;
     }
     const lineas = [];
+    // Listas de partidos que acompañan a la respuesta (contra un rival
+    // ya se listan todos más abajo, con su historial).
+    const listas = [];
+    const conLista = (filtro, titulo) => {
+      if (!f.rival) listas.push(bloquePartidosPersona(per, f, filtro, titulo));
+    };
     if (it.encajados || (esPortero && it.goles)) {
       lineas.push(
         `${nom} ha encajado <b>${plural(s.goles, 'gol', 'goles')}</b> en ${plural(s.pj, 'partido', 'partidos')}${esc(ctx)}` +
@@ -906,18 +921,26 @@
       lineas.push(
         `${nom} ha marcado <b>${plural(s.goles, 'gol', 'goles')}</b> en ${plural(s.pj, 'partido', 'partidos')}${esc(ctx)}.`,
       );
+      if (s.goles)
+        conLista((p) => (p.goles || 0) > 0, 'Partidos en los que marcó');
     }
     // La primera frase lleva el nombre; las siguientes, no.
     const sujeto = () => (lineas.length ? '' : `${nom} `);
     const verbo = (v) => (lineas.length ? v : v.toLowerCase());
-    if (it.asistencias)
+    if (it.asistencias) {
       lineas.push(
         `${sujeto()}${verbo('Ha')} dado <b>${plural(s.asist, 'asistencia', 'asistencias')}</b>${esc(ctx)}.`,
       );
-    if (it.tarjetas)
+      if (s.asist && !listas.length)
+        conLista((p) => (p.asistencias || 0) > 0, 'Partidos con asistencia');
+    }
+    if (it.tarjetas) {
       lineas.push(
         `${sujeto()}${verbo('Ha')} visto <b>${plural(s.amar, 'amarilla', 'amarillas')}</b> y <b>${plural(s.rojas, 'roja', 'rojas')}</b>${esc(ctx)}.`,
       );
+      if ((s.amar || s.rojas) && !listas.length)
+        conLista((p) => p.amarilla || p.roja, 'Partidos con tarjeta');
+    }
     if (it.minutos)
       lineas.push(
         `${sujeto()}${verbo('Ha')} jugado <b>${s.min.toLocaleString('es-ES')} minutos</b>${esc(ctx)}.`,
@@ -948,7 +971,12 @@
       );
     }
     if (f.rival) lineas.push(bloquePartidosContraRival(per, f));
-    return lineas.join('<br>');
+    let html = lineas.join('<br>');
+    const hayListas = listas.filter(Boolean);
+    if (hayListas.length) html += hayListas.join('');
+    // Sin lista de partidos: al menos, el enlace a la ficha bien visible.
+    else if (!f.rival && !(it.partidos && s.pj)) html += enlaceFichaFinal(per);
+    return html;
   }
 
   function respuestaEntrenador(per, it, f) {

@@ -283,6 +283,11 @@
 .sc-asis-msg a {
   color: var(--primary-color, #1a365d);
   font-weight: 600;
+  /* Subrayado para que se vea que se puede pulsar (sobre todo en móvil) */
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-color, #c9a227);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
 }
 
 .sc-asis-msg ul,
