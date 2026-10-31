@@ -1121,6 +1121,17 @@
   // es un seguimiento, se rellena lo que le falta con ellas.
   let ultimaPregunta = null;
   let ultimaFueAyuda = false;
+  // Todas las preguntas entendidas en esta conversación, en orden (para
+  // "como al principio", "lo de antes" y para volver a una pulsándola).
+  let historial = [];
+
+  // Referencias a preguntas anteriores dentro de la nueva pregunta.
+  const RE_REF_PRINCIPIO =
+    /\b(?:como al principio|al principio|lo del principio|lo de el principio|la primera pregunta|lo primero que (?:te )?(?:he )?pregunt[eé]|lo primero)\b/;
+  const RE_REF_ANTES =
+    /\b(?:la pregunta (?:de antes|anterior)|lo de antes|lo anterior|como antes|la anterior|lo que te pregunte antes)\b/;
+  const RE_RELLENO_REF =
+    /^(?:y |e |pero |entonces |vuelve a |volvamos a |vamos a |otra vez |volver a )+|\b(?:pero|otra vez|de nuevo)\b/g;
 
   const RE_TEMPORADA_TXT = /(\d{2,4})\s*[/-]\s*(\d{2,4})/;
   const RE_TEMPORADA_FRASE =
@@ -1238,6 +1249,40 @@
   function responder(pregunta) {
     let aResponder = pregunta;
     let combinado = false;
+
+    // "como al principio" / "lo de antes" (+ quizá algo nuevo): se toma
+    // esa pregunta como base en vez de la última.
+    const qRef = norm(pregunta);
+    const refPrincipio = RE_REF_PRINCIPIO.test(qRef);
+    const refAntes = !refPrincipio && RE_REF_ANTES.test(qRef);
+    if (refPrincipio || refAntes) {
+      const base = refPrincipio
+        ? historial[0]
+        : historial[historial.length - 2] || historial[0];
+      if (!base)
+        return 'Todavía no hay preguntas anteriores en esta conversación a las que volver.';
+      const resto = qRef
+        .replace(refPrincipio ? RE_REF_PRINCIPIO : RE_REF_ANTES, ' ')
+        .replace(RE_RELLENO_REF, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      ultimaPregunta = base;
+      if (!resto) {
+        // Solo "vuelve a lo de antes": se repite aquella pregunta.
+        aResponder = base.texto;
+      } else {
+        const comb = combinarConAnterior(`y ${resto}`);
+        aResponder = comb ? comb.texto : base.texto;
+      }
+      ultimaFueAyuda = false;
+      const html = responderTexto(aResponder);
+      if (!ultimaFueAyuda) recordarPregunta(aResponder, pregunta);
+      return (
+        `<small class="sc-asis-contexto">Volviendo a «${esc(base.original)}»</small><br>` +
+        html
+      );
+    }
+
     const seguimiento = combinarConAnterior(pregunta);
     if (seguimiento) {
       aResponder = seguimiento.texto;
@@ -1252,8 +1297,30 @@
       aResponder = pregunta;
     }
     // Se recuerda solo lo que se ha entendido.
-    if (!ultimaFueAyuda) ultimaPregunta = piezasDe(aResponder);
+    if (!ultimaFueAyuda) recordarPregunta(aResponder, pregunta);
     return html;
+  }
+
+  // Guarda una pregunta entendida como contexto actual y en el historial.
+  function recordarPregunta(texto, original) {
+    ultimaPregunta = {
+      ...piezasDe(texto),
+      texto, // pregunta completa (ya combinada) que se respondió
+      original: original || texto, // como la escribió el usuario
+    };
+    historial.push(ultimaPregunta);
+  }
+
+  // Vuelve al contexto de una pregunta anterior (al pulsarla).
+  function volverA(indice) {
+    const ctx = historial[indice];
+    if (!ctx) return;
+    ultimaPregunta = ctx;
+    historial.push(ctx);
+    anadirMensaje(
+      `<small class="sc-asis-contexto">Volvemos a «${esc(ctx.original)}». Sigue preguntando desde ahí, por ejemplo «¿y en casa?» o «¿y otro jugador?».</small>`,
+      'bot',
+    );
   }
 
   function responderTexto(pregunta) {
@@ -1379,7 +1446,12 @@
     try {
       sessionStorage.setItem(
         CLAVE_CONVERSACION,
-        JSON.stringify({ abierto, mensajes: conversacion, ultimaPregunta }),
+        JSON.stringify({
+          abierto,
+          mensajes: conversacion,
+          ultimaPregunta,
+          historial,
+        }),
       );
     } catch (e) {
       /* sin almacenamiento (modo privado, etc.): se sigue sin guardar */
@@ -1400,6 +1472,7 @@
   function borrarConversacion() {
     conversacion = [];
     ultimaPregunta = null;
+    historial = [];
     if (mensajes) mensajes.innerHTML = '';
     try {
       sessionStorage.removeItem(CLAVE_CONVERSACION);
@@ -1408,14 +1481,23 @@
     }
   }
 
-  function anadirMensaje(html, quien, recordar = true) {
+  function anadirMensaje(html, quien, recordar = true, ctx = null) {
     if (recordar) {
-      conversacion.push({ html, quien });
+      conversacion.push(ctx === null ? { html, quien } : { html, quien, ctx });
       guardarConversacion(true);
     }
     const div = document.createElement('div');
     div.className = `sc-asis-msg sc-asis-msg--${quien}`;
     div.innerHTML = html;
+    // Pregunta del usuario que se entendió: se puede pulsar para volver
+    // a ella y seguir preguntando desde ese punto.
+    if (quien === 'usuario' && ctx !== null) {
+      div.classList.add('sc-asis-msg--volver');
+      div.dataset.ctx = ctx;
+      div.setAttribute('role', 'button');
+      div.setAttribute('tabindex', '0');
+      div.title = 'Volver a esta pregunta';
+    }
     mensajes.appendChild(div);
     mensajes.scrollTop = mensajes.scrollHeight;
     div.querySelectorAll('a[data-verificar]').forEach((a) => {
@@ -1431,8 +1513,8 @@
   function preguntar(texto) {
     const t = texto.trim();
     if (!t || estado !== 'listo') return;
-    anadirMensaje(esc(t), 'usuario');
     let html;
+    const antes = historial.length;
     try {
       html = responder(t);
     } catch (e) {
@@ -1440,6 +1522,10 @@
       html =
         'Vaya, algo ha fallado al buscar la respuesta. Prueba a preguntarlo de otra forma.';
     }
+    // Si se entendió, la burbuja de la pregunta queda enlazada a su
+    // contexto (posición en el historial) para poder volver a ella.
+    const ctx = historial.length > antes ? historial.length - 1 : null;
+    anadirMensaje(esc(t), 'usuario', true, ctx);
     anadirMensaje(html, 'bot'); // guarda también la memoria actualizada
   }
 
@@ -1474,7 +1560,10 @@
       const guardada = leerConversacion();
       if (guardada && guardada.mensajes.length) {
         ultimaPregunta = guardada.ultimaPregunta || null;
-        guardada.mensajes.forEach((m) => anadirMensaje(m.html, m.quien));
+        historial = Array.isArray(guardada.historial) ? guardada.historial : [];
+        guardada.mensajes.forEach((m) =>
+          anadirMensaje(m.html, m.quien, true, m.ctx),
+        );
       } else
         anadirMensaje(
           '¡Hola, carbayón! Pregúntame por jugadores, entrenadores, rivales o temporadas. Por ejemplo:' +
@@ -1554,6 +1643,11 @@
       preguntar(t);
     });
     mensajes.addEventListener('click', (e) => {
+      const volver = e.target.closest('.sc-asis-msg--volver');
+      if (volver && !e.target.closest('a')) {
+        volverA(Number(volver.dataset.ctx));
+        return;
+      }
       const b = e.target.closest('.sc-asis-sugerencia');
       if (!b) return;
       if (b.dataset.preguntar) {
@@ -1572,6 +1666,14 @@
           ? norm(ultima).replace(re, b.dataset.por)
           : `${ultima} ${b.dataset.por}`;
         preguntar(nueva);
+      }
+    });
+    mensajes.addEventListener('keydown', (e) => {
+      const volver =
+        e.target.closest && e.target.closest('.sc-asis-msg--volver');
+      if (volver && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        volverA(Number(volver.dataset.ctx));
       }
     });
     document.addEventListener('keydown', (e) => {

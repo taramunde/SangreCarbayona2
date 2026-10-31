@@ -132,6 +132,22 @@
   border-bottom-right-radius: 4px;
 }
 
+/* Pregunta anterior que se puede pulsar para volver a ella */
+.sc-asis-msg--volver {
+  cursor: pointer;
+}
+
+.sc-asis-msg--volver:hover,
+.sc-asis-msg--volver:focus-visible {
+  outline: 2px solid var(--secondary-color, #c9a227);
+  outline-offset: 2px;
+}
+
+.sc-asis-contexto {
+  color: var(--gray-500, #6b7280);
+  font-style: italic;
+}
+
 .sc-asis-msg a {
   color: var(--primary-color, #1a365d);
   font-weight: 600;
