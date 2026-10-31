@@ -780,7 +780,8 @@
           // Juan Carlos? sí cuenta: se llama Juan Carlos); con más, el
           // nombre completo.
           (palabras.length === 1
-            ? contieneTodas(per.d.nombre || per.nombre)
+            ? contieneTodas(per.d.nombre || per.nombre) ||
+              (per.d.apodo && contieneTodas(per.d.apodo))
             : contieneTodas(
                 `${per.d.nombreCompleto || ''} ${per.nombre} ${per.d.nombre || ''} ${per.d.apellidos || ''}`,
               )),
@@ -793,13 +794,13 @@
     const clase = quiereEntrenadores ? 'entrenador' : 'jugador';
     const clases = quiereEntrenadores ? 'entrenadores' : 'jugadores';
     if (!lista.length)
-      return `No tengo ningún ${clase} del Oviedo llamado "${esc(comoLoEscribio)}" (datos de 2009/10 a hoy).`;
+      return `No tengo ningún ${clase} del Oviedo llamado "${esc(comoLoEscribio)}" (datos de ${esc(primeraTemporada())} a hoy).`;
     const fila = (per) => {
       const completo = per.d.nombreCompleto || per.nombre;
       return `<li>${enlace(per.nombre, per.url)}${completo !== per.nombre ? ` <small>${esc(completo)}</small>` : ''} <small>· ${esc(rangoTemporadas(per.temporadas))}</small></li>`;
     };
     return (
-      `${lista.length === 1 ? 'Solo hay' : 'Hay'} <b>${plural(lista.length, clase, clases)}</b> del Oviedo llamado${lista.length === 1 ? '' : 's'} "${esc(comoLoEscribio)}" (de 2009/10 a hoy):` +
+      `${lista.length === 1 ? 'Solo hay' : 'Hay'} <b>${plural(lista.length, clase, clases)}</b> del Oviedo llamado${lista.length === 1 ? '' : 's'} "${esc(comoLoEscribio)}" (de ${esc(primeraTemporada())} a hoy):` +
       `<ul>${lista.map(fila).join('')}</ul>`
     );
   }
@@ -1555,6 +1556,7 @@
       await cargarDatos();
       M = construirModelo();
       estado = 'listo';
+      actualizarPrimeraTemporada();
       aviso.remove();
       // Conversación de otra página de la web: se recupera tal cual.
       const guardada = leerConversacion();
@@ -1617,6 +1619,29 @@
     return `<button type="button" class="sc-asis-guia-ej" data-preguntar="${esc(texto)}">${esc(texto)}</button>`;
   }
 
+  // Primera temporada con datos (p. ej. "2009/10"). Se calcula de los
+  // datos, así que al meter temporadas más antiguas se actualiza sola
+  // en la cabecera, la guía y las respuestas.
+  function primeraTemporada() {
+    let ids = M && M.idsTemporada;
+    if (!ids || !ids.length) {
+      const CD = window.CLUB_DATA || {};
+      ids = Object.keys(CD.temporadas || {});
+      if (!ids.length && Array.isArray(CD.temporadasDisponibles))
+        ids = CD.temporadasDisponibles.map((t) => t.id).filter(Boolean);
+      ids = ids.slice().sort();
+    }
+    return ids.length ? nombreTemporada(ids[0]) : '…';
+  }
+
+  function actualizarPrimeraTemporada() {
+    if (!panel) return;
+    const txt = primeraTemporada();
+    panel.querySelectorAll('.sc-asis-desde').forEach((el) => {
+      el.textContent = txt;
+    });
+  }
+
   function htmlGuia() {
     return `
       <div class="sc-asis-guia" id="scAsistenteGuia" role="dialog" aria-modal="true" aria-labelledby="scAsistenteGuiaTitulo" hidden>
@@ -1626,7 +1651,7 @@
             <button type="button" class="sc-asis-guia-cerrar" aria-label="Cerrar la guía"><i class="fas fa-times"></i></button>
           </div>
           <div class="sc-asis-guia-cuerpo">
-            <p>Respondo con los datos de esta web (partidos del Oviedo <b>de 2009/10 a hoy</b>). No soy una IA: entiendo preguntas cortas sobre jugadores, entrenadores, rivales y temporadas. Pulsa cualquier ejemplo para probarlo.</p>
+            <p>Respondo con los datos de esta web (partidos del Oviedo <b>de <span class="sc-asis-desde">${esc(primeraTemporada())}</span> a hoy</b>). No soy una IA: entiendo preguntas cortas sobre jugadores, entrenadores, rivales y temporadas. Pulsa cualquier ejemplo para probarlo.</p>
 
             <h4><i class="fas fa-user"></i> Jugadores y entrenadores</h4>
             <ul>
@@ -1704,7 +1729,7 @@
         <img src="${esc(url('img/escudos/Oviedo.webp'))}" alt="" />
         <div>
           <b>Pregúntale al Carbayón</b>
-          <small>Datos de la web, de 2009/10 a hoy</small>
+          <small>Datos de la web, de <span class="sc-asis-desde">${esc(primeraTemporada())}</span> a hoy</small>
         </div>
         <button type="button" class="sc-asis-ayuda" aria-label="Cómo usar el chat" title="Cómo usar el chat" aria-haspopup="dialog" aria-controls="scAsistenteGuia"><i class="fas fa-question"></i></button>
         <button type="button" class="sc-asis-cerrar" aria-label="Cerrar"><i class="fas fa-times"></i></button>
