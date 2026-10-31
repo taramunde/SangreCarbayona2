@@ -32,7 +32,69 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.golesEnPropia = [
+  // ── 2010/11 ───────────────────────────────────────────────
+  {
+    fecha: '2010-10-10',
+    jugador: 'Txitxo',
+    equipo: 'Peña Sport F.C.',
+    fuente: 'https://realoviedo.info/10-11.html',
+  },
+  {
+    fecha: '2011-05-15',
+    jugador: 'M. Landeira',
+    equipo: 'Real Unión Club',
+    fuente: 'https://realoviedo.info/10-11.html',
+  },
+
+  // ── 2011/12 ───────────────────────────────────────────────
+  {
+    fecha: '2011-08-21',
+    jugador: 'Azcárate',
+    equipo: 'C.D. Leganés',
+    fuente: 'https://realoviedo.info/11-12.html',
+  },
+  {
+    fecha: '2012-01-29',
+    jugador: 'Héctor',
+    equipo: 'R.C. Celta de Vigo B',
+    fuente: 'https://realoviedo.info/11-12.html',
+  },
+
+  // ── 2013/14 ───────────────────────────────────────────────
+  {
+    fecha: '2013-10-06',
+    jugador: 'Espolita',
+    equipo: 'Club Marino de Luanco',
+    fuente: 'https://realoviedo.info/13-14.html',
+  },
+
+  // ── 2014/15 ───────────────────────────────────────────────
+  {
+    fecha: '2014-10-19',
+    jugador: 'Soto',
+    equipo: 'R.C. Celta de Vigo B',
+    fuente: 'https://realoviedo.info/14-15.html',
+  },
+  {
+    fecha: '2015-04-26',
+    jugador: 'Conde',
+    equipo: 'C.D. Tropezón',
+    fuente: 'https://realoviedo.info/14-15.html',
+  },
+
   // ── 2015/16 ───────────────────────────────────────────────
+  {
+    fecha: '2015-12-13',
+    jugador: 'Gaffoor',
+    equipo: 'C.D. Mirandés',
+    fuente: 'https://realoviedo.info/15-16.html',
+  },
+  {
+    fecha: '2016-01-03',
+    jugador: 'Insúa',
+    equipo: 'C.D. Leganés',
+    fuente: 'https://realoviedo.info/15-16.html',
+  },
   {
     fecha: '2016-02-28',
     jugador: 'José Ángel',
