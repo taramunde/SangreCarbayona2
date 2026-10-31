@@ -20,7 +20,9 @@
   letter-spacing: 0.3px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
 
 .sc-asis-boton:hover {
@@ -227,5 +229,22 @@
     height: 85vh;
     max-height: none;
     border-radius: 14px 14px 0 0;
+  }
+}
+
+/* El botón "volver arriba" (js/script.js) también va fijo abajo a la
+   derecha: se sube para quedar apilado JUSTO ENCIMA del botón del chat,
+   en vez de taparse los dos al hacer scroll. Lleva !important porque
+   script.js le pone la posición como estilo en línea. */
+.back-to-top {
+  right: 20px !important;
+  bottom: 80px !important;
+}
+
+@media (max-width: 640px) {
+  .back-to-top {
+    bottom: 78px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 }
