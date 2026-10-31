@@ -2,109 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/buscador.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/noticias.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/primer-equipo.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/historia.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/palmares.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/clasificacion.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/calendario.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/alineacion.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/primera-division.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/derbis.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/oviesportinguistas.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/estadios.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/juegos.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/videos.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/juegos/quiz.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/juegos/puzzlecarbayon.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/juegos/autodefinido.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -129,6 +129,12 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html</loc>
     <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/javier-barral-garcia.html</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -2384,7 +2390,7 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2009-10.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -3248,43 +3254,43 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rsd-alcala-real-oviedo-2009-08-26.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-toledo-2009-08-30.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cf-atletico-ciudad-real-oviedo-2009-09-02.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cd-guadalajara-real-oviedo-2009-09-06.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-alcorcon-2009-09-13.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/atletico-de-madrid-b-real-oviedo-2009-09-20.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-racing-de-santander-b-2009-09-23.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3296,7 +3302,7 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cp-cacereno-2009-10-04.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3350,127 +3356,127 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cf-villanovense-real-oviedo-2009-12-06.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/ud-vecindario-real-oviedo-2009-12-13.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-lanzarote-2009-12-20.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/universidad-de-las-palmas-de-gran-canaria-cf-real-oviedo-2010-01-03.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-guadalajara-2010-01-17.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/ad-alcorcon-real-oviedo-2010-01-24.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-atletico-de-madrid-b-2010-01-31.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/racing-de-santander-b-real-oviedo-2010-02-07.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ub-conquense-2010-02-14.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cd-toledo-real-oviedo-2010-02-18.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cp-cacereno-real-oviedo-2010-02-21.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-sporting-de-gijon-b-2010-02-28.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cd-tenerife-b-real-oviedo-2010-03-07.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ad-cerro-de-reyes-badajoz-atletico-2010-03-14.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/ud-puertollano-real-oviedo-2010-03-21.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-rsd-alcala-2010-03-28.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/cd-leganes-real-oviedo-2010-04-04.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-madrid-castilla-2010-04-11.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rs-gimnastica-de-torrelavega-real-oviedo-2010-04-14.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cf-villanovense-2010-04-18.html</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-ud-vecindario-2010-04-25.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3482,19 +3488,19 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-universidad-las-palmas-de-gran-canaria-cf-2010-05-09.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/pontevedra-cf-real-oviedo-2010-05-15.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-pontevedra-cf-2010-05-23.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
