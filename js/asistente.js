@@ -1589,6 +1589,7 @@
       .getElementById('scAsistenteBoton')
       .setAttribute('aria-expanded', 'true');
     if (estado === 'error') estado = 'sin-cargar';
+    marcarConversacionPendiente(false);
     prepararDatos();
     if (estado === 'listo') {
       // Reabierto después de cerrarlo: conversación nueva.
@@ -1771,6 +1772,20 @@
       entrada.value = '';
       preguntar(t);
     });
+    // Al pulsar un enlace de una respuesta (ficha, partido, historial):
+    // se va a esa página con el chat CERRADO —si no, en el móvil el chat
+    // la taparía al reabrirse y parecería que el enlace no hace nada—,
+    // pero la conversación queda guardada: al volver a abrir el chat en
+    // la página nueva sigue donde estaba.
+    mensajes.addEventListener(
+      'click',
+      (e) => {
+        const a = e.target.closest('a[href]');
+        if (a && !a.target && !e.ctrlKey && !e.metaKey && !e.shiftKey)
+          guardarConversacion(false);
+      },
+      true,
+    );
     mensajes.addEventListener('click', (e) => {
       const volver = e.target.closest('.sc-asis-msg--volver');
       if (volver && !e.target.closest('a')) {
@@ -1846,6 +1861,17 @@
     // conversación guardada.
     const guardada = leerConversacion();
     if (guardada && guardada.abierto) abrir();
+    else if (guardada && guardada.mensajes.length)
+      marcarConversacionPendiente(true);
+  }
+
+  // Punto dorado en el botón flotante: hay una conversación guardada
+  // (se llegó a esta página desde un enlace del chat).
+  function marcarConversacionPendiente(si) {
+    const b = document.getElementById('scAsistenteBoton');
+    if (!b) return;
+    b.classList.toggle('sc-asis-boton--pendiente', si);
+    b.title = si ? 'Seguir la conversación' : '';
   }
 
   if (document.readyState === 'loading') {

@@ -396,3 +396,16 @@
     height: 44px !important;
   }
 }
+
+/* Conversación guardada pendiente de retomar (punto dorado) */
+.sc-asis-boton--pendiente::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--secondary-color, #c9a227);
+  border: 2px solid #fff;
+}
