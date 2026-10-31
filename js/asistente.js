@@ -552,7 +552,15 @@
       }
     });
 
-    const resultado = { personas: [], rivales: [], dudas: [] };
+    const resultado = {
+      personas: [],
+      rivales: [],
+      dudas: [],
+      // Textos tal cual aparecen en la pregunta (para la memoria de la
+      // conversación: "¿y Toché?" → sustituir a la persona anterior).
+      aliasPersona: null,
+      aliasRival: null,
+    };
     grupos.forEach((g) => {
       const antes = texto.slice(0, g.ini);
       const pideRival =
@@ -565,10 +573,15 @@
       if (rivales.length && pers.length) ents = pideRival ? rivales : pers;
       if (ents.length > 1) {
         resultado.dudas.push({ alias: g.alias, ents });
+        if (ents.every((e) => e.tipo === 'rival'))
+          resultado.aliasRival = resultado.aliasRival || g.alias;
+        else resultado.aliasPersona = resultado.aliasPersona || g.alias;
       } else if (ents[0].tipo === 'rival') {
         resultado.rivales.push(ents[0].ref);
+        resultado.aliasRival = resultado.aliasRival || g.alias;
       } else {
         resultado.personas.push(ents[0]);
+        resultado.aliasPersona = resultado.aliasPersona || g.alias;
       }
     });
     return resultado;
@@ -1090,6 +1103,7 @@
   ];
 
   function ayuda() {
+    ultimaFueAyuda = true;
     return (
       'No he entendido la pregunta. Puedo responder cosas como:<ul>' +
       EJEMPLOS.slice(0, 5)
@@ -1099,7 +1113,150 @@
     );
   }
 
+  // ── MEMORIA DE LA CONVERSACIÓN ───────────────────────────────
+  // El chat no es una IA: entiende cada pregunta por separado con
+  // reglas. Para encadenar ("¿cuántos goles ha marcado Linares?" →
+  // "¿y Toché?" → "¿y contra el Sporting?" → "¿y en 2015/16?") se
+  // guardan las piezas de la última pregunta entendida y, si la nueva
+  // es un seguimiento, se rellena lo que le falta con ellas.
+  let ultimaPregunta = null;
+  let ultimaFueAyuda = false;
+
+  const RE_TEMPORADA_TXT = /(\d{2,4})\s*[/-]\s*(\d{2,4})/;
+  const RE_TEMPORADA_FRASE =
+    /esta temporada|temporada actual|este ano|esta campana|este curso|temporada pasada|ano pasado|campana pasada|curso pasado/;
+  const RE_COMP_FRASE =
+    /en (?:la )?copa(?: del rey)?|en (?:la )?fase de ascenso|en (?:los )?play ?offs?|en segunda b|en segunda division b/;
+  const RE_LOCALIDAD_FRASE =
+    /en casa|en el tartiere|como local|de local|fuera de casa|como visitante|de visitante|a domicilio|\bfuera\b/;
+  const RE_INICIO_SEGUIMIENTO =
+    /^(?:y|e|pero|entonces|tambien|y tambien|y que tal|que tal)\b\s*/;
+
+  // Piezas de una pregunta: qué se pregunta (texto sin nombres) y con
+  // qué filtros (persona, rival, temporada, competición, casa/fuera).
+  function piezasDe(pregunta) {
+    const q = norm(pregunta);
+    const nombre = q.match(RE_CUANTOS_NOMBRE);
+    const ents = detectarEntidades(q);
+    const tempTxt =
+      (pregunta.match(RE_TEMPORADA_TXT) || [])[0] ||
+      (q.match(RE_TEMPORADA_FRASE) || [])[0] ||
+      null;
+    const compTxt = (q.match(RE_COMP_FRASE) || [])[0] || null;
+    const locTxt = (q.match(RE_LOCALIDAD_FRASE) || [])[0] || null;
+    let resto = ` ${q} `;
+    [ents.aliasPersona, ents.aliasRival, compTxt, locTxt]
+      .filter(Boolean)
+      .forEach((t) => {
+        resto = resto.replace(` ${t} `, ' ');
+      });
+    resto = resto
+      .replace(/\b(?:19|20)?\d{2} (?:19|20)?\d{2}\b/g, ' ')
+      .replace(RE_TEMPORADA_FRASE, ' ')
+      .replace(
+        /\b(?:contra|ante|frente a|vs|versus)(?: el| la| los)?\s*$/g,
+        ' ',
+      )
+      .replace(
+        /\s+(?:de|del|al|a|en|el|la|contra el|contra la|contra)\s*$/g,
+        ' ',
+      )
+      .replace(RE_INICIO_SEGUIMIENTO, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return {
+      q,
+      nombrePrefijo: nombre
+        ? q.slice(0, q.length - nombre[2].length).trim()
+        : null,
+      persona: ents.aliasPersona,
+      rival: ents.aliasRival,
+      temporada: tempTxt,
+      comp: compTxt,
+      localidad: locTxt,
+      pregunta: resto, // lo que se pregunta, sin nombres ni filtros
+      intenciones: Object.keys(detectarIntenciones(q)).length > 0,
+    };
+  }
+
+  function esSeguimiento(p) {
+    if (!ultimaPregunta) return false;
+    if (RE_INICIO_SEGUIMIENTO.test(p.q)) return true;
+    // Pregunta corta sin nada que preguntar ("Toché", "en 2015/16",
+    // "contra el Sporting"): se entiende como continuación.
+    return !p.intenciones && !p.nombrePrefijo && p.q.split(' ').length <= 5;
+  }
+
+  // Devuelve la pregunta completa a responder (texto) y una descripción
+  // legible de lo que se ha entendido, o null si no es un seguimiento.
+  function combinarConAnterior(pregunta) {
+    const actual = piezasDe(pregunta);
+    if (!esSeguimiento(actual)) return null;
+    const prev = ultimaPregunta;
+
+    // "¿Cuántos jugadores se llaman Carlos?" → "¿Y José?"
+    if (prev.nombrePrefijo && !actual.intenciones) {
+      const nuevo = actual.q.replace(RE_INICIO_SEGUIMIENTO, '').trim();
+      if (!nuevo) return null;
+      const original = pregunta
+        .replace(/[¿?¡!]/g, ' ')
+        .trim()
+        .replace(/^(?:y|e|pero|entonces|también|tambien)\s+/i, '');
+      return { texto: `${prev.nombrePrefijo} ${original}`, entendido: null };
+    }
+
+    const qQuePregunta = actual.intenciones ? actual.pregunta : prev.pregunta;
+    // Si no hay nada nuevo que preguntar ni ningún filtro, no hay con
+    // qué continuar.
+    if (
+      !actual.intenciones &&
+      !actual.persona &&
+      !actual.rival &&
+      !actual.temporada &&
+      !actual.comp &&
+      !actual.localidad
+    )
+      return null;
+    const persona = actual.persona || prev.persona;
+    const rival = actual.rival || prev.rival;
+    const temporada = actual.temporada || prev.temporada;
+    const comp = actual.comp || prev.comp;
+    const localidad = actual.localidad || prev.localidad;
+    const texto = [
+      qQuePregunta,
+      persona ? `de ${persona}` : '',
+      rival ? `contra el ${rival}` : '',
+      comp || '',
+      localidad || '',
+      temporada ? `en ${temporada}` : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+    return { texto, combinado: true };
+  }
+
   function responder(pregunta) {
+    let aResponder = pregunta;
+    let combinado = false;
+    const seguimiento = combinarConAnterior(pregunta);
+    if (seguimiento) {
+      aResponder = seguimiento.texto;
+      combinado = !!seguimiento.combinado;
+    }
+    ultimaFueAyuda = false;
+    let html = responderTexto(aResponder);
+    // Si la combinación no ha servido, se prueba la pregunta tal cual.
+    if (combinado && ultimaFueAyuda) {
+      ultimaFueAyuda = false;
+      html = responderTexto(pregunta);
+      aResponder = pregunta;
+    }
+    // Se recuerda solo lo que se ha entendido.
+    if (!ultimaFueAyuda) ultimaPregunta = piezasDe(aResponder);
+    return html;
+  }
+
+  function responderTexto(pregunta) {
     const q = norm(pregunta);
     if (!q) return ayuda();
     const it = detectarIntenciones(q);
