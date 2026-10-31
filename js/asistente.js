@@ -1364,7 +1364,55 @@
   let entrada;
   let estado = 'sin-cargar'; // 'cargando' | 'listo' | 'error'
 
-  function anadirMensaje(html, quien) {
+  // ── CONVERSACIÓN GUARDADA ──────────────────────────────────
+  // Toda la conversación (mensajes + memoria de la última pregunta) se
+  // guarda en sessionStorage mientras el chat está abierto: si se pulsa
+  // un enlace de una respuesta o se cambia de página, el chat se vuelve
+  // a abrir solo, con todo lo hablado, y sigue entendiendo los "¿y…?".
+  // Al cerrarlo (X, Escape o el botón flotante) se borra y la próxima
+  // vez empieza una conversación nueva. sessionStorage dura lo que la
+  // pestaña: al cerrar el navegador también se olvida.
+  const CLAVE_CONVERSACION = 'scAsistenteConversacion';
+  let conversacion = []; // [{ html, quien }]
+
+  function guardarConversacion(abierto) {
+    try {
+      sessionStorage.setItem(
+        CLAVE_CONVERSACION,
+        JSON.stringify({ abierto, mensajes: conversacion, ultimaPregunta }),
+      );
+    } catch (e) {
+      /* sin almacenamiento (modo privado, etc.): se sigue sin guardar */
+    }
+  }
+
+  function leerConversacion() {
+    try {
+      const datos = JSON.parse(
+        sessionStorage.getItem(CLAVE_CONVERSACION) || 'null',
+      );
+      return datos && Array.isArray(datos.mensajes) ? datos : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function borrarConversacion() {
+    conversacion = [];
+    ultimaPregunta = null;
+    if (mensajes) mensajes.innerHTML = '';
+    try {
+      sessionStorage.removeItem(CLAVE_CONVERSACION);
+    } catch (e) {
+      /* nada que borrar */
+    }
+  }
+
+  function anadirMensaje(html, quien, recordar = true) {
+    if (recordar) {
+      conversacion.push({ html, quien });
+      guardarConversacion(true);
+    }
     const div = document.createElement('div');
     div.className = `sc-asis-msg sc-asis-msg--${quien}`;
     div.innerHTML = html;
@@ -1392,7 +1440,7 @@
       html =
         'Vaya, algo ha fallado al buscar la respuesta. Prueba a preguntarlo de otra forma.';
     }
-    anadirMensaje(html, 'bot');
+    anadirMensaje(html, 'bot'); // guarda también la memoria actualizada
   }
 
   function chips(lista) {
@@ -1415,17 +1463,24 @@
     const aviso = anadirMensaje(
       '<i class="fas fa-spinner fa-spin"></i> Cargando los datos del Oviedo…',
       'bot',
+      false,
     );
     try {
       await cargarDatos();
       M = construirModelo();
       estado = 'listo';
       aviso.remove();
-      anadirMensaje(
-        '¡Hola, carbayón! Pregúntame por jugadores, entrenadores, rivales o temporadas. Por ejemplo:' +
-          chips(EJEMPLOS.slice(0, 4)),
-        'bot',
-      );
+      // Conversación de otra página de la web: se recupera tal cual.
+      const guardada = leerConversacion();
+      if (guardada && guardada.mensajes.length) {
+        ultimaPregunta = guardada.ultimaPregunta || null;
+        guardada.mensajes.forEach((m) => anadirMensaje(m.html, m.quien));
+      } else
+        anadirMensaje(
+          '¡Hola, carbayón! Pregúntame por jugadores, entrenadores, rivales o temporadas. Por ejemplo:' +
+            chips(EJEMPLOS.slice(0, 4)),
+          'bot',
+        );
       entrada.disabled = false;
       entrada.focus();
     } catch (e) {
@@ -1444,11 +1499,23 @@
       .setAttribute('aria-expanded', 'true');
     if (estado === 'error') estado = 'sin-cargar';
     prepararDatos();
-    if (estado === 'listo') entrada.focus();
+    if (estado === 'listo') {
+      // Reabierto después de cerrarlo: conversación nueva.
+      if (!conversacion.length)
+        anadirMensaje(
+          '¡Hola, carbayón! Pregúntame por jugadores, entrenadores, rivales o temporadas. Por ejemplo:' +
+            chips(EJEMPLOS.slice(0, 4)),
+          'bot',
+        );
+      guardarConversacion(true);
+      entrada.focus();
+    }
   }
 
   function cerrar() {
     if (!panel) return;
+    // Cerrar el chat termina la conversación (y su memoria).
+    borrarConversacion();
     panel.classList.remove('sc-asis-panel--abierto');
     document
       .getElementById('scAsistenteBoton')
@@ -1538,9 +1605,17 @@
     },
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', crearBoton);
-  } else {
+  function iniciar() {
     crearBoton();
+    // Si en la página anterior el chat estaba abierto, se reabre con la
+    // conversación guardada.
+    const guardada = leerConversacion();
+    if (guardada && guardada.abierto) abrir();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciar);
+  } else {
+    iniciar();
   }
 })();
