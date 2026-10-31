@@ -37,6 +37,7 @@ const DATA_FILES = [
 ].map((f) => path.join(__dirname, '../js', f));
 const EQUIPOS_FILE = path.join(__dirname, '../js/data-equipos.js');
 const ESCUDOS_FILE = path.join(__dirname, '../js/data-escudos.js');
+const GOLES_PROPIA_FILE = path.join(__dirname, '../js/data-goles-propia.js');
 
 // Carga los archivos de datos en un "navegador simulado", igual que
 // generar.js, y devuelve window.CLUB_DATA.
@@ -66,7 +67,7 @@ function cargarClubData() {
   }
   // Archivos opcionales: nombres históricos de clubes y escudos. Si no
   // existen, cada nombre es un club distinto y no se muestran escudos.
-  [EQUIPOS_FILE, ESCUDOS_FILE].forEach((f) => {
+  [EQUIPOS_FILE, ESCUDOS_FILE, GOLES_PROPIA_FILE].forEach((f) => {
     if (!fs.existsSync(f)) return;
     try {
       vm.runInContext(fs.readFileSync(f, 'utf-8'), sandbox, {
@@ -257,7 +258,11 @@ function clubesHistoricos(CLUB_DATA) {
         .map((o) =>
           typeof o === 'string'
             ? { nombre: o, desde: null, hasta: null }
-            : { nombre: o.nombre, desde: o.desde || null, hasta: o.hasta || null },
+            : {
+                nombre: o.nombre,
+                desde: o.desde || null,
+                hasta: o.hasta || null,
+              },
         )
         .filter((o) => o.nombre),
     }));
@@ -269,9 +274,19 @@ function clubesHistoricos(CLUB_DATA) {
 function crearBuscadorDeClub(CLUB_DATA) {
   const reglas = [];
   clubesHistoricos(CLUB_DATA).forEach((club) => {
-    reglas.push({ clave: claveEquipo(club.nombre), club: club.nombre, desde: null, hasta: null });
+    reglas.push({
+      clave: claveEquipo(club.nombre),
+      club: club.nombre,
+      desde: null,
+      hasta: null,
+    });
     club.alias.forEach((a) =>
-      reglas.push({ clave: claveEquipo(a.nombre), club: club.nombre, desde: a.desde, hasta: a.hasta }),
+      reglas.push({
+        clave: claveEquipo(a.nombre),
+        club: club.nombre,
+        desde: a.desde,
+        hasta: a.hasta,
+      }),
     );
   });
   return (nombre, tid) => {
@@ -283,7 +298,11 @@ function crearBuscadorDeClub(CLUB_DATA) {
         (!r.hasta || !tid || tid <= r.hasta),
     );
     if (!candidatas.length) return nombre;
-    candidatas.sort((a, b) => Number(Boolean(b.desde || b.hasta)) - Number(Boolean(a.desde || a.hasta)));
+    candidatas.sort(
+      (a, b) =>
+        Number(Boolean(b.desde || b.hasta)) -
+        Number(Boolean(a.desde || a.hasta)),
+    );
     return candidatas[0].club;
   };
 }
@@ -360,7 +379,8 @@ function construirPartidos(CLUB_DATA) {
     const copias = g.copias.length ? g.copias : g.copiasEnt;
     if (!copias.length) return null;
     const jornada = moda(copias.map((p) => p.jornada));
-    if (jornada === null || jornada === undefined || jornada === '') return null;
+    if (jornada === null || jornada === undefined || jornada === '')
+      return null;
     const local = moda(copias.map((p) => esOviedo(p.local)));
     const rival = moda(
       copias.map((p) => claveEquipo(local ? p.visitante : p.local)),
@@ -384,7 +404,9 @@ function construirPartidos(CLUB_DATA) {
   }
   for (const claves of porHuella.values()) {
     if (claves.length < 2) continue;
-    claves.sort((a, b) => grupos.get(b).copias.length - grupos.get(a).copias.length);
+    claves.sort(
+      (a, b) => grupos.get(b).copias.length - grupos.get(a).copias.length,
+    );
     const destino = grupos.get(claves[0]);
     claves.slice(1).forEach((k) => {
       const g = grupos.get(k);
@@ -400,7 +422,9 @@ function construirPartidos(CLUB_DATA) {
       );
       // La fecha de las copias fusionadas se corrige a la del grupo
       // mayoritario para que no "vote" otra fecha.
-      g.copias.forEach((p) => destino.copias.push({ ...p, fecha: destino.fecha }));
+      g.copias.forEach((p) =>
+        destino.copias.push({ ...p, fecha: destino.fecha }),
+      );
       destino.jugadores.push(...g.jugadores);
       destino.entrenadores.push(...g.entrenadores);
       destino.copiasEnt.push(...g.copiasEnt);
@@ -461,10 +485,7 @@ function construirPartidos(CLUB_DATA) {
     // Copias discrepantes → aviso (no cambian el partido, pero conviene
     // corregirlas en los datos).
     g.jugadores.forEach(({ codigo, p }) => {
-      if (
-        p.golesLocal !== golesLocal ||
-        p.golesVisitante !== golesVisitante
-      ) {
+      if (p.golesLocal !== golesLocal || p.golesVisitante !== golesVisitante) {
         avisos.push(
           `Marcador distinto en ${codigo} (${g.tid}, ${p.fecha}): ${p.golesLocal}-${p.golesVisitante}, el resto dice ${golesLocal}-${golesVisitante}`,
         );
@@ -514,6 +535,29 @@ function construirPartidos(CLUB_DATA) {
   }
 
   partidos.sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+  // Goles en propia puerta de rivales (js/data-goles-propia.js), por
+  // fecha: no son de ningún jugador del Oviedo, así que no están en
+  // ningún partidos[] — se añaden aparte a cada partido.
+  const porFecha = new Map(partidos.map((p) => [p.fecha, p]));
+  partidos.forEach((p) => {
+    p.golesEnPropia = [];
+  });
+  (CLUB_DATA.golesEnPropia || []).forEach((og) => {
+    const p = og && porFecha.get(og.fecha);
+    if (!p) {
+      avisos.push(
+        `Gol en propia puerta con fecha sin partido (js/data-goles-propia.js): ${og && og.fecha} ${og && og.jugador}`,
+      );
+      return;
+    }
+    p.golesEnPropia.push({
+      jugador: og.jugador,
+      equipo: og.equipo || p.rival,
+      minuto: og.minuto || null,
+      goles: og.goles || 1,
+    });
+  });
 
   // Por si dos partidos distintos acabasen con el mismo slug (no
   // debería pasar: el Oviedo no juega dos veces el mismo día).
@@ -594,7 +638,10 @@ function traduccionesEn() {
     vm.runInContext(`${src}\n;globalThis.__T = translations;`, sandbox);
     _en = (sandbox.__T && sandbox.__T.en) || {};
   } catch (e) {
-    console.warn('⚠ No se pudieron leer las traducciones de i18n.js:', e.message);
+    console.warn(
+      '⚠ No se pudieron leer las traducciones de i18n.js:',
+      e.message,
+    );
     _en = {};
   }
   return _en;
@@ -614,7 +661,9 @@ function competicionEn(comp) {
   return traduccionesEn()[`comp_${claveI18n(comp)}`] || comp || '';
 }
 function competicionCortaEn(comp) {
-  return /^Copa del Rey/i.test(comp || '') ? 'Copa del Rey' : competicionEn(comp);
+  return /^Copa del Rey/i.test(comp || '')
+    ? 'Copa del Rey'
+    : competicionEn(comp);
 }
 function jornadaEn(jornada) {
   if (jornada === null || jornada === undefined || jornada === '') return '';
@@ -630,8 +679,18 @@ function posicionEn(pos) {
 }
 
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 function fechaLargaEn(iso) {
   const [a, m, d] = iso.split('-').map(Number);
@@ -646,7 +705,8 @@ function fechaCortaEn(iso) {
 // en data-en. Ambos argumentos son HTML ya escapado. No anidar: el
 // contenido se sustituye entero al cambiar de idioma.
 function bi(esHtml, enHtml, etiqueta = 'span') {
-  if (enHtml === undefined || enHtml === null || enHtml === esHtml) return esHtml;
+  if (enHtml === undefined || enHtml === null || enHtml === esHtml)
+    return esHtml;
   return `<${etiqueta} data-en="${String(enHtml).replace(/&/g, '&amp;').replace(/"/g, '&quot;')}">${esHtml}</${etiqueta}>`;
 }
 

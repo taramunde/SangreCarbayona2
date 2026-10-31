@@ -356,6 +356,16 @@
         const listaJugadores = Array.from(jugadores);
         const listaEntrenadores = Array.from(entrenadores);
         const listaGoleadores = Array.from(goleadores);
+        // Goles en propia puerta de jugadores rivales que subieron al
+        // marcador del Oviedo (js/data-goles-propia.js, por fecha). No
+        // son de ningún jugador del Oviedo: van aparte y NO cuentan en
+        // rankings ni estadísticas de jugadores.
+        const golesEnPropia = (
+          (window.CLUB_DATA && window.CLUB_DATA.golesEnPropia) ||
+          []
+        )
+          .filter((og) => og && og.fecha === p.fecha && og.jugador)
+          .map((og) => ({ jugador: og.jugador, goles: og.goles || 1 }));
         const golesFavor = esLocal ? p.golesLocal : p.golesVisitante;
         const golesContra = esLocal ? p.golesVisitante : p.golesLocal;
         const hayPenaltis = typeof penaltisLocal === 'number';
@@ -374,7 +384,8 @@
         const golSinAutor =
           typeof golesOviedo === 'number' &&
           golesOviedo > 0 &&
-          listaGoleadores.length === 0;
+          listaGoleadores.length === 0 &&
+          golesEnPropia.length === 0;
 
         indice.push({
           tipo: 'partido',
@@ -392,6 +403,7 @@
           jugadores: listaJugadores,
           entrenadores: listaEntrenadores,
           goleadores: listaGoleadores,
+          golesEnPropia,
           golSinAutor,
           statsPorJugador,
           amarilla,
@@ -416,7 +428,10 @@
               listaJugadores.join(' '),
               listaEntrenadores.join(' '),
               listaGoleadores.join(' '),
-              golSinAutor ? 'propia puerta autogol' : '',
+              golesEnPropia.map((og) => og.jugador).join(' '),
+              golSinAutor || golesEnPropia.length
+                ? 'propia puerta autogol'
+                : '',
             ]
               .filter(Boolean)
               .join(' '),
@@ -909,15 +924,23 @@
       const maxVisibles = 6;
       const visibles = lista.slice(0, maxVisibles).join(', ');
       const resto = lista.length - maxVisibles;
-      const yMas =
-        resto > 0 ? ` ${t('busc_y_mas').replace('{n}', resto)}` : '';
+      const yMas = resto > 0 ? ` ${t('busc_y_mas').replace('{n}', resto)}` : '';
       return `<p class="busc-jugadores busc-clicable" data-lista="${clave}"><i class="fas ${icono}"></i> ${visibles}${yMas}</p>`;
     }
 
     const jugadoresHtml = listaCorta(item.jugadores, 'fa-users', 'jugadores');
+    // Goleadores del Oviedo + goles en propia puerta de rivales,
+    // estos con su etiqueta en el idioma activo.
+    const goleadoresMostrar = [
+      ...(item.goleadores || []),
+      ...(item.golesEnPropia || []).map(
+        (og) =>
+          `${og.jugador}${og.goles > 1 ? ` (${og.goles})` : ''} (${t('busc_en_propia')})`,
+      ),
+    ];
     const goleadoresHtml = item.golSinAutor
       ? `<p class="busc-jugadores"><i class="fas fa-futbol"></i> ${t('busc_gol_sin_autor')}</p>`
-      : listaCorta(item.goleadores, 'fa-futbol', 'goleadores');
+      : listaCorta(goleadoresMostrar, 'fa-futbol', 'goleadores');
     const statsHtml = statsJugadorHtml(item, jugadorSeleccionado);
 
     let tarjetasHtml = '';
@@ -945,7 +968,7 @@
 
     card.querySelectorAll('[data-lista]').forEach((el) => {
       const clave = el.dataset.lista;
-      const lista = clave === 'goleadores' ? item.goleadores : item.jugadores;
+      const lista = clave === 'goleadores' ? goleadoresMostrar : item.jugadores;
       const etiqueta =
         clave === 'goleadores'
           ? t('busc_modal_goleadores')
@@ -1107,9 +1130,7 @@
             tile(r.d, t('busc_res_derrotas')),
             tile(r.amarillas, t('busc_res_amarillas')),
             tile(r.rojas, t('busc_res_rojas')),
-            r.dobles > 0
-              ? tile(r.dobles, t('busc_res_doble_amarilla'))
-              : '',
+            r.dobles > 0 ? tile(r.dobles, t('busc_res_doble_amarilla')) : '',
           ].join('')
         : [
             tile(r.pj, t('busc_res_partidos_dirigidos')),

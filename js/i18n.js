@@ -269,7 +269,8 @@ const translations = {
     // ============================================
     // BUSCADOR
     // ============================================
-    busc_placeholder: 'Busca por nombre, apellidos, apodo, rival, competición...',
+    busc_placeholder:
+      'Busca por nombre, apellidos, apodo, rival, competición...',
     busc_tipo_todos: 'Todos',
     busc_tipo_jugadores: 'Jugadores',
     busc_tipo_entrenadores: 'Entrenadores',
@@ -363,8 +364,8 @@ const translations = {
     busc_modal_jugadores: 'Jugadores',
     busc_y_mas: 'y {n} más',
     busc_prorroga_generica: 'Prórroga',
-    busc_gol_sin_autor:
-      'Gol sin goleador registrado (posible autogol rival)',
+    busc_gol_sin_autor: 'Gol sin goleador registrado (posible autogol rival)',
+    busc_en_propia: 'en propia puerta',
     busc_encajo: 'Encajó',
     busc_porteria_a_cero: 'Portería a cero',
     busc_amarilla_singular: 'Amarilla',
@@ -775,7 +776,8 @@ const translations = {
     // ============================================
     // SEARCH
     // ============================================
-    busc_placeholder: 'Search by name, surname, nickname, opponent, competition...',
+    busc_placeholder:
+      'Search by name, surname, nickname, opponent, competition...',
     busc_tipo_todos: 'All',
     busc_tipo_jugadores: 'Players',
     busc_tipo_entrenadores: 'Coaches',
@@ -869,6 +871,7 @@ const translations = {
     busc_y_mas: 'and {n} more',
     busc_prorroga_generica: 'Extra time',
     busc_gol_sin_autor: 'Goal with no scorer on record (possibly an own goal)',
+    busc_en_propia: 'own goal',
     busc_encajo: 'Conceded',
     busc_porteria_a_cero: 'Clean sheet',
     busc_amarilla_singular: 'Yellow card',

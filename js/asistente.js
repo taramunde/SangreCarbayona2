@@ -36,6 +36,9 @@
     // Nombres históricos de clubes: los mismos que usa el generador para
     // las páginas de historial (partidos/rival-...html).
     'data-equipos',
+    // Goles en propia puerta de rivales (los lee buscador.js al
+    // construir el índice de partidos).
+    'data-goles-propia',
     'data-palmares',
     'data-estadios',
     'data-historia',
@@ -666,8 +669,15 @@
       `partidos/${slug(local)}-${slug(visitante)}-${p.fecha}.html`,
     );
     const extra = p.penaltisMarcador ? ` (${p.penaltisMarcador})` : '';
-    const goleadores = (p.goleadores || []).length
-      ? ` — goles: ${esc(p.goleadores.join(', '))}`
+    const nombresGoles = [
+      ...(p.goleadores || []),
+      ...(p.golesEnPropia || []).map(
+        (og) =>
+          `${og.jugador}${og.goles > 1 ? ` (${og.goles})` : ''} (en propia puerta)`,
+      ),
+    ];
+    const goleadores = nombresGoles.length
+      ? ` — goles: ${esc(nombresGoles.join(', '))}`
       : '';
     return `<li>${enlaceVerificado(titulo, href)}${esc(extra)} <small>${esc(fechaLarga(p.fecha))} · ${esc(p.competicion)}</small>${goleadores}</li>`;
   }

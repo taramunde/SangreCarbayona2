@@ -705,6 +705,23 @@ temporadas: `{ nombre: 'Real Avilés C.F.', desde: '2012-13', hasta:
 cualquier club puede llevar una `nota` que sale en su página de
 historial (y `notaEn` con la misma nota en inglés). El ejemplo completo está en el propio `js/data-equipos.js`.
 
+### Goles en propia puerta de rivales — `js/data-goles-propia.js`
+
+Cuando el Oviedo marca un gol que es en propia puerta de un jugador
+rival, ese gol no está en el `partidos[]` de ningún jugador del Oviedo y
+el partido se queda sin autor. Se apunta en `js/data-goles-propia.js`,
+uno por gol, con la fecha del partido:
+
+```js
+{ fecha: '2022-04-16', jugador: 'Berrocal', equipo: 'Real Sporting de Gijón', minuto: 30 },
+```
+
+Sale en la página del partido ("Berrocal (Real Sporting de Gijón), en
+propia puerta"), en el buscador y en el chat. No cuenta para los
+rankings de goleadores ni para las estadísticas de nadie. Después,
+`npm run subir`. Si la fecha no coincide con ningún partido, el
+generador avisa con un `⚠`.
+
 ---
 
 ## 19. Si aparece un conflicto al hacer git pull

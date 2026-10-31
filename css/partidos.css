@@ -665,3 +665,9 @@
     grid-column: 1;
   }
 }
+
+/* Gol en propia puerta de un rival (js/data-goles-propia.js) */
+.propia-puerta {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
