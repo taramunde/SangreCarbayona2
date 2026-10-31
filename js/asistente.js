@@ -693,10 +693,11 @@
   // Partidos de un jugador/entrenador contra un rival, con enlace a la
   // página de cada partido (se usa el partido del índice, que trae el
   // marcador y los goleadores) y al historial completo contra ese club.
-  function bloquePartidosContraRival(per, f) {
-    if (!f.rival) return '';
-    const propios = per.partidos.filter((p) => pasaFiltros(p, f));
-    const filas = propios
+  // Partidos (del índice, con marcador y goleadores) de un jugador o
+  // entrenador que cumplen los filtros de la pregunta.
+  function partidosDePersona(per, f) {
+    return per.partidos
+      .filter((p) => pasaFiltros(p, f))
       .map((pp) =>
         M.partidos.find(
           (ip) => ip.fecha === pp.fecha && ip.temporada === pp.temporada,
@@ -704,11 +705,90 @@
       )
       .filter(Boolean)
       .sort((a, b) => (a.fecha < b.fecha ? -1 : 1));
+  }
+
+  // Lista enlazada de esos partidos: todos si son pocos; si son muchos,
+  // los últimos y el enlace a la ficha (que los tiene todos).
+  const MAX_LISTA_PARTIDOS = 12;
+  function bloquePartidosPersona(per, f) {
+    const filas = partidosDePersona(per, f);
+    if (!filas.length) return '';
+    if (filas.length <= MAX_LISTA_PARTIDOS)
+      return `<ul>${filas.map(filaPartido).join('')}</ul>`;
+    const ultimos = filas.slice(-5);
+    return (
+      `<br>Los últimos ${ultimos.length}:<ul>${ultimos.map(filaPartido).join('')}</ul>` +
+      `Todos sus partidos, en su ficha: ${enlace(per.nombre, per.url)}.`
+    );
+  }
+
+  function bloquePartidosContraRival(per, f) {
+    if (!f.rival) return '';
+    const filas = partidosDePersona(per, f);
     let t = '';
-    if (filas.length && filas.length <= 12)
+    if (filas.length && filas.length <= MAX_LISTA_PARTIDOS)
       t += `<ul>${filas.map(filaPartido).join('')}</ul>`;
     t += `Historial completo del Oviedo contra el ${enlaceHistorialRival(f.rival)}.`;
     return t;
+  }
+
+  // "¿Cuántos jugadores se llaman Carlos?" / "...con el nombre Carlos"
+  const RE_CUANTOS_NOMBRE =
+    /^(?:y )?cuant[oa]s (jugadores|futbolistas|entrenadores|tecnicos|personas)?\b.*?\b(?:llamad[oa]s?|se llaman|se llamen|se llamaba[n]?|con (?:el )?nombre(?: de)?|de nombre|que se llame)\s+(.+)$/;
+
+  function respuestaCuantosConNombre(q, pregunta) {
+    const m = q.match(RE_CUANTOS_NOMBRE);
+    if (!m) return null;
+    // Para mostrarlo, el nombre tal como lo escribió (con tildes y
+    // mayúsculas): las mismas últimas palabras de la pregunta original.
+    const nPalabras = m[2].split(' ').length;
+    const comoLoEscribio = String(pregunta || '')
+      .replace(/[¿?¡!.,;:"]/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .slice(-nPalabras)
+      .join(' ');
+    const quiereEntrenadores = /entrenador|tecnico/.test(m[1] || '');
+    const buscado = m[2]
+      .replace(/\b(en|el|del|real|oviedo|hay|han|ha|jugado|pasado)\b/g, ' ')
+      .trim();
+    const palabras = buscado.split(/\s+/).filter(Boolean);
+    if (!palabras.length) return null;
+    const contieneTodas = (texto) => {
+      const t = ` ${norm(texto)} `;
+      return palabras.every((w) => t.includes(` ${w} `));
+    };
+    const lista = M.personas
+      .filter(
+        (per) =>
+          per.clase === (quiereEntrenadores ? 'entrenador' : 'jugador') &&
+          per.temporadas.length &&
+          // Con una sola palabra se mira el nombre de pila (Carlos ≠
+          // Juan Carlos? sí cuenta: se llama Juan Carlos); con más, el
+          // nombre completo.
+          (palabras.length === 1
+            ? contieneTodas(per.d.nombre || per.nombre)
+            : contieneTodas(
+                `${per.d.nombreCompleto || ''} ${per.nombre} ${per.d.nombre || ''} ${per.d.apellidos || ''}`,
+              )),
+      )
+      .sort(
+        (a, b) =>
+          (a.temporadas[0] || '').localeCompare(b.temporadas[0] || '') ||
+          a.nombre.localeCompare(b.nombre, 'es'),
+      );
+    const clase = quiereEntrenadores ? 'entrenador' : 'jugador';
+    const clases = quiereEntrenadores ? 'entrenadores' : 'jugadores';
+    if (!lista.length)
+      return `No tengo ningún ${clase} del Oviedo llamado "${esc(comoLoEscribio)}" (datos de 2009/10 a hoy).`;
+    const fila = (per) => {
+      const completo = per.d.nombreCompleto || per.nombre;
+      return `<li>${enlace(per.nombre, per.url)}${completo !== per.nombre ? ` <small>${esc(completo)}</small>` : ''} <small>· ${esc(rangoTemporadas(per.temporadas))}</small></li>`;
+    };
+    return (
+      `${lista.length === 1 ? 'Solo hay' : 'Hay'} <b>${plural(lista.length, clase, clases)}</b> del Oviedo llamado${lista.length === 1 ? '' : 's'} "${esc(comoLoEscribio)}" (de 2009/10 a hoy):` +
+      `<ul>${lista.map(fila).join('')}</ul>`
+    );
   }
 
   function contexto(f) {
@@ -831,7 +911,9 @@
     if (it.partidos && !lineas.length)
       lineas.push(
         `${nom} ha jugado <b>${plural(s.pj, 'partido', 'partidos')}</b>${esc(ctx)}: ` +
-          `${plural(s.v, 'victoria', 'victorias')}, ${plural(s.e, 'empate', 'empates')} y ${plural(s.d, 'derrota', 'derrotas')}.`,
+          `${plural(s.v, 'victoria', 'victorias')}, ${plural(s.e, 'empate', 'empates')} y ${plural(s.d, 'derrota', 'derrotas')}.` +
+          // Contra un rival ya se listan más abajo (con su historial).
+          (f.rival ? '' : bloquePartidosPersona(per, f)),
       );
     if (it.temporadas)
       lineas.push(`En el Oviedo: ${esc(rangoTemporadas(per.temporadas))}.`);
@@ -876,6 +958,7 @@
     if (!f.temporada)
       t += `<br>En el banquillo: ${esc(rangoTemporadas(per.temporadas))}.`;
     if (f.rival) t += `<br>${bloquePartidosContraRival(per, f)}`;
+    else t += bloquePartidosPersona(per, f);
     return t;
   }
 
@@ -1020,6 +1103,12 @@
     const q = norm(pregunta);
     if (!q) return ayuda();
     const it = detectarIntenciones(q);
+
+    // Recuento por nombre: va antes de detectar personas, porque si no
+    // "Carlos" se toma como "¿a qué Carlos te refieres?".
+    const porNombre = respuestaCuantosConNombre(q, pregunta);
+    if (porNombre) return porNombre;
+
     const ents = detectarEntidades(q);
 
     if (ents.dudas.length) {
