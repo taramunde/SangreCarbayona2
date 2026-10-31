@@ -392,6 +392,30 @@
   font-size: 0.85rem;
 }
 
+.busc-preguntar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: -6px 0 18px;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.busc-preguntar i {
+  color: var(--secondary-color);
+}
+
+.busc-preguntar button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .busc-ranking-temporadas {
   display: block;
   font-size: 0.72rem;

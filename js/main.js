@@ -51,6 +51,30 @@ function cargarComunes() {
         actualizarAnosFooter();
       }
     });
+
+  cargarAsistente(rutaBase);
+}
+
+// Chat "Pregúntale al Carbayón" (js/asistente.js) en todas las páginas
+// sin tener que añadirlo a mano en cada HTML. Reutiliza el nocache con
+// el que se ha cargado main.js para no servir una versión vieja.
+function cargarAsistente(rutaBase) {
+  if (document.getElementById('scAsistenteJs')) return;
+  const main = document.querySelector('script[src*="js/main.js"]');
+  const nocache =
+    main && main.getAttribute('src').includes('?')
+      ? '?' + main.getAttribute('src').split('?')[1]
+      : '';
+
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = `${rutaBase}css/asistente.css${nocache}`;
+  document.head.appendChild(css);
+
+  const js = document.createElement('script');
+  js.id = 'scAsistenteJs';
+  js.src = `${rutaBase}js/asistente.js${nocache}`;
+  document.body.appendChild(js);
 }
 
 // Muestra "2017-2026" (o solo "2017" si algún año coincidiera) usando

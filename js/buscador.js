@@ -624,6 +624,11 @@
     return indice;
   }
 
+  // Reutilizado por el asistente (js/asistente.js), que carga este
+  // archivo en cualquier página para responder preguntas con los mismos
+  // datos que el buscador.
+  window.SCIndice = { construir: construirIndice, normalizar };
+
   // ── POBLAR FILTROS DINÁMICAMENTE A PARTIR DEL ÍNDICE ────────────
 
   function poblarSelect(select, valores, etiquetaTodos, orden) {
@@ -1287,6 +1292,7 @@
   // ── INICIALIZACIÓN ───────────────────────────────────────────
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('buscTexto')) return;
     const indice = construirIndice();
     poblarFiltros(indice, indice);
 

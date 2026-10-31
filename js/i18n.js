@@ -335,6 +335,8 @@ const translations = {
     busc_ranking_ver_todo:
       'Ver ranking completo ({g} goleadores · {p} jugadores)',
     busc_ranking_plegar: 'Plegar ranking',
+    busc_preguntar: '¿Prefieres preguntarlo con tus palabras?',
+    busc_preguntar_boton: 'Pregúntale al Carbayón',
     busc_sin_datos: 'Sin datos',
     busc_filtro_contra: 'contra',
     busc_filtro_en: 'en',
@@ -838,6 +840,8 @@ const translations = {
     busc_ranking_mas_partidos: 'Most matches played',
     busc_ranking_ver_todo: 'Show full ranking ({g} scorers · {p} players)',
     busc_ranking_plegar: 'Collapse ranking',
+    busc_preguntar: 'Rather ask in your own words?',
+    busc_preguntar_boton: 'Ask the Carbayón (Spanish only)',
     busc_sin_datos: 'No data',
     busc_filtro_contra: 'against',
     busc_filtro_en: 'in',
