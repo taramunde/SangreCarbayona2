@@ -1604,11 +1604,93 @@
   function cerrar() {
     if (!panel) return;
     // Cerrar el chat termina la conversación (y su memoria).
+    cerrarGuia();
     borrarConversacion();
     panel.classList.remove('sc-asis-panel--abierto');
     document
       .getElementById('scAsistenteBoton')
       .setAttribute('aria-expanded', 'false');
+  }
+
+  // ── GUÍA DE USO (botón "?") ─────────────────────────────────
+  function ejemploGuia(texto) {
+    return `<button type="button" class="sc-asis-guia-ej" data-preguntar="${esc(texto)}">${esc(texto)}</button>`;
+  }
+
+  function htmlGuia() {
+    return `
+      <div class="sc-asis-guia" id="scAsistenteGuia" role="dialog" aria-modal="true" aria-labelledby="scAsistenteGuiaTitulo" hidden>
+        <div class="sc-asis-guia-tarjeta">
+          <div class="sc-asis-guia-cab">
+            <b id="scAsistenteGuiaTitulo"><i class="fas fa-circle-question"></i> Cómo usar el chat</b>
+            <button type="button" class="sc-asis-guia-cerrar" aria-label="Cerrar la guía"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="sc-asis-guia-cuerpo">
+            <p>Respondo con los datos de esta web (partidos del Oviedo <b>de 2009/10 a hoy</b>). No soy una IA: entiendo preguntas cortas sobre jugadores, entrenadores, rivales y temporadas. Pulsa cualquier ejemplo para probarlo.</p>
+
+            <h4><i class="fas fa-user"></i> Jugadores y entrenadores</h4>
+            <ul>
+              <li>${ejemploGuia('¿Cuántos goles ha marcado Linares?')}</li>
+              <li>${ejemploGuia('¿Cuántos partidos ha jugado Toché?')}</li>
+              <li>${ejemploGuia('¿De dónde es Borja Bastón?')}</li>
+              <li>${ejemploGuia('¿Cuántos goles ha encajado Aarón en casa?')}</li>
+              <li>${ejemploGuia('¿Cuántos jugadores se llaman Carlos?')}</li>
+            </ul>
+            <p class="sc-asis-guia-nota">También: asistencias, tarjetas, minutos, temporadas, edad, altura, posición, apodo o nombre completo.</p>
+
+            <h4><i class="fas fa-shield-halved"></i> Rivales, temporadas y rankings</h4>
+            <ul>
+              <li>${ejemploGuia('¿Cuántas veces hemos jugado contra el Sporting?')}</li>
+              <li>${ejemploGuia('¿Último partido contra el Racing de Santander?')}</li>
+              <li>${ejemploGuia('¿Quién era el entrenador en la 2017/18?')}</li>
+              <li>${ejemploGuia('¿Quién es el máximo goleador contra el Lugo?')}</li>
+              <li>${ejemploGuia('¿Cuál fue nuestra mayor goleada?')}</li>
+            </ul>
+
+            <h4><i class="fas fa-filter"></i> Filtros que puedes añadir</h4>
+            <ul class="sc-asis-guia-lista">
+              <li><b>Rival:</b> «contra el Sporting», «al Lugo»</li>
+              <li><b>Temporada:</b> «en 2015/16», «esta temporada», «la temporada pasada»</li>
+              <li><b>Competición:</b> «en Copa», «en Segunda B», «en fase de ascenso»</li>
+              <li><b>Campo:</b> «en casa», «fuera de casa»</li>
+            </ul>
+
+            <h4><i class="fas fa-comments"></i> Seguir la conversación</h4>
+            <ul class="sc-asis-guia-lista">
+              <li>Empieza por <b>«¿Y…?»</b> para cambiar solo una cosa de la pregunta anterior: «¿Y Toché?», «¿y contra el Sporting?», «¿y en 2017/18?», «¿y en casa?».</li>
+              <li><b>Pulsa una de tus preguntas</b> anteriores para volver a ella y seguir desde ahí.</li>
+              <li>O dímelo: <b>«como al principio»</b> (la primera pregunta) o <b>«lo de antes»</b> (la anterior). Puedes añadir algo: «como al principio pero contra el Sporting».</li>
+              <li>Si un nombre puede ser de varios, te pregunto cuál y lo eliges pulsando.</li>
+            </ul>
+
+            <h4><i class="fas fa-circle-info"></i> Bueno saber</h4>
+            <ul class="sc-asis-guia-lista">
+              <li>Los nombres en <b>negrita</b> y los partidos llevan a su ficha o a su página.</li>
+              <li>La conversación se mantiene aunque cambies de página. <b>Al cerrar el chat se borra</b> y la próxima empieza de cero.</li>
+              <li>En los porteros, «goles» son los <b>encajados</b>.</li>
+              <li>Si no entiendo algo, pruébalo más corto o con el nombre completo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  let focoAntesGuia = null;
+  function abrirGuia() {
+    const g = panel.querySelector('.sc-asis-guia');
+    focoAntesGuia = document.activeElement;
+    g.hidden = false;
+    panel.querySelector('.sc-asis-ayuda').setAttribute('aria-expanded', 'true');
+    g.querySelector('.sc-asis-guia-cerrar').focus();
+  }
+  function cerrarGuia() {
+    const g = panel && panel.querySelector('.sc-asis-guia');
+    if (!g || g.hidden) return;
+    g.hidden = true;
+    panel
+      .querySelector('.sc-asis-ayuda')
+      .setAttribute('aria-expanded', 'false');
+    if (focoAntesGuia && focoAntesGuia.focus) focoAntesGuia.focus();
   }
 
   function crearInterfaz() {
@@ -1624,8 +1706,10 @@
           <b>Pregúntale al Carbayón</b>
           <small>Datos de la web, de 2009/10 a hoy</small>
         </div>
+        <button type="button" class="sc-asis-ayuda" aria-label="Cómo usar el chat" title="Cómo usar el chat" aria-haspopup="dialog" aria-controls="scAsistenteGuia"><i class="fas fa-question"></i></button>
         <button type="button" class="sc-asis-cerrar" aria-label="Cerrar"><i class="fas fa-times"></i></button>
       </header>
+      ${htmlGuia()}
       <div class="sc-asis-mensajes" aria-live="polite"></div>
       <form class="sc-asis-form">
         <input type="text" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" autocomplete="off" />
@@ -1636,6 +1720,26 @@
     entrada = panel.querySelector('input');
 
     panel.querySelector('.sc-asis-cerrar').addEventListener('click', cerrar);
+
+    // Guía de uso (botón "?"): ventana dentro del chat.
+    const guia = panel.querySelector('.sc-asis-guia');
+    const botonAyuda = panel.querySelector('.sc-asis-ayuda');
+    botonAyuda.addEventListener('click', () =>
+      guia.hidden ? abrirGuia() : cerrarGuia(),
+    );
+    guia.addEventListener('click', (e) => {
+      // Pulsar fuera de la tarjeta, o su X, la cierra.
+      if (e.target === guia || e.target.closest('.sc-asis-guia-cerrar')) {
+        cerrarGuia();
+        return;
+      }
+      // Los ejemplos se pueden pulsar para preguntarlos directamente.
+      const ej = e.target.closest('[data-preguntar]');
+      if (ej) {
+        cerrarGuia();
+        preguntar(ej.dataset.preguntar);
+      }
+    });
     panel.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();
       const t = entrada.value;
@@ -1677,7 +1781,11 @@
       }
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') cerrar();
+      if (e.key !== 'Escape') return;
+      // Con la guía abierta, Escape cierra solo la guía.
+      const g = panel && panel.querySelector('.sc-asis-guia');
+      if (g && !g.hidden) cerrarGuia();
+      else cerrar();
     });
   }
 
