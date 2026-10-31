@@ -27,6 +27,11 @@
    El Oviedo no juega dos partidos el mismo día, así que la fecha basta
    para saber de qué partido es. Si la fecha no coincide con ningún
    partido, el generador lo avisa con un ⚠ al regenerar.
+
+   PARA ENCONTRARLOS: `npm run revisar-goles` lista los partidos con
+   goles del Oviedo sin autor, y en realoviedo.info (página de cada
+   temporada) los goles en propia salen como "Fulano (en p.p.)".
+   Guía completa paso a paso: LEEME.md, sección 20.
    =================================== */
 
 /* global CLUB_DATA */

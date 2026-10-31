@@ -40,6 +40,7 @@ cambiar los valores.
 17. [Traducciones (español/inglés)](#17-traducciones-españolinglés)
 18. [Generar, formatear y subir los cambios](#18-generar-formatear-y-subir-los-cambios)
 19. [Si aparece un conflicto al hacer git pull](#19-si-aparece-un-conflicto-al-hacer-git-pull)
+20. [Goles en propia puerta y goles sin autor](#20-goles-en-propia-puerta-y-goles-sin-autor)
 
 ---
 
@@ -705,23 +706,6 @@ temporadas: `{ nombre: 'Real Avilés C.F.', desde: '2012-13', hasta:
 cualquier club puede llevar una `nota` que sale en su página de
 historial (y `notaEn` con la misma nota en inglés). El ejemplo completo está en el propio `js/data-equipos.js`.
 
-### Goles en propia puerta de rivales — `js/data-goles-propia.js`
-
-Cuando el Oviedo marca un gol que es en propia puerta de un jugador
-rival, ese gol no está en el `partidos[]` de ningún jugador del Oviedo y
-el partido se queda sin autor. Se apunta en `js/data-goles-propia.js`,
-uno por gol, con la fecha del partido:
-
-```js
-{ fecha: '2022-04-16', jugador: 'Berrocal', equipo: 'Real Sporting de Gijón', minuto: 30 },
-```
-
-Sale en la página del partido ("Berrocal (Real Sporting de Gijón), en
-propia puerta"), en el buscador y en el chat. No cuenta para los
-rankings de goleadores ni para las estadísticas de nadie. Después,
-`npm run subir`. Si la fecha no coincide con ningún partido, el
-generador avisa con un `⚠`.
-
 ---
 
 ## 19. Si aparece un conflicto al hacer git pull
@@ -743,3 +727,93 @@ Si el conflicto está en un archivo de datos real (`data-historico.js`,
 etc.), hay que mirar las marcas `<<<<<<<` / `=======` / `>>>>>>>` a mano y
 decidir qué parte de cada lado conservar — en ese caso, mejor pide ayuda
 en vez de resolverlo a ciegas, para no perder datos de ningún lado.
+
+---
+
+## 20. Goles en propia puerta y goles sin autor
+
+### Por qué hace falta
+
+Los goles del Oviedo salen del campo `goles` del `partidos[]` de cada
+jugador (sección 3). Un gol **en propia puerta de un rival** no es de
+ningún jugador del Oviedo, así que no está en el `partidos[]` de nadie y
+el partido se quedaría sin autor (p. ej. el Sporting 0-1 Oviedo de 2022,
+gol en propia de Berrocal).
+
+Esos goles se apuntan aparte, en **`js/data-goles-propia.js`**. Desde
+ahí salen en la página de cada partido ("Berrocal (Real Sporting de
+Gijón), en propia puerta"), en el buscador y en el chat "Pregúntale al
+Carbayón". **No** cuentan para los rankings de goleadores ni para las
+estadísticas de ningún jugador.
+
+### Paso 1 — Ver qué partidos tienen goles sin autor
+
+En la terminal, en la carpeta del proyecto:
+
+```
+npm run revisar-goles            (todas las temporadas)
+npm run revisar-goles 2009-10    (solo una temporada)
+```
+
+Saca la lista de partidos en los que el Oviedo marcó más goles de los
+que tienen apuntados sus jugadores (y los goles en propia ya metidos),
+con el enlace a la página de esa temporada en realoviedo.info. No cambia
+nada, solo avisa. Si sale "✅ Ningún partido con goles sin autor", no
+hay nada que hacer.
+
+> Si la temporada aún está a medias (pocos jugadores metidos), saldrán
+> casi todos sus partidos: es normal, faltan goles de jugadores que aún
+> no están. Usa este comando cuando la temporada esté completa.
+
+### Paso 2 — Averiguar si fue gol en propia (realoviedo.info)
+
+Abre la página de la temporada en realoviedo.info (la que da el
+comando, p. ej. `https://realoviedo.info/14-15.html`):
+
+- En la línea del partido, los goles en propia salen como
+  **`Soto (en p.p.)`**.
+- Al final de la página hay un resumen: **`goles p.p.: SOTO (R.C. CELTA
+  "B"), CONDE (TROPEZÓN)`**.
+
+Según lo que ponga:
+
+- **Es un "(en p.p.)"** → paso 3.
+- **Es un jugador del Oviedo** → no es gol en propia: falta el gol en
+  su ficha. Súmalo en el campo `goles` de ese partido, en el
+  `partidos[]` de ese jugador (sección 3).
+
+### Paso 3 — Apuntarlo en `js/data-goles-propia.js`
+
+Añade un bloque dentro de `CLUB_DATA.golesEnPropia = [ ... ]`, en el
+apartado de su temporada (están ordenados por fecha):
+
+```js
+  {
+    fecha: '2014-10-19',              // la del partido, igual que en los datos
+    jugador: 'Soto',                  // como lo escribe realoviedo.info
+    equipo: 'R.C. Celta de Vigo B',   // su equipo
+    minuto: 30,                       // opcional
+    goles: 2,                         // opcional, solo si marcó DOS en propia
+    fuente: 'https://realoviedo.info/14-15.html', // opcional
+  },
+```
+
+- La **fecha** basta para saber de qué partido es (el Oviedo no juega
+  dos el mismo día). Si no coincide con ningún partido, al regenerar sale
+  un aviso `⚠ Gol en propia puerta con fecha sin partido`.
+- El **equipo** se pone con el mismo nombre que tiene el rival en los
+  datos del partido.
+
+### Paso 4 — Regenerar y subir
+
+```
+npm run revisar-goles    (comprobar que ese partido ya no sale)
+npm run subir
+```
+
+### Estado actual
+
+Todos los goles en propia de **2010/11 a 2025/26** están metidos (24)
+y comprobados con realoviedo.info. Falta revisar **2009/10** cuando esa
+temporada esté completa.
+

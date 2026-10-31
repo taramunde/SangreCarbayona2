@@ -5,7 +5,8 @@
   "scripts": {
     "generar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js",
     "subir": "node generador/subir.js",
-    "forzar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force"
+    "forzar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force",
+    "revisar-goles": "node generador/revisar-goles.js"
   },
   "author": "Taramunde",
   "license": "ISC",
