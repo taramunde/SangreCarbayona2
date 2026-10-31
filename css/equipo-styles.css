@@ -788,3 +788,13 @@
   font-family: var(--font-heading);
   line-height: 1.1;
 }
+
+/* Móviles muy estrechos: las tarjetas de estadísticas pueden encoger */
+.team-stats-grid > * {
+  min-width: 0;
+}
+@media (max-width: 360px) {
+  .stat-card {
+    padding: 12px 6px;
+  }
+}

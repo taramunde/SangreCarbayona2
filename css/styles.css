@@ -1935,3 +1935,71 @@ img {
 .page-share-btn.twitter {
   background: #1da1f2;
 }
+
+/* ===================================
+   MÓVILES ESTRECHOS (≤ 420 px): que nada se salga por los lados
+   =================================== */
+/* Pie: las columnas pueden encoger y los textos largos sin espacios
+   (el correo) saltan de línea en vez de ensanchar la página. */
+.footer-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.footer-column {
+  min-width: 0;
+}
+.contact-info li,
+.contact-info a {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  /* Cabecera: logo, banderas, lupa y menú caben en una sola fila */
+  .header-actions {
+    gap: 8px;
+    padding-right: 0;
+  }
+  .lang-switcher {
+    gap: 4px;
+  }
+  .lang-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .search-btn,
+  .mobile-menu-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .logo {
+    gap: 8px;
+    min-width: 0;
+  }
+  .logo-shield {
+    width: 36px;
+    height: 44px;
+  }
+  .team-name {
+    font-size: 1.05rem;
+  }
+  .footer-column h4 {
+    font-size: 0.98rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 340px) {
+  .team-name {
+    font-size: 0.92rem;
+  }
+  .club-name {
+    letter-spacing: 1px;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+}

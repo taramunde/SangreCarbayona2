@@ -490,3 +490,13 @@
   padding: 1px 6px;
   white-space: nowrap;
 }
+
+/* En móvil, "Copa del Rey · Primera Ronda · 29 oct · 18:00" no cabe en
+   una línea: puede partirse (entre palabras) en vez de ensanchar la página. */
+@media (max-width: 480px) {
+  .cal-jornada-num {
+    white-space: normal;
+    min-width: 0;
+    line-height: 1.3;
+  }
+}
