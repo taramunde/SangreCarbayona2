@@ -50,13 +50,23 @@
 }
 .partidos-header h1 {
   font-family: var(--font-heading);
-  font-size: clamp(1.7rem, 4.5vw, 2.8rem);
+  /* Se adapta al ancho de pantalla; los títulos largos aún más pequeños
+     (clases que pone generador/generar-partidos.js). Nunca se corta:
+     solo pasa a otra línea entre palabras. */
+  font-size: clamp(1.3rem, 5.4vw, 2.8rem);
+  overflow-wrap: break-word;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   line-height: 1.15;
   margin: 0 0 8px;
   color: #fff;
+}
+.partidos-header h1.titulo-largo {
+  font-size: clamp(1.15rem, 4.6vw, 2.4rem);
+}
+.partidos-header h1.titulo-muy-largo {
+  font-size: clamp(1.05rem, 4vw, 2rem);
 }
 .partidos-header .subtitulo {
   margin: 0;
@@ -104,7 +114,7 @@
 /* ── Marcador del partido ──────────────────────────────────── */
 .marcador {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   text-align: center;
@@ -125,10 +135,23 @@
 }
 .marcador-equipo .nombre {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  /* Igual que el título: se adapta a la pantalla y a lo largo que sea */
+  font-size: clamp(0.85rem, 3.8vw, 1.15rem);
+  max-width: 100%;
+  /* Nunca se parte una palabra: solo salta de línea entre palabras (si
+     una no cabe, la clase nombre-largo/-muy-largo baja la letra). */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
   font-weight: 600;
   color: var(--gray-900);
   line-height: 1.2;
+}
+.marcador-equipo .nombre.nombre-largo {
+  font-size: clamp(0.78rem, 3.3vw, 1.05rem);
+}
+.marcador-equipo .nombre.nombre-muy-largo {
+  font-size: clamp(0.72rem, 2.9vw, 0.95rem);
 }
 .marcador-equipo.es-oviedo .nombre {
   color: #003da5;
@@ -173,6 +196,14 @@
   border-radius: 999px;
   padding: 3px 10px;
   margin-top: 10px;
+}
+/* La etiqueta del resultado en el marcador puede ir en dos líneas, para
+   no robar sitio a los nombres de los equipos */
+.marcador-centro .chip {
+  max-width: 8.5em;
+  white-space: normal;
+  line-height: 1.25;
+  padding: 4px 10px;
 }
 .chip-V {
   background: #dcfce7;
@@ -637,8 +668,9 @@
   .marcador {
     gap: 8px;
   }
-  .marcador-equipo .nombre {
-    font-size: 0.95rem;
+  .marcador-centro .chip {
+    font-size: 0.68rem;
+    letter-spacing: 0.3px;
   }
   .resumen {
     grid-template-columns: repeat(3, 1fr);

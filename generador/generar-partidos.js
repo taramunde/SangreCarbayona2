@@ -112,6 +112,34 @@ Object.entries(CLUB_DATA.filiales || {}).forEach(([filial, primero]) => {
   filialDe.set(claveEquipo(filial), primero);
 });
 
+// ── Tamaño de letra según lo largo que sea el texto ──────────────
+// Los nombres largos ("Universidad Las Palmas de Gran Canaria C.F.",
+// "A.D. Cerro de Reyes Badajoz Atlético") reciben una clase que les
+// baja el tamaño (css/partidos.css), para que quepan sin cortarse.
+// Cuenta tanto el largo total como la palabra más larga (una palabra
+// no se puede partir en dos líneas).
+function palabraMasLarga(texto) {
+  return Math.max(
+    0,
+    ...String(texto || '')
+      .split(/\s+/)
+      .map((w) => w.length),
+  );
+}
+function claseTitulo(texto) {
+  const n = String(texto || '').length;
+  if (n > 44 || palabraMasLarga(texto) > 14) return 'titulo-muy-largo';
+  if (n > 28 || palabraMasLarga(texto) > 11) return 'titulo-largo';
+  return '';
+}
+function claseNombreEquipo(texto) {
+  const n = String(texto || '').length;
+  const w = palabraMasLarga(texto);
+  if (n > 32 || w >= 11) return 'nombre-muy-largo';
+  if (n > 20 || w >= 9) return 'nombre-largo';
+  return '';
+}
+
 function escudoDe(nombre) {
   const clave = claveEquipo(nombre);
   if (escudoPorClave.has(clave)) return escudoPorClave.get(clave);
@@ -313,7 +341,7 @@ function pagina({
     <section class="partidos-header">
       <div class="container">
         <nav class="breadcrumb" aria-label="Migas de pan">${migasHtml}</nav>
-        ${h1En && h1En !== h1 ? bi(e(h1), e(h1En), 'h1') : `<h1>${e(h1)}</h1>`}
+        ${(h1En && h1En !== h1 ? bi(e(h1), e(h1En), 'h1') : `<h1>${e(h1)}</h1>`).replace('<h1', claseTitulo(h1) ? `<h1 class="${claseTitulo(h1)}"` : '<h1')}
         ${subtitulo ? `<p class="subtitulo">${bi(e(subtitulo), subtituloEn ? e(subtituloEn) : undefined)}</p>` : ''}
       </div>
     </section>
@@ -507,7 +535,7 @@ partidos.forEach((p, i) => {
     nombre,
   ) => `<div class="marcador-equipo${nombre === OVIEDO ? ' es-oviedo' : ''}">
             ${htmlEscudo(nombre === OVIEDO ? nombre : p.club)}
-            <span class="nombre">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(p.club)}.html">${e(nombre)}</a>`}</span>
+            <span class="${['nombre', claseNombreEquipo(nombre)].filter(Boolean).join(' ')}">${nombre === OVIEDO ? e(nombre) : `<a href="${slugRival(p.club)}.html">${e(nombre)}</a>`}</span>
             ${nombre !== OVIEDO && nombreAntiguo ? `<span class="nombre-actual">${(clubInfo.get(claveEquipo(p.club)) || {}).desaparecido ? e(p.club) : bi(`hoy ${e(p.club)}`, `now ${e(p.club)}`)}</span>` : ''}
           </div>`;
 
