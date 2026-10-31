@@ -476,6 +476,89 @@
     return null;
   }
 
+  // ── RANGOS DE TEMPORADAS ────────────────────────────────────
+  // "desde 2010 a 2020", "entre 2012 y 2015", "de la 2013/14 a la
+  // 2016/17", "desde 2015", "a partir de 2018", "hasta 2012".
+  // Un año suelto como INICIO es la temporada que empieza ese año
+  // (2010 → 2010/11); como FINAL, la que acaba ese año (2020 → 2019/20).
+  const TOKEN_TEMP = '(\\d{4}|\\d{2})(?:\\s*[/-]\\s*(\\d{2,4}))?';
+  const PRE_TEMP = '(?:(?:la|el)\\s+)?(?:temporada\\s+|ano\\s+)?';
+  const RE_RANGO_DOBLE = new RegExp(
+    `(?:desde|entre|de|del)\\s+${PRE_TEMP}${TOKEN_TEMP}\\s+(?:a|al|hasta|y)\\s+${PRE_TEMP}${TOKEN_TEMP}`,
+  );
+  const RE_RANGO_DESDE = new RegExp(
+    `(?:desde|a partir de)\\s+${PRE_TEMP}${TOKEN_TEMP}`,
+  );
+  const RE_RANGO_HASTA = new RegExp(`hasta\\s+${PRE_TEMP}${TOKEN_TEMP}`);
+  // Texto del rango tal cual (para la memoria de la conversación).
+  const RE_RANGO_TXT = new RegExp(
+    `${RE_RANGO_DOBLE.source}|${RE_RANGO_DESDE.source}|${RE_RANGO_HASTA.source}`,
+  );
+
+  function minusculasSinTildes(t) {
+    return String(t || '')
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .toLowerCase();
+  }
+
+  function anio4(n) {
+    let a = parseInt(n, 10);
+    if (a < 100) a += a > 50 ? 1900 : 2000;
+    return a;
+  }
+
+  // Convierte un trozo ("2010", "2013/14", "13-14") en id de temporada.
+  function idTemporadaDe(a, b, comoFinal) {
+    if (b !== undefined) {
+      const ini = anio4(a);
+      return `${ini}-${String(ini + 1).slice(-2)}`;
+    }
+    const y = anio4(a);
+    const ini = comoFinal ? y - 1 : y;
+    return `${ini}-${String(ini + 1).slice(-2)}`;
+  }
+
+  function detectarRango(pregunta) {
+    const t = minusculasSinTildes(pregunta);
+    let desde = null;
+    let hasta = null;
+    let m = t.match(RE_RANGO_DOBLE);
+    if (m) {
+      // "2010-2020" escrito como temporada (b de 4 cifras y > a+1) no
+      // es una temporada, sino un rango: ya lo cubre el patrón doble.
+      desde = idTemporadaDe(m[1], m[2], false);
+      hasta = idTemporadaDe(m[3], m[4], true);
+    } else if ((m = t.match(RE_RANGO_DESDE))) {
+      desde = idTemporadaDe(m[1], m[2], false);
+    } else if ((m = t.match(RE_RANGO_HASTA))) {
+      hasta = idTemporadaDe(m[1], m[2], true);
+    } else {
+      // "2010-2020" / "2010/2020": dos años completos separados
+      const m2 = t.match(/\b((?:19|20)\d{2})\s*[/-]\s*((?:19|20)\d{2})\b/);
+      if (!m2 || parseInt(m2[2], 10) - parseInt(m2[1], 10) <= 1) return null;
+      desde = idTemporadaDe(m2[1], undefined, false);
+      hasta = idTemporadaDe(m2[2], undefined, true);
+    }
+    const ids = M.idsTemporada;
+    if (!ids.length) return null;
+    if (desde && hasta && desde > hasta) [desde, hasta] = [hasta, desde];
+    const dentro = ids.filter(
+      (id) => (!desde || id >= desde) && (!hasta || id <= hasta),
+    );
+    if (!dentro.length)
+      return {
+        noExiste: `${desde ? nombreTemporada(desde) : '…'} – ${hasta ? nombreTemporada(hasta) : '…'}`,
+      };
+    return {
+      desde: dentro[0],
+      hasta: dentro[dentro.length - 1],
+      ids: dentro,
+      // Si el rango es una sola temporada, se trata como temporada.
+      unica: dentro.length === 1 ? dentro[0] : null,
+    };
+  }
+
   function detectarCompeticion(q) {
     if (/copa/.test(q))
       return { texto: 'en Copa', test: (c) => /copa/i.test(c) };
@@ -612,6 +695,8 @@
     if (f.rival && M.claveRival(rival, p.temporada) !== f.rival.clave)
       return false;
     if (f.temporada && p.temporada !== f.temporada) return false;
+    if (f.rango && (p.temporada < f.rango.desde || p.temporada > f.rango.hasta))
+      return false;
     if (f.comp && !f.comp.test(p.competicion || '')) return false;
     if (f.localidad && esLocal !== f.localidad.esLocal) return false;
     return true;
@@ -820,6 +905,10 @@
     if (f.comp) partes.push(f.comp.texto);
     if (f.localidad) partes.push(f.localidad.texto);
     if (f.temporada) partes.push(`en la ${nombreTemporada(f.temporada)}`);
+    if (f.rango)
+      partes.push(
+        `entre la ${nombreTemporada(f.rango.desde)} y la ${nombreTemporada(f.rango.hasta)}`,
+      );
     return partes.length ? ' ' + partes.join(' ') : '';
   }
 
@@ -1109,10 +1198,63 @@
       return `Partidos${esc(ctx)}:<ul>${lista.slice(-10).map(filaPartido).join('')}</ul>`;
     }
     const b = balance(lista);
-    let t = `El Oviedo ha jugado <b>${plural(b.pj, 'partido', 'partidos')}</b>${esc(ctx)}: ${textoBalance(b)}.`;
+    const conMarcador = lista.filter((p) => typeof p.golesFavor === 'number');
+    const media = (n) =>
+      conMarcador.length
+        ? (n / conMarcador.length).toLocaleString('es-ES', {
+            maximumFractionDigits: 2,
+          })
+        : '0';
+    let t;
+    if (it.encajados || it.goles) {
+      // Pregunta concreta por goles del equipo: eso primero.
+      const encajados = !!it.encajados;
+      const n = encajados ? b.gc : b.gf;
+      t =
+        `El Oviedo ${encajados ? 'encajó' : 'marcó'} <b>${plural(n, 'gol', 'goles')}</b> en ${plural(b.pj, 'partido', 'partidos')}${esc(ctx)}` +
+        ` (${media(n)} por partido).`;
+      t += `<br><small>${encajados ? `Marcó ${b.gf}` : `Encajó ${b.gc}`}. Balance: ${textoBalance(b)}.</small>`;
+      const extremo = conMarcador
+        .slice()
+        .sort((a, c) =>
+          encajados
+            ? c.golesContra - a.golesContra
+            : c.golesFavor - a.golesFavor,
+        )[0];
+      if (extremo)
+        t += `<br>Partido con más goles ${encajados ? 'encajados' : 'marcados'}:<ul>${filaPartido(extremo)}</ul>`;
+      if (!encajados && !f.rival) {
+        const g = rankingPersonas(f, 'goles')[0];
+        if (g)
+          t += `Máximo goleador: ${enlace(g.per.nombre, g.per.url)} (${plural(g.valor, 'gol', 'goles')}).`;
+      }
+    } else {
+      t = `El Oviedo ha jugado <b>${plural(b.pj, 'partido', 'partidos')}</b>${esc(ctx)}: ${textoBalance(b)}.`;
+    }
+    // Desglose por temporadas (con enlace a cada una) en los rangos.
+    if (f.rango) {
+      const porTemp = new Map();
+      lista.forEach((p) => {
+        if (!porTemp.has(p.temporada)) porTemp.set(p.temporada, []);
+        porTemp.get(p.temporada).push(p);
+      });
+      const filas = [...porTemp.entries()].map(([id, l]) => {
+        const bt = balance(l);
+        const dato = it.encajados
+          ? `${plural(bt.gc, 'gol encajado', 'goles encajados')}`
+          : it.goles
+            ? `${plural(bt.gf, 'gol', 'goles')}`
+            : `${bt.v}V ${bt.e}E ${bt.d}D`;
+        return `<li>${enlace(nombreTemporada(id), url(`partidos/temporada-${id}.html`))} — ${dato} <small>(${plural(bt.pj, 'partido', 'partidos')})</small></li>`;
+      });
+      t += `<br>Por temporadas:<ul>${filas.join('')}</ul>`;
+      return t;
+    }
+    if (f.temporada && !f.rival)
+      t += `<br><small>Todos los partidos: ${enlace(`temporada ${nombreTemporada(f.temporada)}`, url(`partidos/temporada-${f.temporada}.html`))}.</small>`;
     if (f.rival) {
       t += `<br>Último: <ul>${filaPartido(lista[lista.length - 1])}</ul>Historial completo: ${enlaceHistorialRival(f.rival)}.`;
-    } else if (f.temporada) {
+    } else if (f.temporada && !it.goles && !it.encajados) {
       const g = rankingPersonas(f, 'goles')[0];
       if (g)
         t += `<br>Máximo goleador: ${enlace(g.per.nombre, g.per.url)} (${plural(g.valor, 'gol', 'goles')}).`;
@@ -1178,14 +1320,23 @@
     const q = norm(pregunta);
     const nombre = q.match(RE_CUANTOS_NOMBRE);
     const ents = detectarEntidades(q);
+    const rangoTxt =
+      (minusculasSinTildes(pregunta).match(RE_RANGO_TXT) || [])[0] || null;
     const tempTxt =
+      rangoTxt ||
       (pregunta.match(RE_TEMPORADA_TXT) || [])[0] ||
       (q.match(RE_TEMPORADA_FRASE) || [])[0] ||
       null;
     const compTxt = (q.match(RE_COMP_FRASE) || [])[0] || null;
     const locTxt = (q.match(RE_LOCALIDAD_FRASE) || [])[0] || null;
     let resto = ` ${q} `;
-    [ents.aliasPersona, ents.aliasRival, compTxt, locTxt]
+    [
+      ents.aliasPersona,
+      ents.aliasRival,
+      compTxt,
+      locTxt,
+      rangoTxt && norm(rangoTxt),
+    ]
       .filter(Boolean)
       .forEach((t) => {
         resto = resto.replace(` ${t} `, ' ');
@@ -1268,7 +1419,12 @@
       rival ? `contra el ${rival}` : '',
       comp || '',
       localidad || '',
-      temporada ? `en ${temporada}` : '',
+      // Un rango ("desde 2010 a 2020") ya trae su preposición.
+      temporada
+        ? /^(?:desde|entre|de |del|a partir|hasta)/.test(temporada)
+          ? temporada
+          : `en ${temporada}`
+        : '',
     ]
       .filter(Boolean)
       .join(' ');
@@ -1391,12 +1547,16 @@
       );
     }
 
-    const temp = detectarTemporada(q, pregunta);
+    const rango = detectarRango(pregunta);
+    if (rango && rango.noExiste)
+      return `No tengo datos de esas temporadas (${esc(rango.noExiste)}).`;
+    const temp = rango ? rango.unica : detectarTemporada(q, pregunta);
     if (temp && temp.noExiste)
       return `No tengo datos de la temporada ${esc(temp.noExiste)}.`;
     const f = {
       rival: ents.rivales[0] || null,
       temporada: temp,
+      rango: rango && !rango.unica ? rango : null,
       comp: detectarCompeticion(q),
       localidad: detectarLocalidad(q),
     };
@@ -1427,11 +1587,12 @@
 
     if (it.goleador && !it.goleada) return respuestaRanking(f, 'goles');
     if (it.masPartidos) return respuestaRanking(f, 'partidos');
-    if (it.entrenador && (f.temporada || f.rival))
+    if (it.entrenador && (f.temporada || f.rango || f.rival))
       return respuestaEntrenadorTemporada(f);
     if (
       f.rival ||
       f.temporada ||
+      f.rango ||
       it.goleada ||
       it.ultimo ||
       it.primero ||
@@ -1445,8 +1606,10 @@
         it.primero ||
         it.quienMarco ||
         it.goles ||
+        it.encajados ||
         f.rival ||
-        f.temporada
+        f.temporada ||
+        f.rango
       )
         return respuestaPartidos(f, it);
     }
@@ -1699,12 +1862,14 @@
               <li>${ejemploGuia('¿Quién era el entrenador en la 2017/18?')}</li>
               <li>${ejemploGuia('¿Quién es el máximo goleador contra el Lugo?')}</li>
               <li>${ejemploGuia('¿Cuál fue nuestra mayor goleada?')}</li>
+              <li>${ejemploGuia('¿Cuántos goles ha encajado el Oviedo desde 2010 a 2020?')}</li>
             </ul>
 
             <h4><i class="fas fa-filter"></i> Filtros que puedes añadir</h4>
             <ul class="sc-asis-guia-lista">
               <li><b>Rival:</b> «contra el Sporting», «al Lugo»</li>
               <li><b>Temporada:</b> «en 2015/16», «esta temporada», «la temporada pasada»</li>
+              <li><b>Varias temporadas:</b> «desde 2010 a 2020», «entre 2012 y 2015», «de la 2013/14 a la 2016/17», «desde 2016», «hasta 2014»</li>
               <li><b>Competición:</b> «en Copa», «en Segunda B», «en fase de ascenso»</li>
               <li><b>Campo:</b> «en casa», «fuera de casa»</li>
             </ul>
