@@ -867,8 +867,8 @@
       equipo2: 'U.D. Las Palmas',
       fecha: '2026-11-02',
       aproximada: false,
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'Real Sociedad B',
