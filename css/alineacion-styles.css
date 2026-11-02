@@ -299,12 +299,7 @@
   max-width: 560px;
   aspect-ratio: 2 / 3;
   margin: 0 auto;
-  background: linear-gradient(
-    to bottom,
-    #2e8b2e 0%,
-    #279227 50%,
-    #2e8b2e 100%
-  );
+  background: linear-gradient(to bottom, #2e8b2e 0%, #279227 50%, #2e8b2e 100%);
   border: 3px solid rgba(255, 255, 255, 0.85);
   border-radius: 10px;
   overflow: hidden;
@@ -385,9 +380,11 @@
 /* ===== JUGADOR EN EL CAMPO ===== */
 .ali-player {
   position: absolute;
-  width: 18%;
-  transform: translateX(-50%);
+  width: 24%; /* lo ajusta js/alineacion.js según los jugadores de la fila */
+  /* top/left son el CENTRO del jugador */
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 1;
 }
 
 .ali-player-photo-wrap {
@@ -451,9 +448,11 @@
   font-weight: 600;
   padding: 2px 5px;
   border-radius: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* Nombre completo: si no cabe en una línea, pasa a dos (entre
+     palabras), nunca se recorta con "…" */
+  white-space: normal;
+  overflow-wrap: normal;
+  line-height: 1.2;
   max-width: 100%;
   display: inline-block;
 }

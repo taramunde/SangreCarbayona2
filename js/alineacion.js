@@ -56,7 +56,9 @@
   // anterior y el próximo partido ha cambiado de rival—, se ignora
   // todo lo del once y se muestra "pendiente" automáticamente.
   const esDeEstePartido =
-    !!partido && !!datosGuardados.paraFecha && datosGuardados.paraFecha === partido.fecha;
+    !!partido &&
+    !!datosGuardados.paraFecha &&
+    datosGuardados.paraFecha === partido.fecha;
 
   const datos = esDeEstePartido
     ? datosGuardados
@@ -68,103 +70,103 @@
       };
 
   // ── Posiciones de cada formación, en % sobre el campo ──
-  // (top/left = esquina superior-izquierda del jugador, ya centrado
-  // con transform en CSS). Mismo campo para las seis formaciones.
+  // [top, left] = CENTRO del jugador (foto + nombre), centrado con
+  // transform en CSS. Las filas están repartidas de forma simétrica:
+  //   2 jugadores → 35 / 65        3 → 20 / 50 / 80
+  //   4 jugadores → 12.5 / 37.5 / 62.5 / 87.5    5 → 10 / 30 / 50 / 70 / 90
+  // y las líneas a alturas fijas (de arriba abajo): delantera, media
+  // punta, medio, pivote, defensa y portero.
+  const FILA = { fwd: 15, am: 34, mid: 43, dm: 54, def: 71, gk: 88 };
+  const X2 = [35, 65];
+  const X3 = [20, 50, 80];
+  const X4 = [12.5, 37.5, 62.5, 87.5];
+  const X5 = [10, 30, 50, 70, 90];
+  const DEF4 = {
+    def1: [FILA.def, X4[0]],
+    def2: [FILA.def, X4[1]],
+    def3: [FILA.def, X4[2]],
+    def4: [FILA.def, X4[3]],
+  };
   const FORMACIONES = {
     442: {
       nombre: '4-4-2',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 7.5],
-        def2: [75.5, 31.7],
-        def3: [75.5, 55.8],
-        def4: [75.5, 80],
-        mid1: [47.8, 7.5],
-        mid2: [47.8, 31.7],
-        mid3: [47.8, 55.8],
-        mid4: [47.8, 80],
-        fwd1: [22.2, 25.8],
-        fwd2: [22.2, 57.5],
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.mid, X4[0]],
+        mid2: [FILA.mid, X4[1]],
+        mid3: [FILA.mid, X4[2]],
+        mid4: [FILA.mid, X4[3]],
+        fwd1: [FILA.fwd, X2[0]],
+        fwd2: [FILA.fwd, X2[1]],
       },
     },
     433: {
       nombre: '4-3-3',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 7.5],
-        def2: [75.5, 31.7],
-        def3: [75.5, 55.8],
-        def4: [75.5, 80],
-        mid1: [47.8, 10.8],
-        mid2: [47.8, 43.3],
-        mid3: [47.8, 75.8],
-        fwd1: [22.2, 10.8],
-        fwd2: [22.2, 43.3],
-        fwd3: [22.2, 75.8],
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.mid, X3[0]],
+        mid2: [FILA.mid, X3[1]],
+        mid3: [FILA.mid, X3[2]],
+        fwd1: [FILA.fwd, X3[0]],
+        fwd2: [FILA.fwd, X3[1]],
+        fwd3: [FILA.fwd, X3[2]],
       },
     },
     343: {
       nombre: '3-4-3',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 20],
-        def2: [75.5, 43.3],
-        def3: [75.5, 66.7],
-        mid1: [47.8, 7.5],
-        mid2: [47.8, 31.7],
-        mid3: [47.8, 55.8],
-        mid4: [47.8, 80],
-        fwd1: [22.2, 10.8],
-        fwd2: [22.2, 43.3],
-        fwd3: [22.2, 75.8],
+        gk: [FILA.gk, 50],
+        def1: [FILA.def, X3[0]],
+        def2: [FILA.def, X3[1]],
+        def3: [FILA.def, X3[2]],
+        mid1: [FILA.mid, X4[0]],
+        mid2: [FILA.mid, X4[1]],
+        mid3: [FILA.mid, X4[2]],
+        mid4: [FILA.mid, X4[3]],
+        fwd1: [FILA.fwd, X3[0]],
+        fwd2: [FILA.fwd, X3[1]],
+        fwd3: [FILA.fwd, X3[2]],
       },
     },
     451: {
       nombre: '4-5-1',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 7.5],
-        def2: [75.5, 31.7],
-        def3: [75.5, 55.8],
-        def4: [75.5, 80],
-        mid1: [47.8, 7.5],
-        mid2: [47.8, 31.7],
-        mid3: [47.8, 55.8],
-        mid4: [47.8, 80],
-        mid5: [55.6, 44.2],
-        fwd1: [22.2, 44.2],
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.mid, X5[0]],
+        mid2: [FILA.mid, X5[1]],
+        mid3: [FILA.mid, X5[2]],
+        mid4: [FILA.mid, X5[3]],
+        mid5: [FILA.mid, X5[4]],
+        fwd1: [FILA.fwd, 50],
       },
     },
     4141: {
       nombre: '4-1-4-1',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 7.5],
-        def2: [75.5, 31.7],
-        def3: [75.5, 55.8],
-        def4: [75.5, 80],
-        mid1: [60, 31.7],
-        mid2: [60, 55.8],
-        mid3: [46.7, 7.5],
-        mid4: [46.7, 43.3],
-        mid5: [46.7, 80],
-        fwd1: [22.2, 44.2],
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.dm, 50],
+        mid2: [FILA.am, X4[0]],
+        mid3: [FILA.am, X4[1]],
+        mid4: [FILA.am, X4[2]],
+        mid5: [FILA.am, X4[3]],
+        fwd1: [FILA.fwd, 50],
       },
     },
     4231: {
       nombre: '4-2-3-1',
       slots: {
-        gk: [92, 50],
-        def1: [75.5, 7.5],
-        def2: [75.5, 31.7],
-        def3: [75.5, 55.8],
-        def4: [75.5, 80],
-        mid1: [62, 31.7],
-        mid2: [62, 55.8],
-        mid3: [40, 15],
-        mid4: [40, 50],
-        mid5: [40, 85],
-        fwd1: [20, 50],
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.dm, X2[0]],
+        mid2: [FILA.dm, X2[1]],
+        mid3: [FILA.am, X3[0]],
+        mid4: [FILA.am, X3[1]],
+        mid5: [FILA.am, X3[2]],
+        fwd1: [FILA.fwd, 50],
       },
     },
   };
@@ -184,9 +186,7 @@
   // la sección "Cómo llegar") — no hay que escribirlo a mano.
   function getEstadio(nombreEquipoLocal) {
     if (!Array.isArray(CLUB_DATA.estadios)) return '';
-    const club = CLUB_DATA.estadios.find(
-      (e) => e.equipo === nombreEquipoLocal,
-    );
+    const club = CLUB_DATA.estadios.find((e) => e.equipo === nombreEquipoLocal);
     return club ? club.estadio : '';
   }
 
@@ -196,8 +196,7 @@
       null;
     let dorsal = null;
     const temp =
-      CLUB_DATA.temporadas &&
-      CLUB_DATA.temporadas[CLUB_DATA.temporadaActualId];
+      CLUB_DATA.temporadas && CLUB_DATA.temporadas[CLUB_DATA.temporadaActualId];
     if (temp && temp.jugadores) {
       const enPlantilla = temp.jugadores.find(
         (j) => j.id === jugadorId || j.codigo === jugadorId,
@@ -229,9 +228,7 @@
       ? `<span class="ali-sb-score">${partido.golesLocal} - ${partido.golesVisitante}</span>`
       : `<span class="ali-sb-vs">VS</span>`;
 
-    const fecha = partido.fecha
-      ? new Date(partido.fecha + 'T00:00:00')
-      : null;
+    const fecha = partido.fecha ? new Date(partido.fecha + 'T00:00:00') : null;
     const lang = localStorage.getItem('lang') || 'es';
     const fechaTexto = fecha
       ? fecha.toLocaleDateString(lang, {
@@ -284,6 +281,15 @@
   function renderCampo() {
     const formacionInfo = FORMACIONES[datos.formacion] || FORMACIONES['442'];
 
+    // Ancho de cada jugador según cuántos haya en su fila: así el nombre
+    // tiene todo el sitio posible sin pisar al de al lado.
+    const porFila = {};
+    (datos.titulares || []).forEach((tit) => {
+      const pos = formacionInfo.slots[tit.slot];
+      if (pos) porFila[pos[0]] = (porFila[pos[0]] || 0) + 1;
+    });
+    const anchoFila = (n) => (n >= 5 ? 19 : n === 4 ? 24 : 28);
+
     const jugadoresHtml = (datos.titulares || [])
       .map((tit) => {
         const pos = formacionInfo.slots[tit.slot];
@@ -291,7 +297,7 @@
         const info = datosJugador(tit.jugadorId);
         const [top, left] = pos;
         return `
-          <div class="ali-player" style="top:${top}%; left:${left}%;">
+          <div class="ali-player" style="top:${top}%; left:${left}%; width:${anchoFila(porFila[top])}%;">
             <div class="ali-player-photo-wrap">
               <img class="ali-player-photo" src="${info.imagen || ''}" alt="${info.nombre}" onerror="this.style.visibility='hidden'">
               ${info.dorsal ? `<span class="ali-player-dorsal">${info.dorsal}</span>` : ''}
@@ -367,7 +373,8 @@
 
     const hayOnce = datos.titulares && datos.titulares.length > 0;
     container.innerHTML =
-      renderEstadoTag() + (hayOnce ? renderCampo() + renderBanquillo() : renderSinConfirmar());
+      renderEstadoTag() +
+      (hayOnce ? renderCampo() + renderBanquillo() : renderSinConfirmar());
   }
 
   render();
