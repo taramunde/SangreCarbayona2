@@ -46,13 +46,12 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/10/29/numan-ovi/00031793296811942963706.htm',
-    titulo:
-      'El Real Oviedo acude fiel a su cita con el fracaso en la Copa del Rey.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/02/bofeton-inoportuno-real-oviedo/00031793636178604947757.htm',
+    titulo: 'Bofetón inoportuno para el Real Oviedo.',
     descripcion:
-      'Los azules, en un partido en el que les costó un mundo demostrar las dos diferencias de categoría con el Numancia (3-3), son eliminados en la tanda de penaltis.',
-    imagen: 'img/varios/C1LVA.webp',
-    fecha: '29 octubre 2026',
+      'Los azules no lograron en la recta final arreglar el desaguisado (2-3) que Las Palmas montó en el Carlos Tartiere en la primera hora del partido.',
+    imagen: 'img/varios/C2LVA.webp',
+    fecha: '2 noviembre 2026',
   },
   {
     medio: 'lanuevaespana',
