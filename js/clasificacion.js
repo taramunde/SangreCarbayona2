@@ -879,9 +879,9 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'F.C. Andorra',
-      // Abandonado el 02/11 con 2-2: pendiente de lo que decida la Liga.
-      goles1: null,
-      goles2: null,
+      // Abandonado el 02/11 con 2-2; se dio por finalizado con ese resultado.
+      goles1: 2,
+      goles2: 2,
     },
     {
       equipo1: 'Real Valladolid',
