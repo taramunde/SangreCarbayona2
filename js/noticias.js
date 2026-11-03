@@ -60,7 +60,7 @@ const NOTICIAS_DATA = [
       'El Oviedo llega muy tarde y rompe su racha: derrota 2-3 ante Las Palmas.',
     descripcion:
       'Los canarios someten a los azules en la primera parte y la reacción de Calero con los cambios se queda en nada. Domínguez y Goti dieron esperanza y Morales tuvo el empate en sus botas.',
-    imagen: 'img/varios/C2LNE.jpg',
+    imagen: 'img/varios/C2LNE.webp',
     fecha: '2 noviembre 2026',
   },
   {
