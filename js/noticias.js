@@ -65,12 +65,12 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/borchorno-copa-abandona-real-oviedo-20261029211512-nt.html',
-    titulo: 'El borchorno de la Copa no abandona al Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-palmas-derrota-partido-resumen-goles-20261102155423-di.html',
+    titulo: 'El Real Oviedo despertó tarde de una pesadilla.',
     descripcion:
-      'El conjunto azul volvió a caer eliminado en la primera eliminatoria y lo hizo ofreciendo una muy pobre imagen.',
-    imagen: 'img/varios/C1EC.webp',
-    fecha: '29 octubre 2026',
+      'Superados. Los de Julián Calero hicieron el peor primer tiempo de lo que va de temporada y después de ir perdiendo 0-3 llegaron a rozar el empate.',
+    imagen: 'img/varios/C2EC.webp',
+    fecha: '2 noviembre 2026',
   },
   {
     medio: 'killerasturias',
