@@ -74,12 +74,12 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-el-numancia-castiga-un-oviedo-que-no-aprende',
-    titulo: 'La Crónica: El Numancia castiga a un Oviedo que no aprende.',
+    url: 'https://killerasturias.com/node/19830',
+    titulo: 'La Crónica: El Oviedo se queda a la orilla en el Tartiere.',
     descripcion:
-      'Los azules levantaron un 2-0 y un 3-2, pero terminaron eliminados en los penaltis después de otra noche repleta de errores.',
-    imagen: 'img/varios/C1KA.webp',
-    fecha: '29 octubre 2026',
+      'El conjunto carbayón cae ante Las Palmas tras una primera parte muy pobre y roza una heroica remontada en el segundo acto gracias a los goles de Carlos Domínguez y Mikel Goti.',
+    imagen: 'img/varios/C2KA.webp',
+    fecha: '2 noviembre 2026',
   },
 ];
 
