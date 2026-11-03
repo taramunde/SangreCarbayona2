@@ -55,13 +55,13 @@ const NOTICIAS_DATA = [
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/10/29/pablo-saenz-goti-evitar-derrota-135896236.html',
+    url: 'https://www.lne.es/real-oviedo/2026/11/02/oviedo-llega-tarde-rompe-racha-136003514.html',
     titulo:
-      'Ni Pablo Sáenz y ni Goti pueden evitar una derrota sonrojante del Real Oviedo: los azules caen en los penaltis ante el Numancia.',
+      'El Oviedo llega muy tarde y rompe su racha: derrota 2-3 ante Las Palmas.',
     descripcion:
-      'Los hombres de Calero no logran superar la barrera de la primera ronda copera y encajan una nueva eliminación frente a un oponente que milita dos categorías por debajo.',
-    imagen: 'img/varios/C1LNE.webp',
-    fecha: '29 octubre 2026',
+      'Los canarios someten a los azules en la primera parte y la reacción de Calero con los cambios se queda en nada. Domínguez y Goti dieron esperanza y Morales tuvo el empate en sus botas.',
+    imagen: 'img/varios/C2LNE.jpg',
+    fecha: '2 noviembre 2026',
   },
   {
     medio: 'elcomercio',
