@@ -72,7 +72,7 @@ CLUB_DATA.videos = [
     id: 10,
     jornada: 10,
     titulo: 'A.D. Ceuta F.C. Vs Real Oviedo',
-    fecha: '2026-10-12',
+    fecha: '2026-10-18',
     videoId: 'Ya1Bhc3gXH0',
   },
   {
@@ -89,5 +89,12 @@ CLUB_DATA.videos = [
     titulo: 'C.D. Numancia Vs Real Oviedo',
     fecha: '2026-10-29',
     videoId: '_Lu92-L_XBQ',
+  },
+  {
+    id: 13,
+    jornada: 12,
+    titulo: 'Real Oviedo Vs U.D. Las Palmas',
+    fecha: '2026-11-02',
+    videoId: 'ceObJ_9hlEI',
   },
 ];
