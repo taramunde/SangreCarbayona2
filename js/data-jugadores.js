@@ -846,7 +846,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Daimiel',
     provinciaNacimiento: 'Ciudad Real',
     fechaNacimiento: '1986-10-17',
-    imagen: 'https://i.postimg.cc/pr7jRdCQ/Limones-PNG.webp',
+    imagen: 'img/jugadores/Limones.webp',
   },
 
   // ── DEFENSAS ──────────────────────────────────────────────
