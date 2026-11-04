@@ -248,6 +248,7 @@
 
   function construirModelo() {
     const CD = window.CLUB_DATA;
+    const estadios = CD.estadios || [];
     const indice = window.SCIndice.construir();
     const partidos = indice
       .filter((i) => i.tipo === 'partido')
@@ -260,6 +261,10 @@
     // hay apodos repetidos entre jugadores distintos).
     const partidosPorCodigo = {};
     const temporadasPorCodigo = {};
+    // El dorsal es un dato de cada TEMPORADA (data-temporada-actual.js),
+    // no de la ficha maestra del jugador, porque puede cambiar de un año
+    // a otro. Se guarda uno por temporada y luego se usa el más reciente.
+    const dorsalesPorCodigo = {};
     Object.entries(CD.temporadas || {}).forEach(([tid, temp]) => {
       [
         ...(temp.jugadores || []).map((j) => ['j', j]),
@@ -276,6 +281,12 @@
             temporada: tid,
           });
         });
+        if (tipo === 'j' && miembro.dorsal != null && miembro.dorsal !== '-') {
+          (dorsalesPorCodigo[cod] = dorsalesPorCodigo[cod] || []).push({
+            tid,
+            dorsal: miembro.dorsal,
+          });
+        }
       });
     });
 
@@ -294,6 +305,9 @@
           d,
           temporadas,
           partidos: partidosPorCodigo[`${tipo}:${codigo}`] || [],
+          dorsales: (dorsalesPorCodigo[`${tipo}:${codigo}`] || []).sort(
+            (a, b) => a.tid.localeCompare(b.tid),
+          ),
           url:
             tipo === 'j'
               ? url(`fichas/${codigo}.html`)
@@ -339,6 +353,18 @@
         );
       }
       delete c.cuenta;
+      // Estadio del rival: CD.estadios solo trae los 22 equipos de la
+      // categoría actual (ver js/data-estadios.js), así que rivales de
+      // otras épocas/categorías se quedan sin este dato a propósito, en
+      // vez de arriesgarse a enseñar uno que no es.
+      c.estadio =
+        estadios.find((e) => claveClub(e.equipo) === c.clave) ||
+        Array.from(c.nombres)
+          .map((n) =>
+            estadios.find((e) => claveClub(e.equipo) === claveClub(n)),
+          )
+          .find(Boolean) ||
+        null;
     });
 
     // Alias → entidades. Se busca la frase más larga que aparezca entera
@@ -446,6 +472,16 @@
       /temporadas|cuando jugo|que anos|cuantos anos|etapa|cuando estuvo/,
     balance:
       /balance|historial|enfrentamiento|victorias|derrotas|empates|ganado|perdido|empatado|resultado/,
+    // Dirección del ranking ("portero MENOS goleado"): solo se usa junto
+    // a "encajados" — en el resto de rankings no hay forma de pedir el
+    // orden inverso todavía.
+    menos: /\bmenos\b/,
+    tarjetasRanking:
+      /quien (ha )?visto mas|mas tarjetas|mas rojas|mas amarillas|mas expulsiones|maximo expulsado/,
+    dorsal: /\bdorsal\b|numero de camiseta|que numero (lleva|tiene|viste)/,
+    estadio: /\bestadio\b|\bcampo del\b|donde juega|\bcancha\b/,
+    titulos: /\btitulos?\b|palmares/,
+    hatTrick: /hat.?trick|triplete|tres goles en (un|el)|\b3 goles en\b/,
   };
 
   function detectarIntenciones(q) {
@@ -934,6 +970,20 @@
 
   // ── RESPUESTAS ───────────────────────────────────────────────
 
+  // El dorsal es por temporada (ver per.dorsales en construirModelo): se
+  // usa el más reciente y se avisa si no es el de la temporada actual.
+  function respuestaDorsal(per) {
+    const nom = enlace(per.nombre, per.url);
+    if (!per.dorsales || !per.dorsales.length)
+      return `No tengo el dorsal de ${nom}.`;
+    const ultimo = per.dorsales[per.dorsales.length - 1];
+    const esActual = ultimo.tid === M.temporadaActual;
+    return (
+      `${nom} lleva el <b>${esc(String(ultimo.dorsal))}</b>` +
+      (esActual ? '.' : ` (temporada ${esc(nombreTemporada(ultimo.tid))}).`)
+    );
+  }
+
   function respuestaPersonal(per, it) {
     const d = per.d;
     const nom = enlace(per.nombre, per.url);
@@ -1094,60 +1144,113 @@
     return t;
   }
 
-  function rankingPersonas(f, clave) {
+  // Config de cada tipo de ranking: a quién incluye (clase/posición), qué
+  // valor se compara y cómo se titula/pluraliza. Centralizado aquí en vez
+  // de una cadena de "if" por tipo, que ya no escalaba bien con tantos
+  // rankings distintos (goleadores, porteros, entrenadores, tarjetas...).
+  const RANKINGS = {
+    goles: {
+      clase: 'jugador',
+      excluirPortero: true,
+      valor: (s) => s.goles,
+      sing: 'gol',
+      plu: 'goles',
+      titulo: 'Máximos goleadores',
+    },
+    partidos: {
+      clase: 'jugador',
+      valor: (s) => s.pj,
+      sing: 'partido',
+      plu: 'partidos',
+      titulo: 'Más partidos jugados',
+    },
+    encajados: {
+      clase: 'jugador',
+      soloPortero: true,
+      valor: (s) => s.goles, // en los porteros, s.goles ya son los encajados
+      sing: 'gol',
+      plu: 'goles',
+      sufijo: ' encajados',
+      titulo: (asc) =>
+        asc ? 'Porteros menos goleados' : 'Porteros más goleados',
+    },
+    partidosPortero: {
+      clase: 'jugador',
+      soloPortero: true,
+      valor: (s) => s.pj,
+      sing: 'partido',
+      plu: 'partidos',
+      titulo: 'Porteros con más partidos jugados',
+    },
+    partidosEntrenador: {
+      clase: 'entrenador',
+      valor: (s) => s.pj,
+      sing: 'partido dirigido',
+      plu: 'partidos dirigidos',
+      titulo: 'Entrenadores con más partidos dirigidos',
+    },
+    temporadas: {
+      clase: 'jugador',
+      valor: (s) => s.temporadas.size,
+      sing: 'temporada',
+      plu: 'temporadas',
+      titulo: 'Más temporadas en el Oviedo',
+    },
+    amarillas: {
+      clase: 'jugador',
+      valor: (s) => s.amar,
+      sing: 'amarilla',
+      plu: 'amarillas',
+      titulo: 'Más tarjetas amarillas',
+    },
+    rojas: {
+      clase: 'jugador',
+      valor: (s) => s.rojas,
+      sing: 'roja',
+      plu: 'rojas',
+      titulo: 'Más tarjetas rojas',
+    },
+  };
+
+  function rankingPersonas(f, clave, ascendente) {
+    const cfg = RANKINGS[clave];
     const filas = [];
     M.personas.forEach((per) => {
-      if (per.clase !== 'jugador') return;
-      if (clave === 'goles' && per.d.posicion === 'Portero') return;
-      // "encajados"/"partidosPortero": ranking solo entre porteros. En los
-      // porteros, s.goles ya son los encajados (mismo criterio que en todo
-      // el proyecto), así que no hace falta un stat aparte.
-      if (
-        (clave === 'encajados' || clave === 'partidosPortero') &&
-        per.d.posicion !== 'Portero'
-      )
-        return;
+      if (per.clase !== cfg.clase) return;
+      if (cfg.excluirPortero && per.d.posicion === 'Portero') return;
+      if (cfg.soloPortero && per.d.posicion !== 'Portero') return;
       const s = statsPersona(per, f);
-      const valor =
-        clave === 'partidos' || clave === 'partidosPortero' ? s.pj : s.goles;
+      const valor = cfg.valor(s);
       if (valor > 0) {
         const ultima = Array.from(s.temporadas).sort().pop() || '';
         filas.push({ per, valor, ultima });
       }
     });
-    filas.sort(
-      (a, b) =>
-        b.valor - a.valor ||
+    filas.sort((a, b) => {
+      const diff = ascendente ? a.valor - b.valor : b.valor - a.valor;
+      return (
+        diff ||
         b.ultima.localeCompare(a.ultima) ||
-        a.per.nombre.localeCompare(b.per.nombre, 'es'),
-    );
+        a.per.nombre.localeCompare(b.per.nombre, 'es')
+      );
+    });
     return filas;
   }
 
-  function respuestaRanking(f, clave) {
-    const filas = rankingPersonas(f, clave);
+  function respuestaRanking(f, clave, ascendente) {
+    const cfg = RANKINGS[clave];
+    const filas = rankingPersonas(f, clave, ascendente);
     const ctx = contexto(f);
     if (!filas.length) return `No tengo datos para ese ranking${esc(ctx)}.`;
-    const [sing, plu] =
-      clave === 'partidos' || clave === 'partidosPortero'
-        ? ['partido', 'partidos']
-        : ['gol', 'goles'];
     const titulo =
-      clave === 'partidos'
-        ? 'Más partidos jugados'
-        : clave === 'partidosPortero'
-          ? 'Porteros con más partidos jugados'
-          : clave === 'encajados'
-            ? 'Porteros más goleados'
-            : 'Máximos goleadores';
-    const sufijo = clave === 'encajados' ? ' encajados' : '';
+      typeof cfg.titulo === 'function' ? cfg.titulo(ascendente) : cfg.titulo;
     const top = filas.slice(0, 10);
     return (
-      `<b>${titulo}${esc(ctx)}:</b><ol>` +
+      `<b>${esc(titulo)}${esc(ctx)}:</b><ol>` +
       top
         .map(
           (x) =>
-            `<li>${enlace(x.per.nombre, x.per.url)} — ${plural(x.valor, sing, plu)}${sufijo}</li>`,
+            `<li>${enlace(x.per.nombre, x.per.url)} — ${plural(x.valor, cfg.sing, cfg.plu)}${cfg.sufijo || ''}</li>`,
         )
         .join('') +
       '</ol>' +
@@ -1175,6 +1278,77 @@
         .map(
           ([per, n]) =>
             `<li>${enlace(per.nombre, per.url)} — ${plural(n, 'partido', 'partidos')}</li>`,
+        )
+        .join('') +
+      '</ul>'
+    );
+  }
+
+  // CD.estadios solo trae los 22 equipos de la categoría actual (ver
+  // js/data-estadios.js) — rivales de otras épocas/categorías no tienen
+  // este dato, y se avisa en vez de arriesgar un dato incorrecto.
+  function respuestaEstadio(club) {
+    if (!club.estadio) return `No tengo el estadio de ${esc(club.nombre)}.`;
+    return (
+      `${enlace(club.nombre, url('estadios.html'))} juega en el <b>${esc(club.estadio.estadio)}</b>` +
+      (club.estadio.ciudad ? ` (${esc(club.estadio.ciudad)}).` : '.')
+    );
+  }
+
+  // Títulos oficiales (CD.palmares.nacionales) — los campeonatos
+  // regionales (CD.palmares.regionales) son de la época amateur, previos
+  // a la Liga nacional, y no cuentan en el cómputo oficial de la RFEF
+  // (ver nota en js/data-palmares.js), así que se mencionan aparte.
+  function respuestaTitulos() {
+    const p = (window.CLUB_DATA && window.CLUB_DATA.palmares) || null;
+    if (!p || !p.nacionales || !p.nacionales.length)
+      return 'No tengo datos de palmarés.';
+    const totalNac = p.nacionales.reduce((n, t) => n + t.temporadas.length, 0);
+    const totalReg = (p.regionales || []).reduce(
+      (n, t) => n + t.temporadas.length,
+      0,
+    );
+    const lista = p.nacionales
+      .map(
+        (t) =>
+          `<li>${plural(t.temporadas.length, 'título', 'títulos')} de <b>${esc(t.competicion)}</b> (${t.temporadas.map((s) => esc(nombreTemporada(s))).join(', ')})</li>`,
+      )
+      .join('');
+    let r = `El Real Oviedo tiene <b>${plural(totalNac, 'título', 'títulos')}</b> nacionales oficiales:<ul>${lista}</ul>`;
+    if (totalReg)
+      r += `<small>Además, ${plural(totalReg, 'campeonato regional', 'campeonatos regionales')} de la época amateur, previos a la Liga nacional (no cuentan en el cómputo oficial).</small>`;
+    r += `<br>${enlace('Ver palmarés completo', url('palmares.html'))}.`;
+    return r;
+  }
+
+  // Partidos con 3 goles o más de un mismo jugador (no hay un campo
+  // "hat-trick" en los datos: se detecta sumando los goles de cada
+  // jugador partido a partido).
+  function respuestaHatTricks(f) {
+    const entradas = [];
+    M.personas.forEach((per) => {
+      if (per.clase !== 'jugador' || per.d.posicion === 'Portero') return;
+      per.partidos
+        .filter((p) => pasaFiltros(p, f) && (p.goles || 0) >= 3)
+        .forEach((pp) => {
+          const ip = M.partidos.find(
+            (x) => x.fecha === pp.fecha && x.temporada === pp.temporada,
+          );
+          if (ip) entradas.push({ per, goles: pp.goles, ip });
+        });
+    });
+    const ctx = contexto(f);
+    if (!entradas.length)
+      return `No tengo registrado ningún partido con 3 goles o más de un mismo jugador${esc(ctx)}.`;
+    entradas.sort((a, b) => (a.ip.fecha < b.ip.fecha ? 1 : -1));
+    return (
+      `<b>Partidos con 3 goles o más de un mismo jugador${esc(ctx)}:</b><ul>` +
+      entradas
+        .map(({ per, goles, ip }) =>
+          filaPartido(ip).replace(
+            '<li>',
+            `<li>${enlace(per.nombre, per.url)} — <b>${plural(goles, 'gol', 'goles')}</b>: `,
+          ),
         )
         .join('') +
       '</ul>'
@@ -1583,6 +1757,7 @@
     const persona = ents.personas[0];
     if (persona) {
       const per = persona.ref;
+      if (it.dorsal) return respuestaDorsal(per);
       const personal =
         it.nacionalidad ||
         it.nacimiento ||
@@ -1604,9 +1779,21 @@
       return personal ? respuestaPersonal(per, it) + '<br>' + r : r;
     }
 
-    if (it.portero && it.encajados) return respuestaRanking(f, 'encajados');
+    if (it.estadio && f.rival) return respuestaEstadio(f.rival);
+    if (it.titulos) return respuestaTitulos();
+    if (it.hatTrick) return respuestaHatTricks(f);
+    if (it.tarjetasRanking) {
+      const tipoTarjeta = /roja|expuls/.test(q) ? 'rojas' : 'amarillas';
+      return respuestaRanking(f, tipoTarjeta);
+    }
+    if (it.portero && it.encajados)
+      return respuestaRanking(f, 'encajados', it.menos);
     if (it.portero && it.masPartidos)
       return respuestaRanking(f, 'partidosPortero');
+    if (it.entrenador && it.masPartidos)
+      return respuestaRanking(f, 'partidosEntrenador');
+    if (it.temporadas && it.masPartidos)
+      return respuestaRanking(f, 'temporadas');
     if (it.goleador && !it.goleada) return respuestaRanking(f, 'goles');
     if (it.masPartidos) return respuestaRanking(f, 'partidos');
     if (it.entrenador && (f.temporada || f.rango || f.rival))
