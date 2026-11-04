@@ -37,6 +37,13 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.golesEnPropia = [
+  // ── 2009/10 ───────────────────────────────────────────────
+  {
+    fecha: '2010-03-14',
+    jugador: 'Tomillo',
+    equipo: 'A.D. Cerro de Reyes Badajoz Atlético',
+  },
+
   // ── 2010/11 ───────────────────────────────────────────────
   {
     fecha: '2010-10-10',
