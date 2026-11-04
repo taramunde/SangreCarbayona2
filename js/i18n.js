@@ -146,6 +146,8 @@ const translations = {
     copa_ronda_semifinal_vuelta: 'Semifinal (Vuelta)',
     copa_ronda_final_ida: 'Final (Ida)',
     copa_ronda_final_vuelta: 'Final (Vuelta)',
+    copa_ronda_primera_ronda_ida: 'Primera Ronda (Ida)',
+    copa_ronda_primera_ronda_vuelta: 'Primera Ronda (Vuelta)',
 
     // ============================================
     // FICHA JUGADOR
@@ -654,6 +656,8 @@ const translations = {
     copa_ronda_semifinal_vuelta: 'Semi-final (2nd Leg)',
     copa_ronda_final_ida: 'Final (1st Leg)',
     copa_ronda_final_vuelta: 'Final (2nd Leg)',
+    copa_ronda_primera_ronda_ida: 'First Round (1st Leg)',
+    copa_ronda_primera_ronda_vuelta: 'First Round (2nd Leg)',
 
     // ============================================
     // PLAYER PROFILE
