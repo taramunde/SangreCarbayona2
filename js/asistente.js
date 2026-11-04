@@ -428,7 +428,8 @@
     primero: /primer partido|primera vez|primer enfrentamiento|debut/,
     quienMarco: /quien marco|quienes marcaron|quien hizo (el|los) gol/,
     entrenador: /entrenador|entreno|entrenaba|dirigi|banquillo|mister/,
-    encajados: /encaj|porteria a cero|porterias a cero/,
+    encajados: /encaj|porteria a cero|porterias a cero|\bgoleado\b/,
+    portero: /\bporter[oa]s?\b|guardamet/,
     goles: /\bgol(es)?\b|marc|anot/,
     asistencias: /asistenc|pase de gol|pases de gol/,
     tarjetas: /amarill|\broja|tarjeta|expuls/,
@@ -1098,8 +1099,17 @@
     M.personas.forEach((per) => {
       if (per.clase !== 'jugador') return;
       if (clave === 'goles' && per.d.posicion === 'Portero') return;
+      // "encajados"/"partidosPortero": ranking solo entre porteros. En los
+      // porteros, s.goles ya son los encajados (mismo criterio que en todo
+      // el proyecto), así que no hace falta un stat aparte.
+      if (
+        (clave === 'encajados' || clave === 'partidosPortero') &&
+        per.d.posicion !== 'Portero'
+      )
+        return;
       const s = statsPersona(per, f);
-      const valor = clave === 'goles' ? s.goles : s.pj;
+      const valor =
+        clave === 'partidos' || clave === 'partidosPortero' ? s.pj : s.goles;
       if (valor > 0) {
         const ultima = Array.from(s.temporadas).sort().pop() || '';
         filas.push({ per, valor, ultima });
@@ -1119,16 +1129,25 @@
     const ctx = contexto(f);
     if (!filas.length) return `No tengo datos para ese ranking${esc(ctx)}.`;
     const [sing, plu] =
-      clave === 'goles' ? ['gol', 'goles'] : ['partido', 'partidos'];
+      clave === 'partidos' || clave === 'partidosPortero'
+        ? ['partido', 'partidos']
+        : ['gol', 'goles'];
     const titulo =
-      clave === 'goles' ? 'Máximos goleadores' : 'Más partidos jugados';
+      clave === 'partidos'
+        ? 'Más partidos jugados'
+        : clave === 'partidosPortero'
+          ? 'Porteros con más partidos jugados'
+          : clave === 'encajados'
+            ? 'Porteros más goleados'
+            : 'Máximos goleadores';
+    const sufijo = clave === 'encajados' ? ' encajados' : '';
     const top = filas.slice(0, 10);
     return (
       `<b>${titulo}${esc(ctx)}:</b><ol>` +
       top
         .map(
           (x) =>
-            `<li>${enlace(x.per.nombre, x.per.url)} — ${plural(x.valor, sing, plu)}</li>`,
+            `<li>${enlace(x.per.nombre, x.per.url)} — ${plural(x.valor, sing, plu)}${sufijo}</li>`,
         )
         .join('') +
       '</ol>' +
@@ -1585,6 +1604,9 @@
       return personal ? respuestaPersonal(per, it) + '<br>' + r : r;
     }
 
+    if (it.portero && it.encajados) return respuestaRanking(f, 'encajados');
+    if (it.portero && it.masPartidos)
+      return respuestaRanking(f, 'partidosPortero');
     if (it.goleador && !it.goleada) return respuestaRanking(f, 'goles');
     if (it.masPartidos) return respuestaRanking(f, 'partidos');
     if (it.entrenador && (f.temporada || f.rango || f.rival))
