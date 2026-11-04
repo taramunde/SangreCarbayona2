@@ -756,7 +756,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Ondárroa',
     provinciaNacimiento: 'Vizcaya',
     fechaNacimiento: '1981-03-23',
-    imagen: 'https://i.ibb.co/Fb7hMn5b/Aulestia-PNG.webp',
+    imagen: 'img/jugadores/Aulestia.webp',
   },
 
   'javier-martinez-gonzalez': {
