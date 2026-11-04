@@ -4347,6 +4347,21 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '2008-11-05',
     imagen: 'img/jugadores/EnzoPerez.webp',
+    seleccion: {
+      pais: 'España',
+      bandera: 'https://flagcdn.com/16x12/es.webp',
+      datos: [
+        {
+          categoria: 'U19',
+          partidos: 0,
+          goles: 0,
+          asistencias: 0,
+          minutos: 0,
+          amarillas: 0,
+          rojas: 0,
+        },
+      ],
+    },
   },
 
   'marco-sangalli-fuentes': {
