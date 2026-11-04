@@ -831,7 +831,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Santander',
     provinciaNacimiento: 'Cantabria',
     fechaNacimiento: '1987-09-22',
-    imagen: 'https://i.postimg.cc/26GFRmgT/Ivan-Serrano-PNG.webp',
+    imagen: 'img/jugadores/IvanSerrano.webp',
   },
 
   'jesus-reguillos-moya': {
