@@ -8827,7 +8827,7 @@ CLUB_DATA.entrenadorMaestro = {
     lugarNacimiento: 'Parla',
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1970-10-26',
-    imagen: 'https://i.postimg.cc/nrdNyDFW/Julian-Calero.webp',
+    imagen: 'img/entrenadores/JulianCalero.webp',
   },
 
   'jose-angel-ziganda-lakunza': {

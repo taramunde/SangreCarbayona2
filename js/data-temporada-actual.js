@@ -3885,7 +3885,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       codigo: 'julian-calero-fernandez',
       nombre: 'Julián Calero Fernández',
       cargo: 'Entrenador Principal',
-      imagen: 'https://i.postimg.cc/nrdNyDFW/Julian-Calero.webp',
+      imagen: 'img/entrenadores/JulianCalero.webp',
       esPrincipal: true,
       enClubDesde: '2026',
       contratoHasta: '2027',
