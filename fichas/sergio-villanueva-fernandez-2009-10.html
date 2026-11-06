@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sergio Villanueva Fernández | Real Oviedo - Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Estadísticas, trayectoria y ficha técnica de Sergio Villanueva Fernández. Temporada 2009/10."
+    />
+    <meta property="og:title" content="Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Sergio Villanueva Fernández. Temporada 2009/10."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez-2009-10.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Sergio Villanueva Fernández. Temporada 2009/10."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sergio Villanueva Fernández",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html",
+  "image": "https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp",
+  "jobTitle": "Mediocentro Ofensivo",
+  "birthDate": "1975-11-02",
+  "height": "1.71 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mieres",
+      "addressRegion": "Asturias"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'sergio-villanueva-fernandez',
+        season: '2009-10',
+        nombre: 'Sergio Villanueva Fernández',
+        imagen: 'https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp',
+        posicion: 'Mediocentro Ofensivo',
+        codigo: 'sergio-villanueva-fernandez-2009-10',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Sergio Villanueva Fernández — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Sergio Villanueva Fernández</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Sergio Villanueva Fernández with Real Oviedo (4)">Partidos de Sergio Villanueva Fernández con el Real Oviedo (4)</span></summary>
+          <ul>
+          <li><small data-en="3 Jan 2010">3 ene 2010</small><a href="../partidos/universidad-de-las-palmas-de-gran-canaria-cf-real-oviedo-2010-01-03.html">Universidad de Las Palmas de Gran Canaria C.F. 3-0 Real Oviedo</a></li>
+          <li><small data-en="20 Dec 2009">20 dic 2009</small><a href="../partidos/real-oviedo-ud-lanzarote-2009-12-20.html">Real Oviedo 2-0 U.D. Lanzarote</a></li>
+          <li><small data-en="13 Dec 2009">13 dic 2009</small><a href="../partidos/ud-vecindario-real-oviedo-2009-12-13.html">U.D. Vecindario 2-2 Real Oviedo</a></li>
+          <li><small data-en="6 Dec 2009">6 dic 2009</small><a href="../partidos/cf-villanovense-real-oviedo-2009-12-06.html">C.F. Villanovense 1-2 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261105v2"></script>
+    <script src="../js/data-club.js?nocache=20261105v2"></script>
+    <script src="../js/data-jugadores.js?nocache=20261105v2"></script>
+    <script src="../js/busqueda.js?nocache=20261105v2"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261105v2"></script>
+    <script src="../js/data-historico.js?nocache=20261105v2"></script>
+    <script src="../js/data-utils.js?nocache=20261105v2"></script>
+    <script src="../js/app.js?nocache=20261105v2"></script>
+    <script src="../js/script.js?nocache=20261105v2"></script>
+    <script src="../js/main.js?nocache=20261105v2"></script>
+  </body>
+</html>
