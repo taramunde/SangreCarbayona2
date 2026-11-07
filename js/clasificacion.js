@@ -905,7 +905,8 @@
     {
       equipo1: 'Cádiz C.F.',
       equipo2: 'Real Oviedo',
-      fecha: '2026-11-08',
+      fecha: '2026-11-07',
+      hora: '16:15',
       aproximada: false,
       goles1: null,
       goles2: null,
