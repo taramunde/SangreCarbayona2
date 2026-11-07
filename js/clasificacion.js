@@ -920,8 +920,8 @@
     {
       equipo1: 'Córdoba C.F.',
       equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'Girona F.C.',
@@ -938,8 +938,8 @@
     {
       equipo1: 'C.D. Leganés',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 3,
     },
     {
       equipo1: 'U.D. Las Palmas',
