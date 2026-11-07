@@ -908,8 +908,8 @@
       fecha: '2026-11-07',
       hora: '16:15',
       aproximada: false,
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Castellón',
