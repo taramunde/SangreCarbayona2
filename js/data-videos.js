@@ -97,4 +97,11 @@ CLUB_DATA.videos = [
     fecha: '2026-11-02',
     videoId: 'ceObJ_9hlEI',
   },
+  {
+    id: 14,
+    jornada: 13,
+    titulo: 'Cádiz C.F. Vs Real Oviedo',
+    fecha: '2026-11-07',
+    videoId: 'r_tD7cXc7i4',
+  },
 ];
