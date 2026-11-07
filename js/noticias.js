@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/02/bofeton-inoportuno-real-oviedo/00031793636178604947757.htm',
-    titulo: 'Bofetón inoportuno para el Real Oviedo.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/07/extremos-dan-triunfo-vital-real-oviedo/00031794068052270535576.htm',
+    titulo: 'Los extremos dan un triunfo vital al Real Oviedo.',
     descripcion:
-      'Los azules no lograron en la recta final arreglar el desaguisado (2-3) que Las Palmas montó en el Carlos Tartiere en la primera hora del partido.',
-    imagen: 'img/varios/C2LVA.webp',
-    fecha: '2 noviembre 2026',
+      'Los azules, sin hacer un gran partido, fueron superiores al Cádiz (1-2) y solo sufrieron en los últimos minutos. Goles de Estanis Pedrola y Ilyas Chaira en su primera titularidad.',
+    imagen: 'img/varios/J13LVA.webp',
+    fecha: '7 noviembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/11/02/oviedo-llega-tarde-rompe-racha-136003514.html',
+    url: 'https://www.lne.es/real-oviedo/2026/11/07/buen-real-oviedo-olvida-penas-136201454.html',
     titulo:
-      'El Oviedo llega muy tarde y rompe su racha: derrota 2-3 ante Las Palmas.',
+      'Un buen Real Oviedo olvida las penas y vence al Cádiz en el Nuevo Mirandilla (1-2).',
     descripcion:
-      'Los canarios someten a los azules en la primera parte y la reacción de Calero con los cambios se queda en nada. Domínguez y Goti dieron esperanza y Morales tuvo el empate en sus botas.',
-    imagen: 'img/varios/C2LNE.webp',
-    fecha: '2 noviembre 2026',
+      'Julián Calero, tras la victoria del Real Oviedo: “Cuanto más me atizan, más fuerte y tranquilo estoy”',
+    imagen: 'img/varios/J13LNE.webp',
+    fecha: '7 noviembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-palmas-derrota-partido-resumen-goles-20261102155423-di.html',
-    titulo: 'El Real Oviedo despertó tarde de una pesadilla.',
+    url: 'https://www.elcomercio.es/real-oviedo/cadiz-real-oviedo-goles-victoria-estanis-chaira-20261107191229-nt.html',
+    titulo: 'Los extremos del Real Oviedo hacen recuperar la sonrisa.',
     descripcion:
-      'Superados. Los de Julián Calero hicieron el peor primer tiempo de lo que va de temporada y después de ir perdiendo 0-3 llegaron a rozar el empate.',
-    imagen: 'img/varios/C2EC.webp',
-    fecha: '2 noviembre 2026',
+      'Victoria revitalizadora. El club azul volvió a ganar gracias a sendos goles de los extremos Estanis y Chaira, que debutaban en la alineación.',
+    imagen: 'img/varios/J13EC.webp',
+    fecha: '7 noviembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/node/19830',
-    titulo: 'La Crónica: El Oviedo se queda a la orilla en el Tartiere.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-un-oviedo-de-extremos-levanta-la-voz-en-cadiz',
+    titulo: 'La Crónica: Un Oviedo de extremos levanta la voz en Cádiz.',
     descripcion:
-      'El conjunto carbayón cae ante Las Palmas tras una primera parte muy pobre y roza una heroica remontada en el segundo acto gracias a los goles de Carlos Domínguez y Mikel Goti.',
-    imagen: 'img/varios/C2KA.webp',
-    fecha: '2 noviembre 2026',
+      'El conjunto carbayón suma una victoria muy sufrida ante la entidad gaditana y apaga las dudas gracias a los goles de Ilyas Chaira y Estanis Pedrola.',
+    imagen: 'img/varios/J13KA.webp',
+    fecha: '7 noviembre 2026',
   },
 ];
 
