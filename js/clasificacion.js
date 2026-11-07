@@ -899,8 +899,8 @@
     {
       equipo1: 'Burgos C.F.',
       equipo2: 'R.C. Celta Fortuna',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Cádiz C.F.',
