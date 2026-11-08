@@ -7,7 +7,8 @@
     "subir": "node generador/subir.js",
     "forzar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force",
     "revisar-goles": "node generador/revisar-goles.js",
-    "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js"
+    "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js",
+    "importar-jugadores": "node generador/importar-jugadores.js"
   },
   "author": "Taramunde",
   "license": "ISC",

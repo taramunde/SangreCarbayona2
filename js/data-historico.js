@@ -1629,4 +1629,68 @@ CLUB_DATA.temporadas['2009-10'] = {
 
 
 
+// ===================================
+// TEMPORADA 2008/2009
+// ===================================
+CLUB_DATA.temporadas['2008-09'] = {
+  competicion: 'Tercera División',
+  grupo: 'Grupo: 2',
+
+  // Campeón de Tercera (Grupo II) y ascenso a Segunda B en la promoción
+  // entre campeones contra el R. Mallorca B (1-0 y 0-1, 6-5 en penaltis).
+  // Mientras no haya jugadores con partidos, la web usa este desglose;
+  // en cuanto se metan, se calcula solo a partir de sus partidos.
+  // (Como en el resto de la web, los goles de la tanda de penaltis se
+  // suman a favor/en contra y la eliminatoria ganada cuenta como victoria.)
+  estadisticasEquipo: {
+    posicion: 1,
+    desglose: {
+      'Tercera División': {
+        partidos:    38,
+        victorias:   33,
+        empates:     4,
+        derrotas:    1,
+        golesFavor:  100,
+        golesContra: 14,
+      },
+      'Fase de Ascenso': {
+        partidos:    2,
+        victorias:   2,
+        empates:     0,
+        derrotas:    0,
+        golesFavor:  7,
+        golesContra: 6,
+      },
+      'Copa del Rey (Juan Carlos I)': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  4,
+        golesContra: 3,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+
+
+    // DEFENSAS
+
+
+    // CENTROCAMPISTAS
+
+
+    // DELANTEROS
+
+  ],
+
+  // ENTRENADORES
+  cuerpoTecnico: [
+
+  ],
+};
+
 window.CLUB_DATA = CLUB_DATA;
