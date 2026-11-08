@@ -96,7 +96,7 @@ function normalizarEstados(jugador) {
    =================================== */
 
 function esPortero(jugador) {
-  return jugador.posicion === 'Portero' || jugador.posicionCorta === 'POR';
+  return jugador.posicion === 'Portero' || jugador.posicionCorta === 'PO';
 }
 
 function getCategoriaJugador(jugador) {
