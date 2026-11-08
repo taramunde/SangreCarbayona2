@@ -6,11 +6,13 @@
     "generar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js",
     "subir": "node generador/subir.js",
     "forzar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force",
-    "revisar-goles": "node generador/revisar-goles.js"
+    "revisar-goles": "node generador/revisar-goles.js",
+    "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js"
   },
   "author": "Taramunde",
   "license": "ISC",
   "devDependencies": {
+    "exceljs": "^4.4.0",
     "prettier": "^3.8.3"
   }
 }
