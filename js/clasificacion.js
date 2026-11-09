@@ -926,8 +926,8 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'U.D. Almería',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
     {
       equipo1: 'Granada C.F.',
@@ -956,8 +956,8 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'Real Valladolid',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
 
     // Jornada 14 (15/11/2026)
