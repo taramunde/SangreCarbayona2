@@ -1,5 +1,5 @@
 # Librerías instaladas con npm: se reinstalan con "npm install", no se suben.
 node_modules/
 
-# Excel de trabajo con datos (plantillas y hojas rellenas): solo en tu ordenador.
-excel/
+# Archivos temporales de Excel mientras el libro está abierto.
+excel/~$*

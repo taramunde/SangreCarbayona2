@@ -8,7 +8,8 @@
  * "española"...). Las listas de nacionalidades y países salen de los
  * datos ya metidos, así que al volver a crearla se actualizan solas.
  *
- * La carpeta excel/ no se sube a GitHub (.gitignore).
+ * La carpeta excel/ se sube a GitHub con el resto, para tenerla igual en
+ * todos los ordenadores (en uno nuevo: `npm install` una vez).
  */
 
 const fs = require('fs');
@@ -161,7 +162,7 @@ async function main() {
     [''],
     ['CÓMO SE SUBE', true],
     ['Guarda el Excel y pásaselo a Claude (o dile en qué carpeta está). Se revisa todo antes de meterlo: si hay algún jugador repetido o un dato raro, te avisa en lugar de meterlo mal.'],
-    ['Esta carpeta (excel/) no se sube a GitHub: es solo tu copia de trabajo.'],
+    ['La carpeta excel/ se sube a GitHub con "npm run subir", así que la tienes igual en todos tus ordenadores.'],
   ].forEach(([texto, negrita], i) => {
     const c = ins.getCell(`A${i + 1}`);
     c.value = texto;
