@@ -4308,6 +4308,19 @@ CLUB_DATA.temporadas['2026-27'] = {
         },
       ],
     },
+
+    {
+      id: 'raul-gonzalez-blanco',
+      codigo: 'raul-gonzalez-blanco',
+      nombre: 'Raúl González Blanco',
+      cargo: 'Entrenador Principal',
+      imagen: 'img/entrenadores/RaulGonzalez.webp',
+      esPrincipal: true,
+      enClubDesde: '2026',
+      contratoHasta: '2028',
+      estadisticas: {},
+      partidos: [],
+    },
   ],
 };
 

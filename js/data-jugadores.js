@@ -8704,7 +8704,8 @@ CLUB_DATA.jugadoresMaestro = {
     provinciaNacimiento: 'Castellón',
     fechaNacimiento: '2009-12-30',
     imagen: 'img/jugadores/EnzoCazorla.webp',
-  },
+  },
+
   'david-farina-bretal': {
     nombre: 'David',
     apellidos: 'Fariña Bretal',
@@ -9053,6 +9054,20 @@ CLUB_DATA.entrenadorMaestro = {
     provinciaNacimiento: 'Madrid',
     fechaNacimiento: '1970-10-26',
     imagen: 'img/entrenadores/JulianCalero.webp',
+  },
+
+  'raul-gonzalez-blanco': {
+    nombre: 'Raúl',
+    apellidos: 'González Blanco',
+    nombreCompleto: 'Raúl González Blanco',
+    apodo: 'Raúl González',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Madrid',
+    provinciaNacimiento: 'Madrid',
+    fechaNacimiento: '1977-06-27',
+    imagen: 'img/entrenadores/RaulGonzalez.webp',
   },
 
   'jose-angel-ziganda-lakunza': {
