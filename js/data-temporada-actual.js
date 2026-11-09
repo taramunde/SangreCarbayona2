@@ -4145,6 +4145,7 @@ CLUB_DATA.temporadas['2026-27'] = {
       esPrincipal: true,
       enClubDesde: '2026',
       contratoHasta: '2027',
+      estado: 'baja',
       // "estadisticas" se calcula solo a partir de partidos[] de abajo
       // (autoCalcularStatsEntrenador en js/app.js) — no hace falta
       // rellenarlo ni mantenerlo a mano.
