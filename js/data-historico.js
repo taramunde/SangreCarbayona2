@@ -1638,12 +1638,17 @@ CLUB_DATA.temporadas['2008-09'] = {
 
   // Campeón de Tercera (Grupo II) y ascenso a Segunda B en la promoción
   // entre campeones contra el R. Mallorca B (1-0 y 0-1, 6-5 en penaltis).
-  // Mientras no haya jugadores con partidos, la web usa este desglose;
-  // en cuanto se metan, se calcula solo a partir de sus partidos.
   // (Como en el resto de la web, los goles de la tanda de penaltis se
   // suman a favor/en contra y la eliminatoria ganada cuenta como victoria.)
   estadisticasEquipo: {
     posicion: 1,
+    // Esta temporada se está rellenando partido a partido desde recortes
+    // de prensa y todavía faltan muchos por meter. Con esta marca puesta,
+    // la web respeta el desglose de abajo (el oficial) en vez de
+    // recalcularlo solo con los pocos partidos que haya metidos todavía
+    // (ver autoCalcularStatsEquipo en js/app.js). QUITAR esta línea
+    // cuando ya estén todos los partidos de la temporada metidos.
+    enProgreso: true,
     desglose: {
       'Tercera División': {
         partidos:    38,

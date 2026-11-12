@@ -360,6 +360,15 @@ function autoCalcularStatsEntrenador(ent) {
    se sigue poniendo a mano en estadisticasEquipo.posicion.
    =================================== */
 function autoCalcularStatsEquipo(temporada) {
+  // Temporada antigua que se está rellenando partido a partido desde
+  // recortes de prensa (ver estadisticasEquipo.enProgreso): mientras esa
+  // marca siga puesta, se respeta el desglose oficial metido a mano en
+  // vez de recalcularlo con los pocos partidos que haya metidos todavía,
+  // que darían un resumen incompleto. Quitar la marca cuando ya estén
+  // todos los partidos de la temporada.
+  if (temporada.estadisticasEquipo && temporada.estadisticasEquipo.enProgreso)
+    return;
+
   const desglose = {};
   const vistos = new Set();
 
