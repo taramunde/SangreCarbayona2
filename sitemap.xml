@@ -127,12 +127,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-lopez-iglesias.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/daniel-hedrera-lobaton.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -175,7 +169,19 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ernesto-amantegui-phumipha.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/andre-bevilacqua.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/juan-luis-hevia-fernandez.html</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -189,6 +195,12 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/antonio-jose-gonzalez-garcia.html</loc>
     <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-lopez-iglesias.html</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -279,12 +291,6 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/alfonso-artabe-meca.html</loc>
     <lastmod>2026-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ernesto-amantegui-phumipha.html</loc>
-    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>

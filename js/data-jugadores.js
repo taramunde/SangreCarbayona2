@@ -2439,6 +2439,14 @@ CLUB_DATA.jugadoresMaestro = {
     posicion: 'Defensa',
     posicionCorta: 'LD',
     altura: 1.71,
+    posiciones: [
+      {
+        desde: 2005,
+        hasta: 2009,
+        posicion: 'Centrocampista',
+        posicionCorta: 'MC',
+      },
+    ],
     nacionalidad: ['Española'],
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
@@ -9317,20 +9325,6 @@ CLUB_DATA.entrenadorMaestro = {
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1973-03-13',
     imagen: 'https://i.postimg.cc/yYBnbQ5L/Fermin-(entrenador)-PNG.webp',
-  },
-
-  'argimiro-perez-garcia': {
-    nombre: 'Argimiro',
-    apellidos: 'Pérez García',
-    nombreCompleto: 'Argimiro Pérez García',
-    apodo: 'Pichi Lucas',
-    cargo: 'Entrenador Principal',
-    cargoCorto: 'ENT',
-    nacionalidad: ['Española'],
-    lugarNacimiento: 'Camponaraya',
-    provinciaNacimiento: 'León',
-    fechaNacimiento: '1959-03-14',
-    imagen: 'https://i.postimg.cc/J4GtMm90/Pichi-Lucas-(entrenador)-PNG.webp',
   },
 };
 
