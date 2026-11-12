@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jorge  Rodríguez Martín | Real Oviedo - Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Estadísticas, trayectoria y ficha técnica de Jorge  Rodríguez Martín. Temporada 2008/09."
+    />
+    <meta property="og:title" content="Jorge  Rodríguez Martín - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Jorge  Rodríguez Martín. Temporada 2008/09."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Jorge  Rodríguez Martín - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/jorge-rodriguez-martin.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jorge  Rodríguez Martín - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Jorge  Rodríguez Martín. Temporada 2008/09."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/jorge-rodriguez-martin.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/jorge-rodriguez-martin.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jorge  Rodríguez Martín",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/jorge-rodriguez-martin.html",
+  "image": "https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp",
+  "jobTitle": "Delantero",
+  "birthDate": "1982-06-07",
+  "height": "1.77 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Torrelavega",
+      "addressRegion": "Cantabria"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'jorge-rodriguez-martin',
+        season: '2008-09',
+        nombre: 'Jorge  Rodríguez Martín',
+        imagen: 'https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp',
+        posicion: 'Delantero',
+        codigo: 'jorge-rodriguez-martin',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Jorge  Rodríguez Martín — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Jorge  Rodríguez Martín</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Jorge  Rodríguez Martín with Real Oviedo (29)">Partidos de Jorge  Rodríguez Martín con el Real Oviedo (29)</span></summary>
+          <ul>
+          <li><small data-en="17 May 2009">17 may 2009</small><a href="../partidos/real-oviedo-condal-cf-2009-05-17.html">Real Oviedo 3-1 Condal C.F.</a></li>
+          <li><small data-en="9 Apr 2009">9 abr 2009</small><a href="../partidos/cd-lealtad-real-oviedo-2009-04-09.html">C.D. Lealtad 0-0 Real Oviedo</a></li>
+          <li><small data-en="15 Mar 2009">15 mar 2009</small><a href="../partidos/r-aviles-industrial-cf-real-oviedo-2009-03-15.html">R. Avilés Industrial C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="8 Mar 2009">8 mar 2009</small><a href="../partidos/real-oviedo-nalon-cf-2009-03-08.html">Real Oviedo 0-0 Nalón C.F.</a></li>
+          <li><small data-en="1 Mar 2009">1 mar 2009</small><a href="../partidos/astur-cf-real-oviedo-2009-03-01.html">Astur C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="22 Feb 2009">22 feb 2009</small><a href="../partidos/real-oviedo-cd-tuilla-2009-02-22.html">Real Oviedo 1-0 C.D. Tuilla</a></li>
+          <li><small data-en="14 Feb 2009">14 feb 2009</small><a href="../partidos/ribadesella-cf-real-oviedo-2009-02-14.html">Ribadesella C.F. 1-3 Real Oviedo</a></li>
+          <li><small data-en="8 Feb 2009">8 feb 2009</small><a href="../partidos/real-oviedo-cd-covadonga-2009-02-08.html">Real Oviedo 4-1 C.D. Covadonga</a></li>
+          <li><small data-en="1 Feb 2009">1 feb 2009</small><a href="../partidos/c-siero-real-oviedo-2009-02-01.html">C. Siero 0-1 Real Oviedo</a></li>
+          <li><small data-en="25 Jan 2009">25 ene 2009</small><a href="../partidos/real-oviedo-ud-gijon-industrial-2009-01-25.html">Real Oviedo 3-0 U.D. Gijón Industrial</a></li>
+          <li><small data-en="18 Jan 2009">18 ene 2009</small><a href="../partidos/cd-cudillero-real-oviedo-2009-01-18.html">C.D. Cudillero 0-0 Real Oviedo</a></li>
+          <li><small data-en="11 Jan 2009">11 ene 2009</small><a href="../partidos/condal-cf-real-oviedo-2009-01-11.html">Condal C.F. 0-2 Real Oviedo</a></li>
+          <li><small data-en="21 Dec 2008">21 dic 2008</small><a href="../partidos/llanes-urbania-cf-real-oviedo-2008-12-21.html">Llanes Urbania C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="14 Dec 2008">14 dic 2008</small><a href="../partidos/real-oviedo-real-oviedo-2008-12-14.html">Real Oviedo 1-3 Real Oviedo</a></li>
+          <li><small data-en="7 Dec 2008">7 dic 2008</small><a href="../partidos/real-oviedo-candas-cf-2008-12-07.html">Real Oviedo 2-0 Candás C.F.</a></li>
+          <li><small data-en="30 Nov 2008">30 nov 2008</small><a href="../partidos/up-langreo-real-oviedo-2008-11-30.html">U.P. Langreo 0-1 Real Oviedo</a></li>
+          <li><small data-en="23 Nov 2008">23 nov 2008</small><a href="../partidos/real-oviedo-cd-lealtad-2008-11-23.html">Real Oviedo 3-1 C.D. Lealtad</a></li>
+          <li><small data-en="15 Nov 2008">15 nov 2008</small><a href="../partidos/u-ceares-real-oviedo-2008-11-15.html">U. Ceares 0-3 Real Oviedo</a></li>
+          <li><small data-en="9 Nov 2008">9 nov 2008</small><a href="../partidos/real-oviedo-cd-mosconia-2008-11-09.html">Real Oviedo 5-1 C.D. Mosconia</a></li>
+          <li><small data-en="2 Nov 2008">2 nov 2008</small><a href="../partidos/navarro-cf-real-oviedo-2008-11-02.html">Navarro C.F. 0-4 Real Oviedo</a></li>
+          <li><small data-en="26 Oct 2008">26 oct 2008</small><a href="../partidos/real-oviedo-r-aviles-industrial-cf-2008-10-26.html">Real Oviedo 3-0 R. Avilés Industrial C.F.</a></li>
+          <li><small data-en="19 Oct 2008">19 oct 2008</small><a href="../partidos/nalon-cf-real-oviedo-2008-10-19.html">Nalón C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="12 Oct 2008">12 oct 2008</small><a href="../partidos/real-oviedo-astur-cf-2008-10-12.html">Real Oviedo 6-0 Astur C.F.</a></li>
+          <li><small data-en="28 Sep 2008">28 sep 2008</small><a href="../partidos/real-oviedo-ribadesella-cf-2008-09-28.html">Real Oviedo 3-0 Ribadesella C.F.</a></li>
+          <li><small data-en="20 Sep 2008">20 sep 2008</small><a href="../partidos/cd-covadonga-real-oviedo-2008-09-20.html">C.D. Covadonga 0-3 Real Oviedo</a></li>
+          <li><small data-en="14 Sep 2008">14 sep 2008</small><a href="../partidos/real-oviedo-c-siero-2008-09-14.html">Real Oviedo 4-1 C. Siero</a></li>
+          <li><small data-en="3 Sep 2008">3 sep 2008</small><a href="../partidos/real-oviedo-sd-ponferradina-2008-09-03.html">Real Oviedo 2-3 S.D. Ponferradina</a></li>
+          <li><small data-en="31 Aug 2008">31 ago 2008</small><a href="../partidos/real-oviedo-cd-cudillero-2008-08-31.html">Real Oviedo 2-0 C.D. Cudillero</a></li>
+          <li><small data-en="26 Aug 2008">26 ago 2008</small><a href="../partidos/real-oviedo-pontevedra-cf-2008-08-26.html">Real Oviedo 2-0 Pontevedra C.F.</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261112v8"></script>
+    <script src="../js/data-club.js?nocache=20261112v8"></script>
+    <script src="../js/data-jugadores.js?nocache=20261112v8"></script>
+    <script src="../js/busqueda.js?nocache=20261112v8"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261112v8"></script>
+    <script src="../js/data-historico.js?nocache=20261112v8"></script>
+    <script src="../js/data-utils.js?nocache=20261112v8"></script>
+    <script src="../js/app.js?nocache=20261112v8"></script>
+    <script src="../js/script.js?nocache=20261112v8"></script>
+    <script src="../js/main.js?nocache=20261112v8"></script>
+  </body>
+</html>
