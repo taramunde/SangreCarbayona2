@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignacio Méndez Jardón | Real Oviedo - Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Estadísticas, trayectoria y ficha técnica de Ignacio Méndez Jardón. Temporada 2008/09."
+    />
+    <meta property="og:title" content="Ignacio Méndez Jardón - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Ignacio Méndez Jardón. Temporada 2008/09."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Ignacio Méndez Jardón - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-mendez-jardon-2008-09.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ignacio Méndez Jardón - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Ignacio Méndez Jardón. Temporada 2008/09."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-mendez-jardon.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-mendez-jardon.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ignacio Méndez Jardón",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-mendez-jardon.html",
+  "image": "https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp",
+  "jobTitle": "Delantero",
+  "birthDate": "1989-01-27",
+  "height": "1.82 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Oviedo",
+      "addressRegion": "Asturias"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'ignacio-mendez-jardon',
+        season: '2008-09',
+        nombre: 'Ignacio Méndez Jardón',
+        imagen: 'https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp',
+        posicion: 'Delantero',
+        codigo: 'ignacio-mendez-jardon-2008-09',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Ignacio Méndez Jardón — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Ignacio Méndez Jardón</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Ignacio Méndez Jardón with Real Oviedo (32)">Partidos de Ignacio Méndez Jardón con el Real Oviedo (32)</span></summary>
+          <ul>
+          <li><small data-en="18 Feb 2010">18 feb 2010</small><a href="../partidos/cd-toledo-real-oviedo-2010-02-18.html">C.D. Toledo 0-1 Real Oviedo</a></li>
+          <li><small data-en="28 Nov 2009">28 nov 2009</small><a href="../partidos/real-oviedo-rs-gimnastica-de-torrelavega-2009-11-28.html">Real Oviedo 1-0 R.S. Gimnástica de Torrelavega</a></li>
+          <li><small data-en="22 Nov 2009">22 nov 2009</small><a href="../partidos/real-madrid-castilla-real-oviedo-2009-11-22.html">Real Madrid Castilla 0-1 Real Oviedo</a></li>
+          <li><small data-en="15 Nov 2009">15 nov 2009</small><a href="../partidos/real-oviedo-cd-leganes-2009-11-15.html">Real Oviedo 0-0 C.D. Leganés</a></li>
+          <li><small data-en="8 Nov 2009">8 nov 2009</small><a href="../partidos/rsd-alcala-real-oviedo-2009-11-08.html">R.S.D. Alcalá 1-0 Real Oviedo</a></li>
+          <li><small data-en="1 Nov 2009">1 nov 2009</small><a href="../partidos/real-oviedo-ud-puertollano-2009-11-01.html">Real Oviedo 0-0 U.D. Puertollano</a></li>
+          <li><small data-en="25 Oct 2009">25 oct 2009</small><a href="../partidos/ad-cerro-de-reyes-badajoz-atletico-real-oviedo-2009-10-25.html">A.D. Cerro de Reyes Badajoz Atlético 2-2 Real Oviedo</a></li>
+          <li><small data-en="4 Oct 2009">4 oct 2009</small><a href="../partidos/real-oviedo-cp-cacereno-2009-10-04.html">Real Oviedo 4-0 C.P. Cacereño</a></li>
+          <li><small data-en="27 Sep 2009">27 sep 2009</small><a href="../partidos/ub-conquense-real-oviedo-2009-09-27.html">U.B. Conquense 0-0 Real Oviedo</a></li>
+          <li><small data-en="6 Sep 2009">6 sep 2009</small><a href="../partidos/cd-guadalajara-real-oviedo-2009-09-06.html">C.D. Guadalajara 2-0 Real Oviedo</a></li>
+          <li><small data-en="30 Aug 2009">30 ago 2009</small><a href="../partidos/real-oviedo-cd-toledo-2009-08-30.html">Real Oviedo 1-1 C.D. Toledo</a></li>
+          <li><small data-en="26 Aug 2009">26 ago 2009</small><a href="../partidos/rsd-alcala-real-oviedo-2009-08-26.html">R.S.D. Alcalá 0-1 Real Oviedo</a></li>
+          <li><small data-en="17 May 2009">17 may 2009</small><a href="../partidos/real-oviedo-condal-cf-2009-05-17.html">Real Oviedo 3-1 Condal C.F.</a></li>
+          <li><small data-en="3 May 2009">3 may 2009</small><a href="../partidos/real-oviedo-llanes-urbania-cf-2009-05-03.html">Real Oviedo 4-0 Llanes Urbania C.F.</a></li>
+          <li><small data-en="19 Apr 2009">19 abr 2009</small><a href="../partidos/candas-cf-real-oviedo-2009-04-19.html">Candás C.F. 2-2 Real Oviedo</a></li>
+          <li><small data-en="29 Mar 2009">29 mar 2009</small><a href="../partidos/cd-mosconia-real-oviedo-2009-03-29.html">C.D. Mosconia 0-3 Real Oviedo</a></li>
+          <li><small data-en="8 Mar 2009">8 mar 2009</small><a href="../partidos/real-oviedo-nalon-cf-2009-03-08.html">Real Oviedo 0-0 Nalón C.F.</a></li>
+          <li><small data-en="1 Mar 2009">1 mar 2009</small><a href="../partidos/astur-cf-real-oviedo-2009-03-01.html">Astur C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="22 Feb 2009">22 feb 2009</small><a href="../partidos/real-oviedo-cd-tuilla-2009-02-22.html">Real Oviedo 1-0 C.D. Tuilla</a></li>
+          <li><small data-en="8 Feb 2009">8 feb 2009</small><a href="../partidos/real-oviedo-cd-covadonga-2009-02-08.html">Real Oviedo 4-1 C.D. Covadonga</a></li>
+          <li><small data-en="1 Feb 2009">1 feb 2009</small><a href="../partidos/c-siero-real-oviedo-2009-02-01.html">C. Siero 0-1 Real Oviedo</a></li>
+          <li><small data-en="11 Jan 2009">11 ene 2009</small><a href="../partidos/condal-cf-real-oviedo-2009-01-11.html">Condal C.F. 0-2 Real Oviedo</a></li>
+          <li><small data-en="4 Jan 2009">4 ene 2009</small><a href="../partidos/real-oviedo-caudal-deportivo-2009-01-04.html">Real Oviedo 2-0 Caudal Deportivo</a></li>
+          <li><small data-en="14 Dec 2008">14 dic 2008</small><a href="../partidos/real-oviedo-real-oviedo-2008-12-14.html">Real Oviedo 1-3 Real Oviedo</a></li>
+          <li><small data-en="7 Dec 2008">7 dic 2008</small><a href="../partidos/real-oviedo-candas-cf-2008-12-07.html">Real Oviedo 2-0 Candás C.F.</a></li>
+          <li><small data-en="30 Nov 2008">30 nov 2008</small><a href="../partidos/up-langreo-real-oviedo-2008-11-30.html">U.P. Langreo 0-1 Real Oviedo</a></li>
+          <li><small data-en="23 Nov 2008">23 nov 2008</small><a href="../partidos/real-oviedo-cd-lealtad-2008-11-23.html">Real Oviedo 3-1 C.D. Lealtad</a></li>
+          <li><small data-en="15 Nov 2008">15 nov 2008</small><a href="../partidos/u-ceares-real-oviedo-2008-11-15.html">U. Ceares 0-3 Real Oviedo</a></li>
+          <li><small data-en="19 Oct 2008">19 oct 2008</small><a href="../partidos/nalon-cf-real-oviedo-2008-10-19.html">Nalón C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="12 Oct 2008">12 oct 2008</small><a href="../partidos/real-oviedo-astur-cf-2008-10-12.html">Real Oviedo 6-0 Astur C.F.</a></li>
+          <li><small data-en="20 Sep 2008">20 sep 2008</small><a href="../partidos/cd-covadonga-real-oviedo-2008-09-20.html">C.D. Covadonga 0-3 Real Oviedo</a></li>
+          <li><small data-en="7 Sep 2008">7 sep 2008</small><a href="../partidos/ud-gijon-industrial-real-oviedo-2008-09-07.html">U.D. Gijón Industrial 2-1 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261112v3"></script>
+    <script src="../js/data-club.js?nocache=20261112v3"></script>
+    <script src="../js/data-jugadores.js?nocache=20261112v3"></script>
+    <script src="../js/busqueda.js?nocache=20261112v3"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261112v3"></script>
+    <script src="../js/data-historico.js?nocache=20261112v3"></script>
+    <script src="../js/data-utils.js?nocache=20261112v3"></script>
+    <script src="../js/app.js?nocache=20261112v3"></script>
+    <script src="../js/script.js?nocache=20261112v3"></script>
+    <script src="../js/main.js?nocache=20261112v3"></script>
+  </body>
+</html>
