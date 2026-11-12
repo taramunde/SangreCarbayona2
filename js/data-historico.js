@@ -698,6 +698,18 @@ CLUB_DATA.temporadas['2018-19'] = {
 
   estadisticasEquipo: {
     posicion: 8,
+    // La jornada 34 (Reus Dep. - R. Oviedo) NUNCA se jugó: fue un 0-1
+    // administrativo por la exclusión del Reus Deportiu de la
+    // competición, así que ningún jugador puede tener esa jornada en su
+    // ficha (no hay minutos/goles/tarjetas que repartir de un partido
+    // que no existió). Por eso el recuento automático a partir de los
+    // jugadores siempre se va a quedar en 42 (41 Liga + 1 Copa), uno
+    // menos que el oficial (43) — no es un hueco por rellenar. Con
+    // enProgreso+partidosEsperados puesto así, la web respeta este
+    // desglose oficial para siempre en vez de pisarlo con uno que sería
+    // incorrecto (ver autoCalcularStatsEquipo en js/app.js).
+    enProgreso: true,
+    partidosEsperados: 43,
     desglose: {
       'Segunda División': {
         partidos:    42,
