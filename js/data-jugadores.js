@@ -2885,7 +2885,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombre: 'Jorge Eugenio',
     apellidos: 'Rodríguez Álvarez',
     nombreCompleto: 'Jorge Eugenio Rodríguez Álvarez',
-    apodo: 'Jorge Rodríguez',
+    apodo: 'Jorge Eugenio Rodríguez',
     posicion: 'Defensa',
     posicionCorta: 'DC',
     altura: 1.84,
