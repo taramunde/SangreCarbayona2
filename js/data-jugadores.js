@@ -8691,6 +8691,21 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/9MFGCKdp/Nacho-Mendez-PNG.webp',
   },
 
+  'jorge-rodriguez-martin': {
+    nombre: 'Jorge ',
+    apellidos: 'Rodríguez Martín',
+    nombreCompleto: 'Jorge  Rodríguez Martín',
+    apodo: 'Jorge Rodríguez',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: 1.77,
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Torrelavega',
+    provinciaNacimiento: 'Cantabria',
+    fechaNacimiento: '1982-06-07',
+    imagen: 'https://i.postimg.cc/L8pgmGR1/Jorge-Rodriguez-PNG.webp',
+  },
+
   'enzo-cazorla-santirso': {
     nombre: 'Enzo',
     apellidos: 'Cazorla Santirso',
