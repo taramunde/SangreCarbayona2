@@ -360,15 +360,6 @@ function autoCalcularStatsEntrenador(ent) {
    se sigue poniendo a mano en estadisticasEquipo.posicion.
    =================================== */
 function autoCalcularStatsEquipo(temporada) {
-  // Temporada antigua que se está rellenando partido a partido desde
-  // recortes de prensa (ver estadisticasEquipo.enProgreso): mientras esa
-  // marca siga puesta, se respeta el desglose oficial metido a mano en
-  // vez de recalcularlo con los pocos partidos que haya metidos todavía,
-  // que darían un resumen incompleto. Quitar la marca cuando ya estén
-  // todos los partidos de la temporada.
-  if (temporada.estadisticasEquipo && temporada.estadisticasEquipo.enProgreso)
-    return;
-
   const desglose = {};
   const vistos = new Set();
 
@@ -431,6 +422,18 @@ function autoCalcularStatsEquipo(temporada) {
   // no hay nada que autocalcular: no pisar el desglose metido a mano en
   // estadisticasEquipo.desglose con uno vacío.
   if (Object.keys(desglose).length === 0) return;
+
+  const cfg = temporada.estadisticasEquipo;
+  // Temporada antigua que se está rellenando partido a partido desde
+  // recortes de prensa (ver enProgreso/partidosEsperados en el fichero de
+  // datos). Si se indicó cuántos partidos tuvo de verdad la temporada
+  // (partidosEsperados), se autocalcula en cuanto se llegue a esa cifra
+  // — así no hace falta acordarse de quitar "enProgreso" a mano al
+  // terminar: se desbloquea solo. Si no se indicó, se respeta el
+  // desglose oficial sin más mientras la marca siga puesta.
+  if (cfg && cfg.enProgreso) {
+    if (!cfg.partidosEsperados || vistos.size < cfg.partidosEsperados) return;
+  }
 
   if (!temporada.estadisticasEquipo) temporada.estadisticasEquipo = {};
   temporada.estadisticasEquipo.desglose = desglose;

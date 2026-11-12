@@ -1646,9 +1646,12 @@ CLUB_DATA.temporadas['2008-09'] = {
     // de prensa y todavía faltan muchos por meter. Con esta marca puesta,
     // la web respeta el desglose de abajo (el oficial) en vez de
     // recalcularlo solo con los pocos partidos que haya metidos todavía
-    // (ver autoCalcularStatsEquipo en js/app.js). QUITAR esta línea
-    // cuando ya estén todos los partidos de la temporada metidos.
+    // (ver autoCalcularStatsEquipo en js/app.js). Se desbloquea sola en
+    // cuanto se lleguen a meter los 42 partidos de partidosEsperados
+    // (38 Liga + 2 Fase de Ascenso + 2 Copa) — no hace falta acordarse de
+    // quitarla a mano.
     enProgreso: true,
+    partidosEsperados: 42,
     desglose: {
       'Tercera División': {
         partidos:    38,
