@@ -811,9 +811,23 @@ npm run revisar-goles    (comprobar que ese partido ya no sale)
 npm run subir
 ```
 
+### Al revés: un jugador del Oviedo marca en su propia puerta
+
+Ese gol sube al marcador del **rival**, así que no va en
+`js/data-goles-propia.js` ni cuenta como gol suyo. Se apunta en el
+partido de ese jugador (en su `partidos[]`), con el campo `golesPropia`:
+
+```js
+{ id: 5, ..., golesLocal: 2, golesVisitante: 3, resultado: "D", minutos: 117,
+  goles: 0, golesPropia: 1, asistencias: 0, amarilla: false, roja: false }
+```
+
+Sale en la página del partido ("En propia puerta (a favor del rival)") y
+en la lista de partidos de su ficha. Ejemplo: Mario Prieto en el Oviedo
+2-3 Ponferradina de Copa (03/09/2008).
+
 ### Estado actual
 
-Todos los goles en propia de **2010/11 a 2025/26** están metidos (24)
-y comprobados con realoviedo.info. Falta revisar **2009/10** cuando esa
-temporada esté completa.
+Todos los goles en propia de **2008/09 a 2025/26** están metidos y
+comprobados con realoviedo.info.
 

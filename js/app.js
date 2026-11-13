@@ -2992,6 +2992,11 @@ const App = {
         chips.push(
           `<span class="match-chip chip-assist"><i class="fas fa-hands-helping"></i> ${partido.asistencias > 1 ? partido.asistencias + ' ' + t('asistencias') : t('asistencia')}</span>`,
         );
+      // Gol en propia puerta (sube al marcador del rival, no es gol suyo).
+      if (partido.golesPropia > 0)
+        chips.push(
+          `<span class="match-chip chip-conceded"><i class="fas fa-futbol"></i> ${partido.golesPropia > 1 ? partido.golesPropia + ' ' : ''}${t('en_propia_puerta')}</span>`,
+        );
       // Doble amarilla (expulsión por segunda amarilla): se ven las dos
       // tarjetas en orden, la primera amarilla normal y luego el icono
       // mitad amarillo/mitad rojo de la expulsión — así queda claro que

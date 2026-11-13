@@ -441,6 +441,8 @@ partidos.forEach((p, i) => {
   const jornadaTxt = etiquetaJornada(p.jornada);
   const compCorta = competicionCorta(p.competicion);
   const goleadores = p.jugadores.filter((j) => !j.esPortero && j.goles > 0);
+  // Jugadores del Oviedo que marcaron en su propia puerta (gol del rival).
+  const propiaOviedo = p.jugadores.filter((j) => j.golesPropia > 0);
   const rival = porRival.get(claveEquipo(p.club));
   const nombreAntiguo = p.rival !== p.club; // jugó con un nombre que ya no usa
 
@@ -556,7 +558,10 @@ partidos.forEach((p, i) => {
         </section>
 
         ${
-          goleadores.length || enPropia.length || p.entrenadores.length
+          goleadores.length ||
+          enPropia.length ||
+          propiaOviedo.length ||
+          p.entrenadores.length
             ? `<section class="bloque">
           ${
             goleadores.length || enPropia.length
@@ -576,8 +581,21 @@ partidos.forEach((p, i) => {
               : ''
           }
           ${
+            propiaOviedo.length
+              ? `<h2 style="margin-top:${goleadores.length || enPropia.length ? '20px' : '0'}">${bi('En propia puerta (a favor del rival)', 'Own goals (for the opponent)')}</h2>
+          <ul class="lista-simple">
+            ${propiaOviedo
+              .map(
+                (j) =>
+                  `<li>${enlaceFicha(j, p.tid)}${j.golesPropia > 1 ? ` (${j.golesPropia})` : ''} <span class="propia-puerta">${bi('en propia puerta', 'own goal')}</span></li>`,
+              )
+              .join('\n            ')}
+          </ul>`
+              : ''
+          }
+          ${
             p.entrenadores.length
-              ? `<h2 style="margin-top:${goleadores.length || enPropia.length ? '20px' : '0'}">${bi('Entrenador', 'Coach')}</h2>
+              ? `<h2 style="margin-top:${goleadores.length || enPropia.length || propiaOviedo.length ? '20px' : '0'}">${bi('Entrenador', 'Coach')}</h2>
           <ul class="lista-simple">
             ${p.entrenadores.map((en) => `<li><a href="../fichas/${e(en.slugFicha)}.html">${e(en.nombreCompleto)}</a></li>`).join('\n            ')}
           </ul>`

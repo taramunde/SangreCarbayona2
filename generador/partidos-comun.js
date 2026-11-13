@@ -513,6 +513,9 @@ function construirPartidos(CLUB_DATA) {
         esPortero: info.posicion === 'Portero',
         minutos: p.minutos ?? null,
         goles: p.goles || 0,
+        // Goles en propia puerta de este jugador del Oviedo (suben al
+        // marcador del rival; no cuentan como goles suyos).
+        golesPropia: p.golesPropia || 0,
         asistencias: p.asistencias || 0,
         amarilla: Boolean(p.amarilla),
         roja: Boolean(p.roja || p.rojaDirecta),
