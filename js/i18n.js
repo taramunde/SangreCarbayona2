@@ -132,6 +132,7 @@ const translations = {
     todas_competiciones: 'Todas las competiciones',
     competicion_label: 'Competición',
     todas_temporadas: 'Todas las temporadas',
+    copa_ronda_ronda_previa: 'Ronda Previa',
     copa_ronda_primera_ronda: 'Primera Ronda',
     copa_ronda_segunda_ronda: 'Segunda Ronda',
     copa_ronda_tercera_ronda: 'Tercera Ronda',
@@ -146,6 +147,8 @@ const translations = {
     copa_ronda_semifinal_vuelta: 'Semifinal (Vuelta)',
     copa_ronda_final_ida: 'Final (Ida)',
     copa_ronda_final_vuelta: 'Final (Vuelta)',
+    copa_ronda_ida: 'Ida',
+    copa_ronda_vuelta: 'Vuelta',
     copa_ronda_primera_ronda_ida: 'Primera Ronda (Ida)',
     copa_ronda_primera_ronda_vuelta: 'Primera Ronda (Vuelta)',
 
@@ -643,9 +646,10 @@ const translations = {
     todas_competiciones: 'All competitions',
     todas_temporadas: 'All seasons',
     competicion_label: 'Competition',
-    copa_ronda_primera_ronda: 'Round of 32',
-    copa_ronda_segunda_ronda: 'Round of 16',
-    copa_ronda_tercera_ronda: 'Round of 8',
+    copa_ronda_ronda_previa: 'Preliminary Round',
+    copa_ronda_primera_ronda: 'First Round',
+    copa_ronda_segunda_ronda: 'Second Round',
+    copa_ronda_tercera_ronda: 'Third Round',
     copa_ronda_dieciseisavos_de_final: 'Round of 32',
     copa_ronda_dieciseisavos_de_final_ida: 'Round of 32 (1st Leg)',
     copa_ronda_dieciseisavos_de_final_vuelta: 'Round of 32 (2nd Leg)',
@@ -657,6 +661,8 @@ const translations = {
     copa_ronda_semifinal_vuelta: 'Semi-final (2nd Leg)',
     copa_ronda_final_ida: 'Final (1st Leg)',
     copa_ronda_final_vuelta: 'Final (2nd Leg)',
+    copa_ronda_ida: '1st Leg',
+    copa_ronda_vuelta: '2nd Leg',
     copa_ronda_primera_ronda_ida: 'First Round (1st Leg)',
     copa_ronda_primera_ronda_vuelta: 'First Round (2nd Leg)',
 
@@ -1066,6 +1072,24 @@ function translateCompeticion(nombre) {
   return t(key) || nombre;
 }
 window.translateCompeticion = translateCompeticion;
+
+// Nombre de una ronda de eliminatoria ("Primera Ronda", "Dieciseisavos de
+// Final (Ida)"...) en el idioma activo; si no hay traducción, tal cual.
+function translateRonda(ronda) {
+  if (!ronda) return '';
+  const key =
+    'copa_ronda_' +
+    String(ronda)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[().]/g, '')
+      .replace(/[-\s]+/g, '_')
+      .replace(/_+/g, '_');
+  const r = t(key);
+  return r && r !== key ? r : ronda;
+}
+window.translateRonda = translateRonda;
 
 function setLanguage(lang) {
   currentLang = lang;

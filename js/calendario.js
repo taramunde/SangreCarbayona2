@@ -285,7 +285,7 @@
     block.className = 'cal-jornada-block';
     block.innerHTML = `
             <div class="cal-jornada-header">
-                <span class="cal-jornada-num">${p.competicion} · ${p.ronda}${etiquetaFecha(p) ? ` · ${etiquetaFecha(p)}` : ''}</span>
+                <span class="cal-jornada-num">${p.competicion} · ${(window.translateRonda ? translateRonda(p.ronda) : p.ronda)}${etiquetaFecha(p) ? ` · ${etiquetaFecha(p)}` : ''}</span>
                 <span class="cal-jornada-line"></span>
             </div>
         `;
@@ -613,7 +613,7 @@
 
       const fechaTexto = etiquetaFecha(proximo);
       const etiquetaFooter = esEspecial
-        ? `${proximo.competicion} · ${proximo.ronda} · ${fechaTexto}`
+        ? `${proximo.competicion} · ${(window.translateRonda ? translateRonda(proximo.ronda) : proximo.ronda)} · ${fechaTexto}`
         : `${t('jornada')} ${proximo.jornada}${fechaTexto ? ` · ${fechaTexto}` : ''}`;
 
       const elProximo = document.createElement('div');

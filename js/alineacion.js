@@ -37,7 +37,7 @@
         ? p.competicion
         : (temp && temp.competicion) || '',
       rondaOJornada: esEspecial
-        ? p.ronda
+        ? (window.translateRonda ? translateRonda(p.ronda) : p.ronda)
         : p.jornada != null
           ? `${t('jornada') || 'Jornada'} ${p.jornada}`
           : '',

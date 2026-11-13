@@ -773,7 +773,7 @@ const App = {
         ? ultimo.competicion
         : CLUB_DATA.competicionActual;
       const fechaStr = ultimoEsEspecial
-        ? ultimo.ronda || ''
+        ? (window.translateRonda ? translateRonda(ultimo.ronda || '') : ultimo.ronda || '')
         : `${t('jornada_abrev')}${ultimo.jornada}`;
       const extrasUltimo = window.getExtrasResultadoHTML
         ? window.getExtrasResultadoHTML(ultimo)
@@ -844,7 +844,7 @@ const App = {
         ? proximo.competicion
         : CLUB_DATA.competicionActual;
       const fechaStr = esEspecial
-        ? proximo.ronda || ''
+        ? (window.translateRonda ? translateRonda(proximo.ronda || '') : proximo.ronda || '')
         : `${t('jornada_abrev')}${proximo.jornada}`;
       // Fecha/hora real del partido (si ya se conoce), con el mismo
       // formateo que usan las tarjetas de js/calendario.js — se
@@ -3811,7 +3811,7 @@ const App = {
       const etiquetaPartido = video.jornada
         ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>`
         : video.competicion
-          ? `<span style="margin-left: 10px;"><i class="fas fa-trophy"></i> ${video.competicion}${video.ronda ? ` · ${video.ronda}` : ''}</span>`
+          ? `<span style="margin-left: 10px;"><i class="fas fa-trophy"></i> ${video.competicion}${video.ronda ? ` · ${(window.translateRonda ? translateRonda(video.ronda) : video.ronda)}` : ''}</span>`
           : '';
       const shareLinks = generarEnlacesCompartir(
         videoUrl,
