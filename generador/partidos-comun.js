@@ -113,8 +113,10 @@ function escaparHtml(texto) {
     .replace(/"/g, '&quot;');
 }
 
+// Solo el Real Oviedo (ignorando puntos, espacios y mayúsculas): un
+// "oviedo" a secas también casaría con "Universidad de Oviedo".
 function esOviedo(nombre) {
-  return /oviedo/i.test(String(nombre || ''));
+  return claveEquipo(nombre) === 'realoviedo';
 }
 
 // Valor más repetido de una lista (empate → el primero que apareció).

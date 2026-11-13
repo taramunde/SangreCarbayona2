@@ -37,6 +37,26 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.golesEnPropia = [
+  // ── 2008/09 ───────────────────────────────────────────────
+  {
+    fecha: '2008-08-26',
+    jugador: 'Basualdo',
+    equipo: 'Pontevedra C.F.',
+    fuente: 'https://realoviedo.info/08-09.html',
+  },
+  {
+    fecha: '2009-01-11',
+    jugador: 'Emi',
+    equipo: 'Condal C.F.',
+    fuente: 'https://realoviedo.info/08-09.html',
+  },
+  {
+    fecha: '2009-04-12',
+    jugador: 'Adrián',
+    equipo: 'U.P. de Langreo',
+    fuente: 'https://realoviedo.info/08-09.html',
+  },
+
   // ── 2009/10 ───────────────────────────────────────────────
   {
     fecha: '2010-03-14',

@@ -133,25 +133,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/daniel-hedrera-lobaton.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/david-farina-bretal.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/iker-lasarte-herrero.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/gonzalo-de-la-fuente-de-la-iglesia.html</loc>
-    <lastmod>2026-09-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/iker-lasarte-herrero.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/david-farina-bretal.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -163,13 +157,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/nicolas-alvarez-garcia.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/gonzalo-de-la-fuente-de-la-iglesia.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/daniel-hedrera-lobaton.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ruben-gonzalez-gonzalez.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/nicolas-alvarez-garcia.html</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -187,8 +187,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/andre-bevilacqua.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/pablo-pelaez-naredo.html</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -199,7 +199,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jorge-valiente-garcia.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jaime-alvarez-diaz.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -211,8 +211,20 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-lopez-iglesias.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jorge-valiente-garcia.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/andre-bevilacqua.html</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -223,14 +235,14 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jaime-alvarez-diaz.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/mario-prieto-garcia.html</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/mario-prieto-garcia.html</loc>
-    <lastmod>2026-11-08</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-lopez-iglesias.html</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -241,19 +253,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/pablo-pelaez-naredo.html</loc>
-    <lastmod>2026-11-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/alejandro-garcia-cercas.html</loc>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/moises-alberto-martinez-moldes.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -265,6 +265,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/matias-fernandez-granado.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/alejandro-garcia-cercas.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/ignacio-mendez-jardon.html</loc>
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -272,18 +284,6 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jorge-rodriguez-martin.html</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/matias-fernandez-granado.html</loc>
-    <lastmod>2026-11-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/moises-alberto-martinez-moldes.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -2558,19 +2558,19 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/index.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rivales.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2008-09.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -2785,8 +2785,8 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-real-oviedo.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-universidad-de-oviedo.html</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -3649,8 +3649,8 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-oviedo-2008-12-14.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/universidad-de-oviedo-real-oviedo-2008-12-14.html</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3763,8 +3763,8 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-real-oviedo-2009-04-26.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-universidad-de-oviedo-2009-04-26.html</loc>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

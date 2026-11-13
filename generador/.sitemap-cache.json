@@ -1568,8 +1568,8 @@
     "lastmod": "2026-11-13"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/index.html": {
-    "hash": "74178647bd450cfcd1262a5c9f4d9a85ff75a52f",
-    "lastmod": "2026-11-12"
+    "hash": "ab7f107a9deb53ff099c7e1c58c1d58fb148acce",
+    "lastmod": "2026-11-13"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2010-11.html": {
     "hash": "9c771f49160ce2fc347e642dc4f6a33d67f8d007",
@@ -4896,8 +4896,8 @@
     "lastmod": "2026-10-23"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/rivales.html": {
-    "hash": "3522a3242f8527959e521376cfb7c82358a71fdc",
-    "lastmod": "2026-11-12"
+    "hash": "e1d9767bd1d9024b13997a6b9f4fd9433be32b29",
+    "lastmod": "2026-11-13"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/ud-almeria-real-oviedo-2026-10-24.html": {
     "hash": "8cd33e4b9c3a3ee43be767f48fcae91e5c81412d",
@@ -5224,8 +5224,8 @@
     "lastmod": "2026-11-13"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/temporada-2008-09.html": {
-    "hash": "7ebac45a17bdae5f44c7fe4414480aa1c5c5842c",
-    "lastmod": "2026-11-12"
+    "hash": "0229aa1036accf3154dee9348cdeda238f9bd091",
+    "lastmod": "2026-11-13"
   },
   "https://taramunde.github.io/SangreCarbayona2/partidos/rival-ud-gijon-industrial.html": {
     "hash": "51f178bbf6d55e0712fc75c0971737b46005665d",
@@ -5534,5 +5534,17 @@
   "https://taramunde.github.io/SangreCarbayona2/fichas/fabio-nunes-fernandes.html": {
     "hash": "777cfa7bcd5eea86168fcb66137e5cc49597492e",
     "lastmod": "2026-11-12"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/rival-universidad-de-oviedo.html": {
+    "hash": "d9b0163d309f2631002806fd5ccd92f99aa031fe",
+    "lastmod": "2026-11-13"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/universidad-de-oviedo-real-oviedo-2008-12-14.html": {
+    "hash": "1f51958292cab9e80fb2d79bdb662ba73ecf2870",
+    "lastmod": "2026-11-13"
+  },
+  "https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-universidad-de-oviedo-2009-04-26.html": {
+    "hash": "5b28cb05847e98c3c959aadd793d2fe6e79bd8bd",
+    "lastmod": "2026-11-13"
   }
 }
