@@ -9083,7 +9083,7 @@ CLUB_DATA.entrenadorMaestro = {
     nombre: 'Raúl',
     apellidos: 'González Blanco',
     nombreCompleto: 'Raúl González Blanco',
-    apodo: 'Raúl González',
+    apodo: 'Raúl González Blanco',
     cargo: 'Entrenador Principal',
     cargoCorto: 'ENT',
     nacionalidad: ['Española'],
