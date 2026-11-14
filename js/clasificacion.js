@@ -944,14 +944,14 @@
     {
       equipo1: 'U.D. Las Palmas',
       equipo2: 'C.D. Eldense',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'Real Sociedad B',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
     {
       equipo1: 'Real Sporting de Gijón',
@@ -994,8 +994,8 @@
     {
       equipo1: 'C.D. Leganés',
       equipo2: 'Burgos C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 1,
     },
     {
       equipo1: 'R.C.D. Mallorca',
@@ -1014,8 +1014,8 @@
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'Real Sporting de Gijón',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Tenerife',
@@ -1026,8 +1026,8 @@
     {
       equipo1: 'Real Valladolid',
       equipo2: 'C.D. Castellón',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 1,
     },
 
     // Jornada 15 (22/11/2026)
