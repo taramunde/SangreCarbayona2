@@ -318,7 +318,7 @@ pasos al principio con todo el detalle; aquí va el resumen:
    `null`, `estado: 'pendiente'` y `titulares`/`suplentes` en `[]`.
 2. Cuando haya una alineación probable o la oficial: cambia `estado` a
    `'probable'` o `'confirmada'`, pon `formacion` (`'442'`, `'433'`,
-   `'343'`, `'451'`, `'4141'` o `'4231'`) y rellena `titulares` con un
+   `'343'`, `'451'`, `'4141'`, `'4231'` o `'4132'`) y rellena `titulares` con un
    objeto por jugador: `{ slot: 'def1', jugadorId: '...' }`.
 3. El `jugadorId` es el mismo id que usa el jugador en el resto del
    proyecto (búscalo por dorsal en `js/data-temporada-actual.js` si no

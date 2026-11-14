@@ -169,6 +169,19 @@
         fwd1: [FILA.fwd, 50],
       },
     },
+    4132: {
+      nombre: '4-1-3-2',
+      slots: {
+        gk: [FILA.gk, 50],
+        ...DEF4,
+        mid1: [FILA.dm, 50],
+        mid2: [FILA.am, X3[0]],
+        mid3: [FILA.am, X3[1]],
+        mid4: [FILA.am, X3[2]],
+        fwd1: [FILA.fwd, X2[0]],
+        fwd2: [FILA.fwd, X2[1]],
+      },
+    },
   };
 
   function getEscudo(nombre) {

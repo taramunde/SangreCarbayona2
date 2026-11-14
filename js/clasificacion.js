@@ -1006,8 +1006,9 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'Girona F.C.',
-      fecha: '2026-11-15',
-      aproximada: true,
+      fecha: '2026-11-14',
+      hora: '21:00',
+      aproximada: false,
       goles1: null,
       goles2: null,
     },

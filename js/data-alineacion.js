@@ -38,6 +38,7 @@
          '451'  -> 4-5-1
          '4141' -> 4-1-4-1
          '4231' -> 4-2-3-1
+         '4132' -> 4-1-3-2
      - "titulares": un objeto por jugador, { slot: '...', jugadorId:
        '...' }. Los "slot" válidos según la formación elegida (de
        portero a delantero):
@@ -47,6 +48,7 @@
          451  -> gk, def1, def2, def3, def4, mid1, mid2, mid3, mid4, mid5, fwd1
          4141 -> gk, def1, def2, def3, def4, mid1, mid2, mid3, mid4, mid5, fwd1
          4231 -> gk, def1, def2, def3, def4, mid1, mid2, mid3, mid4, mid5, fwd1
+         4132 -> gk, def1, def2, def3, def4, mid1 (pivote), mid2, mid3, mid4, fwd1, fwd2
        No hace falta que "def1" sea el lateral izquierdo ni nada por
        el estilo — con que cada jugador esté en SU línea (defensa,
        centrocampo o delantera) correcta, ya sale bien en el dibujo.
@@ -80,35 +82,35 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.alineacion = {
-  paraFecha: '2026-11-07',
+  paraFecha: '2026-11-14',
 
   estado: 'confirmada',
-  formacion: '442',
+  formacion: '4132',
   titulares: [
     { slot: 'gk', jugadorId: 'aaron-escandell-banacloche' },
     { slot: 'def1', jugadorId: 'samuel-rodriguez-de-la-riva' },
     { slot: 'def2', jugadorId: 'carlos-dominguez-caceres' },
-    { slot: 'def3', jugadorId: 'daniel-pedro-calvo-san-roman', capitan: true },
+    { slot: 'def3', jugadorId: 'david-costas-cordal', capitan: true },
     { slot: 'def4', jugadorId: 'david-jimenez-corredor' },
-    { slot: 'mid1', jugadorId: 'estanislau-pedrola-fortuny' },
-    { slot: 'mid2', jugadorId: 'youness-lachhab' },
-    { slot: 'mid3', jugadorId: 'enzo-perez-miranda' },
-    { slot: 'mid4', jugadorId: 'ilyas-chaira-oihi' },
-    { slot: 'fwd1', jugadorId: 'alexandru-mihai-isfan' },
-    { slot: 'fwd2', jugadorId: 'mikel-goti-lopez' },
+    { slot: 'mid1', jugadorId: 'youness-lachhab' },
+    { slot: 'mid2', jugadorId: 'alberto-reina-campos' },
+    { slot: 'mid3', jugadorId: 'ilyas-chaira-oihi' },
+    { slot: 'mid4', jugadorId: 'mikel-goti-lopez' },
+    { slot: 'fwd1', jugadorId: 'estanislau-pedrola-fortuny' },
+    { slot: 'fwd2', jugadorId: 'alexandru-mihai-isfan' },
   ],
   suplentes: [
     'miguel-de-jesus-narvaez-lopez',
     'juan-cruz-alvaro-armada',
-    'david-costas-cordal',
     'daniel-villahermosa-martinez',
-    'alberto-reina-campos',
     'jacobo-gonzalez-rodriganez',
+    'carlos-fernandez-luna',
     'aritz-aldasoro-sarriegi',
     'victor-garcia-mingo',
     'pablo-saenz-ezquerra',
     'ignacio-vidal-miralles',
     'jose-luis-morales-nogales',
     'diego-menendez-secades',
+    'marco-esteban-fernandez',
   ],
 };
