@@ -578,7 +578,10 @@ const App = {
     const nombreTemp = tempData
       ? tempData.nombre
       : this.temporadaActiva.replace('-', '/');
-    const competicion = temporada.competicion || '';
+    const competicion =
+      typeof translateCompeticion === 'function'
+        ? translateCompeticion(temporada.competicion || '')
+        : temporada.competicion || '';
     const grupo =
       temporada.grupo && temporada.grupo !== 'null'
         ? ' · ' + temporada.grupo
@@ -773,7 +776,9 @@ const App = {
         ? ultimo.competicion
         : CLUB_DATA.competicionActual;
       const fechaStr = ultimoEsEspecial
-        ? (window.translateRonda ? translateRonda(ultimo.ronda || '') : ultimo.ronda || '')
+        ? window.translateRonda
+          ? translateRonda(ultimo.ronda || '')
+          : ultimo.ronda || ''
         : `${t('jornada_abrev')}${ultimo.jornada}`;
       const extrasUltimo = window.getExtrasResultadoHTML
         ? window.getExtrasResultadoHTML(ultimo)
@@ -844,7 +849,9 @@ const App = {
         ? proximo.competicion
         : CLUB_DATA.competicionActual;
       const fechaStr = esEspecial
-        ? (window.translateRonda ? translateRonda(proximo.ronda || '') : proximo.ronda || '')
+        ? window.translateRonda
+          ? translateRonda(proximo.ronda || '')
+          : proximo.ronda || ''
         : `${t('jornada_abrev')}${proximo.jornada}`;
       // Fecha/hora real del partido (si ya se conoce), con el mismo
       // formateo que usan las tarjetas de js/calendario.js — se
@@ -1963,19 +1970,10 @@ const App = {
             ? 'draw'
             : 'loss';
       const compNombre = partido.competicion || '';
-      const cleanJornada = String(partido.jornada)
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[().]/g, '')
-        .replace(/[-\s]+/g, '_')
-        .replace(/_+/g, '_');
       const jorTexto =
         typeof partido.jornada === 'number'
           ? `${t('jornada_abrev')}${partido.jornada}`
-          : t(`copa_ronda_${cleanJornada}`) ||
-            t(cleanJornada) ||
-            partido.jornada;
+          : translateRonda(partido.jornada);
       const tienePenaltis =
         partido.penaltisLocal !== undefined &&
         partido.penaltisVisitante !== undefined;
@@ -2960,15 +2958,7 @@ const App = {
       const jorTexto =
         typeof partido.jornada === 'number'
           ? `${t('jornada_abrev')}${partido.jornada}`
-          : t(
-              `copa_ronda_${String(partido.jornada)
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .replace(/[().]/g, '')
-                .replace(/[-\s]+/g, '_')
-                .replace(/_+/g, '_')}`,
-            ) || partido.jornada;
+          : translateRonda(partido.jornada);
 
       // Chips de stats individuales
       const chips = [];
@@ -3811,7 +3801,7 @@ const App = {
       const etiquetaPartido = video.jornada
         ? `<span style="margin-left: 10px;"><i class="fas fa-futbol"></i> ${t('jornada_abrev')}${video.jornada}</span>`
         : video.competicion
-          ? `<span style="margin-left: 10px;"><i class="fas fa-trophy"></i> ${video.competicion}${video.ronda ? ` · ${(window.translateRonda ? translateRonda(video.ronda) : video.ronda)}` : ''}</span>`
+          ? `<span style="margin-left: 10px;"><i class="fas fa-trophy"></i> ${video.competicion}${video.ronda ? ` · ${window.translateRonda ? translateRonda(video.ronda) : video.ronda}` : ''}</span>`
           : '';
       const shareLinks = generarEnlacesCompartir(
         videoUrl,

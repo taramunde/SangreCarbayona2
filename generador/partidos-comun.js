@@ -654,7 +654,11 @@ function traduccionesEn() {
 
 // Misma normalización que translateCompeticion() de i18n.js
 function claveI18n(texto) {
-  return quitarAcentos(texto)
+  return quitarAcentos(
+    String(texto || '')
+      .replace(/ª/g, 'a')
+      .replace(/º/g, 'o'),
+  )
     .toLowerCase()
     .replace(/[().]/g, '')
     .replace(/[-\s]+/g, '_')
@@ -673,11 +677,17 @@ function competicionCortaEn(comp) {
 function jornadaEn(jornada) {
   if (jornada === null || jornada === undefined || jornada === '') return '';
   if (/^\d+$/.test(String(jornada).trim())) return `Matchday ${jornada}`;
-  const t = traduccionesEn()[`copa_ronda_${claveI18n(jornada)}`];
+  const T = traduccionesEn();
+  const t = T[`copa_ronda_${claveI18n(jornada)}`];
   if (t) return t;
-  return String(jornada)
-    .replace(/\(Ida\)/i, '(1st Leg)')
-    .replace(/\(Vuelta\)/i, '(2nd Leg)');
+  // "X (Ida)" sin clave propia: se traduce "X" y la ida/vuelta aparte
+  // (misma lógica que translateRonda() en js/i18n.js).
+  const m = String(jornada).match(/^(.*?)\s*\((Ida|Vuelta)\)\s*$/i);
+  if (m) {
+    const base = T[`copa_ronda_${claveI18n(m[1])}`] || m[1].trim();
+    return `${base} (${/^ida$/i.test(m[2]) ? '1st Leg' : '2nd Leg'})`;
+  }
+  return String(jornada);
 }
 function posicionEn(pos) {
   return traduccionesEn()[`pos_${claveI18n(pos)}`] || pos || '';

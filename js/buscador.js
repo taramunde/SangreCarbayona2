@@ -38,6 +38,55 @@
 
   // ── HELPERS ────────────────────────────────────────────────
 
+  // Traducción con respaldo (js/i18n.js puede no tener la clave).
+  function tr(key, respaldo) {
+    if (typeof window.t !== 'function') return respaldo;
+    const r = window.t(key);
+    return r && r !== key ? r : respaldo;
+  }
+
+  // Los datos (competición, jornada, posición...) se guardan siempre en
+  // español, que es lo que usan los filtros; esto es solo lo que se
+  // MUESTRA, en el idioma activo.
+  function trCompeticion(nombre) {
+    if (!nombre) return '';
+    return typeof window.translateCompeticion === 'function'
+      ? window.translateCompeticion(nombre)
+      : nombre;
+  }
+
+  function trRonda(jornada) {
+    if (!jornada) return '';
+    return typeof window.translateRonda === 'function'
+      ? window.translateRonda(jornada)
+      : String(jornada);
+  }
+
+  // "12" → "Jornada 12" / "Matchday 12"; "Final (Ida)" → "Final (1st Leg)"
+  function trJornada(jornada) {
+    if (jornada === null || jornada === undefined || jornada === '') return '';
+    return /^\d+$/.test(String(jornada).trim())
+      ? `${tr('jornada', 'Jornada')} ${jornada}`
+      : trRonda(jornada);
+  }
+
+  function trPosicion(pos) {
+    if (!pos) return '';
+    if (typeof window.translatePosition !== 'function') return pos;
+    const r = window.translatePosition(pos);
+    return r && !/^pos_/.test(r) ? r : pos;
+  }
+
+  const RES_CLAVE = {
+    V: ['busc_opt_victoria', 'Victoria'],
+    E: ['busc_opt_empate', 'Empate'],
+    D: ['busc_opt_derrota', 'Derrota'],
+  };
+  function trResultado(res) {
+    const c = RES_CLAVE[res];
+    return c ? tr(c[0], c[1]) : '';
+  }
+
   function normalizar(str) {
     if (!str) return '';
     return String(str).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -171,7 +220,8 @@
           datos.nombreCompleto && datos.nombreCompleto !== nombreMostrar
             ? datos.nombreCompleto
             : '',
-        meta: datos.cargo || 'Entrenador',
+        meta: datos.cargo || '',
+        metaClave: datos.cargo ? null : 'entrenador',
         posicion: '',
         nacionalidad: (datos.nacionalidad && datos.nacionalidad[0]) || '',
         nacionalidades: datos.nacionalidad || [],
@@ -346,8 +396,6 @@
         const esLocal = p.local === OVIEDO;
         const rival = esLocal ? p.visitante : p.local;
         const res = resultadoEfectivo(p);
-        const resTexto =
-          { V: 'Victoria', E: 'Empate', D: 'Derrota' }[res] || '';
         const marcador =
           typeof p.golesLocal === 'number' &&
           typeof p.golesVisitante === 'number'
@@ -390,8 +438,9 @@
         indice.push({
           tipo: 'partido',
           titulo: `${p.local} ${marcador} ${p.visitante}`.trim(),
-          subtitulo: `${p.competicion || ''}${p.jornada ? ' · Jornada ' + p.jornada : ''} · ${seasonId.replace('-', '/')}`,
-          meta: resTexto,
+          // subtitulo y meta se componen al pintar, en el idioma activo
+          // (ver textoSubtitulo / textoMeta).
+          temporadaNombre: seasonId.replace('-', '/'),
           posicion: '',
           temporada: seasonId,
           temporadas: [seasonId],
@@ -453,6 +502,7 @@
           tipo: 'titulo',
           titulo: `${t.competicion} ${temporada}`,
           subtitulo: 'Título nacional',
+          subtituloClave: 'busc_titulo_nacional',
           meta: temporada,
           posicion: '',
           temporada,
@@ -474,6 +524,7 @@
           tipo: 'titulo',
           titulo: `${t.competicion} ${temporada}`,
           subtitulo: 'Campeonato regional',
+          subtituloClave: 'busc_campeonato_regional',
           meta: temporada,
           posicion: '',
           temporada,
@@ -550,6 +601,7 @@
         titulo: persona.nombre,
         subtitulo: persona.texto,
         meta: 'Jugador',
+        metaClave: 'busc_badge_jugador',
         posicion: '',
         temporada: null,
         temporadas: [],
@@ -567,6 +619,7 @@
         titulo: persona.nombre,
         subtitulo: persona.texto,
         meta: 'Entrenador',
+        metaClave: 'busc_badge_entrenador',
         posicion: '',
         temporada: null,
         temporadas: [],
@@ -581,23 +634,29 @@
 
   // ── ÍNDICE: DERBIS ───────────────────────────────────────────
 
+  // Los derbis usan abreviaturas ("1ª División") que en los partidos
+  // van escritas enteras: se unifican para que el filtro de competición
+  // no muestre la misma categoría dos veces.
+  const COMP_DERBI = {
+    '1ª División': 'Primera División',
+    '2ª División': 'Segunda División',
+    '2ª División B': 'Segunda División B',
+    '3ª División': 'Tercera División',
+  };
+
   function indexarDerbis(indice) {
     if (!window.DERBIS_DATA) return;
     DERBIS_DATA.forEach((derbi) => {
+      const competicion =
+        COMP_DERBI[derbi.competicion] || derbi.competicion || '';
       indice.push({
         tipo: 'derbi',
         titulo: `${derbi.local.nombre} ${derbi.resultado} ${derbi.visitante.nombre}`,
-        subtitulo: `${derbi.competicion || ''}${derbi.jornada ? ' · Jornada ' + derbi.jornada : ''} · ${derbi.temporada || ''}`,
-        meta:
-          derbi.ganador === 'oviedo'
-            ? 'Victoria'
-            : derbi.ganador === 'sporting'
-              ? 'Derrota'
-              : 'Empate',
+        temporadaNombre: derbi.temporada || '',
         posicion: '',
         temporada: derbi.temporada || null,
         temporadas: derbi.temporada ? [derbi.temporada] : [],
-        competicion: derbi.competicion || '',
+        competicion,
         resultado:
           derbi.ganador === 'oviedo'
             ? 'V'
@@ -646,7 +705,7 @@
 
   // ── POBLAR FILTROS DINÁMICAMENTE A PARTIR DEL ÍNDICE ────────────
 
-  function poblarSelect(select, valores, etiquetaTodos, orden) {
+  function poblarSelect(select, valores, etiquetaTodos, orden, etiqueta) {
     const actuales = new Set(valores.filter(Boolean));
     const ordenados = Array.from(actuales).sort((a, b) => {
       if (orden === 'numerico') {
@@ -663,9 +722,15 @@
         ? b.localeCompare(a, 'es')
         : a.localeCompare(b, 'es');
     });
+    const previo = select.value;
+    const mostrar = etiqueta || ((v) => v);
     select.innerHTML =
       `<option value="">${etiquetaTodos}</option>` +
-      ordenados.map((v) => `<option value="${v}">${v}</option>`).join('');
+      ordenados
+        .map((v) => `<option value="${v}">${mostrar(v)}</option>`)
+        .join('');
+    // Al repoblar (p. ej. por cambio de idioma) se conserva lo elegido.
+    if (previo && actuales.has(previo)) select.value = previo;
   }
 
   // "indiceTipo" es el subconjunto del índice que corresponde al tipo
@@ -705,44 +770,49 @@
     poblarSelect(
       document.getElementById('buscJugador'),
       nombresJugadores,
-      'Elige un jugador...',
+      tr('busc_elige_jugador', 'Elige un jugador...'),
     );
     poblarSelect(
       document.getElementById('buscEntrenador'),
       nombresEntrenadores,
-      'Elige un entrenador...',
+      tr('busc_elige_entrenador', 'Elige un entrenador...'),
     );
     poblarSelect(
       document.getElementById('buscTemporada'),
       temporadas,
-      'Todas las temporadas',
+      tr('todas_temporadas', 'Todas las temporadas'),
       'desc',
     );
     poblarSelect(
       document.getElementById('buscCompeticion'),
       competiciones,
-      'Todas las competiciones',
+      tr('todas_competiciones', 'Todas las competiciones'),
+      null,
+      trCompeticion,
     );
     poblarSelect(
       document.getElementById('buscPosicion'),
       posiciones,
-      'Todas las posiciones',
+      tr('busc_todas_posiciones', 'Todas las posiciones'),
+      null,
+      trPosicion,
     );
     poblarSelect(
       document.getElementById('buscRival'),
       rivales,
-      'Todos los rivales',
+      tr('busc_todos_rivales', 'Todos los rivales'),
     );
     poblarSelect(
       document.getElementById('buscNacionalidad'),
       nacionalidades,
-      'Todas las nacionalidades',
+      tr('busc_todas_nacionalidades', 'Todas las nacionalidades'),
     );
     poblarSelect(
       document.getElementById('buscJornada'),
       jornadas,
-      'Todas las jornadas',
+      tr('busc_todas_jornadas', 'Todas las jornadas'),
       'numerico',
+      (j) => (/^\d+$/.test(j) ? j : trRonda(j)),
     );
   }
 
@@ -908,6 +978,50 @@
     if (overlay) overlay.classList.remove('visible');
   }
 
+  // Subtítulo y etiqueta de cada tarjeta en el idioma activo.
+  function textoSubtitulo(item) {
+    if (item.tipo === 'partido' || item.tipo === 'derbi') {
+      return [
+        trCompeticion(item.competicion),
+        trJornada(item.jornada),
+        item.temporadaNombre,
+      ]
+        .filter(Boolean)
+        .join(' · ');
+    }
+    if (item.subtituloClave) return tr(item.subtituloClave, item.subtitulo);
+    return item.subtitulo || '';
+  }
+
+  function textoMeta(item) {
+    if (item.tipo === 'partido' || item.tipo === 'derbi')
+      return trResultado(item.resultado);
+    if (item.metaClave) return tr(item.metaClave, item.meta || '');
+    if (item.tipo === 'jugador') {
+      // Abreviatura española (DC, MCO...) en español; en inglés, la
+      // posición completa traducida.
+      return (window.currentLang || 'es') === 'en'
+        ? trPosicion(item.posicion) || item.meta
+        : item.meta;
+    }
+    if (
+      item.tipo === 'entrenador' &&
+      typeof window.translateCargo === 'function'
+    )
+      return window.translateCargo(item.meta);
+    return item.meta || '';
+  }
+
+  function textoTitulo(item) {
+    if (item.tipo === 'titulo' && item.competicion) {
+      return item.titulo.replace(
+        item.competicion,
+        trCompeticion(item.competicion),
+      );
+    }
+    return item.titulo;
+  }
+
   function crearTarjeta(item, jugadorSeleccionado) {
     const esEnlazable = !!item.url;
     const Tag = esEnlazable ? 'a' : 'div';
@@ -955,14 +1069,14 @@
       ${iconoFoto}
       <div class="busc-info">
         <span class="busc-tipo-badge busc-tipo-badge-${item.tipo}">${etiquetaTipo(item.tipo)}</span>
-        <b class="busc-titulo">${item.titulo}</b>
-        ${item.subtitulo ? `<p class="busc-subtitulo">${item.subtitulo}</p>` : ''}
+        <b class="busc-titulo">${textoTitulo(item)}</b>
+        ${textoSubtitulo(item) ? `<p class="busc-subtitulo">${textoSubtitulo(item)}</p>` : ''}
         ${item.prorroga ? `<p class="busc-prorroga"><i class="fas fa-clock"></i> ${item.penaltisMarcador || t('busc_prorroga_generica')}</p>` : ''}
         ${statsHtml}
         ${jugadoresHtml}
         ${goleadoresHtml}
         ${tarjetasHtml}
-        ${item.meta ? `<span class="busc-meta busc-meta-${(item.resultado || '').toLowerCase()}">${item.meta}</span>` : ''}
+        ${textoMeta(item) ? `<span class="busc-meta busc-meta-${(item.resultado || '').toLowerCase()}">${textoMeta(item)}</span>` : ''}
       </div>
     `;
 
@@ -1080,7 +1194,9 @@
     const partes = [];
     if (estado.rival) partes.push(`${t('busc_filtro_contra')} ${estado.rival}`);
     if (estado.competicion)
-      partes.push(`${t('busc_filtro_en')} ${estado.competicion}`);
+      partes.push(
+        `${t('busc_filtro_en')} ${trCompeticion(estado.competicion)}`,
+      );
     if (estado.temporada)
       partes.push(`${t('busc_filtro_temporada')} ${estado.temporada}`);
     if (estado.localidad)
@@ -1098,7 +1214,11 @@
         }[estado.resultado],
       );
     if (estado.jornada)
-      partes.push(`${t('busc_filtro_jornada')} ${estado.jornada}`);
+      partes.push(
+        /^\d+$/.test(estado.jornada)
+          ? `${t('busc_filtro_jornada')} ${estado.jornada}`
+          : trRonda(estado.jornada),
+      );
     return partes.join(' · ');
   }
 
@@ -1544,6 +1664,11 @@
     // Para que setLanguage() (js/i18n.js) pueda volver a pintar las
     // tarjetas, el resumen y el ranking al cambiar de idioma, ya que
     // su contenido se genera aquí dinámicamente y no vía data-i18n.
-    window.renderBuscador = actualizar;
+    window.renderBuscador = function () {
+      const tipo =
+        selTipo.querySelector('.busc-chip.active')?.dataset.tipo || 'todos';
+      actualizarFiltrosDisponibles(tipo);
+      actualizar();
+    };
   });
 })();

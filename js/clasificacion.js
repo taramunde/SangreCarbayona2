@@ -3117,6 +3117,7 @@
   }
 
   function actualizarJornadaBadge() {
+    actualizarBadgeHome();
     const jornada = getJornadaActual();
     const badge = document.getElementById('jornadaBadge');
     if (badge) {
@@ -3295,6 +3296,12 @@
       tbody.appendChild(tr);
     });
 
+    actualizarBadgeHome();
+  }
+
+  // Badge "Jornada N · Competición" del widget de clasificación del home.
+  // Se llama también desde actualizarJornadaBadge() al cambiar de idioma.
+  function actualizarBadgeHome() {
     const badge = document.getElementById('homeJornadaBadge');
     if (badge) {
       badge.removeAttribute('data-i18n'); // ← esta faltaba
@@ -3302,7 +3309,7 @@
       const label = CLUB_DATA.temporadaActual.replace('-', '/');
       badge.textContent =
         j > 0
-          ? `Jornada ${j} · ${CLUB_DATA.competicionActual} ${label}`
+          ? `${t('jornada')} ${j} · ${CLUB_DATA.competicionActual} ${label}`
           : `${CLUB_DATA.competicionActual} ${label}`;
     }
   }

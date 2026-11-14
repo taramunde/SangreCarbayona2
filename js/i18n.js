@@ -151,6 +151,39 @@ const translations = {
     copa_ronda_vuelta: 'Vuelta',
     copa_ronda_primera_ronda_ida: 'Primera Ronda (Ida)',
     copa_ronda_primera_ronda_vuelta: 'Primera Ronda (Vuelta)',
+    // ============================================
+    // DERBIS
+    // ============================================
+    derbis_subtitulo: 'Historial completo · Real Oviedo vs Sporting de Gijón',
+    derbis_historial: 'Historial de partidos',
+    derbis_th_temporada: 'Temporada',
+    derbis_th_competicion: 'Competición',
+    derbis_th_jornada: 'J.',
+    derbis_jornada_abrev: 'J',
+    derbis_th_fecha: 'Fecha',
+    derbis_th_local: 'Local',
+    derbis_th_resultado: 'Resultado',
+    derbis_th_visitante: 'Visitante',
+    derbis_th_estadio: 'Estadio',
+    derbis_partidos: 'Partidos',
+    derbis_victorias_oviedo: 'Victorias Oviedo',
+    derbis_empates: 'Empates',
+    derbis_victorias_rival: 'Victorias rival',
+    derbis_leyenda_victoria: 'Victoria Oviedo',
+    derbis_leyenda_empate: 'Empate',
+    derbis_leyenda_rival: 'Victoria rival',
+    derbis_badge_v: 'V',
+    derbis_badge_e: 'E',
+    derbis_badge_d: 'D',
+    derbis_ver_ficha: 'Ver ficha',
+    derbi_no_encontrado: 'Partido no encontrado',
+    derbi_alineacion_local: 'Alineación local',
+    derbi_alineacion_visitante: 'Alineación visitante',
+    copa_ronda_octavos_de_final: 'Octavos de Final',
+    copa_ronda_final_unica: 'Final',
+    // Comodines para rondas a doble partido sin clave propia (translateRonda)
+    ronda_ida: 'Ida',
+    ronda_vuelta: 'Vuelta',
 
     // ============================================
     // FICHA JUGADOR
@@ -211,6 +244,17 @@ const translations = {
     comp_segunda_division: 'Segunda División',
     comp_segunda_division_b: 'Segunda División B',
     comp_fase_de_ascenso: 'Fase de Ascenso',
+    comp_fase_de_ascenso_a_segunda_b: 'Fase de Ascenso a Segunda B',
+    comp_fase_de_ascenso_a_segunda_division:
+      'Fase de Ascenso a Segunda División',
+    comp_copa_de_la_liga_de_segunda_division:
+      'Copa de la Liga de Segunda División',
+    comp_copa_de_la_liga: 'Copa de la Liga',
+    comp_1a_division: '1ª División',
+    comp_2a_division: '2ª División',
+    comp_2a_division_b: '2ª División B',
+    comp_3a_division: '3ª División',
+    comp_partidos_amistosos: 'Partidos Amistosos',
     comp_play_off_de_ascenso: 'Play-off de Ascenso',
     comp_fase_de_descenso: 'Fase de Descenso',
     comp_tercera_division: 'Tercera División',
@@ -358,6 +402,22 @@ const translations = {
     busc_gol_plural: 'goles',
     busc_partido_singular: 'partido',
     busc_partido_plural: 'partidos',
+    busc_subtitulo:
+      'Jugadores, entrenadores, partidos, títulos, estadios, historia y derbis: todo lo que hay en la web, en un solo sitio',
+    palmares_subtitulo:
+      'Todos los títulos oficiales conquistados por el Real Oviedo',
+    estadios_subtitulo:
+      'Direcciones de los estadios de Segunda División y de los rivales de Copa para tus desplazamientos',
+    ovsp_subtitulo:
+      'Jugadores y entrenadores que han vestido las dos camisetas: Real Oviedo y Real Sporting de Gijón',
+    busc_titulo_nacional: 'Título nacional',
+    busc_campeonato_regional: 'Campeonato regional',
+    busc_elige_jugador: 'Elige un jugador...',
+    busc_elige_entrenador: 'Elige un entrenador...',
+    busc_todas_posiciones: 'Todas las posiciones',
+    busc_todos_rivales: 'Todos los rivales',
+    busc_todas_nacionalidades: 'Todas las nacionalidades',
+    busc_todas_jornadas: 'Todas las jornadas',
     busc_badge_jugador: 'Jugador',
     busc_badge_entrenador: 'Entrenador',
     busc_badge_partido: 'Partido',
@@ -665,6 +725,39 @@ const translations = {
     copa_ronda_vuelta: '2nd Leg',
     copa_ronda_primera_ronda_ida: 'First Round (1st Leg)',
     copa_ronda_primera_ronda_vuelta: 'First Round (2nd Leg)',
+    // ============================================
+    // DERBIES
+    // ============================================
+    derbis_subtitulo: 'Full record · Real Oviedo vs Sporting de Gijón',
+    derbis_historial: 'Match history',
+    derbis_th_temporada: 'Season',
+    derbis_th_competicion: 'Competition',
+    derbis_th_jornada: 'MD',
+    derbis_jornada_abrev: 'MD',
+    derbis_th_fecha: 'Date',
+    derbis_th_local: 'Home',
+    derbis_th_resultado: 'Result',
+    derbis_th_visitante: 'Away',
+    derbis_th_estadio: 'Stadium',
+    derbis_partidos: 'Matches',
+    derbis_victorias_oviedo: 'Oviedo wins',
+    derbis_empates: 'Draws',
+    derbis_victorias_rival: 'Opponent wins',
+    derbis_leyenda_victoria: 'Oviedo win',
+    derbis_leyenda_empate: 'Draw',
+    derbis_leyenda_rival: 'Opponent win',
+    derbis_badge_v: 'W',
+    derbis_badge_e: 'D',
+    derbis_badge_d: 'L',
+    derbis_ver_ficha: 'View match',
+    derbi_no_encontrado: 'Match not found',
+    derbi_alineacion_local: 'Home line-up',
+    derbi_alineacion_visitante: 'Away line-up',
+    copa_ronda_octavos_de_final: 'Round of 16',
+    copa_ronda_final_unica: 'Final',
+    // Fallbacks for two-legged rounds with no key of their own (translateRonda)
+    ronda_ida: '1st Leg',
+    ronda_vuelta: '2nd Leg',
 
     // ============================================
     // PLAYER PROFILE
@@ -725,6 +818,17 @@ const translations = {
     comp_segunda_division: 'Second Division',
     comp_segunda_division_b: 'Second Division B',
     comp_fase_de_ascenso: 'Promotion Play-offs',
+    comp_fase_de_ascenso_a_segunda_b:
+      'Promotion Play-offs to Second Division B',
+    comp_fase_de_ascenso_a_segunda_division:
+      'Promotion Play-offs to Second Division',
+    comp_copa_de_la_liga_de_segunda_division: 'Second Division League Cup',
+    comp_copa_de_la_liga: 'League Cup',
+    comp_1a_division: 'First Division',
+    comp_2a_division: 'Second Division',
+    comp_2a_division_b: 'Second Division B',
+    comp_3a_division: 'Third Division',
+    comp_partidos_amistosos: 'Friendlies',
     comp_play_off_de_ascenso: 'Promotion Play-offs',
     comp_fase_de_descenso: 'Relegation Play-offs',
     comp_tercera_division: 'Third Division',
@@ -870,6 +974,21 @@ const translations = {
     busc_gol_plural: 'goals',
     busc_partido_singular: 'match',
     busc_partido_plural: 'matches',
+    busc_subtitulo:
+      'Players, coaches, matches, titles, stadiums, history and derbies: everything on the site, in one place',
+    palmares_subtitulo: 'Every official title won by Real Oviedo',
+    estadios_subtitulo:
+      'Addresses of the Second Division stadiums and our Cup opponents, for your away trips',
+    ovsp_subtitulo:
+      'Players and coaches who have worn both shirts: Real Oviedo and Real Sporting de Gijón',
+    busc_titulo_nacional: 'National title',
+    busc_campeonato_regional: 'Regional championship',
+    busc_elige_jugador: 'Choose a player...',
+    busc_elige_entrenador: 'Choose a coach...',
+    busc_todas_posiciones: 'All positions',
+    busc_todos_rivales: 'All opponents',
+    busc_todas_nacionalidades: 'All nationalities',
+    busc_todas_jornadas: 'All matchdays',
     busc_badge_jugador: 'Player',
     busc_badge_entrenador: 'Coach',
     busc_badge_partido: 'Match',
@@ -1059,35 +1178,50 @@ function translateCargo(cargo) {
 }
 window.translateCargo = translateCargo;
 
+// Clave i18n de un texto libre ("Fase de Ascenso a Segunda B",
+// "1ª División", "Dieciseisavos de Final (Ida)"...): sin acentos, sin
+// paréntesis ni puntos, ordinales "ª/º" como letra, y "_" entre palabras.
+// Debe coincidir con claveI18n() de generador/partidos-comun.js.
+function claveTexto(texto) {
+  return String(texto || '')
+    .toLowerCase()
+    .replace(/ª/g, 'a')
+    .replace(/º/g, 'o')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[().]/g, '')
+    .replace(/[-\s]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
+}
+
+// Traducción de una clave, o null si no existe en ningún idioma.
+function tSiExiste(key) {
+  const r = t(key);
+  return r && r !== key ? r : null;
+}
+
 function translateCompeticion(nombre) {
-  const key =
-    'comp_' +
-    nombre
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[().]/g, '')
-      .replace(/[-\s]+/g, '_')
-      .replace(/_+/g, '_');
-  return t(key) || nombre;
+  if (!nombre) return '';
+  return tSiExiste('comp_' + claveTexto(nombre)) || nombre;
 }
 window.translateCompeticion = translateCompeticion;
 
 // Nombre de una ronda de eliminatoria ("Primera Ronda", "Dieciseisavos de
 // Final (Ida)"...) en el idioma activo; si no hay traducción, tal cual.
+// Si la ronda "X (Ida)" no tiene clave propia, se traduce "X" y la
+// coletilla de ida/vuelta por separado.
 function translateRonda(ronda) {
   if (!ronda) return '';
-  const key =
-    'copa_ronda_' +
-    String(ronda)
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[̀-ͯ]/g, '')
-      .replace(/[().]/g, '')
-      .replace(/[-\s]+/g, '_')
-      .replace(/_+/g, '_');
-  const r = t(key);
-  return r && r !== key ? r : ronda;
+  const directa = tSiExiste('copa_ronda_' + claveTexto(ronda));
+  if (directa) return directa;
+  const m = String(ronda).match(/^(.*?)\s*\((Ida|Vuelta)\)\s*$/i);
+  if (m) {
+    const base = tSiExiste('copa_ronda_' + claveTexto(m[1])) || m[1].trim();
+    const pierna = t('ronda_' + m[2].toLowerCase());
+    return `${base} (${pierna})`;
+  }
+  return ronda;
 }
 window.translateRonda = translateRonda;
 
@@ -1165,6 +1299,11 @@ function setLanguage(lang) {
 
   if (typeof window.renderAlineacion === 'function') {
     window.renderAlineacion();
+  }
+
+  // Derbis (listado y fichas): tabla, resumen y alineaciones.
+  if (typeof window.renderDerbis === 'function') {
+    window.renderDerbis();
   }
 }
 

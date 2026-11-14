@@ -2,6 +2,70 @@
    SANGRE CARBAYONA - DERBIS DINÁMICOS
    =================================== */
 
+// Texto traducido (js/i18n.js) con respaldo en español si la clave
+// no existe o i18n.js no está cargado.
+function tDerbi(key, respaldo) {
+  if (typeof window.t !== 'function') return respaldo;
+  const r = window.t(key);
+  return r && r !== key ? r : respaldo;
+}
+
+function compDerbi(nombre) {
+  return typeof window.translateCompeticion === 'function'
+    ? window.translateCompeticion(nombre)
+    : nombre;
+}
+
+// "10 de Diciembre de 1944" → en inglés "10 December 1944"
+// (en español se deja tal cual, con el mes en minúscula).
+const MESES_DERBI = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
+const MONTHS_DERBI = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+function fechaDerbi(fecha) {
+  const m = String(fecha || '').match(/^(\d{1,2}) de (\w+) de (\d{4})$/i);
+  if (!m) return fecha || '';
+  const i = MESES_DERBI.indexOf(m[2].toLowerCase());
+  if (i === -1) return fecha;
+  return (window.currentLang || 'es') === 'en'
+    ? `${Number(m[1])} ${MONTHS_DERBI[i]} ${m[3]}`
+    : `${Number(m[1])} de ${MESES_DERBI[i]} de ${m[3]}`;
+}
+
+function jornadaDerbi(jornada) {
+  if (jornada === null || jornada === undefined || jornada === '') return '';
+  if (/^\d+$/.test(String(jornada))) {
+    return `${tDerbi('jornada', 'Jornada')} ${jornada}`;
+  }
+  return typeof window.translateRonda === 'function'
+    ? window.translateRonda(jornada)
+    : String(jornada);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   // 1. Cargar header y footer comunes
   if (typeof cargarComunes === 'function') {
@@ -17,6 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('match-container')) {
     cargarPartidoDinamico();
   }
+
+  // Al cambiar de idioma, setLanguage() (js/i18n.js) vuelve a pintarlo.
+  window.renderDerbis = function () {
+    if (document.getElementById('derbisTbody')) cargarListaDerbis();
+    if (document.getElementById('match-container')) cargarPartidoDinamico();
+  };
 });
 
 /* ----------------------------------
@@ -40,25 +110,26 @@ function cargarListaDerbis() {
     statsBar.innerHTML = `
       <div class="derbis-stat-card">
         <div class="derbis-stat-number stat-total">${window.DERBIS_DATA.length}</div>
-        <div class="derbis-stat-label">Partidos</div>
+        <div class="derbis-stat-label">${tDerbi('derbis_partidos', 'Partidos')}</div>
       </div>
       <div class="derbis-stat-card">
         <div class="derbis-stat-number stat-wins">${victorias}</div>
-        <div class="derbis-stat-label">Victorias Oviedo</div>
+        <div class="derbis-stat-label">${tDerbi('derbis_victorias_oviedo', 'Victorias Oviedo')}</div>
       </div>
       <div class="derbis-stat-card">
         <div class="derbis-stat-number stat-draws">${empates}</div>
-        <div class="derbis-stat-label">Empates</div>
+        <div class="derbis-stat-label">${tDerbi('derbis_empates', 'Empates')}</div>
       </div>
       <div class="derbis-stat-card">
         <div class="derbis-stat-number stat-losses">${derrotas}</div>
-        <div class="derbis-stat-label">Victorias rival</div>
+        <div class="derbis-stat-label">${tDerbi('derbis_victorias_rival', 'Victorias rival')}</div>
       </div>
     `;
   }
 
   // --- Filas de la tabla ---
   const tbody = document.getElementById('derbisTbody');
+  tbody.innerHTML = '';
 
   window.DERBIS_DATA.forEach(function (partido) {
     const rowClass =
@@ -77,18 +148,18 @@ function cargarListaDerbis() {
 
     const badgeText =
       partido.ganador === 'oviedo'
-        ? 'V'
+        ? tDerbi('derbis_badge_v', 'V')
         : partido.ganador === 'empate'
-          ? 'E'
-          : 'D';
+          ? tDerbi('derbis_badge_e', 'E')
+          : tDerbi('derbis_badge_d', 'D');
 
     const fila = document.createElement('tr');
     fila.className = rowClass;
     fila.innerHTML = `
       <td>${partido.temporada}</td>
-      <td>${partido.competicion}</td>
-      <td>J${partido.jornada}</td>
-      <td>${partido.fecha}</td>
+      <td>${compDerbi(partido.competicion)}</td>
+      <td>${/^\d+$/.test(String(partido.jornada)) ? tDerbi('derbis_jornada_abrev', 'J') + partido.jornada : jornadaDerbi(partido.jornada)}</td>
+      <td>${fechaDerbi(partido.fecha)}</td>
       <td>
         <div class="derbi-team-cell">
           <img src="${partido.local.escudo}" alt="${partido.local.nombre}" class="derbi-escudo-mini">
@@ -108,7 +179,7 @@ function cargarListaDerbis() {
         </div>
       </td>
       <td class="hide-mobile">${partido.estadio}</td>
-      <td><a href="fichas/derbi-${partido.id}.html" class="match-link">Ver ficha <i class="fas fa-arrow-right"></i></a></td>
+      <td><a href="fichas/derbi-${partido.id}.html" class="match-link">${tDerbi('derbis_ver_ficha', 'Ver ficha')} <i class="fas fa-arrow-right"></i></a></td>
     `;
     tbody.appendChild(fila);
   });
@@ -147,13 +218,16 @@ function cargarPartidoDinamico() {
   };
 
   if (!partido) {
-    setText('titulo-partido', 'Partido no encontrado');
+    setText(
+      'titulo-partido',
+      tDerbi('derbi_no_encontrado', 'Partido no encontrado'),
+    );
     return;
   }
 
   setText(
     'bc-jornada',
-    `Jornada ${partido.jornada} (${partido.temporada.split('/')[0]})`,
+    `${jornadaDerbi(partido.jornada)} (${partido.temporada.split('/')[0]})`,
   );
   setText(
     'titulo-partido',
@@ -161,7 +235,7 @@ function cargarPartidoDinamico() {
   );
   setText(
     'subtitulo-partido',
-    `${partido.competicion} · Jornada ${partido.jornada} · ${partido.temporada}`,
+    `${compDerbi(partido.competicion)} · ${jornadaDerbi(partido.jornada)} · ${partido.temporada}`,
   );
 
   setSrc('escudo-local', partido.local.escudo);
@@ -171,7 +245,7 @@ function cargarPartidoDinamico() {
 
   setHtml(
     'fecha-partido',
-    `<i class="far fa-calendar-alt"></i> ${partido.fecha}`,
+    `<i class="far fa-calendar-alt"></i> ${fechaDerbi(partido.fecha)}`,
   );
   setText('resultado-partido', partido.resultado);
   setHtml(
@@ -179,11 +253,15 @@ function cargarPartidoDinamico() {
     `<i class="fas fa-map-marker-alt"></i> ${partido.estadio}`,
   );
 
-  renderizarAlineacion('alineacion-local', partido.local, 'Alineación Local');
+  renderizarAlineacion(
+    'alineacion-local',
+    partido.local,
+    tDerbi('derbi_alineacion_local', 'Alineación local'),
+  );
   renderizarAlineacion(
     'alineacion-visitante',
     partido.visitante,
-    'Alineación Visitante',
+    tDerbi('derbi_alineacion_visitante', 'Alineación visitante'),
   );
 
   const matchContainer = document.getElementById('match-container');
@@ -192,6 +270,7 @@ function cargarPartidoDinamico() {
 
 function renderizarAlineacion(contenedorId, equipo, titulo) {
   const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) return;
   let html = `<div class="lineup-header header-${equipo.cssClass}">${titulo}</div>`;
 
   equipo.alineacion.forEach((jugador) => {
@@ -216,7 +295,7 @@ function renderizarAlineacion(contenedorId, equipo, titulo) {
       <img src="${equipo.entrenador.foto}" alt="${equipo.entrenador.nombre}" class="player-photo" style="border-radius: 50%;">
       <img src="${equipo.entrenador.bandera}" alt="Bandera" class="player-flag">
       <div class="player-name">
-        <span class="coach-label">Entrenador</span>
+        <span class="coach-label">${tDerbi('entrenador', 'Entrenador')}</span>
         ${equipo.entrenador.nombre}
       </div>
     </div>
