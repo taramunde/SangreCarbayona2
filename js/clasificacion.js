@@ -1009,8 +1009,8 @@
       fecha: '2026-11-14',
       hora: '21:00',
       aproximada: false,
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 2,
     },
     {
       equipo1: 'Real Sociedad B',

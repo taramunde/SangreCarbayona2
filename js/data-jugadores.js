@@ -4361,10 +4361,10 @@ CLUB_DATA.jugadoresMaestro = {
       datos: [
         {
           categoria: 'U19',
-          partidos: 0,
+          partidos: 1,
           goles: 0,
           asistencias: 0,
-          minutos: 0,
+          minutos: 10,
           amarillas: 0,
           rojas: 0,
         },
