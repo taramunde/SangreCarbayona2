@@ -970,8 +970,8 @@
     {
       equipo1: 'U.D. Almería',
       equipo2: 'F.C. Andorra',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'S.D. Eibar',
@@ -1000,8 +1000,8 @@
     {
       equipo1: 'R.C.D. Mallorca',
       equipo2: 'Córdoba C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 3,
     },
     {
       equipo1: 'Real Oviedo',
