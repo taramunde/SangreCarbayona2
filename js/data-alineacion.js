@@ -85,7 +85,7 @@ CLUB_DATA.alineacion = {
   paraFecha: '2026-11-14',
 
   estado: 'confirmada',
-  formacion: '4132',
+  formacion: '4231',
   titulares: [
     { slot: 'gk', jugadorId: 'aaron-escandell-banacloche' },
     { slot: 'def1', jugadorId: 'samuel-rodriguez-de-la-riva' },
@@ -94,10 +94,10 @@ CLUB_DATA.alineacion = {
     { slot: 'def4', jugadorId: 'david-jimenez-corredor' },
     { slot: 'mid1', jugadorId: 'youness-lachhab' },
     { slot: 'mid2', jugadorId: 'alberto-reina-campos' },
-    { slot: 'mid3', jugadorId: 'ilyas-chaira-oihi' },
+    { slot: 'mid3', jugadorId: 'estanislau-pedrola-fortuny' },
     { slot: 'mid4', jugadorId: 'mikel-goti-lopez' },
-    { slot: 'fwd1', jugadorId: 'estanislau-pedrola-fortuny' },
-    { slot: 'fwd2', jugadorId: 'alexandru-mihai-isfan' },
+    { slot: 'mid5', jugadorId: 'ilyas-chaira-oihi' },
+    { slot: 'fwd1', jugadorId: 'alexandru-mihai-isfan' },
   ],
   suplentes: [
     'miguel-de-jesus-narvaez-lopez',
