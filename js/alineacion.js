@@ -388,6 +388,18 @@
     container.innerHTML =
       renderEstadoTag() +
       (hayOnce ? renderCampo() + renderBanquillo() : renderSinConfirmar());
+
+    // Mensaje al compartir: qué partido es y cómo está el once.
+    if (window.textoPartidoCompartir && window.getProximoPartidoGeneral) {
+      const estadoTxt = {
+        confirmada: t('once_confirmado'),
+        probable: t('once_probable'),
+        pendiente: t('once_pendiente'),
+      }[datos.estado || 'pendiente'];
+      const texto = `${t('compartir_alineacion')} · ${window.textoPartidoCompartir(window.getProximoPartidoGeneral())} · ${estadoTxt}`;
+      if (window.actualizarCompartir) window.actualizarCompartir(texto);
+      else window.SC_TEXTO_COMPARTIR = texto;
+    }
   }
 
   render();

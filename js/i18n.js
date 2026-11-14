@@ -310,6 +310,8 @@ const translations = {
     once_confirmado: 'Once confirmado',
     once_probable: 'Once probable',
     once_pendiente: 'Once sin confirmar',
+    compartir_alineacion: 'Alineación del Real Oviedo',
+    compartir_calendario: 'Calendario del Real Oviedo',
     alineacion_sin_confirmar_titulo: 'Todavía no hay once',
     alineacion_sin_confirmar_texto:
       'En cuanto se confirme o se filtre una alineación probable para este partido, aparecerá aquí.',
@@ -883,6 +885,8 @@ const translations = {
     once_confirmado: 'Confirmed lineup',
     once_probable: 'Probable lineup',
     once_pendiente: 'Lineup not confirmed',
+    compartir_alineacion: 'Real Oviedo lineup',
+    compartir_calendario: 'Real Oviedo fixtures',
     alineacion_sin_confirmar_titulo: 'No lineup yet',
     alineacion_sin_confirmar_texto:
       'As soon as a lineup is confirmed or a probable one is reported for this match, it will show up here.',
@@ -1299,6 +1303,11 @@ function setLanguage(lang) {
 
   if (typeof window.renderAlineacion === 'function') {
     window.renderAlineacion();
+  }
+
+  // Texto al compartir con el próximo partido (calendario y portada).
+  if (typeof window.actualizarTextoCompartirPartido === 'function') {
+    window.actualizarTextoCompartirPartido();
   }
 
   // Derbis (listado y fichas): tabla, resumen y alineaciones.

@@ -603,9 +603,19 @@ En la carpeta del proyecto, por terminal:
 | Comando | Qué hace |
 |---|---|
 | `npm run generar` | Regenera las páginas de partidos (`/partidos/`), las fichas y el sitemap a partir de los datos, sin subir nada a GitHub. Úsalo para previsualizar en local. |
-| `npm run subir` | Genera + añade todos los cambios a git + hace commit + `git pull --rebase` + sube a GitHub. El comando normal del día a día. |
+| `npm run subir` | Primero descarga lo nuevo de GitHub, luego genera, hace commit y sube. El comando normal del día a día. |
 | `npm run forzar` | Como `subir`, pero con `git push --force`. Solo si sabes lo que haces — sobrescribe lo que haya en GitHub. |
 | `node generador/generar-derbis.js` | Regenera las fichas de derbis. **No** está incluido en `generar`/`subir`: hay que ejecutarlo aparte si has tocado `data-derbis.js`, antes de subir. |
+
+**Tarjeta al compartir el próximo partido.** Al generar también se crea
+`img/compartir/partido-<fecha>-<rival>.jpg` (escudo del Oviedo y del
+rival, jornada, fecha y estadio) y se escriben el título, la descripción
+y esa imagen en `alineacion.html` y `calendario.html`, entre las marcas
+`previa-partido:inicio` y `previa-partido:fin` (no las toques a mano: se
+reescriben solas). Es lo que muestran WhatsApp, Telegram o X al pegar el
+enlace. Sale del próximo partido del calendario y del estado de
+`data-alineacion.js`, así que basta con tener esos datos al día y subir.
+En un ordenador nuevo hace falta `npm install` una vez (librería sharp).
 
 Si quieres previsualizar en el navegador antes de subir, puedes servir la
 carpeta en local (por ejemplo con `npx http-server`) y abrir

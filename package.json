@@ -3,17 +3,19 @@
   "version": "1.0.0",
   "description": "Web de aficionados del Real Oviedo Sangre Carbayona",
   "scripts": {
-    "generar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js",
+    "generar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && node generador/generar-previa-partido.js",
     "subir": "node generador/subir.js",
     "forzar": "node generador/generar-partidos.js && node generador/generar.js && node generador/generar-sitemap.js && git add . && git commit -m \"Subida forzada\" && git push origin main --force",
     "revisar-goles": "node generador/revisar-goles.js",
     "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js",
-    "importar-jugadores": "node generador/importar-jugadores.js"
+    "importar-jugadores": "node generador/importar-jugadores.js",
+    "previa-partido": "node generador/generar-previa-partido.js"
   },
   "author": "Taramunde",
   "license": "ISC",
   "devDependencies": {
     "exceljs": "^4.4.0",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.3",
+    "sharp": "^0.34.5"
   }
 }

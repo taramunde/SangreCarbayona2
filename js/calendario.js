@@ -649,9 +649,53 @@
   }
 
   // =====================================================
+  //   TEXTO PARA COMPARTIR (WhatsApp, Telegram, X)
+  // =====================================================
+  // "Real Oviedo – Girona F.C. · Jornada 14 · sáb, 14/11 · 21:00"
+  function textoPartido(p) {
+    if (!p) return '';
+    const lang = localStorage.getItem('lang') || 'es';
+    let cuando = '';
+    if (p.fecha) {
+      const [y, m, d] = p.fecha.split('-');
+      cuando = new Date(y, m - 1, d).toLocaleDateString(
+        lang === 'en' ? 'en-GB' : 'es-ES',
+        { weekday: 'short', day: '2-digit', month: '2-digit' },
+      );
+      if (p.hora) cuando += ` · ${p.hora}`;
+      if (p.aproximada) cuando += ` (${t('aproximada') || 'aprox.'})`;
+    }
+    const ronda = p.competicion
+      ? `${p.competicion} · ${window.translateRonda ? translateRonda(p.ronda) : p.ronda}`
+      : p.jornada != null
+        ? `${t('jornada') || 'Jornada'} ${p.jornada}`
+        : '';
+    return [`${p.equipo1} – ${p.equipo2}`, ronda, cuando]
+      .filter(Boolean)
+      .join(' · ');
+  }
+
+  // Calendario y portada: el mensaje lleva el próximo partido. (La página
+  // de Alineación pone el suyo propio desde js/alineacion.js.)
+  function actualizarTextoCompartir() {
+    const p = getProximoPartidoGeneral();
+    if (!p) return;
+    let texto = '';
+    if (document.getElementById('jornadasContainer') && !document.getElementById('heroMatch')) {
+      texto = `${t('compartir_calendario')} · ${t('proximo_partido_label')}: ${textoPartido(p)}`;
+    } else if (document.getElementById('heroMatch')) {
+      texto = `Sangre Carbayona · ${t('proximo_partido_label')}: ${textoPartido(p)}`;
+    }
+    if (!texto) return;
+    if (window.actualizarCompartir) window.actualizarCompartir(texto);
+    else window.SC_TEXTO_COMPARTIR = texto;
+  }
+
+  // =====================================================
   //   INICIALIZACIÓN
   // =====================================================
   renderCalendario();
+  actualizarTextoCompartir();
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', renderWidgetHome);
@@ -672,6 +716,8 @@
   // tiene que hablar la alineación sin tener que repetir el rival/
   // fecha a mano en data-alineacion.js.
   window.getProximoPartidoGeneral = getProximoPartidoGeneral;
+  window.textoPartidoCompartir = textoPartido;
+  window.actualizarTextoCompartirPartido = actualizarTextoCompartir;
   // Igual para el último partido jugado (liga o Copa), y su estado
   // (victoria/empate/derrota, teniendo en cuenta los penaltis) y las
   // etiquetas de prórroga/penaltis, para el widget "hero" de js/app.js.

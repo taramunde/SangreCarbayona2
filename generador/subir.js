@@ -43,6 +43,7 @@ function generar() {
   run('node generador/generar-partidos.js', { silencio: true });
   run('node generador/generar.js', { silencio: true });
   run('node generador/generar-sitemap.js', { silencio: true });
+  run('node generador/generar-previa-partido.js', { silencio: true });
 }
 
 function archivosEnConflicto() {
