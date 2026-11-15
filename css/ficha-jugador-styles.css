@@ -796,6 +796,15 @@
     margin-top: 3px;
   }
 
+  /* En inglés (setLanguage pone <html lang>) */
+  html[lang='en'] .team-home::after {
+    content: 'Home';
+  }
+
+  html[lang='en'] .team-away::after {
+    content: 'Away';
+  }
+
   /* Ocultar VS si existe */
   .match-vs {
     display: none;

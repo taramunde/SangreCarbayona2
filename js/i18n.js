@@ -1233,6 +1233,7 @@ function setLanguage(lang) {
   currentLang = lang;
   window.currentLang = lang;
   localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
 
   // Actualiza el botón activo
   document.querySelectorAll('.lang-btn').forEach((btn) => {
