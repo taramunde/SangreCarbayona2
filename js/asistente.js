@@ -448,8 +448,10 @@
       /maximo goleador|maximos goleadores|pichichi|mas goles|quien (ha )?marcado mas|quienes (han )?marcado mas|goleadores/,
     masPartidos:
       /mas partidos|mas veces ha jugado|mas apariciones|quien (ha )?jugado mas/,
+    // También el verbo ("¿a quién ha goleado más el Oviedo?"); \b evita
+    // "goleador".
     goleada:
-      /goleada|mayor victoria|peor derrota|mayor derrota|resultado mas abultado/,
+      /goleada|mayor(?:es)? victoria|peor(?:es)? derrota|mayor(?:es)? derrota|resultados? mas abultados?|\bgolead(?:o|os|amos|aron)\b|\bgolea(?:mos|ron)?\b|\bgoleo\b/,
     ultimo: /ultimo partido|ultima vez|ultimo enfrentamiento/,
     primero: /primer partido|primera vez|primer enfrentamiento|debut/,
     quienMarco: /quien marco|quienes marcaron|quien hizo (el|los) gol/,
@@ -483,6 +485,25 @@
     titulos: /\btitulos?\b|palmares/,
     hatTrick: /hat.?trick|triplete|tres goles en (un|el)|\b3 goles en\b/,
   };
+
+  // Sentido de una goleada: ¿la mete el Oviedo ('favor') o la recibe
+  // ('contra')? null si la pregunta no lo dice (se enseñan las dos).
+  // Primero lo que dice quién golea a quién ("del Sporting al Oviedo",
+  // "nos golearon"), luego las palabras de derrota y por último las de
+  // victoria o el Oviedo como sujeto ("goleadas del Oviedo").
+  const RE_SENTIDO_CONTRA_FUERTE =
+    /\b(?:al|contra el|contra al|en contra del|sobre el) oviedo\b|\bnos (?:(?:han|ha|habian|hayan|hubiera) )?(?:golead|golear|golea|meti|metid|metier|endos|casc|gan)/;
+  const RE_SENTIDO_CONTRA =
+    /derrota|\bperd|\bencaj|\brecib|\bcayo\b|\bcaimos\b/;
+  const RE_SENTIDO_FAVOR =
+    /\b(?:del|de el|el|a favor del) oviedo\b|\bvictoria|\bgan(?:o|amos|ado|ada|adas)\b|\bgoleamos\b|\b(?:hemos|hayamos) (?:golead|ganad|metid|endosad)|\ble(?:s)? (?:hemos )?(?:metimos|metido|endosamos|endosado|cascamos)\b|\bnuestr[ao]s?\b/;
+
+  function detectarSentido(q) {
+    if (RE_SENTIDO_CONTRA_FUERTE.test(q)) return 'contra';
+    if (RE_SENTIDO_CONTRA.test(q)) return 'contra';
+    if (RE_SENTIDO_FAVOR.test(q)) return 'favor';
+    return null;
+  }
 
   function detectarIntenciones(q) {
     const res = {};
@@ -1355,7 +1376,7 @@
     );
   }
 
-  function respuestaPartidos(f, it) {
+  function respuestaPartidos(f, it, q = '') {
     const lista = M.partidos.filter((p) => pasaFiltros(p, f));
     const ctx = contexto(f);
     if (!lista.length) return `No tengo ningún partido del Oviedo${esc(ctx)}.`;
@@ -1366,25 +1387,45 @@
     }
     if (it.goleada) {
       const conDif = lista.filter((p) => typeof p.golesFavor === 'number');
-      const mejor = conDif
-        .slice()
+      const sentido = detectarSentido(q);
+      // "¿Qué partidos…?", "las mayores goleadas…": varios, no solo uno.
+      const cuantos =
+        /\b(?:partidos|goleadas|victorias|derrotas|resultados|mayores|peores)\b/.test(
+          q,
+        )
+          ? 5
+          : 1;
+      const victorias = conDif
+        .filter((p) => p.golesFavor > p.golesContra)
         .sort(
           (a, b) =>
             b.golesFavor - b.golesContra - (a.golesFavor - a.golesContra) ||
             b.golesFavor - a.golesFavor,
-        )[0];
-      const peor = conDif
-        .slice()
+        )
+        .slice(0, cuantos);
+      const derrotas = conDif
+        .filter((p) => p.golesContra > p.golesFavor)
         .sort(
           (a, b) =>
             a.golesFavor - a.golesContra - (b.golesFavor - b.golesContra) ||
             b.golesContra - a.golesContra,
-        )[0];
+        )
+        .slice(0, cuantos);
+      const bloque = (lista1, uno, varios) =>
+        `<b>${lista1.length > 1 ? varios : uno}${esc(ctx)}:</b><ul>${lista1.map(filaPartido).join('')}</ul>`;
+      if (sentido === 'favor')
+        return victorias.length
+          ? bloque(victorias, 'Mayor victoria', 'Mayores victorias')
+          : `El Oviedo no tiene ninguna victoria${esc(ctx)}.`;
+      if (sentido === 'contra')
+        return derrotas.length
+          ? bloque(derrotas, 'Peor derrota', 'Peores derrotas')
+          : `El Oviedo no tiene ninguna derrota${esc(ctx)}.`;
       let t = '';
-      if (mejor && mejor.golesFavor > mejor.golesContra)
-        t += `<b>Mayor victoria${esc(ctx)}:</b><ul>${filaPartido(mejor)}</ul>`;
-      if (peor && peor.golesContra > peor.golesFavor)
-        t += `<b>Peor derrota${esc(ctx)}:</b><ul>${filaPartido(peor)}</ul>`;
+      if (victorias.length)
+        t += bloque(victorias, 'Mayor victoria', 'Mayores victorias');
+      if (derrotas.length)
+        t += bloque(derrotas, 'Peor derrota', 'Peores derrotas');
       return t || `No hay ni victorias ni derrotas${esc(ctx)}: todo empates.`;
     }
     if (it.quienMarco || lista.length <= 3) {
@@ -1558,6 +1599,7 @@
       temporada: tempTxt,
       comp: compTxt,
       localidad: locTxt,
+      sentido: detectarSentido(q), // 'favor' | 'contra' | null (goleadas)
       pregunta: resto, // lo que se pregunta, sin nombres ni filtros
       intenciones: Object.keys(detectarIntenciones(q)).length > 0,
     };
@@ -1589,7 +1631,7 @@
       return { texto: `${prev.nombrePrefijo} ${original}`, entendido: null };
     }
 
-    const qQuePregunta = actual.intenciones ? actual.pregunta : prev.pregunta;
+    let qQuePregunta = actual.intenciones ? actual.pregunta : prev.pregunta;
     // Si no hay nada nuevo que preguntar ni ningún filtro, no hay con
     // qué continuar.
     if (
@@ -1598,9 +1640,32 @@
       !actual.rival &&
       !actual.temporada &&
       !actual.comp &&
-      !actual.localidad
+      !actual.localidad &&
+      !actual.sentido
     )
       return null;
+    // "Del Oviedo al Sporting" / "¿y del Sporting al Oviedo?" tras una
+    // pregunta de goleadas: se cambia solo quién golea a quién. Se quita
+    // el sentido que tuviera la pregunta anterior y se pone el nuevo.
+    let sentidoTxt = '';
+    if (actual.sentido && !actual.intenciones) {
+      qQuePregunta = ` ${qQuePregunta} `
+        .replace(
+          /\b(?:mayor(?:es)?|peor(?:es)?) (?:victoria|derrota)s?\b/g,
+          'mayor goleada',
+        )
+        .replace(
+          /\b(?:del|de el|el|al|contra el|a favor del|en contra del) oviedo\b/g,
+          ' ',
+        )
+        .replace(/\bnuestr[ao]s?\b/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      sentidoTxt =
+        actual.sentido === 'favor'
+          ? 'a favor del oviedo'
+          : 'en contra del oviedo';
+    }
     const persona = actual.persona || prev.persona;
     const rival = actual.rival || prev.rival;
     const temporada = actual.temporada || prev.temporada;
@@ -1608,6 +1673,7 @@
     const localidad = actual.localidad || prev.localidad;
     const texto = [
       qQuePregunta,
+      sentidoTxt,
       persona ? `de ${persona}` : '',
       rival ? `contra el ${rival}` : '',
       comp || '',
@@ -1820,7 +1886,7 @@
         f.temporada ||
         f.rango
       )
-        return respuestaPartidos(f, it);
+        return respuestaPartidos(f, it, q);
     }
     return ayuda();
   }
