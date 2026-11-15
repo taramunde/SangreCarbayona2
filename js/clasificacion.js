@@ -976,20 +976,20 @@
     {
       equipo1: 'S.D. Eibar',
       equipo2: 'Cádiz C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'C.D. Eldense',
       equipo2: 'C.E. Sabadell',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'Granada C.F.',
       equipo2: 'U.D. Las Palmas',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Leganés',
@@ -1021,8 +1021,8 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'A.D. Ceuta F.C.',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'Real Valladolid',
