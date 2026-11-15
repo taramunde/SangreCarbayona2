@@ -46,40 +46,40 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/07/extremos-dan-triunfo-vital-real-oviedo/00031794068052270535576.htm',
-    titulo: 'Los extremos dan un triunfo vital al Real Oviedo.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/14/real-oviedo-queda-cortisimo-debut-raul/00031794689726033780370.htm',
+    titulo: 'El Real Oviedo se queda cortísimo en el debut de Raúl.',
     descripcion:
-      'Los azules, sin hacer un gran partido, fueron superiores al Cádiz (1-2) y solo sufrieron en los últimos minutos. Goles de Estanis Pedrola y Ilyas Chaira en su primera titularidad.',
-    imagen: 'img/varios/J13LVA.webp',
-    fecha: '7 noviembre 2026',
+      'Los azules se pusieron por delante y vieron como el Girona (1-2) remontó en cuestión de cinco minutos y no sufrió en la recta final. Al final del encuentro se escuchó «Pachuca vete ya» y «directiva dimisión».',
+    imagen: 'img/varios/J14LVA.webp',
+    fecha: '14 noviembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/11/07/buen-real-oviedo-olvida-penas-136201454.html',
+    url: 'https://www.lne.es/real-oviedo/2026/11/14/estreno-raul-batacazo-girona-remonta-136448841.html',
     titulo:
-      'Un buen Real Oviedo olvida las penas y vence al Cádiz en el Nuevo Mirandilla (1-2).',
+      'En el estreno de Raúl, batacazo: el Girona remonta ante un Oviedo sin reacción (1-2).',
     descripcion:
-      'Julián Calero, tras la victoria del Real Oviedo: “Cuanto más me atizan, más fuerte y tranquilo estoy”',
-    imagen: 'img/varios/J13LNE.webp',
-    fecha: '7 noviembre 2026',
+      'Reina adelantó a los azules tras sufrir la primera parte, pero los errores defensivos facilitaron la respuesta del Girona. El partido se cerró con gritos contra el máximo accionista y la directiva.',
+    imagen: 'img/varios/J14LNE.webp',
+    fecha: '14 noviembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/cadiz-real-oviedo-goles-victoria-estanis-chaira-20261107191229-nt.html',
-    titulo: 'Los extremos del Real Oviedo hacen recuperar la sonrisa.',
+    url: 'https://www.elcomercio.es/real-oviedo/raul-estrena-derrota-mala-imagen-real-oviedo-20261114233945-nt.html',
+    titulo: 'Raúl se estrena con derrota y mala imagen para el Real Oviedo.',
     descripcion:
-      'Victoria revitalizadora. El club azul volvió a ganar gracias a sendos goles de los extremos Estanis y Chaira, que debutaban en la alineación.',
-    imagen: 'img/varios/J13EC.webp',
-    fecha: '7 noviembre 2026',
+      'El cambio en el banquillo del Real Oviedo no se notó en el campo, el equipo volvió a ofrecer una mala imagen y acabó cayendo derrotado.',
+    imagen: 'img/varios/J14EC.webp',
+    fecha: '14 noviembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-un-oviedo-de-extremos-levanta-la-voz-en-cadiz',
-    titulo: 'La Crónica: Un Oviedo de extremos levanta la voz en Cádiz.',
+    url: 'https://killerasturias.com/cronicas/la-cronica-un-gigante-frustra-el-estreno-de-raul',
+    titulo: 'La Crónica: Un gigante frustra el estreno de Raúl.',
     descripcion:
-      'El conjunto carbayón suma una victoria muy sufrida ante la entidad gaditana y apaga las dudas gracias a los goles de Ilyas Chaira y Estanis Pedrola.',
-    imagen: 'img/varios/J13KA.webp',
-    fecha: '7 noviembre 2026',
+      'Primera derrota de la etapa del técnico madrileño al frente del Real Oviedo tras la remontada del Girona en el Carlos Tartiere.',
+    imagen: 'img/varios/J14KA.webp',
+    fecha: '14 noviembre 2026',
   },
 ];
 
