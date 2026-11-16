@@ -1424,6 +1424,11 @@
       color: #9ca3af;
     }
 
+    .match-season-tag {
+      background: rgba(255, 215, 0, 0.15);
+      color: #ffd700;
+    }
+
     .team-home::after,
     .team-away::after {
       color: #6b7280;
