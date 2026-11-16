@@ -1424,7 +1424,7 @@
       color: #9ca3af;
     }
 
-    .match-season-tag {
+    .match-detail-card .match-season-tag {
       background: rgba(255, 215, 0, 0.15);
       color: #ffd700;
     }
