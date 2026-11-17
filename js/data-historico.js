@@ -142,7 +142,7 @@ CLUB_DATA.temporadas['2024-25'] = {
         empates:     0,
         derrotas:    1,
         golesFavor:  0,
-        golesContra: 3,
+        golesContra: 0,
       },
     },
   },
@@ -1207,8 +1207,8 @@ CLUB_DATA.temporadas['2013-14'] = {
         victorias:   0,
         empates:     0,
         derrotas:    1,
-        golesFavor:  2,
-        golesContra: 4,
+        golesFavor:  0,
+        golesContra: 0,
       },
     },
   },
@@ -1303,8 +1303,8 @@ CLUB_DATA.temporadas['2012-13'] = {
         victorias:   1,
         empates:     0,
         derrotas:    1,
-        golesFavor:  4,
-        golesContra: 5,
+        golesFavor:  2,
+        golesContra: 0,
       },
     },
   },
@@ -1388,8 +1388,8 @@ CLUB_DATA.temporadas['2011-12'] = {
         victorias:   2,
         empates:     0,
         derrotas:    2,
-        golesFavor:  7,
-        golesContra: 6,
+        golesFavor:  4,
+        golesContra: 4,
       },
     },
   },
@@ -1474,8 +1474,8 @@ CLUB_DATA.temporadas['2010-11'] = {
         victorias:   1,
         empates:     0,
         derrotas:    1,
-        golesFavor:  7,
-        golesContra: 7,
+        golesFavor:  3,
+        golesContra: 2,
       },
     },
   },
@@ -1652,10 +1652,10 @@ CLUB_DATA.temporadas['2008-09'] = {
   // entre campeones contra el R. Mallorca B: 1-0 en la ida y 0-1 en la
   // vuelta (derrota en el partido en sí, igual que en cualquier otra
   // eliminatoria de la web), con el ascenso decidido en los penaltis
-  // (6-5). Los goles de la tanda se suman a favor/en contra, pero el V/D
-  // de cada partido queda tal cual se jugó — por eso el desglose de
-  // "Fase de Ascenso a Segunda B" es 1V-1D, no 2V, aunque se ganara la
-  // eliminatoria. Temporada completa: ya se calcula sola a partir de los
+  // (6-5). Los goles de la tanda NO cuentan como goles a favor/en contra
+  // (criterio oficial), y el V/D de cada partido queda tal cual se jugó —
+  // por eso el desglose de "Fase de Ascenso a Segunda B" es 1V-1D y 1-1,
+  // no 2V, aunque se ganara la eliminatoria. Temporada completa: ya se calcula sola a partir de los
   // 42 partidos de los jugadores (ver autoCalcularStatsEquipo en
   // js/app.js), este desglose es solo el respaldo si no cargara el JS.
   estadisticasEquipo: {
@@ -1674,8 +1674,8 @@ CLUB_DATA.temporadas['2008-09'] = {
         victorias:   1,
         empates:     0,
         derrotas:    1,
-        golesFavor:  7,
-        golesContra: 6,
+        golesFavor:  1,
+        golesContra: 1,
       },
       'Copa del Rey (Juan Carlos I)': {
         partidos:    2,

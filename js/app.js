@@ -391,25 +391,25 @@ function autoCalcularStatsEquipo(temporada) {
 
       // Partidos de eliminatoria (Copa, Fase de Ascenso...) que acaban en
       // empate se deciden por penaltis: penaltisLocal/penaltisVisitante.
-      // Esos goles de la tanda se suman al goleador global igual que si
-      // fueran del partido, y el resultado efectivo (V/D) se calcula por
-      // quién gana la tanda en vez de quedarse como empate.
-      let pf = 0;
-      let pc = 0;
+      // Criterio oficial (FIFA/UEFA/LaLiga): los goles de la tanda NO
+      // cuentan como goles a favor/en contra — igual que en
+      // autoCalcularStatsEntrenador. Solo sirven para el resultado
+      // efectivo (V/D), que se decide por quién gana la tanda en vez de
+      // quedarse como empate (mismo criterio que calendario/buscador).
       let resultadoEfectivo = p.resultado;
       if (
         typeof p.penaltisLocal === 'number' &&
         typeof p.penaltisVisitante === 'number'
       ) {
-        pf = esLocal ? p.penaltisLocal : p.penaltisVisitante;
-        pc = esLocal ? p.penaltisVisitante : p.penaltisLocal;
+        const pf = esLocal ? p.penaltisLocal : p.penaltisVisitante;
+        const pc = esLocal ? p.penaltisVisitante : p.penaltisLocal;
         if (p.resultado === 'E' && pf !== pc) {
           resultadoEfectivo = pf > pc ? 'V' : 'D';
         }
       }
 
-      d.golesFavor += gf + pf;
-      d.golesContra += gc + pc;
+      d.golesFavor += gf;
+      d.golesContra += gc;
 
       if (resultadoEfectivo === 'V') d.victorias++;
       else if (resultadoEfectivo === 'E') d.empates++;
