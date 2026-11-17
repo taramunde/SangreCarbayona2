@@ -3010,16 +3010,67 @@
       eq.gc = 0;
       eq.pts = 0;
       eq.dg = 0;
+      eq.local = statsVacias();
+      eq.visitante = statsVacias();
+      eq.forma = { total: [], local: [], visitante: [] };
     });
+  }
+
+  function statsVacias() {
+    return { pj: 0, pg: 0, pe: 0, pp: 0, gf: 0, gc: 0, pts: 0, dg: 0 };
+  }
+
+  // Suma un resultado a un bloque de estadísticas (local o visitante)
+  function sumarResultado(st, gf, gc) {
+    st.pj++;
+    st.gf += gf;
+    st.gc += gc;
+    st.dg = st.gf - st.gc;
+    if (gf > gc) {
+      st.pg++;
+      st.pts += 3;
+    } else if (gf < gc) {
+      st.pp++;
+    } else {
+      st.pe++;
+      st.pts++;
+    }
+  }
+
+  function letraResultado(gf, gc) {
+    return gf > gc ? 'V' : gf < gc ? 'D' : 'E';
   }
 
   function calcularEstadisticas(partidos) {
     resetearEquipos();
-    partidos.forEach((p) => {
+    partidos.forEach((p, idx) => {
       if (p.goles1 === null || p.goles2 === null) return;
       const eqA = equipos.find((e) => e.nombre === p.equipo1);
       const eqB = equipos.find((e) => e.nombre === p.equipo2);
       if (!eqA || !eqB) return;
+
+      // Local / visitante y racha (los partidos van en orden de jornada)
+      const jornada = Math.floor(idx / EQUIPOS_POR_JORNADA) + 1;
+      sumarResultado(eqA.local, p.goles1, p.goles2);
+      sumarResultado(eqB.visitante, p.goles2, p.goles1);
+      const rA = {
+        r: letraResultado(p.goles1, p.goles2),
+        rival: eqB.nombre,
+        marcador: `${p.goles1}-${p.goles2}`,
+        jornada,
+        casa: true,
+      };
+      const rB = {
+        r: letraResultado(p.goles2, p.goles1),
+        rival: eqA.nombre,
+        marcador: `${p.goles1}-${p.goles2}`,
+        jornada,
+        casa: false,
+      };
+      eqA.forma.total.push(rA);
+      eqA.forma.local.push(rA);
+      eqB.forma.total.push(rB);
+      eqB.forma.visitante.push(rB);
 
       eqA.pj++;
       eqB.pj++;
@@ -3089,38 +3140,100 @@
     return { claseZona, esOviedo, claseDG, signoDG };
   }
 
+  // --- VISTA DE LA TABLA: total / local / visitante ---
+  let vistaTabla = 'total';
+
+  // Devuelve las filas a pintar según la vista. En "total" usa los datos
+  // globales del equipo (los mismos que usan el home y el resto de la web);
+  // en local/visitante se ordena una copia, sin tocar el orden de "equipos".
+  function filasSegunVista(vista) {
+    if (vista === 'total') {
+      return equipos.map((eq) => ({ eq, st: eq, posicion: eq.posicion }));
+    }
+    const filas = equipos.map((eq) => ({ eq, st: eq[vista] }));
+    filas.sort(
+      (a, b) =>
+        b.st.pts - a.st.pts ||
+        b.st.dg - a.st.dg ||
+        b.st.gf - a.st.gf ||
+        a.eq.nombre.localeCompare(b.eq.nombre),
+    );
+    filas.forEach((f, i) => (f.posicion = i + 1));
+    return filas;
+  }
+
+  // Últimos 5 resultados (el más reciente a la derecha)
+  function htmlForma(lista) {
+    const ultimos = lista.slice(-5);
+    if (!ultimos.length) return '';
+    const letras = { V: t('forma_v'), E: t('forma_e'), D: t('forma_d') };
+    const clases = { V: 'forma-v', E: 'forma-e', D: 'forma-d' };
+    const items = ultimos
+      .map((p) => {
+        const titulo = `${t('jornada')} ${p.jornada}: ${
+          p.casa ? '' : '@ '
+        }${p.rival} (${p.marcador})`;
+        return `<span class="forma-item ${clases[p.r]}" title="${titulo}">${letras[p.r]}</span>`;
+      })
+      .join('');
+    return `<span class="forma-racha">${items}</span>`;
+  }
+
   function renderizarTabla() {
     const tbody = document.getElementById('cuerpoTabla');
     if (!tbody) return; // Solo en clasificacion.html
     tbody.innerHTML = '';
 
-    equipos.forEach((eq) => {
-      const { claseZona, esOviedo, claseDG, signoDG } = calcularZonaYDG(eq);
+    filasSegunVista(vistaTabla).forEach(({ eq, st, posicion }) => {
+      const { claseZona, esOviedo } = calcularZonaYDG(eq);
+      // Las zonas (ascenso, playoff, descenso) solo tienen sentido en la total
+      const zona = vistaTabla === 'total' ? claseZona : '';
+      const claseDG = st.dg > 0 ? 'dg-positiva' : st.dg < 0 ? 'dg-negativa' : '';
+      const signoDG = st.dg > 0 ? '+' : '';
 
       const tr = document.createElement('tr');
       if (esOviedo) tr.classList.add('row-oviedo');
 
       tr.innerHTML = `
-            <td class="${claseZona}">${eq.posicion}</td>
+            <td class="${zona}">${posicion}</td>
             <td>
                 <img src="${eq.escudo}" alt="${eq.nombre}" class="escudo-tabla">
-                <span>${eq.nombre}</span>
+                <span class="club-info">
+                  <span class="club-nombre">${eq.nombre}</span>
+                  ${htmlForma(eq.forma[vistaTabla])}
+                </span>
             </td>
-            <td class="pts-col">${eq.pts}</td>
-            <td>${eq.pj}</td>
-            <td>${eq.pg}</td>
-            <td>${eq.pe}</td>
-            <td>${eq.pp}</td>
-            <td>${eq.gf}</td>
-            <td>${eq.gc}</td>
-            <td class="${claseDG}">${signoDG}${eq.dg}</td>
+            <td class="pts-col">${st.pts}</td>
+            <td>${st.pj}</td>
+            <td>${st.pg}</td>
+            <td>${st.pe}</td>
+            <td>${st.pp}</td>
+            <td>${st.gf}</td>
+            <td>${st.gc}</td>
+            <td class="${claseDG}">${signoDG}${st.dg}</td>
         `;
       tbody.appendChild(tr);
     });
   }
 
+  function initTabsTabla() {
+    const tabs = document.querySelectorAll('.clasi-tab[data-vista]');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        vistaTabla = tab.dataset.vista;
+        tabs.forEach((x) => {
+          const activa = x === tab;
+          x.classList.toggle('active', activa);
+          x.setAttribute('aria-selected', activa ? 'true' : 'false');
+        });
+        renderizarTabla();
+      });
+    });
+  }
+
   function actualizarJornadaBadge() {
     actualizarBadgeHome();
+    renderizarTabla(); // letras V/E/D ↔ W/D/L al cambiar de idioma
     const jornada = getJornadaActual();
     const badge = document.getElementById('jornadaBadge');
     if (badge) {
@@ -3319,8 +3432,8 @@
 
   // --- INIT ---
   calcularEstadisticas(enfrentamientos);
-  renderizarTabla();
-  actualizarJornadaBadge();
+  initTabsTabla();
+  actualizarJornadaBadge(); // incluye renderizarTabla()
   initChart();
   renderizarTablaHome();
 

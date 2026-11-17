@@ -467,6 +467,12 @@ const translations = {
     col_gf: 'GF',
     col_gc: 'GC',
     col_dg: 'DG',
+    clasi_vista_total: 'Total',
+    clasi_vista_local: 'Local',
+    clasi_vista_visitante: 'Visitante',
+    forma_v: 'V',
+    forma_e: 'E',
+    forma_d: 'D',
 
     // ============================================
     // NOTICIAS
@@ -1040,6 +1046,12 @@ const translations = {
     col_gf: 'GF',
     col_gc: 'GA',
     col_dg: 'GD',
+    clasi_vista_total: 'Overall',
+    clasi_vista_local: 'Home',
+    clasi_vista_visitante: 'Away',
+    forma_v: 'W',
+    forma_e: 'D',
+    forma_d: 'L',
 
     // ============================================
     // NEWS

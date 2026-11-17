@@ -313,3 +313,65 @@ td.pts-col {
     height: 350px;
   }
 }
+
+/* ===== PESTAÑAS TOTAL / LOCAL / VISITANTE ===== */
+.clasi-tabs {
+  display: flex;
+  border-bottom: 1px solid #eef0f8;
+  margin-bottom: 16px;
+}
+.clasi-tab {
+  flex: 1;
+  max-width: 180px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1em;
+  color: #8a90a8;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.clasi-tab:hover {
+  color: #001a6e;
+}
+.clasi-tab.active {
+  color: #001a6e;
+  font-weight: 600;
+  border-bottom-color: #ffcc00;
+}
+
+/* ===== ÚLTIMOS 5 PARTIDOS ===== */
+td:nth-child(2) .club-info {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  vertical-align: middle;
+}
+td:nth-child(2) .forma-racha {
+  display: flex;
+  gap: 3px;
+}
+td:nth-child(2) .forma-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: #fff;
+  cursor: default;
+}
+.forma-v {
+  background: #2ecc71;
+}
+.forma-e {
+  background: #f39c12;
+}
+.forma-d {
+  background: #e74c3c;
+}
