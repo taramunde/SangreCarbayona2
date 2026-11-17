@@ -964,8 +964,8 @@
     {
       equipo1: 'Albacete Balompié',
       equipo2: 'R.C. Celta Fortuna',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'U.D. Almería',
