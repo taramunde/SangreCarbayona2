@@ -2113,6 +2113,10 @@ const App = {
       );
       if (!miembro) return;
 
+      // Igual que en la trayectoria del jugador: recalcular siempre desde
+      // partidos[] de esa temporada (si no, las temporadas que no se han
+      // abierto aún tienen "estadisticas" vacío y no suman a los totales).
+      autoCalcularStatsEntrenador(miembro);
       const stats = miembro.estadisticas || {};
       const compNombre = datosTemp.competicion || '—';
 
