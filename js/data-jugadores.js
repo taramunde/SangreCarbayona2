@@ -9220,6 +9220,21 @@ CLUB_DATA.jugadoresMaestro = {
     fechaNacimiento: '1987-07-28',
     imagen: 'https://i.postimg.cc/rmgQ98p5/Queipo-PNG.webp',
   },
+  // Apellidos aún desconocidos; se completan si aparecen más datos.
+  'enmanuel': {
+    nombre: 'Enmanuel',
+    apellidos: '',
+    nombreCompleto: 'Enmanuel',
+    apodo: 'Enmanuel',
+    posicion: 'Delantero',
+    posicionCorta: 'DL',
+    altura: null,
+    nacionalidad: ['Portuguesa'],
+    lugarNacimiento: '',
+    provinciaNacimiento: '',
+    fechaNacimiento: '',
+    imagen: 'https://i.postimg.cc/nrbqpPmy/resized-Silueta.png',
+  },
 }; // fin jugadoresMaestro
 
 // ── ENTRENADORES ────────────────────────────────────────────
