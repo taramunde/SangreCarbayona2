@@ -9221,7 +9221,7 @@ CLUB_DATA.jugadoresMaestro = {
     imagen: 'https://i.postimg.cc/rmgQ98p5/Queipo-PNG.webp',
   },
   // Apellidos aún desconocidos; se completan si aparecen más datos.
-  'enmanuel': {
+  enmanuel: {
     nombre: 'Enmanuel',
     apellidos: '',
     nombreCompleto: 'Enmanuel',
@@ -9606,6 +9606,20 @@ CLUB_DATA.entrenadorMaestro = {
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1973-03-13',
     imagen: 'https://i.postimg.cc/yYBnbQ5L/Fermin-(entrenador)-PNG.webp',
+  },
+
+  'francisco-jose-carrasco-hidalgo': {
+    nombre: 'Francisco José',
+    apellidos: 'Carrasco Hidalgo',
+    nombreCompleto: 'Francisco José Carrasco Hidalgo',
+    apodo: 'Lobo Carrasco',
+    cargo: 'Entrenador Principal',
+    cargoCorto: 'ENT',
+    nacionalidad: ['Española'],
+    lugarNacimiento: 'Alcoy',
+    provinciaNacimiento: 'Alicante',
+    fechaNacimiento: '1959-03-06',
+    imagen: 'https://i.postimg.cc/JzpTJNpP/Carrasco-(entrenador)-PNG.webp',
   },
 };
 
