@@ -1737,4 +1737,64 @@ CLUB_DATA.temporadas['2008-09'] = {
   ],
 };
 
+// ===================================
+// TEMPORADA 2007/2008
+// ===================================
+CLUB_DATA.temporadas['2007-08'] = {
+  competicion: 'Tercera División',
+  grupo: 'Grupo: 2',
+
+  
+  estadisticasEquipo: {
+    posicion: 1,
+    desglose: {
+      'Tercera División': {
+        partidos:    38,
+        victorias:   28,
+        empates:     4,
+        derrotas:    6,
+        golesFavor:  87,
+        golesContra: 25,
+      },
+      'Fase de Ascenso a Segunda B': {
+        partidos:    2,
+        victorias:   1,
+        empates:     0,
+        derrotas:    1,
+        golesFavor:  5,
+        golesContra: 6,
+      },
+      'Copa de la R.F.E.F. (Fase Regional)': {
+        partidos:    6,
+        victorias:   3,
+        empates:     1,
+        derrotas:    2,
+        golesFavor:  7,
+        golesContra: 6,
+      },
+    },
+  },
+
+  jugadores: [
+
+    // PORTEROS
+    
+
+    // DEFENSAS
+    
+
+    // CENTROCAMPISTAS
+    
+
+    // DELANTEROS
+    
+
+  ],
+
+  // ENTRENADORES
+  cuerpoTecnico: [
+    
+  ],
+};
+
 window.CLUB_DATA = CLUB_DATA;
