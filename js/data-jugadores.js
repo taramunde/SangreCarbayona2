@@ -9162,7 +9162,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Mieres',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1990-12-20',
-    imagen: 'https://i.postimg.cc/437682pC/Javi-Diaz-PNG.png',
+    imagen: 'img/jugadores/JaviDiaz.webp',
   },
   'hector-carrasco-rojo': {
     nombre: 'Héctor',
