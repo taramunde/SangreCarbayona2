@@ -2719,12 +2719,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-universidad-de-oviedo.html</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-up-de-langreo.html</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -2756,6 +2750,12 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-astur-cf.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rival-cd-universidad-de-oviedo.html</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -3601,12 +3601,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-universidad-de-oviedo-2007-09-01.html</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/up-de-langreo-real-oviedo-2007-09-05.html</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>yearly</changefreq>
@@ -3662,6 +3656,12 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-astur-cf-2007-10-28.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-universidad-de-oviedo-2007-11-01.html</loc>
     <lastmod>2026-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
