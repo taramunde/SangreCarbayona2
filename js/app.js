@@ -1196,6 +1196,20 @@ const App = {
         edadMostrar--;
       }
     }
+    // Si está fallecido, calcular edad al fallecer (no la edad actual)
+    if (
+      jugador.fallecido === true &&
+      jugador.fechaFallecimiento &&
+      jugador.fechaNacimiento
+    ) {
+      const nacimiento = new Date(jugador.fechaNacimiento);
+      const muerte = new Date(jugador.fechaFallecimiento);
+      let edadMuerte = muerte.getFullYear() - nacimiento.getFullYear();
+      const m = muerte.getMonth() - nacimiento.getMonth();
+      if (m < 0 || (m === 0 && muerte.getDate() < nacimiento.getDate()))
+        edadMuerte--;
+      edadMostrar = edadMuerte;
+    }
     // Si sigue sin haber edad, mostrar mensaje
     if (!edadMostrar) {
       edadMostrar = t('desconocida') || 'Desconocida';
