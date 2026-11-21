@@ -1047,8 +1047,8 @@
     {
       equipo1: 'C.D. Castellón',
       equipo2: 'C.D. Eldense',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 0,
     },
     {
       equipo1: 'R.C. Celta Fortuna',
@@ -1080,14 +1080,14 @@
     {
       equipo1: 'Real Sociedad B',
       equipo2: 'Cádiz C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 3,
     },
     {
       equipo1: 'C.E. Sabadell',
       equipo2: 'Granada C.F.',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'Real Sporting de Gijón',
@@ -1160,7 +1160,7 @@
     {
       equipo1: 'Real Oviedo',
       equipo2: 'R.C. Celta Fortuna',
-      fecha: '2026-11-29',
+      fecha: '2026-11-30',
       hora: '20:30',
       aproximada: false,
       goles1: null,
@@ -1177,8 +1177,9 @@
     {
       equipo1: 'F.C. Andorra',
       equipo2: 'Real Oviedo',
-      fecha: '2026-12-06',
-      aproximada: true,
+      fecha: '2026-12-05',
+      hora: '18:30',
+      aproximada: false,
       goles1: null,
       goles2: null,
     },
