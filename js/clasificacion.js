@@ -1035,8 +1035,8 @@
     {
       equipo1: 'F.C. Andorra',
       equipo2: 'C.D. Leganés',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 3,
     },
     {
       equipo1: 'Burgos C.F.',
@@ -3188,7 +3188,8 @@
       const { claseZona, esOviedo } = calcularZonaYDG(eq);
       // Las zonas (ascenso, playoff, descenso) solo tienen sentido en la total
       const zona = vistaTabla === 'total' ? claseZona : '';
-      const claseDG = st.dg > 0 ? 'dg-positiva' : st.dg < 0 ? 'dg-negativa' : '';
+      const claseDG =
+        st.dg > 0 ? 'dg-positiva' : st.dg < 0 ? 'dg-negativa' : '';
       const signoDG = st.dg > 0 ? '+' : '';
 
       const tr = document.createElement('tr');
