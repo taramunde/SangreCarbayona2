@@ -8932,7 +8932,7 @@ CLUB_DATA.jugadoresMaestro = {
     nombreCompleto: 'Iker Lasarte Herrero',
     apodo: 'Iker Lasarte',
     posicion: 'Defensa',
-    posicionCorta: 'LD',
+    posicionCorta: 'LI',
     altura: 1.75,
     nacionalidad: ['Española'],
     lugarNacimiento: 'Ondárroa',
