@@ -153,6 +153,30 @@
   text-align: right;
 }
 
+/* --- Aviso de bloqueo (LaLiga) --- */
+.visitas-nota-bloqueo {
+  margin: 0;
+  padding: 0 24px 16px;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--gray-500);
+}
+
+.visitas-nota-bloqueo i {
+  color: var(--gray-400);
+  margin-right: 4px;
+}
+
+.visitas-widget-bloqueado {
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.visitas-widget-bloqueado .visitas-nota-bloqueo {
+  padding: 0 16px;
+}
+
 /* --- Footer --- */
 .footer-visitas {
   margin-top: 4px;

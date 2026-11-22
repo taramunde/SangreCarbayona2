@@ -20,6 +20,7 @@
 
   let datos = null;
   let datosDeHace = null; // timestamp si se muestran cifras guardadas
+  let bloqueado = false; // el Worker no responde (fallo de red / timeout)
 
   const TEXTOS = {
     es: {
@@ -35,6 +36,10 @@
       min: 'min',
       h: 'h',
       d: 'días',
+      bloqueo:
+        'El contador no está disponible ahora mismo, seguramente por los bloqueos de LaLiga a Cloudflare durante los partidos. Si quieres verlo, usa una VPN.',
+      bloqueoCache:
+        'No se puede actualizar ahora mismo, seguramente por los bloqueos de LaLiga a Cloudflare durante los partidos. Para ver las cifras al día, usa una VPN.',
     },
     en: {
       total: 'Total visits',
@@ -49,6 +54,10 @@
       min: 'min ago',
       h: 'h ago',
       d: 'days ago',
+      bloqueo:
+        'The counter is unavailable right now, most likely because of LaLiga’s blocking of Cloudflare in Spain during matches. Use a VPN if you want to see it.',
+      bloqueoCache:
+        'Can’t update right now, most likely because of LaLiga’s blocking of Cloudflare in Spain during matches. Use a VPN to see the latest figures.',
     },
   };
 
@@ -97,7 +106,16 @@
   function renderWidget() {
     const seccion = document.getElementById('visitasSection');
     const cont = document.getElementById('contadorVisitas');
-    if (!seccion || !cont || !datos) return;
+    if (!seccion || !cont) return;
+
+    if (!datos) {
+      if (!bloqueado) return;
+      cont.innerHTML = notaBloqueo(tx('bloqueo'));
+      cont.classList.add('visitas-widget-bloqueado');
+      seccion.hidden = false;
+      return;
+    }
+    cont.classList.remove('visitas-widget-bloqueado');
 
     const total = datos.total || 0;
     const lista = (datos.paises || []).slice(0, PAISES_VISIBLES);
@@ -140,7 +158,8 @@
              <ul class="visitas-paises">${filas}${filaOtros}</ul>`
           : ''
       }
-      ${pie()}`;
+      ${pie()}
+      ${bloqueado ? notaBloqueo(tx('bloqueoCache')) : ''}`;
 
     seccion.hidden = false;
   }
@@ -151,6 +170,10 @@
     const h = Math.round(min / 60);
     if (h < 48) return `${h} ${tx('h')}`;
     return `${Math.round(h / 24)} ${tx('d')}`;
+  }
+
+  function notaBloqueo(texto) {
+    return `<p class="visitas-nota-bloqueo"><i class="fas fa-circle-info"></i> ${texto}</p>`;
   }
 
   function pie() {
@@ -306,9 +329,13 @@
       guardarJSON(CLAVE_CACHE, { datos: d, ts: Date.now() });
       mostrar(d);
     } catch (e) {
-      // Bloqueo o fallo: últimas cifras conocidas, si las hay.
+      // Sin respuesta (fallo de red o timeout) = casi seguro un bloqueo de
+      // LaLiga: se avisa. Si el Worker respondió con un error HTTP (e es
+      // un número), no es un bloqueo y no se culpa a nadie.
+      bloqueado = typeof e !== 'number';
       const cache = leerJSON(CLAVE_CACHE, null);
       if (cache && cache.datos) mostrar(cache.datos, cache.ts);
+      else render();
     }
   }
 
