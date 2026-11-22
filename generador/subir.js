@@ -4,9 +4,12 @@
  *
  * 1. Descarga primero lo nuevo de GitHub (commits de la Action de
  *    nocache u otras subidas), apartando un momento tus cambios sin subir.
- * 2. Genera fichas, páginas de partidos y sitemap YA sobre esa versión
+ * 2. Si has cambiado el borrador de la zona privada
+ *    (privado-fuente/contenido.html), te pide el PIN y lo cifra en
+ *    js/data-privado.js (ver cifrar-privado.js). Si no, no pregunta nada.
+ * 3. Genera fichas, páginas de partidos y sitemap YA sobre esa versión
  *    al día, para que no choquen con las que hay en GitHub.
- * 3. Hace commit y sube.
+ * 4. Hace commit y sube.
  *
  * Si mientras tanto alguien subió algo y vuelve a haber choque SOLO en
  * archivos generados (fichas/, partidos/, sitemap), se resuelven solos
@@ -15,10 +18,12 @@
 
 const { execSync } = require('child_process');
 const path = require('path');
+const { cifrarSiHaceFalta } = require('./cifrar-privado');
 
 const RAIZ = path.join(__dirname, '..');
 const MENSAJE = 'Actualización automática';
-const GENERADOS = /^(fichas\/|partidos\/|sitemap\.xml$|generador\/\.sitemap-cache\.json$)/;
+const GENERADOS =
+  /^(fichas\/|partidos\/|sitemap\.xml$|generador\/\.sitemap-cache\.json$)/;
 
 function run(cmd, opciones = {}) {
   return execSync(cmd, {
@@ -72,12 +77,15 @@ function resolverRebase() {
           '\n(El rebase se ha quedado a medias: pide ayuda antes de tocar nada.)',
       );
     }
-    console.log(`\n▶ Resolviendo ${conflictos.length} choques en páginas generadas…`);
+    console.log(
+      `\n▶ Resolviendo ${conflictos.length} choques en páginas generadas…`,
+    );
     // Las páginas se reescriben enteras al generar, así que basta con
     // regenerarlas; solo el caché del sitemap se lee antes de escribirse
     // y necesita una versión sin marcas de conflicto.
     ['sitemap.xml', 'generador/.sitemap-cache.json'].forEach((f) => {
-      if (conflictos.includes(f)) run(`git checkout --theirs -- "${f}"`, { silencio: true });
+      if (conflictos.includes(f))
+        run(`git checkout --theirs -- "${f}"`, { silencio: true });
     });
     generar();
     run('git add -A', { silencio: true });
@@ -86,35 +94,46 @@ function resolverRebase() {
   parar('No se ha podido terminar el rebase automáticamente.');
 }
 
-// 1. Ponerse al día con GitHub antes de generar nada.
-console.log('▶ Descargando lo nuevo de GitHub…');
-if (!intentar('git pull --rebase --autostash origin main')) {
-  if (archivosEnConflicto().length) resolverRebase();
-  else
-    parar(
-      'No se pudo descargar lo nuevo de GitHub (¿sin conexión, o tus cambios ' +
-        'sin subir chocan con los de GitHub?). Pide ayuda antes de seguir.',
-    );
-}
+async function main() {
+  // 1. Ponerse al día con GitHub antes de generar nada.
+  console.log('▶ Descargando lo nuevo de GitHub…');
+  if (!intentar('git pull --rebase --autostash origin main')) {
+    if (archivosEnConflicto().length) resolverRebase();
+    else
+      parar(
+        'No se pudo descargar lo nuevo de GitHub (¿sin conexión, o tus cambios ' +
+          'sin subir chocan con los de GitHub?). Pide ayuda antes de seguir.',
+      );
+  }
 
-// 2. Generar sobre la versión al día.
-generar();
+  // 2. Zona privada: cifrar si el borrador ha cambiado.
+  try {
+    await cifrarSiHaceFalta();
+  } catch (e) {
+    parar('Zona privada: ' + e.message + '\n(No se ha subido nada.)');
+  }
 
-// 3. Commit (si hay algo) y subida, con reintento si GitHub cambió entretanto.
-run('git add -A', { silencio: true });
-if (intentar('git diff --cached --quiet')) {
-  console.log('\n✔ No hay cambios que subir.');
-  process.exit(0);
-}
-run(`git commit -q -m "${MENSAJE}"`);
+  // 3. Generar sobre la versión al día.
+  generar();
 
-for (let intento = 1; intento <= 3; intento++) {
-  console.log('\n▶ Subiendo a GitHub…');
-  if (intentar('git push origin main')) {
-    console.log('\n✔ Subido correctamente.');
+  // 4. Commit (si hay algo) y subida, con reintento si GitHub cambió entretanto.
+  run('git add -A', { silencio: true });
+  if (intentar('git diff --cached --quiet')) {
+    console.log('\n✔ No hay cambios que subir.');
     process.exit(0);
   }
-  console.log('  GitHub tiene cambios nuevos; juntándolos y reintentando…');
-  if (!intentar('git pull --rebase origin main')) resolverRebase();
+  run(`git commit -q -m "${MENSAJE}"`);
+
+  for (let intento = 1; intento <= 3; intento++) {
+    console.log('\n▶ Subiendo a GitHub…');
+    if (intentar('git push origin main')) {
+      console.log('\n✔ Subido correctamente.');
+      process.exit(0);
+    }
+    console.log('  GitHub tiene cambios nuevos; juntándolos y reintentando…');
+    if (!intentar('git pull --rebase origin main')) resolverRebase();
+  }
+  parar('No se ha podido subir tras varios intentos.');
 }
-parar('No se ha podido subir tras varios intentos.');
+
+main();

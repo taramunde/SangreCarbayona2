@@ -9,7 +9,8 @@
     "revisar-goles": "node generador/revisar-goles.js",
     "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js",
     "importar-jugadores": "node generador/importar-jugadores.js",
-    "previa-partido": "node generador/generar-previa-partido.js"
+    "previa-partido": "node generador/generar-previa-partido.js",
+    "privado": "node generador/cifrar-privado.js"
   },
   "author": "Taramunde",
   "license": "ISC",
