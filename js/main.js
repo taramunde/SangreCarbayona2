@@ -49,10 +49,38 @@ function cargarComunes() {
         }
 
         actualizarAnosFooter();
+
+        // El contador puede haber llegado antes que el footer.
+        if (typeof window.renderContadorVisitas === 'function') {
+          window.renderContadorVisitas();
+        }
       }
     });
 
   cargarAsistente(rutaBase);
+  cargarContadorVisitas(rutaBase);
+}
+
+// Contador de visitas (js/contador-visitas.js) en todas las páginas,
+// igual que el asistente: así cuentan también las visitas que entran
+// directamente a una ficha o a un partido.
+function cargarContadorVisitas(rutaBase) {
+  if (document.getElementById('scContadorVisitasJs')) return;
+  const main = document.querySelector('script[src*="js/main.js"]');
+  const nocache =
+    main && main.getAttribute('src').includes('?')
+      ? '?' + main.getAttribute('src').split('?')[1]
+      : '';
+
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = `${rutaBase}css/contador-visitas.css${nocache}`;
+  document.head.appendChild(css);
+
+  const js = document.createElement('script');
+  js.id = 'scContadorVisitasJs';
+  js.src = `${rutaBase}js/contador-visitas.js${nocache}`;
+  document.body.appendChild(js);
 }
 
 // Chat "Pregúntale al Carbayón" (js/asistente.js) en todas las páginas

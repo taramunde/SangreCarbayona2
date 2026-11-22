@@ -540,6 +540,7 @@ const translations = {
     videos_subtitulo: 'Resúmenes y mejores momentos de la temporada',
     videos_resumenes: 'Resúmenes de Partidos',
     compartir_pagina: 'Comparte esta página',
+    visitas_titulo: 'Visitas a la web',
     compartir_whatsapp: 'Compartir en WhatsApp',
     compartir_twitter: 'Compartir en Twitter',
     compartir_telegram: 'Compartir en Telegram',
@@ -1122,6 +1123,7 @@ const translations = {
     videos_subtitulo: 'Match highlights and best moments of the season',
     videos_resumenes: 'Match Highlights',
     compartir_pagina: 'Share this page',
+    visitas_titulo: 'Site visits',
     compartir_whatsapp: 'Share on WhatsApp',
     compartir_twitter: 'Share on Twitter',
     compartir_telegram: 'Share on Telegram',
@@ -1324,6 +1326,10 @@ function setLanguage(lang) {
   // (tarjetas, resumen/ranking, marcador y campo) no usa data-i18n.
   if (typeof window.renderBuscador === 'function') {
     window.renderBuscador();
+  }
+
+  if (typeof window.renderContadorVisitas === 'function') {
+    window.renderContadorVisitas();
   }
 
   if (typeof window.renderAlineacion === 'function') {

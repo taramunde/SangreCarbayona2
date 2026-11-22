@@ -1,0 +1,196 @@
+/* ===================================
+   CONTADOR DE VISITAS (portada + footer)
+   =================================== */
+
+.visitas-section {
+  padding: 50px 0;
+  background: var(--gray-50);
+}
+
+.visitas-section[hidden],
+.footer-visitas[hidden] {
+  display: none !important;
+}
+
+.visitas-widget {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* --- Cifras --- */
+.visitas-cifras {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+}
+
+.visitas-cifra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.visitas-cifra:first-child {
+  border-left: none;
+}
+
+.visitas-num {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.visitas-cifra-principal .visitas-num {
+  font-size: 2.8rem;
+  color: var(--secondary-light);
+}
+
+.visitas-label {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* --- Países --- */
+.visitas-subtitulo {
+  margin: 22px 24px 8px;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+}
+
+.visitas-paises {
+  list-style: none;
+  margin: 0;
+  padding: 0 24px 12px;
+}
+
+.visitas-pais {
+  display: grid;
+  grid-template-columns: 28px minmax(90px, 160px) 1fr auto 52px;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.visitas-pais:last-child {
+  border-bottom: none;
+}
+
+.visitas-bandera {
+  width: 28px;
+  height: 21px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.visitas-bandera-globo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  color: var(--gray-400);
+  font-size: 1.1rem;
+}
+
+.visitas-pais-nombre {
+  font-weight: 600;
+  color: var(--gray-800);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.visitas-barra {
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.visitas-barra span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), var(--secondary-light));
+  border-radius: 99px;
+}
+
+.visitas-pais-num {
+  min-width: 64px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--primary-color);
+  text-align: right;
+}
+
+.visitas-pais-pct {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  text-align: right;
+}
+
+.visitas-desde {
+  margin: 0;
+  padding: 10px 24px 16px;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  text-align: right;
+}
+
+/* --- Footer --- */
+.footer-visitas {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+.footer-visitas i {
+  color: var(--secondary-color);
+  margin-right: 4px;
+}
+
+/* --- Móvil --- */
+@media (max-width: 600px) {
+  .visitas-cifras {
+    grid-template-columns: 1fr 1fr;
+  }
+  .visitas-cifra-principal {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .visitas-cifra:nth-child(2) {
+    border-left: none;
+  }
+  .visitas-paises,
+  .visitas-subtitulo {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .visitas-subtitulo {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .visitas-pais {
+    grid-template-columns: 24px 1fr auto 44px;
+    gap: 10px;
+  }
+  .visitas-barra {
+    display: none;
+  }
+}
