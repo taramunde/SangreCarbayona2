@@ -5,8 +5,9 @@ La web (GitHub Pages) no puede guardar datos, así que el contador vive en un
 Free (100.000 visitas contadas al día de margen).
 
 Solo se guardan totales por país y por día. **Ni IPs, ni cookies**: el país lo
-da Cloudflare y en la web solo se usa `sessionStorage` para no contar dos
-veces la misma sesión.
+da Cloudflare. En la web solo se usa `sessionStorage` (para no contar dos veces
+la misma sesión) y `localStorage` (visitas pendientes por bloqueo y últimas
+cifras vistas).
 
 Archivos:
 
@@ -69,6 +70,16 @@ publicada ya cuenta, y aparecen el widget de la portada y la línea del footer.
 ---
 
 ## Notas
+
+- **Bloqueos de LaLiga**: los días de partido, varios operadores españoles
+  bloquean IPs de Cloudflare y el Worker no responde (`ERR_CONNECTION_TIMED_OUT`).
+  La web lo tiene en cuenta: cada visita se guarda como pendiente en el
+  navegador (`localStorage`, solo la fecha) y se envía en la siguiente visita
+  sin bloqueo, contando en su día real (`/hit?dia=AAAA-MM-DD`, hasta 30 días
+  atrás). Mientras tanto se muestran las últimas cifras que vio ese navegador
+  con la nota "Datos de hace X". Para probar durante un bloqueo, usa una VPN.
+- **Si cambias `worker.js`**, hay que volver a pegarlo en Cloudflare
+  (Workers y Pages → contador-visitas → Editar código → Implementar).
 
 - **Qué cuenta como visita**: una por sesión de navegador (abrir la web en
   una pestaña nueva tras cerrarla cuenta otra vez; recargar o navegar entre

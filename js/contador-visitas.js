@@ -19,6 +19,7 @@
   const PAISES_VISIBLES = 6;
 
   let datos = null;
+  let datosDeHace = null; // timestamp si se muestran cifras guardadas
 
   const TEXTOS = {
     es: {
@@ -30,6 +31,10 @@
       desconocido: 'Desconocido',
       footer: 'visitas',
       desde: 'Contando desde el',
+      cache: 'Datos de hace',
+      min: 'min',
+      h: 'h',
+      d: 'días',
     },
     en: {
       total: 'Total visits',
@@ -40,6 +45,10 @@
       desconocido: 'Unknown',
       footer: 'visits',
       desde: 'Counting since',
+      cache: 'Data from',
+      min: 'min ago',
+      h: 'h ago',
+      d: 'days ago',
     },
   };
 
@@ -131,13 +140,26 @@
              <ul class="visitas-paises">${filas}${filaOtros}</ul>`
           : ''
       }
-      ${
-        datos.desde
-          ? `<p class="visitas-desde">${tx('desde')} ${fechaLarga(datos.desde)}</p>`
-          : ''
-      }`;
+      ${pie()}`;
 
     seccion.hidden = false;
+  }
+
+  function haceCuanto(ts) {
+    const min = Math.max(1, Math.round((Date.now() - ts) / 60000));
+    if (min < 60) return `${min} ${tx('min')}`;
+    const h = Math.round(min / 60);
+    if (h < 48) return `${h} ${tx('h')}`;
+    return `${Math.round(h / 24)} ${tx('d')}`;
+  }
+
+  function pie() {
+    const partes = [];
+    if (datosDeHace) {
+      partes.push(`<i class="fas fa-clock-rotate-left"></i> ${tx('cache')} ${haceCuanto(datosDeHace)}`);
+    }
+    if (datos.desde) partes.push(`${tx('desde')} ${fechaLarga(datos.desde)}`);
+    return partes.length ? `<p class="visitas-desde">${partes.join(' · ')}</p>` : '';
   }
 
   function fila(icono, nombre, n, total, max) {
@@ -170,6 +192,38 @@
   window.renderContadorVisitas = render;
 
   // ---------- Conteo ----------
+  //
+  // Los días de partido, los operadores españoles bloquean muchas IPs de
+  // Cloudflare por orden de LaLiga y el Worker no responde. Para no
+  // perder esas visitas:
+  //   - cada visita nueva se apunta primero como "pendiente" (con su día)
+  //     en localStorage, y se borra cuando el Worker confirma que la contó;
+  //   - si no se pudo enviar, se reintenta en la siguiente visita;
+  //   - mientras tanto se enseñan las últimas cifras que vio ese
+  //     navegador, con una nota de "Datos de hace X".
+
+  const CLAVE_PENDIENTES = 'sc_visitas_pendientes';
+  const CLAVE_CACHE = 'sc_visitas_cache';
+  const MAX_PENDIENTES = 20;
+  const TIMEOUT_MS = 8000;
+  const HOST_WEB = 'taramunde.github.io'; // solo cuenta la web publicada
+
+  function leerJSON(clave, defecto) {
+    try {
+      const v = JSON.parse(localStorage.getItem(clave));
+      return v == null ? defecto : v;
+    } catch (e) {
+      return defecto;
+    }
+  }
+
+  function guardarJSON(clave, valor) {
+    try {
+      localStorage.setItem(clave, JSON.stringify(valor));
+    } catch (e) {
+      /* almacenamiento lleno o bloqueado: no pasa nada */
+    }
+  }
 
   function yaContada() {
     try {
@@ -187,26 +241,75 @@
     }
   }
 
-  function iniciar() {
+  // Fecha de hoy en hora de Madrid (AAAA-MM-DD), igual que el Worker.
+  function hoyMadrid() {
+    try {
+      return new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Madrid',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }).format(new Date());
+    } catch (e) {
+      return new Date().toISOString().slice(0, 10);
+    }
+  }
+
+  function pedir(ruta, opciones) {
+    const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    const t = ctrl ? setTimeout(() => ctrl.abort(), TIMEOUT_MS) : null;
+    return fetch(API_VISITAS + ruta, { ...opciones, signal: ctrl && ctrl.signal })
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .finally(() => t && clearTimeout(t));
+  }
+
+  // Envía las visitas pendientes una a una (la más antigua primero).
+  // Si una falla, para y deja el resto para la próxima vez.
+  async function enviarPendientes() {
+    let ultimo = null;
+    let pendientes = leerJSON(CLAVE_PENDIENTES, []);
+    while (pendientes.length) {
+      const dia = pendientes[0];
+      ultimo = await pedir('/hit?dia=' + encodeURIComponent(dia), {
+        method: 'POST',
+        keepalive: true,
+      });
+      pendientes = leerJSON(CLAVE_PENDIENTES, []);
+      const i = pendientes.indexOf(dia);
+      if (i !== -1) pendientes.splice(i, 1);
+      guardarJSON(CLAVE_PENDIENTES, pendientes);
+    }
+    return ultimo;
+  }
+
+  function mostrar(d, desdeCache) {
+    datos = d;
+    datosDeHace = desdeCache || null;
+    render();
+  }
+
+  async function iniciar() {
     if (!API_VISITAS || API_VISITAS.includes('CAMBIAR')) return; // sin configurar
 
-    // Navegadores automatizados (tests, scrapers) no cuentan.
-    const contar = !yaContada() && !navigator.webdriver;
+    // Una visita por sesión, solo en la web publicada y nunca de
+    // navegadores automatizados. Se apunta ANTES de enviarla, así que
+    // si hay bloqueo queda guardada para la próxima vez.
+    if (!yaContada() && !navigator.webdriver && location.hostname === HOST_WEB) {
+      const pendientes = leerJSON(CLAVE_PENDIENTES, []);
+      pendientes.push(hoyMadrid());
+      guardarJSON(CLAVE_PENDIENTES, pendientes.slice(-MAX_PENDIENTES));
+      marcarContada();
+    }
 
-    const peticion = contar
-      ? fetch(API_VISITAS + '/hit', { method: 'POST', keepalive: true })
-      : fetch(API_VISITAS + '/stats');
-
-    peticion
-      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((d) => {
-        if (contar) marcarContada();
-        datos = d;
-        render();
-      })
-      .catch(() => {
-        /* si el Worker falla, el widget simplemente no aparece */
-      });
+    try {
+      const d = (await enviarPendientes()) || (await pedir('/stats'));
+      guardarJSON(CLAVE_CACHE, { datos: d, ts: Date.now() });
+      mostrar(d);
+    } catch (e) {
+      // Bloqueo o fallo: últimas cifras conocidas, si las hay.
+      const cache = leerJSON(CLAVE_CACHE, null);
+      if (cache && cache.datos) mostrar(cache.datos, cache.ts);
+    }
   }
 
   iniciar();

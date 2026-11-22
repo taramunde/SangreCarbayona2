@@ -4,6 +4,9 @@
 
    Endpoints:
      POST /hit    -> suma una visita (país + día) y devuelve las estadísticas
+                     ?dia=AAAA-MM-DD opcional: visita que no se pudo enviar
+                     en su momento (bloqueos de LaLiga) y llega más tarde;
+                     se acepta hasta MAX_DIAS_ATRAS días atrás
      GET  /stats  -> solo devuelve las estadísticas (cacheadas 30 s)
 
    Necesita una base de datos D1 enlazada con el nombre de variable "DB"
@@ -27,6 +30,7 @@ const BOTS =
   /bot|crawl|spider|slurp|facebookexternalhit|whatsapp|telegram|discord|preview|headless|lighthouse|pagespeed|curl|wget|python|axios|node-fetch|go-http/i;
 
 const MAX_PAISES = 10;
+const MAX_DIAS_ATRAS = 30;
 
 export default {
   async fetch(request, env) {
@@ -44,7 +48,7 @@ export default {
         const ua = request.headers.get('User-Agent') || '';
         if (origin === ORIGEN_WEB && !BOTS.test(ua)) {
           const pais = normalizarPais(request.cf && request.cf.country);
-          const dia = hoyMadrid();
+          const dia = diaValido(url.searchParams.get('dia'));
           await env.DB.batch([
             env.DB.prepare(
               'INSERT INTO visitas_pais (pais, total) VALUES (?1, 1) ' +
@@ -103,14 +107,23 @@ function normalizarPais(codigo) {
   return /^[A-Z]{2}$/.test(codigo || '') && codigo !== 'T1' ? codigo : 'XX';
 }
 
-// Fecha de hoy en hora de Madrid, formato AAAA-MM-DD.
-function hoyMadrid() {
+// Fecha en hora de Madrid, formato AAAA-MM-DD (por defecto, hoy).
+function hoyMadrid(fecha = new Date()) {
   return new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Europe/Madrid',
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
-  }).format(new Date());
+  }).format(fecha);
+}
+
+// El día que manda la web para una visita atrasada, si es razonable
+// (entre hace MAX_DIAS_ATRAS días y hoy). Si no, cuenta como de hoy.
+function diaValido(dia) {
+  const hoy = hoyMadrid();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dia || '')) return hoy;
+  const minimo = hoyMadrid(new Date(Date.now() - MAX_DIAS_ATRAS * 86400000));
+  return dia >= minimo && dia <= hoy ? dia : hoy;
 }
 
 function cabecerasCors(origin) {
