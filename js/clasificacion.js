@@ -1053,8 +1053,8 @@
     {
       equipo1: 'R.C. Celta Fortuna',
       equipo2: 'Real Valladolid',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 1,
     },
     {
       equipo1: 'A.D. Ceuta F.C.',
@@ -1074,8 +1074,8 @@
     {
       equipo1: 'Girona F.C.',
       equipo2: 'S.D. Eibar',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 1,
     },
     {
       equipo1: 'Real Sociedad B',
