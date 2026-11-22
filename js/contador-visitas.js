@@ -13,7 +13,7 @@
 
 (function () {
   // ⬇️ PEGA AQUÍ la URL de tu Worker (sin "/" al final) cuando lo crees.
-  const API_VISITAS = 'https://contador-visitas.CAMBIAR.workers.dev';
+  const API_VISITAS = 'https://contador-visitas.taramunde1974.workers.dev';
 
   const CLAVE_SESION = 'sc_visita_contada';
   const PAISES_VISIBLES = 6;
