@@ -1068,8 +1068,8 @@
       fecha: '2026-11-22',
       hora: '14:00',
       aproximada: false,
-      goles1: null,
-      goles2: null,
+      goles1: 3,
+      goles2: 0,
     },
     {
       equipo1: 'Girona F.C.',
