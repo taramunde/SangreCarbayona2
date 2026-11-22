@@ -2148,3 +2148,32 @@ img {
     letter-spacing: 0.5px;
   }
 }
+
+/* ===================================
+   CANDADO DISCRETO (portada → privado.html)
+   Casi invisible: se ve si diriges la vista ahí.
+   =================================== */
+.candado-zona {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 4px 12px;
+}
+
+.candado-discreto {
+  display: inline-block;
+  min-width: 1.6em;
+  min-height: 1.6em;
+  padding: 4px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  opacity: 0.35;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.candado-discreto:hover,
+.candado-discreto:focus-visible {
+  opacity: 0.9;
+  color: var(--primary-color);
+}

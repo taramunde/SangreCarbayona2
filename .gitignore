@@ -3,3 +3,7 @@ node_modules/
 
 # Archivos temporales de Excel mientras el libro está abierto.
 excel/~$*
+
+# Contenido SIN CIFRAR de la zona privada (privado.html). Solo en tu PC.
+# Lo que se sube es js/data-privado.js (cifrado con generador/cifrar-privado.js).
+privado-fuente/

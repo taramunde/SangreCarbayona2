@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/webp" href="img/varios/LogoSangreCarbayona.webp" />
+    <title data-i18n="privado_titulo_pagina">En construcción | Sangre Carbayona</title>
+    <link rel="stylesheet" href="css/styles.css?nocache=20261122v11" />
+    <link rel="stylesheet" href="css/privado.css?nocache=20261122v11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cabecera -->
+    <section class="page-header privado-header">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html" data-i18n="nav_inicio">Inicio</a><span>/</span>
+          <span class="current" data-i18n="privado_migas">Zona en construcción</span>
+        </div>
+        <h1 class="page-title" data-i18n="privado_titulo">En construcción</h1>
+      </div>
+    </section>
+
+    <main class="privado-main">
+      <div class="container">
+        <!-- Acceso con PIN (lo gestiona js/privado.js) -->
+        <div class="privado-acceso" id="privadoAcceso">
+          <div class="privado-icono" aria-hidden="true">
+            <i class="fas fa-gear privado-engranaje-grande"></i>
+            <i class="fas fa-gear privado-engranaje-peque"></i>
+          </div>
+          <h2 data-i18n="privado_trabajando">Estamos trabajando</h2>
+          <p class="privado-texto" data-i18n="privado_texto">
+            Esta sección está en desarrollo. El acceso está restringido.
+          </p>
+
+          <form class="privado-form" id="privadoForm" autocomplete="off" novalidate>
+            <label for="privadoPin" class="privado-label" data-i18n="privado_pin_label">
+              Introduce el PIN de acceso
+            </label>
+            <input
+              id="privadoPin"
+              class="privado-pin"
+              type="password"
+              inputmode="numeric"
+              pattern="[0-9]{8}"
+              maxlength="8"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="••••••••"
+              aria-describedby="privadoMensaje"
+              required
+            />
+            <button type="submit" class="privado-boton" id="privadoBoton">
+              <i class="fas fa-lock-open"></i>
+              <span data-i18n="privado_entrar">Entrar</span>
+            </button>
+            <p class="privado-mensaje" id="privadoMensaje" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- Contenido descifrado -->
+        <div class="privado-contenido" id="privadoContenido" hidden></div>
+      </div>
+    </main>
+
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <script src="js/i18n.js?nocache=20261122v11"></script>
+    <script src="js/seo.js?nocache=20261122v11"></script>
+    <script src="js/data-club.js?nocache=20261122v11"></script>
+    <script src="js/script.js?nocache=20261122v11"></script>
+    <script src="js/data-jugadores.js?nocache=20261122v11"></script>
+    <script src="js/data-privado.js?nocache=20261122v11"></script>
+    <script src="js/privado.js?nocache=20261122v11"></script>
+    <script src="js/main.js?nocache=20261122v11"></script>
+    <script src="js/busqueda.js?nocache=20261122v11"></script>
+  </body>
+</html>
