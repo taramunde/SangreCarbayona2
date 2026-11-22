@@ -46,40 +46,39 @@ const MEDIOS_CONFIG = {
 const NOTICIAS_DATA = [
   {
     medio: 'lavozdeasturias',
-    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/14/real-oviedo-queda-cortisimo-debut-raul/00031794689726033780370.htm',
-    titulo: 'El Real Oviedo se queda cortísimo en el debut de Raúl.',
+    url: 'https://www.lavozdeasturias.es/noticia/azulcarbayon/2026/11/22/real-oviedo-tirarse-pelos/00031795355947517914284.htm',
+    titulo: 'Un Real Oviedo para tirarse de los pelos.',
     descripcion:
-      'Los azules se pusieron por delante y vieron como el Girona (1-2) remontó en cuestión de cinco minutos y no sufrió en la recta final. Al final del encuentro se escuchó «Pachuca vete ya» y «directiva dimisión».',
-    imagen: 'img/varios/J14LVA.webp',
-    fecha: '14 noviembre 2026',
+      'Los azules fueron inferiores al Córdoba desde el inicio y los de Iván Ania (3-0) aprovecharon los errores de un equipo muy débil. Segunda derrota seguida para Raúl González.',
+    imagen: 'img/varios/J15LVA.webp',
+    fecha: '22 noviembre 2026',
   },
   {
     medio: 'lanuevaespana',
-    url: 'https://www.lne.es/real-oviedo/2026/11/14/estreno-raul-batacazo-girona-remonta-136448841.html',
-    titulo:
-      'En el estreno de Raúl, batacazo: el Girona remonta ante un Oviedo sin reacción (1-2).',
+    url: 'https://www.lne.es/real-oviedo/2026/11/22/ania-le-gana-partida-raul-136719562.html',
+    titulo: 'Ania le gana la partida a Raúl: derrota sonrojante del Real Oviedo en Córdoba (3-0).',
     descripcion:
-      'Reina adelantó a los azules tras sufrir la primera parte, pero los errores defensivos facilitaron la respuesta del Girona. El partido se cerró con gritos contra el máximo accionista y la directiva.',
-    imagen: 'img/varios/J14LNE.webp',
-    fecha: '14 noviembre 2026',
+      'Los azules cierran su visita al Nuevo Arcángel con una dura derrota ante un Córdoba muy superior, que sentenció el choque con eficacia ante las constantes facilidades defensivas del bloque carbayón.',
+    imagen: 'img/varios/J15LNE.webp',
+    fecha: '22 noviembre 2026',
   },
   {
     medio: 'elcomercio',
-    url: 'https://www.elcomercio.es/real-oviedo/raul-estrena-derrota-mala-imagen-real-oviedo-20261114233945-nt.html',
-    titulo: 'Raúl se estrena con derrota y mala imagen para el Real Oviedo.',
+    url: 'https://www.elcomercio.es/real-oviedo/real-oviedo-empeora-sintomas-reaccion-cordoba-resultado-goles-20261122165413-nt.html',
+    titulo: 'El Real Oviedo empeora y no da síntomas de reacción tampoco contra el Córdoba.',
     descripcion:
-      'El cambio en el banquillo del Real Oviedo no se notó en el campo, el equipo volvió a ofrecer una mala imagen y acabó cayendo derrotado.',
-    imagen: 'img/varios/J14EC.webp',
-    fecha: '14 noviembre 2026',
+      'El equipo azul sigue sin mejorar y encadena la segunda derrota consecutiva desde la llegada de Raúl en un desastroso partido.',
+    imagen: 'img/varios/J15EC.webp',
+    fecha: '22 noviembre 2026',
   },
   {
     medio: 'killerasturias',
-    url: 'https://killerasturias.com/cronicas/la-cronica-un-gigante-frustra-el-estreno-de-raul',
-    titulo: 'La Crónica: Un gigante frustra el estreno de Raúl.',
+    url: 'https://killerasturias.com/index.php/cronicas/la-cronica-oviedo',
+    titulo: 'La Crónica: El Oviedo pierde los papeles en Córdoba.',
     descripcion:
-      'Primera derrota de la etapa del técnico madrileño al frente del Real Oviedo tras la remontada del Girona en el Carlos Tartiere.',
-    imagen: 'img/varios/J14KA.webp',
-    fecha: '14 noviembre 2026',
+      'El conjunto carbayón suma su segunda derrota consecutiva de la mano del nuevo entrenador y ofrece una de sus versiones más débiles de la temporada.',
+    imagen: 'img/varios/J15KA.webp',
+    fecha: '22 noviembre 2026',
   },
 ];
 
