@@ -82,7 +82,7 @@
 /* global CLUB_DATA */
 
 CLUB_DATA.alineacion = {
-  paraFecha: '2026-11-14',
+  paraFecha: '2026-11-22',
 
   estado: 'confirmada',
   formacion: '4231',
@@ -93,7 +93,7 @@ CLUB_DATA.alineacion = {
     { slot: 'def3', jugadorId: 'david-costas-cordal', capitan: true },
     { slot: 'def4', jugadorId: 'david-jimenez-corredor' },
     { slot: 'mid1', jugadorId: 'youness-lachhab' },
-    { slot: 'mid2', jugadorId: 'alberto-reina-campos' },
+    { slot: 'mid2', jugadorId: 'enzo-perez-miranda' },
     { slot: 'mid3', jugadorId: 'estanislau-pedrola-fortuny' },
     { slot: 'mid4', jugadorId: 'mikel-goti-lopez' },
     { slot: 'mid5', jugadorId: 'ilyas-chaira-oihi' },
@@ -101,13 +101,13 @@ CLUB_DATA.alineacion = {
   ],
   suplentes: [
     'miguel-de-jesus-narvaez-lopez',
+    'aisar-ahmed-ahmed',
     'juan-cruz-alvaro-armada',
     'daniel-villahermosa-martinez',
     'jacobo-gonzalez-rodriganez',
     'carlos-fernandez-luna',
     'aritz-aldasoro-sarriegi',
     'victor-garcia-mingo',
-    'pablo-saenz-ezquerra',
     'ignacio-vidal-miralles',
     'jose-luis-morales-nogales',
     'diego-menendez-secades',
