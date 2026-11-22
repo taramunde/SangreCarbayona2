@@ -728,6 +728,13 @@
   // ya usan las tarjetas del calendario, para que el widget "hero" de
   // index.html (js/app.js) no tenga que duplicar esta lógica.
   window.getEtiquetaFecha = etiquetaFecha;
+  // Partidos del Oviedo aún sin resultado (liga + Copa), para la cuenta
+  // atrás de la portada (js/cuenta-atras.js).
+  window.getPartidosPendientesOviedo = function () {
+    return getPartidosOviedo()
+      .concat(getPartidosEspeciales())
+      .filter((p) => !p.jugado && !p.aplazado && p.fecha);
+  };
 
   // ── Estilos inline para el widget home ──────────────
   const homeStyles = document.createElement('style');

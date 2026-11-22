@@ -2003,3 +2003,148 @@ img {
     gap: 6px;
   }
 }
+
+/* ===================================
+   CUENTA ATRÁS (portada, js/cuenta-atras.js)
+   Va montada sobre el borde entre el hero azul y la zona blanca.
+   =================================== */
+.cuenta-atras-wrap {
+  position: relative;
+  z-index: 2;
+  margin-top: -56px;
+  margin-bottom: -16px;
+}
+
+.ca-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #16305a 0%, var(--primary-dark) 100%);
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(15, 35, 64, 0.35);
+  padding: 18px 24px 16px;
+  text-align: center;
+  color: #fff;
+}
+
+.ca-titulo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+}
+
+.ca-titulo i {
+  margin-right: 6px;
+}
+
+.ca-partido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ca-partido .es-oviedo {
+  color: #ffcc00;
+}
+
+.ca-escudo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.ca-vs {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: lowercase;
+}
+
+.ca-reloj {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ca-unidad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 78px;
+  padding: 10px 6px 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.ca-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffcc00;
+  font-variant-numeric: tabular-nums;
+}
+
+.ca-label {
+  margin-top: 6px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ca-sep {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  padding-top: 10px;
+  color: rgba(201, 162, 39, 0.6);
+}
+
+.ca-info {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 560px) {
+  .cuenta-atras-wrap {
+    margin-top: -40px;
+  }
+  .ca-card {
+    padding: 14px 12px 12px;
+  }
+  .ca-reloj {
+    gap: 4px;
+  }
+  .ca-unidad {
+    min-width: 0;
+    flex: 1;
+    padding: 8px 2px 6px;
+  }
+  .ca-num {
+    font-size: 1.7rem;
+  }
+  .ca-sep {
+    font-size: 1.4rem;
+    padding-top: 6px;
+  }
+  .ca-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.5px;
+  }
+}

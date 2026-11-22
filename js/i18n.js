@@ -85,6 +85,12 @@ const translations = {
     finalizado: 'Finalizado',
     por_disputar: 'Por disputar',
     proximo_partido_label: 'Próximo partido',
+    cuenta_atras_titulo: 'Cuenta atrás para el próximo partido',
+    cuenta_dias: 'Días',
+    cuenta_horas: 'Horas',
+    cuenta_minutos: 'Minutos',
+    cuenta_segundos: 'Segundos',
+    cuenta_hora_por_confirmar: 'Hora por confirmar',
     en_casa: 'En casa',
     fuera: 'Fuera',
     jornada_abrev: 'J',
@@ -667,6 +673,12 @@ const translations = {
     finalizado: 'Finished',
     por_disputar: 'Upcoming',
     proximo_partido_label: 'Next match',
+    cuenta_atras_titulo: 'Countdown to the next match',
+    cuenta_dias: 'Days',
+    cuenta_horas: 'Hours',
+    cuenta_minutos: 'Minutes',
+    cuenta_segundos: 'Seconds',
+    cuenta_hora_por_confirmar: 'Kick-off time TBC',
     en_casa: 'Home',
     fuera: 'Away',
     jornada_abrev: 'M', // Matchday
@@ -1316,6 +1328,11 @@ function setLanguage(lang) {
 
   if (typeof window.renderAlineacion === 'function') {
     window.renderAlineacion();
+  }
+
+  // Cuenta atrás de la portada.
+  if (typeof window.renderCuentaAtras === 'function') {
+    window.renderCuentaAtras();
   }
 
   // Texto al compartir con el próximo partido (calendario y portada).
