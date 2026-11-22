@@ -1098,8 +1098,8 @@
     {
       equipo1: 'C.D. Tenerife',
       equipo2: 'R.C.D. Mallorca',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 0,
     },
 
     // Jornada 16 (29/11/2026)
