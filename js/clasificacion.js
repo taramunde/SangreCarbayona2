@@ -1041,8 +1041,8 @@
     {
       equipo1: 'Burgos C.F.',
       equipo2: 'Albacete Balompié',
-      goles1: null,
-      goles2: null,
+      goles1: 1,
+      goles2: 0,
     },
     {
       equipo1: 'C.D. Castellón',

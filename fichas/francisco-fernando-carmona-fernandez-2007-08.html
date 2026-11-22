@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francisco Fernando Carmona Fernández | Real Oviedo - Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Estadísticas, trayectoria y ficha técnica de Francisco Fernando Carmona Fernández. Temporada 2007/08."
+    />
+    <meta property="og:title" content="Francisco Fernando Carmona Fernández - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Estadísticas, trayectoria y ficha técnica de Francisco Fernando Carmona Fernández. Temporada 2007/08."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/k4MmTg7c/Carmona-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Francisco Fernando Carmona Fernández - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/francisco-fernando-carmona-fernandez-2007-08.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Francisco Fernando Carmona Fernández - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Estadísticas, trayectoria y ficha técnica de Francisco Fernando Carmona Fernández. Temporada 2007/08."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/k4MmTg7c/Carmona-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/francisco-fernando-carmona-fernandez.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/francisco-fernando-carmona-fernandez.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Francisco Fernando Carmona Fernández",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/francisco-fernando-carmona-fernandez.html",
+  "image": "https://i.postimg.cc/k4MmTg7c/Carmona-PNG.webp",
+  "jobTitle": "Central",
+  "birthDate": "1985-06-03",
+  "height": "1.86 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Almendralejo",
+      "addressRegion": "Badajoz"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/k4MmTg7c/Carmona-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'francisco-fernando-carmona-fernandez',
+        season: '2007-08',
+        nombre: 'Francisco Fernando Carmona Fernández',
+        imagen: 'https://i.postimg.cc/k4MmTg7c/Carmona-PNG.webp',
+        posicion: 'Central',
+        codigo: 'francisco-fernando-carmona-fernandez-2007-08',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Francisco Fernando Carmona Fernández — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Francisco Fernando Carmona Fernández</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Francisco Fernando Carmona Fernández with Real Oviedo (20)">Partidos de Francisco Fernando Carmona Fernández con el Real Oviedo (20)</span></summary>
+          <ul>
+          <li><small data-en="25 May 2008">25 may 2008</small><a href="../partidos/caravaca-cf-real-oviedo-2008-05-25.html">Caravaca C.F. 4-1 Real Oviedo</a></li>
+          <li><small data-en="11 May 2008">11 may 2008</small><a href="../partidos/real-tapia-cf-real-oviedo-2008-05-11.html">Real Tapia C.F. 2-0 Real Oviedo</a></li>
+          <li><small data-en="27 Apr 2008">27 abr 2008</small><a href="../partidos/club-hispano-de-castrillon-real-oviedo-2008-04-27.html">Club Hispano de Castrillón 0-1 Real Oviedo</a></li>
+          <li><small data-en="20 Apr 2008">20 abr 2008</small><a href="../partidos/real-oviedo-caudal-deportivo-2008-04-20.html">Real Oviedo 4-0 Caudal Deportivo</a></li>
+          <li><small data-en="16 Dec 2007">16 dic 2007</small><a href="../partidos/cd-tuilla-real-oviedo-2007-12-16.html">C.D. Tuilla 0-1 Real Oviedo</a></li>
+          <li><small data-en="12 Dec 2007">12 dic 2007</small><a href="../partidos/real-oviedo-club-hispano-de-castrillon-2007-12-12.html">Real Oviedo 10-0 Club Hispano de Castrillón</a></li>
+          <li><small data-en="18 Nov 2007">18 nov 2007</small><a href="../partidos/u-ceares-real-oviedo-2007-11-18.html">U. Ceares 0-1 Real Oviedo</a></li>
+          <li><small data-en="4 Nov 2007">4 nov 2007</small><a href="../partidos/cd-llanes-real-oviedo-2007-11-04.html">C.D. Llanes 3-1 Real Oviedo</a></li>
+          <li><small data-en="1 Nov 2007">1 nov 2007</small><a href="../partidos/real-oviedo-cd-universidad-de-oviedo-2007-11-01.html">Real Oviedo 1-0 C.D. Universidad de Oviedo</a></li>
+          <li><small data-en="21 Oct 2007">21 oct 2007</small><a href="../partidos/sd-navarro-cf-real-oviedo-2007-10-21.html">S.D. Navarro C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="14 Oct 2007">14 oct 2007</small><a href="../partidos/real-oviedo-up-de-langreo-2007-10-14.html">Real Oviedo 3-3 U.P. de Langreo</a></li>
+          <li><small data-en="7 Oct 2007">7 oct 2007</small><a href="../partidos/cd-lealtad-de-villaviciosa-real-oviedo-2007-10-07.html">C.D. Lealtad de Villaviciosa 1-0 Real Oviedo</a></li>
+          <li><small data-en="16 Sep 2007">16 sep 2007</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2007-09-16.html">Real Oviedo 3-2 Real Sporting de Gijón B</a></li>
+          <li><small data-en="9 Sep 2007">9 sep 2007</small><a href="../partidos/ribadesella-cf-real-oviedo-2007-09-09.html">Ribadesella C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="5 Sep 2007">5 sep 2007</small><a href="../partidos/up-de-langreo-real-oviedo-2007-09-05.html">U.P. de Langreo 0-0 Real Oviedo</a></li>
+          <li><small data-en="25 Aug 2007">25 ago 2007</small><a href="../partidos/sd-colloto-real-oviedo-2007-08-25.html">S.D. Colloto 0-2 Real Oviedo</a></li>
+          <li><small data-en="22 Aug 2007">22 ago 2007</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2007-08-22.html">Real Oviedo 2-1 Real Sporting de Gijón B</a></li>
+          <li><small data-en="15 Aug 2007">15 ago 2007</small><a href="../partidos/ribadesella-cf-real-oviedo-2007-08-15.html">Ribadesella C.F. 1-2 Real Oviedo</a></li>
+          <li><small data-en="12 Aug 2007">12 ago 2007</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2007-08-12.html">Real Sporting de Gijón B 2-1 Real Oviedo</a></li>
+          <li><small data-en="5 Aug 2007">5 ago 2007</small><a href="../partidos/real-oviedo-ribadesella-cf-2007-08-05.html">Real Oviedo 1-0 Ribadesella C.F.</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261122v17"></script>
+    <script src="../js/data-club.js?nocache=20261122v17"></script>
+    <script src="../js/data-jugadores.js?nocache=20261122v17"></script>
+    <script src="../js/busqueda.js?nocache=20261122v17"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261122v17"></script>
+    <script src="../js/data-historico.js?nocache=20261122v17"></script>
+    <script src="../js/data-utils.js?nocache=20261122v17"></script>
+    <script src="../js/app.js?nocache=20261122v17"></script>
+    <script src="../js/script.js?nocache=20261122v17"></script>
+    <script src="../js/main.js?nocache=20261122v17"></script>
+  </body>
+</html>
