@@ -7,15 +7,16 @@
    saca del PIN con PBKDF2-SHA256 y muchas iteraciones). Sin el PIN
    correcto, ese archivo es solo texto ilegible.
 
-   Para cambiar el contenido o el PIN:
-     node generador/cifrar-privado.js
-   (ver instrucciones en ese archivo).
+   La zona NO se queda abierta: en cuanto sales de la página (por un
+   enlace, el botón "atrás", recargando…) se cierra y hay que volver a
+   poner el PIN. Si está abierta y pulsas un enlace de la web, antes se
+   pide confirmación.
+
+   Para cambiar el contenido o el PIN: npm run subir / npm run privado
+   (ver generador/cifrar-privado.js).
    =================================== */
 
-/* global SC_PRIVADO */
-
 (function () {
-  const CLAVE_SESION = 'sc_privado_clave';
   const TEXTOS = {
     es: {
       incorrecto: 'PIN incorrecto.',
@@ -25,6 +26,10 @@
       comprobando: 'Comprobando…',
       sinContenido: 'Esta zona todavía no está configurada.',
       cerrar: 'Cerrar zona privada',
+      salirTitulo: 'Vas a salir de la zona privada',
+      salirTexto: 'Se cerrará y, para volver a entrar, tendrás que introducir el PIN de nuevo.',
+      salir: 'Salir',
+      quedarme: 'Quedarme',
     },
     en: {
       incorrecto: 'Wrong PIN.',
@@ -34,6 +39,10 @@
       comprobando: 'Checking…',
       sinContenido: 'This area is not set up yet.',
       cerrar: 'Close private area',
+      salirTitulo: "You're about to leave the private area",
+      salirTexto: 'It will be locked and you will need to enter the PIN again to come back.',
+      salir: 'Leave',
+      quedarme: 'Stay',
     },
   };
 
@@ -43,12 +52,19 @@
   };
 
   const $ = (id) => document.getElementById(id);
+  let abierta = false;
   let fallos = 0;
   let bloqueadoHasta = 0;
 
-  // ---------- Base64 <-> bytes ----------
+  // Versiones anteriores guardaban la clave en la sesión: se borra.
+  try {
+    sessionStorage.removeItem('sc_privado_clave');
+  } catch (e) {
+    /* nada */
+  }
+
+  // ---------- Base64 -> bytes ----------
   const deB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-  const aB64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
 
   // ---------- Cifrado ----------
   async function claveDesdePin(pin, datos) {
@@ -63,7 +79,7 @@
       { name: 'PBKDF2', hash: 'SHA-256', salt: deB64(datos.salt), iterations: datos.iter },
       base,
       { name: 'AES-GCM', length: 256 },
-      true, // exportable, para recordarla durante la sesión
+      false,
       ['decrypt'],
     );
   }
@@ -77,7 +93,7 @@
     return new TextDecoder().decode(plano);
   }
 
-  // ---------- Interfaz ----------
+  // ---------- Abrir / cerrar ----------
   function mensaje(texto, tipo) {
     const el = $('privadoMensaje');
     el.textContent = texto || '';
@@ -95,23 +111,93 @@
        </div>`;
     cont.hidden = false;
     $('privadoAcceso').hidden = true;
-    $('privadoCerrar').addEventListener('click', cerrar);
+    $('privadoCerrar').addEventListener('click', () => cerrar(true));
+    abierta = true;
   }
 
-  function cerrar() {
-    try {
-      sessionStorage.removeItem(CLAVE_SESION);
-    } catch (e) {
-      /* nada */
-    }
-    $('privadoContenido').innerHTML = '';
-    $('privadoContenido').hidden = true;
+  function cerrar(enfocar) {
+    abierta = false;
+    cerrarAviso();
+    const cont = $('privadoContenido');
+    if (!cont) return;
+    cont.innerHTML = '';
+    cont.hidden = true;
     $('privadoAcceso').hidden = false;
     $('privadoPin').value = '';
     mensaje('');
-    $('privadoPin').focus();
+    if (enfocar) $('privadoPin').focus();
   }
 
+  // ---------- Aviso "vas a salir" ----------
+  let destinoPendiente = null;
+
+  function crearAviso() {
+    if ($('privadoAviso')) return;
+    const aviso = document.createElement('div');
+    aviso.id = 'privadoAviso';
+    aviso.className = 'privado-aviso';
+    aviso.hidden = true;
+    aviso.innerHTML = `
+      <div class="privado-aviso-caja" role="alertdialog" aria-modal="true"
+           aria-labelledby="privadoAvisoTitulo" aria-describedby="privadoAvisoTexto">
+        <div class="privado-aviso-icono"><i class="fas fa-lock"></i></div>
+        <h3 id="privadoAvisoTitulo"></h3>
+        <p id="privadoAvisoTexto"></p>
+        <div class="privado-aviso-botones">
+          <button type="button" class="privado-aviso-quedarme" id="privadoAvisoQuedarme"></button>
+          <button type="button" class="privado-aviso-salir" id="privadoAvisoSalir"></button>
+        </div>
+      </div>`;
+    document.body.appendChild(aviso);
+    $('privadoAvisoQuedarme').addEventListener('click', cerrarAviso);
+    $('privadoAvisoSalir').addEventListener('click', () => {
+      const destino = destinoPendiente;
+      cerrar(false);
+      if (destino) window.location.href = destino;
+    });
+    aviso.addEventListener('click', (e) => {
+      if (e.target === aviso) cerrarAviso(); // clic fuera de la caja = quedarse
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !aviso.hidden) cerrarAviso();
+    });
+  }
+
+  function abrirAviso(destino) {
+    crearAviso();
+    destinoPendiente = destino;
+    $('privadoAvisoTitulo').textContent = tx('salirTitulo');
+    $('privadoAvisoTexto').textContent = tx('salirTexto');
+    $('privadoAvisoQuedarme').textContent = tx('quedarme');
+    $('privadoAvisoSalir').textContent = tx('salir');
+    $('privadoAviso').hidden = false;
+    $('privadoAvisoQuedarme').focus();
+  }
+
+  function cerrarAviso() {
+    const aviso = $('privadoAviso');
+    if (aviso) aviso.hidden = true;
+    destinoPendiente = null;
+  }
+
+  // Cualquier enlace que lleve a otra página (cabecera, menú, footer,
+  // logo…) pasa por el aviso mientras la zona está abierta. Se escucha
+  // en "captura" para ir antes que los demás scripts de la web.
+  function vigilarEnlaces(e) {
+    if (!abierta) return;
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+    if (a.target === '_blank' || e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return; // otra pestaña: no sales
+    const destino = new URL(href, location.href);
+    if (destino.pathname === location.pathname && destino.search === location.search) return;
+    e.preventDefault();
+    e.stopPropagation();
+    abrirAviso(destino.href);
+  }
+
+  // ---------- PIN ----------
   async function intentar(e) {
     e.preventDefault();
     const datos = window.SC_PRIVADO;
@@ -129,12 +215,8 @@
     try {
       const clave = await claveDesdePin(pin, datos);
       const html = await descifrar(clave, datos); // falla si el PIN no es el bueno
-      try {
-        sessionStorage.setItem(CLAVE_SESION, aB64(await crypto.subtle.exportKey('raw', clave)));
-      } catch (err) {
-        /* sin sesión: habrá que poner el PIN otra vez */
-      }
       fallos = 0;
+      input.value = '';
       mensaje('');
       mostrarContenido(html);
     } catch (err) {
@@ -156,35 +238,22 @@
     }
   }
 
-  // Si ya se abrió en esta sesión (pestaña), se abre sola.
-  async function abrirConSesion() {
-    const datos = window.SC_PRIVADO;
-    let guardada = null;
-    try {
-      guardada = sessionStorage.getItem(CLAVE_SESION);
-    } catch (e) {
-      /* nada */
-    }
-    if (!datos || !guardada) return;
-    try {
-      const clave = await crypto.subtle.importKey('raw', deB64(guardada), 'AES-GCM', false, [
-        'decrypt',
-      ]);
-      mostrarContenido(await descifrar(clave, datos));
-    } catch (e) {
-      sessionStorage.removeItem(CLAVE_SESION); // el contenido o el PIN cambiaron
-    }
-  }
-
   function iniciar() {
     const form = $('privadoForm');
     if (!form) return;
     form.addEventListener('submit', intentar);
-    // Solo números en el campo del PIN.
     $('privadoPin').addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/\D/g, '').slice(0, 8);
     });
-    abrirConSesion();
+    document.addEventListener('click', vigilarEnlaces, true);
+
+    // Al salir de la página se borra el contenido, para que el navegador
+    // no guarde una "foto" con la zona abierta (botón atrás)…
+    window.addEventListener('pagehide', () => cerrar(false));
+    // …y si aun así vuelve de esa caché, se cierra.
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) cerrar(false);
+    });
   }
 
   if (document.readyState === 'loading') {

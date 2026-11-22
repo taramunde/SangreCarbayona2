@@ -322,3 +322,107 @@
     padding: 32px 20px 24px;
   }
 }
+
+/* --- Aviso "vas a salir de la zona privada" --- */
+.privado-aviso {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 35, 64, 0.55);
+  backdrop-filter: blur(3px);
+  animation: privado-aparecer 0.15s ease-out;
+}
+
+.privado-aviso[hidden] {
+  display: none !important;
+}
+
+.privado-aviso-caja {
+  width: 100%;
+  max-width: 400px;
+  padding: 28px 26px 22px;
+  background: var(--white);
+  border-radius: 14px;
+  border-top: 4px solid var(--secondary-color);
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+}
+
+.privado-aviso-icono {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gray-100);
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+.privado-aviso-caja h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin: 0 0 8px;
+}
+
+.privado-aviso-caja p {
+  color: var(--gray-600);
+  margin: 0 0 22px;
+  line-height: 1.5;
+}
+
+.privado-aviso-botones {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.privado-aviso-botones button {
+  flex: 1;
+  max-width: 160px;
+  padding: 10px 16px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.privado-aviso-quedarme {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+}
+
+.privado-aviso-quedarme:hover {
+  background: var(--primary-dark);
+}
+
+.privado-aviso-salir {
+  background: transparent;
+  color: var(--gray-600);
+  border: 1px solid var(--gray-300);
+}
+
+.privado-aviso-salir:hover {
+  background: var(--gray-100);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+@keyframes privado-aparecer {
+  from {
+    opacity: 0;
+  }
+}
