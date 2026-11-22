@@ -1092,8 +1092,8 @@
     {
       equipo1: 'Real Sporting de Gijón',
       equipo2: 'U.D. Las Palmas',
-      goles1: null,
-      goles2: null,
+      goles1: 0,
+      goles2: 2,
     },
     {
       equipo1: 'C.D. Tenerife',
