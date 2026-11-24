@@ -1059,8 +1059,8 @@
     {
       equipo1: 'A.D. Ceuta F.C.',
       equipo2: 'U.D. Almería',
-      goles1: null,
-      goles2: null,
+      goles1: 2,
+      goles2: 3,
     },
     {
       equipo1: 'Córdoba C.F.',
