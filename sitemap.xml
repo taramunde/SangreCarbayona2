@@ -2587,6 +2587,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/partidos/jugadores.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/rivales.html</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>

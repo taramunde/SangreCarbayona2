@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{NOMBRE}} | Real Oviedo - Sangre Carbayona</title>
+    <title>{{TITULO}}</title>
 
     <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
     <link
@@ -54,18 +54,18 @@
          ============================================================ -->
     <meta
       name="description"
-      content="Estadísticas, trayectoria y ficha técnica de {{NOMBRE}}. Temporada {{TEMPORADA_NOMBRE}}."
+      content="{{DESCRIPCION}}"
     />
     <meta property="og:title" content="{{NOMBRE}} - Real Oviedo" />
     <meta
       property="og:description"
-      content="Estadísticas, trayectoria y ficha técnica de {{NOMBRE}}. Temporada {{TEMPORADA_NOMBRE}}."
+      content="{{DESCRIPCION}}"
     />
     <meta property="og:image" content="{{IMAGEN}}" />
     <meta property="og:image:alt" content="Foto de {{NOMBRE}} - Real Oviedo" />
     <meta
       property="og:url"
-      content="https://taramunde.github.io/SangreCarbayona2/fichas/{{SLUG}}.html"
+      content="{{CANONICAL_URL}}"
     />
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Sangre Carbayona" />
@@ -73,7 +73,7 @@
     <meta name="twitter:title" content="{{NOMBRE}} - Real Oviedo" />
     <meta
       name="twitter:description"
-      content="Estadísticas, trayectoria y ficha técnica de {{NOMBRE}}. Temporada {{TEMPORADA_NOMBRE}}."
+      content="{{DESCRIPCION}}"
     />
     <meta name="twitter:image" content="{{IMAGEN}}" />
 
@@ -185,6 +185,12 @@
     <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
          partir de los datos). Está en el HTML servido para que Google la
          lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <!-- Resumen ESTÁTICO en texto (lo escribe generador/generar.js).
+         Es contenido visible en el HTML servido: sin él, Google solo ve
+         una página casi vacía hasta ejecutar el JavaScript y suele
+         dejarla como "rastreada, actualmente sin indexar". -->
+    {{RESUMEN_ESTATICO}}
+
     {{PARTIDOS_ESTATICOS}}
 
     <!-- Footer -->

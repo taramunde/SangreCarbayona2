@@ -1068,6 +1068,160 @@ function nombreParaOrdenar(nombre) {
 }
 
 // ═════════════════════════════════════════════════════════════
+// 3c. ÍNDICE DE JUGADORES Y ENTRENADORES (/partidos/jugadores.html)
+// ═════════════════════════════════════════════════════════════
+// Página 100 % estática con un enlace normal (<a href>) a la ficha
+// CANÓNICA de cada jugador y entrenador. Es la vía principal para que
+// Google descubra y valore las fichas: sin enlaces internos rastreables,
+// las fichas solo existen en el sitemap y Google las deja como
+// "descubiertas, actualmente sin indexar".
+{
+  const personas = new Map(); // slug ficha → { nombre, apodo, tipo, desde, hasta, rol }
+  const normalizar = (t) =>
+    String(t)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  const apuntar = (slug, datos, tid) => {
+    const x = personas.get(slug);
+    if (!x) personas.set(slug, { ...datos, desde: tid, hasta: tid });
+    else {
+      if (tid < x.desde) x.desde = tid;
+      if (tid > x.hasta) x.hasta = tid;
+    }
+  };
+  Object.entries(CLUB_DATA.temporadas || {}).forEach(([tid, temp]) => {
+    (temp.jugadores || []).forEach((j) => {
+      const m = (CLUB_DATA.jugadoresMaestro || {})[j.codigo] || {};
+      // Mismo criterio que generar.js para saber si existe la ficha
+      if (!j.codigo || !(m.nombreCompleto || m.imagen || j.nombreCompleto || j.imagen)) return;
+      apuntar(j.codigo, {
+        nombre: m.nombreCompleto || j.nombreCompleto || j.nombre || j.codigo,
+        apodo: m.apodo || j.apodo || '',
+        tipo: 'jugador',
+        rol: m.posicion || j.posicion || '',
+      }, tid);
+    });
+    (temp.cuerpoTecnico || []).forEach((t) => {
+      let entId = t.codigo || t.id;
+      if (!entId || typeof entId === 'number') entId = normalizar(t.nombre || '');
+      if (!entId) return;
+      const m = (CLUB_DATA.entrenadorMaestro || {})[String(t.codigo || t.id)] || {};
+      apuntar(`entrenador-${entId}`, {
+        nombre: m.nombreCompleto || t.nombre || String(entId),
+        apodo: m.apodo || t.apodo || '',
+        tipo: 'entrenador',
+        rol: t.cargo || 'Entrenador',
+      }, tid);
+    });
+  });
+
+  // Se ordena por el nombre con el que se conoce al jugador (apodo)
+  const lista = [...personas.entries()].map(([slug, x]) => {
+    const visible = x.apodo && !x.nombre.toLowerCase().startsWith(x.apodo.toLowerCase())
+      ? x.apodo
+      : x.nombre;
+    const orden = normalizar(visible).replace(/-/g, ' ');
+    const letra = /^[a-z]/.test(orden) ? orden[0].toUpperCase() : '#';
+    return { slug, ...x, visible, orden, letra };
+  });
+  lista.sort((a, b) => a.orden.localeCompare(b.orden, 'es'));
+  const letras = [...new Set(lista.map((x) => x.letra))];
+  const nJug = lista.filter((x) => x.tipo === 'jugador').length;
+  const nEnt = lista.length - nJug;
+  const titulo = `Jugadores y entrenadores del Real Oviedo de la A a la Z | Sangre Carbayona`;
+  const descripcion = `Los ${nJug} jugadores y ${nEnt} entrenadores del Real Oviedo desde ${nombreTemporada(temporadasIds[0])}, ordenados alfabéticamente, con enlace a la ficha de cada uno: partidos, goles y trayectoria.`;
+  const descripcionEn = `The ${nJug} players and ${nEnt} managers of Real Oviedo since ${nombreTemporada(temporadasIds[0])}, in alphabetical order, each linked to their profile: matches, goals and career.`;
+  const rango = (x) =>
+    x.desde === x.hasta
+      ? nombreTemporada(x.desde)
+      : `${nombreTemporada(x.desde)}–${nombreTemporada(x.hasta)}`;
+
+  const cuerpo = `
+        <section class="bloque">
+          <p class="texto-intro">${bi(e(descripcion), e(descripcionEn))}</p>
+          <label class="filtro-rivales">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input type="search" id="filtroRivales" placeholder="Buscar jugador..." data-en-placeholder="Search player..." aria-label="Buscar jugador" autocomplete="off" />
+          </label>
+          <nav class="indice-letras" id="indice" aria-label="Índice alfabético">
+            ${letras.map((l) => `<a href="#letra-${l === '#' ? 'otros' : l}">${l}</a>`).join('')}
+          </nav>
+          <p class="sin-resultados" id="sinResultados" hidden>${bi('Ningún jugador coincide con la búsqueda.', 'No player matches your search.')}</p>
+        </section>
+
+        ${letras
+          .map(
+            (l) => `<section class="bloque grupo-letra" id="letra-${l === '#' ? 'otros' : l}">
+          <h2>${l}<a class="volver-indice" href="#indice">${bi('↑ Índice', '↑ Index')}</a></h2>
+          <ul class="lista-rivales">
+            ${lista
+              .filter((x) => x.letra === l)
+              .map(
+                (x) =>
+                  `<li data-buscar="${e([x.visible, x.nombre].map((n) => normalizar(n).replace(/-/g, ' ')).join(' | '))}"><a href="../fichas/${e(x.slug)}.html"><span class="nombre-rival">${e(x.visible)}${x.visible !== x.nombre ? `<small>${e(x.nombre)}</small>` : ''}</span><span class="cuenta">${e(x.tipo === 'entrenador' ? x.rol : x.rol || '')} · ${rango(x)}</span></a></li>`,
+              )
+              .join('\n            ')}
+          </ul>
+        </section>`,
+          )
+          .join('\n\n        ')}
+
+        <script>
+          (function () {
+            var input = document.getElementById('filtroRivales');
+            if (!input) return;
+            var norm = function (t) {
+              return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+            };
+            input.addEventListener('input', function () {
+              var q = norm(input.value);
+              var hay = false;
+              document.querySelectorAll('.grupo-letra').forEach(function (g) {
+                var visibles = 0;
+                g.querySelectorAll('li').forEach(function (li) {
+                  var ok = !q || li.getAttribute('data-buscar').indexOf(q) !== -1;
+                  li.hidden = !ok;
+                  if (ok) visibles++;
+                });
+                g.hidden = visibles === 0;
+                if (visibles) hay = true;
+              });
+              document.getElementById('sinResultados').hidden = hay;
+              document.getElementById('indice').hidden = !!q;
+            });
+          })();
+        </script>`;
+
+  escribir(
+    'jugadores',
+    pagina({
+      titulo,
+      descripcion,
+      slug: 'jugadores',
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Jugadores y entrenadores del Real Oviedo',
+          url: urlAbsoluta('jugadores'),
+        },
+      ],
+      migas: [MIGA_INICIO, MIGA_PARTIDOS, { nombre: 'Jugadores', en: 'Players' }],
+      h1: 'Jugadores y entrenadores del Real Oviedo',
+      h1En: 'Real Oviedo players and managers',
+      subtitulo: `${nJug} jugadores y ${nEnt} entrenadores de la A a la Z`,
+      subtituloEn: `${nJug} players and ${nEnt} managers from A to Z`,
+      cuerpo,
+    }),
+  );
+  console.log(`  ✔ índice de jugadores (${nJug}) y entrenadores (${nEnt})`);
+}
+
+// ═════════════════════════════════════════════════════════════
 // 4. PORTADA DE RESULTADOS (/partidos/index.html)
 // ═════════════════════════════════════════════════════════════
 {
@@ -1131,6 +1285,11 @@ function nombreParaOrdenar(nombre) {
               .join('\n            ')}
           </div>
           <a class="boton-ver-todos" href="rivales.html">${bi(`Ver los ${rivalesOrdenados.length} rivales de la A a la Z →`, `See all ${rivalesOrdenados.length} opponents from A to Z →`)}</a>
+        </section>
+
+        <section class="bloque">
+          <h2>${bi('Jugadores y entrenadores', 'Players and managers')}</h2>
+          <a class="boton-ver-todos" href="jugadores.html">${bi('Ver todos los jugadores y entrenadores de la A a la Z →', 'See all players and managers from A to Z →')}</a>
         </section>`;
 
   escribir(

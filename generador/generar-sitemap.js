@@ -295,6 +295,15 @@ function generarSitemap() {
       priority: '0.8',
     },
     {
+      slug: 'jugadores',
+      contenido: [
+        Object.keys(mapaJugadores).sort(),
+        Object.keys(mapaEntrenadores).sort(),
+      ],
+      changefreq: 'monthly',
+      priority: '0.8',
+    },
+    {
       slug: 'rivales',
       contenido: Object.values(porRival).map((r) => [r.nombre, r.partidos.length]),
       changefreq: 'monthly',

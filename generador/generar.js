@@ -103,6 +103,155 @@ function htmlPartidosEstaticos(nombre, codigo, esEntrenador) {
     </section>`;
 }
 
+
+// ─────────────────────────────────────────────────────────────
+// SEO: título, descripción y resumen en TEXTO VISIBLE de cada ficha.
+// Google decide si indexa una página según el contenido que ve; si el
+// HTML servido es casi todo JavaScript sin texto, la marca como
+// "rastreada/descubierta, actualmente sin indexar". Este bloque mete
+// en el HTML un párrafo real con nombre, apodo, posición y números.
+// ─────────────────────────────────────────────────────────────
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+function nombreTemp(tid) {
+  return tid.replace('-', '/');
+}
+
+// Temporadas (ordenadas) y totales de un jugador/entrenador.
+function trayectoriaEnOviedo(codigo, esEntrenador) {
+  const temporadas = [];
+  let goles = 0;
+  let asistencias = 0;
+  temporadasOrdenadas.forEach((tid) => {
+    const temp = CLUB_DATA.temporadas[tid];
+    if (!temp) return;
+    const lista = esEntrenador ? temp.cuerpoTecnico : temp.jugadores;
+    const m = (lista || []).find((x) =>
+      esEntrenador ? String(x.codigo || x.id) === codigo : x.codigo === codigo,
+    );
+    if (!m) return;
+    temporadas.push(tid);
+    (m.partidos || []).forEach((pp) => {
+      if (pp.minutos === 0) return;
+      goles += Number(pp.goles) || 0;
+      asistencias += Number(pp.asistencias) || 0;
+    });
+  });
+  temporadas.sort();
+  return {
+    temporadas,
+    partidos: partidosDe(codigo, esEntrenador).length,
+    goles,
+    asistencias,
+    enActivo: temporadas.includes(temporadaActualId),
+  };
+}
+
+function rangoTemporadas(t) {
+  if (!t.length) return '';
+  if (t.length === 1) return nombreTemp(t[0]);
+  return `${nombreTemp(t[0])} a ${nombreTemp(t[t.length - 1])}`;
+}
+
+function nombreParaTitulo(datos, nombreMostrar) {
+  const apodo = (datos.apodo || '').trim();
+  if (apodo && !nombreMostrar.toLowerCase().includes(apodo.toLowerCase())) {
+    return `${apodo} (${nombreMostrar})`;
+  }
+  return nombreMostrar;
+}
+
+function seoFicha(datos, nombreMostrar, codigo, esEntrenador, cargo) {
+  const e = PC.escaparHtml;
+  const tr = trayectoriaEnOviedo(codigo, esEntrenador);
+  const esPortero = /portero/i.test(datos.posicion || '');
+  const rol = (esEntrenador ? cargo || 'Entrenador' : datos.posicion || 'Jugador').toLowerCase();
+  const rolEn = esEntrenador
+    ? /principal|primer/i.test(cargo || '') || !cargo
+      ? 'head coach'
+      : rol
+    : String(PC.posicionEn(datos.posicion || '') || 'player').toLowerCase();
+  const nombreTitulo = nombreParaTitulo(datos, nombreMostrar);
+  const nT = tr.temporadas.length;
+  const rango = rangoTemporadas(tr.temporadas);
+
+  // Título: el apodo (como lo busca la gente) + nombre + club + marca
+  const titulo = `${nombreTitulo} – ${esEntrenador ? 'Entrenador' : datos.posicion || 'Jugador'} del Real Oviedo | Sangre Carbayona`;
+
+  const cifras = [];
+  if (tr.partidos) cifras.push(`${tr.partidos} ${esEntrenador ? (tr.partidos === 1 ? 'partido dirigido' : 'partidos dirigidos') : tr.partidos === 1 ? 'partido' : 'partidos'}`);
+  if (!esEntrenador && !esPortero && tr.goles) cifras.push(`${tr.goles} ${tr.goles === 1 ? 'gol' : 'goles'}`);
+  if (!esEntrenador && tr.asistencias) cifras.push(`${tr.asistencias} ${tr.asistencias === 1 ? 'asistencia' : 'asistencias'}`);
+  const descripcion =
+    `${nombreTitulo}, ${rol} del Real Oviedo` +
+    (rango ? ` (${rango})` : '') +
+    (cifras.length ? `: ${cifras.join(', ')}` : '') +
+    `. Estadísticas, partidos y trayectoria en Sangre Carbayona.`;
+
+  // Frase de nacimiento (solo con datos confirmados)
+  let nacimiento = '';
+  let nacimientoEn = '';
+  if (datos.lugarNacimiento || datos.fechaNacimiento) {
+    const lugar = datos.lugarNacimiento
+      ? `${datos.lugarNacimiento}${datos.provinciaNacimiento && datos.provinciaNacimiento !== datos.lugarNacimiento ? ` (${datos.provinciaNacimiento})` : ''}`
+      : '';
+    let fecha = '';
+    let fechaEn = '';
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(datos.fechaNacimiento || '');
+    if (m) {
+      fecha = `el ${Number(m[3])} de ${MESES[Number(m[2]) - 1]} de ${m[1]}`;
+      fechaEn = `on ${MONTHS[Number(m[2]) - 1]} ${Number(m[3])}, ${m[1]}`;
+    }
+    nacimiento = ` Nació${lugar ? ` en ${e(lugar)}` : ''}${fecha ? ` ${fecha}` : ''}.`;
+    nacimientoEn = ` Born${lugar ? ` in ${e(lugar)}` : ''}${fechaEn ? ` ${fechaEn}` : ''}.`;
+  }
+
+  const apodoTxt =
+    datos.apodo && datos.apodo !== nombreMostrar
+      ? `, conocido como <strong>${e(datos.apodo)}</strong>,`
+      : '';
+  const apodoTxtEn =
+    datos.apodo && datos.apodo !== nombreMostrar
+      ? `, known as <strong>${e(datos.apodo)}</strong>,`
+      : '';
+  const verbo = tr.enActivo ? 'forma parte' : 'formó parte';
+  const verboEn = tr.enActivo ? 'is part' : 'was part';
+  const quePlantilla = esEntrenador ? 'del cuerpo técnico' : 'de la plantilla';
+  const quePlantillaEn = esEntrenador ? 'of the coaching staff' : 'of the squad';
+  const tempTxt = nT
+    ? ` en ${nT === 1 ? `la temporada ${rango}` : `${nT} temporadas (${rango})`}`
+    : '';
+  const tempTxtEn = nT
+    ? ` in ${nT === 1 ? `the ${rango.replace(' a ', '–')} season` : `${nT} seasons (${rango.replace(' a ', '–')})`}`
+    : '';
+  const cifrasTxt = cifras.length ? ` Con el club suma ${cifras.join(', ')}.` : '';
+  const cifrasEn = [];
+  if (tr.partidos) cifrasEn.push(`${tr.partidos} ${tr.partidos === 1 ? 'match' : 'matches'}${esEntrenador ? ' in charge' : ''}`);
+  if (!esEntrenador && !esPortero && tr.goles) cifrasEn.push(`${tr.goles} ${tr.goles === 1 ? 'goal' : 'goals'}`);
+  if (!esEntrenador && tr.asistencias) cifrasEn.push(`${tr.asistencias} ${tr.asistencias === 1 ? 'assist' : 'assists'}`);
+  const cifrasTxtEn = cifrasEn.length ? ` With the club: ${cifrasEn.join(', ')}.` : '';
+
+  const parrafoEs =
+    `<strong>${e(nombreMostrar)}</strong>${apodoTxt} ${verbo} ${quePlantilla} del Real Oviedo` +
+    ` como ${e(rol)}${tempTxt}.${cifrasTxt}${nacimiento}`;
+  const parrafoEn =
+    `<strong>${e(nombreMostrar)}</strong>${apodoTxtEn} ${verboEn} of Real Oviedo's ${esEntrenador ? 'coaching staff' : 'squad'}` +
+    ` as ${e(rolEn)}${tempTxtEn}.${cifrasTxtEn}${nacimientoEn}`;
+
+  const resumenHtml = `<section class="ficha-resumen-estatico">
+      <div class="container">
+        <div class="ficha-resumen-caja">
+          <h2>${PC.bi(`${e(nombreTitulo)} en el Real Oviedo`, `${e(nombreTitulo)} at Real Oviedo`)}</h2>
+          <p>${PC.bi(parrafoEs, parrafoEn)}</p>
+          <p class="ficha-resumen-enlaces"><a href="../partidos/jugadores.html">${PC.bi('Todos los jugadores y entrenadores de la A a la Z', 'All players and managers from A to Z')}</a> · <a href="../partidos/index.html">${PC.bi('Resultados del Real Oviedo', 'Real Oviedo results')}</a></p>
+        </div>
+      </div>
+    </section>`;
+
+  return { titulo: e(titulo), descripcion: e(descripcion), resumenHtml };
+}
+
 // 4. Leer Plantilla
 const template = fs.readFileSync(templatePath, 'utf-8');
 
@@ -230,6 +379,8 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     jugador.posicion || '',
   );
 
+  const seo = seoFicha(jugador, nombreMostrar, jugador.codigo, false);
+
   return template
     .replace(/\{\{NOMBRE\}\}/g, nombreMostrar)
     .replace(/\{\{IMAGEN\}\}/g, imagenMostrar)
@@ -240,6 +391,9 @@ function generarHtmlFicha(jugador, temporadaId, slug) {
     .replace(/\{\{SLUG\}\}/g, slug)
     .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrl)
     .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersona)
+    .replace(/\{\{TITULO\}\}/g, () => seo.titulo)
+    .replace(/\{\{DESCRIPCION\}\}/g, () => seo.descripcion)
+    .replace(/\{\{RESUMEN_ESTATICO\}\}/g, () => seo.resumenHtml)
     .replace(
       /\{\{PARTIDOS_ESTATICOS\}\}/g,
       () => htmlPartidosEstaticos(nombreMostrar, jugador.codigo, false),
@@ -349,6 +503,14 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
     miembro.cargo || 'Entrenador',
   );
 
+  const seoEnt = seoFicha(
+    { ...maestro, apodo: maestro.apodo },
+    nombre,
+    String(entId),
+    true,
+    miembro.cargo || 'Entrenador',
+  );
+
   let htmlContent = template
     .replace(/\{\{NOMBRE\}\}/g, nombre)
     .replace(/\{\{IMAGEN\}\}/g, imagen)
@@ -359,6 +521,9 @@ Object.entries(mapaEntrenadores).forEach(([slug, { miembro, temporadaId }]) => {
     .replace(/\{\{SLUG\}\}/g, slug)
     .replace(/\{\{CANONICAL_URL\}\}/g, canonicalUrlEnt)
     .replace(/\{\{JSON_LD_PERSONA\}\}/g, jsonLdPersonaEnt)
+    .replace(/\{\{TITULO\}\}/g, () => seoEnt.titulo)
+    .replace(/\{\{DESCRIPCION\}\}/g, () => seoEnt.descripcion)
+    .replace(/\{\{RESUMEN_ESTATICO\}\}/g, () => seoEnt.resumenHtml)
     .replace(
       /\{\{PARTIDOS_ESTATICOS\}\}/g,
       () => htmlPartidosEstaticos(nombre, String(entId), true),

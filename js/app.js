@@ -1235,7 +1235,12 @@ const App = {
     const playerUrl = jugador.codigo
       ? esTemporadaActual
         ? `fichas/${jugador.codigo}.html`
-        : `ficha-jugador.html?id=${jugador.codigo}&season=${this.temporadaActiva}`
+        : jugador.nombreCompleto || jugador.imagen
+          ? // Ficha estática de esa temporada (la genera generar.js solo
+            // si el jugador está en jugadoresMaestro): enlazable e
+            // indexable, a diferencia de ficha-jugador.html (noindex).
+            `fichas/${jugador.codigo}-${this.temporadaActiva}.html`
+          : `ficha-jugador.html?id=${jugador.codigo}&season=${this.temporadaActiva}`
       : `ficha-jugador.html?id=${jugador.id}&season=${this.temporadaActiva}`;
 
     // DIFERENCIAR GOLES/ENCAJADOS PARA PORTEROS
