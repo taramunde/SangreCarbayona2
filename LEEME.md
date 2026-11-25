@@ -149,6 +149,54 @@ cambia el año y los datos.
 > antiguo y no tienes su ficha completa — en ese caso solo saldrá con el
 > código como nombre hasta que rellenes su ficha maestra.
 
+### c) Temporadas pasadas desde Excel (lo más cómodo)
+
+En vez de escribir a mano cada partido en `js/data-historico.js`, se
+puede rellenar un Excel en el que **cada partido se escribe una sola
+vez** y luego, por cada jugador, solo se pone en qué partidos jugó:
+
+```
+npm run plantilla-partidos -- 2007-08
+```
+
+Crea `excel/partidos-2007-08.xlsx`. Si la temporada ya existe en la web,
+sale **relleno con todo lo que ya hay** (partidos, plantilla y
+actuaciones) para seguir desde ahí. Nunca pisa un Excel que ya exista
+(con `--sobrescribir` sí). Hojas:
+
+- **Temporada**: el año y, solo si la temporada es nueva, liga, grupo y
+  posición final.
+- **Partidos**: todos los partidos del equipo (liga, copa, ascenso), uno
+  por fila, con su Nº. El resultado V/E/D sale solo (con penaltis, según
+  la tanda). Columna *Entrenador* para saber quién dirigió cada partido.
+- **Plantilla** y **Entrenadores**: nombre (desplegable con los de
+  `data-jugadores.js`), código interno automático, dorsal, posición,
+  años en el club y si causó baja o estaba cedido (y dónde).
+- **Actuaciones**: una fila por jugador y partido jugado: Nº de partido,
+  jugador, minutos, goles, asistencias, tarjetas (amarilla, roja
+  directa, doble amarilla, o amarilla y luego roja directa) y goles en
+  propia puerta. Fecha, partido y resultado aparecen solos para
+  comprobar. Minutos vacíos = 90 (120 con prórroga). En **porteros**,
+  "Goles" = goles encajados, y si se deja vacío y jugó entero se ponen
+  solos los del rival.
+
+Para meterlo en la web:
+
+```
+npm run importar-partidos -- "excel/partidos-2007-08.xlsx"            (solo revisa)
+npm run importar-partidos -- "excel/partidos-2007-08.xlsx" --aplicar  (escribe)
+npm run subir
+```
+
+La revisión avisa de partidos con Nº inexistente, jugadores que no están
+en la plantilla, filas repetidas, goles de los jugadores que no cuadran
+con el marcador, porteros cuyos encajados no cuadran, equipos con nombre
+nuevo (¿errata?), y compara las estadísticas del equipo con las que hay
+en la web. Al aplicar, la temporada se reescribe entera con lo que hay en
+el Excel (por eso conviene crear el Excel desde la temporada existente);
+si en la web hay jugadores de esa temporada que no están en el Excel, se
+para y avisa.
+
 ---
 
 ## 3. Datos de cada partido (el campo más importante)

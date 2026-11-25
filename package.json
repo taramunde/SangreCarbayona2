@@ -9,6 +9,8 @@
     "revisar-goles": "node generador/revisar-goles.js",
     "plantilla-jugadores": "node generador/crear-plantilla-jugadores.js",
     "importar-jugadores": "node generador/importar-jugadores.js",
+    "plantilla-partidos": "node generador/crear-plantilla-partidos.js",
+    "importar-partidos": "node generador/importar-partidos.js",
     "previa-partido": "node generador/generar-previa-partido.js",
     "privado": "node generador/cifrar-privado.js"
   },
