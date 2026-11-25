@@ -8994,7 +8994,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Montevideo',
     provinciaNacimiento: 'Montevideo',
     fechaNacimiento: '1976-05-09',
-    imagen: 'https://i.postimg.cc/yYhzCRWP/Diego-Meijide-PNG.webp',
+    imagen: 'img/jugadores/DiegoMeijide.webp',
   },
   'stefan-rodriguez-oreiro': {
     nombre: 'Stefan',
