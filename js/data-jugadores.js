@@ -8966,7 +8966,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'La Plata',
     provinciaNacimiento: 'Buenos Aires',
     fechaNacimiento: '1985-04-08',
-    imagen: 'https://i.postimg.cc/WpBJfBJZ/Lucas-Iglesias-PNG.webp',
+    imagen: 'img/jugadores/LucasIglesias.webp',
   },
   'francisco-fernando-carmona-fernandez': {
     nombre: 'Francisco Fernando',
