@@ -436,7 +436,7 @@ async function main() {
         ancho: 24,
         nota: 'Número de jornada en liga; en copa o ascenso, la ronda (Primera Ronda, Semifinal (Ida)...).',
       },
-      { titulo: 'Fecha', clave: 'fecha', tipo: 'obligatoria', ancho: 12 },
+      { titulo: 'Fecha', clave: 'fecha', tipo: 'obligatoria', ancho: 13 },
       {
         titulo: 'Local',
         clave: 'local',
@@ -676,7 +676,7 @@ async function main() {
         ancho: 8,
         nota: 'El Nº de la hoja Partidos.',
       },
-      { titulo: 'Fecha', clave: 'fecha', tipo: 'auto', ancho: 11 },
+      { titulo: 'Fecha', clave: 'fecha', tipo: 'auto', ancho: 13 },
       { titulo: 'Partido', clave: 'partido', tipo: 'auto', ancho: 52 },
       { titulo: 'Res.', clave: 'res', tipo: 'auto', ancho: 8 },
       {
