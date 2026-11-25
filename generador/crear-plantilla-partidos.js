@@ -29,20 +29,29 @@ const C = require('./partidos-excel-comun');
 
 const args = process.argv.slice(2);
 const SOBRESCRIBIR = args.includes('--sobrescribir');
-const TEMPORADA = args.find((a) => !a.startsWith('--')) || null;
+// --desde "excel/partidos-2007-08.xlsx": rehace ese Excel con el formato
+// nuevo conservando todo lo que tenga escrito (no mira data-historico.js).
+const iDesde = args.indexOf('--desde');
+const DESDE = iDesde >= 0 ? args[iDesde + 1] : null;
+let TEMPORADA =
+  args.find(
+    (a, i) => !a.startsWith('--') && !(iDesde >= 0 && i === iDesde + 1),
+  ) || null;
 if (TEMPORADA && !/^\d{4}-\d{2}$/.test(TEMPORADA)) {
   console.error('La temporada va así: 2007-08');
   process.exit(1);
 }
-const SALIDA = path.join(
-  C.RAIZ,
-  'excel',
-  TEMPORADA ? `partidos-${TEMPORADA}.xlsx` : 'plantilla-partidos.xlsx',
-);
+let SALIDA = DESDE
+  ? path.resolve(C.RAIZ, DESDE)
+  : path.join(
+      C.RAIZ,
+      'excel',
+      TEMPORADA ? `partidos-${TEMPORADA}.xlsx` : 'plantilla-partidos.xlsx',
+    );
 
 const datos = C.cargarDatos();
 const L = C.listas(datos);
-const T = TEMPORADA ? datos.TEMPORADAS[TEMPORADA] : null;
+let T = TEMPORADA && !DESDE ? datos.TEMPORADAS[TEMPORADA] : null;
 
 // ── Estilos (los mismos que la plantilla de jugadores) ──────────
 const AZUL = 'FF1A365D';
@@ -136,6 +145,14 @@ const fechaRegla = {
   showErrorMessage: true,
   error: 'Escribe una fecha válida (dd/mm/aaaa).',
 };
+// Texto de cada partido en el desplegable de Actuaciones. Tiene que
+// coincidir con la fórmula de la columna N de Partidos.
+const dd = (n) => String(n).padStart(2, '0');
+function textoPartido(p) {
+  const [a, m, d] = String(p.fecha).split('-');
+  const j = typeof p.jornada === 'number' ? `J${p.jornada}` : p.jornada;
+  return `${p.n} · ${j} · ${d}/${m}/${a} · ${p.local} ${p.golesLocal ?? ''}-${p.golesVisitante ?? ''} ${p.visitante}`;
+}
 const fechaExcel = (iso) => {
   const [a, m, d] = String(iso).split('-').map(Number);
   return new Date(Date.UTC(a, m - 1, d));
@@ -244,8 +261,105 @@ function extraerTemporada(t) {
   return { partidos, plantilla, tecnicos, conflictos };
 }
 
+// Lee un Excel de partidos ya rellenado (cualquier versión de esta
+// plantilla) y lo deja con la misma forma que extraerTemporada().
+async function leerExcel(ruta) {
+  const v = (c) => {
+    let x = c.value;
+    if (x && typeof x === 'object' && !(x instanceof Date)) {
+      if ('formula' in x || 'sharedFormula' in x) return null;
+      if ('richText' in x) x = x.richText.map((t) => t.text).join('');
+      else if ('text' in x) x = x.text;
+    }
+    return x === '' ? null : (x ?? null);
+  };
+  const wb = new ExcelJS.Workbook();
+  await wb.xlsx.readFile(ruta);
+  const hoja = (n) => wb.getWorksheet(n);
+  const conf = {};
+  hoja('Temporada').eachRow((row, i) => {
+    if (i > 1) conf[C.norm(v(row.getCell(1)))] = v(row.getCell(2));
+  });
+  TEMPORADA = String(conf['temporada'] || '');
+  const iso = (x) =>
+    x instanceof Date
+      ? x.toISOString().slice(0, 10)
+      : x == null
+        ? null
+        : String(x);
+  const partidos = [];
+  hoja('Partidos').eachRow((row, i) => {
+    if (i === 1) return;
+    const c = (k) => v(row.getCell(k));
+    if ([2, 3, 4, 5, 6, 7, 8].every((k) => c(k) == null)) return;
+    partidos.push({
+      n: c(1),
+      competicion: c(2),
+      jornada: c(3),
+      fecha: iso(c(4)),
+      local: c(5),
+      visitante: c(6),
+      golesLocal: c(7),
+      golesVisitante: c(8),
+      prorroga: C.norm(c(9)) === 'si',
+      penaltisLocal: c(10),
+      penaltisVisitante: c(11),
+      entrenador: c(13),
+    });
+  });
+  const porN = new Map(partidos.map((p) => [Number(p.n), p]));
+  const plantilla = [];
+  hoja('Plantilla').eachRow((row, i) => {
+    const c = (k) => v(row.getCell(k));
+    if (i === 1 || c(1) == null) return;
+    plantilla.push({
+      nombre: c(1),
+      j: {
+        dorsal: c(3) ?? '-',
+        posicion: c(4),
+        enClubDesde: c(5),
+        contratoHasta: c(6),
+      },
+      situacion: c(7),
+      cedidoEn: c(8),
+      actuaciones: [],
+      crudas: [],
+    });
+  });
+  const tecnicos = [];
+  hoja('Entrenadores').eachRow((row, i) => {
+    const c = (k) => v(row.getCell(k));
+    if (i === 1 || c(1) == null) return;
+    tecnicos.push({
+      nombre: c(1),
+      e: {
+        cargo: c(3),
+        enClubDesde: c(4),
+        contratoHasta: c(5),
+        estado: C.norm(c(6)) === 'baja' ? 'baja' : null,
+      },
+    });
+  });
+  // Actuaciones: se conservan TODAS las filas tal cual, en su orden.
+  const actuaciones = [];
+  hoja('Actuaciones').eachRow((row, i) => {
+    const c = (k) => v(row.getCell(k));
+    if (i === 1) return;
+    const vals = [1, 5, 7, 8, 9, 10, 11].map(c);
+    if (vals.every((x) => x == null)) return;
+    const num =
+      vals[0] == null ? null : Number(String(vals[0]).match(/^\s*(\d+)/)?.[1]);
+    actuaciones.push({
+      partido: porN.get(num) || null,
+      original: vals[0],
+      vals,
+    });
+  });
+  return { partidos, plantilla, tecnicos, conflictos: [], actuaciones, conf };
+}
+
 async function main() {
-  if (fs.existsSync(SALIDA) && !SOBRESCRIBIR) {
+  if (fs.existsSync(SALIDA) && !SOBRESCRIBIR && !DESDE) {
     console.error(
       `✖ Ya existe ${path.relative(C.RAIZ, SALIDA)} y puede tener datos tuyos.`,
     );
@@ -254,7 +368,11 @@ async function main() {
     );
     process.exit(1);
   }
-  const previo = T ? extraerTemporada(T) : null;
+  const previo = DESDE
+    ? await leerExcel(SALIDA)
+    : T
+      ? extraerTemporada(T)
+      : null;
 
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Sangre Carbayona';
@@ -296,7 +414,7 @@ async function main() {
     ],
     ['4. Entrenadores: igual que la plantilla.'],
     [
-      '5. Actuaciones: una fila por jugador y partido que JUGÓ. Pon Nº de partido y jugador; fecha, partido y resultado aparecen solos para que compruebes.',
+      '5. Actuaciones: una fila por jugador y partido que JUGÓ. Elige el partido en la lista y el jugador; fecha, competición y resultado aparecen solos.',
     ],
     [
       '   Minutos vacío = 90 (o 120 si el partido tuvo prórroga). Goles/asistencias vacíos = 0.',
@@ -308,7 +426,7 @@ async function main() {
       '   Tarjetas: Amarilla / Roja directa / Doble amarilla (expulsado) / Amarilla y luego roja directa (dos acciones distintas).',
     ],
     [
-      '   Consejo: copia el Nº de partido hacia abajo para todos los jugadores de ese partido (o el jugador hacia abajo para todos sus partidos).',
+      '   Partido: elígelo en el desplegable (escribe un trozo para buscar: la fecha, el rival, J19...). Consejo: escribe el jugador una vez y arrástralo hacia abajo para todos sus partidos.',
     ],
     [''],
     ['CÓMO SE SUBE', true],
@@ -393,18 +511,28 @@ async function main() {
       'No',
       'Sí = rehace las estadísticas del equipo (partidos, V/E/D, goles por competición) a partir de la hoja Partidos. Úsalo cuando la hoja tenga TODOS los partidos.',
     ],
-  ].forEach((fila, i) => {
-    fila.forEach((v, j) => {
-      const c = TS.getCell(i + 1, j + 1);
-      c.value = v;
-      c.alignment = { wrapText: true, vertical: 'middle' };
-      if (i === 0) {
-        c.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-        c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: AZUL } };
-      } else if (j === 0) c.font = { bold: true };
-      else if (j === 2) c.font = { color: { argb: GRIS_TXT }, italic: true };
+  ]
+    .map((f) =>
+      previo && previo.conf && C.norm(f[0]) in previo.conf
+        ? [f[0], previo.conf[C.norm(f[0])] ?? '', f[2]]
+        : f,
+    )
+    .forEach((fila, i) => {
+      fila.forEach((v, j) => {
+        const c = TS.getCell(i + 1, j + 1);
+        c.value = v;
+        c.alignment = { wrapText: true, vertical: 'middle' };
+        if (i === 0) {
+          c.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+          c.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: AZUL },
+          };
+        } else if (j === 0) c.font = { bold: true };
+        else if (j === 2) c.font = { color: { argb: GRIS_TXT }, italic: true };
+      });
     });
-  });
   TS.getCell('B3').dataValidation = lista(rango['Competición'], false);
   TS.getCell('B6').dataValidation = lista(rango['Sí/No']);
 
@@ -483,6 +611,13 @@ async function main() {
         ancho: 28,
         nota: 'Quién dirigió el partido (de la hoja Entrenadores). Vacío vale si solo hubo un entrenador principal.',
       },
+      {
+        titulo: 'Partido (para elegir en Actuaciones)',
+        clave: 'texto',
+        tipo: 'auto',
+        ancho: 60,
+        nota: 'Sale solo. Es lo que aparece en el desplegable "Partido" de la hoja Actuaciones.',
+      },
     ],
     nP,
   );
@@ -491,6 +626,10 @@ async function main() {
     P.getCell(`D${r}`).numFmt = 'dd/mm/yyyy';
     const d = `IF(E${r}="${C.CLUB}",G${r}-H${r},H${r}-G${r})`;
     const dp = `IF(E${r}="${C.CLUB}",J${r}-K${r},K${r}-J${r})`;
+    const fecha = `RIGHT("0"&DAY(D${r}),2)&"/"&RIGHT("0"&MONTH(D${r}),2)&"/"&YEAR(D${r})`;
+    P.getCell(`N${r}`).value = {
+      formula: `IF(OR(D${r}="",E${r}="",F${r}=""),"",A${r}&" · "&IF(ISNUMBER(C${r}),"J"&C${r},C${r})&" · "&${fecha}&" · "&E${r}&" "&G${r}&"-"&H${r}&" "&F${r})`,
+    };
     P.getCell(`L${r}`).value = {
       formula: `IF(OR(G${r}="",H${r}=""),"",IF(AND(E${r}<>"${C.CLUB}",F${r}<>"${C.CLUB}"),"¿Oviedo?",IF(${d}>0,"V",IF(${d}<0,"D",IF(AND(J${r}<>"",K${r}<>""),IF(${dp}>0,"V (pen.)","D (pen.)"),"E")))))`,
     };
@@ -670,14 +809,14 @@ async function main() {
     A,
     [
       {
-        titulo: 'Nº partido',
+        titulo: 'Partido (elige en la lista)',
         clave: 'n',
         tipo: 'obligatoria',
-        ancho: 8,
-        nota: 'El Nº de la hoja Partidos.',
+        ancho: 50,
+        nota: 'Elige el partido en el desplegable. Puedes escribir un trozo para buscarlo (la fecha 06/01, el rival, J19...). El número del principio es el Nº del partido.',
       },
       { titulo: 'Fecha', clave: 'fecha', tipo: 'auto', ancho: 13 },
-      { titulo: 'Partido', clave: 'partido', tipo: 'auto', ancho: 52 },
+      { titulo: 'Competición', clave: 'comp', tipo: 'auto', ancho: 26 },
       { titulo: 'Res.', clave: 'res', tipo: 'auto', ancho: 8 },
       {
         titulo: 'Jugador',
@@ -716,14 +855,17 @@ async function main() {
     nA,
   );
   const pR = (col) => `Partidos!$${col}$2:$${col}$${nP + 1}`;
-  const m = (r) => `MATCH($A${r},${pR('A')},0)`;
+  // El número del partido es lo que hay antes del primer espacio
+  // ("25 · J19 · ..." → 25); también vale si solo se escribe el número.
+  const m = (r) =>
+    `MATCH(IFERROR(VALUE(LEFT($A${r},FIND(" ",$A${r}&" ")-1)),$A${r}),${pR('A')},0)`;
   for (let r = 2; r <= nA + 1; r++) {
     A.getCell(`B${r}`).value = {
       formula: `IF($A${r}="","",IFERROR(INDEX(${pR('D')},${m(r)}),"¿Nº?"))`,
     };
     A.getCell(`B${r}`).numFmt = 'dd/mm/yyyy';
     A.getCell(`C${r}`).value = {
-      formula: `IF($A${r}="","",IFERROR(INDEX(${pR('C')},${m(r)})&" · "&INDEX(${pR('E')},${m(r)})&" "&INDEX(${pR('G')},${m(r)})&"-"&INDEX(${pR('H')},${m(r)})&" "&INDEX(${pR('F')},${m(r)}),"¿no existe ese Nº?"))`,
+      formula: `IF($A${r}="","",IFERROR(INDEX(${pR('B')},${m(r)})&"","¿no existe ese partido?"))`,
     };
     A.getCell(`D${r}`).value = {
       formula: `IF($A${r}="","",IFERROR(INDEX(${pR('L')},${m(r)})&"",""))`,
@@ -732,7 +874,16 @@ async function main() {
       formula: `IF($E${r}="","",IFERROR(INDEX(Plantilla!$D$2:$D$${nJ + 1},MATCH($E${r},Plantilla!$A$2:$A$${nJ + 1},0))&"","¿no está en Plantilla?"))`,
     };
   }
-  validar(A, 'A', nA, entero(1, 999));
+  validar(
+    A,
+    'A',
+    nA,
+    lista(
+      pR('N'),
+      false,
+      'Ese partido no está en la lista. Elígelo en el desplegable.',
+    ),
+  );
   validar(
     A,
     'E',
@@ -794,12 +945,19 @@ async function main() {
       if (x.e.estado === 'baja') E.getCell(`F${r}`).value = 'Baja';
     });
     let r = 2;
+    (previo.actuaciones || []).forEach(({ partido, original, vals }) => {
+      A.getCell(`A${r}`).value = partido ? textoPartido(partido) : original;
+      ['E', 'G', 'H', 'I', 'J', 'K'].forEach((col, k) => {
+        if (vals[k + 1] != null) A.getCell(`${col}${r}`).value = vals[k + 1];
+      });
+      r++;
+    });
     previo.plantilla.forEach((x) =>
       x.actuaciones
         .slice()
         .sort((a, b) => a.m.n - b.m.n)
         .forEach(({ m: partido, p }) => {
-          A.getCell(`A${r}`).value = partido.n;
+          A.getCell(`A${r}`).value = textoPartido(partido);
           A.getCell(`E${r}`).value = x.nombre;
           A.getCell(`G${r}`).value = p.minutos;
           A.getCell(`H${r}`).value = p.goles || 0;
@@ -815,10 +973,15 @@ async function main() {
   }
 
   wb.views = [{ activeTab: previo ? 5 : 0 }];
+  if (DESDE) SALIDA = path.resolve(C.RAIZ, DESDE);
   fs.mkdirSync(path.dirname(SALIDA), { recursive: true });
   await wb.xlsx.writeFile(SALIDA);
   console.log(`✔ Plantilla creada: ${path.relative(C.RAIZ, SALIDA)}`);
-  if (previo) {
+  if (DESDE) {
+    console.log(
+      `  Rehecho con el formato nuevo: ${previo.partidos.length} partidos, ${previo.plantilla.length} jugadores, ${previo.tecnicos.length} entrenadores, ${previo.actuaciones.length} actuaciones conservadas.`,
+    );
+  } else if (previo) {
     const act = previo.plantilla.reduce((s, x) => s + x.actuaciones.length, 0);
     console.log(
       `  Rellena con lo que ya hay de ${TEMPORADA}: ${previo.partidos.length} partidos, ${previo.plantilla.length} jugadores, ${previo.tecnicos.length} entrenadores, ${act} actuaciones.`,

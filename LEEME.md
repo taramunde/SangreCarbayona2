@@ -172,13 +172,21 @@ actuaciones) para seguir desde ahí. Nunca pisa un Excel que ya exista
 - **Plantilla** y **Entrenadores**: nombre (desplegable con los de
   `data-jugadores.js`), código interno automático, dorsal, posición,
   años en el club y si causó baja o estaba cedido (y dónde).
-- **Actuaciones**: una fila por jugador y partido jugado: Nº de partido,
-  jugador, minutos, goles, asistencias, tarjetas (amarilla, roja
+- **Actuaciones**: una fila por jugador y partido jugado: el partido (se
+  elige en un desplegable tipo "25 · J19 · 06/01/2008 · C.D. Cudillero 1-1
+  Real Oviedo", buscando por fecha o rival), jugador, minutos, goles, asistencias, tarjetas (amarilla, roja
   directa, doble amarilla, o amarilla y luego roja directa) y goles en
   propia puerta. Fecha, partido y resultado aparecen solos para
   comprobar. Minutos vacíos = 90 (120 con prórroga). En **porteros**,
   "Goles" = goles encajados, y si se deja vacío y jugó entero se ponen
   solos los del rival.
+
+Un Excel hecho con una versión anterior de la plantilla se pone al día
+sin perder nada con:
+
+```
+npm run plantilla-partidos -- --desde "excel/partidos-2007-08.xlsx"
+```
 
 Para meterlo en la web:
 

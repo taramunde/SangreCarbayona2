@@ -336,7 +336,9 @@ async function main() {
     'propia',
   ]).forEach((f) => {
     const etq = texto(f.jugador);
-    const n = numero(f.n);
+    // "25 · J19 · 06/01/2008 · ..." → 25 (o el número a secas).
+    const n =
+      f.n == null ? null : numero(String(f.n).match(/^\s*(\d+)/)?.[1] ?? f.n);
     const resto = [
       'minutos',
       'goles',
