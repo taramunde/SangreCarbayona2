@@ -703,3 +703,33 @@
   font-size: 0.85rem;
   color: var(--gray-500);
 }
+
+/* Resumen estático en texto de las fichas (lo escribe generar.js) */
+.ficha-resumen-estatico {
+  padding: 0 0 24px;
+}
+.ficha-resumen-caja {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+}
+.ficha-resumen-caja h2 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0 0 8px;
+}
+.ficha-resumen-caja p {
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+.ficha-resumen-enlaces {
+  font-size: 0.9rem;
+}
+.ficha-resumen-enlaces a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
