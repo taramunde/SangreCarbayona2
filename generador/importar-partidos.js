@@ -19,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { spawnSync } = require('child_process');
 const ExcelJS = require('exceljs');
 const C = require('./partidos-excel-comun');
 
@@ -720,9 +721,43 @@ async function main() {
   if (!t2 || (plantilla.length && t2.jugadores.length !== plantilla.length))
     throw new Error('La comprobación final no cuadra; no se ha guardado nada.');
   fs.writeFileSync(ARCHIVO, fuente);
-  console.log(
-    `\n✔ Temporada ${id} escrita en js/data-historico.js. Ahora: npm run subir`,
+  console.log(`\n✔ Temporada ${id} escrita en js/data-historico.js.`);
+
+  // Las fichas y páginas de partidos son archivos aparte que salen de los
+  // datos: se regeneran aquí mismo para que nunca falte ninguna (404).
+  console.log('\nRegenerando fichas, páginas de partidos y sitemap...');
+  for (const script of [
+    'generar-partidos.js',
+    'generar.js',
+    'generar-sitemap.js',
+  ]) {
+    const r = spawnSync(process.execPath, [path.join(__dirname, script)], {
+      cwd: C.RAIZ,
+      encoding: 'utf8',
+    });
+    if (r.status !== 0) {
+      console.error(r.stdout, r.stderr);
+      throw new Error(
+        `Falló ${script}; los datos están guardados, lanza npm run generar para reintentarlo.`,
+      );
+    }
+  }
+  const faltan = [];
+  const T2 = prueba.CLUB_DATA.temporadas[id];
+  // Jugadores: ficha general + ficha de la temporada. Entrenadores: una sola.
+  (T2.jugadores || []).forEach((x) =>
+    [`${x.codigo}.html`, `${x.codigo}-${id}.html`].forEach(
+      (f) => !fs.existsSync(path.join(C.RAIZ, 'fichas', f)) && faltan.push(f),
+    ),
   );
+  (T2.cuerpoTecnico || []).forEach((x) => {
+    const f = `entrenador-${x.codigo}.html`;
+    if (!fs.existsSync(path.join(C.RAIZ, 'fichas', f))) faltan.push(f);
+  });
+  if (faltan.length)
+    console.log(`  ⚠ Siguen faltando fichas: ${faltan.join(', ')}`);
+  else console.log('  ✔ Todas las fichas de la temporada existen.');
+  console.log('\nAhora: npm run subir');
 }
 
 // ── Formato de salida (igual que el resto de data-historico.js) ──

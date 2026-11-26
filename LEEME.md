@@ -192,7 +192,7 @@ Para meterlo en la web:
 
 ```
 npm run importar-partidos -- "excel/partidos-2007-08.xlsx"            (solo revisa)
-npm run importar-partidos -- "excel/partidos-2007-08.xlsx" --aplicar  (escribe)
+npm run importar-partidos -- "excel/partidos-2007-08.xlsx" --aplicar  (escribe y regenera fichas)
 npm run subir
 ```
 
