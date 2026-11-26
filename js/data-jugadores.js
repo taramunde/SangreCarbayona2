@@ -9148,7 +9148,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Ujo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1984-08-09',
-    imagen: 'https://i.postimg.cc/fyxfkD0G/Adrian-Fuertes-PNG.webp',
+    imagen: 'img/jugadores/AdrianFuertes.webp',
   },
   'javier-diaz-lopez': {
     nombre: 'Javier',
