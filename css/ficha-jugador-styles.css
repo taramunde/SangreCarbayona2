@@ -1400,6 +1400,30 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
+/* Tarjeta enlazada a la página del partido (/partidos/): un enlace
+   invisible cubre toda la tarjeta, así se puede tocar en cualquier
+   parte (fecha, equipos, marcador...). */
+.match-detail-card.match-card-clickable {
+  position: relative;
+  cursor: pointer;
+}
+
+.match-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.match-card-link:focus-visible {
+  outline: 3px solid #ffd700;
+  outline-offset: 2px;
+}
+
+.match-detail-card.match-card-clickable:active {
+  transform: scale(0.99);
+}
+
 /* ===================================
    MODO OSCURO (Preferencias del sistema)
    =================================== */

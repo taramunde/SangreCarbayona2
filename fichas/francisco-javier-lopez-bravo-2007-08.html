@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francisco Javier López Bravo – Central del Real Oviedo | Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Francisco Javier López Bravo, central del Real Oviedo (2007/08): 16 partidos, 2 goles. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:title" content="Francisco Javier López Bravo - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Francisco Javier López Bravo, central del Real Oviedo (2007/08): 16 partidos, 2 goles. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/sfwXdb8x/Bravo-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Francisco Javier López Bravo - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/francisco-javier-lopez-bravo.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Francisco Javier López Bravo - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Francisco Javier López Bravo, central del Real Oviedo (2007/08): 16 partidos, 2 goles. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/sfwXdb8x/Bravo-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/francisco-javier-lopez-bravo.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/francisco-javier-lopez-bravo.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Francisco Javier López Bravo",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/francisco-javier-lopez-bravo.html",
+  "image": "https://i.postimg.cc/sfwXdb8x/Bravo-PNG.webp",
+  "jobTitle": "Central",
+  "birthDate": "1974-04-06",
+  "height": "1.78 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Málaga"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/sfwXdb8x/Bravo-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'francisco-javier-lopez-bravo',
+        season: '2007-08',
+        nombre: 'Francisco Javier López Bravo',
+        imagen: 'https://i.postimg.cc/sfwXdb8x/Bravo-PNG.webp',
+        posicion: 'Central',
+        codigo: 'francisco-javier-lopez-bravo-2007-08',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Francisco Javier López Bravo — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Francisco Javier López Bravo</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <!-- Resumen ESTÁTICO en texto (lo escribe generador/generar.js).
+         Es contenido visible en el HTML servido: sin él, Google solo ve
+         una página casi vacía hasta ejecutar el JavaScript y suele
+         dejarla como "rastreada, actualmente sin indexar". -->
+    <section class="ficha-resumen-estatico">
+      <div class="container">
+        <div class="ficha-resumen-caja">
+          <h2><span data-en="Francisco Javier López Bravo at Real Oviedo">Francisco Javier López Bravo en el Real Oviedo</span></h2>
+          <p><span data-en="<strong>Francisco Javier López Bravo</strong>, known as <strong>Bravo</strong>, was part of Real Oviedo's squad as centre back in the 2007/08 season. With the club: 16 matches, 2 goals. Born in Málaga on April 6, 1974."><strong>Francisco Javier López Bravo</strong>, conocido como <strong>Bravo</strong>, formó parte de la plantilla del Real Oviedo como central en la temporada 2007/08. Con el club suma 16 partidos, 2 goles. Nació en Málaga el 6 de abril de 1974.</span></p>
+          <p class="ficha-resumen-enlaces"><a href="../partidos/jugadores.html"><span data-en="All players and managers from A to Z">Todos los jugadores y entrenadores de la A a la Z</span></a> · <a href="../partidos/index.html"><span data-en="Real Oviedo results">Resultados del Real Oviedo</span></a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Francisco Javier López Bravo with Real Oviedo (16)">Partidos de Francisco Javier López Bravo con el Real Oviedo (16)</span></summary>
+          <ul>
+          <li><small data-en="1 Jun 2008">1 jun 2008</small><a href="../partidos/real-oviedo-caravaca-cf-2008-06-01.html">Real Oviedo 4-2 Caravaca C.F.</a></li>
+          <li><small data-en="25 May 2008">25 may 2008</small><a href="../partidos/caravaca-cf-real-oviedo-2008-05-25.html">Caravaca C.F. 4-1 Real Oviedo</a></li>
+          <li><small data-en="18 May 2008">18 may 2008</small><a href="../partidos/real-oviedo-cd-cudillero-2008-05-18.html">Real Oviedo 3-0 C.D. Cudillero</a></li>
+          <li><small data-en="4 May 2008">4 may 2008</small><a href="../partidos/real-oviedo-cd-tuilla-2008-05-04.html">Real Oviedo 6-0 C.D. Tuilla</a></li>
+          <li><small data-en="27 Apr 2008">27 abr 2008</small><a href="../partidos/club-hispano-de-castrillon-real-oviedo-2008-04-27.html">Club Hispano de Castrillón 0-1 Real Oviedo</a></li>
+          <li><small data-en="20 Apr 2008">20 abr 2008</small><a href="../partidos/real-oviedo-caudal-deportivo-2008-04-20.html">Real Oviedo 4-0 Caudal Deportivo</a></li>
+          <li><small data-en="30 Mar 2008">30 mar 2008</small><a href="../partidos/condal-cf-real-oviedo-2008-03-30.html">Condal C.F. 1-2 Real Oviedo</a></li>
+          <li><small data-en="19 Mar 2008">19 mar 2008</small><a href="../partidos/real-oviedo-cd-llanes-2008-03-19.html">Real Oviedo 2-0 C.D. Llanes</a></li>
+          <li><small data-en="16 Mar 2008">16 mar 2008</small><a href="../partidos/astur-cf-real-oviedo-2008-03-16.html">Astur C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="9 Mar 2008">9 mar 2008</small><a href="../partidos/real-oviedo-sd-navarro-cf-2008-03-09.html">Real Oviedo 2-0 S.D. Navarro C.F.</a></li>
+          <li><small data-en="2 Mar 2008">2 mar 2008</small><a href="../partidos/up-de-langreo-real-oviedo-2008-03-02.html">U.P. de Langreo 0-1 Real Oviedo</a></li>
+          <li><small data-en="24 Feb 2008">24 feb 2008</small><a href="../partidos/real-oviedo-cd-lealtad-de-villaviciosa-2008-02-24.html">Real Oviedo 2-0 C.D. Lealtad de Villaviciosa</a></li>
+          <li><small data-en="17 Feb 2008">17 feb 2008</small><a href="../partidos/club-siero-real-oviedo-2008-02-17.html">Club Siero 2-0 Real Oviedo</a></li>
+          <li><small data-en="10 Feb 2008">10 feb 2008</small><a href="../partidos/real-oviedo-real-aviles-industrial-cf-2008-02-10.html">Real Oviedo 4-0 Real Avilés Industrial C.F.</a></li>
+          <li><small data-en="3 Feb 2008">3 feb 2008</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2008-02-03.html">Real Sporting de Gijón B 0-2 Real Oviedo</a></li>
+          <li><small data-en="6 Jan 2008">6 ene 2008</small><a href="../partidos/cd-cudillero-real-oviedo-2008-01-06.html">C.D. Cudillero 1-1 Real Oviedo</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261125v10"></script>
+    <script src="../js/data-club.js?nocache=20261125v10"></script>
+    <script src="../js/data-jugadores.js?nocache=20261125v10"></script>
+    <script src="../js/busqueda.js?nocache=20261125v10"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261125v10"></script>
+    <script src="../js/data-historico.js?nocache=20261125v10"></script>
+    <script src="../js/data-utils.js?nocache=20261125v10"></script>
+    <script src="../js/data-indice-partidos.js?nocache=20261125v10"></script>
+    <script src="../js/app.js?nocache=20261125v10"></script>
+    <script src="../js/script.js?nocache=20261125v10"></script>
+    <script src="../js/main.js?nocache=20261125v10"></script>
+  </body>
+</html>

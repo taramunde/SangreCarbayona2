@@ -99,6 +99,38 @@ function esPortero(jugador) {
   return jugador.posicion === 'Portero' || jugador.posicionCorta === 'PO';
 }
 
+/* ===================================
+   ENLACE A LA PÁGINA DE CADA PARTIDO (/partidos/)
+   =================================== */
+
+// Devuelve la URL de la página del partido, o null si no la hay.
+// Usa INDICE_PARTIDOS (js/data-indice-partidos.js, generado por
+// generador/generar-partidos.js): si un partido no está en el índice
+// (p. ej. recién metido y aún sin generar) no se enlaza, para no
+// llevar a un 404.
+function urlPaginaPartido(temporadaId, fecha) {
+  if (typeof INDICE_PARTIDOS === 'undefined' || !temporadaId || !fecha) {
+    return null;
+  }
+  const slug = INDICE_PARTIDOS[`${temporadaId}|${fecha}`];
+  if (!slug) return null;
+  // Las fichas estáticas viven en /fichas/; ficha-jugador.html en la raíz.
+  const prefijo = window.location.pathname.includes('/fichas/') ? '../' : '';
+  return `${prefijo}partidos/${slug}.html`;
+}
+
+// Enlace invisible que cubre toda la tarjeta (ver .match-card-link en
+// css/ficha-jugador-styles.css).
+function enlaceTarjetaPartido(partido) {
+  const href = urlPaginaPartido(partido._temporadaId, partido.fecha);
+  if (!href) return { clase: '', html: '' };
+  const titulo = `${partido.local} ${partido.golesLocal}-${partido.golesVisitante} ${partido.visitante}`;
+  return {
+    clase: ' match-card-clickable',
+    html: `<a class="match-card-link" href="${href}" aria-label="${titulo.replace(/"/g, '&quot;')}"></a>`,
+  };
+}
+
 function getCategoriaJugador(jugador) {
   const pos = jugador.posicion;
   const group = getPositionGroup(pos);
@@ -2008,7 +2040,10 @@ const App = {
           ? `<span class="match-season-tag">${partido._temporadaNombre}</span>`
           : '';
 
-      return `<article class="match-detail-card">
+      const enlace = enlaceTarjetaPartido(partido);
+
+      return `<article class="match-detail-card${enlace.clase}">
+        ${enlace.html}
         <div class="match-detail-header">
           <div class="match-date-badge ${resultClass}">
             <span class="match-day">${fecha.dia}</span>
@@ -3060,8 +3095,11 @@ const App = {
           ? `<span class="match-season-tag">${partido._temporadaNombre}</span>`
           : '';
 
+      const enlace = enlaceTarjetaPartido(partido);
+
       return `
-        <article class="match-detail-card">
+        <article class="match-detail-card${enlace.clase}">
+          ${enlace.html}
           <div class="match-detail-header">
             <div class="match-date-badge ${resultClass}">
               <span class="match-day">${fecha.dia}</span>

@@ -1317,6 +1317,31 @@ function nombreParaOrdenar(nombre) {
   );
 }
 
+// ── ÍNDICE PARA LA WEB: temporada|fecha → página del partido ──
+// Lo usa js/app.js para que las tarjetas de la pestaña "Partidos" de
+// las fichas (jugadores y entrenadores) enlacen a la página de cada
+// partido. Se indexa también por las fechas "de origen" (copias con
+// una fecha distinta en algún jugador), igual que las fichas estáticas.
+{
+  const indice = {};
+  Object.entries(C.indicePorFecha(partidos)).forEach(([clave, p]) => {
+    indice[clave] = p.slug;
+  });
+  const claves = Object.keys(indice).sort();
+  const contenido =
+    '// ARCHIVO GENERADO por generador/generar-partidos.js — no editar a mano.\n' +
+    '// "temporada|fecha" → página del partido en /partidos/.\n' +
+    '// prettier-ignore\n' +
+    'const INDICE_PARTIDOS = {\n' +
+    claves.map((k) => `  ${JSON.stringify(k)}: ${JSON.stringify(indice[k])},`).join('\n') +
+    '\n};\n';
+  fs.writeFileSync(
+    path.join(__dirname, '..', 'js', 'data-indice-partidos.js'),
+    contenido,
+  );
+  console.log(`  ✔ js/data-indice-partidos.js (${claves.length} entradas)`);
+}
+
 // ── LIMPIEZA: borrar páginas que ya no corresponden a ningún dato ──
 let borrados = 0;
 fs.readdirSync(outputDir).forEach((f) => {
