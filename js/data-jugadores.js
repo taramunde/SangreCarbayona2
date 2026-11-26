@@ -3195,7 +3195,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Oviedo',
     provinciaNacimiento: 'Asturias',
     fechaNacimiento: '1991-04-03',
-    imagen: 'https://i.postimg.cc/bJQjYS3p/Nico-PNG.webp',
+    imagen: 'img/jugadores/Nico.webp',
     seleccion: {
       pais: 'España',
       bandera: 'https://flagcdn.com/16x12/es.webp',
