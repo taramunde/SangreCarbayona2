@@ -51,6 +51,27 @@ const etiqueta = (d) =>
     ? `${d.apodo} (${d.nombreCompleto})`
     : d.nombreCompleto;
 
+// Etiquetas de todo un maestro, sin repetidas: si dos personas acabaran
+// con la misma (mismo apodo y mismo nombre completo), se les añade el
+// código para distinguirlas. Los apodos repetidos solos ya se distinguen
+// por el nombre completo entre paréntesis.
+const _cache = new WeakMap();
+function etiquetas(maestro) {
+  if (_cache.has(maestro)) return _cache.get(maestro);
+  const cuenta = new Map();
+  Object.values(maestro).forEach((d) => {
+    const k = norm(etiqueta(d));
+    cuenta.set(k, (cuenta.get(k) || 0) + 1);
+  });
+  const res = new Map();
+  Object.entries(maestro).forEach(([codigo, d]) => {
+    const e = etiqueta(d);
+    res.set(codigo, cuenta.get(norm(e)) > 1 ? `${e} · ${codigo}` : e);
+  });
+  _cache.set(maestro, res);
+  return res;
+}
+
 // Posición corta de la ficha maestra → posición detallada de la temporada.
 const POS_DE_CORTA = {
   PO: 'Portero',
@@ -203,10 +224,10 @@ function listas({ MJ, ME, TEMPORADAS }) {
   });
   const orden = (a, b) => String(a).localeCompare(String(b), 'es');
   const jugadores = Object.entries(MJ)
-    .map(([codigo, d]) => [etiqueta(d), codigo])
+    .map(([codigo]) => [etiquetas(MJ).get(codigo), codigo])
     .sort((a, b) => orden(a[0], b[0]));
   const entrenadores = Object.entries(ME)
-    .map(([codigo, d]) => [etiqueta(d), codigo])
+    .map(([codigo]) => [etiquetas(ME).get(codigo), codigo])
     .sort((a, b) => orden(a[0], b[0]));
   return {
     equipos: [...equipos].filter(Boolean).sort(orden),
@@ -226,6 +247,7 @@ module.exports = {
   norm,
   codigoDe,
   etiqueta,
+  etiquetas,
   POS_DE_CORTA,
   GRUPOS,
   POSICIONES,

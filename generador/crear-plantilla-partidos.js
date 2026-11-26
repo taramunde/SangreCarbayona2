@@ -203,7 +203,7 @@ function extraerTemporada(t) {
     const baja = estados.some((e) => e.tipo === 'baja');
     return {
       j,
-      nombre: d ? C.etiqueta(d) : j.codigo,
+      nombre: d ? C.etiquetas(datos.MJ).get(j.codigo) : j.codigo,
       situacion:
         cedido && baja
           ? 'Cedido y después baja'
@@ -221,7 +221,9 @@ function extraerTemporada(t) {
   });
   const tecnicos = (t.cuerpoTecnico || []).map((e) => {
     const d = datos.ME[e.codigo];
-    const nombre = d ? C.etiqueta(d) : e.nombre || e.codigo;
+    const nombre = d
+      ? C.etiquetas(datos.ME).get(e.codigo)
+      : e.nombre || e.codigo;
     (e.partidos || []).forEach((p) => {
       const m = registrar(p, e.codigo);
       if (

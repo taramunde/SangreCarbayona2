@@ -87,25 +87,38 @@ const aviso = (m) => avisos.push(m);
 
 // ── Personas: etiqueta del Excel → código ───────────────────────
 function indice(maestro) {
+  // Cada forma de escribir a alguien → lista de códigos. Si una forma vale
+  // para más de una persona (apodo repetido, p. ej. "Joselu"), no se adivina:
+  // se avisa con las opciones.
   const idx = new Map();
-  const apodos = new Map();
+  const poner = (k, codigo) => {
+    if (!k) return;
+    const n = C.norm(k);
+    const l = idx.get(n) || [];
+    if (!l.includes(codigo)) l.push(codigo);
+    idx.set(n, l);
+  };
+  const etq = C.etiquetas(maestro);
   Object.entries(maestro).forEach(([codigo, d]) => {
-    [C.etiqueta(d), d.nombreCompleto, codigo].forEach(
-      (k) => k && idx.set(C.norm(k), codigo),
+    [etq.get(codigo), C.etiqueta(d), d.nombreCompleto, codigo, d.apodo].forEach(
+      (k) => poner(k, codigo),
     );
-    const a = C.norm(d.apodo);
-    apodos.set(a, apodos.has(a) ? null : codigo); // null = apodo repetido
   });
-  return (etq) => {
-    const k = C.norm(etq);
-    if (idx.has(k)) return idx.get(k);
-    if (apodos.get(k)) return apodos.get(k);
-    const dentro = String(etq).match(/\(([^)]+)\)\s*$/); // "Lo que sea (Nombre Completo)"
-    if (dentro && idx.has(C.norm(dentro[1]))) return idx.get(C.norm(dentro[1]));
-    return null;
+  return (texto) => {
+    const candidatos = (k) => idx.get(C.norm(k)) || [];
+    let l = candidatos(texto);
+    if (!l.length) {
+      const dentro = String(texto).match(/\(([^)]+)\)\s*(·.*)?$/); // "Apodo (Nombre Completo)"
+      if (dentro) l = candidatos(dentro[1]);
+    }
+    if (l.length === 1) return { codigo: l[0] };
+    if (l.length > 1) return { ambiguo: l.map((c) => etq.get(c)) };
+    return {};
   };
 }
 const buscarJugador = indice(MJ);
+const apodoRepetido = (a) =>
+  Object.values(MJ).filter((d) => C.norm(d.apodo) === C.norm(a)).length > 1;
 const buscarEntrenador = indice(ME);
 const codigoNuevo = (etq) => {
   const m = String(etq).match(/\(([^)]+)\)\s*$/);
@@ -258,9 +271,18 @@ async function main() {
     const etq = texto(f.jugador);
     if (!etq) return;
     const donde = `Plantilla fila ${f._fila} (${etq})`;
-    let codigo = buscarJugador(etq);
+    const encontrado = buscarJugador(etq);
+    if (encontrado.ambiguo)
+      return err(
+        `${donde}: "${etq}" puede ser ${encontrado.ambiguo.map((x) => `"${x}"`).join(' o ')} → elígelo en el desplegable (no entra)`,
+      );
+    let codigo = encontrado.codigo;
     if (!codigo) {
       codigo = codigoNuevo(etq);
+      if (MJ[codigo])
+        return err(
+          `${donde}: es nuevo pero su código "${codigo}" ya es de otro jugador (${C.etiquetas(MJ).get(codigo)}); créale antes su ficha con un código distinto (no entra)`,
+        );
       aviso(
         `${donde}: no tiene ficha en data-jugadores.js → se mete como "${codigo}" (saldrá sin foto ni nombre hasta que tenga ficha)`,
       );
@@ -462,9 +484,18 @@ async function main() {
     const etq = texto(f.entrenador);
     if (!etq) return;
     const donde = `Entrenadores fila ${f._fila} (${etq})`;
-    let codigo = buscarEntrenador(etq);
+    const encontrado = buscarEntrenador(etq);
+    if (encontrado.ambiguo)
+      return err(
+        `${donde}: "${etq}" puede ser ${encontrado.ambiguo.map((x) => `"${x}"`).join(' o ')} → elígelo en el desplegable (no entra)`,
+      );
+    let codigo = encontrado.codigo;
     if (!codigo) {
       codigo = codigoNuevo(etq);
+      if (ME[codigo])
+        return err(
+          `${donde}: es nuevo pero su código "${codigo}" ya es de otro entrenador; créale antes su ficha con un código distinto (no entra)`,
+        );
       aviso(
         `${donde}: no tiene ficha en entrenadorMaestro → se mete como "${codigo}"`,
       );
@@ -497,7 +528,7 @@ async function main() {
       const t = tecnicos.find(
         (x) =>
           C.norm(x.etq) === C.norm(p.entrenador) ||
-          x.codigo === buscarEntrenador(p.entrenador),
+          x.codigo === buscarEntrenador(p.entrenador).codigo,
       );
       if (t) t.partidos.push(p);
       else
@@ -583,7 +614,7 @@ async function main() {
     const a = x.actuaciones;
     const g = a.reduce((s, y) => s + y.goles, 0);
     console.log(
-      `  ✔ ${x.j.dorsal === '-' ? '  ' : String(x.j.dorsal).padStart(2)} ${(x.maestro ? x.maestro.apodo : x.etq).padEnd(22)} ${String(a.length).padStart(3)} PJ  ${String(a.reduce((s, y) => s + y.minutos, 0)).padStart(5)}'  ${x.portero ? `${g} encajados` : `${g} goles`}`,
+      `  ✔ ${x.j.dorsal === '-' ? '  ' : String(x.j.dorsal).padStart(2)} ${(x.maestro && !apodoRepetido(x.maestro.apodo) ? x.maestro.apodo : x.etq).padEnd(22)} ${String(a.length).padStart(3)} PJ  ${String(a.reduce((s, y) => s + y.minutos, 0)).padStart(5)}'  ${x.portero ? `${g} encajados` : `${g} goles`}`,
     );
   });
   tecnicos.forEach((t) =>
