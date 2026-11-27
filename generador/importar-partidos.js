@@ -436,6 +436,10 @@ async function main() {
       if (!k) aviso(`${donde}: tarjeta "${tj}" no reconocida → sin tarjeta`);
       else tarjetas = { ...C.TARJETAS[k] };
     }
+    if (tarjetas.roja && minutos >= completo)
+      aviso(
+        `${donde}: expulsado en el Nº ${n} pero con ${minutos}' (¿no salió antes del final?)`,
+      );
     x.actuaciones.push({
       p,
       minutos,
@@ -465,6 +469,12 @@ async function main() {
     if (asist > nuestros)
       aviso(
         `partido Nº ${p.n} (${p.fecha}): ${asist} asistencias para ${nuestros} goles`,
+      );
+    const completo = p.prorroga ? 120 : 90;
+    const totalMin = acts.reduce((s, a) => s + a.minutos, 0);
+    if (totalMin > 11 * completo)
+      aviso(
+        `partido Nº ${p.n} (${p.fecha}): los jugadores suman ${totalMin}' y en un partido caben como mucho ${11 * completo}' (11 × ${completo})`,
       );
     if (acts.length > 14)
       aviso(
@@ -623,6 +633,97 @@ async function main() {
   );
   errores.forEach((m) => console.log(`  ✖ ${m}`));
   avisos.forEach((m) => console.log(`  ⚠ ${m}`));
+
+  // Por si acaso: qué cambia en los jugadores que YA estaban publicados.
+  // Si no tocaste nada de ellos, aquí no sale nada.
+  if (existente) {
+    const cambios = [];
+    const nombre = (x) =>
+      x.maestro && !apodoRepetido(x.maestro.apodo) ? x.maestro.apodo : x.etq;
+    plantilla.forEach((x) => {
+      const viejo = (existente.jugadores || []).find(
+        (j) => j.codigo === x.codigo,
+      );
+      if (!viejo) return;
+      const n = nombre(x);
+      [
+        'dorsal',
+        'posicion',
+        'enClubDesde',
+        'contratoHasta',
+        'estado',
+        'cedidoEn',
+      ].forEach((k) => {
+        if (String(viejo[k] ?? '') !== String(x.j[k] ?? ''))
+          cambios.push(`${n}: ${k} "${viejo[k] ?? ''}" → "${x.j[k] ?? ''}"`);
+      });
+      if (
+        JSON.stringify(viejo.estados || null) !==
+        JSON.stringify(x.j.estados || null)
+      )
+        cambios.push(`${n}: situación (baja/cesión) cambiada`);
+      const nuevos = new Map(
+        x.actuaciones.map((a, i) => [a.p.fecha, partidoJugador(a, i)]),
+      );
+      const antes = new Map((viejo.partidos || []).map((p) => [p.fecha, p]));
+      antes.forEach((p, f) => {
+        if (!nuevos.has(f))
+          cambios.push(
+            `${n}: ya NO tiene el partido del ${f} (${p.local} - ${p.visitante})`,
+          );
+      });
+      nuevos.forEach((p, f) => {
+        const q = antes.get(f);
+        if (!q) {
+          cambios.push(
+            `${n}: partido NUEVO el ${f} (${p.local} - ${p.visitante}), ${p.minutos}'`,
+          );
+          return;
+        }
+        const campos = [
+          'minutos',
+          'goles',
+          'golesPropia',
+          'asistencias',
+          'amarilla',
+          'roja',
+          'rojaDirecta',
+          'competicion',
+          'jornada',
+          'local',
+          'visitante',
+          'golesLocal',
+          'golesVisitante',
+          'penaltisLocal',
+          'penaltisVisitante',
+        ];
+        const d = campos
+          .filter(
+            (k) =>
+              JSON.stringify(
+                q[k] ?? (typeof p[k] === 'boolean' ? false : null),
+              ) !==
+              JSON.stringify(
+                p[k] ?? (typeof q[k] === 'boolean' ? false : null),
+              ),
+          )
+          .map((k) => `${k} ${q[k] ?? '—'} → ${p[k] ?? '—'}`);
+        if (d.length)
+          cambios.push(
+            `${n}, ${f} (${p.local} - ${p.visitante}): ${d.join(', ')}`,
+          );
+      });
+    });
+    if (cambios.length) {
+      console.log(
+        `\n  ⚠ CAMBIOS en lo que ya estaba publicado (comprueba que sean a propósito):`,
+      );
+      cambios.forEach((c) => console.log(`    · ${c}`));
+    } else
+      console.log(
+        '\n  ✔ Lo que ya estaba publicado no cambia (solo se añade lo nuevo).',
+      );
+  }
 
   // Seguridad: no perder jugadores que ya estaban.
   const perdidos = existente
