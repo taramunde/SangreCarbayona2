@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sergio Villanueva Fernández – Mediocentro Ofensivo del Real Oviedo | Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Sergio Villanueva Fernández, mediocentro ofensivo del Real Oviedo (2007/08 a 2009/10): 79 partidos, 15 goles, 3 asistencias. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:title" content="Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Sergio Villanueva Fernández, mediocentro ofensivo del Real Oviedo (2007/08 a 2009/10): 79 partidos, 15 goles, 3 asistencias. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+    <meta property="og:image:alt" content="Foto de Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sergio Villanueva Fernández - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Sergio Villanueva Fernández, mediocentro ofensivo del Real Oviedo (2007/08 a 2009/10): 79 partidos, 15 goles, 3 asistencias. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sergio Villanueva Fernández",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/sergio-villanueva-fernandez.html",
+  "image": "https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp",
+  "jobTitle": "Mediocentro Ofensivo",
+  "birthDate": "1975-11-02",
+  "height": "1.71 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mieres",
+      "addressRegion": "Asturias"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'sergio-villanueva-fernandez',
+        season: '2007-08',
+        nombre: 'Sergio Villanueva Fernández',
+        imagen: 'https://i.postimg.cc/W46WYm3R/Sergio-Villanueva-PNG.webp',
+        posicion: 'Mediocentro Ofensivo',
+        codigo: 'sergio-villanueva-fernandez-2007-08',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Sergio Villanueva Fernández — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Sergio Villanueva Fernández</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <!-- Resumen ESTÁTICO en texto (lo escribe generador/generar.js).
+         Es contenido visible en el HTML servido: sin él, Google solo ve
+         una página casi vacía hasta ejecutar el JavaScript y suele
+         dejarla como "rastreada, actualmente sin indexar". -->
+    <section class="ficha-resumen-estatico">
+      <div class="container">
+        <div class="ficha-resumen-caja">
+          <h2><span data-en="Sergio Villanueva Fernández at Real Oviedo">Sergio Villanueva Fernández en el Real Oviedo</span></h2>
+          <p><span data-en="<strong>Sergio Villanueva Fernández</strong>, known as <strong>Sergio Villanueva</strong>, was part of Real Oviedo's squad as offensive midfielder in 3 seasons (2007/08–2009/10). With the club: 79 matches, 15 goals, 3 assists. Born in Mieres (Asturias) on November 2, 1975."><strong>Sergio Villanueva Fernández</strong>, conocido como <strong>Sergio Villanueva</strong>, formó parte de la plantilla del Real Oviedo como mediocentro ofensivo en 3 temporadas (2007/08 a 2009/10). Con el club suma 79 partidos, 15 goles, 3 asistencias. Nació en Mieres (Asturias) el 2 de noviembre de 1975.</span></p>
+          <p class="ficha-resumen-enlaces"><a href="../partidos/jugadores.html"><span data-en="All players and managers from A to Z">Todos los jugadores y entrenadores de la A a la Z</span></a> · <a href="../partidos/index.html"><span data-en="Real Oviedo results">Resultados del Real Oviedo</span></a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Sergio Villanueva Fernández with Real Oviedo (79)">Partidos de Sergio Villanueva Fernández con el Real Oviedo (79)</span></summary>
+          <ul>
+          <li><small data-en="3 Jan 2010">3 ene 2010</small><a href="../partidos/universidad-de-las-palmas-de-gran-canaria-cf-real-oviedo-2010-01-03.html">Universidad de Las Palmas de Gran Canaria C.F. 3-0 Real Oviedo</a></li>
+          <li><small data-en="20 Dec 2009">20 dic 2009</small><a href="../partidos/real-oviedo-ud-lanzarote-2009-12-20.html">Real Oviedo 2-0 U.D. Lanzarote</a></li>
+          <li><small data-en="13 Dec 2009">13 dic 2009</small><a href="../partidos/ud-vecindario-real-oviedo-2009-12-13.html">U.D. Vecindario 2-2 Real Oviedo</a></li>
+          <li><small data-en="6 Dec 2009">6 dic 2009</small><a href="../partidos/cf-villanovense-real-oviedo-2009-12-06.html">C.F. Villanovense 1-2 Real Oviedo</a></li>
+          <li><small data-en="31 May 2009">31 may 2009</small><a href="../partidos/rcd-mallorca-b-real-oviedo-2009-05-31.html">R.C.D. Mallorca B 1-0 (5-6 pen.) Real Oviedo</a></li>
+          <li><small data-en="24 May 2009">24 may 2009</small><a href="../partidos/real-oviedo-rcd-mallorca-b-2009-05-24.html">Real Oviedo 1-0 R.C.D. Mallorca B</a></li>
+          <li><small data-en="10 May 2009">10 may 2009</small><a href="../partidos/caudal-deportivo-real-oviedo-2009-05-10.html">Caudal Deportivo 0-1 Real Oviedo</a></li>
+          <li><small data-en="3 May 2009">3 may 2009</small><a href="../partidos/real-oviedo-cd-llanes-2009-05-03.html">Real Oviedo 4-0 C.D. Llanes</a></li>
+          <li><small data-en="26 Apr 2009">26 abr 2009</small><a href="../partidos/real-oviedo-cd-universidad-de-oviedo-2009-04-26.html">Real Oviedo 6-1 C.D. Universidad de Oviedo</a></li>
+          <li><small data-en="19 Apr 2009">19 abr 2009</small><a href="../partidos/candas-cf-real-oviedo-2009-04-19.html">Candás C.F. 2-2 Real Oviedo</a></li>
+          <li><small data-en="12 Apr 2009">12 abr 2009</small><a href="../partidos/real-oviedo-up-de-langreo-2009-04-12.html">Real Oviedo 5-1 U.P. de Langreo</a></li>
+          <li><small data-en="5 Apr 2009">5 abr 2009</small><a href="../partidos/real-oviedo-u-ceares-2009-04-05.html">Real Oviedo 7-0 U. Ceares</a></li>
+          <li><small data-en="29 Mar 2009">29 mar 2009</small><a href="../partidos/cd-mosconia-real-oviedo-2009-03-29.html">C.D. Mosconia 0-3 Real Oviedo</a></li>
+          <li><small data-en="15 Mar 2009">15 mar 2009</small><a href="../partidos/real-aviles-industrial-cf-real-oviedo-2009-03-15.html">Real Avilés Industrial C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="8 Mar 2009">8 mar 2009</small><a href="../partidos/real-oviedo-nalon-cf-2009-03-08.html">Real Oviedo 0-0 Nalón C.F.</a></li>
+          <li><small data-en="22 Feb 2009">22 feb 2009</small><a href="../partidos/real-oviedo-cd-tuilla-2009-02-22.html">Real Oviedo 1-0 C.D. Tuilla</a></li>
+          <li><small data-en="8 Feb 2009">8 feb 2009</small><a href="../partidos/real-oviedo-cd-covadonga-2009-02-08.html">Real Oviedo 4-1 C.D. Covadonga</a></li>
+          <li><small data-en="1 Feb 2009">1 feb 2009</small><a href="../partidos/club-siero-real-oviedo-2009-02-01.html">Club Siero 0-1 Real Oviedo</a></li>
+          <li><small data-en="25 Jan 2009">25 ene 2009</small><a href="../partidos/real-oviedo-gijon-industrial-2009-01-25.html">Real Oviedo 3-0 Gijón Industrial</a></li>
+          <li><small data-en="18 Jan 2009">18 ene 2009</small><a href="../partidos/cd-cudillero-real-oviedo-2009-01-18.html">C.D. Cudillero 0-0 Real Oviedo</a></li>
+          <li><small data-en="11 Jan 2009">11 ene 2009</small><a href="../partidos/condal-cf-real-oviedo-2009-01-11.html">Condal C.F. 0-2 Real Oviedo</a></li>
+          <li><small data-en="4 Jan 2009">4 ene 2009</small><a href="../partidos/real-oviedo-caudal-deportivo-2009-01-04.html">Real Oviedo 2-0 Caudal Deportivo</a></li>
+          <li><small data-en="21 Dec 2008">21 dic 2008</small><a href="../partidos/cd-llanes-real-oviedo-2008-12-21.html">C.D. Llanes 0-1 Real Oviedo</a></li>
+          <li><small data-en="7 Dec 2008">7 dic 2008</small><a href="../partidos/real-oviedo-candas-cf-2008-12-07.html">Real Oviedo 2-0 Candás C.F.</a></li>
+          <li><small data-en="30 Nov 2008">30 nov 2008</small><a href="../partidos/up-de-langreo-real-oviedo-2008-11-30.html">U.P. de Langreo 0-1 Real Oviedo</a></li>
+          <li><small data-en="23 Nov 2008">23 nov 2008</small><a href="../partidos/real-oviedo-cd-lealtad-de-villaviciosa-2008-11-23.html">Real Oviedo 3-1 C.D. Lealtad de Villaviciosa</a></li>
+          <li><small data-en="15 Nov 2008">15 nov 2008</small><a href="../partidos/u-ceares-real-oviedo-2008-11-15.html">U. Ceares 0-3 Real Oviedo</a></li>
+          <li><small data-en="9 Nov 2008">9 nov 2008</small><a href="../partidos/real-oviedo-cd-mosconia-2008-11-09.html">Real Oviedo 5-1 C.D. Mosconia</a></li>
+          <li><small data-en="2 Nov 2008">2 nov 2008</small><a href="../partidos/sd-navarro-cf-real-oviedo-2008-11-02.html">S.D. Navarro C.F. 0-4 Real Oviedo</a></li>
+          <li><small data-en="26 Oct 2008">26 oct 2008</small><a href="../partidos/real-oviedo-real-aviles-industrial-cf-2008-10-26.html">Real Oviedo 3-0 Real Avilés Industrial C.F.</a></li>
+          <li><small data-en="19 Oct 2008">19 oct 2008</small><a href="../partidos/nalon-cf-real-oviedo-2008-10-19.html">Nalón C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="12 Oct 2008">12 oct 2008</small><a href="../partidos/real-oviedo-astur-cf-2008-10-12.html">Real Oviedo 6-0 Astur C.F.</a></li>
+          <li><small data-en="5 Oct 2008">5 oct 2008</small><a href="../partidos/cd-tuilla-real-oviedo-2008-10-05.html">C.D. Tuilla 0-2 Real Oviedo</a></li>
+          <li><small data-en="28 Sep 2008">28 sep 2008</small><a href="../partidos/real-oviedo-ribadesella-cf-2008-09-28.html">Real Oviedo 3-0 Ribadesella C.F.</a></li>
+          <li><small data-en="20 Sep 2008">20 sep 2008</small><a href="../partidos/cd-covadonga-real-oviedo-2008-09-20.html">C.D. Covadonga 0-3 Real Oviedo</a></li>
+          <li><small data-en="14 Sep 2008">14 sep 2008</small><a href="../partidos/real-oviedo-club-siero-2008-09-14.html">Real Oviedo 4-1 Club Siero</a></li>
+          <li><small data-en="7 Sep 2008">7 sep 2008</small><a href="../partidos/gijon-industrial-real-oviedo-2008-09-07.html">Gijón Industrial 2-1 Real Oviedo</a></li>
+          <li><small data-en="3 Sep 2008">3 sep 2008</small><a href="../partidos/real-oviedo-sd-ponferradina-2008-09-03.html">Real Oviedo 2-3 S.D. Ponferradina</a></li>
+          <li><small data-en="31 Aug 2008">31 ago 2008</small><a href="../partidos/real-oviedo-cd-cudillero-2008-08-31.html">Real Oviedo 2-0 C.D. Cudillero</a></li>
+          <li><small data-en="26 Aug 2008">26 ago 2008</small><a href="../partidos/real-oviedo-pontevedra-cf-2008-08-26.html">Real Oviedo 2-0 Pontevedra C.F.</a></li>
+          <li><small data-en="1 Jun 2008">1 jun 2008</small><a href="../partidos/real-oviedo-caravaca-cf-2008-06-01.html">Real Oviedo 4-2 Caravaca C.F.</a></li>
+          <li><small data-en="25 May 2008">25 may 2008</small><a href="../partidos/caravaca-cf-real-oviedo-2008-05-25.html">Caravaca C.F. 4-1 Real Oviedo</a></li>
+          <li><small data-en="4 May 2008">4 may 2008</small><a href="../partidos/real-oviedo-cd-tuilla-2008-05-04.html">Real Oviedo 6-0 C.D. Tuilla</a></li>
+          <li><small data-en="20 Apr 2008">20 abr 2008</small><a href="../partidos/real-oviedo-caudal-deportivo-2008-04-20.html">Real Oviedo 4-0 Caudal Deportivo</a></li>
+          <li><small data-en="13 Apr 2008">13 abr 2008</small><a href="../partidos/candas-cf-real-oviedo-2008-04-13.html">Candás C.F. 0-5 Real Oviedo</a></li>
+          <li><small data-en="5 Apr 2008">5 abr 2008</small><a href="../partidos/real-oviedo-u-ceares-2008-04-05.html">Real Oviedo 1-1 U. Ceares</a></li>
+          <li><small data-en="30 Mar 2008">30 mar 2008</small><a href="../partidos/condal-cf-real-oviedo-2008-03-30.html">Condal C.F. 1-2 Real Oviedo</a></li>
+          <li><small data-en="19 Mar 2008">19 mar 2008</small><a href="../partidos/real-oviedo-cd-llanes-2008-03-19.html">Real Oviedo 2-0 C.D. Llanes</a></li>
+          <li><small data-en="16 Mar 2008">16 mar 2008</small><a href="../partidos/astur-cf-real-oviedo-2008-03-16.html">Astur C.F. 0-1 Real Oviedo</a></li>
+          <li><small data-en="9 Mar 2008">9 mar 2008</small><a href="../partidos/real-oviedo-sd-navarro-cf-2008-03-09.html">Real Oviedo 2-0 S.D. Navarro C.F.</a></li>
+          <li><small data-en="2 Mar 2008">2 mar 2008</small><a href="../partidos/up-de-langreo-real-oviedo-2008-03-02.html">U.P. de Langreo 0-1 Real Oviedo</a></li>
+          <li><small data-en="24 Feb 2008">24 feb 2008</small><a href="../partidos/real-oviedo-cd-lealtad-de-villaviciosa-2008-02-24.html">Real Oviedo 2-0 C.D. Lealtad de Villaviciosa</a></li>
+          <li><small data-en="17 Feb 2008">17 feb 2008</small><a href="../partidos/club-siero-real-oviedo-2008-02-17.html">Club Siero 2-0 Real Oviedo</a></li>
+          <li><small data-en="10 Feb 2008">10 feb 2008</small><a href="../partidos/real-oviedo-real-aviles-industrial-cf-2008-02-10.html">Real Oviedo 4-0 Real Avilés Industrial C.F.</a></li>
+          <li><small data-en="3 Feb 2008">3 feb 2008</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2008-02-03.html">Real Sporting de Gijón B 0-2 Real Oviedo</a></li>
+          <li><small data-en="27 Jan 2008">27 ene 2008</small><a href="../partidos/real-oviedo-ribadesella-cf-2008-01-27.html">Real Oviedo 1-1 Ribadesella C.F.</a></li>
+          <li><small data-en="20 Jan 2008">20 ene 2008</small><a href="../partidos/cd-universidad-de-oviedo-real-oviedo-2008-01-20.html">C.D. Universidad de Oviedo 3-2 Real Oviedo</a></li>
+          <li><small data-en="13 Jan 2008">13 ene 2008</small><a href="../partidos/real-oviedo-sd-colloto-2008-01-13.html">Real Oviedo 3-0 S.D. Colloto</a></li>
+          <li><small data-en="22 Dec 2007">22 dic 2007</small><a href="../partidos/real-oviedo-real-tapia-cf-2007-12-22.html">Real Oviedo 2-0 Real Tapia C.F.</a></li>
+          <li><small data-en="16 Dec 2007">16 dic 2007</small><a href="../partidos/cd-tuilla-real-oviedo-2007-12-16.html">C.D. Tuilla 0-1 Real Oviedo</a></li>
+          <li><small data-en="12 Dec 2007">12 dic 2007</small><a href="../partidos/real-oviedo-club-hispano-de-castrillon-2007-12-12.html">Real Oviedo 10-0 Club Hispano de Castrillón</a></li>
+          <li><small data-en="2 Dec 2007">2 dic 2007</small><a href="../partidos/caudal-deportivo-real-oviedo-2007-12-02.html">Caudal Deportivo 3-1 Real Oviedo</a></li>
+          <li><small data-en="25 Nov 2007">25 nov 2007</small><a href="../partidos/real-oviedo-candas-cf-2007-11-25.html">Real Oviedo 1-0 Candás C.F.</a></li>
+          <li><small data-en="18 Nov 2007">18 nov 2007</small><a href="../partidos/u-ceares-real-oviedo-2007-11-18.html">U. Ceares 0-1 Real Oviedo</a></li>
+          <li><small data-en="11 Nov 2007">11 nov 2007</small><a href="../partidos/real-oviedo-condal-cf-2007-11-11.html">Real Oviedo 1-0 Condal C.F.</a></li>
+          <li><small data-en="4 Nov 2007">4 nov 2007</small><a href="../partidos/cd-llanes-real-oviedo-2007-11-04.html">C.D. Llanes 3-1 Real Oviedo</a></li>
+          <li><small data-en="1 Nov 2007">1 nov 2007</small><a href="../partidos/real-oviedo-cd-universidad-de-oviedo-2007-11-01.html">Real Oviedo 1-0 C.D. Universidad de Oviedo</a></li>
+          <li><small data-en="28 Oct 2007">28 oct 2007</small><a href="../partidos/real-oviedo-astur-cf-2007-10-28.html">Real Oviedo 7-0 Astur C.F.</a></li>
+          <li><small data-en="14 Oct 2007">14 oct 2007</small><a href="../partidos/real-oviedo-up-de-langreo-2007-10-14.html">Real Oviedo 3-3 U.P. de Langreo</a></li>
+          <li><small data-en="7 Oct 2007">7 oct 2007</small><a href="../partidos/cd-lealtad-de-villaviciosa-real-oviedo-2007-10-07.html">C.D. Lealtad de Villaviciosa 1-0 Real Oviedo</a></li>
+          <li><small data-en="30 Sep 2007">30 sep 2007</small><a href="../partidos/real-oviedo-club-siero-2007-09-30.html">Real Oviedo 5-1 Club Siero</a></li>
+          <li><small data-en="23 Sep 2007">23 sep 2007</small><a href="../partidos/real-aviles-industrial-cf-real-oviedo-2007-09-23.html">Real Avilés Industrial C.F. 1-3 Real Oviedo</a></li>
+          <li><small data-en="16 Sep 2007">16 sep 2007</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2007-09-16.html">Real Oviedo 3-2 Real Sporting de Gijón B</a></li>
+          <li><small data-en="5 Sep 2007">5 sep 2007</small><a href="../partidos/up-de-langreo-real-oviedo-2007-09-05.html">U.P. de Langreo 0-0 Real Oviedo</a></li>
+          <li><small data-en="25 Aug 2007">25 ago 2007</small><a href="../partidos/sd-colloto-real-oviedo-2007-08-25.html">S.D. Colloto 0-2 Real Oviedo</a></li>
+          <li><small data-en="22 Aug 2007">22 ago 2007</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2007-08-22.html">Real Oviedo 2-1 Real Sporting de Gijón B</a></li>
+          <li><small data-en="15 Aug 2007">15 ago 2007</small><a href="../partidos/ribadesella-cf-real-oviedo-2007-08-15.html">Ribadesella C.F. 1-2 Real Oviedo</a></li>
+          <li><small data-en="12 Aug 2007">12 ago 2007</small><a href="../partidos/real-sporting-de-gijon-b-real-oviedo-2007-08-12.html">Real Sporting de Gijón B 2-1 Real Oviedo</a></li>
+          <li><small data-en="5 Aug 2007">5 ago 2007</small><a href="../partidos/real-oviedo-ribadesella-cf-2007-08-05.html">Real Oviedo 1-0 Ribadesella C.F.</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261127v3"></script>
+    <script src="../js/data-club.js?nocache=20261127v3"></script>
+    <script src="../js/data-jugadores.js?nocache=20261127v3"></script>
+    <script src="../js/busqueda.js?nocache=20261127v3"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261127v3"></script>
+    <script src="../js/data-historico.js?nocache=20261127v3"></script>
+    <script src="../js/data-utils.js?nocache=20261127v3"></script>
+    <script src="../js/data-indice-partidos.js?nocache=20261127v3"></script>
+    <script src="../js/app.js?nocache=20261127v3"></script>
+    <script src="../js/script.js?nocache=20261127v3"></script>
+    <script src="../js/main.js?nocache=20261127v3"></script>
+  </body>
+</html>
