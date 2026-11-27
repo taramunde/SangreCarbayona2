@@ -188,6 +188,9 @@ sin perder nada con:
 npm run plantilla-partidos -- --desde "excel/partidos-2007-08.xlsx"
 ```
 
+Con `--ordenar` además coloca las filas de Actuaciones de cada jugador
+juntas y en orden de partido (no cambia ningún dato).
+
 Para meterlo en la web:
 
 ```

@@ -357,6 +357,23 @@ async function leerExcel(ruta) {
       vals,
     });
   });
+  // --ordenar: cada jugador junto, en el orden en que aparece por primera
+  // vez, y sus partidos de menor a mayor Nº (que es el orden por fecha).
+  if (args.includes('--ordenar')) {
+    const primero = new Map();
+    actuaciones.forEach((a, i) => {
+      const k = C.norm(a.vals[1]);
+      if (!primero.has(k)) primero.set(k, i);
+    });
+    const num = (a) => (a.partido ? Number(a.partido.n) : Infinity);
+    actuaciones.forEach((a, i) => (a.i = i));
+    actuaciones.sort(
+      (a, b) =>
+        primero.get(C.norm(a.vals[1])) - primero.get(C.norm(b.vals[1])) ||
+        num(a) - num(b) ||
+        a.i - b.i,
+    );
+  }
   return { partidos, plantilla, tecnicos, conflictos: [], actuaciones, conf };
 }
 
