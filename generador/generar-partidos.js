@@ -239,6 +239,38 @@ function htmlResumen(r) {
         </div>`;
 }
 
+// Bloque "Resumen en vídeo": solo miniatura + botón; el reproductor de
+// YouTube (versión sin cookies) se carga al pulsar, así la página no
+// descarga nada de YouTube hasta que alguien quiere verlo.
+function htmlResumenVideo(p) {
+  if (!p.resumen) return '';
+  const id = e(p.resumen.videoId);
+  const titulo = `${p.local} ${marcador(p)} ${p.visitante}`;
+  return `<section class="bloque" aria-label="Resumen en vídeo">
+          <h2>${bi('Resumen en vídeo', 'Video highlights')}</h2>
+          <div class="video-resumen" data-video="${id}">
+            <button type="button" class="video-resumen-play" aria-label="Reproducir el resumen: ${e(titulo)}">
+              <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="Resumen ${e(titulo)}" loading="lazy" width="480" height="360" />
+              <span class="video-resumen-icono"><i class="fas fa-play"></i></span>
+            </button>
+          </div>
+          <p class="nota"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> ${bi('Ver en YouTube', 'Watch on YouTube')}</a>${p.resumen.canal ? ` · ${bi('Vídeo de', 'Video by')} ${e(p.resumen.canal)}` : ''}</p>
+          <script>
+            document.querySelectorAll('.video-resumen').forEach(function (caja) {
+              caja.querySelector('button').addEventListener('click', function () {
+                var f = document.createElement('iframe');
+                f.src = 'https://www.youtube-nocookie.com/embed/' + caja.dataset.video + '?autoplay=1&rel=0';
+                f.title = 'Resumen en vídeo';
+                f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                f.allowFullscreen = true;
+                caja.innerHTML = '';
+                caja.appendChild(f);
+              });
+            });
+          </script>
+        </section>`;
+}
+
 // Una fila enlazada de partido para los listados.
 function htmlFilaPartido(p, { mostrarTemporada = false } = {}) {
   const res = resultadoOviedo(p);
@@ -252,7 +284,7 @@ function htmlFilaPartido(p, { mostrarTemporada = false } = {}) {
     .join(' · ');
   return `<li><a class="fila-partido" href="${e(p.slug)}.html">
             <span class="cuando">${bi(e(fechaCorta(p.fecha)), e(fechaCortaEn(p.fecha)))}${mostrarTemporada ? `<br />${e(nombreTemporada(p.tid))}` : ''}</span>
-            <span class="cruce">${lado(p.local)} – ${lado(p.visitante)}${bi(e(detalle), e(detalleEn), 'small')}</span>
+            <span class="cruce">${lado(p.local)} – ${lado(p.visitante)}${p.resumen ? ' <i class="fas fa-circle-play icono-resumen" title="Con resumen en vídeo" aria-label="Con resumen en vídeo"></i>' : ''}${bi(e(detalle), e(detalleEn), 'small')}</span>
             <span class="res res-${res}" title="${TEXTO_RES[res] || ''}">${e(marcador(p).replace(' pen.', ''))}</span>
           </a></li>`;
 }
@@ -556,6 +588,8 @@ partidos.forEach((p, i) => {
             ${datos}
           </div>
         </section>
+
+        ${htmlResumenVideo(p)}
 
         ${
           goleadores.length ||

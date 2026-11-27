@@ -733,3 +733,61 @@
   color: var(--primary-color);
   font-weight: 600;
 }
+
+/* ── Resumen en vídeo (js/data-resumenes.js) ─────────────────── */
+.video-resumen {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+}
+.video-resumen iframe,
+.video-resumen-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+}
+.video-resumen-play img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+.video-resumen-play:hover img {
+  opacity: 1;
+}
+.video-resumen-icono {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #003da5;
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  padding-left: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+.video-resumen + .nota,
+.video-resumen ~ .nota {
+  margin-top: 10px;
+}
+.icono-resumen {
+  color: #c4302b;
+  font-size: 0.85em;
+  margin-left: 4px;
+}

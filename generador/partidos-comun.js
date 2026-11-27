@@ -38,6 +38,7 @@ const DATA_FILES = [
 const EQUIPOS_FILE = path.join(__dirname, '../js/data-equipos.js');
 const ESCUDOS_FILE = path.join(__dirname, '../js/data-escudos.js');
 const GOLES_PROPIA_FILE = path.join(__dirname, '../js/data-goles-propia.js');
+const RESUMENES_FILE = path.join(__dirname, '../js/data-resumenes.js');
 
 // Carga los archivos de datos en un "navegador simulado", igual que
 // generar.js, y devuelve window.CLUB_DATA.
@@ -67,7 +68,7 @@ function cargarClubData() {
   }
   // Archivos opcionales: nombres históricos de clubes y escudos. Si no
   // existen, cada nombre es un club distinto y no se muestran escudos.
-  [EQUIPOS_FILE, ESCUDOS_FILE, GOLES_PROPIA_FILE].forEach((f) => {
+  [EQUIPOS_FILE, ESCUDOS_FILE, GOLES_PROPIA_FILE, RESUMENES_FILE].forEach((f) => {
     if (!fs.existsSync(f)) return;
     try {
       vm.runInContext(fs.readFileSync(f, 'utf-8'), sandbox, {
@@ -79,6 +80,15 @@ function cargarClubData() {
     }
   });
   return sandbox.window.CLUB_DATA;
+}
+
+// Acepta el código de 11 caracteres o una URL de YouTube entera
+// (watch?v=, youtu.be/, /embed/, /shorts/) y devuelve solo el código.
+function idYoutube(valor) {
+  const t = String(valor || '').trim();
+  if (/^[\w-]{11}$/.test(t)) return t;
+  const m = t.match(/(?:[?&]v=|youtu\.be\/|\/embed\/|\/shorts\/)([\w-]{11})/);
+  return m ? m[1] : null;
 }
 
 // ── TEXTO ─────────────────────────────────────────────────────
@@ -562,6 +572,22 @@ function construirPartidos(CLUB_DATA) {
       minuto: og.minuto || null,
       goles: og.goles || 1,
     });
+  });
+
+  // Resúmenes en vídeo de YouTube (js/data-resumenes.js), por fecha.
+  partidos.forEach((p) => {
+    p.resumen = null;
+  });
+  (CLUB_DATA.resumenes || []).forEach((r) => {
+    const p = r && porFecha.get(r.fecha);
+    const id = idYoutube(r && r.videoId);
+    if (!p || !id) {
+      avisos.push(
+        `Resumen en vídeo ${!p ? 'con fecha sin partido' : 'sin un videoId válido'} (js/data-resumenes.js): ${r && r.fecha} ${r && r.videoId}`,
+      );
+      return;
+    }
+    p.resumen = { videoId: id, canal: r.canal || '' };
   });
 
   // Por si dos partidos distintos acabasen con el mismo slug (no

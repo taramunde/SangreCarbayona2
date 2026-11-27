@@ -586,6 +586,20 @@ Archivo: **`js/data-videos.js`**, `CLUB_DATA.videos`:
 },
 ```
 
+### Resúmenes de partidos antiguos
+
+Archivo: **`js/data-resumenes.js`**, `CLUB_DATA.resumenes`. Un objeto
+por partido; la fecha tiene que ser la del partido en los datos:
+
+```js
+{ fecha: '2007-08-25', videoId: 'MTLAkZPiw4g' },
+```
+
+Vale el código o la URL de YouTube entera. Sale un bloque "Resumen en
+vídeo" en la página del partido (`partidos/...html`) y un icono ▶ en
+los listados de temporada y rival. El vídeo no se descarga: se ve desde
+YouTube y solo se carga al pulsar play. Después, `npm run subir`.
+
 ---
 
 ## 14. Buscador avanzado
