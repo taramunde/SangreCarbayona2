@@ -187,6 +187,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/antonio-jose-gonzalez-garcia.html</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/eneko-loinaz-valle.html</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -243,12 +249,6 @@
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/fichas/jaime-alvarez-diaz.html</loc>
     <lastmod>2026-11-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://taramunde.github.io/SangreCarbayona2/fichas/antonio-jose-gonzalez-garcia.html</loc>
-    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -3722,13 +3722,13 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/u-ceares-real-oviedo-2007-11-18.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-candas-cf-2007-11-25.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3806,7 +3806,7 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/up-de-langreo-real-oviedo-2008-03-02.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3818,7 +3818,7 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/astur-cf-real-oviedo-2008-03-16.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -3872,19 +3872,19 @@
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-cd-cudillero-2008-05-18.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/caravaca-cf-real-oviedo-2008-05-25.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://taramunde.github.io/SangreCarbayona2/partidos/real-oviedo-caravaca-cf-2008-06-01.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
