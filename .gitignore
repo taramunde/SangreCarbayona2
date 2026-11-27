@@ -7,3 +7,6 @@ excel/~$*
 # Contenido SIN CIFRAR de la zona privada (privado.html). Solo en tu PC.
 # Lo que se sube es js/data-privado.js (cifrado con generador/cifrar-privado.js).
 privado-fuente/
+
+# Vídeos guardados solo para uso personal. Se quedan en tu PC: NUNCA se suben.
+videos-locales/
