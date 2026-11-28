@@ -32,7 +32,7 @@ CLUB_DATA.resumenes = [
   // ── 2007/08 ───────────────────────────────────────────────
   { fecha: '2007-08-05', videoId: 'UMWa1tfub-E' }, // Real Oviedo 1-0 Ribadesella C.F., Copa RFEF (Fase Regional)
   { fecha: '2007-08-12', videoId: '0kU7fhbUE_s' }, // Real Sporting de Gijón B 2-1 Real Oviedo, Copa RFEF (Fase Regional)
-  { fecha: '2007-08-15', videoId: 'qU-9PNRdlXI' }, // Ribadesella C.F. 1-2 Real Oviedo, Copa RFEF (Fase Regional)
+  { fecha: '2007-08-15', videoId: 'JCw2actDVkQ' }, // Ribadesella C.F. 1-2 Real Oviedo, Copa RFEF (Fase Regional)
   { fecha: '2007-08-22', videoId: 'KoVvIi2lkQ0' }, // Real Oviedo 2-1 Real Sporting de Gijón B, Copa RFEF (Fase Regional)
   { fecha: '2007-08-25', videoId: 'MTLAkZPiw4g' }, // S.D. Colloto 0-2 Real Oviedo, J1 Tercera
   { fecha: '2007-09-23', videoId: '96CtWTYH7Fg' }, // Real Avilés Industrial C.F. 1-3 Real Oviedo, J5 Tercera
