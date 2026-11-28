@@ -19,8 +19,8 @@
     <meta name="twitter:description" content="Ribadesella C.F. 1-2 Real Oviedo, Copa de la R.F.E.F. (Fase Regional), Previa Regional (15 de agosto de 2007). Goles del Real Oviedo: Diego Meijide, Jaime. Jugadores del Real Oviedo, minutos, goles y tarjetas." />
     <meta name="twitter:image" content="https://taramunde.github.io/SangreCarbayona2/img/varios/LogoSangreCarbayona.webp" />
     <link rel="icon" type="image/webp" href="../img/varios/LogoSangreCarbayona.webp" />
-    <link rel="stylesheet" href="../css/styles.css?nocache=20261127v11" />
-    <link rel="stylesheet" href="../css/partidos.css?nocache=20261127v11" />
+    <link rel="stylesheet" href="../css/styles.css?nocache=20261127v12" />
+    <link rel="stylesheet" href="../css/partidos.css?nocache=20261127v12" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -76,7 +76,29 @@
           </div>
         </section>
 
-        
+        <section class="bloque" aria-label="Resumen en vídeo">
+          <h2><span data-en="Video highlights">Resumen en vídeo</span></h2>
+          <div class="video-resumen" data-video="qU-9PNRdlXI">
+            <button type="button" class="video-resumen-play" aria-label="Reproducir el resumen: Ribadesella C.F. 1-2 Real Oviedo">
+              <img src="https://i.ytimg.com/vi/qU-9PNRdlXI/hqdefault.jpg" alt="Resumen Ribadesella C.F. 1-2 Real Oviedo" loading="lazy" width="480" height="360" />
+              <span class="video-resumen-icono"><i class="fas fa-play"></i></span>
+            </button>
+          </div>
+          <p class="nota"><a href="https://www.youtube.com/watch?v=qU-9PNRdlXI" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> <span data-en="Watch on YouTube">Ver en YouTube</span></a></p>
+          <script>
+            document.querySelectorAll('.video-resumen').forEach(function (caja) {
+              caja.querySelector('button').addEventListener('click', function () {
+                var f = document.createElement('iframe');
+                f.src = 'https://www.youtube-nocookie.com/embed/' + caja.dataset.video + '?autoplay=1&rel=0';
+                f.title = 'Resumen en vídeo';
+                f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+                f.allowFullscreen = true;
+                caja.innerHTML = '';
+                caja.appendChild(f);
+              });
+            });
+          </script>
+        </section>
 
         <section class="bloque">
           <h2><span data-en="Real Oviedo goals">Goles del Real Oviedo</span></h2>
@@ -219,12 +241,12 @@
     <footer class="main-footer" id="footer-placeholder"></footer>
 
     <!-- Generado por generador/generar-partidos.js: no editar a mano -->
-    <script src="../js/data-club.js?nocache=20261127v11"></script>
-    <script src="../js/data-jugadores.js?nocache=20261127v11"></script>
-    <script src="../js/busqueda.js?nocache=20261127v11"></script>
-    <script src="../js/i18n.js?nocache=20261127v11"></script>
-    <script src="../js/seo.js?nocache=20261127v11"></script>
-    <script src="../js/script.js?nocache=20261127v11"></script>
-    <script src="../js/main.js?nocache=20261127v11"></script>
+    <script src="../js/data-club.js?nocache=20261127v12"></script>
+    <script src="../js/data-jugadores.js?nocache=20261127v12"></script>
+    <script src="../js/busqueda.js?nocache=20261127v12"></script>
+    <script src="../js/i18n.js?nocache=20261127v12"></script>
+    <script src="../js/seo.js?nocache=20261127v12"></script>
+    <script src="../js/script.js?nocache=20261127v12"></script>
+    <script src="../js/main.js?nocache=20261127v12"></script>
   </body>
 </html>
