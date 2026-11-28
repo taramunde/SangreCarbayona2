@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dani García (Daniel García Fernández) – Mediocentro Defensivo del Real Oviedo | Sangre Carbayona</title>
+
+    <!-- Rutas ajustadas con ../ para salir de la carpeta fichas -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../img/varios/LogoSangreCarbayona.webp"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/ficha-jugador-styles.css" />
+    <link rel="stylesheet" href="../css/partidos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Ajuste uniforme de fotos de jugadores -->
+    <style>
+      .player-main-photo,
+      .squad-image img,
+      .player-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        transform: scale(1.08);
+        filter: brightness(1.08) contrast(0.95); /* compensa el oscurecimiento visual por scale + sombras */
+      }
+
+      /* Para la ficha individual - altura fija */
+      .player-photo-wrapper {
+        height: 450px;
+        overflow: hidden;
+      }
+
+      .player-main-photo {
+        height: 100%;
+      }
+    </style>
+
+    <!-- ============================================================
+         META OPEN GRAPH — URLs ABSOLUTAS para WhatsApp / Telegram
+         ============================================================ -->
+    <meta
+      name="description"
+      content="Dani García (Daniel García Fernández), mediocentro defensivo del Real Oviedo (2007/08): 8 partidos. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:title" content="Daniel García Fernández - Real Oviedo" />
+    <meta
+      property="og:description"
+      content="Dani García (Daniel García Fernández), mediocentro defensivo del Real Oviedo (2007/08): 8 partidos. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta property="og:image" content="https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp" />
+    <meta property="og:image:alt" content="Foto de Daniel García Fernández - Real Oviedo" />
+    <meta
+      property="og:url"
+      content="https://taramunde.github.io/SangreCarbayona2/fichas/daniel-garcia-fernandez.html"
+    />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Sangre Carbayona" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Daniel García Fernández - Real Oviedo" />
+    <meta
+      name="twitter:description"
+      content="Dani García (Daniel García Fernández), mediocentro defensivo del Real Oviedo (2007/08): 8 partidos. Estadísticas, partidos y trayectoria en Sangre Carbayona."
+    />
+    <meta name="twitter:image" content="https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp" />
+
+    <!-- ============================================================
+         CANONICAL: las fichas históricas con sufijo de temporada
+         (ej: alvaro-lemos-2024-25.html) tienen el mismo contenido que
+         la ficha sin sufijo del mismo jugador. Sin esta etiqueta,
+         Google las trataría como contenido duplicado. https://taramunde.github.io/SangreCarbayona2/fichas/daniel-garcia-fernandez.html
+         siempre apunta a la versión sin sufijo, tanto si esta página
+         ES esa versión canónica como si es una variante histórica.
+         ============================================================ -->
+    <link rel="canonical" href="https://taramunde.github.io/SangreCarbayona2/fichas/daniel-garcia-fernandez.html" />
+
+    <!-- Datos estructurados (JSON-LD) para resultados enriquecidos
+         de Google al buscar el nombre del jugador. El objeto completo
+         lo construye generador/generar.js (ver construirJsonLdPersona),
+         para poder omitir con seguridad los campos que no tengamos
+         confirmados en vez de dejarlos vacíos o inventados. -->
+    <script type="application/ld+json">
+      {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Daniel García Fernández",
+  "url": "https://taramunde.github.io/SangreCarbayona2/fichas/daniel-garcia-fernandez.html",
+  "image": "https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp",
+  "jobTitle": "Mediocentro Defensivo",
+  "birthDate": "1989-06-07",
+  "height": "1.72 m",
+  "nationality": "Española",
+  "birthPlace": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Betanzos",
+      "addressRegion": "La Coruña"
+    }
+  },
+  "memberOf": {
+    "@type": "SportsTeam",
+    "name": "Real Oviedo",
+    "sport": "Fútbol"
+  }
+}
+    </script>
+
+    <link rel="preconnect" href="https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp" />
+
+    <!-- Datos inyectados para que app.js funcione -->
+    <script>
+      window.PLAYER_DATA_STATIC = {
+        id: 'daniel-garcia-fernandez',
+        season: '2007-08',
+        nombre: 'Daniel García Fernández',
+        imagen: 'https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp',
+        posicion: 'Mediocentro Defensivo',
+        codigo: 'daniel-garcia-fernandez',
+      };
+    </script>
+  </head>
+  <body>
+    <!-- Título real en el HTML servido, para que los buscadores lo vean
+         sin depender de que se ejecute el JavaScript: app.js reemplaza
+         todo el contenedor de la foto/nombre por su cuenta, así que aquí
+         no puede vivir el <h1> visible normal — se oculta visualmente
+         con .sr-only (sigue siendo legible por lectores de pantalla y
+         buscadores). -->
+    <h1 class="sr-only">
+      Daniel García Fernández — Ficha del Real Oviedo | Sangre Carbayona
+    </h1>
+
+    <!-- Header (Rutas con ../) -->
+    <header class="main-header" id="header-placeholder"></header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <form class="search-form">
+          <input
+            type="text"
+            data-i18n="buscar"
+            placeholder="Buscar en la web..."
+            aria-label="Buscar en la web"
+          />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="close-search" id="closeSearch">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Player Hero -->
+    <section class="player-hero">
+      <div class="player-hero-bg"><div class="bg-pattern"></div></div>
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="../index.html" data-i18n="nav_inicio">Inicio</a
+          ><span>/</span> <a href="#" data-i18n="nav_equipo">Equipo</a><span>/</span>
+          <a href="../primer-equipo.html" data-i18n="nav_primer_equipo"
+            >Primer Equipo</a
+          ><span>/</span>
+          <span class="current">Daniel García Fernández</span>
+        </div>
+        <div class="player-hero-content" id="fichaJugadorContent"></div>
+      </div>
+    </section>
+
+    <!-- Stats Tabs -->
+    <section class="player-stats-section">
+      <div class="container">
+        <div class="stats-tabs">
+          <button
+            class="stats-tab active"
+            data-tab="Overview"
+            data-i18n="rendimiento"
+          >
+            Resumen
+          </button>
+          <button class="stats-tab" data-tab="Matches" data-i18n="partidos">
+            Partidos
+          </button>
+          <button class="stats-tab" data-tab="Career" data-i18n="historial">
+            Trayectoria
+          </button>
+        </div>
+        <div class="tab-content active" id="tabOverview"></div>
+        <div class="tab-content" id="tabMatches"></div>
+        <div class="tab-content" id="tabCareer"></div>
+      </div>
+    </section>
+
+    <!-- Lista ESTÁTICA de partidos (la escribe generador/generar.js a
+         partir de los datos). Está en el HTML servido para que Google la
+         lea sin ejecutar JavaScript y siga los enlaces a /partidos/. -->
+    <!-- Resumen ESTÁTICO en texto (lo escribe generador/generar.js).
+         Es contenido visible en el HTML servido: sin él, Google solo ve
+         una página casi vacía hasta ejecutar el JavaScript y suele
+         dejarla como "rastreada, actualmente sin indexar". -->
+    <section class="ficha-resumen-estatico">
+      <div class="container">
+        <div class="ficha-resumen-caja">
+          <h2><span data-en="Dani García (Daniel García Fernández) at Real Oviedo">Dani García (Daniel García Fernández) en el Real Oviedo</span></h2>
+          <p><span data-en="<strong>Daniel García Fernández</strong>, known as <strong>Dani García</strong>, was part of Real Oviedo's squad as defensive midfielder in the 2007/08 season. With the club: 8 matches. Born in Betanzos (La Coruña) on June 7, 1989."><strong>Daniel García Fernández</strong>, conocido como <strong>Dani García</strong>, formó parte de la plantilla del Real Oviedo como mediocentro defensivo en la temporada 2007/08. Con el club suma 8 partidos. Nació en Betanzos (La Coruña) el 7 de junio de 1989.</span></p>
+          <p class="ficha-resumen-enlaces"><a href="../partidos/jugadores.html"><span data-en="All players and managers from A to Z">Todos los jugadores y entrenadores de la A a la Z</span></a> · <a href="../partidos/index.html"><span data-en="Real Oviedo results">Resultados del Real Oviedo</span></a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ficha-partidos-estaticos">
+      <div class="container">
+        <details>
+          <summary><span data-en="Matches by Daniel García Fernández with Real Oviedo (8)">Partidos de Daniel García Fernández con el Real Oviedo (8)</span></summary>
+          <ul>
+          <li><small data-en="20 Jan 2008">20 ene 2008</small><a href="../partidos/cd-universidad-de-oviedo-real-oviedo-2008-01-20.html">C.D. Universidad de Oviedo 3-2 Real Oviedo</a></li>
+          <li><small data-en="13 Jan 2008">13 ene 2008</small><a href="../partidos/real-oviedo-sd-colloto-2008-01-13.html">Real Oviedo 3-0 S.D. Colloto</a></li>
+          <li><small data-en="22 Dec 2007">22 dic 2007</small><a href="../partidos/real-oviedo-real-tapia-cf-2007-12-22.html">Real Oviedo 2-0 Real Tapia C.F.</a></li>
+          <li><small data-en="25 Nov 2007">25 nov 2007</small><a href="../partidos/real-oviedo-candas-cf-2007-11-25.html">Real Oviedo 1-0 Candás C.F.</a></li>
+          <li><small data-en="18 Nov 2007">18 nov 2007</small><a href="../partidos/u-ceares-real-oviedo-2007-11-18.html">U. Ceares 0-1 Real Oviedo</a></li>
+          <li><small data-en="30 Sep 2007">30 sep 2007</small><a href="../partidos/real-oviedo-club-siero-2007-09-30.html">Real Oviedo 5-1 Club Siero</a></li>
+          <li><small data-en="23 Sep 2007">23 sep 2007</small><a href="../partidos/real-aviles-industrial-cf-real-oviedo-2007-09-23.html">Real Avilés Industrial C.F. 1-3 Real Oviedo</a></li>
+          <li><small data-en="16 Sep 2007">16 sep 2007</small><a href="../partidos/real-oviedo-real-sporting-de-gijon-b-2007-09-16.html">Real Oviedo 3-2 Real Sporting de Gijón B</a></li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="footer-placeholder"></footer>
+
+    <!-- Scripts (Rutas con ../) -->
+    <script src="../js/i18n.js?nocache=20261128v3"></script>
+    <script src="../js/data-club.js?nocache=20261128v3"></script>
+    <script src="../js/data-jugadores.js?nocache=20261128v3"></script>
+    <script src="../js/busqueda.js?nocache=20261128v3"></script>
+    <script src="../js/data-temporada-actual.js?nocache=20261128v3"></script>
+    <script src="../js/data-historico.js?nocache=20261128v3"></script>
+    <script src="../js/data-utils.js?nocache=20261128v3"></script>
+    <script src="../js/data-indice-partidos.js?nocache=20261128v3"></script>
+    <script src="../js/app.js?nocache=20261128v3"></script>
+    <script src="../js/script.js?nocache=20261128v3"></script>
+    <script src="../js/main.js?nocache=20261128v3"></script>
+  </body>
+</html>
