@@ -9134,7 +9134,7 @@ CLUB_DATA.jugadoresMaestro = {
     lugarNacimiento: 'Betanzos',
     provinciaNacimiento: 'La Coruña',
     fechaNacimiento: '1989-06-07',
-    imagen: 'https://i.postimg.cc/T3NJHkjW/Dani-Garcia.webp',
+    imagen: 'img/jugadores/DaniGarcia.webp',
   },
   'adrian-fuertes-gutierrez': {
     nombre: 'Adrián',
