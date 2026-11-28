@@ -131,6 +131,23 @@ function enlaceTarjetaPartido(partido) {
   };
 }
 
+// Partidos antiguos con resumen en YouTube (js/data-resumenes.js):
+// icono ▶ en la tarjeta para saber cuáles tienen vídeo antes de entrar.
+let _fechasConResumen = null;
+function tieneResumenVideo(fecha) {
+  if (!_fechasConResumen) {
+    const lista =
+      (typeof CLUB_DATA !== 'undefined' && CLUB_DATA.resumenes) || [];
+    _fechasConResumen = new Set(lista.map((r) => r && r.fecha));
+  }
+  return !!fecha && _fechasConResumen.has(fecha);
+}
+
+function iconoResumenVideo(partido) {
+  if (!tieneResumenVideo(partido.fecha)) return '';
+  return `<span class="match-video-tag" title="${t('con_resumen_video') || 'Con resumen en vídeo'}">${t('resumen_video_tag') || 'Vídeo'}</span>`;
+}
+
 function getCategoriaJugador(jugador) {
   const pos = jugador.posicion;
   const group = getPositionGroup(pos);
@@ -2052,7 +2069,7 @@ const App = {
           <div class="match-competition-info">
             <span class="competition-name">
               ${translateCompeticion(compNombre)} · ${jorTexto}
-              ${tempBadge}
+              ${tempBadge}${iconoResumenVideo(partido)}
             </span>
             <div class="match-teams-result">
               <span class="team-home">${partido.local}</span>
@@ -3108,7 +3125,7 @@ const App = {
             <div class="match-competition-info">
               <span class="competition-name">
                 ${translateCompeticion(compNombre)} · ${jorTexto}
-                ${tempBadge}
+                ${tempBadge}${iconoResumenVideo(partido)}
               </span>
               <div class="match-teams-result">
                 <span class="team-home">${partido.local}</span>

@@ -94,6 +94,8 @@ const translations = {
     en_casa: 'En casa',
     fuera: 'Fuera',
     jornada_abrev: 'J',
+    resumen_video_tag: 'Vídeo',
+    con_resumen_video: 'Con resumen en vídeo',
 
     // ============================================
     // EQUIPO / PLANTILLA
@@ -690,6 +692,8 @@ const translations = {
     en_casa: 'Home',
     fuera: 'Away',
     jornada_abrev: 'M', // Matchday
+    resumen_video_tag: 'Video',
+    con_resumen_video: 'With video highlights',
 
     // ============================================
     // TEAM / SQUAD

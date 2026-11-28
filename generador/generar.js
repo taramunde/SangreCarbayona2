@@ -14,6 +14,7 @@ const dataFiles = [
   path.join(__dirname, '../js/data-temporada-actual.js'),
   path.join(__dirname, '../js/data-historico.js'),
   path.join(__dirname, '../js/data-utils.js'),
+  path.join(__dirname, '../js/data-resumenes.js'),
 ];
 const templatePath = path.join(__dirname, 'plantilla.html');
 
@@ -85,7 +86,7 @@ function htmlPartidosEstaticos(nombre, codigo, esEntrenador) {
   const items = lista
     .map(
       (p) =>
-        `<li>${PC.bi(e(PC.fechaCorta(p.fecha)), e(PC.fechaCortaEn(p.fecha)), 'small')}<a href="../partidos/${e(p.slug)}.html">${e(p.local)} ${e(PC.marcador(p))} ${e(p.visitante)}</a></li>`,
+        `<li>${PC.bi(e(PC.fechaCorta(p.fecha)), e(PC.fechaCortaEn(p.fecha)), 'small')}<a href="../partidos/${e(p.slug)}.html">${e(p.local)} ${e(PC.marcador(p))} ${e(p.visitante)}${p.resumen ? ' <i class="fas fa-circle-play match-video-icono" title="Con resumen en vídeo" aria-label="Con resumen en vídeo"></i>' : ''}</a></li>`,
     )
     .join('\n          ');
   return `<section class="ficha-partidos-estaticos">

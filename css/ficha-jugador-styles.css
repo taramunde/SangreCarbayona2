@@ -1753,3 +1753,31 @@
     justify-content: flex-start;
   }
 }
+
+/* Etiqueta "▶ Vídeo": el partido tiene resumen (js/data-resumenes.js) */
+.match-video-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #c4302b;
+  color: #fff;
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+  text-transform: none;
+}
+.match-video-tag::before {
+  content: '';
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent #fff;
+}
+/* En la lista estática de partidos de la ficha */
+.match-video-icono {
+  color: #c4302b;
+  margin-left: 6px;
+}

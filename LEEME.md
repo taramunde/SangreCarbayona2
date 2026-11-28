@@ -597,7 +597,8 @@ por partido; la fecha tiene que ser la del partido en los datos:
 
 Vale el código o la URL de YouTube entera. Sale un bloque "Resumen en
 vídeo" en la página del partido (`partidos/...html`) y un icono ▶ en
-los listados de temporada y rival. El vídeo no se descarga: se ve desde
+los listados de temporada y rival, y una etiqueta roja "▶ Vídeo" en la
+pestaña Partidos de cada jugador y entrenador. El vídeo no se descarga: se ve desde
 YouTube y solo se carga al pulsar play. Después, `npm run subir`.
 
 ---
